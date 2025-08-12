@@ -1,0 +1,37 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "ig-vibw-blutzucker",
+  "url": "https://hdc.gematik.de/fhir/ImplementationGuide/ig-vibw-blutzucker",
+  "version": "1.0.0",
+  "name": "IG_vibW_Blutzucker",
+  "title": "Implementation Guide – vibW Blutzucker",
+  "status": "active",
+  "publisher": "Beispielorganisation",
+  "description": "Implementation Guide für die Bereitstellung und Abfrage von vibW Blutzucker über FHIR.",
+  "packageId": "hdc.vibw.blutzucker",
+  "fhirVersion": ["4.0.1"],
+  "definition": {
+    "resource": [
+      {
+        "reference": { "reference": "ValueSet/VS-Blutzucker" },
+        "exampleBoolean": false
+      },
+      {
+        "reference": { "reference": "ValueSet/VS-Glukosewerte" },
+        "exampleBoolean": false
+      },
+      {
+        "reference": { "reference": "Observation/example-blutzucker" },
+        "exampleBoolean": true
+      },
+      {
+        "reference": { "reference": "Device/example-glukometer" },
+        "exampleBoolean": true
+      },
+      {
+        "reference": { "reference": "DeviceMetric/example-blutzucker-metric" },
+        "exampleBoolean": true
+      }
+    ]
+  }
+}

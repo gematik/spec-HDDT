@@ -1,0 +1,41 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://hdc.gematik.de/fhir/StructureDefinition/DeviceMetric-Glukometer",
+  "version": "0.1.0",
+  "name": "DeviceMetricGlukometer",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DeviceMetric",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DeviceMetric",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DeviceMetric.unit",
+        "path": "DeviceMetric.unit",
+        "short": "Einheit des Messwerts",
+        "definition": "Die Einheit, in der das zugehörige Messgerät seine Messwerte liefert.",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker_Einheiten"
+        }
+      },
+      {
+        "id": "DeviceMetric.source",
+        "path": "DeviceMetric.source",
+        "short": "Referenz auf die Geräteinstanz",
+        "definition": "Zeigt auf die konkrete Device-Ressource, die diese Gerätekonfiguration verwendet.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://hdc.gematik.de/fhir/StructureDefinition/Device-Glukometer"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

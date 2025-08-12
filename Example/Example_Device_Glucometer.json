@@ -1,0 +1,12 @@
+{
+  "resourceType": "Device",
+  "id": "example-glukometer",
+  "deviceName": [ { "name": "Accu-Chek Mobile", "type": "user-friendly-name" } ],
+  "manufacturer": "Roche",
+  "patient": {
+    "reference": "Patient/pat1"
+  },
+  "serialNumber": "2937459287531567",
+  "type": { "coding": [ { "system": "https://hdc.gematik.de/fhir/CodeSystem/CS_HiMi_DeviceType", "code": "Glukometer" } ] },
+  "definition": { "reference": "DeviceDefinition/example-glukometer-def" }
+}

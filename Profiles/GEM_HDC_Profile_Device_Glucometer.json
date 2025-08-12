@@ -1,0 +1,38 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://hdc.gematik.de/fhir/StructureDefinition/Device-Glukometer",
+  "version": "0.1.0",
+  "name": "DeviceGlukometer",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Device",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Device",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Device.patient",
+        "path": "Device.patient",
+        "short": "Zugehöriger Patient",
+        "definition": "Der Patient, dem das Gerät fest zugeordnet ist.",
+        "min": 1
+      },
+      {
+        "id": "Device.definition",
+        "path": "Device.definition",
+        "short": "Gerätedefinition",
+        "definition": "Referenz auf eine DeviceDefinition-Ressource, die technische und funktionale Details des Geräts beschreibt.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://himi-vz.bfarm.de/fhir/StructureDefinition/DeviceDefinition"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
