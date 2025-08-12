@@ -1,0 +1,27 @@
+{
+  "resourceType": "ValueSet",
+  "id": "VS-Gewebezucker-CGM",
+  "url": "https://hdc.gematik.de/fhir/ValueSet/VS-Gewebezucker-CGM",
+  "version": "0.1.0",
+  "name": "VS_Gewebezucker_CGM",
+  "title": "ValueSet – Gewebezucker (rtCGM)",
+  "status": "draft",
+  "publisher": "Beispielorganisation",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+           {
+            "code": "105272-9",
+            "display": "Glucose [Moles/volume] in Interstitial fluid"
+          },
+          {
+            "code": "105273-7",
+            "display": "Glucose [Moles/volume] in Reporting Period mean Interstitial fluid by calculation"
+          }
+        ]
+      }
+    ]
+  }
+}

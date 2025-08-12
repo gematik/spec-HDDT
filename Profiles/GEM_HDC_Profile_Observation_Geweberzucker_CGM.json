@@ -1,0 +1,175 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "SD-Observation-CGM-Messreihe",
+  "url": "https://hdc.gematik.de/fhir/StructureDefinition/Observation-CGM-Messreihe",
+  "version": "0.1.0",
+  "name": "Observation_CGM_Messreihe",
+  "title": "Observation – Gewebezucker (CGM Messreihe)",
+  "status": "draft",
+  "date": "2025-08-12",
+  "publisher": "Beispielorganisation",
+  "description": "Profile für die Erfassung einer CGM-Messreihe (Gewebezucker) als Observation mit SampledData.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Art der Messung",
+        "definition": "Kodierung dieser Messung, z. B. Gewebezucker aus LOINC.",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS-Gewebezucker-CGM"
+        }
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "short": "Betroffener Patient",
+        "definition": "Verweis auf den Patienten, zu dem diese Messreihe gehört.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "short": "Messzeitpunkt oder Zeitraum",
+        "definition": "Zeitpunkt oder Zeitraum, zu dem die Messung stattfand.",
+        "min": 1,
+        "type": [
+          {
+            "code": "dateTime"
+          },
+          {
+            "code": "Period"
+          }
+        ],
+        "mustSupport": false
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "short": "Messreihe",
+        "definition": "CGM-Messreihe als SampledData-Objekt.",
+        "min": 1,
+        "type": [
+          {
+            "code": "SampledData"
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x].origin.unit",
+        "path": "Observation.value[x].origin.unit",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x].origin.system",
+        "path": "Observation.value[x].origin.system",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x].origin.code",
+        "path": "Observation.value[x].origin.code",
+        "short": "Code der Messeinheit",
+        "definition": "UCUM-Code der Messeinheit.",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker_Einheiten"
+        }
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Gerätekonfiguration",
+        "definition": "Verweis auf die DeviceMetric-Ressource der Konfiguration.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/DeviceMetric"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.referenceRange.low",
+        "path": "Observation.referenceRange.low",
+        "short": "Referenzbereich – Untere Grenze",
+        "definition": "Niedrigster Normalwert."
+      },
+      {
+        "id": "Observation.referenceRange.high",
+        "path": "Observation.referenceRange.high",
+        "short": "Referenzbereich – Obere Grenze",
+        "definition": "Höchster Normalwert."
+      },
+      {
+        "id": "Observation.issued",
+        "path": "Observation.issued",
+        "short": "Zeit der Erfassung",
+        "definition": "Zeitpunkt, zu dem die Messung im System erfasst wurde.",
+        "max": "1",
+        "type": [
+          {
+            "code": "instant"
+          }
+        ]
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "short": "Messverfahren",
+        "definition": "Das Messverfahren (z. B. Sensorik, Teststreifen).",
+        "max": "1",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ]
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note",
+        "short": "Notiz oder Annotation",
+        "definition": "Zusätzliche Anmerkungen zur Messung.",
+        "type": [
+          {
+            "code": "Annotation"
+          }
+        ]
+      }
+    ]
+  }
+}
