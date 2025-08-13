@@ -1,9 +1,13 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://hdc.gematik.de/fhir/StructureDefinition/Observation-Blutzucker",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blutzucker",
   "version": "0.1.0",
-  "name": "ObservationBlutzucker",
+  "name": "Observation_Blutzucker",
+  "title": "Observation – Blutzucker",
   "status": "draft",
+  "date": "2025-08-12",
+  "publisher": "gematik GmbH",
+  "description": "Profile für die Erfassung von Blutzucker-Messungen als Observation.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -19,7 +23,7 @@
         "definition": "Der Code gibt an, welcher vibW gemessen wurde (z. B. LOINC 2339-0 für Blutzucker).",
         "binding": {
           "strength": "required",
-          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker"
         }
       },
       {
@@ -59,7 +63,7 @@
         "definition": "Gibt die physikalische Einheit an, in der der Messwert vorliegt (z. B. mg/dL, mmol/L).",
         "binding": {
           "strength": "required",
-          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker_Einheiten"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
         }
       },
       {
@@ -71,7 +75,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://hdc.gematik.de/fhir/StructureDefinition/DeviceMetric-Glukometer"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Messgeraet"
             ]
           }
         ]

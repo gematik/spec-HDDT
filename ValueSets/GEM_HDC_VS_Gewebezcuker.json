@@ -1,12 +1,12 @@
 {
   "resourceType": "ValueSet",
   "id": "VS-Gewebezucker-CGM",
-  "url": "https://hdc.gematik.de/fhir/ValueSet/VS-Gewebezucker-CGM",
+  "url": "https://gematik.de/fhir/hdc/ValueSet/VS-Gewebezucker-CGM",
   "version": "0.1.0",
   "name": "VS_Gewebezucker_CGM",
   "title": "ValueSet – Gewebezucker (rtCGM)",
   "status": "draft",
-  "publisher": "Beispielorganisation",
+  "publisher": "gematik GmbH",
   "compose": {
     "include": [
       {

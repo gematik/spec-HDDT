@@ -1,13 +1,13 @@
 {
   "resourceType": "StructureDefinition",
   "id": "SD-Observation-CGM-Messreihe",
-  "url": "https://hdc.gematik.de/fhir/StructureDefinition/Observation-CGM-Messreihe",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Messreihe",
   "version": "0.1.0",
   "name": "Observation_CGM_Messreihe",
   "title": "Observation – Gewebezucker (CGM Messreihe)",
   "status": "draft",
   "date": "2025-08-12",
-  "publisher": "Beispielorganisation",
+  "publisher": "gematik GmbH",
   "description": "Profile für die Erfassung einer CGM-Messreihe (Gewebezucker) als Observation mit SampledData.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
@@ -24,7 +24,7 @@
         "definition": "Kodierung dieser Messung, z. B. Gewebezucker aus LOINC.",
         "binding": {
           "strength": "required",
-          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS-Gewebezucker-CGM"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Gewebezucker-CGM"
         }
       },
       {
@@ -106,7 +106,7 @@
         "min": 1,
         "binding": {
           "strength": "required",
-          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker_Einheiten"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
         }
       },
       {
@@ -118,7 +118,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/StructureDefinition/DeviceMetric"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Messgeraet"
             ]
           }
         ]

@@ -1,8 +1,8 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://hdc.gematik.de/fhir/StructureDefinition/Device-Glukometer",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-Messgeraet",
   "version": "0.1.0",
-  "name": "DeviceGlukometer",
+  "name": "Device_Messgeraet",
   "status": "draft",
   "fhirVersion": "4.0.1",
   "kind": "resource",

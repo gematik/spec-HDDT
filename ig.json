@@ -1,7 +1,7 @@
 {
   "resourceType": "ImplementationGuide",
   "id": "ig-vibw-blutzucker",
-  "url": "https://hdc.gematik.de/fhir/ImplementationGuide/ig-vibw-blutzucker",
+  "url": "https://gematik.de/fhir/hdc/ImplementationGuide/ig-vibw-blutzucker",
   "version": "1.0.0",
   "name": "IG_vibW_Blutzucker",
   "title": "Implementation Guide – vibW Blutzucker",

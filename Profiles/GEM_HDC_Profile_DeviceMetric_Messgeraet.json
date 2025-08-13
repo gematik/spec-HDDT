@@ -1,9 +1,13 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://hdc.gematik.de/fhir/StructureDefinition/DeviceMetric-Glukometer",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Messgeraet",
   "version": "0.1.0",
-  "name": "DeviceMetricGlukometer",
+  "name": "DeviceMetric_Messgeraet",
+  "title": "Gerätekonfiguration – Messgerät",
+  "description": "Profile für die Gerätekonfiguration eines Messgerätes, das Blutzuckerwerte misst.",
   "status": "draft",
+  "date": "2025-08-12",
+  "publisher": "gematik GmbH",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -19,7 +23,7 @@
         "definition": "Die Einheit, in der das zugehörige Messgerät seine Messwerte liefert.",
         "binding": {
           "strength": "required",
-          "valueSet": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker_Einheiten"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
         }
       },
       {
@@ -31,7 +35,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://hdc.gematik.de/fhir/StructureDefinition/Device-Glukometer"
+              "https://gematik.de/fhir/hdc/StructureDefinition/Device-Messgeraet"
             ]
           }
         ]

@@ -1,12 +1,12 @@
 {
   "resourceType": "ValueSet",
   "id": "VS-Blutzucker",
-  "url": "https://hdc.gematik.de/fhir/ValueSet/VS-Blutzucker",
+  "url": "https://gematik.de/fhir/hdc/ValueSet/VS-Blutzucker",
   "version": "0.1.0",
   "name": "VS_Blutzucker",
   "title": "ValueSet Blutzucker (LOINC)",
   "status": "draft",
-  "publisher": "Beispielorganisation",
+  "publisher": "gematik GmbH",
   "description": "Enthält LOINC-Codes für die Messung des Blutzuckerspiegels.",
   "compose": {
     "include": [
@@ -28,7 +28,7 @@
           {
             "code": "14749-6",
             "display": "Glucose [Moles/volume] in Serum or Plasma"
-          },
+          }
         ]
       }
     ]

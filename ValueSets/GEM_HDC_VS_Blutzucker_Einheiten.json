@@ -1,13 +1,13 @@
 {
   "resourceType": "ValueSet",
   "id": "vs-glucose-units",
-  "url": "https://hdc.gematik.de/fhir/ValueSet/VS_Blutzucker_Einheiten",
+  "url": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten",
   "version": "0.1.0",
   "name": "VVS_Blutzucker_Einheiten",
   "title": "Blutzucker-Messgrößen",
   "status": "draft",
   "date": "2025-08-11",
-  "publisher": "Beispielorganisation",
+  "publisher": "gematik GmbH",
   "description": "UCUM-Einheiten, die für Blutzucker- und Gewebe-Blutzucker-Messungen verwendet werden (z. B. mg/dL, mmol/L).",
   "compose": {
     "include": [
