@@ -21,64 +21,47 @@
         "path": "Observation.code",
         "short": "Messart des Vitalwertes",
         "definition": "Der Code gibt an, welcher vibW gemessen wurde (z. B. LOINC 2339-0 für Blutzucker).",
+        "mustSupport": true,
         "binding": {
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker"
         }
       },
       {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
         "id": "Observation.value[x]",
         "path": "Observation.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "ordered": false,
-          "rules": "open"
-        },
         "min": 1,
         "type": [
           {
             "code": "Quantity"
           }
-        ]
-      },
-      {
-        "id": "Observation.value[x]:valueQuantity",
-        "path": "Observation.value[x]",
-        "sliceName": "valueQuantity",
-        "type": [
-          {
-            "code": "Quantity"
-          }
-        ]
-      },
-      {
-        "id": "Observation.value[x]:valueQuantity.unit",
-        "path": "Observation.value[x].unit",
-        "short": "Einheit des gemessenen Wertes",
-        "definition": "Gibt die physikalische Einheit an, in der der Messwert vorliegt (z. B. mg/dL, mmol/L).",
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
-        }
+        ],
+        "mustSupport": true
       },
       {
         "id": "Observation.device",
         "path": "Observation.device",
         "short": "Referenz auf Gerätekonfiguration",
         "definition": "Verweist auf eine DeviceMetric-Ressource, welche die aktuelle Konfiguration des Messgerätes beschreibt.",
+        "min": 1,
         "type": [
           {
             "code": "Reference",
             "targetProfile": [
-              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Messgeraet"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Glucometer"
             ]
           }
-        ]
+        ],
+        "mustSupport": true
       }
     ]
   }

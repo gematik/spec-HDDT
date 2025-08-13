@@ -1,13 +1,13 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Messgeraet",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Glucometer",
   "version": "0.1.0",
-  "name": "DeviceMetric_Messgeraet",
-  "title": "Gerätekonfiguration – Messgerät",
-  "description": "Profile für die Gerätekonfiguration eines Messgerätes, das Blutzuckerwerte misst.",
+  "name": "DeviceMetric_Glucometer",
+  "title": "Gerätekonfiguration – Glucometer",
   "status": "draft",
   "date": "2025-08-12",
   "publisher": "gematik GmbH",
+  "description": "Profile für die Gerätekonfiguration eines Glucometers, das Blutzuckerwerte misst.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -17,10 +17,25 @@
   "differential": {
     "element": [
       {
+        "id": "DeviceMetric.type",
+        "path": "DeviceMetric.type",
+        "short": "Definition des Messtyps eines Glucometers.",
+        "definition": "Definition des Messtyps eines Glucometers, z. B. dass das Gerät nur Blutzcuker messt.",
+        "comment": "Anmerkung: Für die OAuth Scopes, damit der entsprechende FHIR-Endpoint nur die erlaubte Gerätekonfiguration, die zu Messungen passt, zurückliefert.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "description": "Nur Code aus dem ValueSet Blutzucker ist erlaubt.",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blutzucker"
+        }
+      },
+      {
         "id": "DeviceMetric.unit",
         "path": "DeviceMetric.unit",
         "short": "Einheit des Messwerts",
         "definition": "Die Einheit, in der das zugehörige Messgerät seine Messwerte liefert.",
+        "min": 1,
+        "mustSupport": true,
         "binding": {
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
@@ -31,6 +46,7 @@
         "path": "DeviceMetric.source",
         "short": "Referenz auf die Geräteinstanz",
         "definition": "Zeigt auf die konkrete Device-Ressource, die diese Gerätekonfiguration verwendet.",
+        "min": 1,
         "type": [
           {
             "code": "Reference",
@@ -38,7 +54,8 @@
               "https://gematik.de/fhir/hdc/StructureDefinition/Device-Messgeraet"
             ]
           }
-        ]
+        ],
+        "mustSupport": true
       }
     ]
   }

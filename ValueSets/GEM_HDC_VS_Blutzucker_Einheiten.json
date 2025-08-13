@@ -3,7 +3,7 @@
   "id": "vs-glucose-units",
   "url": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten",
   "version": "0.1.0",
-  "name": "VVS_Blutzucker_Einheiten",
+  "name": "VS_Blutzucker_Einheiten",
   "title": "Blutzucker-Messgrößen",
   "status": "draft",
   "date": "2025-08-11",

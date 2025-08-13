@@ -15,11 +15,8 @@
            {
             "code": "105272-9",
             "display": "Glucose [Moles/volume] in Interstitial fluid"
-          },
-          {
-            "code": "105273-7",
-            "display": "Glucose [Moles/volume] in Reporting Period mean Interstitial fluid by calculation"
           }
+
         ]
       }
     ]

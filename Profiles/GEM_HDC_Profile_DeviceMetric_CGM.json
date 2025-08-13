@@ -1,0 +1,62 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-CGM",
+  "version": "0.1.0",
+  "name": "DeviceMetric_CGM",
+  "title": "Gerätekonfiguration – CGM",
+  "status": "draft",
+  "date": "2025-08-12",
+  "publisher": "gematik GmbH",
+  "description": "Profile für die Gerätekonfiguration eines CGM-Geräts, das Gewebezuckerwerte misst.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DeviceMetric",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DeviceMetric",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DeviceMetric.type",
+        "path": "DeviceMetric.type",
+        "short": "Definition des Messtyps eines rtCGM-Systems.",
+        "definition": "Definition des Messtyps eines rtCGM-Systems, z. B. dass das Gerät nur Gewebezucker als Messreihe misst.",
+        "comment": "Anmerkung: Für die OAuth Scopes, damit der entsprechende FHIR-Endpoint nur die erlaubte Gerätekonfiguration, die zu Messungen passt, zurückliefert.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "description": "Nur Code aus dem ValueSet Gewebezucker ist erlaubt.",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Gewebezucker-CGM"
+        }
+      },
+      {
+        "id": "DeviceMetric.unit",
+        "path": "DeviceMetric.unit",
+        "short": "Einheit des Messwerts",
+        "definition": "Die Einheit, in der das zugehörige Messgerät seine Messwerte liefert.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
+        }
+      },
+      {
+        "id": "DeviceMetric.source",
+        "path": "DeviceMetric.source",
+        "short": "Referenz auf die Geräteinstanz",
+        "definition": "Zeigt auf die konkrete Device-Ressource, die diese Gerätekonfiguration verwendet.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/hdc/StructureDefinition/Device-Messgeraet"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

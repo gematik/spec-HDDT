@@ -13,17 +13,11 @@
   "differential": {
     "element": [
       {
-        "id": "Device.patient",
-        "path": "Device.patient",
-        "short": "Zugehöriger Patient",
-        "definition": "Der Patient, dem das Gerät fest zugeordnet ist.",
-        "min": 1
-      },
-      {
         "id": "Device.definition",
         "path": "Device.definition",
         "short": "Gerätedefinition",
         "definition": "Referenz auf eine DeviceDefinition-Ressource, die technische und funktionale Details des Geräts beschreibt.",
+        "min": 1,
         "type": [
           {
             "code": "Reference",
@@ -31,7 +25,24 @@
               "http://himi-vz.bfarm.de/fhir/StructureDefinition/DeviceDefinition"
             ]
           }
-        ]
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Device.serialNumber",
+        "path": "Device.serialNumber",
+        "min": 1
+      },
+      {
+        "id": "Device.deviceName",
+        "path": "Device.deviceName",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Device.modelNumber",
+        "path": "Device.modelNumber",
+        "min": 1
       }
     ]
   }

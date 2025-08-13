@@ -22,6 +22,7 @@
         "path": "Observation.code",
         "short": "Art der Messung",
         "definition": "Kodierung dieser Messung, z. B. Gewebezucker aus LOINC.",
+        "mustSupport": true,
         "binding": {
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Gewebezucker-CGM"
@@ -32,7 +33,6 @@
         "path": "Observation.subject",
         "short": "Betroffener Patient",
         "definition": "Verweis auf den Patienten, zu dem diese Messreihe gehört.",
-        "min": 1,
         "type": [
           {
             "code": "Reference",
@@ -45,40 +45,29 @@
       {
         "id": "Observation.effective[x]",
         "path": "Observation.effective[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "open"
-        },
         "short": "Messzeitpunkt oder Zeitraum",
         "definition": "Zeitpunkt oder Zeitraum, zu dem die Messung stattfand.",
         "min": 1,
         "type": [
           {
-            "code": "dateTime"
-          },
-          {
             "code": "Period"
           }
         ],
-        "mustSupport": false
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.effective[x].start",
+        "path": "Observation.effective[x].start",
+        "min": 1
+      },
+      {
+        "id": "Observation.effective[x].end",
+        "path": "Observation.effective[x].end",
+        "min": 1
       },
       {
         "id": "Observation.value[x]",
         "path": "Observation.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "open"
-        },
         "short": "Messreihe",
         "definition": "CGM-Messreihe als SampledData-Objekt.",
         "min": 1,
@@ -86,7 +75,8 @@
           {
             "code": "SampledData"
           }
-        ]
+        ],
+        "mustSupport": true
       },
       {
         "id": "Observation.value[x].origin.unit",
@@ -114,11 +104,12 @@
         "path": "Observation.device",
         "short": "Gerätekonfiguration",
         "definition": "Verweis auf die DeviceMetric-Ressource der Konfiguration.",
+        "min": 1,
         "type": [
           {
             "code": "Reference",
             "targetProfile": [
-              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Messgeraet"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-CGM"
             ]
           }
         ]
