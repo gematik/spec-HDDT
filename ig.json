@@ -1,35 +1,83 @@
 {
   "resourceType": "ImplementationGuide",
-  "id": "ig-vibw-blutzucker",
-  "url": "https://gematik.de/fhir/hdc/ImplementationGuide/ig-vibw-blutzucker",
+  "id": "ig-vibw-glucose",
+  "url": "https://gematik.de/fhir/hdc/ImplementationGuide/ig-vibw-glucose",
   "version": "0.1.0",
-  "name": "IG_vibW_Blutzucker",
-  "title": "Implementation Guide – vibW Blutzucker",
-  "status": "active",
+  "name": "IG_vibW_Glucose",
+  "title": "Implementation Guide – vibW Glucose",
+  "status": "draft",
   "publisher": "Beispielorganisation",
-  "description": "Implementation Guide für die Bereitstellung und Abfrage von vibW Blutzucker über FHIR.",
-  "packageId": "hdc.vibw.blutzucker",
-  "fhirVersion": ["4.0.1"],
+  "description": "Implementation Guide for the vibW Glucose profile, including blood glucose and tissue glucose measurements.",
+  "packageId": "hdc.vibw.glucose",
+  "fhirVersion": [
+    "4.0.1"
+  ],
   "definition": {
     "resource": [
       {
-        "reference": { "reference": "ValueSet/VS-Blutzucker" },
+        "reference": {
+          "reference": "ValueSet/GEM_HDC_VS_Blood_Glucose_Units"
+        },
         "exampleBoolean": false
       },
       {
-        "reference": { "reference": "ValueSet/VS-Glukosewerte" },
+        "reference": {
+          "reference": "ValueSet/GEM_HDC_VS_Blood_Glucose"
+        },
         "exampleBoolean": false
       },
       {
-        "reference": { "reference": "Observation/example-blutzucker" },
+        "reference": {
+          "reference": "ValueSet/GEM_HDC_VS_Tissue_Glucose_CGM"
+        },
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/GEM_HDC_Profile_Device_HiMi"
+        },
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/GEM_HDC_Profile_DeviceMetric_HiMi"
+        },
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/GEM_HDC_Profile_Observation_Blood_Glucose"
+        },
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/GEM_HDC_Profile_Observation_Tissue_Glucose_CGM"
+        },
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Device/Example_Device_Glucometer"
+        },
         "exampleBoolean": true
       },
       {
-        "reference": { "reference": "Device/example-glukometer" },
+        "reference": {
+          "reference": "DeviceMetric/Example_DeviceMetric_Glucometer"
+        },
         "exampleBoolean": true
       },
       {
-        "reference": { "reference": "DeviceMetric/example-blutzucker-metric" },
+        "reference": {
+          "reference": "Observation/Example_Observation_Blood_Glucose"
+        },
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/Example_Observation_CGM_Measurement_Series"
+        },
         "exampleBoolean": true
       }
     ]
