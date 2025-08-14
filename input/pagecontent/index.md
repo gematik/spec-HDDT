@@ -1,16 +1,15 @@
-# Implementation Guide – vibW Blutzucker
+# Implementation Guide – vibW Blood Glucose
 
-Dieser Implementation Guide beschreibt die technische und semantische Umsetzung für die Bereitstellung von Vitalwerten (vibW) am Beispiel **Blutzucker** nach §374a SGB V.
+This Implementation Guide describes the technical and semantic approach for providing vital signs (vibW) using **blood glucose** and **tissue glucose** as an example, according to §374a SGB V.
 
-## Ziele
-- Einheitliche Profile und ValueSets für die Interoperabilität zwischen Hilfsmitteln (HiMi) und digitalen Gesundheitsanwendungen (DiGA).
-- Verbindliche Codes (LOINC, UCUM) für Messwerte und Einheiten.
-- Vollständige Rückverfolgbarkeit zwischen Messwert, Gerätekonfiguration und Gerät.
+## Goals
+- Standardized profiles and value sets for interoperability between medical aids (HiMi) and digital health applications (DiGA).
+- Mandatory codes (LOINC, UCUM) for measurement values and units.
+- Complete traceability between measurement value, device configuration, and device.
 
-## Architektur
-Die Bereitstellung der Blutzuckerwerte erfolgt über die FHIR-Resource **Observation**.  
-Diese enthält Referenzen auf die **DeviceMetric** (Gerätekonfiguration) und **Device** (Geräteinstanz).  
-Zusätzlich werden **ValueSets** definiert, die bestimmen:
-- Welche Messwerte (LOINC) gültig sind.
-- Welche Einheiten (UCUM) zulässig sind.
-
+## Architecture
+Blood glucose values are provided via the FHIR resource **Observation**.  
+This contains references to **DeviceMetric** (device configuration) and **Device** (device instance).  
+Additionally, **ValueSets** are defined to specify:
+- Which measurement values (LOINC) are valid.
+- Which units (UCUM) are permitted.

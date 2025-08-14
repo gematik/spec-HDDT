@@ -1,10 +1,11 @@
 # ValueSets
 
-## VS_Blutzucker
-Dieses ValueSet enthält die LOINC-Codes für Blutzuckermessungen:
-- `2339-0` – Glucose [Mass/volume] in Blood
-- `15074-8` – Glucose [Moles/volume] in Blood
-- `2345-7` – Glucose [Mass/volume] in Serum or Plasma
-- `14749-6` – Glucose [Moles/volume] in Serum or Plasma
+## GEM_HDC_VS_Blood_Glucose_Units
+This ValueSet defines the possible units for reporting blood glucose measurements, ensuring consistency in how results are recorded and interpreted.
 
+## GEM_HDC_VS_Blood_Glucose
+This ValueSet contains codes for blood glucose measurements, including both mass/volume and moles/volume in blood, serum, or plasma, supporting standardized data exchange.
+
+## GEM_HDC_VS_Tissue_Glucose_CGM
+This ValueSet includes codes relevant to continuous glucose monitoring (CGM) of tissue glucose, facilitating interoperability for CGM device data.
 
