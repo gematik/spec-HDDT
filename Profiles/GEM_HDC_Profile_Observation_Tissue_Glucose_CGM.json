@@ -1,14 +1,13 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "SD-Observation-CGM-Messreihe",
-  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Messreihe",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Measurement-Series",
   "version": "0.1.0",
-  "name": "Observation_CGM_Messreihe",
-  "title": "Observation – Gewebezucker (CGM Messreihe)",
+  "name": "Observation_CGM_Measurement_Series",
+  "title": "Observation – Tissue Glucose (CGM Measurement Series)",
   "status": "draft",
   "date": "2025-08-12",
   "publisher": "gematik GmbH",
-  "description": "Profile für die Erfassung einer CGM-Messreihe (Gewebezucker) als Observation mit SampledData.",
+  "description": "Profile for capturing a CGM measurement time series (tissue glucose) as Observation.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -20,19 +19,19 @@
       {
         "id": "Observation.code",
         "path": "Observation.code",
-        "short": "Art der Messung",
-        "definition": "Kodierung dieser Messung, z. B. Gewebezucker aus LOINC.",
+        "short": "Type of measurement",
+        "definition": "Coding of this measurement, e.g., tissue glucose from LOINC.",
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Gewebezucker-CGM"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM"
         }
       },
       {
         "id": "Observation.subject",
         "path": "Observation.subject",
-        "short": "Betroffener Patient",
-        "definition": "Verweis auf den Patienten, zu dem diese Messreihe gehört.",
+        "short": "Patient subject",
+        "definition": "Reference to the patient to whom this time series belongs.",
         "type": [
           {
             "code": "Reference",
@@ -45,8 +44,8 @@
       {
         "id": "Observation.effective[x]",
         "path": "Observation.effective[x]",
-        "short": "Messzeitpunkt oder Zeitraum",
-        "definition": "Zeitpunkt oder Zeitraum, zu dem die Messung stattfand.",
+        "short": "Measurement time point or period",
+        "definition": "Time point or period when the measurement took place.",
         "min": 1,
         "type": [
           {
@@ -68,8 +67,8 @@
       {
         "id": "Observation.value[x]",
         "path": "Observation.value[x]",
-        "short": "Messreihe",
-        "definition": "CGM-Messreihe als SampledData-Objekt.",
+        "short": "Time series",
+        "definition": "CGM time series as SampledData object.",
         "min": 1,
         "type": [
           {
@@ -91,25 +90,25 @@
       {
         "id": "Observation.value[x].origin.code",
         "path": "Observation.value[x].origin.code",
-        "short": "Code der Messeinheit",
-        "definition": "UCUM-Code der Messeinheit.",
+        "short": "Unit of measurement code",
+        "definition": "UCUM code of the unit of measurement.",
         "min": 1,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker_Einheiten"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blood_Glucose_Units"
         }
       },
       {
         "id": "Observation.device",
         "path": "Observation.device",
-        "short": "Gerätekonfiguration",
-        "definition": "Verweis auf die DeviceMetric-Ressource der Konfiguration.",
+        "short": "Device configuration",
+        "definition": "Reference to the DeviceMetric resource of the configuration.",
         "min": 1,
         "type": [
           {
             "code": "Reference",
             "targetProfile": [
-              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-CGM"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-HiMi"
             ]
           }
         ]
@@ -117,20 +116,20 @@
       {
         "id": "Observation.referenceRange.low",
         "path": "Observation.referenceRange.low",
-        "short": "Referenzbereich – Untere Grenze",
-        "definition": "Niedrigster Normalwert."
+        "short": "Reference range – Lower limit",
+        "definition": "Lowest normal value."
       },
       {
         "id": "Observation.referenceRange.high",
         "path": "Observation.referenceRange.high",
-        "short": "Referenzbereich – Obere Grenze",
-        "definition": "Höchster Normalwert."
+        "short": "Reference range – Upper limit",
+        "definition": "Highest normal value."
       },
       {
         "id": "Observation.issued",
         "path": "Observation.issued",
-        "short": "Zeit der Erfassung",
-        "definition": "Zeitpunkt, zu dem die Messung im System erfasst wurde.",
+        "short": "Time of capture",
+        "definition": "Time point when the measurement was captured in the system.",
         "max": "1",
         "type": [
           {
@@ -141,8 +140,8 @@
       {
         "id": "Observation.method",
         "path": "Observation.method",
-        "short": "Messverfahren",
-        "definition": "Das Messverfahren (z. B. Sensorik, Teststreifen).",
+        "short": "Measurement method",
+        "definition": "The measurement method (e.g., sensor technology, test strips).",
         "max": "1",
         "type": [
           {
@@ -153,8 +152,8 @@
       {
         "id": "Observation.note",
         "path": "Observation.note",
-        "short": "Notiz oder Annotation",
-        "definition": "Zusätzliche Anmerkungen zur Messung.",
+        "short": "Note or annotation",
+        "definition": "Additional comments on the measurement.",
         "type": [
           {
             "code": "Annotation"

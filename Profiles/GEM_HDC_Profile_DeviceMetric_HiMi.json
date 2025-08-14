@@ -1,0 +1,62 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-HiMi",
+  "version": "0.1.0",
+  "name": "DeviceMetric_HiMi",
+  "title": "Device configuration – HiMi",
+  "status": "draft",
+  "date": "2025-08-12",
+  "publisher": "gematik GmbH",
+  "description": "Profile for the device configuration of a HiMi device.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DeviceMetric",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DeviceMetric",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DeviceMetric.type",
+        "path": "DeviceMetric.type",
+        "short": "Definition of the measurement type",
+        "definition": "Definition of the measurement type of a HiMi device, e.g. that the device only measures tissue glucose. ",
+        "comment": "Note: For the OAuth scopes, so that the corresponding FHIR endpoint only returns the allowed device configuration that matches the measurements.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "preferred",
+          "description": "Only codes from LOINC are allowed. Codes must be match to code in measurements, e.g from this ValueSet. : https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM",
+          "valueSet": "http://loinc.org/vs"
+        }
+      },
+      {
+        "id": "DeviceMetric.unit",
+        "path": "DeviceMetric.unit",
+        "short": "Unit of the measurement",
+        "definition": "The unit in which the associated measuring device delivers its measurement values.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
+        }
+      },
+      {
+        "id": "DeviceMetric.source",
+        "path": "DeviceMetric.source",
+        "short": "Reference to the device instance",
+        "definition": "Points to the specific Device resource that uses this device configuration.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/hdc/StructureDefinition/Device-HiMi"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

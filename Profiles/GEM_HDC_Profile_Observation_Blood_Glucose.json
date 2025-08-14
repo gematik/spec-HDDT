@@ -1,13 +1,13 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blutzucker",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blood-Glucose",
   "version": "0.1.0",
-  "name": "Observation_Blutzucker",
-  "title": "Observation – Blutzucker",
+  "name": "Observation_Blood_Glucose",
+  "title": "Observation – Blood Glucose",
   "status": "draft",
   "date": "2025-08-12",
   "publisher": "gematik GmbH",
-  "description": "Profile für die Erfassung von Blutzucker-Messungen als Observation.",
+  "description": "Profile for capturing blood glucose measurements as Observation.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -19,12 +19,12 @@
       {
         "id": "Observation.code",
         "path": "Observation.code",
-        "short": "Messart des Vitalwertes",
-        "definition": "Der Code gibt an, welcher vibW gemessen wurde (z. B. LOINC 2339-0 für Blutzucker).",
+        "short": "Measurement type of vital sign",
+        "definition": "The code specifies which vital sign was measured (e.g., LOINC 2339-0 for blood glucose).",
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blutzucker"
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blood_Glucose"
         }
       },
       {
@@ -50,14 +50,14 @@
       {
         "id": "Observation.device",
         "path": "Observation.device",
-        "short": "Referenz auf Gerätekonfiguration",
-        "definition": "Verweist auf eine DeviceMetric-Ressource, welche die aktuelle Konfiguration des Messgerätes beschreibt.",
+        "short": "Reference to device configuration",
+        "definition": "References a DeviceMetric resource that describes the current configuration of the measuring device.",
         "min": 1,
         "type": [
           {
             "code": "Reference",
             "targetProfile": [
-              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Glucometer"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-HiMi"
             ]
           }
         ],

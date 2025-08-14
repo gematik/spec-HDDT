@@ -1,8 +1,8 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-Messgeraet",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-HiMi",
   "version": "0.1.0",
-  "name": "Device_Messgeraet",
+  "name": "Device_HiMi",
   "status": "draft",
   "fhirVersion": "4.0.1",
   "kind": "resource",
@@ -15,8 +15,8 @@
       {
         "id": "Device.definition",
         "path": "Device.definition",
-        "short": "Gerätedefinition",
-        "definition": "Referenz auf eine DeviceDefinition-Ressource, die technische und funktionale Details des Geräts beschreibt.",
+        "short": "Device definition of the medical device",
+        "definition": "Reference to a DeviceDefinition resource that describes the technical and functional details of the device.",
         "min": 1,
         "type": [
           {
