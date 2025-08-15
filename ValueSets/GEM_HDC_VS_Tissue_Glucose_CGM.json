@@ -16,6 +16,10 @@
            {
             "code": "105272-9",
             "display": "Glucose [Moles/volume] in Interstitial fluid"
+          },
+          {
+            "code": "99504-3",
+            "display": "Glucose [Mass/volume] in Interstitial fluid"
           }
 
         ]

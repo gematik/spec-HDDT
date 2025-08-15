@@ -17,11 +17,11 @@
     "coding": [
       {
         "system": "http://loinc.org",
-        "code": "105273-7",
-        "display": "Glucose [Moles/volume] in Reporting Period mean Interstitial fluid by calculation"
+        "code": "99504-3",
+        "display": "Glucose [Mass/volume] in Interstitial fluid"
       }
     ],
-    "text": "Gewebezucker (rtCGM)"
+    "text": "Tissue glucose [Mass/volume] with rtCGM"
   },
   "subject": {
     "reference": "Patient/12345"
@@ -33,7 +33,6 @@
   "issued": "2025-08-11T09:01:00Z",
   "valueSampledData": {
     "origin": {
-      "value": 0,
       "unit": "mg/dL",
       "system": "http://unitsofmeasure.org",
       "code": "mg/dL"
@@ -69,10 +68,6 @@
         "display": "Continuous blood glucose monitoring"
       }
     ]
-  },
-  "note": [
-    {
-      "text": "Messwerte aus kontinuierlichem Glukosemonitoring (CGM) über 1 Stunde."
-    }
-  ]
+  }
+
 }
