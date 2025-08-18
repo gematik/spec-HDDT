@@ -1,5 +1,6 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "Device-HiMi",
   "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-HiMi",
   "version": "0.1.0",
   "name": "Device_HiMi",

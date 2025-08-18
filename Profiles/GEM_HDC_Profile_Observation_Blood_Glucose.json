@@ -1,5 +1,6 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "Observation-Blood-Glucose",
   "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blood-Glucose",
   "version": "0.1.0",
   "name": "Observation_Blood_Glucose",

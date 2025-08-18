@@ -1,5 +1,6 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "Observation-CGM-Measurement-Series",
   "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Measurement-Series",
   "version": "0.1.0",
   "name": "Observation_CGM_Measurement_Series",

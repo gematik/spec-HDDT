@@ -1,6 +1,6 @@
-# Implementation Guide – vibW Blood Glucose
+# Specification – Device 2 DiGA
 
-This Implementation Guide describes the technical and semantic approach for providing vital signs (vibW) using **blood glucose** and **tissue glucose** as an example, according to §374a SGB V.
+This specification describes the technical and semantic approach for providing vital signs (vibW) using **blood glucose** and **tissue glucose** as an example, according to §374a SGB V.
 
 ## Goals
 - Standardized profiles and value sets for interoperability between medical aids (HiMi) and digital health applications (DiGA).
