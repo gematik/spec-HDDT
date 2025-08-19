@@ -1,4 +1,3 @@
-### RESTful FHIR R4 API
 
 **Description**  
 Standardized access to medical device/implant data as FHIR resources for authorized DiGA.  

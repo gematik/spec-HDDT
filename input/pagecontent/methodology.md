@@ -1,7 +1,7 @@
 
 Requirements, as an expression of normative specifications, are indicated by the German keywords written in uppercase—MUSS, DARF NICHT, SOLL, SOLL NICHT, KANN—and their plural forms, in accordance with [RFC 2119](https://tools.ietf.org/html/rfc2119 "RFC 2119").
 
-## Impact on Certification and Test Reports
+### Impact on Certification and Test Reports
 
 **SHALL / MUSS** indicates, in Device2DiGA, a requirement that must be fulfilled. The requirement is covered by one or more tests, so a system cannot be certified for the respective module if it fails any test that verifies compliance with the requirement.
 

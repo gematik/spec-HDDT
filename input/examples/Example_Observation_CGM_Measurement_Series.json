@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-
+  "id": "example-cgm-measurement-series",
   "status": "final",
   "category": [
     {

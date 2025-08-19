@@ -25,3 +25,11 @@ replay_pid*
 .simplifier/
 fhirpkg.lock.json
 out/
+output/
+temp/
+template/
+Example.zip
+caddy.exe
+Caddyfile
+input-cache/
+fsh-generated/

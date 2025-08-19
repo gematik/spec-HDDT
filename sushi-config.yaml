@@ -1,0 +1,168 @@
+# ╭────────────────────────────────────────────────────────────────────────────────────────────────╮
+# │  ACTION REQUIRED: REVIEW AND EDIT THIS FILE TO ENSURE IT ACCURATELY REFLECTS YOUR PROJECT!     │
+# │                                                                                                │
+# │  This file was generated from your existing project files and will be used for SUSHI           │
+# │  configuration from now on. You may delete your package.json as it is no longer needed.        │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+# ╭────────────────────────────ImplementationGuide-AustrianPatient.json────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see:                                                                    │
+# │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: gematik-de-hdc
+canonical: https://gematik.de/fhir/hdc/
+version: 0.1.0
+name: Spec Device2DiGA
+title: Specification – Device 2 DiGA
+status: draft
+publisher: gematik GmbH
+contact:
+  - name: BfArM
+    telecom:
+      - system: url
+        value: https://www.gematik.de
+description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to §374a SGB V.
+license: CC0-1.0
+fhirVersion: 4.0.1
+copyrightYear: 2025+
+releaseLabel: CI Build
+
+
+
+
+parameters:
+  show-inherited-invariants: false
+  # in order to preserve the version of the resources:
+  apply-version: false
+  copyrightYear: 2024+
+  releaseLabel: CI Build
+  shownav: false
+  apply-contact: false
+  default-contact: false
+  apply-publisher: false
+  default-publisher: false
+  propagate-status: false
+  showsource: true
+  # logging: [init, progress, tx, generate]
+
+
+pages:
+  index.html:
+    title: Overview
+    generation: markdown
+  examples.html:
+    title: Examples
+    generation: markdown
+  himi-diga-api.html:
+    title: HiMi DiGA RESTful FHIR API
+    generation: markdown
+  himi-vz-api.html:
+    title: HiMi Directory API
+    generation: markdown
+  information-model.html:
+    title: Information Model
+    generation: markdown
+  methodology.html:
+    title: Methodology
+    generation: markdown
+  oauth-api.html:
+    title: OAuth 2.0 ACG API
+    generation: markdown
+  participants.html:
+    title: Participants
+    generation: markdown
+  profiles.html:
+    title: Profiles
+    generation: markdown
+  representation_formats.html:
+    title: Representation Formats
+    generation: markdown
+  valuesets.html:
+    title: ValueSets
+    generation: markdown
+  zts-api.html:
+    title: ZTS API
+    generation: markdown
+  mivs.html:
+    title: Mandatory Interoperable Values (MIVs)
+    generation: markdown
+  motivation.html:
+    title: Motivation
+    generation: markdown
+  release-notes.html:
+    title: Release Notes
+    generation: markdown
+  about-specification.html:
+     title: About this specification
+     generation: markdown
+  certification-relevant-systems.html:
+    title: Certification relevant systems
+    generation: markdown
+  compatibility-of-the-gematik-specification.html:
+    title: Compatibility of the gematik Specification
+    generation: markdown
+  must-support.html:
+    title: Must-Support flags
+    generation: markdown
+  search-parameters.html:
+    title: Search parameters
+    generation: markdown
+  implementation_guide_diga.html:
+    title: Implementation guide for DiGA
+    generation: markdown
+  implementation_guide_himi.html:
+    title: Implementation guide for HiMi
+    generation: markdown
+# ╭─────────────────────────────────────────────ig.ini─────────────────────────────────────────────╮
+# │  To control the ig.ini using this config, uncomment and set the "template" property.           │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+# template: fhir.base.template
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Home: index.html
+  Motivation: motivation.html
+  Release Notes: release-notes.html
+  About: 
+    About this specification: about-specification.html
+    Participants: participants.html
+    Information Model: information-model.html
+  Definition and Rules: 
+    Methodology: methodology.html
+    Certification relevant systems: certification-relevant-systems.html
+    Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
+    Must-Support flags: must-support.html
+    Representation Format: representation_formats.html
+    Search parameters: search-parameters.html
+    REST API:
+      HIMI DiGA FHIR API: himi-diga-api.html
+      HIMI Directory API: himi-vz-api.html
+      OAuth 2.0 ACG API: oauth-api.html
+      ZTS API: zts-api.html
+  UseCase Diabetes Self Management:
+    Mandatory Interoperable Values (MIVs): mivs.html
+    Examples: examples.html
+  ImplementationGuide:
+    Implementation guide for DiGA: implementation_guide_diga.html
+    Implementation guide for HiMi: implementation_guide_himi.html
+  Artifacts:
+    Artifacts Summary: artifacts.html
+    Profiles: profiles.html
+    ValueSets: valuesets.html
+
+
+# ╭───────────────────────────────────────package-list.json────────────────────────────────────────╮
+# │  To control the package-list.json using this config, uncomment and set the "history" property. │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+# history:
+#   introduction: An example of how FSH can be used to create an IG about AustrianPatient
+#   current:
+#     version: current
+#     desc: Draft
+#     path: http://hl7.at/fhir/4.0.1/HL7ATCoreProfiles
+#     status: ci-build
+#     current: truedependencies:
+

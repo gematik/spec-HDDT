@@ -1,4 +1,4 @@
-## Representation Formats
+
 
 The FHIR standard defines three different representation formats: XML, JSON, and RDF (Turtle). Within the scope of the Device2DiGA specification, **confirmation-relevant systems (servers) MUST support the XML and JSON formats**.
 
