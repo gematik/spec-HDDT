@@ -1,0 +1,4 @@
+URL,Version,Status,OIDs,Name,Title,Descriptino,Uses,Used,Sources
+https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose,0.1.0,draft,,VS_Blood_Glucose,ValueSet Blood Glucose from LOINC,"This ValueSet contains LOINC codes for blood glucose measurements.",,"LOINC"
+https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units,0.1.0,draft,,VS_Blood_Glucose_Units,Blood Glucose Measurement Units,"This ValueSet contains UCUM units codes used for blood glucose measurements (e.g., mg/dL, mmol/L).",,"UCUM"
+https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM,0.1.0,draft,,VS_Tissue_Glucose_CGM,ValueSet – Tissue Glucose for rtCGM from LOINC,"This ValueSet contains LOINC codes for tissue glucose measurements.",,"LOINC"

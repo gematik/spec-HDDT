@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="example-cgm-measurement-series"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Observation example-cgm-measurement-series</b></p><a name="example-cgm-measurement-series"> </a><a name="hcexample-cgm-measurement-series"> </a><p><b>status</b>: Final</p><p><b>category</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}">Vital Signs</span></p><p><b>code</b>: <span title="Codes:{http://loinc.org 99504-3}">Tissue glucose [Mass/volume] with rtCGM</span></p><p><b>subject</b>: <a href="Patient/12345">Patient/12345</a></p><p><b>effective</b>: 2025-08-11 08:00:00+0000 --&gt; 2025-08-11 09:00:00+0000</p><p><b>issued</b>: 2025-08-11 09:01:00+0000</p><p><b>value</b>: Origin: ? mg/dL , Dimensions: 1 , Data: 110 112 111 115 118 120 122 121 119 117 115 114 </p><p><b>method</b>: <span title="Codes:{http://snomed.info/sct 105824000}">Continuous blood glucose monitoring</span></p><p><b>device</b>: <a href="DeviceMetric/rtCGM-Conf-1">DeviceMetric/rtCGM-Conf-1</a></p><h3>ReferenceRanges</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td style="display: none">*</td><td>70 mg/dL<span style="background: LightGoldenRodYellow"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td><td>140 mg/dL<span style="background: LightGoldenRodYellow"> (Details: UCUM  codemg/dL = 'mg/dL')</span></td></tr></table></div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="vital-signs"/>
+      <display value="Vital Signs"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="99504-3"/>
+      <display value="Glucose [Mass/volume] in Interstitial fluid"/>
+    </coding>
+    <text value="Tissue glucose [Mass/volume] with rtCGM"/>
+  </code>
+  <subject>
+    <reference value="Patient/12345"/>
+  </subject>
+  <effectivePeriod>
+    <start value="2025-08-11T08:00:00Z"/>
+    <end value="2025-08-11T09:00:00Z"/>
+  </effectivePeriod>
+  <issued value="2025-08-11T09:01:00Z"/>
+  <valueSampledData>
+    <origin>
+      <unit value="mg/dL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mg/dL"/>
+    </origin>
+    <period value="300000"/>
+    <dimensions value="1"/>
+    <data value="110 112 111 115 118 120 122 121 119 117 115 114"/>
+  </valueSampledData>
+  <method>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="105824000"/>
+      <display value="Continuous blood glucose monitoring"/>
+    </coding>
+  </method>
+  <device>
+    <reference value="DeviceMetric/rtCGM-Conf-1"/>
+  </device>
+  <referenceRange>
+    <low>
+      <value value="70"/>
+      <unit value="mg/dL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mg/dL"/>
+    </low>
+    <high>
+      <value value="140"/>
+      <unit value="mg/dL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mg/dL"/>
+    </high>
+  </referenceRange>
+</Observation>

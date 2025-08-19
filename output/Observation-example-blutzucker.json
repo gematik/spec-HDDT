@@ -1,0 +1,35 @@
+{
+  "resourceType" : "Observation",
+  "id" : "example-blutzucker",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Observation example-blutzucker</b></p><a name=\"example-blutzucker\"> </a><a name=\"hcexample-blutzucker\"> </a><p><b>status</b>: Final</p><p><b>category</b>: <span title=\"Codes:{http://terminology.hl7.org/CodeSystem/observation-category vital-signs}\">Vital Signs</span></p><p><b>code</b>: <span title=\"Codes:{http://loinc.org 2339-0}\">Glucose [Mass/volume] in Blood</span></p><p><b>subject</b>: <a href=\"Patient/example\">Patient/example</a></p><p><b>effective</b>: 2025-08-11 08:30:00+0100</p><p><b>value</b>: 92 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM  codemg/dL = 'mg/dL')</span></p><p><b>device</b>: <a href=\"DeviceMetric-example-blutzucker-metric.html\">DeviceMetric: type = Glucose [Mass/volume] in Blood; unit = milligram per deciliter; operationalStatus = on; category = measurement; measurementPeriod = Once per 1 second</a></p></div>"
+  },
+  "status" : "final",
+  "category" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code" : "vital-signs"
+    }]
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "2339-0",
+      "display" : "Glucose [Mass/volume] in Blood"
+    }]
+  },
+  "subject" : {
+    "reference" : "Patient/example"
+  },
+  "effectiveDateTime" : "2025-08-11T08:30:00+01:00",
+  "valueQuantity" : {
+    "value" : 92,
+    "unit" : "mg/dL",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "mg/dL"
+  },
+  "device" : {
+    "reference" : "DeviceMetric/example-blutzucker-metric"
+  }
+}

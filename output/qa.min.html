@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- broken links = 12, errors = 25, warn = 10, info = 1-->
+<head>
+  <title>SpecDevice2DiGA : Validation Results</title>
+  <link href="fhir.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <style>
+    span.flip  { background-color: #4CAF50; color: white; border: solid 1px #a6d8a8; padding: 2px }
+    span.toggle  { background-color: #e6f2ff; color: black; border: solid 1px #0056b3; padding: 2px; font-size: 10px }
+    button { padding: 0px 8px; font-size: 12px; cursor: pointer; border-radius: 2px; border: 1px solid #ccc; background-color: #f0f0f0 }
+    button:hover { background-color: #e0e0e0; }
+    .code-value { display: inline; }
+    .code-hidden { display: none; }
+    span.toggle  { font-size: 10px }
+  </style>
+  <script>
+    function flip(id) {
+      var span = document.getElementById('s'+id);
+      var div = document.getElementById(id);
+      if (document.getElementById('s'+id).innerHTML == 'Show Reasoning') {
+        div.style.display = 'block';
+        span.innerHTML = 'Hide Reasoning';
+      } else {
+        div.style.display = 'none';
+        span.innerHTML = 'Show Reasoning';
+      }
+    }
+    function toggle(id) {
+      var span = document.getElementById('s'+id);
+      var div = document.getElementById(id);
+      if (document.getElementById('s'+id).innerHTML == 'Show Validation Information') {
+        div.style.display = 'block';
+        span.innerHTML = 'Hide Validation Information';
+      } else {
+        div.style.display = 'none';
+        span.innerHTML = 'Show Validation Information';
+      }
+    }
+    function toggleCodes() {
+      const codes = document.getElementsByClassName('code-value');
+      for (let code of codes) {
+        code.classList.toggle('code-hidden');
+      }
+    }
+  </script>
+</head>
+<body style="margin: 20px; background-color: #ffffff">
+ <h1>Validation Results for SpecDevice2DiGA</h1>
+ <p>Generated Tue Aug 19 17:52:57 CEST 2025, FHIR version 4.0.1 for gematik-de-hdc#0.1.0 (canonical = <a href="https://gematik.de/fhir/hdc/">https://gematik.de/fhir/hdc/</a> (<a href="https://gematik.de/fhir/hdc//history.html">history</a>)). See <a href="qa.html">Full QA Report</a> &amp; <a href="qa-ipreview.html">IP</a></p>
+<p style="color: maroon; font-weight: bold">Warning: This IG was generated with validation off. Many kinds of errors will not be reported.</p>
+<table class="grid"> <tr><td colspan=2><b>Quality Checks</b></td></tr>
+ <tr><td>Publisher Version:</td><td><span>IG Publisher Version: v2.0.13</span></td></tr>
+ <tr><td>Publication Code:</td><td>n/a<span style="color: maroon; font-weight: bold"> </span>. PackageId = gematik-de-hdc, Canonical = https://gematik.de/fhir/hdc/</td></tr>
+ <tr><td>Realm Check for n/a:</td><td><span style="color: maroon; font-weight: bold"></span><ul><li>n/a</li></ul></td></tr>
+ <tr><td>Language Info:</td><td>This IG has no language information</td></tr>
+ <tr><td>Publication Request:</td><td><ul><li>The file package-list.json should not exist in the root folder <img src="icon-error.gif" height="16px" width="16px"/></li>
+<li>History Page 'https://gematik.de/fhir/hdc//history.html' is wrong (ig.json#paths/history) - must be 'https://gematik.de/fhir/hdc/history.html' <img src="icon-error.gif" height="16px" width="16px"/></li>
+<li><span title="Not Found">This IG has never been published</span> <img src="information.png" height="16px" width="16px"/></li>
+<li>No publication request found <img src="information.png" height="16px" width="16px"/></li>
+</ul>
+</td></tr>
+ <tr><td>Supressed Messages:</td><td>No Suppressed Issues
+</td></tr>
+ <tr><td>Dependency Checks:</td><td><div><table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="dep" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><span title="The NPM Package Id">Package</span></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><span title="The version of the package">Version</span></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><span title="The version of FHIR that the package is based on">FHIR</span></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><span title="Canonical URL">Canonical</span></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><span title="Web Reference Base">Web Base</span></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><span title="Comments about this entry">Comment</span></th></tr><tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="a" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(c:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\outputdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALUlEQVR4Xu3IoREAIAwEwfT6/ddA0GBAxO3NrLlKUj9263wAAAAvrgEAADClAVWFQIBRHMicAAAAAElFTkSuQmCC)" class="hierarchy"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYZCik0qECmbAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABtUlEQVQoz2P8//8/Ayb4///v8xfM4iIMzKxoMkwMOMC3DVv/vXmEKY5Dw///Pw8c+Xn2CLEa/r55+/P07t/nrxKl4f/PX6+8g1mlP/44c4eAhn8fP33bsOV1dBoT51V2+z/MohIfeyYy/P2LXcPfFy8/NLb9efTs//utgjUfft35xRUY8Hnm/N/Xb2LT8P//h5ZOnvjoj+11giXcTH//MTLp/v/x9c/z279uXsOi4e/LRwzsbz6vmMyTLM6m9fnXE3Y2l+yv+yez2nL9eX0Wi4afF5eyW4r/+3qYP1Xjz/N3P17ZsRsKMrJd4rL9wcTxDIsGZqEvLEKv2VT/Mgl+/XGbXSB72s/zxXyBYmwqLCxSLFg0sKkHsAg+YJX7xfBTmt204s/NXE4dQTZtT2beH6yqFv9ebkDXwMhnxixrySb68f9fcWYRTSbGA6ya2QwMsixCvxk/djByiWIJVkbBBGaNOoafO5nYWVlkPRjYtP5/388s+JdJkI+R1xquDMl9zOqMQioM7BIMjJ8Z2IUYWOQZeT0Y/u5mEF+G7AdGLMn7712GnycY/v1g+HOZga+WgUkYWRIAe6ip9OnE1GoAAAAASUVORK5CYII=" alt="." style="background-color: white; background-color: inherit" title="NPM Package" class="hierarchy"/> gematik-de-hdc</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0.1.0</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4">R4</a></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">https://gematik.de/fhir/hdc/</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="aa" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(c:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\outputdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALUlEQVR4Xu3IoREAIAwEwfT6/ddA0GBAxO3NrLlKUj9263wAAAAvrgEAADClAVWFQIBRHMicAAAAAElFTkSuQmCC)" class="hierarchy"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img onClick="tableRowAction(this)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAACwSURBVDhP7ZLBDsIwCIaLZz34xG3f2cQYo5UfYalJoY07ePFL4GcbpZSVWmvJgwifG+njkLDACgfVIehAQ5ffdMDvxSS2Dmqty62UUmS1rIWD8UuWd9xxVt1AnoaSGx6Buap+0G80K3BTtbtwhLPZQL0CSIA9OwUXON7dZkBeASTAThb3bffMjnCHGy00ZgUeqi5f3YOcsw01vsqYMrMljwgLrBDOwP53xL+D3R2k9ALHsmr3Yu73+gAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYZCik0qECmbAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABtUlEQVQoz2P8//8/Ayb4///v8xfM4iIMzKxoMkwMOMC3DVv/vXmEKY5Dw///Pw8c+Xn2CLEa/r55+/P07t/nrxKl4f/PX6+8g1mlP/44c4eAhn8fP33bsOV1dBoT51V2+z/MohIfeyYy/P2LXcPfFy8/NLb9efTs//utgjUfft35xRUY8Hnm/N/Xb2LT8P//h5ZOnvjoj+11giXcTH//MTLp/v/x9c/z279uXsOi4e/LRwzsbz6vmMyTLM6m9fnXE3Y2l+yv+yez2nL9eX0Wi4afF5eyW4r/+3qYP1Xjz/N3P17ZsRsKMrJd4rL9wcTxDIsGZqEvLEKv2VT/Mgl+/XGbXSB72s/zxXyBYmwqLCxSLFg0sKkHsAg+YJX7xfBTmt204s/NXE4dQTZtT2beH6yqFv9ebkDXwMhnxixrySb68f9fcWYRTSbGA6ya2QwMsixCvxk/djByiWIJVkbBBGaNOoafO5nYWVlkPRjYtP5/388s+JdJkI+R1xquDMl9zOqMQioM7BIMjJ8Z2IUYWOQZeT0Y/u5mEF+G7AdGLMn7712GnycY/v1g+HOZga+WgUkYWRIAe6ip9OnE1GoAAAAASUVORK5CYII=" alt="." style="background-color: #F7F7F7; background-color: inherit" title="NPM Package" class="hierarchy"/> hl7.terminology.r4</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">6.5.0 <span style="padding-left: 3px; padding-right: 3px; color: white; background-color: green" title="Latest Milestone Release">M</span></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4">R4</a></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">http://terminology.hl7.org</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">http://terminology.hl7.org/6.5.0</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="aaa" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(c:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\outputdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALUlEQVR4Xu3IoREAIAwEwfT6/ddA0GBAxO3NrLlKUj9263wAAAAvrgEAADClAVWFQIBRHMicAAAAAElFTkSuQmCC)" class="hierarchy"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzMPbYccAgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAMElEQVQ4y+3OQREAIBDDwAv+PQcFFN5MIyCzqHMKUGVCpMFLK97heq+gggoq+EiwAVjvMhFGmlEUAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzME+lXFigAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+3OsRUAIAjEUOL+O8cJABttJM11/x1qZAGqRBEVcNIqdWj1efDqQbb3HwwwwEfABmQUHSPM9dtDAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYZCik0qECmbAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABtUlEQVQoz2P8//8/Ayb4///v8xfM4iIMzKxoMkwMOMC3DVv/vXmEKY5Dw///Pw8c+Xn2CLEa/r55+/P07t/nrxKl4f/PX6+8g1mlP/44c4eAhn8fP33bsOV1dBoT51V2+z/MohIfeyYy/P2LXcPfFy8/NLb9efTs//utgjUfft35xRUY8Hnm/N/Xb2LT8P//h5ZOnvjoj+11giXcTH//MTLp/v/x9c/z279uXsOi4e/LRwzsbz6vmMyTLM6m9fnXE3Y2l+yv+yez2nL9eX0Wi4afF5eyW4r/+3qYP1Xjz/N3P17ZsRsKMrJd4rL9wcTxDIsGZqEvLEKv2VT/Mgl+/XGbXSB72s/zxXyBYmwqLCxSLFg0sKkHsAg+YJX7xfBTmt204s/NXE4dQTZtT2beH6yqFv9ebkDXwMhnxixrySb68f9fcWYRTSbGA6ya2QwMsixCvxk/djByiWIJVkbBBGaNOoafO5nYWVlkPRjYtP5/388s+JdJkI+R1xquDMl9zOqMQioM7BIMjJ8Z2IUYWOQZeT0Y/u5mEF+G7AdGLMn7712GnycY/v1g+HOZga+WgUkYWRIAe6ip9OnE1GoAAAAASUVORK5CYII=" alt="." style="background-color: white; background-color: inherit" title="NPM Package" class="hierarchy"/> hl7.fhir.uv.extensions.r4</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">5.2.0 <span style="padding-left: 3px; padding-right: 3px; color: white; background-color: green" title="Latest Milestone Release">M</span></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4">R4</a></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">http://hl7.org/fhir/extensions</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">http://hl7.org/fhir/extensions/5.2.0</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ab" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(c:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\outputdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALElEQVR4Xu3IsQ0AIAwEsez6+89AqKGGJj7JzVWS+mm3zgcAAMxwDQAAgFcaYAVAgNGLTjgAAAAASUVORK5CYII=)" class="hierarchy"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzME+lXFigAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+3OsRUAIAjEUOL+O8cJABttJM11/x1qZAGqRBEVcNIqdWj1efDqQbb3HwwwwEfABmQUHSPM9dtDAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYZCik0qECmbAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABtUlEQVQoz2P8//8/Ayb4///v8xfM4iIMzKxoMkwMOMC3DVv/vXmEKY5Dw///Pw8c+Xn2CLEa/r55+/P07t/nrxKl4f/PX6+8g1mlP/44c4eAhn8fP33bsOV1dBoT51V2+z/MohIfeyYy/P2LXcPfFy8/NLb9efTs//utgjUfft35xRUY8Hnm/N/Xb2LT8P//h5ZOnvjoj+11giXcTH//MTLp/v/x9c/z279uXsOi4e/LRwzsbz6vmMyTLM6m9fnXE3Y2l+yv+yez2nL9eX0Wi4afF5eyW4r/+3qYP1Xjz/N3P17ZsRsKMrJd4rL9wcTxDIsGZqEvLEKv2VT/Mgl+/XGbXSB72s/zxXyBYmwqLCxSLFg0sKkHsAg+YJX7xfBTmt204s/NXE4dQTZtT2beH6yqFv9ebkDXwMhnxixrySb68f9fcWYRTSbGA6ya2QwMsixCvxk/djByiWIJVkbBBGaNOoafO5nYWVlkPRjYtP5/388s+JdJkI+R1xquDMl9zOqMQioM7BIMjJ8Z2IUYWOQZeT0Y/u5mEF+G7AdGLMn7712GnycY/v1g+HOZga+WgUkYWRIAe6ip9OnE1GoAAAAASUVORK5CYII=" alt="." style="background-color: #F7F7F7; background-color: inherit" title="NPM Package" class="hierarchy"/> hl7.fhir.uv.extensions.r4</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">5.2.0 <span style="padding-left: 3px; padding-right: 3px; color: white; background-color: green" title="Latest Milestone Release">M</span></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4">R4</a></td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">http://hl7.org/fhir/extensions</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">http://hl7.org/fhir/extensions/5.2.0</td><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"> (as above)</td></tr>
+</table><para>Templates: gematik.ig.template#0.0.1 -&gt; fhir.base.template#0.8.1. Tools: 0.7.1</para></div></td></tr>
+ <tr><td>Related IGs:</td><td>n/a</td></tr>
+ <tr><td>Dependent IGs:</td><td><a href="qa-dep.html">no references</a></td></tr>
+ <tr><td>Global Profiles:</td><td>(none declared)</td></tr>
+ <tr><td>Terminology Server(s):</td><td> (<a href="qa-txservers.html">details</a>)</td></tr>
+ <tr><td>HTA Analysis:</td><td><i>Non-HL7 Igs are exempt from terminology dependency analysis</i></td></tr>
+ <tr><td>R5 Dependencies:</td><td><span style="color: grey">(none)</span></td></tr>
+ <tr><td>Draft Dependencies:</td><td><ul>
+  <li>
+hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-parameter-code.html">GuideParameterCode</a>
+ (15 uses),     <a href="http://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-languages.html">CommonLanguages</a>
+ (4 uses),     <a href="http://hl7.org/fhir/R4/device.html">Device</a>
+ (4 uses),     <a href="http://hl7.org/fhir/R4/valueset-metric-operational-status.html">DeviceMetricOperationalStatus</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-metric-color.html">DeviceMetricColor</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-metric-category.html">DeviceMetricCategory</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-metric-calibration-type.html">DeviceMetricCalibrationType</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-metric-calibration-state.html">DeviceMetricCalibrationState</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-udi-entry-type.html">UDIEntryType</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-device-status.html">FHIRDeviceStatus</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-device-status-reason.html">FHIRDeviceStatusReason</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-device-nametype.html">DeviceNameType</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/valueset-device-type.html">DeviceType</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/organization.html">Organization</a>
+ (3 uses),     <a href="http://hl7.org/fhir/R4/location.html">Location</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/careplan.html">CarePlan</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/devicerequest.html">DeviceRequest</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/immunizationrecommendation.html">ImmunizationRecommendation</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/medicationrequest.html">MedicationRequest</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/nutritionorder.html">NutritionOrder</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/servicerequest.html">ServiceRequest</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/medicationadministration.html">MedicationAdministration</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/medicationdispense.html">MedicationDispense</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/medicationstatement.html">MedicationStatement</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/procedure.html">Procedure</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/immunization.html">Immunization</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/imagingstudy.html">ImagingStudy</a>
+ (4 uses),     <a href="http://hl7.org/fhir/R4/valueset-observation-category.html">ObservationCategoryCodes</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/group.html">Group</a>
+ (1 uses),     <a href="http://hl7.org/fhir/R4/encounter.html">Encounter</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/practitioner.html">Practitioner</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/practitionerrole.html">PractitionerRole</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/careteam.html">CareTeam</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/relatedperson.html">RelatedPerson</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/valueset-body-site.html">SNOMEDCTBodyStructures</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/valueset-observation-methods.html">ObservationMethods</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/specimen.html">Specimen</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/valueset-referencerange-meaning.html">ObservationReferenceRangeMeaningCodes</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/valueset-referencerange-appliesto.html">ObservationReferenceRangeAppliesToCodes</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/questionnaireresponse.html">QuestionnaireResponse</a>
+ (4 uses),     <a href="http://hl7.org/fhir/R4/molecularsequence.html">MolecularSequence</a>
+ (4 uses),     <a href="http://hl7.org/fhir/R4/documentreference.html">DocumentReference</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/media.html">Media</a>
+ (2 uses),     <a href="http://hl7.org/fhir/R4/valueset-observation-codes.html">LOINCCodes</a>
+ (2 uses)
+  </li>
+</ul>
+</td></tr>
+ <tr><td>Modifier Extensions:</td><td><span style="color: grey">(none)</span></td></tr>
+ <tr><td>Previous Version Comparison:</td><td> Unable to compare with previous version: Unable to find version history at https://gematik.de/fhir/hdc/ (Problem #1 with package-list.json at https://gematik.de/fhir/hdc/: Not Found)</td></tr>
+ <tr><td>IPA Comparison:</td><td> n/a</td></tr>
+ <tr><td>IPS Comparison:</td><td> n/a</td></tr>
+ <tr><td>Validation Flags:</td><td> On: autoLoad; Off: hintAboutNonMustSupport, anyExtensionsAllowed, checkAggregation, showReferenceMessages, noExperimentalContent, displayWarnings</td></tr>
+ <tr><td>Summary:</td><td> errors = 25, warn = 10, info = 1, broken links = 12, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
+</table>
+ <table class="grid">
+   <tr>
+     <td><b>Filename</b></td><td><b>Errors</b></td><td><b>Warnings</b></td><td><b>Hints</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#internal"><b>Build Errors</b></a></td><td><b>13</b></td><td><b>9</b></td><td><b>1</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_DeviceMetric_Glucometer"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_DeviceMetric_Glucometer</b></a></td><td><b>2</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_Device_Glucometer"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_Device_Glucometer</b></a></td><td><b>1</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_Observation_Blood_Glucose"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_Observation_Blood_Glucose</b></a></td><td><b>1</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_Observation_CGM_Measurement_Series"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_Observation_CGM_Measurement_Series</b></a></td><td><b>2</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_DeviceMetric_HiMi"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_DeviceMetric_HiMi</b></a></td><td><b>1</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_Device_HiMi"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Device_HiMi</b></a></td><td><b>1</b></td><td><b>1</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_Observation_Blood_Glucose"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Observation_Blood_Glucose</b></a></td><td><b>1</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_Observation_Tissue_Glucose_CGM"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Observation_Tissue_Glucose_CGM</b></a></td><td><b>2</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_VS_Blood_Glucose"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose</b></a></td><td><b>4</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_VS_Blood_Glucose_Units"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units</b></a></td><td><b>4</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_VS_Tissue_Glucose_CGM"><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM</b></a></td><td><b>4</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#c__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_fsh-generated_resources_ImplementationGuide-gematik-de-hdc"><b>c:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\fsh-generated\resources\ImplementationGuide-gematik-de-hdc</b></a></td><td><b>1</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="internal"> </a>
+<h2><a href="">n/a</a> <span id="sv" class="toggle" onclick="toggle('v')">Show Validation Information</span> <span class="vcount" onclick="toggle('v')"></span></h2>
+ <div style="border: 1px grey solid; display: none" id="v"></div>
+ <table class="grid">
+   <tr style="background-color: #ffcccc">
+     <td><b>ImplementationGuide&#8203;.definition&#8203;.parameter[34]&#8203;.value</b></td><td><b>error</b></td><td><b>Supressed messages file not found</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/Device-HiMi.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource Observation/example-blutzucker.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource DeviceMetric/example-blutzucker-metric.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource Observation/example-cgm-measurement-series.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource Device/example-glucometer.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>output\Device-example-glucometer&#8203;.change&#8203;.history&#8203;.html</b></td><td><b>information</b></td><td><b>The html source does not contain the publish box; this is recommended for publishing support  (see note at https://confluence.hl7.org/spaces/FHIR/pages/66930646/FHIR+Implementation+Guide+Publishing+Requirements#FHIRImplementationGuidePublishingRequirements-PublishBox). Note that this is mandatory for HL7 specifications, and on the ci-build, but in other cases it's still recommended (this is only reported once, but applies for all pages)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="Device-example-glucometer.html#l486">Device-example-glucometer&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 316, column 138</a></b></td><td><b>error</b></td><td><b>The link 'DeviceDefinition/example-glucometer-def' for &quot;DeviceDefinition/example-glucometer-def&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="DeviceMetric-example-blutzucker-metric.html#l498">DeviceMetric-example-blutzucker-metric&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 316, column 355</a></b></td><td><b>error</b></td><td><b>The link 'Device/example-glukometer' for &quot;Device/example-glukometer&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="DeviceMetric-example-blutzucker-metric.html#l504">DeviceMetric-example-blutzucker-metric&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 316, column 442</a></b></td><td><b>error</b></td><td><b>The link 'DeviceDefinition/dc102' for &quot;DeviceDefinition/dc102&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="Observation-example-blutzucker.html#l502">Observation-example-blutzucker&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 316, column 400</a></b></td><td><b>error</b></td><td><b>The link 'Patient/example' for &quot;Patient/example&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="Observation-example-cgm-measurement-series.html#l502">Observation-example-cgm-measurement-series&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 316, column 434</a></b></td><td><b>error</b></td><td><b>The link 'Patient/12345' for &quot;Patient/12345&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="Observation-example-cgm-measurement-series.html#l526">Observation-example-cgm-measurement-series&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/p&#8203;/a at Line 316, column 852</a></b></td><td><b>error</b></td><td><b>The link 'DeviceMetric/rtCGM-Conf-1' for &quot;DeviceMetric/rtCGM-Conf-1&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-DeviceMetric-HiMi.html#l931">StructureDefinition-DeviceMetric-HiMi&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tr&#8203;/td&#8203;/a at Line 492, column 314</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;LOINCCodes (missing link)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-DeviceMetric-HiMi.html#l1339">StructureDefinition-DeviceMetric-HiMi&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tr&#8203;/td&#8203;/a at Line 559, column 314</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;LOINCCodes (missing link)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-DeviceMetric-HiMi.html#l2282">StructureDefinition-DeviceMetric-HiMi&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tr&#8203;/td&#8203;/a at Line 736, column 314</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;LOINCCodes (missing link)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-DeviceMetric-HiMi.html#l2890">StructureDefinition-DeviceMetric-HiMi&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tr&#8203;/td&#8203;/a at Line 906, column 314</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;LOINCCodes (missing link)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-DeviceMetric-HiMi.html#l3295">StructureDefinition-DeviceMetric-HiMi&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tr&#8203;/td&#8203;/a at Line 972, column 314</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;LOINCCodes (missing link)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-DeviceMetric-HiMi.html#l4238">StructureDefinition-DeviceMetric-HiMi&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/br&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/table&#8203;/tr&#8203;/td&#8203;/a at Line 1149, column 314</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;LOINCCodes (missing link)&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>1</b></td><td><b>warning</b></td><td><b>The HTML fragment 'ip-statements.xhtml' is not included anywhere in the produced implementation guide</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>2</b></td><td><b>warning</b></td><td><b>An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>3</b></td><td><b>warning</b></td><td><b>An HTML fragment from the set [dependency-table.xhtml, dependency-table-short.xhtml, dependency-table-nontech.xhtml] is not included anywhere in the produced implementation guide</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>4</b></td><td><b>warning</b></td><td><b>The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_DeviceMetric_Glucometer"> </a>
+<h2><a href="DeviceMetric-example-blutzucker-metric.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_DeviceMetric_Glucometer.json</a> <span id="svi1" class="toggle" onclick="toggle('vi1')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi1')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi1"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>DeviceMetric.text.div</b></td><td><b>error</b></td><td><b>Hyperlink 'Device/example-glukometer' at 'div/p/a' for 'Device/example-glukometer' does not resolve</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>DeviceMetric.text.div</b></td><td><b>error</b></td><td><b>Hyperlink 'DeviceDefinition/dc102' at 'div/p/a' for 'DeviceDefinition/dc102' does not resolve</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_Device_Glucometer"> </a>
+<h2><a href="Device-example-glucometer.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_Device_Glucometer.json</a> <span id="svi2" class="toggle" onclick="toggle('vi2')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi2')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi2"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Device.text.div</b></td><td><b>error</b></td><td><b>Hyperlink 'DeviceDefinition/example-glucometer-def' at 'div/p/a' for 'DeviceDefinition/example-glucometer-def' does not resolve</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_Observation_Blood_Glucose"> </a>
+<h2><a href="Observation-example-blutzucker.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_Observation_Blood_Glucose.json</a> <span id="svi3" class="toggle" onclick="toggle('vi3')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi3')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi3"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Observation.text.div</b></td><td><b>error</b></td><td><b>Hyperlink 'Patient/example' at 'div/p/a' for 'Patient/example' does not resolve</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_examples_Example_Observation_CGM_Measurement_Series"> </a>
+<h2><a href="Observation-example-cgm-measurement-series.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\examples\Example_Observation_CGM_Measurement_Series.json</a> <span id="svi4" class="toggle" onclick="toggle('vi4')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi4')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi4"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Observation.text.div</b></td><td><b>error</b></td><td><b>Hyperlink 'Patient/12345' at 'div/p/a' for 'Patient/12345' does not resolve</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>Observation.text.div</b></td><td><b>error</b></td><td><b>Hyperlink 'DeviceMetric/rtCGM-Conf-1' at 'div/p/a' for 'DeviceMetric/rtCGM-Conf-1' does not resolve</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_DeviceMetric_HiMi"> </a>
+<h2><a href="StructureDefinition-DeviceMetric-HiMi.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_DeviceMetric_HiMi.json</a> <span id="svi5" class="toggle" onclick="toggle('vi5')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi5')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi5"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_DeviceMetric_HiMi</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//StructureDefinition/DeviceMetric-HiMi vs https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-HiMi</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_Device_HiMi"> </a>
+<h2><a href="StructureDefinition-Device-HiMi.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Device_HiMi.json</a> <span id="svi6" class="toggle" onclick="toggle('vi6')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi6')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi6"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition&#8203;.differential&#8203;.element[0]</b></td><td><b>warning</b></td><td><b>Cannot check whether the target profile http://himi-vz.bfarm.de/fhir/StructureDefinition/DeviceDefinition on Device.definition is valid constraint on the base because it is not known</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Device_HiMi</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//StructureDefinition/Device-HiMi vs https://gematik.de/fhir/hdc/StructureDefinition/Device-HiMi</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_Observation_Blood_Glucose"> </a>
+<h2><a href="StructureDefinition-Observation-Blood-Glucose.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Observation_Blood_Glucose.json</a> <span id="svi7" class="toggle" onclick="toggle('vi7')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi7')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi7"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Observation_Blood_Glucose</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//StructureDefinition/Observation-Blood-Glucose vs https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blood-Glucose</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_Profile_Observation_Tissue_Glucose_CGM"> </a>
+<h2><a href="StructureDefinition-Observation-CGM-Measurement-Series.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Observation_Tissue_Glucose_CGM.json</a> <span id="svi8" class="toggle" onclick="toggle('vi8')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi8')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi8"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>StructureDefinition&#8203;.where(url = 'https:&#8203;/&#8203;/gematik&#8203;.de&#8203;/fhir&#8203;/hdc&#8203;/StructureDefinition&#8203;/Observation-CGM-Measurement-Series')</b></td><td><b>error</b></td><td><b>The element Observation.value[x] @diff[5] is out of order (and maybe others after it)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_Profile_Observation_Tissue_Glucose_CGM</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//StructureDefinition/Observation-CGM-Measurement-Series vs https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Measurement-Series</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_VS_Blood_Glucose"> </a>
+<h2><a href="ValueSet-vs-blood-glucose.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose.json</a> <span id="svi9" class="toggle" onclick="toggle('vi9')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi9')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi9"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet&#8203;.where(url = 'https:&#8203;/&#8203;/gematik&#8203;.de&#8203;/fhir&#8203;/hdc&#8203;/ValueSet&#8203;/VS-Blood-Glucose')</b></td><td><b>error</b></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose.json - the canonical URL (https://gematik.de/fhir/hdc/ValueSet/vs-blood-glucose) does not match the URL (https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet.url</b></td><td><b>error</b></td><td><b>Resource id/url mismatch: vs-blood-glucose/https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_ID_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet.where(id = 'vs-blood-glucose')</b></td><td><b>error</b></td><td><b>Unable to expand imported value set: No server available</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//ValueSet/vs-blood-glucose vs https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_VS_Blood_Glucose_Units"> </a>
+<h2><a href="ValueSet-vs-glucose-units.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units.json</a> <span id="svi10" class="toggle" onclick="toggle('vi10')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi10')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi10"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet&#8203;.where(url = 'https:&#8203;/&#8203;/gematik&#8203;.de&#8203;/fhir&#8203;/hdc&#8203;/ValueSet&#8203;/VS-Blood-Glucose-Units')</b></td><td><b>error</b></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units.json - the canonical URL (https://gematik.de/fhir/hdc/ValueSet/vs-glucose-units) does not match the URL (https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet.url</b></td><td><b>error</b></td><td><b>Resource id/url mismatch: vs-glucose-units/https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_ID_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet.where(id = 'vs-glucose-units')</b></td><td><b>error</b></td><td><b>Unable to expand imported value set: No server available</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//ValueSet/vs-glucose-units vs https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="C__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_input_resources_GEM_HDC_VS_Tissue_Glucose_CGM"> </a>
+<h2><a href="ValueSet-vs-tissue-glucose-cgm.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM.json</a> <span id="svi11" class="toggle" onclick="toggle('vi11')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi11')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi11"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet&#8203;.where(url = 'https:&#8203;/&#8203;/gematik&#8203;.de&#8203;/fhir&#8203;/hdc&#8203;/ValueSet&#8203;/VS-Tissue-Glucose-CGM')</b></td><td><b>error</b></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM.json - the canonical URL (https://gematik.de/fhir/hdc/ValueSet/vs-tissue-glucose-cgm) does not match the URL (https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet.url</b></td><td><b>error</b></td><td><b>Resource id/url mismatch: vs-tissue-glucose-cgm/https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_ID_MISMATCH</span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ValueSet&#8203;.where(id = 'vs-tissue-glucose-cgm')</b></td><td><b>error</b></td><td><b>Unable to expand imported value set: No server available</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM</b></td><td><b>error</b></td><td><b>URL Mismatch https://gematik.de/fhir/hdc//ValueSet/vs-tissue-glucose-cgm vs https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
+   </tr>
+</table>
+<hr/>
+<a name="c__Users_JieWu_Documents_hdc_HDC-FHIR-Profiles_fsh-generated_resources_ImplementationGuide-gematik-de-hdc"> </a>
+<h2><a href="index.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\fsh-generated\resources\ImplementationGuide-gematik-de-hdc.json</a> <span id="svi12" class="toggle" onclick="toggle('vi12')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi12')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi12"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>ImplementationGuide&#8203;.where(url = 'https:&#8203;/&#8203;/gematik&#8203;.de&#8203;/fhir&#8203;/hdc&#8203;/&#8203;/ImplementationGuide&#8203;/gematik-de-hdc')</b></td><td><b>error</b></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\fsh-generated\resources\ImplementationGuide-gematik-de-hdc.json - the canonical URL (https://gematik.de/fhir/hdc/ImplementationGuide/gematik-de-hdc) does not match the URL (https://gematik.de/fhir/hdc//ImplementationGuide/gematik-de-hdc)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">RESOURCE_CANONICAL_MISMATCH</span></td>
+   </tr>
+</table>
+<a name="suppressed"> </a>
+<p><b>Suppressed Messages (Warnings, hints, broken links)</b></p>
+<p>No suppressed messsages</p><a name="sorted"> </a>
+<p><b>Errors sorted by type</b></p>
+<hr/>
+<a name="RESOURCE_CANONICAL_MISMATCH"> </a>
+<h2>RESOURCE_CANONICAL_MISMATCH</h2>
+ <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="ValueSet-vs-blood-glucose.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose.json</a></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose.json - the canonical URL (https://gematik.de/fhir/hdc/ValueSet/vs-blood-glucose) does not match the URL (https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="ValueSet-vs-glucose-units.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units.json</a></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units.json - the canonical URL (https://gematik.de/fhir/hdc/ValueSet/vs-glucose-units) does not match the URL (https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="ValueSet-vs-tissue-glucose-cgm.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM.json</a></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM.json - the canonical URL (https://gematik.de/fhir/hdc/ValueSet/vs-tissue-glucose-cgm) does not match the URL (https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM)</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="index.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\fsh-generated\resources\ImplementationGuide-gematik-de-hdc.json</a></td><td><b>Conformance resource C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\fsh-generated\resources\ImplementationGuide-gematik-de-hdc.json - the canonical URL (https://gematik.de/fhir/hdc/ImplementationGuide/gematik-de-hdc) does not match the URL (https://gematik.de/fhir/hdc//ImplementationGuide/gematik-de-hdc)</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="RESOURCE_ID_MISMATCH"> </a>
+<h2>RESOURCE_ID_MISMATCH</h2>
+ <table class="grid">
+   <tr style="background-color: #ffeeee">
+     <td><a href="ValueSet-vs-blood-glucose.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose.json</a></td><td><b>Resource id/url mismatch: vs-blood-glucose/https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="ValueSet-vs-glucose-units.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Blood_Glucose_Units.json</a></td><td><b>Resource id/url mismatch: vs-glucose-units/https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units</b></td>
+   </tr>
+   <tr style="background-color: #ffeeee">
+     <td><a href="ValueSet-vs-tissue-glucose-cgm.html">C:\Users\JieWu\Documents\hdc\HDC-FHIR-Profiles\input\resources\GEM_HDC_VS_Tissue_Glucose_CGM.json</a></td><td><b>Resource id/url mismatch: vs-tissue-glucose-cgm/https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM</b></td>
+   </tr>
+</table>
+</body>
+</html>

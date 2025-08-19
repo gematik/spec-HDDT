@@ -1,0 +1,53 @@
+{
+  "codeSystems" : [
+    {
+      "url" : "http://loinc.org/vs",
+      "version" : null,
+      "status" : "active",
+      "name" : "LOINCCodes",
+      "title" : "All LOINC codes",
+      "description" : "",
+      "systems" : ["http://loinc.org"],
+      "uses" : {
+      },
+      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi"
+    },
+    {
+      "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose",
+      "version" : "0.1.0",
+      "status" : "draft",
+      "name" : "VS_Blood_Glucose",
+      "title" : "ValueSet Blood Glucose from LOINC",
+      "description" : "This ValueSet contains LOINC codes for blood glucose measurements.",
+      "systems" : ["http://loinc.org"],
+      "uses" : {
+      },
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
+    },
+    {
+      "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units",
+      "version" : "0.1.0",
+      "status" : "draft",
+      "name" : "VS_Blood_Glucose_Units",
+      "title" : "Blood Glucose Measurement Units",
+      "description" : "This ValueSet contains UCUM units codes used for blood glucose measurements (e.g., mg/dL, mmol/L).",
+      "systems" : ["http://unitsofmeasure.org"],
+      "uses" : {
+      },
+      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi",
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+    },
+    {
+      "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM",
+      "version" : "0.1.0",
+      "status" : "draft",
+      "name" : "VS_Tissue_Glucose_CGM",
+      "title" : "ValueSet – Tissue Glucose for rtCGM from LOINC",
+      "description" : "This ValueSet contains LOINC codes for tissue glucose measurements.",
+      "systems" : ["http://loinc.org"],
+      "uses" : {
+      },
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+    }
+  ]
+}

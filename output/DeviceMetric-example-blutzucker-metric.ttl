@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hdc/DeviceMetric/example-blutzucker-metric> a fhir:DeviceMetric ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-blutzucker-metric"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: DeviceMetric example-blutzucker-metric</b></p><a name=\"example-blutzucker-metric\"> </a><a name=\"hcexample-blutzucker-metric\"> </a><p><b>type</b>: <span title=\"Codes:{http://loinc.org 2339-0}\">Glucose [Mass/volume] in Blood</span></p><p><b>unit</b>: <span title=\"Codes:{http://unitsofmeasure.org mg/dL}\">milligram per deciliter</span></p><p><b>source</b>: <a href=\"Device/example-glukometer\">Device/example-glukometer</a></p><p><b>parent</b>: <a href=\"DeviceDefinition/dc102\">DeviceDefinition/dc102</a></p><p><b>operationalStatus</b>: On</p><p><b>category</b>: Measurement</p><p><b>measurementPeriod</b>: Once per 1 second</p><h3>Calibrations</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>State</b></td></tr><tr><td style=\"display: none\">*</td><td>Calibrated</td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a loinc:2339-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2339-0" ] ;
+       fhir:display [ fhir:v "Glucose [Mass/volume] in Blood" ]
+     ] )
+  ] ; # 
+  fhir:unit [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mg/dL" ] ;
+       fhir:display [ fhir:v "milligram per deciliter" ]
+     ] )
+  ] ; # 
+  fhir:source [
+     fhir:link <https://gematik.de/fhir/hdc/Device/example-glukometer> ;
+     fhir:reference [ fhir:v "Device/example-glukometer" ]
+  ] ; # 
+  fhir:parent [
+     fhir:link <https://gematik.de/fhir/hdc/DeviceDefinition/dc102> ;
+     fhir:reference [ fhir:v "DeviceDefinition/dc102" ]
+  ] ; # 
+  fhir:operationalStatus [ fhir:v "on"] ; # 
+  fhir:category [ fhir:v "measurement"] ; # 
+  fhir:measurementPeriod [
+     fhir:repeat [
+       fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:periodUnit [ fhir:v "s" ]
+     ]
+  ] ; # 
+  fhir:calibration ( [
+     fhir:state [ fhir:v "calibrated" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
