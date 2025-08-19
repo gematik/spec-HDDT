@@ -32,17 +32,23 @@
       {
         "id": "Device.serialNumber",
         "path": "Device.serialNumber",
+        "short": "Serial number of the device",
+        "definition": "The serial number that uniquely identifies the device instance.",
         "min": 1
       },
       {
         "id": "Device.deviceName",
         "path": "Device.deviceName",
+        "short": "Name of the device",
+        "definition": "The name of the device as given by the manufacturer.",
         "min": 1,
         "max": "1"
       },
       {
         "id": "Device.modelNumber",
         "path": "Device.modelNumber",
+        "short": "Model number of the device",
+        "definition": "The model number of the device.",
         "min": 1
       }
     ]

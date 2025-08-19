@@ -25,6 +25,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
+          "description": "Specifies the type of measurement using codes from the ValueSet for tissue glucose measurements.",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM"
         }
       },
@@ -46,7 +47,7 @@
         "id": "Observation.effective[x]",
         "path": "Observation.effective[x]",
         "short": "Measurement time point or period",
-        "definition": "Time point or period when the measurement took place.",
+        "definition": "The time or period when the CGM measurement was taken.",
         "min": 1,
         "type": [
           {
@@ -58,18 +59,22 @@
       {
         "id": "Observation.effective[x].start",
         "path": "Observation.effective[x].start",
+        "short": "Start of measurement period",
+        "definition": "The starting time of the CGM measurement period.",
         "min": 1
       },
       {
         "id": "Observation.effective[x].end",
         "path": "Observation.effective[x].end",
+        "short": "End of measurement period",
+        "definition": "The ending time of the CGM measurement period.",
         "min": 1
       },
       {
         "id": "Observation.value[x]",
         "path": "Observation.value[x]",
         "short": "Time series",
-        "definition": "CGM time series as SampledData object.",
+        "definition": "CGM time series as a SampledData object.",
         "min": 1,
         "type": [
           {
@@ -81,21 +86,26 @@
       {
         "id": "Observation.value[x].origin.unit",
         "path": "Observation.value[x].origin.unit",
+        "short": "Unit of measurement",
+        "definition": "The unit of measurement for the origin of the SampledData.",
         "min": 1
       },
       {
         "id": "Observation.value[x].origin.system",
         "path": "Observation.value[x].origin.system",
+        "short": "System of measurement",
+        "definition": "The system of measurement for the origin of the SampledData.",
         "min": 1
       },
       {
         "id": "Observation.value[x].origin.code",
         "path": "Observation.value[x].origin.code",
-        "short": "Unit of measurement code",
-        "definition": "UCUM code of the unit of measurement.",
+        "short": "Code of measurement unit",
+        "definition": "The code representing the unit of measurement for the origin of the SampledData.",
         "min": 1,
         "binding": {
           "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units.",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blood_Glucose_Units"
         }
       },

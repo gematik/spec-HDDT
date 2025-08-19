@@ -39,6 +39,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units.",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
         }
       },

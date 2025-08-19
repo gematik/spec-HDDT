@@ -1,14 +1,14 @@
 @startuml
 
-!define HERSTELLER #CDE0FF
+!define MANUFACTURER #CDE0FF
 !define VIBW #7ED321
 !define BFARM #F5A623
 
-title FHIR Datenmodell für HiMi-DiGA Schnittstelle\\n(Blutzucker-Beispiel)
+title FHIR Data Model for HiMi-DiGA Interface\n(Blood Glucose Example)
 skinparam packageStyle rectangle
 
-	package Versicherten_spezifische_FHIR_Ressourcen HERSTELLER {
-        class vibW_Blutzucker <<FHIR Observation>> {
+	package Insured_Specific_FHIR_Resources MANUFACTURER {
+        class vibW_Blood_Glucose <<FHIR Observation>> {
 			code: "LOINC:2339-0"
 			valueQuantity.value: "90"
 			valueQuantity.unit: "mg/dl"
@@ -16,38 +16,38 @@ skinparam packageStyle rectangle
             device: Reference(DeviceMetric)
             
         }
-        class Gerätekonfiguration_glukometer <<FHIR DeviceMetric>> {
+        class Device_Configuration_Glucometer <<FHIR DeviceMetric>> {
 			unit: "UCUM:mg/dL"
 			calibrationStatus: "calibrated"
             source: Reference(Device)
 		}
-        class Geräteinstanz_glukometer <<FHIR Device>> {
+        class Device_Instance_Glucometer <<FHIR Device>> {
             deviceName: "Accu Chek mobile"
-			manufacturer: "<hersteller_name>"
+			manufacturer: "<manufacturer_name>"
  			serialNumber: "2937459287531567"
             definition: Reference(DeviceDefinition)
         }
 
-        vibW_Blutzucker --> Gerätekonfiguration_glukometer : "[1..1] device"
-        Gerätekonfiguration_glukometer --> Geräteinstanz_glukometer : "[1..1] source"
+        vibW_Blood_Glucose --> Device_Configuration_Glucometer : "[1..1] device"
+        Device_Configuration_Glucometer --> Device_Instance_Glucometer : "[1..1] source"
     }
 
-    package 374a_Enablement HERSTELLER {
-        class DatenSchnittstelle <<FHIR CapabilityStatement>> {
-			title: "374-API <himi_hersteller_name>"    
+    package 374a_Enablement MANUFACTURER {
+        class Data_Interface <<FHIR CapabilityStatement>> {
+			title: "374-API <himi_manufacturer_name>"    
 			format: "json"
             rest.resource.type: "Observation"
 			rest.resource.searchParam: "patient, date"
             +rest.resource.interaction: "read", "search-type"
-			rest.resource.profile: "SD_vibW_Blutzucker"
+			rest.resource.profile: "SD_vibW_Blood_Glucose"
             rest.security.service.coding.code: "SMART-on-FHIR"
         }
 
     }
 
-    package vibW_Wertelisten VIBW {
+    package vibW_ValueSets VIBW {
 
-        class "VS_Blutzucker" as VS_BZ <<FHIR ValueSet>> {
+        class "VS_Blood_Glucose" as VS_BZ <<FHIR ValueSet>> {
 			LOINC:2339-0
 			LOINC:15074-8
         }
@@ -55,16 +55,16 @@ skinparam packageStyle rectangle
             compose.include[0].system: CS_HiMi_DeviceType
         }
 
-		class VS_Blutzucker_Einheiten <<FHIR ValueSet>> {
+		class VS_Blood_Glucose_Units <<FHIR ValueSet>> {
 			UCUM: mg/dL
 			UCUM: mmol/l
 		}
     }
 
-    package vibW_Kodiersysteme VIBW {
+    package vibW_CodeSystems VIBW {
         class CS_HiMi_DeviceType <<FHIR CodeSystem>> {
-            Glukometer
-            Backendsystem des Glukometer-Herstellers
+            Glucometer
+            Backend system of the glucometer manufacturer
             ...
         }
     }
@@ -73,25 +73,25 @@ skinparam packageStyle rectangle
    
 
 
-package "Hersteller_spezifische FHIR_Ressourcen" BFARM {
+package "Manufacturer_Specific_FHIR_Resources" BFARM {
     class DD_Sensor_AccuChekMobile <<FHIR DeviceDefinition>> {
 		identifier: "30.34.02.0033"
         deviceName: "Accu-Chek Mobile U1"
-		manufacturer: "<sensor_hersteller_name>"
-		type: "Glukometer"
+		manufacturer: "<sensor_manufacturer_name>"
+		type: "Glucometer"
         capability.type: "LOINC:2339-0"
-        capability.description: "Blutzucker Messung"
+        capability.description: "Blood glucose measurement"
 		property.valueCode: "mg/dL"
 		property.valueRange: "10 - 660"
         parentDevice: Reference(DeviceDefinition) 
     }
         DD_Sensor_AccuChekMobile::type --> VS_HiMi_DeviceType : "[1..*] type.binding.valueSet"
-		DD_Sensor_AccuChekMobile::property.valueCode --> VS_Blutzucker_Einheiten : "[1..*] property.valueCode.binding.valueSet"
+		DD_Sensor_AccuChekMobile::property.valueCode --> VS_Blood_Glucose_Units : "[1..*] property.valueCode.binding.valueSet"
         DD_Sensor_AccuChekMobile::capability.type --> VS_HiMi_ACM_SupportedVibW : "[1..*] capability.type.binding.valueSet"
     class D_HiMi_374a_Backend <<FHIR DeviceDefinition>> {
-        manufacturer: "<himi_hersteller_name>"		
+        manufacturer: "<himi_manufacturer_name>"		
 		deviceName: "<himi_name> § 374a SGB V APIs"
-		type: "des Glukometer-Herstellers"		
+		type: "type of the glucometer manufacturer"		
 		url: "<backend_url/url_resourceserver>"
 
     }
@@ -105,17 +105,13 @@ package "Hersteller_spezifische FHIR_Ressourcen" BFARM {
 
 }
 
-'* Profile-Abhängigkeiten
 
-
-
-'* Capability Statement Referenzen
-DatenSchnittstelle --> vibW_Blutzucker : "[1..*] supported base profiles"
+Data_Interface --> vibW_Blood_Glucose : "[1..*] supported base profiles"
 
 VS_HiMi_ACM_SupportedVibW --> VS_BZ : "[1..1] subset of"
-vibW_Blutzucker::code --> VS_BZ : "[1..*] valueset binding for code"
-Geräteinstanz_glukometer --> DD_Sensor_AccuChekMobile : "[1..1] definition"
-vibW_Blutzucker::valueQuantity.unit --> VS_Blutzucker_Einheiten : "[1..*] valueQuantity.unit.binding.valueSet"
+vibW_Blood_Glucose::code --> VS_BZ : "[1..*] valueset binding for code"
+Device_Instance_Glucometer --> DD_Sensor_AccuChekMobile : "[1..1] definition"
+vibW_Blood_Glucose::valueQuantity.unit --> VS_Blood_Glucose_Units : "[1..*] valueQuantity.unit.binding.valueSet"
 
 
 

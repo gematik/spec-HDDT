@@ -1,6 +1,6 @@
 ## Representation Formats
 
-The FHIR standard defines three different representation formats: XML, JSON, and RDF (Turtle). Within the scope of the ISiK specification, **confirmation-relevant systems (servers) MUST support the XML and JSON formats**.
+The FHIR standard defines three different representation formats: XML, JSON, and RDF (Turtle). Within the scope of the Device2DiGA specification, **confirmation-relevant systems (servers) MUST support the XML and JSON formats**.
 
 Client-side implementations may choose between XML and JSON representations, but **must indicate the chosen representation in the HTTP `Accept` and `Content-Type` headers**.
 

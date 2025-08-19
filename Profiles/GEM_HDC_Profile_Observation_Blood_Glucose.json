@@ -25,12 +25,15 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
+          "description": "Specifies the type of measurement using codes from the ValueSet for blood glucose measurements.",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS_Blood_Glucose"
         }
       },
       {
         "id": "Observation.effective[x]",
         "path": "Observation.effective[x]",
+        "short": "Time of measurement",
+        "definition": "The time or period when the blood glucose measurement was taken.",
         "type": [
           {
             "code": "dateTime"
@@ -40,6 +43,8 @@
       {
         "id": "Observation.value[x]",
         "path": "Observation.value[x]",
+        "short": "Measured value",
+        "definition": "The blood glucose value measured, represented as a quantity.",
         "min": 1,
         "type": [
           {
