@@ -137,11 +137,11 @@ menu:
     Must-Support flags: must-support.html
     Representation Format: representation_formats.html
     Search parameters: search-parameters.html
-    REST API:
-      HIMI DiGA FHIR API: himi-diga-api.html
-      HIMI Directory API: himi-vz-api.html
-      OAuth 2.0 ACG API: oauth-api.html
-      ZTS API: zts-api.html
+  REST API:
+    HIMI DiGA FHIR API: himi-diga-api.html
+    HIMI Directory API: himi-vz-api.html
+    OAuth 2.0 ACG API: oauth-api.html
+    ZTS API: zts-api.html
   UseCase Diabetes Self Management:
     Mandatory Interoperable Values (MIVs): mivs.html
     Examples: examples.html
