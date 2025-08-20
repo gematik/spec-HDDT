@@ -21,14 +21,16 @@
         "id": "DeviceMetric.type",
         "path": "DeviceMetric.type",
         "short": "Definition of the measurement type",
-        "definition": "Definition of the measurement type of a HiMi device, e.g. that the device only measures tissue glucose. ",
+        "definition": "Definition of the measurement type of a HiMi device, e.g. that the device only measures tissue glucose. Only codes from LOINC are allowed. Codes must be match to code in measurements, e.g from this ValueSet. : https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM",
         "comment": "Note: For the OAuth scopes, so that the corresponding FHIR endpoint only returns the allowed device configuration that matches the measurements.",
-        "mustSupport": true,
-        "binding": {
-          "strength": "preferred",
-          "description": "Only codes from LOINC are allowed. Codes must be match to code in measurements, e.g from this ValueSet. : https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM",
-          "valueSet": "http://loinc.org/vs"
-        }
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org"
+            }
+          ]
+        },
+        "mustSupport": true
       },
       {
         "id": "DeviceMetric.unit",

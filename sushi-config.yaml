@@ -35,7 +35,7 @@ parameters:
   show-inherited-invariants: false
   # in order to preserve the version of the resources:
   apply-version: false
-  copyrightYear: 2024+
+  copyrightYear: 2025+
   releaseLabel: CI Build
   shownav: false
   apply-contact: false

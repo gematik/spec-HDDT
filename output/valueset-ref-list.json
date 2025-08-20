@@ -1,18 +1,6 @@
 {
   "codeSystems" : [
     {
-      "url" : "http://loinc.org/vs",
-      "version" : null,
-      "status" : "active",
-      "name" : "LOINCCodes",
-      "title" : "All LOINC codes",
-      "description" : "",
-      "systems" : ["http://loinc.org"],
-      "uses" : {
-      },
-      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi"
-    },
-    {
       "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose",
       "version" : "0.1.0",
       "status" : "draft",

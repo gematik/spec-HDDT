@@ -18,7 +18,7 @@
   fhir:name [ fhir:v "VS_Tissue_Glucose_CGM"] ; # 
   fhir:title [ fhir:v "ValueSet – Tissue Glucose for rtCGM from LOINC"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-08-19T17:49:48+02:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-08-20T09:32:40+02:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "gematik GmbH"] ; # 
   fhir:description [ fhir:v "This ValueSet contains LOINC codes for tissue glucose measurements."] ; # 
   fhir:compose [

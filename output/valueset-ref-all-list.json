@@ -87,6 +87,20 @@
       "StructureDefinition-Device-HiMi.html" : "Device_HiMi"
     },
     {
+      "url" : "http://hl7.org/fhir/ValueSet/devicemetric-type",
+      "version" : "4.0.1",
+      "status" : "draft",
+      "name" : "DeviceMetricAndComponentTypes",
+      "title" : "Device Metric and Component Types",
+      "description" : "Codes used to identify health care device metric types and units and component types as part of the ISO/IEEE 11073-10101 Medical Device Communication Nomenclature.",
+      "systems" : ["urn:iso:std:iso:11073:10101"],
+      "oids" : ["2.16.840.1.113883.6.24", "2.16.840.1.113883.4.642.3.645"],
+      "sources" : ["2.16.840.1.113883.6.24", "2.16.840.1.113883.4.642.3.645"],
+      "uses" : {
+      },
+      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi"
+    },
+    {
       "url" : "http://hl7.org/fhir/ValueSet/languages",
       "version" : "4.0.1",
       "status" : "draft",
@@ -99,9 +113,9 @@
       "uses" : {
       },
       "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi",
+      "StructureDefinition-Device-HiMi.html" : "Device_HiMi",
       "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
-      "StructureDefinition-Device-HiMi.html" : "Device_HiMi"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/metric-calibration-state",
@@ -312,18 +326,6 @@
       "uses" : {
       },
       "StructureDefinition-Device-HiMi.html" : "Device_HiMi"
-    },
-    {
-      "url" : "http://loinc.org/vs",
-      "version" : null,
-      "status" : "active",
-      "name" : "LOINCCodes",
-      "title" : "All LOINC codes",
-      "description" : "",
-      "systems" : ["http://loinc.org"],
-      "uses" : {
-      },
-      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi"
     },
     {
       "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose",
