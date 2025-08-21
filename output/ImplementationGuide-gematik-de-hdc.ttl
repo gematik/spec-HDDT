@@ -18,7 +18,7 @@
   fhir:name [ fhir:v "SpecDevice2DiGA"] ; # 
   fhir:title [ fhir:v "Specification – Device 2 DiGA"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-08-21T11:34:25+02:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-08-21T15:49:15+02:00"^^xsd:dateTime] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "BfArM" ] ;
      fhir:telecom ( [

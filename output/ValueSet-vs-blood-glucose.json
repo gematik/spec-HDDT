@@ -10,7 +10,7 @@
   "name" : "VS_Blood_Glucose",
   "title" : "ValueSet Blood Glucose from LOINC",
   "status" : "draft",
-  "date" : "2025-08-21T11:34:25+02:00",
+  "date" : "2025-08-21T15:49:15+02:00",
   "publisher" : "gematik GmbH",
   "description" : "This ValueSet contains LOINC codes for blood glucose measurements.",
   "compose" : {

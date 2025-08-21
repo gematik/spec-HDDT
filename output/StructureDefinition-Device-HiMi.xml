@@ -15,7 +15,7 @@
   <version value="0.1.0"/>
   <name value="Device_HiMi"/>
   <status value="draft"/>
-  <date value="2025-08-21T11:34:25+02:00"/>
+  <date value="2025-08-21T15:49:15+02:00"/>
   <fhirVersion value="4.0.1"/>
   <mapping>
     <identity value="rim"/>

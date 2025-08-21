@@ -22,8 +22,8 @@
       "systems" : ["http://unitsofmeasure.org"],
       "uses" : {
       },
-      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi"
     },
     {
       "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM",

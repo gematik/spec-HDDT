@@ -130,8 +130,8 @@
       "oids" : ["2.16.840.1.113883.6.1"],
       "uses" : {
       },
-      "ValueSet-vs-blood-glucose.html" : "ValueSet Blood Glucose from LOINC",
       "ValueSet-vs-tissue-glucose-cgm.html" : "ValueSet – Tissue Glucose for rtCGM from LOINC",
+      "ValueSet-vs-blood-glucose.html" : "ValueSet Blood Glucose from LOINC",
       "http://hl7.org/fhir/R4/valueset-observation-codes.html" : "LOINC Codes"
     },
     {
@@ -144,10 +144,10 @@
       "oids" : ["2.16.840.1.113883.6.96"],
       "uses" : {
       },
-      "http://hl7.org/fhir/R4/valueset-body-site.html" : "SNOMED CT Body Structures",
-      "http://hl7.org/fhir/R4/valueset-device-type.html" : "Device Type",
       "http://hl7.org/fhir/R4/valueset-referencerange-appliesto.html" : "Observation Reference Range Applies To Codes",
-      "http://hl7.org/fhir/R4/valueset-observation-methods.html" : "Observation Methods"
+      "http://hl7.org/fhir/R4/valueset-body-site.html" : "SNOMED CT Body Structures",
+      "http://hl7.org/fhir/R4/valueset-observation-methods.html" : "Observation Methods",
+      "http://hl7.org/fhir/R4/valueset-device-type.html" : "Device Type"
     },
     {
       "url" : "http://terminology.hl7.org/CodeSystem/data-absent-reason",

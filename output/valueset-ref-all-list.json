@@ -12,8 +12,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.141"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/data-absent-reason",
@@ -27,8 +27,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.5"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/device-nametype",
@@ -112,10 +112,10 @@
       "sources" : ["2.16.840.1.113883.4.642.3.20"],
       "uses" : {
       },
-      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi",
-      "StructureDefinition-Device-HiMi.html" : "Device_HiMi",
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
       "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi",
+      "StructureDefinition-Device-HiMi.html" : "Device_HiMi"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/metric-calibration-state",
@@ -199,8 +199,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.403"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/observation-codes",
@@ -214,8 +214,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.396"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/observation-interpretation",
@@ -231,8 +231,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.399"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/observation-methods",
@@ -246,8 +246,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.395"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/observation-status",
@@ -261,8 +261,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.400"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/quantity-comparator",
@@ -293,8 +293,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.407"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/referencerange-meaning",
@@ -310,8 +310,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.397"],
       "uses" : {
       },
-      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-Observation-Blood-Glucose.html" : "Observation – Blood Glucose"
     },
     {
       "url" : "http://hl7.org/fhir/ValueSet/udi-entry-type",
@@ -349,8 +349,8 @@
       "systems" : ["http://unitsofmeasure.org"],
       "uses" : {
       },
-      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi",
-      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)"
+      "StructureDefinition-Observation-CGM-Measurement-Series.html" : "Observation – Tissue Glucose (CGM Measurement Series)",
+      "StructureDefinition-DeviceMetric-HiMi.html" : "Device configuration – HiMi"
     },
     {
       "url" : "https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM",

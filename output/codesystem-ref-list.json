@@ -10,8 +10,8 @@
       "oids" : ["2.16.840.1.113883.6.1"],
       "uses" : {
       },
-      "ValueSet-vs-blood-glucose.html" : "ValueSet Blood Glucose from LOINC",
-      "ValueSet-vs-tissue-glucose-cgm.html" : "ValueSet – Tissue Glucose for rtCGM from LOINC"
+      "ValueSet-vs-tissue-glucose-cgm.html" : "ValueSet – Tissue Glucose for rtCGM from LOINC",
+      "ValueSet-vs-blood-glucose.html" : "ValueSet Blood Glucose from LOINC"
     },
     {
       "url" : "http://unitsofmeasure.org",
