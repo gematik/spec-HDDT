@@ -16,7 +16,6 @@
       <sch:assert test="count(f:serialNumber) &gt;= 1">serialNumber: minimum cardinality of 'serialNumber' is 1</sch:assert>
       <sch:assert test="count(f:deviceName) &gt;= 1">deviceName: minimum cardinality of 'deviceName' is 1</sch:assert>
       <sch:assert test="count(f:deviceName) &lt;= 1">deviceName: maximum cardinality of 'deviceName' is 1</sch:assert>
-      <sch:assert test="count(f:modelNumber) &gt;= 1">modelNumber: minimum cardinality of 'modelNumber' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>
 </sch:schema>

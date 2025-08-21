@@ -10,7 +10,7 @@
   "name" : "VS_Tissue_Glucose_CGM",
   "title" : "ValueSet – Tissue Glucose for rtCGM from LOINC",
   "status" : "draft",
-  "date" : "2025-08-20T09:32:40+02:00",
+  "date" : "2025-08-21T10:18:14+02:00",
   "publisher" : "gematik GmbH",
   "description" : "This ValueSet contains LOINC codes for tissue glucose measurements.",
   "compose" : {

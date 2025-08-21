@@ -1,3 +1,5 @@
+**@Jörg**
+
 ### Interoperable FHIR-based Data Model for vibW
 
 The diagram describes an interoperable, FHIR-based data model for the structured provision of **vibW** between assistive devices (HiMi) and DiGAs, exemplarily illustrated for the vibW "blood glucose."

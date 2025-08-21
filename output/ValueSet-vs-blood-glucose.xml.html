@@ -62,8 +62,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"23.6"}
-    h3,h4,h5,h6{--heading-prefix:"23.6"}</style>
+    <style type="text/css">h2{--heading-prefix:"31.6"}
+    h3,h4,h5,h6{--heading-prefix:"31.6"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -107,18 +107,24 @@
     <a href="release-notes.html">Release Notes</a>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">About
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Logical Viewpoints
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="about-specification.html">About this specification</a>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
       </li>
       <li>
         <a href="participants.html">Participants</a>
       </li>
       <li>
         <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
       </li>
     </ul>
   </li>
@@ -143,7 +149,7 @@
         <a href="representation_formats.html">Representation Format</a>
       </li>
       <li>
-        <a href="search-parameters.html">Search parameters</a>
+        <a href="security-and-privacy.html">Security and Privacy</a>
       </li>
     </ul>
   </li>
@@ -156,13 +162,22 @@
         <a href="himi-diga-api.html">HIMI DiGA FHIR API</a>
       </li>
       <li>
+        <a href="hdc-device-metric-api.html">HDC Device Metric API</a>
+      </li>
+      <li>
+        <a href="hdc-device-api.html">HDC Device API</a>
+      </li>
+      <li>
         <a href="himi-vz-api.html">HIMI Directory API</a>
       </li>
       <li>
-        <a href="oauth-api.html">OAuth 2.0 ACG API</a>
+        <a href="diga-vz-api.html">DiGA Directory API</a>
       </li>
       <li>
         <a href="zts-api.html">ZTS API</a>
+      </li>
+      <li>
+        <a href="oauth-api.html">OAuth 2.0 ACG API</a>
       </li>
     </ul>
   </li>
@@ -173,6 +188,21 @@
     <ul class="dropdown-menu">
       <li>
         <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="information-model-diabetes.html">Information Model Diabetes</a>
+      </li>
+      <li>
+        <a href="semantics.html">Semantics</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">Measurement Blood Glucose</a>
+      </li>
+      <li>
+        <a href="measurement-tissue-glucose.html">Measurement Tissue Glucose</a>
+      </li>
+      <li>
+        <a href="conventions-for-device-resources.html">Conventions for Device* Ressources</a>
       </li>
       <li>
         <a href="examples.html">Examples</a>
@@ -199,12 +229,6 @@
     <ul class="dropdown-menu">
       <li>
         <a href="artifacts.html">Artifacts Summary</a>
-      </li>
-      <li>
-        <a href="profiles.html">Profiles</a>
-      </li>
-      <li>
-        <a href="valuesets.html">ValueSets</a>
       </li>
     </ul>
   </li>
@@ -313,7 +337,7 @@ Specification – Device 2 DiGA
         
           Draft
           
-            as of 2025-08-20
+            as of 2025-08-21
           
         
       </td>
@@ -341,7 +365,7 @@ Specification – Device 2 DiGA
   &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.name">name</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;VS_Blood_Glucose&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.title">title</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;ValueSet Blood Glucose from LOINC&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.status">status</a> <a href="http://hl7.org/fhir/R4/datatypes.html#code">value</a>=&quot;draft&quot;/&gt;
-  &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2025-08-20T09:32:40+02:00&quot;/&gt;
+  &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.date">date</a> <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">value</a>=&quot;2025-08-21T10:18:14+02:00&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.publisher">publisher</a> <a href="http://hl7.org/fhir/R4/datatypes.html#string">value</a>=&quot;gematik GmbH&quot;/&gt;
   &lt;<a href="http://hl7.org/fhir/R4/valueset.html#ValueSet.description">description</a>
                <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">value</a>=&quot;This ValueSet contains LOINC codes for blood glucose measurements.&quot;/&gt;
@@ -390,7 +414,7 @@ Specification – Device 2 DiGA
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de"></a>.  Paket gematik-de-hdc#0.1.0 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Aug 20, 2025 09:33+0200">2025-08-20</span>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de"></a>.  Paket gematik-de-hdc#0.1.0 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Thu, Aug 21, 2025 10:19+0200">2025-08-21</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |

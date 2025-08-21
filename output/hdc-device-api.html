@@ -3,7 +3,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>Search parameters - Specification – Device 2 DiGA v0.1.0</title>
+    <title>HDC Device API - Specification – Device 2 DiGA v0.1.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -60,8 +60,8 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"20"}
-    h3,h4,h5,h6{--heading-prefix:"20"}</style>
+    <style type="text/css">h2{--heading-prefix:"24"}
+    h3,h4,h5,h6{--heading-prefix:"24"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
@@ -105,18 +105,24 @@
     <a href="release-notes.html">Release Notes</a>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">About
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Logical Viewpoints
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="about-specification.html">About this specification</a>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
       </li>
       <li>
         <a href="participants.html">Participants</a>
       </li>
       <li>
         <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
       </li>
     </ul>
   </li>
@@ -141,7 +147,7 @@
         <a href="representation_formats.html">Representation Format</a>
       </li>
       <li>
-        <a href="search-parameters.html">Search parameters</a>
+        <a href="security-and-privacy.html">Security and Privacy</a>
       </li>
     </ul>
   </li>
@@ -154,13 +160,22 @@
         <a href="himi-diga-api.html">HIMI DiGA FHIR API</a>
       </li>
       <li>
+        <a href="hdc-device-metric-api.html">HDC Device Metric API</a>
+      </li>
+      <li>
+        <a href="hdc-device-api.html">HDC Device API</a>
+      </li>
+      <li>
         <a href="himi-vz-api.html">HIMI Directory API</a>
       </li>
       <li>
-        <a href="oauth-api.html">OAuth 2.0 ACG API</a>
+        <a href="diga-vz-api.html">DiGA Directory API</a>
       </li>
       <li>
         <a href="zts-api.html">ZTS API</a>
+      </li>
+      <li>
+        <a href="oauth-api.html">OAuth 2.0 ACG API</a>
       </li>
     </ul>
   </li>
@@ -171,6 +186,21 @@
     <ul class="dropdown-menu">
       <li>
         <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="information-model-diabetes.html">Information Model Diabetes</a>
+      </li>
+      <li>
+        <a href="semantics.html">Semantics</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">Measurement Blood Glucose</a>
+      </li>
+      <li>
+        <a href="measurement-tissue-glucose.html">Measurement Tissue Glucose</a>
+      </li>
+      <li>
+        <a href="conventions-for-device-resources.html">Conventions for Device* Ressources</a>
       </li>
       <li>
         <a href="examples.html">Examples</a>
@@ -197,12 +227,6 @@
     <ul class="dropdown-menu">
       <li>
         <a href="artifacts.html">Artifacts Summary</a>
-      </li>
-      <li>
-        <a href="profiles.html">Profiles</a>
-      </li>
-      <li>
-        <a href="valuesets.html">ValueSets</a>
       </li>
     </ul>
   </li>
@@ -244,7 +268,7 @@ Specification – Device 2 DiGA
     <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
-          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Search parameters</b></li>
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>HDC Device API</b></li>
 
         </ul>
       </div>  <!-- /container -->
@@ -264,7 +288,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 </style>
 <div class="col-12">
   
-  <h2>Search parameters</h2>
+  <h2>HDC Device API</h2>
   
 
 
@@ -282,7 +306,60 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 <div>
 <!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown.-->
 </div>
+<p><strong>ToDo: Jie, Sergej, Emil</strong></p>
 
+<p><strong>FHIR resource type</strong>: Device</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>FHIR Attribute</th>
+      <th>Description</th>
+      <th>Cardinality</th>
+      <th>FHIR Data Type</th>
+      <th>Note</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>serialNumber</td>
+      <td>Serial number</td>
+      <td>1..1</td>
+      <td>string</td>
+      <td>User verification (patient safety)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>deviceName</td>
+      <td>Product name</td>
+      <td>1..1</td>
+      <td>string</td>
+      <td>e.g., “Accu-Chek Mobile”</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>manufacturer</td>
+      <td>Manufacturer</td>
+      <td>0..1</td>
+      <td>string</td>
+      <td>Sensor manufacturer</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>definition</td>
+      <td>Device definition</td>
+      <td>1..1</td>
+      <td>Reference(DeviceDefinition)</td>
+      <td>Link to device description</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="profile">Profile</h3>
 
 
 
@@ -302,7 +379,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de"></a>.  Paket gematik-de-hdc#0.1.0 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Aug 20, 2025 09:33+0200">2025-08-20</span>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de"></a>.  Paket gematik-de-hdc#0.1.0 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Thu, Aug 21, 2025 10:19+0200">2025-08-21</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |

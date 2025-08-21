@@ -11,7 +11,7 @@
   <name value="SpecDevice2DiGA"/>
   <title value="Specification – Device 2 DiGA"/>
   <status value="draft"/>
-  <date value="2025-08-20T09:32:40+02:00"/>
+  <date value="2025-08-21T10:18:14+02:00"/>
   <contact>
     <name value="BfArM"/>
     <telecom>
@@ -77,7 +77,7 @@
         <valueString value="copyrightYear"/>
       </extension>
       <extension url="value">
-        <valueString value="2024+"/>
+        <valueString value="2025+"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -336,7 +336,7 @@
         <valueCode value="copyrightYear"/>
       </extension>
       <extension url="value">
-        <valueString value="2024+"/>
+        <valueString value="2025+"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -744,26 +744,10 @@
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="profiles.html"/>
-        </extension>
-        <nameUrl value="profiles.html"/>
-        <title value="Profiles"/>
-        <generation value="markdown"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
           <valueUrl value="representation_formats.html"/>
         </extension>
         <nameUrl value="representation_formats.html"/>
         <title value="Representation Formats"/>
-        <generation value="markdown"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="valuesets.html"/>
-        </extension>
-        <nameUrl value="valuesets.html"/>
-        <title value="ValueSets"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -800,10 +784,10 @@
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="about-specification.html"/>
+          <valueUrl value="logical-viewpoints.html"/>
         </extension>
-        <nameUrl value="about-specification.html"/>
-        <title value="About this specification"/>
+        <nameUrl value="logical-viewpoints.html"/>
+        <title value="Logical Viewpoints"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -832,14 +816,6 @@
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="search-parameters.html"/>
-        </extension>
-        <nameUrl value="search-parameters.html"/>
-        <title value="Search parameters"/>
-        <generation value="markdown"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
           <valueUrl value="implementation_guide_diga.html"/>
         </extension>
         <nameUrl value="implementation_guide_diga.html"/>
@@ -852,6 +828,94 @@
         </extension>
         <nameUrl value="implementation_guide_himi.html"/>
         <title value="Implementation guide for HiMi"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="pairing.html"/>
+        </extension>
+        <nameUrl value="pairing.html"/>
+        <title value="Pairing"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="retrieving-data.html"/>
+        </extension>
+        <nameUrl value="retrieving-data.html"/>
+        <title value="Retrieving Data"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="security-and-privacy.html"/>
+        </extension>
+        <nameUrl value="security-and-privacy.html"/>
+        <title value="Security and Privacy"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="hdc-device-metric-api.html"/>
+        </extension>
+        <nameUrl value="hdc-device-metric-api.html"/>
+        <title value="HDC Device Metric API"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="hdc-device-api.html"/>
+        </extension>
+        <nameUrl value="hdc-device-api.html"/>
+        <title value="HDC Device API"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="diga-vz-api.html"/>
+        </extension>
+        <nameUrl value="diga-vz-api.html"/>
+        <title value="DiGA Directory API (?)"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="information-model-diabetes.html"/>
+        </extension>
+        <nameUrl value="information-model-diabetes.html"/>
+        <title value="Information Model Diabetes"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="semantics.html"/>
+        </extension>
+        <nameUrl value="semantics.html"/>
+        <title value="Semantics"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="measurement-blood-glucose.html"/>
+        </extension>
+        <nameUrl value="measurement-blood-glucose.html"/>
+        <title value="Measurement Blood Glucose"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="measurement-tissue-glucose.html"/>
+        </extension>
+        <nameUrl value="measurement-tissue-glucose.html"/>
+        <title value="Measurement Tissue Glucose"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="conventions-for-device-resources.html"/>
+        </extension>
+        <nameUrl value="conventions-for-device-resources.html"/>
+        <title value="Conventions for Device Resources"/>
         <generation value="markdown"/>
       </page>
     </page>

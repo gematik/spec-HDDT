@@ -1,3 +1,12 @@
+To Do
+* Verifizierung (BfArM)
+* Finalisierung Endpunkte (BfArM)
+* Beschreibung Endpunkte (Sergej)
+* Fehlerbehandlung (Sergej)
+* Beispiele (Sergej)
+
+**<font color="red">Jörg hat bearbeitet</font>**
+
 | Endpoint / Reference                  | Use Cases                                                                                          | Specifications & Quality Criteria                                                                                                                      | Data Objects                                                                                             |
 |---------------------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | `/to_be_defined/` (general entry)      | - Identification of medical devices/implants with implemented §374a interface<br>- Daily status check (DiGA-initiated)<br>- Simple change check (HTTP `If-Modified-Since` / `If-Match`)<br>- Active notifications (e.g., RSS feed like ZTS) | - RESTful FHIR API<br>- Must support both pull (header-based checks) and push (notifications)<br>- Scalable load design for daily polling of all coupled HiMi | HiMi-ID<br>Manufacturer data<br>Device-specific configuration<br>FQDN                                         |

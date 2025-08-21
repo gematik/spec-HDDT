@@ -1,3 +1,12 @@
+**ToDo**
+* klären, was mit dem 3. vibW ist (Diabetesprofil) (Projekt)
+* finale Definition Endpunkte (Jie, Emil)
+* Beschreibung Endpunkte (Jie, Emil)
+* Protokollierung (Jie, Emil)
+* Fehlerbehandlung (Jie, Emil)
+* openAPI (Jie, Emil, Sergej)
+* Beispiele (Jie, Emil)
+
 
 **Description**  
 Standardized access to medical device/implant data as FHIR resources for authorized DiGA.  
@@ -9,6 +18,8 @@ Standardized access to medical device/implant data as FHIR resources for authori
 ---
 
 ### Endpoints
+
+**ToDo: Search Parameters**
 
 | Endpoint | Use Cases | Specifications | Data Objects | Examples |
 |----------|-----------|----------------|--------------|----------|
@@ -25,3 +36,5 @@ Standardized access to medical device/implant data as FHIR resources for authori
 - DeviceMetric resources are only retrievable via `_include` when querying Observations.  
 - Rationale: a DiGA must not retrieve DeviceMetrics for vibW values it is not authorized for.  
 - If needed for OAuth scope granularity (e.g. `DeviceMetric.type` authorization), a dedicated DeviceMetric endpoint may be added analogously to `/Device`.  
+
+

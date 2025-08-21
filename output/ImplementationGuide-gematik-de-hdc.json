@@ -10,7 +10,7 @@
   "name" : "SpecDevice2DiGA",
   "title" : "Specification – Device 2 DiGA",
   "status" : "draft",
-  "date" : "2025-08-20T09:32:40+02:00",
+  "date" : "2025-08-21T10:18:14+02:00",
   "contact" : [{
     "name" : "BfArM",
     "telecom" : [{
@@ -94,7 +94,7 @@
       },
       {
         "url" : "value",
-        "valueString" : "2024+"
+        "valueString" : "2025+"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -450,7 +450,7 @@
       },
       {
         "url" : "value",
-        "valueString" : "2024+"
+        "valueString" : "2025+"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -961,28 +961,10 @@
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "profiles.html"
-        }],
-        "nameUrl" : "profiles.html",
-        "title" : "Profiles",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
           "valueUrl" : "representation_formats.html"
         }],
         "nameUrl" : "representation_formats.html",
         "title" : "Representation Formats",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "valuesets.html"
-        }],
-        "nameUrl" : "valuesets.html",
-        "title" : "ValueSets",
         "generation" : "markdown"
       },
       {
@@ -1024,10 +1006,10 @@
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "about-specification.html"
+          "valueUrl" : "logical-viewpoints.html"
         }],
-        "nameUrl" : "about-specification.html",
-        "title" : "About this specification",
+        "nameUrl" : "logical-viewpoints.html",
+        "title" : "Logical Viewpoints",
         "generation" : "markdown"
       },
       {
@@ -1060,15 +1042,6 @@
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "search-parameters.html"
-        }],
-        "nameUrl" : "search-parameters.html",
-        "title" : "Search parameters",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
           "valueUrl" : "implementation_guide_diga.html"
         }],
         "nameUrl" : "implementation_guide_diga.html",
@@ -1082,6 +1055,105 @@
         }],
         "nameUrl" : "implementation_guide_himi.html",
         "title" : "Implementation guide for HiMi",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "pairing.html"
+        }],
+        "nameUrl" : "pairing.html",
+        "title" : "Pairing",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "retrieving-data.html"
+        }],
+        "nameUrl" : "retrieving-data.html",
+        "title" : "Retrieving Data",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "security-and-privacy.html"
+        }],
+        "nameUrl" : "security-and-privacy.html",
+        "title" : "Security and Privacy",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "hdc-device-metric-api.html"
+        }],
+        "nameUrl" : "hdc-device-metric-api.html",
+        "title" : "HDC Device Metric API",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "hdc-device-api.html"
+        }],
+        "nameUrl" : "hdc-device-api.html",
+        "title" : "HDC Device API",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "diga-vz-api.html"
+        }],
+        "nameUrl" : "diga-vz-api.html",
+        "title" : "DiGA Directory API (?)",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "information-model-diabetes.html"
+        }],
+        "nameUrl" : "information-model-diabetes.html",
+        "title" : "Information Model Diabetes",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "semantics.html"
+        }],
+        "nameUrl" : "semantics.html",
+        "title" : "Semantics",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "measurement-blood-glucose.html"
+        }],
+        "nameUrl" : "measurement-blood-glucose.html",
+        "title" : "Measurement Blood Glucose",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "measurement-tissue-glucose.html"
+        }],
+        "nameUrl" : "measurement-tissue-glucose.html",
+        "title" : "Measurement Tissue Glucose",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "conventions-for-device-resources.html"
+        }],
+        "nameUrl" : "conventions-for-device-resources.html",
+        "title" : "Conventions for Device Resources",
         "generation" : "markdown"
       }]
     },

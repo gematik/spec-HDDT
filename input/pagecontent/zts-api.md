@@ -1,3 +1,9 @@
+**To Do**
+* Beschreibung Endpunkt (Jie)
+* Fehlerbehandlung (Jie)
+* Beispiele (Jie)
+
+
 ### ZTS Endpoints in the context of §374a SGB V
 
 | Endpoint / Reference         | Use Cases                                                                                                   | Data Objects                                                                                                                     |

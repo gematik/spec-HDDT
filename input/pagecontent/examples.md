@@ -1,3 +1,5 @@
+**ToDo Jie, Emil, Sergej**
+
 
 ### Observation – Blood Glucose Value
 Example of a measured blood glucose value (`92 mg/dL`) with reference to device configuration. The observation includes details such as the measurement time, patient reference, and links to the device used for measurement.

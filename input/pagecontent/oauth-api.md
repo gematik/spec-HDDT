@@ -1,3 +1,11 @@
+**To Do**
+* Überarbeitung/Konkretisierung Endpunkte (gematik, _fbeta)
+* Beschreibung Endpunkte (Thomas, Sergej)
+* Protokollierung (Thomas, Sergej)
+* Fehlerbehandlung (Thomas, Sergej)
+* openAPI (Thomas, Sergej)
+* Beispiele (Thomas, Sergej)
+
 ### OAuth 2.0 Authorization Code Grant API (OAuth ACG API)
 
 **Description**  
