@@ -9,3 +9,8 @@
 | **Medical Device / Implant – Frontend**    | Device/Implant Manufacturer | - Presents requested/authorized permissions<br>- Captures user consent<br>- Presents granted consents<br>- Captures revocation/amendments<br>- Informs about changes in consent/coupling                                                                                                                                      | - Frontend API (manufacturer-specific)<br>**Consent:** accessible and informed consent                                                                       |
 | **DiGA – Backend**                         | DiGA Manufacturer           | - Initiates authorization<br>- Requests & manages consent<br>- Regular validity checks<br>- Allows revocation/amendment<br>- Authenticates device/implant<br>- Retrieves data (FHIR)<br>- Interprets data per ZTS value sets<br>- Monitoring & documentation                                                                  | - RESTful FHIR API<br>- OAuth 2.0 ACG API<br>- Frontend API (manufacturer-specific)<br>- ZTS API<br>- (optional: HiMi-SST-VZ API)                            |
 | **DiGA – Frontend**                        | DiGA Manufacturer           | - Displays § 374a interface info<br>- Displays consent info<br>- Presents supported/authorized devices & sensors<br>- Presents required permissions<br>- Captures user selection & consent<br>- Presents granted consents<br>- Captures revocation/amendment                                                                  | - Frontend API (manufacturer-specific)<br>- `/authorize` endpoint of OAuth ACG API<br>**Consent:** accessible and informed consent<br>**Security:** RFC 8252 |
+
+
+### Glossar
+
+**ToDo: Jörg & Andrea**

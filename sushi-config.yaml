@@ -11,7 +11,7 @@
 # │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: gematik-de-hdc
-canonical: https://gematik.de/fhir/hdc/
+canonical: https://gematik.de/fhir/hdc
 version: 0.1.0
 name: Spec Device2DiGA
 title: Specification – Device 2 DiGA
