@@ -33,3 +33,4 @@ caddy.exe
 Caddyfile
 input-cache/
 fsh-generated/
+output/

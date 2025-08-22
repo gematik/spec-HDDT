@@ -1,5 +1,5 @@
 @ECHO OFF
-SET publisher_jar=publisher_2.0.13.jar
+SET publisher_jar=publisher.jar
 SET input_cache_path=%CD%\input-cache
 SET txserver="n/a"
 
