@@ -13,7 +13,9 @@ RUN set -eux; \
     sushi .; \
     _updatePublisher.sh -y; \
     _genonce.sh; \
-    test -d output
+    test -d output; \
+    cd temp/pages; \
+    jekyll build --destination "/home/publisher/ig/output";
 
 # ---------- Export-only stage ----------
 FROM scratch AS export
