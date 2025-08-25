@@ -10,11 +10,11 @@
 # │  supported properties, see:                                                                    │
 # │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: device2diga-workflow
+id: health-device-data-transfer
 canonical: https://gematik.de/fhir/hdc
 version: 0.1.0
-name: device2diga_workflow
-title: Device2DiGA-Workflow
+name: healthDeviceDataTransfer
+title: Health Device Data Transfer
 status: draft
 publisher: gematik GmbH
 contact:
@@ -138,18 +138,19 @@ pages:
   conventions-for-device-resources.html:
     title: Conventions for Device Resources
     generation: markdown
+  execution-plan.html:
+    title: Execution Plan
+    generation: markdown  
 
-# ╭─────────────────────────────────────────────ig.ini─────────────────────────────────────────────╮
-# │  To control the ig.ini using this config, uncomment and set the "template" property.           │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-# template: fhir.base.template
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Motivation: motivation.html
+  General:
+    Motivation: motivation.html
+    Execution Plan: execution-plan.html
   Release Notes: release-notes.html
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html
