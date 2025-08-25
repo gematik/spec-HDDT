@@ -38,3 +38,5 @@ Standardized access to medical device/implant data as FHIR resources for authori
 - If needed for OAuth scope granularity (e.g. `DeviceMetric.type` authorization), a dedicated DeviceMetric endpoint may be added analogously to `/Device`.  
 
 
+### OpenAPI Description
+{% include openapi.html openapiurl="/files/openapi_himi_diga_api.yaml"%}

@@ -13,3 +13,5 @@ The **DeviceDefinition** of the sensor describes which vibW (e.g., LOINC:2339-0 
 For describing device types (e.g., glucometer, rtCGM, HiMi backend, etc.), the **CodeSystem `CS_HiMi_DeviceType`** is used.
 
 To model the § 374a interface directory, a backend can also be represented as its own **DeviceDefinition `DeviceDefinition_HiMi_Backend`**. This backend can be linked as a `parentDevice` to one or more sensor devices.
+
+{% include information_model.svg %}
