@@ -1,5 +1,5 @@
 #!/bin/bash
-pubsource=https://github.com/HL7/fhir-ig-publisher/releases/latest/download/
+pubsource=https://github.com/HL7/fhir-ig-publisher/releases/download/2.0.13/
 publisher_jar=publisher.jar
 dlurl=$pubsource$publisher_jar
 
@@ -31,6 +31,7 @@ while [ "$#" -gt 0 ]; do
     esac
     shift
 done
+
 
 echo "Checking internet connection"
 curl -sSf tx.fhir.org > /dev/null

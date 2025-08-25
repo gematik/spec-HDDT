@@ -2,7 +2,7 @@
 
 SETLOCAL
 
-SET dlurl=https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar
+SET dlurl=https://github.com/HL7/fhir-ig-publisher/releases/download/2.0.13/publisher.jar
 SET publisher_jar=publisher.jar
 SET input_cache_path=%CD%\input-cache\
 SET skipPrompts=false
