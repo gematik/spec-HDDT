@@ -8,6 +8,7 @@
   "status": "draft",
   "publisher": "gematik GmbH",
   "description": "This ValueSet contains LOINC codes for tissue glucose measurements.",
+  "fhirVersion": "4.0.1",
   "compose": {
     "include": [
       {

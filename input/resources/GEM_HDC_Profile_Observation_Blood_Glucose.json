@@ -63,7 +63,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-HiMi"
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Medical-Aid"
             ]
           }
         ],
