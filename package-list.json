@@ -1,13 +1,13 @@
 {
-  "package-id": "gematik-de-hdc",
-  "title": "Specification – Device 2 DiGA",
-  "canonical": "https://gematik.de/fhir/hdc/",
-  "introduction": "gematik - Specification – Device 2 DiGA",
+  "package-id": "health-device-data-transfer",
+  "title": "Health Device Data Transfer",
+  "canonical": "https://gematik.de/fhir/hddt/",
+  "introduction": "gematik - Specification – Health Device Data Transfer",
   "list": [
     {
       "version": "current",
       "desc": "Draft",
-      "path": "https://gematik.de/fhir/hdc/",
+      "path": "https://gematik.de/fhir/hddt/",
       "status": "ci-build",
       "current": true
     }

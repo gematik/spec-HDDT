@@ -16,7 +16,8 @@ RUN set -eux; \
     test -d output; \
     cd temp/pages; \
     jekyll build --destination "/home/publisher/ig/output"; \
-    cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/;
+    cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/; \
+    rm /home/publisher/ig/output/assets/css/prism.css;
 
 # ---------- Export-only stage ----------
 FROM scratch AS export

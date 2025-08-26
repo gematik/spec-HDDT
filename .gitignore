@@ -34,3 +34,4 @@ Caddyfile
 input-cache/
 fsh-generated/
 output/
+resources/

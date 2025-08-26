@@ -11,7 +11,7 @@
 # │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: health-device-data-transfer
-canonical: https://gematik.de/fhir/hdc
+canonical: https://gematik.de/fhir/hddt
 version: 0.1.0
 name: healthDeviceDataTransfer
 title: Health Device Data Transfer

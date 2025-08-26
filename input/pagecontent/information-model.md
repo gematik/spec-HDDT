@@ -14,4 +14,5 @@ For describing device types (e.g., glucometer, rtCGM, HiMi backend, etc.), the *
 
 To model the § 374a interface directory, a backend can also be represented as its own **DeviceDefinition `DeviceDefinition_HiMi_Backend`**. This backend can be linked as a `parentDevice` to one or more sensor devices.
 
-{% include information_model.svg %}
+<div>{% include information_model.svg %}</div>
+<br clear="all"/>
