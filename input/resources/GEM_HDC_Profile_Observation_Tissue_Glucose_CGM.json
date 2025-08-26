@@ -22,7 +22,6 @@
         "path": "Observation.code",
         "short": "Type of measurement",
         "definition": "Coding of this measurement, e.g., tissue glucose from LOINC.",
-        "mustSupport": true,
         "binding": {
           "strength": "required",
           "description": "Specifies the type of measurement using codes from the ValueSet for tissue glucose measurements.",
@@ -53,8 +52,7 @@
           {
             "code": "Period"
           }
-        ],
-        "mustSupport": true
+        ]
       },
       {
         "id": "Observation.effective[x].start",
@@ -80,8 +78,7 @@
           {
             "code": "SampledData"
           }
-        ],
-        "mustSupport": true
+        ]
       },
       {
         "id": "Observation.value[x].origin.unit",
@@ -95,7 +92,8 @@
         "path": "Observation.value[x].origin.system",
         "short": "System of measurement",
         "definition": "The system of measurement for the origin of the SampledData.",
-        "min": 1
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
       },
       {
         "id": "Observation.value[x].origin.code",
@@ -105,9 +103,27 @@
         "min": 1,
         "binding": {
           "strength": "required",
-          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units.",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code).",
           "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
         }
+      },
+      {
+        "id": "Observation.value[x].data",
+        "path": "Observation.value[x].data",
+        "min": 1
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note",
+        "short": "Comments about the measurement",
+        "definition": "Additional comments on the measurement."
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "short": "Measurement method",
+        "definition": "The measurement method (e.g., sensor technology).",
+        "mustSupport": true
       },
       {
         "id": "Observation.device",
@@ -125,10 +141,41 @@
         ]
       },
       {
+        "id": "Observation.referenceRange",
+        "path": "Observation.referenceRange",
+        "mustSupport": true
+      },
+      {
         "id": "Observation.referenceRange.low",
         "path": "Observation.referenceRange.low",
         "short": "Reference range – Lower limit",
         "definition": "Lowest normal value."
+      },
+      {
+        "id": "Observation.referenceRange.low.value",
+        "path": "Observation.referenceRange.low.value",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.low.unit",
+        "path": "Observation.referenceRange.low.unit",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.low.system",
+        "path": "Observation.referenceRange.low.system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.referenceRange.low.code",
+        "path": "Observation.referenceRange.low.code",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code).",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
+        }
       },
       {
         "id": "Observation.referenceRange.high",
@@ -137,39 +184,30 @@
         "definition": "Highest normal value."
       },
       {
-        "id": "Observation.issued",
-        "path": "Observation.issued",
-        "short": "Time of capture",
-        "definition": "Time point when the measurement was captured in the system.",
-        "max": "1",
-        "type": [
-          {
-            "code": "instant"
-          }
-        ]
+        "id": "Observation.referenceRange.high.value",
+        "path": "Observation.referenceRange.high.value",
+        "min": 1
       },
       {
-        "id": "Observation.method",
-        "path": "Observation.method",
-        "short": "Measurement method",
-        "definition": "The measurement method (e.g., sensor technology, test strips).",
-        "max": "1",
-        "type": [
-          {
-            "code": "CodeableConcept"
-          }
-        ]
+        "id": "Observation.referenceRange.high.unit",
+        "path": "Observation.referenceRange.high.unit",
+        "min": 1
       },
       {
-        "id": "Observation.note",
-        "path": "Observation.note",
-        "short": "Note or annotation",
-        "definition": "Additional comments on the measurement.",
-        "type": [
-          {
-            "code": "Annotation"
-          }
-        ]
+        "id": "Observation.referenceRange.high.system",
+        "path": "Observation.referenceRange.high.system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.referenceRange.high.code",
+        "path": "Observation.referenceRange.high.code",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code).",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
+        }
       }
     ]
   }
