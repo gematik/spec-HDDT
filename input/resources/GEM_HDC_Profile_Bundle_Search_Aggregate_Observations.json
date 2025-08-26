@@ -1,0 +1,63 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Bundle-Search-Aggregate-Observations",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Bundle-Search-Aggregate-Observations",
+  "version": "0.1.0",
+  "name": "BundleSearchAggregateObservations",
+  "title": "Bundle – Observations with related Devices/DeviceMetrics",
+  "status": "draft",
+  "date": "2025-08-25",
+  "publisher": "gematik GmbH",
+  "description": "Bundle profile for search results of Observations and their related Device/DeviceMetric resources as returned by the custom operation `$search-aggregate-observations`.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle.type",
+        "path": "Bundle.type",
+        "fixedCode": "collection",
+        "short": "The bundle is always a collection of related resources"
+      },
+      {
+        "id": "Bundle.entry.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Observation",
+            "profile": [
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-mass-per-volume",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-times-in-ranges",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-gmi",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sensor-reading-mass-per-volume",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sensor-reading-moles-per-volume"
+            ]
+          },
+          
+          {
+            "code": "DeviceMetric",
+            "profile": [
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Medical-Aid"
+            ]
+          },
+          {
+            "code": "Device",
+            "profile": [
+              "https://gematik.de/fhir/hdc/StructureDefinition/Device-Medical-Aid"
+            ]
+          }
+        ],
+        "short": "Observations with their related Devices and DeviceMetrics"
+      }
+    ]
+  }
+}

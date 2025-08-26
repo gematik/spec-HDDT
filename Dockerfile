@@ -15,7 +15,8 @@ RUN set -eux; \
     _genonce.sh; \
     test -d output; \
     cd temp/pages; \
-    jekyll build --destination "/home/publisher/ig/output";
+    jekyll build --destination "/home/publisher/ig/output"; \
+    cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/;
 
 # ---------- Export-only stage ----------
 FROM scratch AS export

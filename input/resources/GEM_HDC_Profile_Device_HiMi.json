@@ -1,9 +1,9 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "Device-HiMi",
-  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-HiMi",
+  "id": "Device-Medical-Aid",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-Medical-Aid",
   "version": "0.1.0",
-  "name": "Device_HiMi",
+  "name": "Device_Medical_Aid",
   "status": "draft",
   "fhirVersion": "4.0.1",
   "kind": "resource",
@@ -23,7 +23,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://himi-vz.bfarm.de/fhir/StructureDefinition/DeviceDefinition"
+              "http://device-registry.bfarm.de/fhir/StructureDefinition/DeviceDefinition"
             ]
           }
         ],

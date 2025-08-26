@@ -9,6 +9,7 @@
   "date": "2025-08-11",
   "publisher": "gematik GmbH",
   "description": "This ValueSet contains UCUM units codes used for blood glucose measurements (e.g., mg/dL, mmol/L).",
+  "fhirVersion": "4.0.1",
   "compose": {
     "include": [
       {

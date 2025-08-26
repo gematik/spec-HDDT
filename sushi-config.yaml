@@ -29,7 +29,8 @@ copyrightYear: 2025+
 releaseLabel: CI Build
 
 
-
+dependencies:
+  hl7.fhir.uv.cgm: 1.0.0-ballot
 
 parameters:
   show-inherited-invariants: false
