@@ -1,0 +1,68 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Device-Medical-Aid",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Device-Medical-Aid",
+  "version": "0.1.0",
+  "name": "Device_Medical_Aid",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Device",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Device",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Device",
+        "path": "Device",
+        "short": "Medical aid or personal medical device",
+        "definition": "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device must be a medical device."
+      },
+      {
+        "id": "Device.definition",
+        "path": "Device.definition",
+        "short": "Definition of the medical aid",
+        "definition": "Reference to a DeviceDefinition resource that describes the technical and functional details of the medical aid.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://device-registry.bfarm.de/fhir/StructureDefinition/DeviceDefinition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Device.expirationDate",
+        "path": "Device.expirationDate",
+        "short": "Date and time of expiry of this medical aid (if applicable)",
+        "definition": "The date and time beyond which this medical aid is no longer valid or should not be used (if applicable).",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.serialNumber",
+        "path": "Device.serialNumber",
+        "short": "Serial number of the medical aid",
+        "definition": "The serial number that uniquely identifies the medical aid instance.",
+        "min": 1
+      },
+      {
+        "id": "Device.deviceName",
+        "path": "Device.deviceName",
+        "short": "Name of the medical aid",
+        "definition": "The name of the medical aid as given by the manufacturer and listed in the device registry.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Device.modelNumber",
+        "path": "Device.modelNumber",
+        "short": "Model number of the medical aid",
+        "definition": "The model number of the medical aid.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

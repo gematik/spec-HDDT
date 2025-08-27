@@ -1,0 +1,9 @@
+{
+  "resourceType": "Device",
+  "id": "example-glucometer",
+  "deviceName": [ { "name": "Accu-Chek Mobile", "type": "user-friendly-name" } ],
+  "manufacturer": "Roche",
+  "serialNumber": "2937459287531567",
+  "modelNumber": "Accu-Chek Mobile U1 mg/dl",
+  "definition": { "reference": "DeviceDefinition/example-glucometer-def" }
+}

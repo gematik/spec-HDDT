@@ -1,0 +1,203 @@
+# ╭────────────────────────────────────────────────────────────────────────────────────────────────╮
+# │  ACTION REQUIRED: REVIEW AND EDIT THIS FILE TO ENSURE IT ACCURATELY REFLECTS YOUR PROJECT!     │
+# │                                                                                                │
+# │  This file was generated from your existing project files and will be used for SUSHI           │
+# │  configuration from now on. You may delete your package.json as it is no longer needed.        │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+# ╭────────────────────────────ImplementationGuide-AustrianPatient.json────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see:                                                                    │
+# │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: health-device-data-transfer
+canonical: https://gematik.de/fhir/hdc
+version: 0.1.0
+name: healthDeviceDataTransfer
+title: Health Device Data Transfer
+status: draft
+publisher: gematik GmbH
+contact:
+  - name: BfArM
+    telecom:
+      - system: url
+        value: https://www.gematik.de
+description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to §374a SGB V.
+license: CC0-1.0
+fhirVersion: 4.0.1
+copyrightYear: 2025+
+releaseLabel: CI Build
+
+
+dependencies:
+  hl7.fhir.uv.cgm: 1.0.0-ballot
+
+parameters:
+  show-inherited-invariants: false
+  # in order to preserve the version of the resources:
+  apply-version: false
+  copyrightYear: 2025+
+  releaseLabel: CI Build
+  shownav: false
+  apply-contact: false
+  default-contact: false
+  apply-publisher: false
+  default-publisher: false
+  propagate-status: false
+  showsource: true
+  # logging: [init, progress, tx, generate]
+
+
+pages:
+  index.html:
+    title: Overview
+    generation: markdown
+  examples.html:
+    title: Examples
+    generation: markdown
+  himi-diga-api.html:
+    title: HiMi DiGA RESTful FHIR API
+    generation: markdown
+  himi-vz-api.html:
+    title: HiMi Directory API
+    generation: markdown
+  information-model.html:
+    title: Information Model
+    generation: markdown
+  methodology.html:
+    title: Methodology
+    generation: markdown
+  oauth-api.html:
+    title: OAuth 2.0 ACG API
+    generation: markdown
+  participants.html:
+    title: Participants
+    generation: markdown
+  representation_formats.html:
+    title: Representation Formats
+    generation: markdown
+  zts-api.html:
+    title: ZTS API
+    generation: markdown
+  mivs.html:
+    title: Mandatory Interoperable Values (MIVs)
+    generation: markdown
+  motivation.html:
+    title: Motivation
+    generation: markdown
+  release-notes.html:
+    title: Release Notes
+    generation: markdown
+  logical-viewpoints.html:
+     title: Logical Viewpoints
+     generation: markdown
+  certification-relevant-systems.html:
+    title: Certification relevant systems
+    generation: markdown
+  compatibility-of-the-gematik-specification.html:
+    title: Compatibility of the gematik Specification
+    generation: markdown
+  must-support.html:
+    title: Must-Support flags
+    generation: markdown
+  implementation_guide_diga.html:
+    title: Implementation guide for DiGA
+    generation: markdown
+  implementation_guide_himi.html:
+    title: Implementation guide for HiMi
+    generation: markdown
+  pairing.html:
+    title: Pairing
+    generation: markdown
+  retrieving-data.html:
+    title: Retrieving Data
+    generation: markdown
+  security-and-privacy.html:
+    title: Security and Privacy
+    generation: markdown
+  hdc-device-metric-api.html:
+    title: HDC Device Metric API
+    generation: markdown
+  hdc-device-api.html:
+    title: HDC Device API
+    generation: markdown
+  diga-vz-api.html:
+    title: DiGA Directory API (?)
+    generation: markdown
+  information-model-diabetes.html:
+    title: Information Model Diabetes
+    generation: markdown
+  semantics.html:
+    title: Semantics
+    generation: markdown
+  measurement-blood-glucose.html:
+    title: Measurement Blood Glucose
+    generation: markdown
+  measurement-tissue-glucose.html:
+    title: Measurement Tissue Glucose
+    generation: markdown
+  conventions-for-device-resources.html:
+    title: Conventions for Device Resources
+    generation: markdown
+  execution-plan.html:
+    title: Execution Plan
+    generation: markdown  
+
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Home: index.html
+  General:
+    Motivation: motivation.html
+    Execution Plan: execution-plan.html
+  Release Notes: release-notes.html
+  Logical Viewpoints: 
+    Logical Viewpoints: logical-viewpoints.html
+    Participants: participants.html
+    Information Model: information-model.html
+    Pairing: pairing.html
+    Retrieving Data: retrieving-data.html
+  Definition and Rules: 
+    Methodology: methodology.html
+    Certification relevant systems: certification-relevant-systems.html
+    Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
+    Must-Support flags: must-support.html
+    Representation Format: representation_formats.html
+    Security and Privacy: security-and-privacy.html
+  REST API:
+    HIMI DiGA FHIR API: himi-diga-api.html
+    HDC Device Metric API: hdc-device-metric-api.html
+    HDC Device API: hdc-device-api.html
+    HIMI Directory API: himi-vz-api.html
+    DiGA Directory API: diga-vz-api.html
+    ZTS API: zts-api.html
+    OAuth 2.0 ACG API: oauth-api.html
+  UseCase Diabetes Self Management:
+    Mandatory Interoperable Values (MIVs): mivs.html
+    Information Model Diabetes: information-model-diabetes.html
+    Semantics: semantics.html
+    Measurement Blood Glucose: measurement-blood-glucose.html
+    Measurement Tissue Glucose: measurement-tissue-glucose.html
+    Conventions for Device* Ressources: conventions-for-device-resources.html
+    Examples: examples.html
+  ImplementationGuide:
+    Implementation guide for DiGA: implementation_guide_diga.html
+    Implementation guide for HiMi: implementation_guide_himi.html
+  Artifacts:
+    Artifacts Summary: artifacts.html
+
+
+# ╭───────────────────────────────────────package-list.json────────────────────────────────────────╮
+# │  To control the package-list.json using this config, uncomment and set the "history" property. │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+# history:
+#   introduction: An example of how FSH can be used to create an IG about AustrianPatient
+#   current:
+#     version: current
+#     desc: Draft
+#     path: http://hl7.at/fhir/4.0.1/HL7ATCoreProfiles
+#     status: ci-build
+#     current: truedependencies:
+

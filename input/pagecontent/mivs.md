@@ -1,0 +1,12 @@
+
+
+Self-management tools used by patients to determine glucose levels analyze either capillary blood ("bloody measurement" on the fingertip) or tissue fluid (rtCGM). In the following table from ISO/IEEE 11073-10425:2019, these measurement methods are highlighted in red. The other measurement methods listed are primarily used in the doctor's office and are not taken into account for the HDC-UseCse "Diabetes Self-Management".
+
+![Glucose Methods](/11073_Glukose_Methoden.png)
+
+For the first introduction stage of HDC, three mandatory interoperable values (MIVs) are defined for diabetes self-management:
+- Glucose level in capillary blood
+- Glucose value measured continuously in tissue fluid
+- Glucose profile over a period of time
+
+*Note: The first two vibW have been set, whether the glucose profile will also be binding as vobW still has to be agreed with the BMG.*

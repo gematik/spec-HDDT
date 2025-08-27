@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  fhir-ig:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: final
+    container_name: fhir-ig
+    ports:
+      - "8081:80"
+    restart: unless-stopped

@@ -1,0 +1,15 @@
+# Ignore legacy IG file
+ig.json
+
+# Ignore build and temp directories
+temp
+input-cache
+template
+output
+fsh-generated
+
+# Usual extras you typically don’t want in Docker build context
+.git
+.github
+node_modules
+.DS_Store

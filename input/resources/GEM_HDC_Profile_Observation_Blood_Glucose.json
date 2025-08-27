@@ -1,0 +1,167 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Observation-Blood-Glucose",
+  "url": "https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blood-Glucose",
+  "version": "0.1.0",
+  "name": "Observation_Blood_Glucose",
+  "title": "Observation – Blood Glucose",
+  "status": "draft",
+  "date": "2025-08-12",
+  "publisher": "gematik GmbH",
+  "description": "Profile for capturing blood glucose measurements as Observation.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Measurement type of vital sign",
+        "definition": "The code specifies which vital sign was measured (e.g., LOINC 2339-0 for blood glucose).",
+        "binding": {
+          "strength": "required",
+          "description": "Specifies the type of measurement using codes from the ValueSet for blood glucose measurements.",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose"
+        }
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "short": "Time of measurement",
+        "definition": "The time or period when the blood glucose measurement was taken.",
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "short": "Measured value",
+        "definition": "The blood glucose value measured, represented as a quantity.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x].value",
+        "path": "Observation.value[x].value",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x].unit",
+        "path": "Observation.value[x].unit",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x].system",
+        "path": "Observation.value[x].system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.value[x].code",
+        "path": "Observation.value[x].code",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code).",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
+        }
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note",
+        "short": "Comments about the measurement.",
+        "definition": "Comments about the measurement or the results."
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "short": "Measurement method",
+        "definition": "The measurement method (e.g., finger-stick check).",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Reference to device configuration",
+        "definition": "References a DeviceMetric resource that describes the current configuration of the measuring device.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/hdc/StructureDefinition/DeviceMetric-Medical-Aid"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.referenceRange",
+        "path": "Observation.referenceRange",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.referenceRange.low.value",
+        "path": "Observation.referenceRange.low.value",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.low.unit",
+        "path": "Observation.referenceRange.low.unit",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.low.system",
+        "path": "Observation.referenceRange.low.system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.referenceRange.low.code",
+        "path": "Observation.referenceRange.low.code",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code).",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
+        }
+      },
+      {
+        "id": "Observation.referenceRange.high.value",
+        "path": "Observation.referenceRange.high.value",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.high.unit",
+        "path": "Observation.referenceRange.high.unit",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.high.system",
+        "path": "Observation.referenceRange.high.system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.referenceRange.high.code",
+        "path": "Observation.referenceRange.high.code",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "description": "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code).",
+          "valueSet": "https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose-Units"
+        }
+      }
+    ]
+  }
+}

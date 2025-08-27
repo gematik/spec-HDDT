@@ -1,0 +1,15 @@
+{
+  "package-id": "gematik-de-hdc",
+  "title": "Specification – Device 2 DiGA",
+  "canonical": "https://gematik.de/fhir/hdc/",
+  "introduction": "gematik - Specification – Device 2 DiGA",
+  "list": [
+    {
+      "version": "current",
+      "desc": "Draft",
+      "path": "https://gematik.de/fhir/hdc/",
+      "status": "ci-build",
+      "current": true
+    }
+  ]
+}

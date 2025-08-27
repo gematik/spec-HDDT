@@ -1,0 +1,306 @@
+openapi: 3.0.3
+info:
+  title: DiGA FHIR API
+  version: "1.0.0"
+  description: >
+    OpenAPI specification for a DiGA FHIR API (FHIR R4).
+    Supports CapabilityStatement, Observation, DeviceMetric, and Device resources.
+servers:
+  - url: https://api.diga.example.com/fhir
+    description: Example FHIR server
+
+tags:
+  - name: Metadata
+  - name: Observation
+  - name: DeviceMetric
+  - name: Device
+
+paths:
+  /metadata:
+    get:
+      tags: [Metadata]
+      summary: FHIR CapabilityStatement (public)
+      description: >
+        Public endpoint (no mTLS) that declares supported FHIR version,
+        resources, interactions, search parameters, and profiles.
+      responses:
+        '200':
+          description: CapabilityStatement
+          content:
+            application/fhir+json:
+              examples:
+                capabilityJson:
+                  summary: Minimal CapabilityStatement (JSON)
+                  value:
+                    resourceType: CapabilityStatement
+                    status: active
+                    fhirVersion: "4.0.1"
+                    format: ["json","xml"]
+                    rest:
+                      - mode: server
+                        resource:
+                          - type: Device
+                            interaction:
+                              - code: read
+                              - code: search-type
+                          - type: Observation
+                            interaction:
+                              - code: read
+                              - code: search-type
+            application/fhir+xml:
+              examples:
+                capabilityXml:
+                  summary: Minimal CapabilityStatement (XML)
+                  value: |
+                    <CapabilityStatement xmlns="http://hl7.org/fhir">
+                      <status value="active"/>
+                      <fhirVersion value="4.0.1"/>
+                      <format value="json"/>
+                      <format value="xml"/>
+                      <rest>
+                        <mode value="server"/>
+                        <resource>
+                          <type value="Device"/>
+                          <interaction><code value="read"/></interaction>
+                          <interaction><code value="search-type"/></interaction>
+                        </resource>
+                        <resource>
+                          <type value="Observation"/>
+                          <interaction><code value="read"/></interaction>
+                          <interaction><code value="search-type"/></interaction>
+                        </resource>
+                      </rest>
+                    </CapabilityStatement>
+
+  /Observation:
+    get:
+      tags: [Observation]
+      summary: Query Observations
+      description: >
+        Supports querying single values, time series data, and threshold comparisons.
+        Data must conform to defined FHIR profiles (e.g. SD_vibW_Blutzucker).
+      parameters:
+        - in: query
+          name: _id
+          schema: { type: string }
+          description: Observation ID
+        - in: query
+          name: identifier
+          schema: { type: string }
+          description: Observation identifier
+        - in: query
+          name: code
+          schema: { type: string }
+          description: LOINC code, e.g. http://loinc.org|15074-8
+        - in: query
+          name: date
+          schema: { type: string }
+          description: Date filters (ge, le, etc.)
+        - in: query
+          name: method
+          schema: { type: string }
+          description: Method code, e.g. SNOMED CT
+        - in: query
+          name: value-quantity
+          schema: { type: string }
+          description: Quantity filter (gt, lt, etc.)
+        - in: query
+          name: _include
+          schema: { type: string }
+          description: e.g. Observation:device
+      responses:
+        '200':
+          description: Bundle of Observation resources
+          content:
+            application/fhir+json:
+              examples:
+                observationJson:
+                  summary: Observation JSON
+                  value:
+                    resourceType: Bundle
+                    type: searchset
+                    entry:
+                      - resource:
+                          resourceType: Observation
+                          id: obs-123
+                          status: final
+                          code:
+                            coding:
+                              - system: http://loinc.org
+                                code: "15074-8"
+                                display: Glucose [Moles/volume] in Blood
+                          subject:
+                            reference: Patient/pat-1
+                          effectiveDateTime: "2025-07-23T10:00:00Z"
+                          valueQuantity:
+                            value: 145
+                            unit: mg/dL
+                            system: http://unitsofmeasure.org
+                            code: mg/dL
+                          device:
+                            reference: DeviceMetric/dm-123
+            application/fhir+xml:
+              examples:
+                observationXml:
+                  summary: Observation XML
+                  value: |
+                    <Bundle xmlns="http://hl7.org/fhir">
+                      <type value="searchset"/>
+                      <entry>
+                        <resource>
+                          <Observation>
+                            <id value="obs-123"/>
+                            <status value="final"/>
+                            <code>
+                              <coding>
+                                <system value="http://loinc.org"/>
+                                <code value="15074-8"/>
+                                <display value="Glucose [Moles/volume] in Blood"/>
+                              </coding>
+                            </code>
+                            <subject>
+                              <reference value="Patient/pat-1"/>
+                            </subject>
+                            <effectiveDateTime value="2025-07-23T10:00:00Z"/>
+                            <valueQuantity>
+                              <value value="145"/>
+                              <unit value="mg/dL"/>
+                              <system value="http://unitsofmeasure.org"/>
+                              <code value="mg/dL"/>
+                            </valueQuantity>
+                            <device>
+                              <reference value="DeviceMetric/dm-123"/>
+                            </device>
+                          </Observation>
+                        </resource>
+                      </entry>
+                    </Bundle>
+
+  /DeviceMetric:
+    get:
+      tags: [DeviceMetric]
+      summary: Query DeviceMetric (restricted)
+      description: >
+        DeviceMetric resources are normally only retrievable via `_include`
+        when querying Observations.  
+        A direct GET is allowed only with `_id`, and only for authorized
+        DeviceMetrics referenced in Observations.
+      parameters:
+        - in: query
+          name: _id
+          description: DeviceMetric internal ID
+          schema: { type: string }
+      responses:
+        '200':
+          description: DeviceMetric resource
+          content:
+            application/fhir+json:
+              examples:
+                deviceMetricJson:
+                  summary: DeviceMetric JSON
+                  value:
+                    resourceType: DeviceMetric
+                    id: dm-123
+                    type:
+                      coding:
+                        - system: http://loinc.org
+                          code: "15074-8"
+                          display: Blood glucose measurement
+                    unit:
+                      coding:
+                        - system: http://unitsofmeasure.org
+                          code: "mg/dL"
+                          display: milligrams per deciliter
+                    source:
+                      reference: Device/dev-123
+                    operationalStatus: on
+            application/fhir+xml:
+              examples:
+                deviceMetricXml:
+                  summary: DeviceMetric XML
+                  value: |
+                    <DeviceMetric xmlns="http://hl7.org/fhir">
+                      <id value="dm-123"/>
+                      <type>
+                        <coding>
+                          <system value="http://loinc.org"/>
+                          <code value="15074-8"/>
+                          <display value="Blood glucose measurement"/>
+                        </coding>
+                      </type>
+                      <unit>
+                        <coding>
+                          <system value="http://unitsofmeasure.org"/>
+                          <code value="mg/dL"/>
+                          <display value="milligrams per deciliter"/>
+                        </coding>
+                      </unit>
+                      <source>
+                        <reference value="Device/dev-123"/>
+                      </source>
+                      <operationalStatus value="on"/>
+                    </DeviceMetric>
+        '403':
+          description: Forbidden – DeviceMetric not authorized for this client
+        '401':
+          description: Unauthorized
+
+  /Device:
+    get:
+      tags: [Device]
+      summary: Query Device resources
+      description: >
+        Retrieve device instances (e.g. glucometers).  
+        Identifiers may include registry numbers.  
+        Devices are referenced by DeviceMetric.source.
+      parameters:
+        - in: query
+          name: _id
+          description: Device ID
+          schema: { type: string }
+      responses:
+        '200':
+          description: Bundle of Device resources
+          content:
+            application/fhir+json:
+              examples:
+                deviceJson:
+                  summary: Device JSON
+                  value:
+                    resourceType: Bundle
+                    type: searchset
+                    entry:
+                      - resource:
+                          resourceType: Device
+                          id: dev-123
+                          serialNumber: SN123456
+                          type:
+                            coding:
+                              - system: http://snomed.info/sct
+                                code: "46702002"
+                                display: Glucometer
+                          manufacturer: Acme Health
+            application/fhir+xml:
+              examples:
+                deviceXml:
+                  summary: Device XML
+                  value: |
+                    <Bundle xmlns="http://hl7.org/fhir">
+                      <type value="searchset"/>
+                      <entry>
+                        <resource>
+                          <Device>
+                            <id value="dev-123"/>
+                            <serialNumber value="SN123456"/>
+                            <type>
+                              <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="46702002"/>
+                                <display value="Glucometer"/>
+                              </coding>
+                            </type>
+                            <manufacturer value="Acme Health"/>
+                          </Device>
+                        </resource>
+                      </entry>
+                    </Bundle>
