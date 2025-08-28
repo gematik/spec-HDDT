@@ -142,7 +142,9 @@ pages:
   execution-plan.html:
     title: Execution Plan
     generation: markdown  
-
+  aggregated-reports-cgm.html:
+    title: Aggregated Reports CGM
+    generation: markdown
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
@@ -180,6 +182,7 @@ menu:
     Semantics: semantics.html
     Measurement Blood Glucose: measurement-blood-glucose.html
     Measurement Tissue Glucose: measurement-tissue-glucose.html
+    Aggregated Reports CGM: aggregated-reports-cgm.html
     Conventions for Device* Ressources: conventions-for-device-resources.html
     Examples: examples.html
   ImplementationGuide:

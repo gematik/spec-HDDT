@@ -205,7 +205,7 @@ ValueSet: VS_Blood_Glucose_Units
 Id: vs-glucose-units
 Title: "Blood Glucose Measurement Units"
 Description: "This ValueSet contains UCUM units codes used for blood glucose measurements (e.g., mg/dL, mmol/L)."
-// * ^url = "https://gematik.de/fhir/hddt/ValueSet/VS-Blood-Glucose-Units"
+* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose-Units"
 * ^version = "0.1.0"
 * ^status = #draft
 * ^date = "2025-08-11"
@@ -217,7 +217,7 @@ ValueSet: VS_Blood_Glucose
 Id: vs-blood-glucose
 Title: "ValueSet Blood Glucose from LOINC"
 Description: "This ValueSet contains LOINC codes for blood glucose measurements."
-// * ^url = "https://gematik.de/fhir/hddt/ValueSet/VS-Blood-Glucose"
+* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose"
 * ^version = "0.1.0"
 * ^status = #draft
 * ^publisher = "gematik GmbH"
@@ -230,7 +230,7 @@ ValueSet: VSCGMSummaryCodes
 Id: vs-cgm-summary-codes
 Title: "ValueSet – CGM Summary Codes (temporary)"
 Description: "ValueSet including all codes from the temporary CGM summary codes CodeSystem."
-// * ^url = "https://gematik.de/fhir/hddt/ValueSet/VS-CGM-Summary-Codes"
+* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-CGM-Summary-Codes"
 * ^version = "0.1.0"
 * ^status = #draft
 * ^experimental = false
@@ -241,7 +241,7 @@ ValueSet: VS_Tissue_Glucose_CGM
 Id: vs-tissue-glucose-cgm
 Title: "ValueSet – Tissue Glucose for rtCGM from LOINC"
 Description: "This ValueSet contains LOINC codes for tissue glucose measurements."
-// * ^url = "https://gematik.de/fhir/hddt/ValueSet/VS-Tissue-Glucose-CGM"
+* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Tissue-Glucose-CGM"
 * ^version = "0.1.0"
 * ^status = #draft
 * ^publisher = "gematik GmbH"
