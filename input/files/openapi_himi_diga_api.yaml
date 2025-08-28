@@ -1,12 +1,12 @@
 openapi: 3.0.3
 info:
-  title: DiGA FHIR API
+  title: Health Device Data Transfer FHIR API
   version: "1.0.0"
   description: >
-    OpenAPI specification for a DiGA FHIR API (FHIR R4).
+    OpenAPI specification for a Health Device Data Transfer FHIR API (FHIR R4).
     Supports CapabilityStatement, Observation, DeviceMetric, and Device resources.
 servers:
-  - url: https://api.diga.example.com/fhir
+  - url: https://api.medical-aid.com/fhir
     description: Example FHIR server
 
 tags:
@@ -40,151 +40,92 @@ paths:
                       - mode: server
                         resource:
                           - type: Device
+                            profile: "Device_Medical_Aid"
                             interaction:
                               - code: read
                               - code: search-type
                           - type: Observation
+                            profile: "Observation_Blood_Glucose"
                             interaction:
                               - code: read
                               - code: search-type
-            application/fhir+xml:
-              examples:
-                capabilityXml:
-                  summary: Minimal CapabilityStatement (XML)
-                  value: |
-                    <CapabilityStatement xmlns="http://hl7.org/fhir">
-                      <status value="active"/>
-                      <fhirVersion value="4.0.1"/>
-                      <format value="json"/>
-                      <format value="xml"/>
-                      <rest>
-                        <mode value="server"/>
-                        <resource>
-                          <type value="Device"/>
-                          <interaction><code value="read"/></interaction>
-                          <interaction><code value="search-type"/></interaction>
-                        </resource>
-                        <resource>
-                          <type value="Observation"/>
-                          <interaction><code value="read"/></interaction>
-                          <interaction><code value="search-type"/></interaction>
-                        </resource>
-                      </rest>
-                    </CapabilityStatement>
-
+                          - type: Observation
+                            profile: "Observation_CGM_Measurement_Series"
+                            interaction:
+                              - code: read
+                              - code: search-type
+                          - type: Bundle
+                            profile: "BundleSearchSummaryDataMeasurements"
+                            interaction:
+                              - code: read
+                              - code: search-type
+          
   /Observation:
     get:
       tags: [Observation]
       summary: Query Observations
       description: >
         Supports querying single values, time series data, and threshold comparisons.
-        Data must conform to defined FHIR profiles (e.g. SD_vibW_Blutzucker).
+        Data must conform to the `Observation_Blood_Glucose` or `Observation_CGM_Measurement_Series` profiles.
       parameters:
         - in: query
           name: _id
           schema: { type: string }
           description: Observation ID
         - in: query
-          name: identifier
-          schema: { type: string }
-          description: Observation identifier
-        - in: query
           name: code
           schema: { type: string }
           description: LOINC code, e.g. http://loinc.org|15074-8
-        - in: query
-          name: date
-          schema: { type: string }
-          description: Date filters (ge, le, etc.)
-        - in: query
-          name: method
-          schema: { type: string }
-          description: Method code, e.g. SNOMED CT
-        - in: query
-          name: value-quantity
-          schema: { type: string }
-          description: Quantity filter (gt, lt, etc.)
-        - in: query
-          name: _include
-          schema: { type: string }
-          description: e.g. Observation:device
       responses:
         '200':
           description: Bundle of Observation resources
           content:
             application/fhir+json:
               examples:
-                observationJson:
-                  summary: Observation JSON
+                observationBloodGlucoseJson:
+                  summary: Blood Glucose Observation JSON
                   value:
-                    resourceType: Bundle
-                    type: searchset
-                    entry:
-                      - resource:
-                          resourceType: Observation
-                          id: obs-123
-                          status: final
-                          code:
-                            coding:
-                              - system: http://loinc.org
-                                code: "15074-8"
-                                display: Glucose [Moles/volume] in Blood
-                          subject:
-                            reference: Patient/pat-1
-                          effectiveDateTime: "2025-07-23T10:00:00Z"
-                          valueQuantity:
-                            value: 145
-                            unit: mg/dL
-                            system: http://unitsofmeasure.org
-                            code: mg/dL
-                          device:
-                            reference: DeviceMetric/dm-123
-            application/fhir+xml:
-              examples:
-                observationXml:
-                  summary: Observation XML
-                  value: |
-                    <Bundle xmlns="http://hl7.org/fhir">
-                      <type value="searchset"/>
-                      <entry>
-                        <resource>
-                          <Observation>
-                            <id value="obs-123"/>
-                            <status value="final"/>
-                            <code>
-                              <coding>
-                                <system value="http://loinc.org"/>
-                                <code value="15074-8"/>
-                                <display value="Glucose [Moles/volume] in Blood"/>
-                              </coding>
-                            </code>
-                            <subject>
-                              <reference value="Patient/pat-1"/>
-                            </subject>
-                            <effectiveDateTime value="2025-07-23T10:00:00Z"/>
-                            <valueQuantity>
-                              <value value="145"/>
-                              <unit value="mg/dL"/>
-                              <system value="http://unitsofmeasure.org"/>
-                              <code value="mg/dL"/>
-                            </valueQuantity>
-                            <device>
-                              <reference value="DeviceMetric/dm-123"/>
-                            </device>
-                          </Observation>
-                        </resource>
-                      </entry>
-                    </Bundle>
-
+                    resourceType: Observation
+                    id: obs-blood-glucose-001
+                    status: final
+                    code:
+                      coding:
+                        - system: http://loinc.org
+                          code: "2339-0"
+                          display: Glucose [Mass/volume] in Blood
+                    effectiveDateTime: "2025-08-28T10:00:00Z"
+                    valueQuantity:
+                      value: 120
+                      unit: mg/dL
+                      system: http://unitsofmeasure.org
+                      code: mg/dL
+                observationCGMJson:
+                  summary: CGM Measurement Series Observation JSON
+                  value:
+                    resourceType: Observation
+                    id: obs-cgm-series-001
+                    status: preliminary
+                    code:
+                      coding:
+                        - system: http://loinc.org
+                          code: "105272-9"
+                          display: Glucose [Moles/volume] in Interstitial fluid
+                    effectivePeriod:
+                      start: "2025-08-28T08:00:00Z"
+                      end: "2025-08-28T10:00:00Z"
+                    valueSampledData:
+                      origin:
+                        value: 0
+                        unit: mmol/L
+                      period: 300
+                      data: "5.6 5.8 6.0 5.9 5.7"
+            
   /DeviceMetric:
     get:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
       description: >
-        DeviceMetric resources are normally only retrievable via `_include`
-        when querying Observations.  
-        A direct GET is allowed only with `_id`, and only for authorized
-        DeviceMetrics referenced in Observations.
+        DeviceMetric resources must conform to the `DeviceMetric_Medical_Aid` profile.
       parameters:
         - in: query
           name: _id
@@ -211,35 +152,7 @@ paths:
                         - system: http://unitsofmeasure.org
                           code: "mg/dL"
                           display: milligrams per deciliter
-                    source:
-                      reference: Device/dev-123
-                    operationalStatus: on
-            application/fhir+xml:
-              examples:
-                deviceMetricXml:
-                  summary: DeviceMetric XML
-                  value: |
-                    <DeviceMetric xmlns="http://hl7.org/fhir">
-                      <id value="dm-123"/>
-                      <type>
-                        <coding>
-                          <system value="http://loinc.org"/>
-                          <code value="15074-8"/>
-                          <display value="Blood glucose measurement"/>
-                        </coding>
-                      </type>
-                      <unit>
-                        <coding>
-                          <system value="http://unitsofmeasure.org"/>
-                          <code value="mg/dL"/>
-                          <display value="milligrams per deciliter"/>
-                        </coding>
-                      </unit>
-                      <source>
-                        <reference value="Device/dev-123"/>
-                      </source>
-                      <operationalStatus value="on"/>
-                    </DeviceMetric>
+            
         '403':
           description: Forbidden – DeviceMetric not authorized for this client
         '401':
@@ -250,9 +163,7 @@ paths:
       tags: [Device]
       summary: Query Device resources
       description: >
-        Retrieve device instances (e.g. glucometers).  
-        Identifiers may include registry numbers.  
-        Devices are referenced by DeviceMetric.source.
+        Retrieve device instances conforming to the `Device_Medical_Aid` profile.
       parameters:
         - in: query
           name: _id
@@ -280,27 +191,54 @@ paths:
                                 code: "46702002"
                                 display: Glucometer
                           manufacturer: Acme Health
-            application/fhir+xml:
+            
+
+  /$search-aggregate-observations:
+    post:
+      tags: [Observation]
+      summary: Custom operation to search aggregate observations
+      description: >
+        This operation searches for Observations and optionally includes related Device and DeviceMetric resources.
+        The result conforms to the `BundleSearchAggregateObservations` profile.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: Observation code to filter by.
+                effectivePeriodStart:
+                  type: string
+                  format: date-time
+                  description: Start of the effective period.
+                effectivePeriodEnd:
+                  type: string
+                  format: date-time
+                  description: End of the effective period.
+      responses:
+        '200':
+          description: Result bundle containing aggregate Observations and optionally related resources
+          content:
+            application/fhir+json:
               examples:
-                deviceXml:
-                  summary: Device XML
-                  value: |
-                    <Bundle xmlns="http://hl7.org/fhir">
-                      <type value="searchset"/>
-                      <entry>
-                        <resource>
-                          <Device>
-                            <id value="dev-123"/>
-                            <serialNumber value="SN123456"/>
-                            <type>
-                              <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="46702002"/>
-                                <display value="Glucometer"/>
-                              </coding>
-                            </type>
-                            <manufacturer value="Acme Health"/>
-                          </Device>
-                        </resource>
-                      </entry>
-                    </Bundle>
+                aggregateBundleJson:
+                  summary: Aggregate Bundle JSON
+                  value:
+                    resourceType: Bundle
+                    type: collection
+                    entry:
+                      - resource:
+                          resourceType: Observation
+                          id: obs-aggregate-1
+                          code:
+                            coding:
+                              - system: http://loinc.org
+                                code: "15074-8"
+                                display: Glucose [Moles/volume] in Blood
+                          valueQuantity:
+                            value: 145
+                            unit: mg/dL
+                            system: http://unitsofmeasure.org
+                            code: mg/dL

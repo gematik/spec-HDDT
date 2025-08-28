@@ -1,4 +1,3 @@
-Alias: $cgm-summary-codes-temporary = http://hl7.org/fhir/uv/cgm/CodeSystem/cgm-summary-codes-temporary
 Alias: $cgm-summary = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary
 Alias: $cgm-summary-mean-glucose-mass-per-volume = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-mass-per-volume
 Alias: $cgm-summary-mean-glucose-moles-per-volume = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume
@@ -7,22 +6,21 @@ Alias: $cgm-summary-gmi = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sum
 Alias: $cgm-summary-coefficient-of-variation = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation
 Alias: $cgm-summary-days-of-wear = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear
 Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage
-Alias: $cgm-sensor-reading-mass-per-volume = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sensor-reading-mass-per-volume
-Alias: $cgm-sensor-reading-moles-per-volume = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sensor-reading-moles-per-volume
 // Alias: $DeviceDefinition = http://device-registry.bfarm.de/fhir/StructureDefinition/DeviceDefinition
 
-Profile: BundleSearchAggregateObservations
+Profile: BundleSearchSummaryDataMeasurements
 Parent: Bundle
-Id: Bundle-Search-Aggregate-Observations
-Title: "Bundle – Observations with related Devices/DeviceMetrics"
-Description: "Bundle profile for search results of Observations and their related Device/DeviceMetric resources as returned by the custom operation `$search-aggregate-observations`."
+Id: Bundle-Search-Summary-Data-Measurements
+Title: "Bundle – Summary Data Measurements with related Devices/DeviceMetrics"
+Description: "Bundle profile for search results of Summary Data Measurements and their related Device/DeviceMetric resources as returned by the custom operation `$search-summary-data-measurements`."
 * ^version = "0.1.0"
 * ^status = #draft
-* ^date = "2025-08-25"
+* ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
 * type = #collection (exactly)
 * type ^short = "The bundle is always a collection of related resources"
-* entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or $cgm-sensor-reading-mass-per-volume or $cgm-sensor-reading-moles-per-volume or DeviceMetric_Medical_Aid or Device_Medical_Aid
+* entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or DeviceMetric_Medical_Aid or Device_Medical_Aid
 * entry.resource ^short = "Observations with their related Devices and DeviceMetrics"
 
 Profile: Device_Medical_Aid
@@ -30,6 +28,9 @@ Parent: Device
 Id: Device-Medical-Aid
 * ^version = "0.1.0"
 * ^status = #draft
+* ^date = "2025-08-28"
+* ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Medical aid or personal medical device"
 * . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device must be a medical device."
 * definition 1..1
@@ -56,8 +57,9 @@ Title: "Device configuration – Medical Aid"
 Description: "Profile for the device configuration of a Medical Aid device."
 * ^version = "0.1.0"
 * ^status = #draft
-* ^date = "2025-08-12"
+* ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Configuration or setting capability of a medical device"
 * . ^definition = "Describes a configuration or setting capability of a medical device."
 * type ^short = "Definition of the measurement type"
@@ -84,8 +86,13 @@ Title: "Observation – Blood Glucose"
 Description: "Profile for capturing blood glucose measurements as Observation."
 * ^version = "0.1.0"
 * ^status = #draft
-* ^date = "2025-08-12"
+* ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* status = #final (exactly)
+* status ^short = "Measurement status"
+* status ^definition = "The status of the Measurement is fixed to 'final', meaning the measurement is complete and no further updates are expected."
+* status ^comment = "This element is fixed to 'final' to ensure that the glucose measurement is considered a completed observation."
 * code from VS_Blood_Glucose (required)
 * code ^short = "Measurement type of vital sign"
 * code ^definition = "The code specifies which vital sign was measured (e.g., LOINC 2339-0 for blood glucose)."
@@ -129,6 +136,11 @@ Description: "Profile for capturing blood glucose measurements as Observation."
 * referenceRange.high.code from VS_Blood_Glucose_Units (required)
 * referenceRange.high.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
 
+Invariant: obs-cgm-preliminary-dataAbsentReason
+Description: "If the measurement status is 'preliminary', a dataAbsentReason could be provided."
+Severity: #warning
+Expression: "status = 'preliminary' implies dataAbsentReason.exists()"
+
 Profile: Observation_CGM_Measurement_Series
 Parent: Observation
 Id: Observation-CGM-Measurement-Series
@@ -138,6 +150,14 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * ^status = #draft
 * ^date = "2025-08-12"
 * ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* . ^short = "Tissue glucose measurement series"
+* . ^definition = "A series of measurements of tissue glucose taken by a CGM device, captured as a single observation."
+* status from VS_Observation_CGM_Status (required)
+* status ^short = "Measurements status"
+* status ^definition = "The status of the measurements, restricted to values defined in the ValueSet VS_Observation_CGM_Status, which includes only 'final' and 'preliminary'.'final' means the measurement is complete and verified; 'preliminary' means the data is still being collected and not complete."
+* status ^comment = "Binding to the custom ValueSet enforces that only 'final' or 'preliminary' can be used, in accordance with the profile requirements for CGM measurement series."
+* obeys obs-cgm-preliminary-dataAbsentReason
 * code from VS_Tissue_Glucose_CGM (required)
 * code ^short = "Type of measurement"
 * code ^definition = "Coding of this measurement, e.g., tissue glucose from LOINC."
@@ -172,6 +192,10 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * value[x].origin.code ^definition = "The code representing the unit of measurement for the origin of the SampledData."
 * value[x].origin.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
 * value[x].data 1..
+* dataAbsentReason 0..1
+* dataAbsentReason ^short = "Reason for missing data"
+* dataAbsentReason ^definition = "Indicates why the measurement data is missing. If set to 'temp-unknown', this measurement should be re-collected at a later time."
+* dataAbsentReason ^comment = "For preliminary CGM measurements where the data is temporarily unavailable, use 'temp-unknown'. This signals that the measurement should be repeated later."
 * note ^short = "Comments about the measurement"
 * note ^definition = "Additional comments on the measurement."
 * method MS
@@ -201,15 +225,40 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * referenceRange.high.code from VS_Blood_Glucose_Units (required)
 * referenceRange.high.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
 
+
+ValueSet: VS_Observation_CGM_Status
+Id: vs-observation-cgm-status
+Title: "Observation Status for CGM Measurement Series"
+Description: "Only final and preliminary statuses from the HL7 observation-status CodeSystem."
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+* ^version = "0.1.0"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-08-28"
+* ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* include http://hl7.org/fhir/observation-status#final
+* include http://hl7.org/fhir/observation-status#preliminary
+
+
 ValueSet: VS_Blood_Glucose_Units
 Id: vs-glucose-units
 Title: "Blood Glucose Measurement Units"
 Description: "This ValueSet contains UCUM units codes used for blood glucose measurements (e.g., mg/dL, mmol/L)."
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose-Units"
 * ^version = "0.1.0"
 * ^status = #draft
-* ^date = "2025-08-11"
-* ^publisher = "gematik GmbH"
+* ^experimental = false
+* ^date = "2025-08-28"
+* ^publisher = "BfArM"
+* ^contact.telecom[0].system = #email
+* ^contact.telecom[=].value = "klassi@bfarm.de"
+* ^contact.telecom[+].system = #url
+* ^contact.telecom[=].value = "https://www.bfarm.de"
+* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
 * UCUM#mg/dL "milligram per deciliter"
 * UCUM#mmol/L "millimole per liter"
 
@@ -217,61 +266,63 @@ ValueSet: VS_Blood_Glucose
 Id: vs-blood-glucose
 Title: "ValueSet Blood Glucose from LOINC"
 Description: "This ValueSet contains LOINC codes for blood glucose measurements."
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose"
 * ^version = "0.1.0"
 * ^status = #draft
-* ^publisher = "gematik GmbH"
+* ^experimental = false
+* ^date = "2025-08-28"
+* ^publisher = "BfArM"
+* ^contact.telecom[0].system = #email
+* ^contact.telecom[=].value = "klassi@bfarm.de"
+* ^contact.telecom[+].system = #url
+* ^contact.telecom[=].value = "https://www.bfarm.de"
+* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
 * LOINC#2339-0 "Glucose [Mass/volume] in Blood"
 * LOINC#15074-8 "Glucose [Moles/volume] in Blood"
 * LOINC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
 * LOINC#14749-6 "Glucose [Moles/volume] in Serum or Plasma"
 
-ValueSet: VSCGMSummaryCodes
-Id: vs-cgm-summary-codes
-Title: "ValueSet – CGM Summary Codes (temporary)"
-Description: "ValueSet including all codes from the temporary CGM summary codes CodeSystem."
-* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-CGM-Summary-Codes"
-* ^version = "0.1.0"
-* ^status = #draft
-* ^experimental = false
-* ^publisher = "gematik GmbH"
-* include codes from system $cgm-summary-codes-temporary
 
 ValueSet: VS_Tissue_Glucose_CGM
 Id: vs-tissue-glucose-cgm
 Title: "ValueSet – Tissue Glucose for rtCGM from LOINC"
 Description: "This ValueSet contains LOINC codes for tissue glucose measurements."
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Tissue-Glucose-CGM"
 * ^version = "0.1.0"
 * ^status = #draft
-* ^publisher = "gematik GmbH"
+* ^experimental = false
+* ^date = "2025-08-28"
+* ^publisher = "BfArM"
+* ^contact.telecom[0].system = #email
+* ^contact.telecom[=].value = "klassi@bfarm.de"
+* ^contact.telecom[+].system = #url
+* ^contact.telecom[=].value = "https://www.bfarm.de"
+* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
 * LOINC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
 * LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
-Instance: operation-search-aggregatie-observations
+Instance: operation-search-summary-data-measurement
 InstanceOf: OperationDefinition
 Usage: #definition
 // * url = "https://gematik.de/fhir/hddt/OperationDefinition/Operation-Search-Aggregate-Observations"
 * version = "0.1.0"
-* name = "Operation_Search_Aggregate_Observations"
-* title = "Search Operation for aggreate observations"
+* name = "Operation_Search_Summary_Data_Measurement"
+* title = "Search Operation for summary data measurement"
 * status = #draft
+* experimental = false
 * kind = #operation
 * publisher = "gematik GmbH"
-* description = "Search Observations by code and effective period, optionally including related Device and DeviceMetric resources in the result bundle."
+* date = "2025-08-28"
+* description = "Search summary data of measurements by code and effective period, optionally including related Device and DeviceMetric resources in the result bundle."
 * affectsState = false
-* code = #search-aggregate-observations
+* code = #search-summary-data-measurement
 * system = false
 * type = true
 * instance = false
-* parameter[0].name = #code
-* parameter[=].use = #in
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Code to filter Observations"
-* parameter[=].type = #code
-* parameter[=].binding.strength = #required
-* parameter[=].binding.valueSet = "https://gematik.de/fhir/hddt/ValueSet/VS-CGM-Summary-Codes"
 * parameter[+].name = #effectivePeriodStart
 * parameter[=].use = #in
 * parameter[=].min = 0
@@ -294,6 +345,6 @@ Usage: #definition
 * parameter[=].use = #out
 * parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Result bundle containing aggregate Observations and optionally related resources"
+* parameter[=].documentation = "Result bundle containing summary data of measurements and optionally related resources"
 * parameter[=].type = #Reference
-* parameter[=].targetProfile = "https://gematik.de/fhir/hddt/StructureDefinition/Bundle-Search-Aggregate-Observations"
+* parameter[=].targetProfile = "https://gematik.de/fhir/hddt/StructureDefinition/Bundle-Search-Summary-Data-Measurements"
