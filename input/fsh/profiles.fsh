@@ -12,7 +12,27 @@ Profile: BundleSearchSummaryDataMeasurements
 Parent: Bundle
 Id: Bundle-Search-Summary-Data-Measurements
 Title: "Bundle – Summary Data Measurements with related Devices/DeviceMetrics"
-Description: "Bundle profile for search results of Summary Data Measurements and their related Device/DeviceMetric resources as returned by the custom operation `$search-summary-data-measurements`."
+Description: """
+This profile constrains the FHIR Bundle resource for use as the result container of the `$search-summary-data-measurement` operation.  
+The operation requests CGM summary data and optionally returns the related device context.  
+
+The Bundle is of type *collection* and must contain only resources of the following types:  
+- Observations conforming to HL7 CGM profiles (e.g., `$cgm-summary`, `$cgm-summary-mean-glucose-mass-per-volume`, `$cgm-summary-times-in-ranges`, `$cgm-summary-gmi`, `$cgm-summary-coefficient-of-variation`, `$cgm-summary-days-of-wear`, `$cgm-summary-sensor-active-percentage`, `$cgm-sensor-reading-mass-per-volume`, `$cgm-sensor-reading-moles-per-volume`).  
+- DeviceMetric resources conforming to `DeviceMetric-Medical-Aid` to provide configuration details for the CGM measurement device.  
+- Device resources conforming to `Device-Medical-Aid` to provide context about the actual medical aid device used.  
+
+The purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  
+It ensures interoperability across different implementations by defining a predictable response format.  
+This supports use cases such as:  
+- Retrieval of CGM summary metrics over a given time interval  
+- Retrieval of raw CGM measurement series together with the associated device configuration  
+- Combining measurement data and device metadata for downstream applications such as visualization, clinical decision support, or data export.  
+
+**Constraints applied:**  
+- `Bundle.type` is fixed to `collection`.  
+- `Bundle.entry.resource` is restricted to CGM Observation profiles, DeviceMetric-Medical-Aid, or Device-Medical-Aid.  
+- No other resource types are allowed in the Bundle.  
+"""
 * ^version = "0.1.0"
 * ^status = #draft
 * ^date = "2025-08-28"
@@ -305,19 +325,41 @@ Description: "This ValueSet contains LOINC codes for tissue glucose measurements
 * LOINC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
 * LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
-Instance: operation-search-summary-data-measurement
+Instance: search-summary-data-measurement
 InstanceOf: OperationDefinition
 Usage: #definition
+Title: "Search Operation for summary data measurement"
+Description: """
+The `$search-summary-data-measurement` operation is defined on the *Observation* resource type.  
+It allows clients to request CGM summary data filtered by measurement code and effective period, and optionally include related device context (Device, DeviceMetric).  
+
+**Use cases supported by this operation include:**  
+- Retrieving CGM summary statistics (mean glucose, time-in-range, GMI, etc.) for a patient over a specified interval  
+
+**Input Parameters:**  
+- `code` *(code, optional)*: Restricts results to Observations of the specified measurement type. The parameter is bound to the ValueSet `VS-CGM-Summary-Codes`.  
+- `effectivePeriodStart` *(dateTime, optional)*: Lower bound of the observation effective period.  
+- `effectivePeriodEnd` *(dateTime, optional)*: Upper bound of the observation effective period.  
+- `related` *(boolean, optional)*: If true, the response bundle also contains related Device and DeviceMetric resources.  
+
+**Output Parameter:**  
+- `result` *(Reference, required)*: A Bundle conforming to `Bundle-Search-Summary-Data-Measurements` containing all matching CGM Observations and, if requested, their related devices.  
+
+**Constraints applied:**  
+- The operation is defined at the type level for *Observation* (`type = true`).  
+- It does not affect state (`affectsState = false`).  
+- The output Bundle must always conform to the `Bundle-Search-Summary-Data-Measurements` profile.  
+"""
 // * url = "https://gematik.de/fhir/hddt/OperationDefinition/Operation-Search-Aggregate-Observations"
 * version = "0.1.0"
-* name = "Operation_Search_Summary_Data_Measurement"
+* id = "search-summary-data-measurement"
+* name = "Search_Summary_Data_Measurement"
 * title = "Search Operation for summary data measurement"
 * status = #draft
 * experimental = false
 * kind = #operation
 * publisher = "gematik GmbH"
 * date = "2025-08-28"
-* description = "Search summary data of measurements by code and effective period, optionally including related Device and DeviceMetric resources in the result bundle."
 * affectsState = false
 * code = #search-summary-data-measurement
 * system = false
@@ -345,6 +387,6 @@ Usage: #definition
 * parameter[=].use = #out
 * parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Result bundle containing summary data of measurements and optionally related resources"
+* parameter[=].documentation = "Result bundle (HTTP 200 OK) containing summary data of measurements and optionally related resources"
 * parameter[=].type = #Reference
 * parameter[=].targetProfile = "https://gematik.de/fhir/hddt/StructureDefinition/Bundle-Search-Summary-Data-Measurements"

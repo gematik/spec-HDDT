@@ -5,15 +5,51 @@ info:
   description: >
     OpenAPI specification for a Health Device Data Transfer FHIR API (FHIR R4).
     Supports CapabilityStatement, Observation, DeviceMetric, and Device resources.
-servers:
-  - url: https://api.medical-aid.com/fhir
-    description: Example FHIR server
 
 tags:
   - name: Metadata
   - name: Observation
   - name: DeviceMetric
   - name: Device
+
+components:
+  parameters:
+    AcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: ["application/fhir+json", "application/fhir+xml"]
+      description: >
+        Content type expected in the response. FHIR servers must support
+        at least `application/fhir+json`.
+    ContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: ["application/fhir+json", "application/fhir+xml"]
+      description: >
+        Content type of the request body. Required for POST/PUT/PATCH requests.
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: >
+        OAuth2 Bearer token (RFC 6750).  
+        Format: `Authorization: Bearer <access_token>`.
+    XRequestIdHeader:
+      name: X-Request-ID
+      in: header
+      required: false
+      schema:
+        type: string
+      description: >
+        Unique request identifier, provided by the client for traceability.
 
 paths:
   /metadata:
@@ -68,14 +104,27 @@ paths:
         Supports querying single values, time series data, and threshold comparisons.
         Data must conform to the `Observation_Blood_Glucose` or `Observation_CGM_Measurement_Series` profiles.
       parameters:
+        - $ref: "#/components/parameters/AcceptHeader"
+        - $ref: "#/components/parameters/AuthorizationHeader"
         - in: query
           name: _id
           schema: { type: string }
-          description: Observation ID
+          description: >
+            Unique Observation ID (server-generated).  
+            Example: `_id=obs-blood-glucose-001`
         - in: query
           name: code
           schema: { type: string }
-          description: LOINC code, e.g. http://loinc.org|15074-8
+          description: >
+            LOINC code specifying the measurement type.  
+            Example: `code=http://loinc.org|15074-8` (Glucose [Moles/volume] in Blood).
+        - in: query
+          name: date
+          schema: { type: string, format: date-time }
+          description: >
+            Effective time of the measurement.  
+            Supports FHIR search prefixes (`ge`, `le`, `eq`).  
+            Example: `date=ge2025-08-01T00:00:00Z`
       responses:
         '200':
           description: Bundle of Observation resources
@@ -85,20 +134,27 @@ paths:
                 observationBloodGlucoseJson:
                   summary: Blood Glucose Observation JSON
                   value:
-                    resourceType: Observation
-                    id: obs-blood-glucose-001
-                    status: final
-                    code:
-                      coding:
-                        - system: http://loinc.org
-                          code: "2339-0"
-                          display: Glucose [Mass/volume] in Blood
-                    effectiveDateTime: "2025-08-28T10:00:00Z"
-                    valueQuantity:
-                      value: 120
-                      unit: mg/dL
-                      system: http://unitsofmeasure.org
-                      code: mg/dL
+                    {
+                      "resourceType": "Observation",
+                      "id": "obs-blood-glucose-001",
+                      "status": "final",
+                      "code": {
+                        "coding": [
+                          {
+                            "system": "http://loinc.org",
+                            "code": "2339-0",
+                            "display": "Glucose [Mass/volume] in Blood"
+                          }
+                        ]
+                      },
+                      "effectiveDateTime": "2025-08-28T10:00:00Z",
+                      "valueQuantity": {
+                        "value": 120,
+                        "unit": "mg/dL",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "mg/dL"
+                      }
+                    }
                 observationCGMJson:
                   summary: CGM Measurement Series Observation JSON
                   value:
@@ -119,7 +175,14 @@ paths:
                         unit: mmol/L
                       period: 300
                       data: "5.6 5.8 6.0 5.9 5.7"
-            
+        '400':
+          description: Invalid request
+        '404':
+          description: Measurement not found or is in state UNKNOWN or INITIALIZED
+        '403':
+          description: Not allowed
+        '500':
+          description: Any other error       
   /DeviceMetric:
     get:
       tags: [DeviceMetric]
@@ -127,6 +190,8 @@ paths:
       description: >
         DeviceMetric resources must conform to the `DeviceMetric_Medical_Aid` profile.
       parameters:
+        - $ref: "#/components/parameters/AcceptHeader"
+        - $ref: "#/components/parameters/AuthorizationHeader"
         - in: query
           name: _id
           description: DeviceMetric internal ID
@@ -165,6 +230,8 @@ paths:
       description: >
         Retrieve device instances conforming to the `Device_Medical_Aid` profile.
       parameters:
+        - $ref: "#/components/parameters/AcceptHeader"
+        - $ref: "#/components/parameters/AuthorizationHeader"
         - in: query
           name: _id
           description: Device ID
@@ -193,13 +260,18 @@ paths:
                           manufacturer: Acme Health
             
 
-  /$search-aggregate-observations:
+  /$search-summary-data-measurement:
     post:
       tags: [Observation]
-      summary: Custom operation to search aggregate observations
+      summary: Custom operation to search summary data measurements
       description: >
         This operation searches for Observations and optionally includes related Device and DeviceMetric resources.
-        The result conforms to the `BundleSearchAggregateObservations` profile.
+        The result conforms to the `BundleSearchSummaryDataMeasurements` profile.
+      parameters:
+      - $ref: "#/components/parameters/AcceptHeader"
+      - $ref: "#/components/parameters/ContentTypeHeader"
+      - $ref: "#/components/parameters/AuthorizationHeader"
+      - $ref: "#/components/parameters/XRequestIdHeader"
       requestBody:
         content:
           application/json:
@@ -208,7 +280,7 @@ paths:
               properties:
                 code:
                   type: string
-                  description: Observation code to filter by.
+                  description: Measurement code to filter by.
                 effectivePeriodStart:
                   type: string
                   format: date-time
@@ -219,26 +291,37 @@ paths:
                   description: End of the effective period.
       responses:
         '200':
-          description: Result bundle containing aggregate Observations and optionally related resources
+          description: Result bundle containing search summary data measurements and optionally related resources
           content:
             application/fhir+json:
               examples:
                 aggregateBundleJson:
-                  summary: Aggregate Bundle JSON
+                  summary: CGM Summary Bundle Example
                   value:
                     resourceType: Bundle
                     type: collection
                     entry:
                       - resource:
                           resourceType: Observation
-                          id: obs-aggregate-1
+                          id: cgmSummaryExample
+                          status: final
+                          category:
+                            - coding:
+                                - system: http://terminology.hl7.org/CodeSystem/observation-category
+                                  code: laboratory
                           code:
                             coding:
-                              - system: http://loinc.org
-                                code: "15074-8"
-                                display: Glucose [Moles/volume] in Blood
-                          valueQuantity:
-                            value: 145
-                            unit: mg/dL
-                            system: http://unitsofmeasure.org
-                            code: mg/dL
+                              - system: http://hl7.org/fhir/uv/cgm/CodeSystem/cgm-summary-codes-temporary
+                                code: cgm-summary
+                          subject:
+                            reference: Patient/patientExample
+                          effectivePeriod:
+                            start: 2024-05-01
+                            end: 2024-05-31
+                          hasMember:
+                            - reference: Observation/cgmSummaryMeanGlucoseMassPerVolumeExample
+                            - reference: Observation/cgmSummaryTimesInRangesExample
+                            - reference: Observation/cgmSummaryGMIExample
+                            - reference: Observation/cgmSummaryCoefficientOfVariationExample
+                            - reference: Observation/cgmSummaryDaysOfWearExample
+                            - reference: Observation/cgmSummarySensorActivePercentageExample

@@ -1,26 +1,60 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
-Alias: $observation-category = http://terminology.hl7.org/CodeSystem/observation-category
 Alias: $sct = http://snomed.info/sct
 
-Instance: example-glucometer-of-Device
-InstanceOf: Device
+Instance: example-blood-glucose
+InstanceOf: Observation-Blood-Glucose
+Usage: #example
+* id = "example-blood-glucose"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Observation-Blood-Glucose"
+* status = #final
+* code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
+* subject = Reference(Patient/example)
+* effectiveDateTime = "2025-08-28T08:30:00Z"
+* valueQuantity = 110 'mg/dL' "mg/dL"
+* device = Reference(example-glucometer-metric)
+* referenceRange.low = 70 'mg/dL' "mg/dL"
+* referenceRange.high = 140 'mg/dL' "mg/dL"
+
+Instance: example-cgm-series
+InstanceOf: Observation-CGM-Measurement-Series
+Usage: #example
+* id = "example-cgm-series"
+* status = #preliminary
+* code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* subject = Reference(Patient/example)
+* effectivePeriod.start = "2025-08-28T08:00:00Z"
+* effectivePeriod.end = "2025-08-28T09:00:00Z"
+* valueSampledData.origin.value = 0
+* valueSampledData.origin.unit = "mg/dL"
+* valueSampledData.origin.system = $unitsofmeasure
+* valueSampledData.origin.code = #mg/dL
+* valueSampledData.period = 300000
+* valueSampledData.dimensions = 1 
+* valueSampledData.data = "110 112 115 118 120 119 117"
+* device = Reference(example-glucometer-metric)
+* method = $sct#105824000 "Continuous blood glucose monitoring"
+
+Instance: example-glucometer
+InstanceOf: Device-Medical-Aid
 Usage: #example
 * id = "example-glucometer"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Device-Medical-Aid"
 * deviceName.name = "Accu-Chek Mobile"
 * deviceName.type = #user-friendly-name
 * manufacturer = "Roche"
-* serialNumber = "2937459287531567"
+* serialNumber = "SN123456"
 * modelNumber = "Accu-Chek Mobile U1 mg/dl"
-* definition = Reference(DeviceDefinition/example-glucometer-def)
+* definition = Reference(example-glucometer-def)
 
 Instance: example-glucometer-metric
-InstanceOf: DeviceMetric
+InstanceOf: DeviceMetric-Medical-Aid
 Usage: #example
+* id = "example-glucometer-metric"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/DeviceMetric-Medical-Aid"
 * type = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * unit = $unitsofmeasure#mg/dL "milligram per deciliter"
-* source = Reference(Device/example-glukometer)
-* parent = Reference(DeviceDefinition/dc102)
+* source = Reference(example-glucometer)
 * operationalStatus = #on
 * category = #measurement
 * measurementPeriod.repeat.frequency = 1
@@ -28,35 +62,46 @@ Usage: #example
 * measurementPeriod.repeat.periodUnit = #s
 * calibration.state = #calibrated
 
-Instance: example-glucometer-of-Observation
-InstanceOf: Observation
-Usage: #example
-* id = "example-glucometer"
-* status = #final
-* category = $observation-category#vital-signs
-* code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
-* subject = Reference(Patient/example)
-* effectiveDateTime = "2025-08-11T08:30:00+01:00"
-* valueQuantity = 92 'mg/dL' "mg/dL"
-* device = Reference(example-glucometer-metric)
 
-Instance: example-cgm-measurement-series
-InstanceOf: Observation
+
+Instance: example-glucometer-def
+InstanceOf: DeviceDefinition
 Usage: #example
-* status = #preliminary
-* category = $observation-category#vital-signs "Vital Signs"
-* code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
-* code.text = "Tissue glucose [Mass/volume] with rtCGM"
-* subject = Reference(Patient/12345)
-* effectivePeriod.start = "2025-08-11T08:00:00Z"
-* effectivePeriod.end = "2025-08-11T09:00:00Z"
-* issued = "2025-08-11T09:01:00Z"
-* valueSampledData.origin = $unitsofmeasure#mg/dL "mg/dL"
-* valueSampledData.period = 300000
-* valueSampledData.dimensions = 1
-* valueSampledData.data = "110 112 111 115 118 120 122 121 119 117 115 114"
-* dataAbsentReason = #temp-unknown "Temporary loss of data"
-* device = Reference(DeviceMetric/rtCGM-Conf-1)
-* referenceRange.low = 70 'mg/dL' "mg/dL"
-* referenceRange.high = 140 'mg/dL' "mg/dL"
-* method = $sct#105824000 "Continuous blood glucose monitoring"
+Title: "DeviceDefinition – Roche Accu-Chek"
+Description: "Example for a medical device (CGM sensor) from the medical device directory."
+
+* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.value = "12.34.56.7890" 
+* deviceName[0].name = "Accu-Chek Mobile"
+* deviceName[0].type = #user-friendly-name
+* type = $sct#105824000 "Continuous blood glucose monitoring"
+* manufacturerString = "Roche Diabetes Care"
+* parentDevice = Reference(example-devicedef-backend)
+* property[0].type.text = "Supported unit"
+* property[0].valueCode = $unitsofmeasure#mg/dL "milligram per deciliter"
+* property[+].type.text = "Supported unit"
+* property[=].valueCode = $unitsofmeasure#mmol/L "millimole per liter"
+* property[+].type.text = "Reference range low"
+* property[=].valueQuantity.value = 70
+* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.system = $unitsofmeasure
+* property[+].type.text = "Reference range high"
+* property[=].valueQuantity.value = 180
+* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.system = $unitsofmeasure
+* capability[0].type.coding[0].system = $loinc
+* capability[0].type.coding[0].code = #2339-0
+* capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
+* capability[0].type.text = "Blood glucose measurement (fingerstick and continuous monitoring)"
+
+Instance: example-devicedef-backend
+InstanceOf: DeviceDefinition
+Usage: #example
+Title: "DeviceDefinition – Roche Device Backend"
+Description: "Example for a backend system for processing HiMi data according to §374a SGB V."
+
+* deviceName[0].name = "§374a SGB V Backend"
+* deviceName[0].type = #manufacturer-name
+* manufacturerString = "Acme Health IT GmbH"
+* type = $sct#706689003 "Health information exchange infrastructure (physical object)"
+* url = "https://himi-backend.de/fhir"
