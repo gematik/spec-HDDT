@@ -40,6 +40,37 @@ or we use only Capability Statements?
 
 ---
 
+**ToDo: Jie, Sergej, Emil**
+- `hdc-device-api`, `hdc-device-metric-api` und `himi-diga-fhir-api` zusammen führen
+- HIMI umbenennen, oder zumindest die HIMI DIGA FHIR 
+
+**FHIR resource type**: Device
+
+FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
+---------------|------------|------------|----------------|------|
+| serialNumber | Serial number | 1..1 | string | User verification (patient safety) |
+| deviceName | Product name | 1..1 | string | e.g., "Accu-Chek Mobile" |
+| manufacturer | Manufacturer | 0..1 | string | Sensor manufacturer |
+| definition | Device definition | 1..1 | Reference(DeviceDefinition) | Link to device description |
+
+
+---
+
+**ToDo: Jie, Sergej, Emil**
+
+**Resource Type**: DeviceMetric
+
+ FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
+|----------------|------------|------------|----------------|------|
+| unit | Measurement unit | 1..1 | CodeableConcept | e.g., UCUM: mg/dL |
+| calibration/state | Calibration status | 0..1 | code | e.g., "calibrated" |
+| operationalStatus | Operational status | 0..1 | code | Optional |
+| source | Device | 1..1 | Reference(Device) | Reference to the specific device instance |
+
+
+---
+
+
 ### Special Note on DeviceMetric
 
 - No dedicated **DeviceMetric endpoint** is exposed.  

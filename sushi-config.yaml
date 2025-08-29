@@ -115,12 +115,6 @@ pages:
   security-and-privacy.html:
     title: Security and Privacy
     generation: markdown
-  hdc-device-metric-api.html:
-    title: HDC Device Metric API
-    generation: markdown
-  hdc-device-api.html:
-    title: HDC Device API
-    generation: markdown
   diga-vz-api.html:
     title: DiGA Directory API (?)
     generation: markdown
@@ -171,8 +165,6 @@ menu:
     Security and Privacy: security-and-privacy.html
   REST API:
     HIMI DiGA FHIR API: himi-diga-api.html
-    HDC Device Metric API: hdc-device-metric-api.html
-    HDC Device API: hdc-device-api.html
     HIMI Directory API: himi-vz-api.html
     DiGA Directory API: diga-vz-api.html
     ZTS API: zts-api.html
