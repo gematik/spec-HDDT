@@ -133,8 +133,8 @@ pages:
   conventions-for-device-resources.html:
     title: Conventions for Device Resources
     generation: markdown
-  execution-plan.html:
-    title: Execution Plan
+  standardisation-plan.html:
+    title: Standardisation plan
     generation: markdown  
   aggregated-reports-cgm.html:
     title: Aggregated Reports CGM
@@ -147,7 +147,7 @@ menu:
   Home: index.html
   General:
     Motivation: motivation.html
-    Execution Plan: execution-plan.html
+    Standardisation Plan: standardisation-plan.html
   Release Notes: release-notes.html
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html
