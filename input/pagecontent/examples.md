@@ -1,4 +1,5 @@
 **ToDo Jie, Emil, Sergej**
+* Also examples of data requests and of the answers
 
 
 ### Observation – Blood Glucose Value

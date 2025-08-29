@@ -1,4 +1,6 @@
 **ToDo: Jie, Sergej, Emil**
+- `hdc-device-api`, `hdc-device-metric-api` und `himi-diga-fhir-api` zusammen führen
+- HIMI umbenennen, oder zumindest die HIMI DIGA FHIR 
 
 **FHIR resource type**: Device
 

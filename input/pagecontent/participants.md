@@ -13,4 +13,6 @@
 
 ### Glossar
 
-**ToDo: Jörg & Andrea**
+**ToDo: Jörg & Emil & Andrea**
+
+Copy from Confluence and add both a german and english terms.

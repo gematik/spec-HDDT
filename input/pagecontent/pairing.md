@@ -4,3 +4,6 @@
 * Die PairingID (Thomas, Sergej)
 * grobe Ablaufbeschreibung (Thomas, Sergej)
 * Sequenzdiagramme (Thomas, Sergej)
+
+Neue Struktur:
+- separate in two different chapters (Sergej)

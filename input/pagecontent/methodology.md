@@ -1,3 +1,4 @@
+**TODO:** reword and translate (Emil)
 
 Requirements, as an expression of normative specifications, are indicated by the German keywords written in uppercase—MUSS, DARF NICHT, SOLL, SOLL NICHT, KANN—and their plural forms, in accordance with [RFC 2119](https://tools.ietf.org/html/rfc2119 "RFC 2119").
 

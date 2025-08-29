@@ -6,7 +6,11 @@
 * Fehlerbehandlung (Jie, Emil)
 * openAPI (Jie, Emil, Sergej)
 * Beispiele (Jie, Emil)
-
+* Text bei API-Aufrufe ergänzen (Jörg)
+* Fehlercodes grob Erwähnen (Emil)
+* Suchparameter kurz auflisten (Emil)
+* Example for content-types. Write a sentence about possible hearders. (Emil)
+* Add some infos about the Operation (Emil)
 
 **Description**  
 Standardized access to medical device/implant data as FHIR resources for authorized DiGA.  
@@ -19,7 +23,13 @@ Standardized access to medical device/implant data as FHIR resources for authori
 
 ### Endpoints
 
-**ToDo: Search Parameters**
+**ToDo: Search Parameters** - only an overview of parameters that:
+* deviate from the HL7 FHIR specification. E.g. no sample-data search for some Observarions
+* MUST be supported by the server
+* anything else goes in the CapabilityStatement
+
+or we use only Capability Statements?
+
 
 | Endpoint | Use Cases | Specifications | Data Objects | Examples |
 |----------|-----------|----------------|--------------|----------|

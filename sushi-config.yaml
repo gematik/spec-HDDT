@@ -158,6 +158,7 @@ menu:
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html
     Participants: participants.html
+    Must-Support flags: must-support.html
     Information Model: information-model.html
     Pairing: pairing.html
     Retrieving Data: retrieving-data.html
@@ -165,7 +166,7 @@ menu:
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
     Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
-    Must-Support flags: must-support.html
+
     Representation Format: representation_formats.html
     Security and Privacy: security-and-privacy.html
   REST API:
