@@ -18,7 +18,7 @@ title: Health Device Data Transfer
 status: draft
 publisher: gematik GmbH
 contact:
-  - name: BfArM
+  - name: gematik
     telecom:
       - system: url
         value: https://www.gematik.de
@@ -139,6 +139,12 @@ pages:
   aggregated-reports-cgm.html:
     title: Aggregated Reports CGM
     generation: markdown
+  glossary.html:
+    title: Glossary
+    generation: markdown
+  general-considerations.html:
+    title: General Considerations
+    generation: markdown
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
@@ -148,19 +154,20 @@ menu:
   General:
     Motivation: motivation.html
     Standardisation Plan: standardisation-plan.html
+    Glossary: glossary.html
   Release Notes: release-notes.html
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html
     Participants: participants.html
-    Must-Support flags: must-support.html
     Information Model: information-model.html
     Pairing: pairing.html
     Retrieving Data: retrieving-data.html
   Definition and Rules: 
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
+    General Considerations: general-considerations.html
     Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
-
+    Must-Support flags: must-support.html
     Representation Format: representation_formats.html
     Security and Privacy: security-and-privacy.html
   REST API:

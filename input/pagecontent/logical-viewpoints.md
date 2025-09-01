@@ -1,1 +1,2 @@
-**@Jörg**
+# Logical Viewpoints
+
