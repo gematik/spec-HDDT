@@ -1,5 +1,9 @@
 ### Components and Roles
 
+<div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="60%"></div>
+<br clear="all"/>
+
+
 | Component                               | Role / Responsible          | Functions / Data in Context of § 374a SGB V                                                                                                                                                                                                                                                                                   | Interfaces / APIs                                                                                                                                            |
 |-----------------------------------------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **BfArM DiGA Registry (DiGA-VZ)**       | BfArM                       | - Lists DiGA authorized to use § 374a interface<br>- Provides authenticity verification of DiGA<br>- Provides legally permissible authorizations<br>- Provides registration info for DiGA at device<br>- Optional: notification mechanism for entry changes                                                                   | None                                                                                                                                                         |
