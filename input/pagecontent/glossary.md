@@ -1,3 +1,10 @@
+# Status: Draft
+* Verantwortlich: @jcaumann
+* ToDo:
+    * ggf. deutsche Bezeichnungen ergänzen
+    * ggf. Verweise auf passende Kapitel ergänzen
+    * Review 
+
 # Glossary
 
 | Term                                                    | Definition                                                                                                                                                                                                                                                                                 |

@@ -1,4 +1,11 @@
-### Components and Roles
+# Status: Draft (unvollständig)
+* Verantwortlich: @jcaumann
+* ToDo:
+    * Text zur Grafik
+    * Tabelle prüfen 
+    * ggf. deutsche Begriffe in der Tabelle ergänzen
+
+# Components and Roles
 
 <div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="60%"></div>
 <br clear="all"/>

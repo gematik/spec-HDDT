@@ -1,5 +1,13 @@
-**@Andrea: Umsetzungsplan** 
+# Status: Draft
+* Verantwortlich: @Andrea
+* ToDo:
+    * Titel ändern? (vielleicht besser "Roadmap and Milestones" oder so)
+    * ergänzen: Was ist spezifiziert (Pairing, Datenaustausch)? Was ist dem HiMi-Hersteller überlassen (AuthN, Consent, generelle Einstellungen)? Was ist dem DiGA-Hersteller überlassen (AuthN, Abfragemodus)? ==> ggf. auch in einem anderen Kapitel unterbringen
+    * Component Overview und Foundations kommen eigentlich erst in späteren Abschnitten. Das sollte daher hier eingekürzt werden.
+    * Abschnitt hinzufügen, was zunächst out-of-scope ist (z.B. Bereitstellung Konfiguration (@jcaumann))
+    * sofern bekannt: Fristen ergänzen
 
+# Initial Expansion Stage
 The standardisation of data to be transmitted from medical aids and implants will be carried out step by step based on selected use cases. In an initial expansion stage 1, a first set of data that must be made available — referencing the selected use cases — will be defined, specified, and published. The selection of use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the availability of digital measurement data, the frequency of prescriptions, and the need and added value for patient care through DiGAs. 
 
 The first expansion stage will include the domains 

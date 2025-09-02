@@ -1,4 +1,11 @@
-**ToDo: Jörg & Andrea**
+# Status: Draft (unvollständig)
+* Verantwortlich: @jcaumann, @AndreaSchminck
+* ToDo: 
+    * Einführung ggf. etwas weiter ausschmücken; Begriff HDDT einführen
+    * Impressum ergänzen
+    * Hinweis auf die Lizenz ergänzen, unter der die Spezifikation veröffentlicht wird
+    * Hinweis ergänzen, dass das der erste Draft für die Validierung mit den Herstellern ist
+    * ggf. Hinweis ergänzen, dass die Gewähr für irgendwas (Richtigkeit, Umsetzbarkeit, etc.) übernimmt
 
 # Motivation
 The Competence Centre for Interoperability in Healthcare (KIG) at gematik has the statutory mandate to make technical determinations for the implementation of open and standardised interfaces in medical aids and implants eligible for reimbursement by the statutory health insurance (GKV) pursuant to Section 374a of the German Social Code, Book V (SGB V).
