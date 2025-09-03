@@ -1,19 +1,50 @@
 **@Jörg**
 
-## Interoperable FHIR-based Data Model for Device Data
+## Measurements and Devices
+
+As depicted in the definition of (certification relevant systems)[certification-relevant-systems.md], each medical aid or implant can be divided into
+* __personal device__: the hardware part including the __sensors__ that measure __patient data__ (e.g. vital signs)
+* __aggregation manager__: an intermediate hardware and/or software that retrieves the sensor data at the patient's or doctor's side and takes care of securely forwarding it to a health record
+* __health record__: a backend platform that stores the device data
+
+This logical model builds the foundation of the HDDT FHIR data model:
+
+| Logical model       | HDDT information model                                   | 
+|---------------------|----------------------------------------------------------|
+| personal device     | Personal Health Device `FHIR Device`                     |
+| sensor              | Sensor Type and Calibration Status `FHIR DeviceMetric`   |
+| patient data        | Interoperable Value `FHIR Observation`                   |
+| aggregation manager | _no corresponding class_                                 |
+| health record       | Health Record `FHIR Device`                              |
+
+This core part of the HDDT information model can be implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below.
+
+<div>{% include HDDT_Informationsmodell_Generisch_DevicePart.svg %}</div>
+<br clear="all"/>
+
+An __Interoperable Value__ represents the data that is measured by the sensor. This data can either be a single point of data or a sampled stream of data. An example of a single data point is an ad hoc measurement of capillary blood sugar using a blood glucose meter. An example of a stream of data is a sequence of continuous measurements done by a real time Continuous Glucose Monitoring device (rtCGM) during a defined period of time. Each measured data is classified by 
+* a LOINC _code_ that defines the kind of data, e.g. a blood sugar value measured as mass per volume
+* a timestamp (_date_) that marks the time or period at which the measurement was performed
+* a _value_ that gives the measured value as defined by the _code_ including the _unit_ of the value and the sample rate (for data streams)
+* a _status_ that signals the status of the _value_; e.g. signaling if a data stream is finalized or not
+
+Each __Interoperable Value__ refers to the __Sensor Type and Calibration Status__ of the sensor that measured the value. The sensor type is defined by 
+* a coded _type_ value that corresponds to the LOINC _code_ given with the measurement (Interoperable Value)
+* a definition of the _unit_ that is preferrably to be used for presenting measured values to the patient. This _unit_ MAY differ from the _unit_ that is used with the _value_ of the Interoperable Value.
+
+Example: A rtCGM sensor measures glucose values as mg/dl. All data is stored in the health record in this unit. The HDDT API at the health record provides the data only using mg/dl as the unit. At the mobile app that came with the rtCGM (the rtCGM's aggregation manager) the patient configured the preferred unit as mmol/l. Therefore even though the mobile app retrieves all data as mg/dl from the health record it transfers it to mmol/l before displaying it to the patient. In this example _value.unit_ of the __Interoperable Value__ is mg/dl while _unit_ within __Sensor Type and Calibration Status__ is mmol/l.
+
+Medical aids need to be calibrated in order to provide safe measurements. Some aids are already calibated by the manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. If a medical aid transmits data from a non calibrated sensor to the health record depends on the concrete product. For a DiGA to process device data in a safe manner, the DIGA must know if the data it received was gathered by a calibrated sensor or not. For this the __Sensor Type and Calibration Status__ contains a _calibration.state_ element.  
+
+The __Sensor Type and Calibration Status__ of a measurement refers to the __Personal Device__ that contains the sensor. 
 
 
-The diagram describes an interoperable, FHIR-based data model for the structured provision of device data between personal health devices (medical aids and implants) and DiGAs, exemplarily illustrated for the vibW "blood glucose.
+## BfArM Registries
 
-The **Observation `vibW_BloodGlucose`** represents a specific measurement (e.g., `valueQuantity.value = 90`, `unit = mg/dL`). This measurement references a corresponding **DeviceMetric** resource, **`DeviceMetric_GlucometerConfig`**, via the `device` attribute. The DeviceMetric describes the configuration of the measuring device—particularly the unit, calibration status, and the specific device (`source`).
+<div>{% include HDDT_Informationsmodell_Generisch_Device_and_Definition.svg %}</div>
+<br clear="all"/>
 
-The **DeviceMetric** is linked to a concrete **Device** instance, **`DeviceInstance_Glucometer`**, which contains the serial number, model name, and manufacturer information. This instance references its technical description through the `definition` attribute to the **DeviceDefinition `DD_Sensor_AccuChekMobile`**.
+## MIVs
 
-The **DeviceDefinition** of the sensor describes which vibW (e.g., LOINC:2339-0 for blood glucose) this device type can capture. This is done via `capability.type`, which references a **ValueSet `VS_HiMi_ACM_SupportedVibW`**. Additionally, the DeviceDefinition specifies the unit (e.g., mg/dL) through `property.valueCode`, also based on a UCUM-based ValueSet **`VS_BloodGlucose_Units`**. Optionally, a value range (`property.valueRange`) can be provided for orientation or validation.
-
-For describing device types (e.g., glucometer, rtCGM, HiMi backend, etc.), the **CodeSystem `CS_HiMi_DeviceType`** is used.
-
-To model the § 374a interface directory, a backend can also be represented as its own **DeviceDefinition `DeviceDefinition_HiMi_Backend`**. This backend can be linked as a `parentDevice` to one or more sensor devices.
-
-<div>{% include information_model_broad.svg %}</div>
+<div>{% include HDDT_Informationsmodell_Generisch_Complete.svg %}</div>
 <br clear="all"/>

@@ -1,0 +1,46 @@
+@startuml
+
+!define MANUFACTURER #CDE0FF
+!define VIBW #7ED321
+!define BFARM #F5A623
+
+title HDDT FHIR Data Model
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Measurements and Devices (implemented by the manufacturer; accessible via the HDDT API)"MANUFACTURER {
+    
+    class IV as "Interoperable Value" <<FHIR Observation>> {
+        status : status of the measured value [1..1]
+        code : classification of the measured value [1..1]
+        date : date or period of the measurement [1..1]
+        value : outcome of the measurement [1..1]
+    }
+
+    class Metric as "Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
+        type : kind of value measured by the sensor [1..1]
+        unit : unit of measurement [0..1]
+        calibration.state : quality indicator for measurements [0..1]
+    }
+
+    IV::code --> Metric::type : "corresponds to"
+
+    class PHD as "Personal Health Device" <<FHIR Device>> {
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        serialNumber : serial number [1..1]
+        expirationDate : end of life date [0..1]
+        property : additional properties [0..*]
+    }
+
+    class HR as "Health Record" <<FHIR Device>> {
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property : additional properties [0..*]
+    }
+
+    IV --> Metric : "[1..1] device"
+    Metric --> PHD : "[1..1] source"
+    PHD -> HR : "[1..1] parent"
+}
+
+@enduml

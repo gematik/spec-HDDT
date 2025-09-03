@@ -153,12 +153,6 @@ menu:
     Standardisation Plan: standardisation-plan.html
     Glossary: glossary.html
   Release Notes: release-notes.html
-  Logical Viewpoints: 
-    Logical Viewpoints: logical-viewpoints.html
-    Participants: participants.html
-    Information Model: information-model.html
-    Pairing: pairing.html
-    Retrieving Data: retrieving-data.html
   Definition and Rules: 
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
@@ -166,6 +160,12 @@ menu:
     Use of HL7 FHIR: use_of_hl7_fhir.html
     Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
     Security and Privacy: security-and-privacy.html
+  Logical Viewpoints: 
+    Logical Viewpoints: logical-viewpoints.html
+    Participants: participants.html
+    Information Model: information-model.html
+    Pairing: pairing.html
+    Retrieving Data: retrieving-data.html
   REST API:
     HIMI DiGA FHIR API: himi-diga-api.html
     HIMI Directory API: himi-vz-api.html
