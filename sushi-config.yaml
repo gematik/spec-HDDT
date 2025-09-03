@@ -73,8 +73,8 @@ pages:
   participants.html:
     title: Participants
     generation: markdown
-  representation_formats.html:
-    title: Representation Formats
+  use_of_hl7_fhir.html:
+    title: Use of HL7 FHIR
     generation: markdown
   zts-api.html:
     title: ZTS API
@@ -96,9 +96,6 @@ pages:
     generation: markdown
   compatibility-of-the-gematik-specification.html:
     title: Compatibility of the gematik Specification
-    generation: markdown
-  must-support.html:
-    title: Must-Support flags
     generation: markdown
   implementation_guide_diga.html:
     title: Implementation guide for DiGA
@@ -166,9 +163,8 @@ menu:
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
     General Considerations: general-considerations.html
+    Use of HL7 FHIR: use_of_hl7_fhir.html
     Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
-    Must-Support flags: must-support.html
-    Representation Format: representation_formats.html
     Security and Privacy: security-and-privacy.html
   REST API:
     HIMI DiGA FHIR API: himi-diga-api.html
