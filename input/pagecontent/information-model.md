@@ -1,8 +1,9 @@
 **@Jörg**
 
-### Interoperable FHIR-based Data Model for vibW
+## Interoperable FHIR-based Data Model for Device Data
 
-The diagram describes an interoperable, FHIR-based data model for the structured provision of **vibW** between assistive devices (HiMi) and DiGAs, exemplarily illustrated for the vibW "blood glucose."
+
+The diagram describes an interoperable, FHIR-based data model for the structured provision of device data between personal health devices (medical aids and implants) and DiGAs, exemplarily illustrated for the vibW "blood glucose.
 
 The **Observation `vibW_BloodGlucose`** represents a specific measurement (e.g., `valueQuantity.value = 90`, `unit = mg/dL`). This measurement references a corresponding **DeviceMetric** resource, **`DeviceMetric_GlucometerConfig`**, via the `device` attribute. The DeviceMetric describes the configuration of the measuring device—particularly the unit, calibration status, and the specific device (`source`).
 
@@ -14,5 +15,5 @@ For describing device types (e.g., glucometer, rtCGM, HiMi backend, etc.), the *
 
 To model the § 374a interface directory, a backend can also be represented as its own **DeviceDefinition `DeviceDefinition_HiMi_Backend`**. This backend can be linked as a `parentDevice` to one or more sensor devices.
 
-<div>{% include information_model.svg %}</div>
+<div>{% include information_model_broad.svg %}</div>
 <br clear="all"/>
