@@ -18,8 +18,6 @@
 | Reference to the person who performed the measurement | performer | Reference | 0..1 | Optional: who measured |
 | Timestamp recorded in the system | issued | instant | 0..1 | e.g., 2025-07-08T13:37:53.267843700Z |
 | Measurement time or period | effective[x] | dateTime / Period | 1..1 |  |
-| Reference range: lower limit | referenceRange.low | Quantity | 0..1 |  |
-| Reference range: upper limit | referenceRange.high | Quantity | 0..1 |  |
 | Measurement method | method | CodeableConcept | 0..1 | e.g., test strip, sensor |
 | Note or annotation | note | Annotation | 0..1* |  |
 

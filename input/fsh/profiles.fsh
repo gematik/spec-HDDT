@@ -140,21 +140,6 @@ Description: "Profile for capturing blood glucose measurements as Observation."
 * device only Reference(DeviceMetric_Medical_Aid)
 * device ^short = "Reference to device configuration"
 * device ^definition = "References a DeviceMetric resource that describes the current configuration of the measuring device."
-* referenceRange MS
-* referenceRange.low.value 1..
-* referenceRange.low.unit 1..
-* referenceRange.low.system 1..
-* referenceRange.low.system = "http://unitsofmeasure.org" (exactly)
-* referenceRange.low.code 1..
-* referenceRange.low.code from VS_Blood_Glucose_Units (required)
-* referenceRange.low.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
-* referenceRange.high.value 1..
-* referenceRange.high.unit 1..
-* referenceRange.high.system 1..
-* referenceRange.high.system = "http://unitsofmeasure.org" (exactly)
-* referenceRange.high.code 1..
-* referenceRange.high.code from VS_Blood_Glucose_Units (required)
-* referenceRange.high.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
 
 Invariant: obs-cgm-preliminary-dataAbsentReason
 Description: "If the measurement status is 'preliminary', a dataAbsentReason could be provided."
@@ -225,26 +210,6 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * device only Reference(DeviceMetric_Medical_Aid)
 * device ^short = "Device configuration"
 * device ^definition = "Reference to the DeviceMetric resource of the configuration."
-* referenceRange MS
-* referenceRange.low ^short = "Reference range – Lower limit"
-* referenceRange.low ^definition = "Lowest normal value."
-* referenceRange.low.value 1..
-* referenceRange.low.unit 1..
-* referenceRange.low.system 1..
-* referenceRange.low.system = "http://unitsofmeasure.org" (exactly)
-* referenceRange.low.code 1..
-* referenceRange.low.code from VS_Blood_Glucose_Units (required)
-* referenceRange.low.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
-* referenceRange.high ^short = "Reference range – Upper limit"
-* referenceRange.high ^definition = "Highest normal value."
-* referenceRange.high.value 1..
-* referenceRange.high.unit 1..
-* referenceRange.high.system 1..
-* referenceRange.high.system = "http://unitsofmeasure.org" (exactly)
-* referenceRange.high.code 1..
-* referenceRange.high.code from VS_Blood_Glucose_Units (required)
-* referenceRange.high.code ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units (UCUM code)."
-
 
 ValueSet: VS_Observation_CGM_Status
 Id: vs-observation-cgm-status
