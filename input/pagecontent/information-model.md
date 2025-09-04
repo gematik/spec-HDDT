@@ -19,7 +19,7 @@ This logical model builds the foundation of the HDDT FHIR data model:
 
 This core part of the HDDT information model can be implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below.
 
-<div><img src="/HDDT_Informationsmodell_Generisch_DevicePart.svg" alt="core parts of the HDDT FHIR information model" width="60%"></div>
+<div><img src="HDDT_Informationsmodell_Generisch_DevicePart.svg" alt="core parts of the HDDT FHIR information model" width="60%"></div>
 <br clear="all"/>
 
 An __Interoperable Value__ represents the data that is measured by the sensor. This data can either be a single point of data or a sampled stream of data. An example of a single data point is an ad hoc measurement of capillary blood sugar using a blood glucose meter. An example of a stream of data is a sequence of continuous measurements done by a real time Continuous Glucose Monitoring device (rtCGM) during a defined period of time. Each measured data is classified by 
