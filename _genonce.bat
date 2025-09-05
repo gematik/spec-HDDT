@@ -32,7 +32,14 @@ REM -------------------------------
 IF NOT EXIST "%output_path%\files" (
     MKDIR "%output_path%\files"
 )
+
+ECHO Running jekyll build...
+CALL jekyll build --source "%CD%\temp\pages" --destination "%output_path%"
+
 ECHO Copying files from input/files/ to output/files/
 XCOPY /Y /E "%CD%\input\files\*" "%output_path%\files\"
+
+ECHO Copying SVGs from temp/pages/_includes to output/assets/images
+XCOPY /Y /E "%CD%\temp\pages\_includes\*.svg" "%output_path%\assets\images"
 
 PAUSE
