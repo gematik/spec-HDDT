@@ -4,10 +4,10 @@
 !define VIBW #7ED321
 !define BFARM #F5A623
 
-title HDDT FHIR Data Model
+title HDDT FHIR Data Model (Medical Aids and Implants)
 skinparam packageStyle rectangle
 
-package HDDT_Measurements_and_Devices as "Measurements and Devices (implemented by the manufacturer; accessible via the HDDT API)"MANUFACTURER {
+package HDDT_Measurements_and_Devices as "Measurements and Devices \n(implemented by the manufacturer; accessible via the HDDT API)"MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
         status : status of the measured value [1..1]
@@ -32,15 +32,16 @@ package HDDT_Measurements_and_Devices as "Measurements and Devices (implemented 
         property : additional properties [0..*]
     }
 
-    class HR as "Health Record" <<FHIR Device>> {
+    class DM as "Device Data Recorder" <<FHIR Device>> {
+        status : operational status [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         property : additional properties [0..*]
     }
 
-    IV --> Metric : "[1..1] device"
-    Metric --> PHD : "[1..1] source"
-    PHD -> HR : "[1..1] parent"
+    IV --> Metric : "device [1..1] "
+    Metric --> PHD : "source [1..1]"
+    PHD --> DM : "parent [1..1]"
 }
 
 package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM {
@@ -52,39 +53,43 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
         property : additional properties [0..*]
     }
 
-    class HR_Def as "Health Record Registry Entry" <<FHIR DeviceDefinition>> {
+    class DM_Def as "Device Data Recorder Registry Entry" <<FHIR DeviceDefinition>> {
         type = 462240000|SCT [1..1]
-        deviceName : product name [1..1]
+        deviceName : name of the aggregator [1..1]
         manufacturer : name of the manufacturer [0..1]
-        url : base URL of the health record's HDDT API [1..1]
         property : additional properties [0..*]
     }
 
-    class DiGA as "DiGA Registry Entry" <<FHIR DeviceDefinition>> {
-        type = 706689003|SCT [1..1]
-        deviceName : product name [1..1]
-        manufacturer : name of the manufacturer [0..1]
-        url : URL for retrieving the DiGA's certificates [1..1]
-        property : additional properties [0..*]
+    class DM_Org as "Device Data Recorder Organization" <<FHIR Organization>> {
     }
+    class EP_FHIR as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
+    }
+    class EP_OAuth as "Device Data Recorder OAuth Endpoint" <<FHIR Endpoint>> {
+    }
+
+    DM_Def *-- DM_Org : "organization [1..1]"
+    DM_Org *-- EP_FHIR : "endpoint [1..*]"
+    DM_Org *-- EP_OAuth : "endpoint [1..*]"
 }
 
-PHD --> PHD_Def : "definition [1..1]"
-HR --> HR_Def : "definition [1..1]"
+DM -left-> DM_Def : "definition [1..1]"
+PHD -left-> PHD_Def : "definition [1..1]"
 
 package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
     enum MIV {
-        identifier : unique identifier for the MIV [1..1]
+        url : canonical URL for the MIV [1..1]
         version : version of the MIV [1..1]
+        title : human-friendly name of the MIV [1..1]
+        name : machine-friendly name of the MIV [0..1]
+        description : human-readable description of the MIV [1..1]
         compose.include : MIV defining concepts [1..*]
     }
 }
 
-IV::code --> MIV : "included with"
-Metric::type --> MIV : "included with"
+'IV::code --> MIV : "included with"
+'Metric::type --> MIV : "included with"
 
-PHD_Def --> MIV::identifier : "capability [1..*]"
-HR_Def --> MIV::identifier : "capability [1..*]"
-DiGA --> MIV::identifier : "capability [1..*]"
+PHD_Def -up-> MIV : "capability [1..*]"
+DM_Def -up-> MIV : "capability [1..*]"
 
 @enduml

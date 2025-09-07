@@ -7,7 +7,7 @@
 title HDDT FHIR Data Model
 skinparam packageStyle rectangle
 
-package HDDT_Measurements_and_Devices as "Measurements and Devices (implemented by the manufacturer; accessible via the HDDT API)"MANUFACTURER {
+package HDDT_Measurements_and_Devices as "Measurements and Devices \n(implemented by the manufacturer; accessible via the HDDT API)"MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
         status : status of the measured value [1..1]
@@ -32,15 +32,16 @@ package HDDT_Measurements_and_Devices as "Measurements and Devices (implemented 
         property : additional properties [0..*]
     }
 
-    class HR as "Health Record" <<FHIR Device>> {
+    class DM as "Device Data Recorder" <<FHIR Device>> {
+        status : operational status [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         property : additional properties [0..*]
     }
 
-    IV --> Metric : "[1..1] device"
-    Metric --> PHD : "[1..1] source"
-    PHD -> HR : "[1..1] parent"
+    IV --> Metric : "device [1..1] "
+    Metric -> PHD : "source [1..1]"
+    PHD --> DM : "parent [1..1]"
 }
 
 @enduml

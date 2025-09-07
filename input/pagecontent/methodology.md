@@ -1,9 +1,21 @@
-**TODO:** reword and translate (Emil)
 
-Requirements, as an expression of normative specifications, are indicated by the German keywords written in uppercase—MUSS, DARF NICHT, SOLL, SOLL NICHT, KANN—and their plural forms, in accordance with [RFC 2119](https://tools.ietf.org/html/rfc2119 "RFC 2119").
+# Status: Draft
+* Verantwortlich: @jcaumann
+* ToDo:
+    * Text zur Grafik
+    * Tabelle vervollständigen
 
-### Impact on Certification and Test Reports
+# Methodology
 
-**SHALL / MUSS** indicates, in Device2DiGA, a requirement that must be fulfilled. The requirement is covered by one or more tests, so a system cannot be certified for the respective module if it fails any test that verifies compliance with the requirement.
+## From Use Cases to MIVs
 
-**MAY / KANN** indicates, in Device2DiGA, an optional requirement. The requirement is covered by a test, but the result of this test does not affect the certification of a system for the respective module. If the test for an optional requirement is passed successfully, the result is included in the test report.
+<div><img src="/HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%"></div>
+<br clear="all"/>
+
+## Defined MIVs
+
+| Domain                    | Use Cases | Medical Aids          | Interoperable Values         |
+|---------------------------|-----------|-----------------------|------------------------------| 
+| Diabetes Self-Management  |           | <ul><li>__blood glucose meter__<li>__rtCGM__<li>smart pen<li>insulin pump</ul> | <ul><li>__glucose in capillary blood__<li>__glucose in interstitial fluid__<li>insulin intake</ul> |
+| Breath Therapy            |           | <ul><li>peak flow meter<li>spirometer<li>CPAP<li>APAP</ul> |<ul><li>__PEF__<li>__FEV1__<li>FVC<li>FEV6, ...</ul> |
+| Simple Cardiac Monitoring |           | <ul><li>__blood pressure cuff__<li>scale</ul> | <ul><li>__blood pressure__<li>__pulse__<li>body weight</ul> |
