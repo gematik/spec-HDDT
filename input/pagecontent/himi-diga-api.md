@@ -31,18 +31,53 @@ Standardized access to medical device/implant data as FHIR resources for authori
 or we use only Capability Statements?
 
 
-| Endpoint | Use Cases | Specifications | Data Objects | Examples |
-|----------|-----------|----------------|--------------|----------|
-| `/metadata` | - Information on supported FHIR version & profiles for DiGA vendor<br> - Supported resources & operations<br>- Supported search parameters & filters | No Mutual-TLS Client Authentication (public endpoint)<br>**FHIR R4** (from context)<br>Endpoint **must** be available to declare: supported FHIR version, resources, operations, search parameters, profiles | **FHIR CapabilityStatement**<br>Supported Profiles: `Device`, `Observation`<br>Resource Interactions:<br>- Device: read, search<br> - Observation: read, search<br>**Search Parameters:**<br>- Observation: `patient`, `code`, `date`, `value-quantity`, `_id` | – |
-| `/Observation` | - Query most recent measurement (single values)<br>- Query time series data for a patient<br>- Query values incl. threshold comparison (e.g. “lo” and “high”)<br>- Possibly derived metrics | Data **must** conform to defined FHIR Profiles (e.g. `SD_vibW_Blutzucker`)<br>Single values: `Observation.valueQuantity`<br>Time series: `Observation.valueSampledData`<br>Reference to DeviceMetric **required**<br>Values must be fully normalized (`unit/system/code`)<br>Optional threshold comparison via `valueQuantity.comparator` | **FHIR Observation**<br>Single value: `Observation.valueQuantity`<br>Time series: `Observation.valueSampledData`<br>**FHIR DeviceMetric** (via `Observation.device`) | **GET** `/Observation`<br>Search parameters:<br>- `_id`: `/Observation/<internal_id>`<br>- `identifier`: `?identifier=<identifier>`<br>- `code`: `?code=http://loinc.org|15074-8`<br>- `date`: `?_sort=-date&_count=1`<br>- `date`: `?date=ge2025-07-23`<br>- `method`: `?method=http://snomed.info/sct|736996008`<br>- `value-quantity`: `?value-quantity=gt140`<br>- `_include`: `?_include=Observation:device` |
-| `/DeviceMetric`| - Query information about the device configuration (unit, calibration, operational status)<br>- Link to the specific device instance |  Only queries using the DeviceMetric ID retrieved from `/Observations` are allowed. DiGAs should only be able to retrieve the authorized device configuration supported by this vibW (from the scope), i.e., only the DeviceMetric that is referenced in the Observation, for data protection reasons. | Device configuration | GET `/eviceMetric`<br>Search parameters:<br> -`_id`: `/DeviceMetric/<internal_id>` |
-| `/Device` | - Query device properties<br>- Query device instance (serial number, type, manufacturer)<br>Optional endpoint for device-level information | Device instances (e.g. glucometers)<br>Identifier may include device registry number<br>Referenced by `DeviceMetric.source` (required)<br>Serial number required for validation | **FHIR Device** | **GET** `/Device`<br>Search parameters:<br>- `_id`: `/Device/<internal_id>` |
+| Endpoint | Use Cases | Specifications | Data Objects |
+|----------|-----------|----------------|--------------|
+| `/metadata` | - Information on supported FHIR version & profiles for DiGA vendor<br> - Supported resources & operations<br>- Supported search parameters & filters | No Mutual-TLS Client Authentication (public endpoint)<br>**FHIR R4** (from context)<br>Endpoint **must** be available to declare: supported FHIR version, resources, operations, search parameters, profiles | **FHIR CapabilityStatement**<br>Supported Profiles: `Device`, `Observation`<br>Resource Interactions:<br>- Device: read, search<br> - Observation: read, search<br>
+| `/Observation` | - Query most recent measurement (single values)<br>- Query time series data for a patient<br>- Query values incl. threshold comparison (e.g. “lo” and “high”)<br>- Possibly derived metrics | Data **must** conform to defined FHIR Profiles (e.g. `SD_vibW_Blutzucker`)<br>Single values: `Observation.valueQuantity`<br>Time series: `Observation.valueSampledData`<br>Reference to DeviceMetric **required**<br>Values must be fully normalized (`unit/system/code`)<br>Optional threshold comparison via `valueQuantity.comparator` | **FHIR Observation**<br>Single value: `Observation.valueQuantity`<br>Time series: `Observation.valueSampledData`<br>**FHIR DeviceMetric** (via `Observation.device`) | 
+| `/DeviceMetric`| - Query information about the device configuration (unit, calibration, operational status)<br>- Link to the specific device instance |  Only queries using the DeviceMetric ID retrieved from `/Observations` are allowed. DiGAs should only be able to retrieve the authorized device configuration supported by this vibW (from the scope), i.e., only the DeviceMetric that is referenced in the Observation, for data protection reasons. | Device configuration |
+| `/Device` | - Query device properties<br>- Query device instance (serial number, type, manufacturer)<br>Optional endpoint for device-level information | Device instances (e.g. glucometers)<br>Identifier may include device registry number<br>Referenced by `DeviceMetric.source` (required)<br>Serial number required for validation | **FHIR Device** | 
+
+---
+
+### Search Parameters
+
+Search parameters are an integral part of this FHIR API, as they allow the client to only request resources, matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code.
+
+The FHIR Search functionality is defined by HL7 [here.](https://www.hl7.org/fhir/R4/search.html)
+
+Detailed definition of all supported search parameters can be found on the following pages. The listed search parameters **MUST** be supported by the FHIR server:
+- in the Capability Statement under the "Artifacts" menu heading.
+- in the [OpenAPI description](#openapi-description) on this page.
+
+#### Search Examples
+
+Please note, that the examples below do not encompass all of the expected search functionality.
+
+| Request | Explanation |
+|---------|-------------|
+| **GET** `/Observation?_id=1234` | Request a specific Observation resource, based on the its internal id. |
+| **GET** `/Observation/1234` | Has the same effect as the request above. |
+|**GET** `/Observation?code=http://loinc.org\|2339-0&patient=patient123`| Request all Observations that measure blood sugar with the specific code, and have the specified patient as subject. |
+|**GET** `/Observation?date=ge2025-07-23&` | Request all observations since the 23th of July. |
+|**GET** `/Observation?_include=Observation:device`| In the resulting Bundle also include the instances of the `DeviceMetric` resources, referenced by the observations.  |
+| **GET** `Observation?_sort=-date&_count=1` | Get the latest observation. |
 
 ---
 
 **ToDo: Jie, Sergej, Emil**
-- `hdc-device-api`, `hdc-device-metric-api` und `himi-diga-fhir-api` zusammen führen
-- HIMI umbenennen, oder zumindest die HIMI DIGA FHIR 
+- Add a section about Observation. Maybe put into a different section.
+
+### Profiles
+
+**FHIR resource type**: Observation
+
+FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
+---------------|------------|------------|----------------|------|
+| status | Status | 1..1 | code | Use for time-series CGM results, to track whether the `sample-data` field is complete, or there are going to be further changes. |
+
+---
+**ToDo: Jie, Sergej, Emil**
 
 **FHIR resource type**: Device
 

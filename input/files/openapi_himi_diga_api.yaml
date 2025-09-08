@@ -2,9 +2,27 @@ openapi: 3.0.3
 info:
   title: Health Device Data Transfer FHIR API
   version: "1.0.0"
-  description: >
+  description: |
     OpenAPI specification for a Health Device Data Transfer FHIR API (FHIR R4).
     Supports CapabilityStatement, Observation, DeviceMetric, and Device resources.
+    
+    ## Search Parameter Types
+    - **token**: Exact match searches for coded values and identifiers
+    - **date**: Date/datetime searches with [FHIR prefixes](https://hl7.org/fhir/R4/search.html#prefix) (eq, ne, lt, le, gt, ge)
+    - **reference**: References to other FHIR resources
+    - **string**: Text-based searches with partial matching support
+    
+    ## Authentication & Authorization
+    All endpoints (except /metadata) require OAuth2 Bearer token authentication.
+    Clients must have appropriate scopes for accessing specific resource types and operations.
+    
+    ## Content-type
+    - The server **MUST** support headers `Content-type` and `Accept`
+    - The server **MUST** support interpreting content types `application/fhir+json` and `application/fhir+xml`.
+    - The server **MUST** return the response in the format that was requested from the client application.
+
+x-swagger-ui-config:
+  supportedSubmitMethods: []
 
 tags:
   - name: Metadata
@@ -56,9 +74,19 @@ paths:
     get:
       tags: [Metadata]
       summary: FHIR CapabilityStatement (public)
-      description: >
-        Public endpoint (no mTLS) that declares supported FHIR version,
-        resources, interactions, search parameters, and profiles.
+      description: |
+        ### No Authentication Required
+        This endpoint is publicly accessible (no mTLS) to allow clients to discover server capabilities before authentication.
+      
+        ### Capability Information Provided
+        - Supported FHIR version and formats
+        - Available resource types and profiles
+        - Supported interactions (read, search, create, etc.)
+        - Search parameters for each resource type
+        - Operation definitions
+        
+
+        
       responses:
         '200':
           description: CapabilityStatement
@@ -100,31 +128,28 @@ paths:
     get:
       tags: [Observation]
       summary: Query Observations
-      description: >
+      description: |
         Supports querying single values, time series data, and threshold comparisons.
         Data must conform to the `Observation_Blood_Glucose` or `Observation_CGM_Measurement_Series` profiles.
+        
+        ### Search Parameters
+        
+        | Parameter | Type | Description |
+        | --------- | ---- | ----------- |
+        | _id | `token` | Resource._id |
+        | _include | `Observation:device` | The resulting Bundle MUST  also contain the DeviceMetric resources, referenced by Observation.device.  |
+        | status | `token`  | Resource.status |
+        | code | `token` | Obseravtion.code |
+        | date | `date` | Observation.effective[x] |
+        | method | `token` | Observation.method |
+        | value-quantity | `token` | Observation.valueQuantity |
+        
+        
+        
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
         - $ref: "#/components/parameters/AuthorizationHeader"
-        - in: query
-          name: _id
-          schema: { type: string }
-          description: >
-            Unique Observation ID (server-generated).  
-            Example: `_id=obs-blood-glucose-001`
-        - in: query
-          name: code
-          schema: { type: string }
-          description: >
-            LOINC code specifying the measurement type.  
-            Example: `code=http://loinc.org|15074-8` (Glucose [Moles/volume] in Blood).
-        - in: query
-          name: date
-          schema: { type: string, format: date-time }
-          description: >
-            Effective time of the measurement.  
-            Supports FHIR search prefixes (`ge`, `le`, `eq`).  
-            Example: `date=ge2025-08-01T00:00:00Z`
+        
       responses:
         '200':
           description: Bundle of Observation resources
@@ -176,26 +201,51 @@ paths:
                       period: 300
                       data: "5.6 5.8 6.0 5.9 5.7"
         '400':
-          description: Invalid request
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parameter |
+            | Invalid Request | [OperationOutcome] | Any other reasons |
+            ---
+            
         '404':
-          description: Measurement not found or is in state UNKNOWN or INITIALIZED
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Resource not found | [OperationOutcome] | Requesting a resource with a specific `_id` that does not exist. |
+        '401':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing or invalid credentials. |
         '403':
-          description: Not allowed
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [string] | Client does not have permissions for resource "Observation". |
         '500':
-          description: Any other error       
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. |    
   /DeviceMetric:
     get:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
-      description: >
+      description: |
         DeviceMetric resources must conform to the `DeviceMetric_Medical_Aid` profile.
+        
+        ### Search Parameters
+        
+        | Parameter | Type | Description |
+        | --------- | ---- | ----------- |
+        | _id | `token` | Resource._id |
+        
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
         - $ref: "#/components/parameters/AuthorizationHeader"
-        - in: query
-          name: _id
-          description: DeviceMetric internal ID
-          schema: { type: string }
+
       responses:
         '200':
           description: DeviceMetric resource
@@ -218,24 +268,54 @@ paths:
                           code: "mg/dL"
                           display: milligrams per deciliter
             
-        '403':
-          description: Forbidden – DeviceMetric not authorized for this client
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parameter |
+            | Invalid Request | [OperationOutcome] | Any other reasons |
+            ---
+            
+        '404':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Resource not found | [OperationOutcome] | Requesting a resource with a specific `_id` that does not exist. |
         '401':
-          description: Unauthorized
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing or invalid credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [string] | Client does not have permissions for resource "DeviceMetric". |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. | 
 
   /Device:
     get:
       tags: [Device]
       summary: Query Device resources
-      description: >
+      description: |
         Retrieve device instances conforming to the `Device_Medical_Aid` profile.
+        
+        ### Search Parameters
+        
+        | Parameter | Type | Description |
+        | --------- | ---- | ----------- |
+        | _id | `token` | Resource._id |
+        | identifier | `token` | Resource.identifier - identifier in the HiMi registry |
+        
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
         - $ref: "#/components/parameters/AuthorizationHeader"
-        - in: query
-          name: _id
-          description: Device ID
-          schema: { type: string }
+
       responses:
         '200':
           description: Bundle of Device resources
@@ -258,37 +338,103 @@ paths:
                                 code: "46702002"
                                 display: Glucometer
                           manufacturer: Acme Health
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parameter |
+            | Invalid Request | [OperationOutcome] | Any other reasons |
+            ---
+            
+        '404':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Resource not found | [OperationOutcome] | Requesting a resource with a specific `_id` that does not exist. |
+        '401':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing or invalid credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [string] | Client does not have permissions for resource "Device". |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. | 
             
 
   /$search-summary-data-measurement:
     post:
       tags: [Observation]
       summary: Custom operation to search summary data measurements
-      description: >
-        This operation searches for Observations and optionally includes related Device and DeviceMetric resources.
-        The result conforms to the `BundleSearchSummaryDataMeasurements` profile.
+      description: |
+        Custom FHIR operation to obtain aggregated measurement data with optional inclusion of related Device and DeviceMetric resources.
+        
+        ### Profile Conformance
+        Results conform to the **BundleSearchSummaryDataMeasurements** profile.
+        
+        ### Request Parameters
+        All parameters are provided in the request body as JSON, following FHIR Parameters resource pattern.
       parameters:
       - $ref: "#/components/parameters/AcceptHeader"
       - $ref: "#/components/parameters/ContentTypeHeader"
       - $ref: "#/components/parameters/AuthorizationHeader"
       - $ref: "#/components/parameters/XRequestIdHeader"
       requestBody:
+        required: true
+        description: |
+          Parameters for the summary data search operation. Needs to conform to the [FHIR Parameters](https://hl7.org/fhir/R4/parameters.html) resource.
+          
+          ### Parameter Details
+          | Parameter | Type | Required | Description |
+          |-----------|------|----------|-------------|
+          | effectivePeriodStart | dateTime | No | Start of the effective time period |
+          | effectivePeriodEnd | dateTime | No | End of the effective time period |
+          | related | boolean | No | Optionally include `Device`-resources, from which the data was measured, and `DeviceMetric` for the corresponding calibration status.   |
+
         content:
-          application/json:
+          application/fhir+json:
             schema:
               type: object
               properties:
-                code:
+                resourceType:
                   type: string
-                  description: Measurement code to filter by.
-                effectivePeriodStart:
-                  type: string
-                  format: date-time
-                  description: Start of the effective period.
-                effectivePeriodEnd:
-                  type: string
-                  format: date-time
-                  description: End of the effective period.
+                  enum: ["Parameters"]
+                  description: Must be "Parameters" for FHIR operations
+                parameter:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      valueString:
+                        type: string
+                      valueDateTime:
+                        type: string
+                        format: date-time
+                      valueBoolean:
+                        type: boolean
+                      valueReference:
+                        type: object
+                        properties:
+                          reference:
+                            type: string
+            example:
+              resourceType: "Parameters"
+              parameter:
+                - name: "effectivePeriodStart"
+                  valueDateTime: "2025-08-01T00:00:00Z"
+                - name: "effectivePeriodEnd"
+                  valueDateTime: "2025-08-31T23:59:59Z"
+                - name: "related"
+                  valueBoolean: true
       responses:
         '200':
           description: Result bundle containing search summary data measurements and optionally related resources
@@ -316,8 +462,8 @@ paths:
                           subject:
                             reference: Patient/patientExample
                           effectivePeriod:
-                            start: 2024-05-01
-                            end: 2024-05-31
+                            start: 2025-08-01
+                            end: 2025-08-31
                           hasMember:
                             - reference: Observation/cgmSummaryMeanGlucoseMassPerVolumeExample
                             - reference: Observation/cgmSummaryTimesInRangesExample
@@ -325,3 +471,27 @@ paths:
                             - reference: Observation/cgmSummaryCoefficientOfVariationExample
                             - reference: Observation/cgmSummaryDaysOfWearExample
                             - reference: Observation/cgmSummarySensorActivePercentageExample
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Unknown Parameters | [OperationOutcome] | Unsupported parameters were provided |
+            | Not a Parameters-Resource | [OperationOutcome] | The request body is not in the FHIR-Paremeters format |
+            | Invalid Request | [OperationOutcome] | Any other reason |
+            ---
+            
+        '401':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing or invalid credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [string] | Client does not have permissions to see the results of this operation. |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. | 
