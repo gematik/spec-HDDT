@@ -1,6 +1,11 @@
+# Status: Pre-Final
+* Verantwortlich: @jcaumann
+* ToDo:
+    * QS (insb. Sprache)
+
 # General Considerations
 
-__auf diese Seite kommen die grundlegenden Festlegungen und Anforderungen an die Schnittstelle__
+To facilitate the implementation of the HDDT specification for manufacturers, various fundamental decisions were made. These aim to reduce complexity and ensure the economic feasibility of the HDDT interfaces.
 
 ## Minimization of HDDT-specific Implementation Efforts
 Personal Health Devices store the collected data in a back-end system in the form of a medical record. Here, data from various measurements flow together on a patient-specific basis. The medical record offers interfaces on this data through which the collected data of a patient can be accessed by the patient himself or his treating physicians via mobile apps or other interactive front-end systems.

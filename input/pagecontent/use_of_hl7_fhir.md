@@ -1,3 +1,9 @@
+# Status: Pre-Final
+* Verantwortlich: @jcaumann
+* ToDo:
+    * Festlegungen zu "must support" konsentieren
+    * QS (insb. Sprache)
+
 # Use of HL7 FHIR
 
 ## FHIR Version
