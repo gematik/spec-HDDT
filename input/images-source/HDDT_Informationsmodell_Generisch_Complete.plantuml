@@ -62,14 +62,14 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
 
     class DM_Org as "Device Data Recorder Organization" <<FHIR Organization>> {
     }
-    class EP_FHIR as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
-    }
-    class EP_OAuth as "Device Data Recorder OAuth Endpoint" <<FHIR Endpoint>> {
+    class EP as "HDDT Endpoints" <<FHIR Endpoint>> {
+        status : operational status [1..1]
+        connectionType: Coding <<hl7-fhir-rest | oauth2-authz>>
+        address: URL of the endpoint [1..1]
     }
 
     DM_Def *-- DM_Org : "organization [1..1]"
-    DM_Org *-- EP_FHIR : "endpoint [1..*]"
-    DM_Org *-- EP_OAuth : "endpoint [1..*]"
+    DM_Org *- EP : "endpoint [2..2]"
 }
 
 DM -left-> DM_Def : "definition [1..1]"

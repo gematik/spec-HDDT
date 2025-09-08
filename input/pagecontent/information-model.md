@@ -28,7 +28,7 @@ This logical model builds the foundation of the HDDT FHIR based information mode
 
 This core part of the HDDT information model can be implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below.
 
-<div style="width: 70%;">
+<div style="width: 60%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_DevicePart.svg" style="width: 100%;" />
 </div>
 
@@ -58,7 +58,14 @@ The __Device Data Recorder__ resource again is defined as a FHIR `Device` resour
 
 ## BfArM Registries
 
-<div style="width: 70%;">
+While HDDT API as implemented by the provider of the device data recorder give DiGA access to device data and details of the concrete device instance, the registries at BfArM hold general information on providers and products:
+* the __BfArM Device Registry__ holds information about the capabilities and properties of personal health devices and device data recorders, including information on the device data provided through a device data recorder
+* the __BfArM Organization Registry__ provides access to HDDT relevant endpoints which are operated by the providers of device data recorders
+* the __DiGA Registry__ holds information about the capabilities and properties of DiGA, including infomation an intended purposes and required device data
+
+The class diagram below shows the classes of the HDDT information modell which are managed with the BfArM Device Registry and BfArM Organization Registry. 
+
+<div style="width: 100%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_Device_and_Definition.svg" style="width: 100%;" />
 </div>
 
