@@ -1,4 +1,3 @@
-
 # Status: Draft
 * Verantwortlich: @jcaumann
 * ToDo:
@@ -14,8 +13,8 @@
 
 ## Defined MIVs
 
-| Domain                    | Use Cases | Medical Aids          | Interoperable Values         |
-|---------------------------|-----------|-----------------------|------------------------------| 
-| Diabetes Self-Management  |           | <ul><li>__blood glucose meter__<li>__rtCGM__<li>smart pen<li>insulin pump</ul> | <ul><li>__glucose in capillary blood__<li>__glucose in interstitial fluid__<li>insulin intake</ul> |
-| Breath Therapy            |           | <ul><li>peak flow meter<li>spirometer<li>CPAP<li>APAP</ul> |<ul><li>__PEF__<li>__FEV1__<li>FVC<li>FEV6, ...</ul> |
-| Simple Cardiac Monitoring |           | <ul><li>__blood pressure cuff__<li>scale</ul> | <ul><li>__blood pressure__<li>__pulse__<li>body weight</ul> |
+| Domain                    | Use Cases | Medical Aids                                                                         | Interoperable Values                                                                        |
+|---------------------------|-----------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------| 
+| Diabetes Self-Management  |           | • __blood glucose meter__ <br> • __rtCGM__ <br> • smart pen <br> • insulin pump <br> | • __glucose in capillary blood__<br>• __glucose in interstitial fluid__<br>• insulin intake |
+| Breath Therapy            |           | • peak flow meter<br>• spirometer<br>• CPAP<br>• APAP                                | • __PEF__<br>• __FEV1__<br>• FVC<br>• FEV6, ...                                             |
+| Simple Cardiac Monitoring |           | • __blood pressure cuff__<br>• scale                                                 | • __blood pressure__<br>• __pulse__<br>• body weight                                        |
