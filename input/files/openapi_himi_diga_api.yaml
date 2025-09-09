@@ -130,6 +130,7 @@ paths:
       summary: Query Observations
       description: |
         Supports querying single values, time series data, and threshold comparisons.
+        
         Data must conform to the `Observation_Blood_Glucose` or `Observation_CGM_Measurement_Series` profiles.
         
         ### Search Parameters
@@ -138,11 +139,8 @@ paths:
         | --------- | ---- | ----------- |
         | _id | `token` | Resource._id |
         | _include | `Observation:device` | The resulting Bundle MUST  also contain the DeviceMetric resources, referenced by Observation.device.  |
-        | status | `token`  | Resource.status |
         | code | `token` | Obseravtion.code |
         | date | `date` | Observation.effective[x] |
-        | method | `token` | Observation.method |
-        | value-quantity | `token` | Observation.valueQuantity |
         
         
         
@@ -234,16 +232,20 @@ paths:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
       description: |
-        Obtain a DeviceMetric resource, for the purpose of obtaining calibration the calibration status, or the linked device.
+        Obtain a DeviceMetric resource, for the purpose of obtaining calibration the calibration status or the linked device.
       
         DeviceMetric resources must conform to the `DeviceMetric_Medical_Aid` profile.
+        
+        - The endpoint **MUST** allow requesting a specific DeviceMetric resource via its internal id
+        - The endpoint **MUST** allow requesting the referenced Device resource via `DeviceMetric.source`
+        - The endpoint **MUST NOT** allow any additional search parameters.
         
         ### Search Parameters
         
         | Parameter | Type | Description |
         | --------- | ---- | ----------- |
         | _id | `token` | Resource._id |
-        | _include | `DeviceMetric:device` | Include the referenced `Device` resource in the Bundle |
+        | _include | `DeviceMetric:source` | Include the referenced Device resource in the Bundle |
         
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
@@ -306,14 +308,21 @@ paths:
       tags: [Device]
       summary: Query Device resources
       description: |
+        Obtain Device resources in order to view the device name, manufacturer, serial number, and configuration.
+      
         Retrieve device instances conforming to the `Device_Medical_Aid` profile.
+        
+        - The endpoint **MUST** allow requesting a specific Device resource via its internal id
+        - The endpoint **MUST** allow requesting the referenced Device resource via `Device.parent`
+        - The endpoint **MUST NOT** allow any additional search parameters.
+        
         
         ### Search Parameters
         
         | Parameter | Type | Description |
         | --------- | ---- | ----------- |
         | _id | `token` | Resource._id |
-        | identifier | `token` | Resource.identifier - identifier in the HiMi registry |
+        | _include | `Device:parent` | Include the referenced device
         
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
