@@ -234,6 +234,8 @@ paths:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
       description: |
+        Obtain a DeviceMetric resource, for the purpose of obtaining calibration the calibration status, or the linked device.
+      
         DeviceMetric resources must conform to the `DeviceMetric_Medical_Aid` profile.
         
         ### Search Parameters
@@ -241,6 +243,7 @@ paths:
         | Parameter | Type | Description |
         | --------- | ---- | ----------- |
         | _id | `token` | Resource._id |
+        | _include | `DeviceMetric:device` | Include the referenced `Device` resource in the Bundle |
         
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"

@@ -35,8 +35,8 @@ or we use only Capability Statements?
 |----------|-----------|----------------|--------------|
 | `/metadata` | - Information on supported FHIR version & profiles for DiGA vendor<br> - Supported resources & operations<br>- Supported search parameters & filters | No Mutual-TLS Client Authentication (public endpoint)<br>**FHIR R4** (from context)<br>Endpoint **must** be available to declare: supported FHIR version, resources, operations, search parameters, profiles | **FHIR CapabilityStatement**<br>Supported Profiles: `Device`, `Observation`<br>Resource Interactions:<br>- Device: read, search<br> - Observation: read, search<br>
 | `/Observation` | - Query most recent measurement (single values)<br>- Query time series data for a patient<br>- Query values incl. threshold comparison (e.g. “lo” and “high”)<br>- Possibly derived metrics | Data **must** conform to defined FHIR Profiles (e.g. `SD_vibW_Blutzucker`)<br>Single values: `Observation.valueQuantity`<br>Time series: `Observation.valueSampledData`<br>Reference to DeviceMetric **required**<br>Values must be fully normalized (`unit/system/code`)<br>Optional threshold comparison via `valueQuantity.comparator` | **FHIR Observation**<br>Single value: `Observation.valueQuantity`<br>Time series: `Observation.valueSampledData`<br>**FHIR DeviceMetric** (via `Observation.device`) | 
-| `/DeviceMetric`| - Query information about the device configuration (unit, calibration, operational status)<br>- Link to the specific device instance |  Only queries using the DeviceMetric ID retrieved from `/Observations` are allowed. DiGAs should only be able to retrieve the authorized device configuration supported by this vibW (from the scope), i.e., only the DeviceMetric that is referenced in the Observation, for data protection reasons. | Device configuration |
-| `/Device` | - Query device properties<br>- Query device instance (serial number, type, manufacturer)<br>Optional endpoint for device-level information | Device instances (e.g. glucometers)<br>Identifier may include device registry number<br>Referenced by `DeviceMetric.source` (required)<br>Serial number required for validation | **FHIR Device** | 
+| `/DeviceMetric`| - Query information about the device configuration (unit, calibration, operational status)<br>- Link to the specific device instance |  Only queries using the DeviceMetric ID retrieved from `/Observations` are allowed. DiGAs should only be able to retrieve the authorized device configuration supported by this vibW (from the scope), i.e., only the DeviceMetric that is referenced in the Observation, for data protection reasons. | **FHIR DeviceMetric**<br>`DeviceMetric.type` - LOINC code of the measured value <br>`DeviceMetric.unit` <br> `DeviceMetric.source` - The device which is taking these measurements <br> `DeviceMetric.calibration` - relevant for some devices (e.g. glucometer), where calibrating the device is needed |
+| `/Device` | - Query device properties<br>- Query device instance (serial number, type, manufacturer)<br>Optional endpoint for device-level information <br> - show the user which device they are pairing with | Device instances (e.g. glucometers)<br>Identifier may include device registry number<br>Referenced by `DeviceMetric.source` (required)<br>Serial number required for validation | **FHIR Device** <br> `Device.status` - is the device active <br> `Device.expirationDate` <br><br> The following properties are used for user verification and consent: <br> `Device.deviceName` <br> `Device.manufacturer` <br> `Device.serialNumber` | 
 
 ---
 
@@ -105,13 +105,6 @@ FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
 
 ---
 
-
-### Special Note on DeviceMetric
-
-- No dedicated **DeviceMetric endpoint** is exposed.  
-- DeviceMetric resources are only retrievable via `_include` when querying Observations.  
-- Rationale: a DiGA must not retrieve DeviceMetrics for vibW values it is not authorized for.  
-- If needed for OAuth scope granularity (e.g. `DeviceMetric.type` authorization), a dedicated DeviceMetric endpoint may be added analogously to `/Device`.  
 
 
 ### OpenAPI Description
