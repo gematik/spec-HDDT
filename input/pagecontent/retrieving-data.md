@@ -89,6 +89,8 @@ This gets more complex, if the status of the sensor changes. The figure below is
 <div><img src="/HDDT measurement ad hoc example 2.png" alt="Blood glucose values including sensor calibration" width="60%"></div>
 <br clear="all"/>
 
+As shown with the example, a calibration of a sensor leads to an update to the sensor's `DeviceMetric` resource. The device data recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer. 
+
 ## Continuous Measurements
 
 * Blöcke fester Größe

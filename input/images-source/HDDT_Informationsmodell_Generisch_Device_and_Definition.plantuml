@@ -7,7 +7,7 @@
 title HDDT FHIR Data Model
 skinparam packageStyle rectangle
 
-package HDDT_Measurements_and_Devices as "Measurements and Devices \n(implemented by the manufacturer; accessible via the HDDT API)"MANUFACTURER {
+package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
         status : status of the measured value [1..1]
@@ -18,61 +18,49 @@ package HDDT_Measurements_and_Devices as "Measurements and Devices \n(implemente
 
     class Metric as "Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
         type : kind of value measured by the sensor [1..1]
-        unit : unit of measurement [0..1]
-        calibration.state : quality indicator for measurements [0..1]
+        calibration.state : quality indicator for measurements [1..1]
     }
 
-    IV::code --> Metric::type : "corresponds to"
-
     class PHD as "Personal Health Device" <<FHIR Device>> {
+        type : machine-readable device type
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         serialNumber : serial number [1..1]
         expirationDate : end of life date [0..1]
         property : additional properties [0..*]
     }
-
-    class DM as "Device Data Recorder" <<FHIR Device>> {
-        status : operational status [1..1]
-        deviceName : product name [1..1]
-        manufacturer : name of the manufacturer [0..1]
-        property : additional properties [0..*]
-    }
-
-    IV --> Metric : "device [1..1] "
     Metric -> PHD : "source [1..1]"
-    PHD --> DM : "parent [1..1]"
-}
+    
+    () "{xor}" as xor
+    IV -> xor : "device [1..1] "
+    xor --> Metric 
+    xor --> PHD 
+} 
 
-package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM {
+package HDDT_Registries as "HDDT Registries at BfARM" BFARM {
 
-    class PHD_Def as "Personal Health Device Registry Entry" <<FHIR DeviceDefinition>> {
+    class PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
         type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         property : additional properties [0..*]
     }
 
-    class DM_Def as "Device Data Recorder Registry Entry" <<FHIR DeviceDefinition>> {
+    class DDR as "Device Data Recorder" <<FHIR Device>> {
         type = 462240000|SCT [1..1]
-        deviceName : name of the aggregator [1..1]
+        status : operational status [1..1]
+        deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         property : additional properties [0..*]
+        url : HDDT FHIR server endpoint address [1..1]
     }
 
-    class DM_Org as "Device Data Recorder Organization" <<FHIR Organization>> {
+    class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
     }
-    class EP as "HDDT Endpoints" <<FHIR Endpoint>> {
-        status : operational status [1..1]
-        connectionType: Coding <<hl7-fhir-rest | oauth2-authz>>
-        address: URL of the endpoint [1..1]
-    }
-
-    DM_Def *-- DM_Org : "organization [1..1]"
-    DM_Org *- EP : "endpoint [2..2]"
 }
 
-DM -> DM_Def : "definition [1..1]"
+PHD --> DDR : "parent [1..1]"
 PHD -> PHD_Def : "definition [1..1]"
+DDR --> DM_Def : "definition [1..1]"
 
 @enduml
