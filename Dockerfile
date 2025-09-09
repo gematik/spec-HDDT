@@ -18,6 +18,7 @@ RUN set -eux; \
     jekyll build --destination "/home/publisher/ig/output"; \
     cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/; \
     cp -rf /home/publisher/ig/temp/pages/_includes/*.svg /home/publisher/ig/output/assets/images/; \
+    cp -rf /home/publisher/ig/giscus.client.js /home/publisher/ig/output/assets/js/giscus.client.js; \
     rm /home/publisher/ig/output/assets/css/prism.css;
 
 # ---------- Export-only stage ----------
