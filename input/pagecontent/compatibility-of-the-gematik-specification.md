@@ -7,7 +7,19 @@
 
 # Standards Used
 
-# Compatibility
+In this technical specification, the following standards have been used:
+
+| Standard | Use with HDDT |
+|----------|---------------|
+| HL7 FHIR | The logical model of HDDT is fully mapped on a FHIR compliant [information model](information-model.md). The API for requesting device data is implemented through FHIR `get` and `search`RESTful API. The data shared with this API conforms to HL7 FHIR R4. Great effort has been taken to be fully compliant with the FHIR base specification (see [Use of HL7 FHIR](use_of_hl7_fhir.md)). |
+| ISO/IEEE 11073 | ??? |
+| OAuth2         | The [pairing flow](pairing.md) for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE. |
+| SMART on FHIR | The discovery of the OAuth endpoints from a FHIR server is based on the SMART on FHIR _SMART Capability_ mechanism. DiGA authorizations are encoded as SMART Scopes (v2). |
+| SNOMED CT | ???  |
+| LOINC     | HDDT [Mandatory Interoperable Values](methodology.md)(MIVs) are mapped onto sets of LOINC codes. |
+
+
+# Compatibility of the HDDT FHIR Profiles
 
 | HDDT FHIR profile | international profile  | compliance statement |
 |-------------------|-----------------|---------|

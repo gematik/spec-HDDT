@@ -58,7 +58,6 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
 
     class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
         type = 462240000|SCT [1..1]
-        status : status of the registration process [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         property : additional properties [0..*]
