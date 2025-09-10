@@ -74,5 +74,6 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
 
 PHD --> PHD_Def : "definition [1..1]"
 ' DDR --> DM_Def : "definition [1..1]"
+PHD_Def .. DM_Def : "getDevices()\ngetRecorders()"
 
 @enduml
