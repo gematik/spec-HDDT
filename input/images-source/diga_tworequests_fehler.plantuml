@@ -1,0 +1,18 @@
+@startuml
+participant      DiGA            as diga
+participant HIMI_Backend    as himi
+
+
+autonumber
+diga -> himi : **GET** /Observation?code=loinc.org|2339-0
+himi --> diga: :Bundle(:Observation)
+
+
+diga -> himi: **GET** /Device/<device_id>
+himi --[#red]> diga: 404 Fehler: Ressource existiert nicht
+note right
+  Hier wird ein Fehler zurückgegeben, da Blutzucker-Observations auf eine DeviceMetric 
+  verweisen, die DiGA jedoch nach einem Device mit derselben ID fragt.
+end note
+
+@enduml

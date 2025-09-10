@@ -1,0 +1,29 @@
+@startuml
+participant      DiGA            as diga
+participant HIMI_Backend    as himi
+
+
+autonumber
+diga -> himi : **GET** /Observation?code=loinc.org|2339-0
+himi --> diga: :Bundle (:Observation)
+note right
+  Rückgabe ist eine FHIR-Bundle-Resource, die mehrere Observations enthält.
+  Bei Blutzuckermessungen (LOINC code 2339-0) ist eine Sensorkalibrierung erforderlich,
+  deswegen verweist Observation.device jeweils auf eine DeviceMetric.
+end note
+
+diga -> himi: **GET** /DeviceMetric/<device_id>
+himi --> diga: :DeviceMetric
+note right
+  Die DiGA führt eine weitere Anfrage unter Verwendung der ID aus
+  *Observation.device* durch, um das referenzierte DeviceMetric als Ressource abzurufen.
+end note
+
+diga -> himi: **GET** /Device/<devicemetric.source>
+himi --> diga: :Device
+note right
+  Die DiGA führt eine weitere Anfrage, um das über DeviceMetric.source
+  referenziertes Gerät als Ressource abzurufen.
+end note
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+participant      DiGA            as diga
+participant HIMI_Backend    as himi
+
+
+autonumber
+diga -> himi : **GET** /Observation?date=ge2025-09-01
+himi --> diga: :Bundle (:Observation)
+note right
+  Rückgabe ist eine FHIR-Bundle-Resource, die mehrere Observations enthält.
+  Für jede Observation ist „Observation.device“ lediglich eine ID (device_id).
+end note
+
+diga -> himi: **GET** /Device/<device_id>
+himi --> diga: :Device
+note right
+  Die DiGA führt eine weitere Anfrage unter Verwendung der ID aus
+  *Observation.device* durch, um das referenzierte Device als Ressource abzurufen.
+end note
+
+group ggf. Mehrere Anfragen notwendig
+diga -> himi: **GET** /Device/<andere_device_id>
+himi --> diga: :Device
+note right
+  ggf. muss die DiGA mehrere Anfragen durchführen, wenn mehrere Geräte für die Messungen verwendet wurden.
+end note
+end
+
+@enduml
