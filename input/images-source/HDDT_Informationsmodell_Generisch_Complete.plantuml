@@ -4,7 +4,7 @@
 !define VIBW #7ED321
 !define BFARM #F5A623
 
-title HDDT FHIR Data Model (Medical Aids and Implants)
+title HDDT FHIR Data Model (complete)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANUFACTURER {
@@ -30,12 +30,21 @@ package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANU
         property : additional properties [0..*]
     }
 
-    Metric -> PHD : "source [1..1]"
-    
+'    class DDR as "Device Data Recorder" <<FHIR Device>> {
+'        type = 462240000|SCT [1..1]
+'        status : operational status [1..1]
+'        deviceName : product name [1..1]
+'        manufacturer : name of the manufacturer [0..1]
+'        property : additional properties [0..*]
+'    }
+
     () "{xor}" as xor
+
     IV -> xor : "device [1..1] "
-    xor --> Metric 
+    xor -> Metric 
     xor --> PHD 
+    Metric --> PHD : "source [1..1]"
+'    PHD -> DDR : "parent [1..1]"
 } 
 
 package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM {
@@ -47,22 +56,24 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
         property : additional properties [0..*]
     }
 
-    class DDR as "Device Data Recorder" <<FHIR Device>> {
+    class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
         type = 462240000|SCT [1..1]
-        status : operational status [1..1]
+        status : status of the registration process [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
         property : additional properties [0..*]
-        url : HDDT FHIR server endpoint address [1..1]
     }
 
-    class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
+    class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
+        address : canonical URL for the endpoint [1..1]
+        status : status of the endpoint [1..1]
     }
+
+    DM_Def .left.> DDR_Endpoint : "getEndpoint()"
 }
 
-PHD --> DDR : "parent [1..1]"
-PHD -left-> PHD_Def : "definition [1..1]"
-DDR --> DM_Def : "definition [1..1]"
+PHD --> PHD_Def : "definition [1..1]"
+' DDR --> DM_Def : "definition [1..1]"
 
 package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
     enum MIV {
@@ -78,7 +89,8 @@ package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
 'IV::code --> MIV : "included with"
 'Metric::type --> MIV : "included with"
 
-PHD_Def -up-> MIV : "capability [1..*]"
-DM_Def -up-> MIV : "capability [1..*]"
+PHD_Def . MIV : "getMIVs()\ngetDevices()"
+DM_Def . MIV : "getMIVs()\ngetRecorders()"
+PHD_Def .. DM_Def : "getDevices()\ngetRecorders()"
 
 @enduml

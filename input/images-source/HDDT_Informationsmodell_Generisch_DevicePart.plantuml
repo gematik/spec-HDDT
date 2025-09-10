@@ -4,7 +4,7 @@
 !define VIBW #7ED321
 !define BFARM #F5A623
 
-title HDDT FHIR Data Model
+title HDDT FHIR Data Model (complete)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANUFACTURER {
@@ -29,12 +29,22 @@ package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANU
         expirationDate : end of life date [0..1]
         property : additional properties [0..*]
     }
-    Metric -> PHD : "source [1..1]"
-    
+
+'    class DDR as "Device Data Recorder" <<FHIR Device>> {
+'        type = 462240000|SCT [1..1]
+'        status : operational status [1..1]
+'        deviceName : product name [1..1]
+'        manufacturer : name of the manufacturer [0..1]
+'        property : additional properties [0..*]
+'    }
+
     () "{xor}" as xor
-    IV -> xor : "device [1..1] "
+
+    IV --> xor : "device [1..1] "
     xor --> Metric 
     xor --> PHD 
+    Metric -> PHD : "source [1..1]"
+'    PHD -> DDR : "parent [1..1]"
 } 
 
 @enduml
