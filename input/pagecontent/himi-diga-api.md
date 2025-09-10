@@ -40,8 +40,9 @@ This specification also includes a [FHIR opeartion](https://hl7.org/fhir/R4/oper
 | **Resource** | Observation |
 | **Operation name** | `$search-summary-data-measurement` |
 |**Purpose** |  Request a summary of desired values (e.g blood sugar values below lower threshold) for a certain range of time. |
-|**Parameters** |  See section "[OpenAPI Description](#openapi-description) for parameter definitions and examples.<li> `effectivePeriodStart (dateTime)` (optional)<li> `effectivePeriodEnd (dateTime)` (optional) - End of the effective time period <li> `related (boolean)` (optional)|
-|**Specifications** | <li>**MUST** support all profiles listed in `Bundle-Search-Summary-Data-Measurements`. <li>**MUST** support all listed parameters. <li> If no period is specified, the server selects a time range starting from the current date, which **MUST** cover at least 14 days.
+|**Parameters** |  See section "[OpenAPI Description](#openapi-description) for parameter definitions and examples.<br> • `effectivePeriodStart (dateTime)` (optional) <br> • `effectivePeriodEnd (dateTime)` (optional) - End of the effective time period <br> •  `related (boolean)` (optional)|
+|**Specifications** | •  **MUST** support all profiles listed in `Bundle-Search-Summary-Data-Measurements`. <br> • **MUST** support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which **MUST** cover at least 14 days.|
+
 ---
 
 ### Search Parameters

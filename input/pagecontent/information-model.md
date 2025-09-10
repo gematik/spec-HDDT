@@ -26,7 +26,7 @@ This logical model builds the foundation of the HDDT FHIR based information mode
 
 ## Measurements and Devices
 
-This core part of the HDDT information model can be implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the light blue box are used by the DiGA for [retrieving device data](retrieving-data.md) from the device data recorder. Theses instances are managed and provided by the manufacturer of the device data recorder. The device data recorder instance itself is requested by the DiGA during the [pairing flow](pairing.md) and therefore registered with the BfArM device registry. 
+This core part of the HDDT information model can be implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the light blue box are used by the DiGA for [retrieving device data](retrieving-data.html) from the device data recorder. Theses instances are managed and provided by the manufacturer of the device data recorder. The device data recorder instance itself is requested by the DiGA during the [pairing flow](pairing.html) and therefore registered with the BfArM device registry. 
 
 <div style="width: 60%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_DevicePart.svg" style="width: 100%;" />

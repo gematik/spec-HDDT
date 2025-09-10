@@ -16,10 +16,10 @@ Description: """
 This profile constrains the FHIR Bundle resource for use as the result container of the `$search-summary-data-measurement` operation.  
 The operation requests CGM summary data and optionally returns the related device context.  
 
-The Bundle is of type *collection* and must contain only resources of the following types:  
+The Bundle is of type *collection* and **MUST** contain only resources of the following types:  
 - Observations conforming to HL7 CGM profiles (e.g., `$cgm-summary`, `$cgm-summary-mean-glucose-mass-per-volume`, `$cgm-summary-times-in-ranges`, `$cgm-summary-gmi`, `$cgm-summary-coefficient-of-variation`, `$cgm-summary-days-of-wear`, `$cgm-summary-sensor-active-percentage`, `$cgm-sensor-reading-mass-per-volume`, `$cgm-sensor-reading-moles-per-volume`).  
-- DeviceMetric resources conforming to `DeviceMetric-Medical-Aid` to provide configuration details for the CGM measurement device.  
-- Device resources conforming to `Device-Medical-Aid` to provide context about the actual medical aid device used.  
+- DeviceMetric resources conforming to `DeviceMetric-Personal-Health-Device` to provide configuration details for the CGM measurement device.  
+- Device resources conforming to `Device-Personal-Health-Device` to provide context about the actual Personal Health Device device used.  
 
 The purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  
 It ensures interoperability across different implementations by defining a predictable response format.  
@@ -30,60 +30,63 @@ This supports use cases such as:
 
 **Constraints applied:**  
 - `Bundle.type` is fixed to `collection`.  
-- `Bundle.entry.resource` is restricted to CGM Observation profiles, DeviceMetric-Medical-Aid, or Device-Medical-Aid.  
+- `Bundle.entry.resource` is restricted to CGM Observation profiles, DeviceMetric-Personal-Health-Device, or Device-Personal-Health-Device.  
 - No other resource types are allowed in the Bundle.  
 """
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * type = #collection (exactly)
 * type ^short = "The bundle is always a collection of related resources"
-* entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or DeviceMetric_Medical_Aid or Device_Medical_Aid
+* entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or DeviceMetric_Personal_Health_Device or Device_Personal_Health_Device
 * entry.resource ^short = "Observations with their related Devices and DeviceMetrics"
 
-Profile: Device_Medical_Aid
+Profile: Device_Personal_Health_Device
 Parent: Device
-Id: Device-Medical-Aid
-* ^version = "0.1.0"
+Id: Device-Personal-Health-Device
+* ^version = "0.2.0"
 * ^status = #draft
 * ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
-* . ^short = "Medical aid or personal medical device"
-* . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device must be a medical device."
+* . ^short = "Personal Health Device"
+* . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device **MUST** be a personal health device."
+* type 1..1
+* type from VS_DeviceType (required)
+* type ^short = "The machine-readable type of the Personal health device"
 * definition 1..1
 * definition only Reference(DeviceDefinition)
-* definition ^short = "Definition of the medical aid"
-* definition ^definition = "Reference to a DeviceDefinition resource that describes the technical and functional details of the medical aid."
+* definition ^short = "Definition of the Personal health device"
+* definition ^definition = "Reference to a DeviceDefinition resource that describes the technical and functional details of the Personal health device."
 * expirationDate MS
-* expirationDate ^short = "Date and time of expiry of this medical aid (if applicable)"
-* expirationDate ^definition = "The date and time beyond which this medical aid is no longer valid or should not be used (if applicable)."
+* expirationDate ^short = "Date and time of expiry of this Personal health device (if applicable)"
+* expirationDate ^definition = "The date and time beyond which this Personal health device is no longer valid or should not be used (if applicable)."
 * serialNumber 1..1
-* serialNumber ^short = "Serial number of the medical aid"
-* serialNumber ^definition = "The serial number that uniquely identifies the medical aid instance."
+* serialNumber ^short = "Serial number of the Personal health device"
+* serialNumber ^definition = "The serial number that uniquely identifies the Personal health device instance."
 * deviceName 1..1
-* deviceName ^short = "Name of the medical aid"
-* deviceName ^definition = "The name of the medical aid as given by the manufacturer and listed in the device registry."
+* deviceName ^short = "Name of the Personal health device"
+* deviceName ^definition = "The name of the Personal health device as given by the manufacturer and listed in the BfArM Device registry."
 * modelNumber MS
-* modelNumber ^short = "Model number of the medical aid"
-* modelNumber ^definition = "The model number of the medical aid."
+* modelNumber ^short = "Model number of the Personal health device"
+* modelNumber ^definition = "The model number of the Personal health device."
 
-Profile: DeviceMetric_Medical_Aid
+Profile: DeviceMetric_Personal_Health_Device
 Parent: DeviceMetric
-Id: DeviceMetric-Medical-Aid
-Title: "Device configuration – Medical Aid"
-Description: "Profile for the device configuration of a Medical Aid device."
-* ^version = "0.1.0"
+Id: DeviceMetric-Personal-Health-Device
+Title: "Device configuration – Personal Health Device"
+Description: "Profile for the device configuration of a Personal Health Device."
+* ^version = "0.2.0"
 * ^status = #draft
 * ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
-* . ^short = "Configuration or setting capability of a medical device"
-* . ^definition = "Describes a configuration or setting capability of a medical device."
-* type ^short = "Definition of the measurement type"
-* type ^definition = "Definition of the measurement type of a Medical aid device, e.g. that the device only measures tissue glucose. Only codes from LOINC are allowed. Codes must be match to code in measurements, e.g from this ValueSet. : https://gematik.de/fhir/hddt/ValueSet/VS-Tissue-Glucose-CGM"
+* . ^short = "Configuration or setting capability of a personal health device"
+* . ^definition = "Describes a configuration or setting capability of a personal health device."
+* type ^short = "Definition of kind of measurement value"
+* type ^definition = "Definition of kind of measurement value of a Personal health device, e.g. that the device only measures tissue glucose. Only codes from LOINC are allowed. Codes **MUST** be match to code in measurements, e.g from this ValueSet. : https://gematik.de/fhir/hddt/ValueSet/VS-Tissue-Glucose-CGM"
 * type ^comment = "Note: For the OAuth scopes, so that the corresponding FHIR endpoint only returns the allowed device configuration that matches the measurements."
 * type ^patternCodeableConcept.coding.system = "http://loinc.org"
 * unit 1..
@@ -92,7 +95,7 @@ Description: "Profile for the device configuration of a Medical Aid device."
 * unit ^definition = "The unit in which the associated measuring device delivers its measurement values."
 * unit ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units."
 * source 1..
-* source only Reference(Device_Medical_Aid)
+* source only Reference(Device_Personal_Health_Device)
 * source ^short = "Reference to the device instance"
 * source ^definition = "Points to the specific Device resource that uses this device configuration."
 * operationalStatus MS
@@ -104,7 +107,7 @@ Parent: Observation
 Id: Observation-Blood-Glucose
 Title: "Observation – Blood Glucose"
 Description: "Profile for capturing blood glucose measurements as Observation."
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
@@ -137,7 +140,7 @@ Description: "Profile for capturing blood glucose measurements as Observation."
 * method ^short = "Measurement method"
 * method ^definition = "The measurement method (e.g., finger-stick check)."
 * device 1..
-* device only Reference(DeviceMetric_Medical_Aid)
+* device only Reference(DeviceMetric_Personal_Health_Device or Device_Personal_Health_Device)
 * device ^short = "Reference to device configuration"
 * device ^definition = "References a DeviceMetric resource that describes the current configuration of the measuring device."
 
@@ -151,7 +154,7 @@ Parent: Observation
 Id: Observation-CGM-Measurement-Series
 Title: "Observation – Tissue Glucose (CGM Measurement Series)"
 Description: "Profile for capturing a CGM measurement time series (tissue glucose) as Observation."
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^date = "2025-08-12"
 * ^publisher = "gematik GmbH"
@@ -207,7 +210,7 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * method ^short = "Measurement method"
 * method ^definition = "The measurement method (e.g., sensor technology)."
 * device 1..
-* device only Reference(DeviceMetric_Medical_Aid)
+* device only Reference(DeviceMetric_Personal_Health_Device or Device_Personal_Health_Device)
 * device ^short = "Device configuration"
 * device ^definition = "Reference to the DeviceMetric resource of the configuration."
 
@@ -217,7 +220,7 @@ Title: "Observation Status for CGM Measurement Series"
 Description: "Only final and preliminary statuses from the HL7 observation-status CodeSystem."
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-08-28"
@@ -234,7 +237,7 @@ Description: "This ValueSet contains UCUM units codes used for blood glucose mea
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose-Units"
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-08-28"
@@ -254,7 +257,7 @@ Description: "This ValueSet contains LOINC codes for blood glucose measurements.
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose"
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-08-28"
@@ -277,7 +280,7 @@ Description: "This ValueSet contains LOINC codes for tissue glucose measurements
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Tissue-Glucose-CGM"
-* ^version = "0.1.0"
+* ^version = "0.2.0"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-08-28"
@@ -289,6 +292,54 @@ Description: "This ValueSet contains LOINC codes for tissue glucose measurements
 * ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
 * LOINC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
 * LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+
+
+ValueSet: VS_DeviceType
+Id: vs-device-type
+Title: "Device Type of personal health devices"
+Description: "Codes used to identify medical devices."
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Device-Type"
+* ^version = "0.1.0"
+* ^status = #draft
+* ^experimental = true
+* ^publisher = "BfArM"
+* ^contact.telecom[0].system = #email
+* ^contact.telecom[=].value = "klassi@bfarm.de"
+* ^contact.telecom[+].system = #url
+* ^contact.telecom[=].value = "https://www.bfarm.de"
+* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
+* Mdc#528391 "Blood Pressure Cuff"
+* Mdc#528404 "Body Composition Analyzer"
+* Mdc#528425 "Cardiovascular Device"
+* Mdc#528402 "Coagulation meter"
+* Mdc#528409 "Continuous Glucose Monitor"
+* Mdc#528390 "Electro cardiograph"
+* Mdc#528457 "Generic 20601 Device"
+* Mdc#528401 "Glucose Monitor"
+* Mdc#528455 "Independent Activity/Living Hub"
+* Mdc#528403 "Insulin Pump"
+* Mdc#528405 "Peak Flow meter"
+* Mdc#528388 "Pulse Oximeter"
+* Mdc#528397 "Respiration rate"
+* Mdc#528408 "Sleep Apnea Breathing Equipment"
+* Mdc#528426 "Strength Equipment"
+* Mdc#528392 "Thermometer"
+* Mdc#528399 "Weight Scale"
+* urn:oid:2.16.840.1.113883.6.276#38017 "Dry salt inhalation therapy device"
+* urn:oid:2.16.840.1.113883.6.276#38663 "Flexible video nephroscope"
+* urn:oid:2.16.840.1.113883.6.276#42347 "Dental implant, endosseous, partially-embedded"
+* urn:oid:2.16.840.1.113883.6.276#46352 "Bare-metal intracranial vascular stent"
+* urn:oid:2.16.840.1.113883.6.276#47264 "Dual-chamber implantable pacemaker, demand"
+* urn:oid:2.16.840.1.113883.6.276#62163 "Intrauterine cannula, reusable"
+* urn:oid:2.16.840.1.113883.6.276#62260 "Air-conduction hearing aid acoustic tube"
+* urn:oid:2.16.840.1.113883.6.276#62423 "Spinal cord/peripheral nerve implantable analgesic electrical stimulation system lead, wired connection"
+* urn:oid:2.16.840.1.113883.6.276#62414 "Blue-light phototherapy lamp, home-use"
+* urn:oid:2.16.840.1.113883.6.276#64587 "Uncoated knee femur prosthesis, ceramic"
+* urn:oid:2.16.840.1.113883.6.276#64992 "ADAMTS13 activity IVD, kit, chemiluminescent immunoassay"
+// * include codes from system SNOMED_CT where concept is-a #49062001
+
 
 Instance: search-summary-data-measurement
 InstanceOf: OperationDefinition
@@ -311,12 +362,11 @@ It allows clients to request CGM summary data filtered by measurement code and e
 - `result` *(Reference, required)*: A Bundle conforming to `Bundle-Search-Summary-Data-Measurements` containing all matching CGM Observations and, if requested, their related devices.  
 
 **Constraints applied:**  
-- The operation is defined at the type level for *Observation* (`type = true`).  
-- It does not affect state (`affectsState = false`).  
-- The output Bundle must always conform to the `Bundle-Search-Summary-Data-Measurements` profile.  
+
+- The output Bundle **MUST** always conform to the `Bundle-Search-Summary-Data-Measurements` profile.  
 """
 // * url = "https://gematik.de/fhir/hddt/OperationDefinition/Operation-Search-Aggregate-Observations"
-* version = "0.1.0"
+* version = "0.2.0"
 * id = "search-summary-data-measurement"
 * name = "Search_Summary_Data_Measurement"
 * title = "Search Operation for summary data measurement"

@@ -1,6 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
+Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: example-blood-glucose
 InstanceOf: Observation-Blood-Glucose
@@ -36,10 +37,11 @@ Usage: #example
 * method = $sct#105824000 "Continuous blood glucose monitoring"
 
 Instance: example-glucometer
-InstanceOf: Device-Medical-Aid
+InstanceOf: Device-Personal-Health-Device
 Usage: #example
 * id = "example-glucometer"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Device-Medical-Aid"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Device-Personal-Health-Device"
+* type =  $mdc#528401 "Glucose Monitor"
 * deviceName.name = "Accu-Chek Mobile"
 * deviceName.type = #user-friendly-name
 * manufacturer = "Roche"
@@ -48,10 +50,10 @@ Usage: #example
 * definition = Reference(example-glucometer-def)
 
 Instance: example-glucometer-metric
-InstanceOf: DeviceMetric-Medical-Aid
+InstanceOf: DeviceMetric-Personal-Health-Device
 Usage: #example
 * id = "example-glucometer-metric"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/DeviceMetric-Medical-Aid"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/DeviceMetric-Personal-Health-Device"
 * type = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * unit = $unitsofmeasure#mg/dL "milligram per deciliter"
 * source = Reference(example-glucometer)
