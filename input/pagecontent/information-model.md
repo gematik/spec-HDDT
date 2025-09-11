@@ -3,7 +3,6 @@
 * ToDo:
     * Durchsprache im Team
     * QS (insb. Sprache)
-    * Vereinheitlichen der formalen Darstellung (_a_ vs __a__ vs `a`)
 
 <hr>
 
