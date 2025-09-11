@@ -86,9 +86,9 @@ Description: "Profile for the device configuration of a Personal Health Device."
 * . ^short = "Configuration or setting capability of a personal health device"
 * . ^definition = "Describes a configuration or setting capability of a personal health device."
 * type ^short = "Definition of kind of measurement value"
-* type ^definition = "Definition of kind of measurement value of a Personal health device, e.g. that the device only measures tissue glucose. Only codes from LOINC are allowed. Codes **MUST** be match to code in measurements, e.g from this ValueSet. : https://gematik.de/fhir/hddt/ValueSet/VS-Tissue-Glucose-CGM"
-* type ^comment = "Note: For the OAuth scopes, so that the corresponding FHIR endpoint only returns the allowed device configuration that matches the measurements."
-* type ^patternCodeableConcept.coding.system = "http://loinc.org"
+* type ^definition = "Definition of kind of measurement value of a Personal health device, e.g. that the device only measures tissue glucose."
+// * type ^comment = "Note: For the OAuth scopes, so that the corresponding FHIR endpoint only returns the allowed device configuration that matches the measurements."
+// * type ^patternCodeableConcept.coding.system = "http://loinc.org"
 * unit 1..
 * unit from VS_Blood_Glucose_Units (required)
 * unit ^short = "Unit of the measurement"
@@ -353,7 +353,6 @@ It allows clients to request CGM summary data filtered by measurement code and e
 - Retrieving CGM summary statistics (mean glucose, time-in-range, GMI, etc.) for a patient over a specified interval  
 
 **Input Parameters:**  
-- `code` *(code, optional)*: Restricts results to Observations of the specified measurement type. The parameter is bound to the ValueSet `VS-CGM-Summary-Codes`.  
 - `effectivePeriodStart` *(dateTime, optional)*: Lower bound of the observation effective period.  
 - `effectivePeriodEnd` *(dateTime, optional)*: Upper bound of the observation effective period.  
 - `related` *(boolean, optional)*: If true, the response bundle also contains related Device and DeviceMetric resources.  
