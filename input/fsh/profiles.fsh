@@ -17,7 +17,16 @@ This profile constrains the FHIR Bundle resource for use as the result container
 The operation requests CGM summary data and optionally returns the related device context.  
 
 The Bundle is of type *collection* and **MUST** contain only resources of the following types:  
-- Observations conforming to HL7 CGM profiles (e.g., `$cgm-summary`, `$cgm-summary-mean-glucose-mass-per-volume`, `$cgm-summary-times-in-ranges`, `$cgm-summary-gmi`, `$cgm-summary-coefficient-of-variation`, `$cgm-summary-days-of-wear`, `$cgm-summary-sensor-active-percentage`, `$cgm-sensor-reading-mass-per-volume`, `$cgm-sensor-reading-moles-per-volume`).  
+- Observations conforming to HL7 CGM profiles: 
+    - [CGM Summary Observation](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary.html)
+    - [Mean Glucose (Mass)](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)
+    - [Mean Glucose (Moles)](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)
+    - [Times in Ranges](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-times-in-ranges.html)
+    - [Glycemic Variability Index (GMI)](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-gmi.html)
+    - [Coefficient of Variation](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-coefficient-of-variation.html)
+    - [Days of Wear](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-days-of-wear.html)
+    - [Sensor Active Percentage](https://hl7.org/fhir/uv/cgm/2025May/StructureDefinition-cgm-summary-sensor-active-percentage.html)
+ 
 - DeviceMetric resources conforming to `DeviceMetric-Personal-Health-Device` to provide configuration details for the CGM measurement device.  
 - Device resources conforming to `Device-Personal-Health-Device` to provide context about the actual Personal Health Device device used.  
 
