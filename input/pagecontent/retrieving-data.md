@@ -4,7 +4,9 @@
 * grobe Ablaufbeschreibung (Jie, Emil)
 * Sequenzdiagramme (Jie, Emil)
 
-# Querying for Device Data
+INTRO
+
+### Querying for Device Data
 
 In general, data can be measured in two different scenarios by personal health devices:
 * dedicated measurements: scheduled by a defined care plan or triggered by an unscheduled event, the patient performs a measurement using a medical aid. The measurement takes a defined period of time and records single values for one or more data item (e.g. pulse and blood pressure). Typical examples of devices, which are used ad hoc or based on a care plan are blood glucose meters, smart insulin pens, blood pressure cuffs and peak flow meters.
@@ -16,7 +18,7 @@ In addition, there are also devices and scenarios, which combine both paradigms,
 
 The HDDT FHIR API handles dedicated and continuous measurements in different ways. Which flavor of the API is to be used, is part of the FHIR implementation guide of a MIV. For combined scenarios usually the API flavor for continuous measurements is used, because it is much more efficient in transfering sampled data.
 
-## Searching using FHIR search interaction
+#### Searching using FHIR search interaction
 
 DiGA request device data from a device data recorder (see [information model](information-model.md])) using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
 The device data recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
@@ -33,11 +35,11 @@ A DiGA MAY further constrain the kind of requested values by providing a `code` 
 
 `date` and `code` are the only search parameters that DiGA and device data recorders MUST support for all MIVs. A MIV-specific implementation guide MAY request for supporting further search arguments and MAY constrain the use and semantics of these arguments. A device data recorder MAY support even more search parameters in accordance to the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition. In this case these arguments MUST be published through the device data recorders [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html). 
 
-### Paging
+#### Paging
 
 In accordance with the [HL7 FHIR specification](https://hl7.org/fhir/R4/http.html#paging), supporting _paging_ is recommended but optional for device data recorders. DiGA manufacturers MUST consider, that a specific device data recorder may only be able to respond with a limited number of [Observation](https://hl7.org/fhir/R4/observation.html) resources in response to a query. 
 
-### Device Status and Device Configuration
+#### Device Status and Device Configuration
 
 Each [Observation](https://hl7.org/fhir/R4/observation.html) resource returend by a device data recorder MUST contain a `device` element that referes to a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource. This resource reflects the status of the sensor that was used to measure the obervation. The provided [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) MUST at least 
 * provide information about the calibration status of the sensor and 
@@ -49,7 +51,7 @@ If a request from a DiGA searches for historic device data and if the device dat
 
 The [Device](https://hl7.org/fhir/R4/device.html) resource MUST contain a `definition` reference to the device's product definition as registered with the BfArM device registry. The reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfARM device registry. The reference MAY contain a _version_ value.
 
-## Dedicated Measurements
+#### Dedicated Measurements
 
 In general HDDT only requests a minimum of data elements to be mandatory with an [Observation](https://hl7.org/fhir/R4/observation.html) resource that reflects a single measurement. The example below is based on the HDDT FHIR impementation guideline for _glucose in capillary blood_. 
 
@@ -91,15 +93,15 @@ This gets more complex, if the status of the sensor changes. The figure below is
 
 As shown with the example, a calibration of a sensor leads to an update to the sensor's `DeviceMetric` resource. The device data recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer. 
 
-## Continuous Measurements
+#### Continuous Measurements
 
 * Blöcke fester Größe
 * letzter Block wird dynamisch aufgefüllt
 
-# Querying for Aggregated or Calculated Data
+### Querying for Aggregated or Calculated Data
 
 * keine einzelnen Kennzahlen, sondern nur standardisierte Berichte auf Kennzahlen
 
-# Querying for Configuration Data
+### Querying for Configuration Data
 
 * wird erst einmal nicht umgesetzt => BEGRÜNDUNG

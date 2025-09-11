@@ -1,10 +1,11 @@
 
-# Status: Pre-Final (Inhalt mit BMG abgestimmt)
+### Status: Pre-Final (Inhalt mit BMG abgestimmt)
 * Verantwortlich: @jcaumann
 * ToDo:
     * finale QS
 
-# Certification Relevant Systems    
+<hr>
+
 Via the interface according to § 374a SGB V, medical aids and implants must be able to pass on data to authorized DiGA if they are 
 - distributed to insured persons at the expense of the statutory health insurance and 
 - transmit the data about the insured person electronically to the manufacturer or third parties via publicly accessible networks. 
@@ -14,7 +15,7 @@ However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oxi
 
 The interface itself MUST be offered via a backend system and is called by DiGA via the Internet.
 
-## Building Blocks 
+### Building Blocks 
 
 The present specification is based on the reference model of the Continua Health Alliance, which logically divides a medical device worn at, on or inside the patient into defined technical blocks.
 
@@ -23,7 +24,7 @@ The present specification is based on the reference model of the Continua Health
 
 The personal device is the hardware of the medical aid or implant and realizes the sensory recording of data on or in the patient. The data is transmitted via a local point-to-point connection to an aggregation manager, which validates the data, prepares it and, if necessary, merges it with other data. For most devices, the aggregation manager will be a mobile application on a smartphone or tablet, but it is not uncommon to have dedicated mobile controllers (e.g. in some insulin pumps), desktop systems or web portals (e.g. for wired data import) or set-top boxes (e.g. in implants). The data is transmitted to a background system via an Internet connection and persisted there in a health record. The HDC interface for data transmission to DIGA is based on the health record. Thus, only data that is available in the health record of a background system are affected by § 374a SGB V; data that is only processed in the Personal Health Device or the Aggregation Manager does not fall under § 374a SGB V and therefore must not be made available through the HDDT API.
 
-## Relevant Systems
+### Relevant Systems
 
 The necessary prerequisite for a medical aid or implant to fall under the regulations of § 374a SGB V is the financial viability of the aid or implant through the statutory health insurance (GKV). The aid or implant is considered to be financially viable under the statutory health insurance system if:
 - it is listed in the list of medical aids of the GKV,

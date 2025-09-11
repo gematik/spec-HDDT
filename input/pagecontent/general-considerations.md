@@ -1,13 +1,12 @@
-# Status: Pre-Final
+### Status: Pre-Final
 * Verantwortlich: @jcaumann
 * ToDo:
     * QS (insb. Sprache)
-
-# General Considerations
+<hr>
 
 To facilitate the implementation of the HDDT specification for manufacturers, various fundamental decisions were made. These aim to reduce complexity and ensure the economic feasibility of the HDDT interfaces.
 
-## Minimization of HDDT-specific Implementation Efforts
+### Minimization of HDDT-specific Implementation Efforts
 Personal Health Devices store the collected data in a back-end system in the form of a medical record. Here, data from various measurements flow together on a patient-specific basis. The medical record offers interfaces on this data through which the collected data of a patient can be accessed by the patient himself or his treating physicians via mobile apps or other interactive front-end systems.
 
 It is the claim of the HDDT specification that manufacturers of personal health devices can expand these existing interfaces as easily as possible with the HDDT-specific processes and content. Ideally, any necessary changes to existing systems should be limited to the syntax of data exchange and should not require any changes to the basic architecture of the interaction between personal medical device, aggregation manager and health record. To achieve this, the specifications and the non-functional implementation requirements associated with them follow the following principles:
@@ -17,7 +16,7 @@ It is the claim of the HDDT specification that manufacturers of personal health 
 * Only data that is managed in the health record is affected by the HDDT interface. The manufacturer therefore does not have to forward data processed exclusively in the device or in the aggregation manager to the health record solely for the purpose of implementing the HDDT specification.
 * Existing restrictions of the personal health device on the frequency of data collection and of the aggregation manager on the frequency of data transmission to the health record are respected by the HDDT specification. This means that if an aggregation manager only transmits data to the health record once a day, then a DiGA will only be able to receive up-to-date data at this frequency via the HDDT interface.
 
-## Easy maintenance and economical operations
+### Easy maintenance and economical operations
 The HDDT specifications apply to manufacturers of all kinds of personal health devices. The specifications for the pairing of medical record and DiGA as well as the specifications for the security of data exchange (authentication, authorization, logging) are identical for all types of personal health devices and all data-storing health records and are therefore provided as a common technical specification.
 
 The data exchanged between the health record of a personal health device and a DiGA depends on the kind of the personal health device. How this data is exchanged in concrete terms and what other data can be derived from this data depends on the kind of data gathered by the health device. In order to make it as easy as possible for a manufacturer to identify the relevant specifications and specification changes, the content of data transmissions is defined for each kind of data individually (see [mandatory interoperable values](mivs.md)) and laid down in dedicated specifications. Slicing is only used in the specifications of FHIR-encoded data content if all slices are related to the same kind of data. This means that even if, for example, the specifications for the provision of blood glucose data and the provision of respiratory monitoring data currently only differ in the classifying LOINC codes and the units used, these are still two dedicated specifications. Manufacturers of blood glucose meters are thus not affected by future changes to the specification parts, which only affect respiratory monitoring data. 
