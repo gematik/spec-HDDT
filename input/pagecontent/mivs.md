@@ -1,4 +1,3 @@
-# MIVs and Derived Values
 
 Self-management tools used by patients to determine glucose levels analyze either capillary blood ("bloody measurement" on the fingertip) or tissue fluid (rtCGM). In the following table from ISO/IEEE 11073-10425:2019, these measurement methods are highlighted in red. The other measurement methods listed are primarily used in the doctor's office and are not taken into account for the HDDT-UseCase "Diabetes Self-Management".
 
@@ -9,6 +8,16 @@ For the first introduction stage of HDDT, two mandatory interoperable values (MI
 - Glucose level in capillary blood
 - Glucose value measured continuously in interstitial fluid
 
-## Aggregated and Derived Data
+
+### GEM_HDC_VS_Blood_Glucose
+This ValueSet contains codes for blood glucose measurements, including both mass/volume and moles/volume in blood, serum, or plasma, supporting standardized data exchange.
+**ToDo**: Verlinkung https://gematik.de/fhir/hdc/ValueSet/VS-Blood-Glucose
+
+### GEM_HDC_VS_Tissue_Glucose_CGM
+This ValueSet includes codes relevant to continuous glucose monitoring (CGM) of tissue glucose, facilitating interoperability for CGM device data.
+
+**ToDo**: Verlinkung https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM
+
+#### Aggregated and Derived Data
 
 *Note: The first two vibW have been set, whether the glucose profile will also be binding as vobW still has to be agreed with the BMG.*

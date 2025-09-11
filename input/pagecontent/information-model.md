@@ -1,13 +1,15 @@
-# Status: Draft
+### Status: Draft
 * Verantwortlich: @jcaumann
 * ToDo:
     * Durchsprache im Team
     * QS (insb. Sprache)
     * Vereinheitlichen der formalen Darstellung (_a_ vs __a__ vs `a`)
 
-# HDDT Information Model
+<hr>
 
 ___Caution__: In HL7 FHIR R4 the definitions of the [Device](https://hl7.org/fhir/R4/device.html) and [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resources are not very clear about the separation between an operational instance of a device and the general description of the product. This has been corrected with R5. In order to be compliant with FHIR R4, R5, and R6 the HDDT information model does not make use of elements, which are not compliant accross these releases. This especially affects the binding of the device data recorder's FHIR endpoint to the definition of the device data recorder._ 
+
+<hr>
 
 As depicted in the definition of [certification relevant systems](certification-relevant-systems.md), each medical aid or implant can be divided into
 * __personal device__: the hardware part including the __sensors__ that measure __patient data__ (e.g. vital signs)
@@ -24,7 +26,7 @@ This logical model builds the foundation of the HDDT FHIR based information mode
 | patient data         | Interoperable Value                 | [Observation](https://hl7.org/fhir/R4/observation.html)              |
 | device data recorder | Device Data Recorder Definition     | [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html)<br>[Endpoint](https://hl7.org/fhir/R4/endpoint.html)                   |
 
-## Measurements and Devices
+### Measurements and Devices
 
 This core part of the HDDT information model can be implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the light blue box are used by the DiGA for [retrieving device data](retrieving-data.html) from the device data recorder. Theses instances are managed and provided by the manufacturer of the device data recorder. The device data recorder instance itself is requested by the DiGA during the [pairing flow](pairing.html) and therefore registered with the BfArM device registry. 
 
@@ -54,7 +56,7 @@ Each instance of a __Personal Health Device__ is represented by a FHIR [Device](
 * an `expirationDate` for devices which have a defined end-of-life. An example for this is an rtCGM sensor which only transmits data for 14 or 15 days (depending on the product) and after this is to be replaced by another device.
 * further `property` elements may be defined by the HDDT specification to cover specific configuration settings of specific decvice types.
 
-## BfArM Registries
+### BfArM Registries
 
 Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the BfArM device registry. This leads to a __Personal Health Device Definition__ which is defined as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. Each __Personal Health Device__ can be linked with a __Personal Health Device Definition__ in the BfArM Device Registry through the `Device.definition' element.
 
@@ -84,7 +86,7 @@ The class diagram below extends the previous figure by the classes of the HDDT i
   <img src="assets/images/HDDT_Informationsmodell_Generisch_Device_and_Definition.svg" style="width: 100%;" />
 </div>
 
-## MIVs
+### MIVs
 
 A core idea of the HDDT specification is the definition of _Mandatory Interoperable Values (MIVs)_. A MIV is a conceptual definition of a value that MUST be provided in an interoperable manner by a medical aid or implant through a device data recorder's HDDT API. A "conceptual definition" defines a value by it properties and purposes within the context of a DiGA device data processing scenario. It therefore reflects the legal obligation from § 374a SGB V that a DiGA must only process device data if and only if this data is needed for the intended purposes of the DiGA. Therefore for example _Glucose in capillary Blood_ and _Glucose in interstitial fluid_ are two different _MIVs_: While the first is measured ad hoc and usable for clinical decisions the second is measured continuously and suitable for calculating key indicators for the status of the treatment (e.g. %TIR and GMI). 
 

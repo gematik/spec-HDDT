@@ -118,9 +118,6 @@ pages:
   information-model-diabetes.html:
     title: Information Model Diabetes
     generation: markdown
-  semantics.html:
-    title: Semantics
-    generation: markdown
   measurement-blood-glucose.html:
     title: Measurement Blood Glucose
     generation: markdown
@@ -175,15 +172,11 @@ menu:
   UseCase Diabetes Self Management:
     Mandatory Interoperable Values (MIVs): mivs.html
     Information Model Diabetes: information-model-diabetes.html
-    Semantics: semantics.html
     Measurement Blood Glucose: measurement-blood-glucose.html
     Measurement Tissue Glucose: measurement-tissue-glucose.html
     Aggregated Reports CGM: aggregated-reports-cgm.html
     Conventions for Device* Ressources: conventions-for-device-resources.html
     Examples: examples.html
-  ImplementationGuide:
-    Implementation guide for DiGA: implementation_guide_diga.html
-    Implementation guide for HiMi: implementation_guide_himi.html
   Artifacts:
     Artifacts Summary: artifacts.html
 

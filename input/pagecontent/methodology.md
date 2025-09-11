@@ -1,10 +1,9 @@
-# Status: Pre-Final
+### Status: Pre-Final
 * Verantwortlich: @jcaumann
 * ToDo:
     * QS (insb. Sprache)
     
-
-# Methodology
+<hr>
 
 The range of medical aids and implants that could potentially be affected by § 374a SGB V is broad and diverse. It includes items such as blood pressure cuffs, blood glucose meters, real-time continuous glucose monitoring (rtCGM) devices, pacemakers, and neurostimulators.
 
@@ -12,7 +11,7 @@ In principle, different approaches are possible for specifying the FHITR interfa
 
 The modular “building block” approach was discarded. Experience with the DiGA MIO Toolkit has shown that this kind of flexibility can negatively affect interoperability. On the other hand, device-specific implementation guides were also considered unsuitable. This is because they take the perspective of data producers as the standard, while the law clearly requires alignment with the intended purposes of DiGA as consumers of device data.
 
-## From Use Cases to MIVs
+### From Use Cases to MIVs
 
 To meet this legal requirement – namely, to design the interface according to the processing purposes of the device data consumers – the approach outlined in the following diagram was chosen.
 
@@ -43,7 +42,7 @@ MIVs are "conceptually defined" through their properties and purposes within the
 
 Example: _Glucose in capillary Blood_ and _Glucose in interstitial fluid_ are two different _MIVs_: While the first is measured ad hoc and usable for clinical decisions the second is measured continuously and suitable for calculating key indicators for the status of the treatment (e.g. %TIR and GMI). These different properties and contexts of use are also reflected in the considered use cases, where a DiGA can typically make use of only one or the other MIV.
 
-## Defined MIVs
+### Defined MIVs
 
 The table below lists the use cases, medical aids, and interoperable values that have been assessed so far. Interoperable values in fat letters are MIVs. Medical aids in fat letters are devices that presumerably are certification relevant systems with respect to the identified MIVs.
 

@@ -1,11 +1,13 @@
-# Status: Offen
+### Status: Offen
 * Verantwortlich: @jcaumann
 * ToDo:
     * Bezug zu ISO 11073 (Jörg)
     * Bezug zu bestehenden FHIR Profilen (Jörg)
     * Bezug zu Security Standards in der TI (Jörg)
 
-# Standards Used
+<hr>
+
+### Standards Used
 
 In this technical specification, the following standards have been used:
 
@@ -19,7 +21,7 @@ In this technical specification, the following standards have been used:
 | LOINC     | HDDT [Mandatory Interoperable Values](methodology.md)(MIVs) are mapped onto sets of LOINC codes. |
 
 
-# Compatibility of the HDDT FHIR Profiles
+### Compatibility of the HDDT FHIR Profiles
 
 | HDDT FHIR profile | international profile  | compliance statement |
 |-------------------|-----------------|---------|
@@ -28,7 +30,4 @@ In this technical specification, the following standards have been used:
 | | [Clinivault Observation](https://simplifier.net/clinivault/example-10) (India) | fully compliant except that `device` is mandatory with HDDT |
 | | [KBV Basisprofile](https://simplifier.net/base1x0/kbv_pr_base_observation_glucose_concentration) (Germany) | `device` is mandatory with HDDT<br>HDDT only allows for a single `code` while KBV requests two |
 | | [Finnish PHR Blood Glucose Profile](https://simplifier.net/digious-fi/fiphrsdbloodglucose) | Finnish PHR allows for LOINC Codes which are not part  of the HDDT MIV <br>Finnish PHR disallows `device` which is mandatory for HDDT  |
-
-
-
 

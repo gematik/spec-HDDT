@@ -63,7 +63,7 @@ Id: Device-Personal-Health-Device
 * expirationDate MS
 * expirationDate ^short = "Date and time of expiry of this Personal health device (if applicable)"
 * expirationDate ^definition = "The date and time beyond which this Personal health device is no longer valid or should not be used (if applicable)."
-* serialNumber 1..1
+* serialNumber MS
 * serialNumber ^short = "Serial number of the Personal health device"
 * serialNumber ^definition = "The serial number that uniquely identifies the Personal health device instance."
 * deviceName 1..1
