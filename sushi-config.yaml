@@ -181,9 +181,6 @@ menu:
     Aggregated Reports CGM: aggregated-reports-cgm.html
     Conventions for Device* Ressources: conventions-for-device-resources.html
     Examples: examples.html
-  ImplementationGuide:
-    Implementation guide for DiGA: implementation_guide_diga.html
-    Implementation guide for HiMi: implementation_guide_himi.html
   Artifacts:
     Artifacts Summary: artifacts.html
 
