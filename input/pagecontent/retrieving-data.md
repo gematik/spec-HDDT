@@ -32,7 +32,13 @@ In addition, there are also devices and scenarios, which combine both paradigms,
 
 The HDDT FHIR API handles dedicated and continuous measurements in different ways. Which flavor of the API is to be used, is part of the FHIR implementation guide of a [MIV](methodology.md). For combined scenarios usually the API flavor for continuous measurements is used, because it is much more efficient in transfering sampled data.
 
-#### Searching using FHIR search interaction
+#### General Requirements
+The specification of the techncal interfaces for retrieving device data considers the following determinations and requirements:
+* A DiGA pulls data from the device data recorder by stating a request for data. This may either be a FHIR RESTful interaction or a FHIR operation (for details see below). The device data recorder MUST validate the request and upon acceptance MUST respond with a set of FHIR resources that match the request.
+* For all data transmitted to a DiGA by a device data recorder it MUST be clear to the DiGA, if the device that collected the data was in a calibrated state or not. 
+* Usually a set of device data provided by a device data recorder covers a period of time that was given with the request (e.g. all measurements for the last 4 hours). For each response of a device data recorder it MUST be clear to the DiGA if the provided set of data is complete or not. E.g. a set of data may be inclomplete, if the connection between the aggregation manager and the health record was broken during the requested period and the missing data may be transmitted to the health record after the connection is re-established. 
+
+#### Searching Observations Using FHIR _search_ Interactions
 
 DiGA request device data from a device data recorder (see [information model](information-model.md])) using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
 The device data recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
@@ -41,9 +47,22 @@ The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile
  
 The device data recorder MUST be able to discover the internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject`argument with a query, the device data recorder MUST ignore this argument and SHOULD respond with an _Invalid Request_ error (see [OpenAPI definition](himi-diga-api.md#openapi-description)).
 
-The device data recorder MUST be able to discover the SMART Scope from the access token, which were accepted by the device data recorder during pairing with the requesting DiGA (see section [Pairing](pairing.md)). The SMART Scope MUST implicitly be considered as the `code` argument with every query to the device date recorder's FHIR search API. A DiGA MAY explicitly further constrain the scope of the search by providing a `code` argument with a query (see below).
+The device data recorder MUST be able to discover the SMART Scope from the access token, which were accepted by the device data recorder during pairing with the requesting DiGA (see section [Pairing](pairing.md)). The SMART Scope MUST implicitly be considered as the `code` argument with every query to the device date recorder's FHIR search API. If the Scope resolves to multiple LOINC codes, these must all be considered to be query argumnets (OR-semantics). A DiGA MAY explicitly further constrain the scope of the search by providing a `code` argument with a query (see below).
 
 With every FHIR search interaction the requesting DiGA SHOULD provide a `date` argument to set the lower and/or upper bound of the time period for which data is requested. If no `date` is provided with the query, the device data recorder will respond with all data that matches the other (implicit and explicit) query arguments.  
+
+<hr>
+
+__Example__: 
+
+```
+GET [base]/Observation/?date=gt20250912
+```
+The HTTP header holds an Access Token, from which the device data recorder can obtain the internal patient identifer _123_ and a SMART scope that resolves to the [ValueSet](https://hl7.org/fhir/R4/valueset.html) _https://terminologien.bfarm.de/fhir/ValueSet/VS-Tissue-Glucose-CGM_ which contains the LOINC codes [105272-9](https://loinc.org/105272-9/) and [99504-3](https://loinc.org/99504-3). The "real" query sent to the health record in this example is 
+```
+GET [base]/Observation/?date=gt20250912&subject=Patient/123&code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS-Tissue-Glucose-CGM
+```
+<hr>
 
 A DiGA MAY further constrain the kind of requested values by providing one or more `code` arguments with the search request. In this case only [Observation](https://hl7.org/fhir/R4/observation.html) resources are returned, were the contained data exactly match the given codes.
 
@@ -52,6 +71,13 @@ Example: If no `code` argument is given, the data recorder of a blood glucose me
 All `code` values provided as explicit query arguments MUST be part of the [ValueSet](https://hl7.org/fhir/R4/valueset.html) that is referenced in the SMART scope that is linked with the Access Token. If a DiGA requests for a code which is not contained with this value set, the device data recorder MUST respond with an 'Invalid Request` error.
 
 `date` and `code` are the only search parameters that each DiGA and device data recorder MUST support for all MIVs. A MIV-specific implementation guide MAY request for supporting further search arguments and MAY constrain the use and semantics of these arguments. A device data recorder MAY support even more search parameters in accordance to the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition. In this case these arguments MUST be published through the device data recorders [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html). 
+
+#### Fetching Single Observations using FHIR _read_ Interactions
+Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection of data elements that represents a concept or entity in health care. By this each [Observation](https://hl7.org/fhir/R4/observation.html) resource a device data recorder transmits to a DiGA MUST be identifiable and addressable through an `id`. Device data recorder MUST allow a DiGA to request a known Observation by using a FHIR [_read_ interaction](https://hl7.org/fhir/R4/http.html#read):
+```
+GET [base]/Observation/[id]
+```
+___Remark__: As stated in [General Considerations](general-considerations.md), device data recordes MAY limit access to historical data to 30 days, unless the [MIV](methodology.md)-specific specification requests for a longer period. In case a DiGA requests such a historic resource by its `id` after the availability period ended, the device data recorder MUST respond with a _404 Not Found_ error (see https://hl7.org/fhir/R4/http.html#read for details on handling deleted resources). 
 
 #### Paging
 
@@ -135,8 +161,16 @@ GET baseurl/Observation/3
 ```
 
 ##### Change of calibration.status
+Some sensors for continuous measurements require initial or regular calibration. If this leads to a changed value for `calibration.state` in the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) observation that is bound to a chunk, the device data recorder MUST finish the current chunk and start a new chunk. The same holds for any other change in `calibration.state`, e.g. a sensor that switches from a calibrated to an unknown state  after a certain time (see figure below.)
+
+<div><img src="/HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="45%"></div>
+<br clear="all"/>
+
+As can be seen with the example, the last chunk before calibration is set to a _final_ status and the èffectivePeriod` is adapted to the end time the calibration state changed. The new chunk is initialized with a _preliminary_ status and the fixed _chunk-time-span_. 
 
 ##### Changing Devices
+
+
 
 ##### Missing Values
 
