@@ -129,19 +129,29 @@ paths:
       tags: [Observation]
       summary: Query Observations
       description: |
-        Supports querying single values, time series data, and threshold comparisons.
+        Supports querying [Observation](https://hl7.org/fhir/R4/observation.html) resources related to blood glucose measurements.  
+        This endpoint can return either single-point measurements (e.g., fingerstick blood glucose) or time series data (e.g., continuous glucose monitoring [CGM] data). 
         
-        Data must conform to the `Observation_Blood_Glucose` or `Observation_CGM_Measurement_Series` profiles.
+        Returned resources **MUST** conform to one of the following FHIR profiles:  
+        - [Observation_Blood_Glucose](StructureDefinition-Observation-Blood-Glucose.html)  
+        - [Observation_CGM_Measurement_Series](StructureDefinition-Observation-CGM-Measurement-Series.html)  
         
         ### Search Parameters
         
         | Parameter | Type | Description |
         | --------- | ---- | ----------- |
-        | _id | `token` | Resource._id |
-        | _include | `Observation:device` | The resulting Bundle MUST  also contain the DeviceMetric resources, referenced by Observation.device.  |
-        | code | `token` | Obseravtion.code |
-        | date | `date` | Observation.effective[x] |
+        | `_id` | token | The Observation resource identifier. |
+        | `_include` | Observation:device | Ensures the resulting Bundle also contains the DeviceMetric resources referenced by `Observation.device`. |
+        | `code` | token | The observation code (e.g., LOINC code for blood or tissue glucose). |
+        | `date` | date | Filters results based on `Observation.effective[x]` (date or dateTime). |
         
+        ### Response
+        
+        - Returns a Bundle of Observation resources that match the given criteria.  
+        - Example responses include:  
+          - Single blood glucose measurement (point-in-time `valueQuantity`).  
+          - Continuous glucose monitoring series (`valueSampledData` across a time range).  
+            
         
         
       parameters:
@@ -216,12 +226,12 @@ paths:
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Unauthorized | [string] | Missing or invalid credentials. |
+            | Unauthorized | [string] | Missing, invalid, or expired credentials. |
         '403':
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Forbidden | [string] | Client does not have permissions for resource "Observation". |
+            | Forbidden | [OperationOutcome] | Client does not have permissions for resource "Observation". |
         '500':
           description: |
             | Message | Type | Reason |
@@ -232,20 +242,27 @@ paths:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
       description: |
-        Obtain a DeviceMetric resource, for the purpose of obtaining calibration the calibration status or the linked device.
-      
-        DeviceMetric resources must conform to the `DeviceMetric_Medical_Aid` profile.
+        Supports querying [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources, primarily to obtain calibration status or to access the linked [Device](https://hl7.org/fhir/R4/device.html).  
+
+        Returned resources **MUST** conform to the [DeviceMetric_Medical_Aid](StructureDefinition-DeviceMetric-Personal-Health-Device.html) profile.  
         
-        - The endpoint **MUST** allow requesting a specific DeviceMetric resource via its internal id
-        - The endpoint **MUST** allow requesting the referenced Device resource via `DeviceMetric.source`
-        - The endpoint **MUST NOT** allow any additional search parameters.
+        - The endpoint **MUST** allow requesting a specific DeviceMetric resource by its internal `_id`.  
+        - The endpoint **MUST** allow including the referenced Device resource via DeviceMetric.source.  
+        - The endpoint **MUST NOT** support any additional search parameters.  
         
         ### Search Parameters
         
         | Parameter | Type | Description |
         | --------- | ---- | ----------- |
-        | _id | `token` | Resource._id |
-        | _include | `DeviceMetric:source` | Include the referenced Device resource in the Bundle |
+        | `_id` | token | The DeviceMetric resource identifier. |
+        | `_include` | DeviceMetric:source | Ensures the resulting Bundle also contains the referenced Device resource. |
+        
+        ### Response
+        
+        - Returns either a single DeviceMetric resource (if called at `/DeviceMetric/_id`), or a Bundle containing one DeviceMetric resource, optionally including a Device.  
+        - Example responses include:  
+          - A DeviceMetric resource with calibration status.  
+          - The referenced Device resource included via `_include`.  
         
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
@@ -267,11 +284,10 @@ paths:
                         - system: http://loinc.org
                           code: "15074-8"
                           display: Blood glucose measurement
-                    unit:
-                      coding:
-                        - system: http://unitsofmeasure.org
-                          code: "mg/dL"
-                          display: milligrams per deciliter
+                    calibration:
+                      state: calibrated
+                    source:
+                      reference: Device/66
             
         '400':
           description: |
@@ -291,12 +307,12 @@ paths:
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Unauthorized | [string] | Missing or invalid credentials. |
+            | Unauthorized | [string] | Missing, invalid, or expired credentials. |
         '403':
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Forbidden | [string] | Client does not have permissions for resource "DeviceMetric". |
+            | Forbidden | [OperationOutcome] | Client does not have permissions for resource "DeviceMetric". |
         '500':
           description: |
             | Message | Type | Reason |
@@ -308,21 +324,27 @@ paths:
       tags: [Device]
       summary: Query Device resources
       description: |
-        Obtain Device resources in order to view the device name, manufacturer, serial number, and configuration.
-      
-        Retrieve device instances conforming to the `Device_Medical_Aid` profile.
+        Supports querying [Device](https://hl7.org/fhir/R4/device.html) resources in order to view device details such as name, manufacturer, serial number, and configuration.  
+
+        Returned resources **MUST** conform to the [Device_Medical_Aid](StructureDefinition-Device-Personal-Health-Device.html) profile.  
         
-        - The endpoint **MUST** allow requesting a specific Device resource via its internal id
-        - The endpoint **MUST** allow requesting the referenced Device resource via `Device.parent`
-        - The endpoint **MUST NOT** allow any additional search parameters.
-        
+        - The endpoint **MUST** allow requesting a specific Device resource by its internal `_id`.  
+        - The endpoint **MUST** allow including the referenced parent Device resource via `Device.parent`.  
+        - The endpoint **MUST NOT** support any additional search parameters.  
         
         ### Search Parameters
         
         | Parameter | Type | Description |
         | --------- | ---- | ----------- |
-        | _id | `token` | Resource._id |
-        | _include | `Device:parent` | Include the referenced device
+        | `_id` | token | The Device resource identifier. |
+        | `_include` | Device:parent | Ensures the resulting Bundle also contains the referenced parent Device resource. |
+        
+        ### Response
+        
+        - Returns either a single Device resource (if called at `/Device/_id`), or a Bundle containing one Device resource. 
+        - Example responses include:  
+          - A single Device resource with identifiers, manufacturer, and serial number.  
+          - The referenced parent Device resource included via `_include`.  
         
       parameters:
         - $ref: "#/components/parameters/AcceptHeader"
@@ -368,12 +390,12 @@ paths:
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Unauthorized | [string] | Missing or invalid credentials. |
+            | Unauthorized | [string] | Missing, invalid or expired credentials. |
         '403':
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Forbidden | [string] | Client does not have permissions for resource "Device". |
+            | Forbidden | [OperationOutcome] | Client does not have permissions for resource "Device". |
         '500':
           description: |
             | Message | Type | Reason |
@@ -386,13 +408,28 @@ paths:
       tags: [Observation]
       summary: Custom operation to search summary data measurements
       description: |
-        Custom FHIR operation to obtain aggregated measurement data with optional inclusion of related Device and DeviceMetric resources.
+        Supports the custom FHIR operation **$search-summary-data-measurement** to obtain aggregated measurement data.  
+        Optionally, related Device and DeviceMetric resources can be included in the result.  
         
-        ### Profile Conformance
-        Results conform to the **BundleSearchSummaryDataMeasurements** profile.
+        
+        Results **MUST** conform to the [BundleSearchSummaryDataMeasurements](StructureDefinition-Bundle-Search-Summary-Data-Measurements.html) profile.  
         
         ### Request Parameters
-        All parameters are provided in the request body as JSON, following FHIR Parameters resource pattern.
+        
+        All parameters are provided in the request body as JSON, following the [FHIR Parameters](https://hl7.org/fhir/R4/parameters.html) resource pattern.  
+        
+        | Parameter | Type | Required | Description |
+        |-----------|------|----------|-------------|
+        | `effectivePeriodStart` | dateTime | No | Start of the effective time period. |
+        | `effectivePeriodEnd` | dateTime | No | End of the effective time period. |
+        | `related` | boolean | No | When set to true, includes Device resources from which the data was measured and DeviceMetric resources for calibration status. |
+        
+        ### Response
+        
+        - Returns a Bundle containing summary measurement Observations, and optionally related Device and DeviceMetric resources.  
+        - Example responses include:  
+          - Aggregated CGM summary data (e.g., mean glucose, times in ranges, GMI). 
+          
       parameters:
       - $ref: "#/components/parameters/AcceptHeader"
       - $ref: "#/components/parameters/ContentTypeHeader"
@@ -400,16 +437,6 @@ paths:
       - $ref: "#/components/parameters/XRequestIdHeader"
       requestBody:
         required: true
-        description: |
-          Parameters for the summary data search operation. Needs to conform to the [FHIR Parameters](https://hl7.org/fhir/R4/parameters.html) resource.
-          
-          ### Parameter Details
-          | Parameter | Type | Required | Description |
-          |-----------|------|----------|-------------|
-          | effectivePeriodStart | dateTime | No | Start of the effective time period |
-          | effectivePeriodEnd | dateTime | No | End of the effective time period |
-          | related | boolean | No | Optionally include `Device`-resources, from which the data was measured, and `DeviceMetric` for the corresponding calibration status.   |
-
         content:
           application/fhir+json:
             schema:
@@ -449,7 +476,7 @@ paths:
                   valueBoolean: true
       responses:
         '200':
-          description: Result bundle containing search summary data measurements and optionally related resources
+          description: Return a Bundle, containing search summary data measurements and optionally related resources
           content:
             application/fhir+json:
               examples:
@@ -496,12 +523,12 @@ paths:
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Unauthorized | [string] | Missing or invalid credentials. |
+            | Unauthorized | [string] | Missing, invalid, or expired credentials. |
         '403':
           description: |
             | Message | Type | Reason |
             |-|-|-|
-            | Forbidden | [string] | Client does not have permissions to see the results of this operation. |
+            | Forbidden | [OperationOutcome] | Client does not have permissions to see the results of this operation. |
         '500':
           description: |
             | Message | Type | Reason |
