@@ -110,7 +110,7 @@ For the complete definitions, refer to the [Artifacts](artifacts.html) page. For
 
 **Resource Type**: DeviceMetric
 
- FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
+| FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
 |----------------|------------|------------|----------------|------|
 | `type` | Type of metric | 1..1 | CodeableConept | Important for access control |
 | `calibration.state` | Calibration status | 1..1 | code | e.g., "calibrated" |
