@@ -106,6 +106,9 @@ pages:
   pairing.html:
     title: Pairing
     generation: markdown
+  smart-scopes.html:
+    title: Smart Scopes
+    generation: markdown
   retrieving-data.html:
     title: Retrieving Data
     generation: markdown
@@ -162,6 +165,7 @@ menu:
     Participants: participants.html
     Information Model: information-model.html
     Pairing: pairing.html
+    Smart Scopes: smart-scopes.html
     Retrieving Data: retrieving-data.html
   REST API:
     HIMI DiGA FHIR API: himi-diga-api.html
