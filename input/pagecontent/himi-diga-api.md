@@ -84,10 +84,11 @@ For the complete definitions, refer to the [Artifacts](artifacts.html) page. For
 |  `status` | Status | 1..1 | code | Required by the FHIR specification. For time-series Observations, should only be set to "final", if the `valueSampledData` is completely filled (TODO: reference where the information is) |
 | `code` | Type of Observation | 1..1 | CodeableConcept | Uses a code from the MIV value sets. |
 | `effective` | Time or period of Obsevation | 1..1 | DateTime / Period | Observations with a single value use `effectiveDateTime`, while time-series Observations use `effectivePeriod` |
-| `value` | Actual result | 1..1 | Quantity / SampledData | Observations with single value use `valueQuantity`, while time-series Observations use `valueSampledData` |
+| `value` | Actual result | 1..1 | Quantity / SampledData | Observations with single value use `valueQuantity`| while time-series Observations use `valueSampledData` |
 | `device` | Measuring device | 1..1 | Reference(Device / DeviceMetric) | In cases, where the sensor requires a calibration, `device` should reference a DeviceMetric. In all other cases, the reference should be to a Device. |
 | `method` | Measurement method | 0..1 | CodeableConcept | Field is flagged as **must support** (see chapter [Use of HL7 FHIR](use_of_hl7_fhir.html)) |
 | `dataAbsentReason` | Why is data missing | 0..1 | CodeableConcept | Use for time-seires data to indicate the reason for missing data. |
+
 ---
 <br><br>
 
