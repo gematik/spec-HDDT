@@ -101,7 +101,7 @@ Title: "CGM Measurement Series"
 Description: "Example of a CGM time series with 1-minute intervals over 1 hour (60 samples)."
 Usage: #example
 * id = "example-cgm-series"
-* status = #preliminary
+* status = #final
 * code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
 * effectivePeriod.end   = "2025-08-28T09:00:00Z"
@@ -122,16 +122,36 @@ Usage: #example
 * method = $sct#105824000 "Continuous blood glucose monitoring"
 * note.text = "Example CGM data series with 1-minute intervals over 1 hour (60 samples)."
 
+Instance: Example-CGM-Series-Incomplete
+InstanceOf: Observation-CGM-Measurement-Series
+Title: "CGM Measurement Series Incomplete"
+Description: "Example of a CGM time series with 1-minute intervals over 10 minutes (10 samples), but incomplete."
+Usage: #example
+* id = "example-cgm-series-incomplete"
+* status = #preliminary
+* code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* effectivePeriod.start = "2025-08-28T08:00:00Z"
+* effectivePeriod.end   = "2025-08-28T09:00:00Z"
+* valueSampledData.origin.value = 0
+* valueSampledData.origin.unit = "mg/dL"
+* valueSampledData.origin.system = $unitsofmeasure
+* valueSampledData.origin.code = #mg/dL
+* valueSampledData.period = 60000
+* valueSampledData.dimensions = 1
+* valueSampledData.data = "110 111 112 113 114 115 116 117 118 119"
+* device = Reference(Example-DeviceMetric-CGM)
+* method = $sct#105824000 "Continuous blood glucose monitoring"
+* note.text = "Example CGM data series with 1-minute intervals over 10 minutes (10 samples), but status incomplete."
 
-Instance: Example-Observation-CGM-Series-Preliminary
+
+Instance: Example-Observation-CGM-Series-Data-Unavailable
 InstanceOf: Observation_CGM_Measurement_Series
-Title: "CGM Measurement Series – preliminary"
+Title: "CGM Measurement Series – Data Unavailable"
 Description: "Example of a CGM time series with status preliminary and dataAbsentReason"
 Usage: #example
-* id = "obs-cgm-series-001"
+* id = "example-cgm-series-data-unavailable"
 * status = #preliminary
 * code = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
-* subject = Reference(Patient/pat1)
 * effectivePeriod.start = "2025-09-01T08:00:00+02:00"
 * effectivePeriod.end   = "2025-09-01T10:00:00+02:00"
 * valueSampledData.origin.value = 0
@@ -150,7 +170,7 @@ InstanceOf: Device_Personal_Health_Device
 Title: "Personal Health Device – CGM"
 Description: "Example of a continuous glucose monitoring device"
 Usage: #example
-* id = "device-cgm-001"
+* id = "example-device-cgm"
 * status = #active
 * type = Mdc#528409 "Continuous Glucose Monitor"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
@@ -165,7 +185,7 @@ InstanceOf: DeviceMetric_Personal_Health_Device
 Title: "DeviceMetric – CGM tissue glucose configuration"
 Description: "Example configuration for CGM measurements"
 Usage: #example
-* id = "devicemetric-cgm-001"
+* id = "example-devicemetric-cgm"
 * type = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * unit = UCUM#mg/dL "milligram per deciliter"
 * source = Reference(Example-Device-CGM)

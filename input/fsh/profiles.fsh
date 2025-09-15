@@ -121,10 +121,10 @@ Description: "Profile for capturing blood glucose measurements as Observation."
 * ^date = "2025-08-28"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
-* status = #final (exactly)
+* status from VS_Observation_CGM_Status (required)
 * status ^short = "Measurement status"
-* status ^definition = "The status of the Measurement is fixed to 'final', meaning the measurement is complete and no further updates are expected."
-* status ^comment = "This element is fixed to 'final' to ensure that the glucose measurement is considered a completed observation."
+* status ^definition = "The status of the measurements, restricted to values defined in the ValueSet VS_Observation_CGM_Status, which includes only 'final' and 'preliminary'.'final' means the measurement is complete and verified; 'preliminary' means the data MAY be incomplete or unverified. The measurement SHOULD be called at a later time for collecting complete data."
+* status ^comment = "Binding to the ValueSet enforces that only 'final' or 'preliminary' to be used, in accordance with the profile requirements for blood glucose measurements."
 * code from VS_Blood_Glucose (required)
 * code ^short = "Measurement type of vital sign"
 * code ^definition = "The code specifies which vital sign was measured (e.g., LOINC 2339-0 for blood glucose)."
@@ -132,7 +132,6 @@ Description: "Profile for capturing blood glucose measurements as Observation."
 * effective[x] only dateTime
 * effective[x] ^short = "Time of measurement"
 * effective[x] ^definition = "The time or period when the blood glucose measurement was taken."
-* value[x] 1..
 * value[x] only Quantity
 * value[x] ^short = "Measured value"
 * value[x] ^definition = "The blood glucose value measured, represented as a quantity."
@@ -153,10 +152,6 @@ Description: "Profile for capturing blood glucose measurements as Observation."
 * device ^short = "Reference to device configuration"
 * device ^definition = "References a DeviceMetric resource that describes the current configuration of the measuring device."
 
-Invariant: obs-cgm-preliminary-dataAbsentReason
-Description: "If the measurement status is 'preliminary', a dataAbsentReason could be provided."
-Severity: #warning
-Expression: "status = 'preliminary' implies dataAbsentReason.exists()"
 
 Profile: Observation_CGM_Measurement_Series
 Parent: Observation
@@ -172,16 +167,13 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * . ^definition = "A series of measurements of tissue glucose taken by a CGM device, captured as a single observation."
 * status from VS_Observation_CGM_Status (required)
 * status ^short = "Measurements status"
-* status ^definition = "The status of the measurements, restricted to values defined in the ValueSet VS_Observation_CGM_Status, which includes only 'final' and 'preliminary'.'final' means the measurement is complete and verified; 'preliminary' means the data is still being collected and not complete."
-* status ^comment = "Binding to the custom ValueSet enforces that only 'final' or 'preliminary' can be used, in accordance with the profile requirements for CGM measurement series."
-* obeys obs-cgm-preliminary-dataAbsentReason
+* status ^definition = "The status of the measurements, restricted to values defined in the ValueSet VS_Observation_CGM_Status, which includes only 'final' and 'preliminary'.'final' means the measurement is complete and verified; 'preliminary' means the data MAY be still being collected and not complete. It SHOULD be called at a later time for collecting complete data."
+* status ^comment = "Binding to the ValueSet enforces that only 'final' or 'preliminary' can be used, in accordance with the profile requirements for CGM measurement series."
+
 * code from VS_Tissue_Glucose_CGM (required)
 * code ^short = "Type of measurement"
 * code ^definition = "Coding of this measurement, e.g., tissue glucose from LOINC."
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for tissue glucose measurements."
-* subject only Reference(Patient)
-* subject ^short = "Patient subject"
-* subject ^definition = "Reference to the patient to whom this time series belongs."
 * effective[x] 1..
 * effective[x] only Period
 * effective[x] ^short = "Measurement time point or period"
@@ -192,7 +184,6 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * effective[x].end 1..
 * effective[x].end ^short = "End of measurement period"
 * effective[x].end ^definition = "The ending time of the CGM measurement period."
-* value[x] 1..
 * value[x] only SampledData
 * value[x] ^short = "Time series"
 * value[x] ^definition = "CGM time series as a SampledData object."
