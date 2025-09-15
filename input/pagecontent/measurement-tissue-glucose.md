@@ -24,7 +24,6 @@ The table below highlights elements that are additionally constrained by this pr
 | Code of the unit from the specified code system | `valueSampledData.origin.code` | code | 1..1 | Code of the unit, from the UCUM code system.  |
 | Coding of this measurement (type of measurement) | `code` | CodeableConcept | 1..1 | e.g., "105272-9" (	Glucose [Moles/volume] in Interstitial fluid) from ValueSet [VS_Tissue_Glucose_CGM](ValueSet-vs-tissue-glucose-cgm.html). |
 | Reason for missing data | `dataAbsentReason` | CodeableConcept | 0..1 | A reason must be given if `valueSampledData` is not set. | 
-| Reference to the affected patient | `subject` | Reference | 0..1 | Reference to a [Patient](https://hl7.org/fhir/R4/patient.html) resource.  |
 | Reference to the device configuration ([DeviceMetric](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-DeviceMetric-Personal-Health-Device.html)) or a device instance ([Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html)) | `device` | Reference | 1..1 | The type of resource referenced, depends on whether sensor calibration is required for the correct interpretation of the data (DeviceMetric), or device does not need calibration (Device). |
 | Measurement time or period | `effective[x]` |  Period | 1..1 |  |
 | Measurement method | `method` | CodeableConcept | 0..1 | e.g., continuous blood monitoring. This field is flagged as **must support**. |

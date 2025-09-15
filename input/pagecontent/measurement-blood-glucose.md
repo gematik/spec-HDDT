@@ -24,7 +24,6 @@ The table below identifies elements that are further constrained by this profile
 | Code of the measurement unit from the specified code system | `valueQuantity.code` | code | 1..1 | Code from UCUM, e.g., "mg/dL".Should match the unit specified in the LOINC code in `Observation.code`. |
 | Coding of this measurement (type of measurement) | `code` | CodeableConcept | 1..1 | e.g., "2339-0" (blood glucose) from ValueSet [VS_HiMi_BloodGlucose](ValueSet-vs-blood-glucose.html) |
 | Reason for missing data | `dataAbsentReason` | CodeableConcept | 0..1 | A reason must be given if `valueQuantity` is not set. | 
-| Reference to the affected patient | `subject` | Reference | 0..1 | Reference to a [Patient](https://hl7.org/fhir/R4/patient.html) resource. |
 | Reference to the device configuration (DeviceMetric) | `device` | Reference | 0..1 | Reference to [DeviceMetric](StructureDefinition-DeviceMetric-Personal-Health-Device.html) to keep track of the sensor's calibration status.  |
 | Measurement time or period | `effective[x]` | dateTime / Period | 1..1 |  |
 | Measurement method | `method` | CodeableConcept | 0..1 | e.g. code for test strip, sensor. Element is flagged as **must support** |
