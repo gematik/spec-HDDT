@@ -79,8 +79,8 @@ For the complete definitions, refer to the [Artifacts](artifacts.html) page. For
 
 **FHIR resource type**: Observation
 
-FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
----------------|------------|------------|----------------|------|
+|FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
+|---------------|------------|------------|----------------|------|
 |  `status` | Status | 1..1 | code | Required by the FHIR specification. For time-series Observations, should only be set to "final", if the `valueSampledData` is completely filled (TODO: reference where the information is) |
 | `code` | Type of Observation | 1..1 | CodeableConcept | Uses a code from the MIV value sets. |
 | `effective` | Time or period of Obsevation | 1..1 | DateTime / Period | Observations with a single value use `effectiveDateTime`, while time-series Observations use `effectivePeriod` |
@@ -93,8 +93,8 @@ FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
 
 **FHIR resource type**: Device
 
-FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
----------------|------------|------------|----------------|------|
+| FHIR Attribute | Description | Cardinality | FHIR Data Type | Note |
+| ---------------|------------|------------|----------------|------|
 | `type` | Device Type | 1..1 | CodeableConcept |  |
 | `deviceName` | Product name | 1..1 | string | e.g., "Accu-Chek Mobile". Display during OAuth consent. |
 | `serialNumber` | Serial number | 1..1 | string | User verification (patient safety) |
