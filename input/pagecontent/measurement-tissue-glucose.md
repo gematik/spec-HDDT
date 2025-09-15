@@ -42,7 +42,7 @@ The full profile definition can be found at the following places:
 
 ### Search parameters
 
-The following search parameters **MUST** be supported by the medical aid manufacturer. Examples can be found in the [FHIR API specification](himi-diga-api.md).
+The following search parameters **MUST** be supported by the medical aid manufacturer. Examples can be found in the [FHIR API specification](himi-diga-api.html).
 
 | Search parameter | Description |
 | --- | -- | 
