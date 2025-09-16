@@ -84,10 +84,12 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
 
     class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
         address : URL for the FHIR endpoint [1..1]
+        fqdn : FQDN as stated in the FHIR endpoint's X.509 certificate [1..1
     }
 
     class AuthZ_Endpoint as "Device Data Recorder AuthZ Endpoint" <<FHIR Endpoint>> {
         address : URL for the AuthZ endpoint [1..1]
+        fqdn : FQDN as stated in the AuthZ endpoint's X.509 certificate [1..1
     }
 
     DM_Def .left.> DDR_Endpoint 
