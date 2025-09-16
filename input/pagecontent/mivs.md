@@ -5,8 +5,8 @@ Self-management tools used by patients to determine glucose levels analyze eithe
 <br clear="all"/>
 
 For the first introduction stage of HDDT, two mandatory interoperable values (MIVs) are defined for diabetes self-management:
-- Glucose level in capillary blood
-- Glucose value measured continuously in interstitial fluid
+- Blood Glucose Value
+- ISF Glucose Sampled Value
 
 
 ### GEM_HDC_VS_Blood_Glucose

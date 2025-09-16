@@ -3,11 +3,12 @@
 !define MANUFACTURER #CDE0FF
 !define VIBW #7ED321
 !define BFARM #F5A623
+!define SPEC #FBFDB1
 
 title HDDT FHIR Data Model (complete)
 skinparam packageStyle rectangle
 
-package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANUFACTURER {
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
         status : status of the measured value [1..1]
@@ -38,14 +39,27 @@ package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANU
 '        property : additional properties [0..*]
 '    }
 
+    class DR as "Aggregated Report\n<<FHIR Bundle/DiagnosticReport/Observation>>" {
+        code : classification of the report    
+        date : period covered by the report
+    }
+    IV <.. DR : "based on"
+
     () "{xor}" as xor
 
-    IV -> xor : "device [1..1] "
-    xor -> Metric 
+    IV -left-> xor : "device [1..1] "
+    xor -left-> Metric 
     xor --> PHD 
     Metric --> PHD : "source [1..1]"
 '    PHD -> DDR : "parent [1..1]"
 } 
+
+package gematik as "FHIR Profiles (gematik)" SPEC {
+   class RP as "ReportProfile" <<FHIR StructureDefinition>> {
+   }
+   class OP as "ObservationProfile" <<FHIR StructureDefinition>> {
+   }
+}
 
 package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM {
 
@@ -63,19 +77,28 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM
         property : additional properties [0..*]
     }
 
-    class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
-        address : canonical URL for the endpoint [1..1]
-        status : status of the endpoint [1..1]
+    class DiGA_Def as "DiGA Definition" <<FHIR DeviceDefinition>> {
+        type = 706689003|SCT [1..1]
+        deviceName : DiGA name [1..1]
     }
 
-    DM_Def .left.> DDR_Endpoint : "getEndpoint()"
+    class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
+        address : URL for the FHIR endpoint [1..1]
+    }
+
+    class AuthZ_Endpoint as "Device Data Recorder AuthZ Endpoint" <<FHIR Endpoint>> {
+        address : URL for the AuthZ endpoint [1..1]
+    }
+
+    DM_Def .left.> DDR_Endpoint 
+    DM_Def .down.> AuthZ_Endpoint
 }
 
 PHD --> PHD_Def : "definition [1..1]"
 ' DDR --> DM_Def : "definition [1..1]"
 
 package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
-    enum MIV {
+    enum MIV <<FHIR ValueSet>> {
         url : canonical URL for the MIV [1..1]
         version : version of the MIV [1..1]
         title : human-friendly name of the MIV [1..1]
@@ -88,8 +111,14 @@ package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
 'IV::code --> MIV : "included with"
 'Metric::type --> MIV : "included with"
 
-PHD_Def . MIV : "getMIVs()\ngetDevices()"
-DM_Def . MIV : "getMIVs()\ngetRecorders()"
-PHD_Def .. DM_Def : "getDevices()\ngetRecorders()"
+PHD_Def <.> MIV 
+DM_Def <.> MIV 
+PHD_Def <..> DM_Def 
+DiGA_Def <..> MIV
+
+MIV <.. OP : "implements"
+IV <. OP : "defines"
+DR <. RP : "defines"
+IV::code ..> MIV : "included with"
 
 @enduml
