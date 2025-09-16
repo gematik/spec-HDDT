@@ -55,6 +55,8 @@ This supports use cases such as:
 Profile: Device_Personal_Health_Device
 Parent: Device
 Id: Device-Personal-Health-Device
+Title: "Device – Personal Health Device"
+Description: "Profile for a Personal Health Device used in the provision of healthcare."
 * ^version = "0.2.0"
 * ^status = #draft
 * ^date = "2025-08-28"
