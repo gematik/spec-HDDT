@@ -237,7 +237,7 @@ paths:
             | Message | Type | Reason |
             |-|-|-|
             | Any other error | [string] | For internal server errors, etc. |    
-  /DeviceMetric:
+  /DeviceMetric/{id}:
     get:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
@@ -246,25 +246,21 @@ paths:
 
         Returned resources **MUST** conform to the [DeviceMetric_Medical_Aid](StructureDefinition-DeviceMetric-Personal-Health-Device.html) profile.  
         
-        - The endpoint **MUST** allow requesting a specific DeviceMetric resource by its internal `_id`.  
-        - The endpoint **MUST** allow including the referenced Device resource via DeviceMetric.source.  
-        - The endpoint **MUST NOT** support any additional search parameters.  
-        
-        ### Search Parameters
-        
-        | Parameter | Type | Description |
-        | --------- | ---- | ----------- |
-        | `_id` | token | The DeviceMetric resource identifier. |
-        | `_include` | DeviceMetric:source | Ensures the resulting Bundle also contains the referenced Device resource. |
+        This is a FHIR read interaction, and does not allow any search parameters. 
         
         ### Response
         
-        - Returns either a single DeviceMetric resource (if called at `/DeviceMetric/_id`), or a Bundle containing one DeviceMetric resource, optionally including a Device.  
-        - Example responses include:  
-          - A DeviceMetric resource with calibration status.  
-          - The referenced Device resource included via `_include`.  
+        - Returns a single Device resource
+        - Example:  
+          - A single Device resource with identifiers, manufacturer, and serial number.   
         
       parameters:
+        - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: DeviceMetric resource identifier
         - $ref: "#/components/parameters/AcceptHeader"
         - $ref: "#/components/parameters/AuthorizationHeader"
 
@@ -294,7 +290,7 @@ paths:
             | Message | Type | Reason |
             |---------|------|--------|
             | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
-            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parameter |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parametera |
             | Invalid Request | [OperationOutcome] | Any other reasons |
             ---
             
@@ -319,7 +315,7 @@ paths:
             |-|-|-|
             | Any other error | [string] | For internal server errors, etc. | 
 
-  /Device:
+  /Device/{id}:
     get:
       tags: [Device]
       summary: Query Device resources
@@ -328,25 +324,21 @@ paths:
 
         Returned resources **MUST** conform to the [Device_Medical_Aid](StructureDefinition-Device-Personal-Health-Device.html) profile.  
         
-        - The endpoint **MUST** allow requesting a specific Device resource by its internal `_id`.  
-        - The endpoint **MUST** allow including the referenced parent Device resource via `Device.parent`.  
-        - The endpoint **MUST NOT** support any additional search parameters.  
-        
-        ### Search Parameters
-        
-        | Parameter | Type | Description |
-        | --------- | ---- | ----------- |
-        | `_id` | token | The Device resource identifier. |
-        | `_include` | Device:parent | Ensures the resulting Bundle also contains the referenced parent Device resource. |
+        This is a FHIR read interaction, and does not allow any search parameters. 
         
         ### Response
         
-        - Returns either a single Device resource (if called at `/Device/_id`), or a Bundle containing one Device resource. 
-        - Example responses include:  
+        - Returns a single Device resource
+        - Example:  
           - A single Device resource with identifiers, manufacturer, and serial number.  
-          - The referenced parent Device resource included via `_include`.  
         
       parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Device resource identifier
         - $ref: "#/components/parameters/AcceptHeader"
         - $ref: "#/components/parameters/AuthorizationHeader"
 
@@ -359,19 +351,20 @@ paths:
                 deviceJson:
                   summary: Device JSON
                   value:
-                    resourceType: Bundle
-                    type: searchset
-                    entry:
-                      - resource:
-                          resourceType: Device
-                          id: dev-123
-                          serialNumber: SN123456
-                          type:
-                            coding:
-                              - system: http://snomed.info/sct
-                                code: "46702002"
-                                display: Glucometer
-                          manufacturer: Acme Health
+                    resourceType: Device
+                    id: dev-123
+                    serialNumber: SN123456
+                    type:
+                      coding:
+                        - system: http://snomed.info/sct
+                          code: "46702002"
+                          display: Glucometer
+                    deviceName:
+                      - name: Accu-Chek Mobile
+                        type: user-friendly-name
+                    manufacturer: Acme Health
+                    definition:
+                      reference: DeviceDefinition/example-glucometer-def
         '400':
           description: |
             | Message | Type | Reason |

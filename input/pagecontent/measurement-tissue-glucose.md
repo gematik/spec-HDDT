@@ -10,6 +10,8 @@ The `code` element must be selected from the [Tissue Glucose CGM ValueSet](Value
 
 When calibration status is relevant, the `device` element must reference a [DeviceMetric](StructureDefinition-DeviceMetric-Personal-Health-Device.html) resource, where calibration details are recorded. If calibration is not relevant for the device, then `device` must instead reference a [Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html) resource.
 
+The `status` of the Observavtion reflects whether the Observation is "complete", i.e. if no more `valueSampledData.data` can be added. See chapter [Retrieving Data](retrieving-data.html), for the full list of considerations.
+
 The table below highlights elements that are additionally constrained by this profile, or that carry particular semantic importance for the continuous measurement of tissue glucose.
 
 
@@ -17,6 +19,7 @@ The table below highlights elements that are additionally constrained by this pr
 
 | Description | FHIR Attribute | FHIR Data Type | Cardinality | Note |
 |------------|----------------|----------------|------------|------|
+| Status of the Observation | `status` | code | 1..1 | See chapter [Retrieving Data](retrieving-data.html)  |
 | Result of the Observation | `valueSampledData` | SampledData |  0..1 | In cases where data is missing, a reason must be given via `dataAbsentReason` |
 | Values of the measurement series | `valueSampledData.data` | string | 1..1 | The actual data.  |
 | Unit of the measurement series | `valueSampledData.origin.unit` | string | 1..1 | The measurement unit. Shoud be the same as the unit from the LOINC code in `Observation.code`. |
