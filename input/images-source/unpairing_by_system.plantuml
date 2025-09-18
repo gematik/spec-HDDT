@@ -1,0 +1,124 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+title System-Initiated Revocation
+
+actor V as "Insured"
+actor M as "Manufacturer (DiGA/HiMi)"
+
+participant D order 0 [
+	=DiGA
+	----
+	""Frontend | Backend""
+]
+participant H order 10 [
+	=HiMi AuthZ Server
+	----
+	""Frontend | Backend""
+]
+
+participant ZD order 20 [
+	=DiGA Registry
+	----
+	""§139e Directory""
+]
+
+participant ZH order 30 [
+	=HiMi Registry
+    ----
+	""§374a Directory""
+]
+
+<style>
+  sequenceDiagram {
+    reference {
+      BackGroundColor #ebf5fb
+    }
+}
+</style>
+skinparam SequenceDividerBackgroundColor #d1f2eb
+
+== Prescription duration of DiGA for Pairing-ID expired ==
+activate D
+D -> D: Check validity of consent (Pairing-ID) or system time vs.\nexpiry date of prescription (Pairing-ID)
+alt Prescription about to expire
+	D -> V: Inform insured about upcoming expiry
+	activate V
+else Prescription expired
+	D -> D: Invalidate consent (Pairing-ID)
+	D -> H: Request invalidation of refresh token (Pairing-ID)\nat /revoke endpoint
+	activate H
+	H -> H: Invalidate authorization grant (Pairing-ID)
+	H -> H: Invalidate refresh token (Pairing-ID)
+	H -> H: Invalidate access token (Pairing-ID)
+	H -> H: Invalidate consent for Pairing-ID
+	H -> D: HTTP 200 OK
+	D -> V: Signal revocation confirmation via DiGA frontend
+end
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+== DiGA loses authorization for §374a interface ==
+M -> ZD: Retrieve status (DiGA-ID/client_id)
+activate M
+activate ZD
+alt DiGA retired
+	ZD -> M: Status "retired"
+else DiGA not in directory
+	ZD -> M: HTTP 404 NOT FOUND
+end
+deactivate ZD
+M -> H: Invalidate authorization grant (Pairing-ID)
+activate H
+M -> H: Invalidate refresh token (Pairing-ID)
+M -> H: Invalidate access token (Pairing-ID)
+M -> H: Invalidate consent for Pairing-ID
+M -> H: Deregister DiGA
+deactivate M
+H -> V: Signal invalidation of consent via HiMi frontend
+activate V
+... DiGA data request at HiMi Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
+D -> H: Request re-authorization with refresh token (Pairing-ID)
+activate D
+D -> D: Authenticate HiMi (X.509 cert)
+H -> H: Authenticate DiGA (X.509 cert)
+alt DiGA not yet deregistered
+	H -> D: HTTP 400 Bad Request "invalid_grant"
+else DiGA deregistered
+	H -> D: HTTP 401 UNAUTHORIZED "authentication failed"
+end
+D -> D: Invalidate consent
+alt optional
+	D -> V: Signal invalidation of consent via DiGA frontend
+end
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+== HiMi no longer offers §374a interface ==
+M -> ZH: Retrieve status (HiMi-ID)
+activate M
+activate ZH
+alt HiMi retired
+	ZH -> M: Status "retired"
+else HiMi not in directory
+	ZH -> M: HTTP 404 NOT FOUND
+end
+deactivate ZH
+M -> D: Invalidate consent
+activate D
+M -> D: Remove configurations for HiMi
+deactivate M
+D -> V: Signal invalidation of consent via DiGA frontend
+activate V
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+@enduml

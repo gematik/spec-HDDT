@@ -333,4 +333,183 @@ The DiGA frontend confirms the successful pairing to the insured person.
 > **Revocation:** If the insured person revokes consent, the HiMi **MUST** invalidate the refresh token and render
 > related access tokens unusable; the DiGA **MUST** respect revocation on subsequent calls.  
 > **Resource enforcement:** Scope enforcement (e.g., `code:in=ValueSet` for Observations, `type=` for Device) occurs on
-> the HiMi Resource Server and is described in a separate chapter on resource-server behavior.  
+> the HiMi Resource Server and is described in a separate chapter on resource-server behavior.
+
+### Unpairing by the Insured Person
+
+The unpairing process allows the insured person to terminate the connection between their DiGA and the medical aid or
+implant (HiMi). Each step is explained in detail below.
+
+<div style="width: 100%;">
+  <img src="assets/images/unpairing_by_patient.svg" style="width: 100%;" />
+</div>
+
+---
+
+**1) Revocation via DiGA Frontend**
+
+1.1 **Insured person initiates revocation**  
+The insured person triggers the revocation of consent for a specific pairing (Pairing ID) in the DiGA frontend.
+
+1.2 **DiGA invalidates local consent**  
+The DiGA backend marks the consent associated with the Pairing ID as invalid.
+
+1.3 **DiGA requests revocation at HiMi**  
+The DiGA backend sends a revocation request to the HiMi authorization server’s `/revoke` endpoint, referencing the Pairing ID and the refresh token.
+
+1.4 **HiMi invalidates authorization artifacts**  
+The HiMi authorization server performs the following actions for the given Pairing ID:
+- Invalidates the authorization grant
+- Invalidates the refresh token
+- Invalidates any active access tokens
+- Invalidates the stored consent
+
+1.5 **HiMi confirms revocation**  
+The HiMi authorization server responds with HTTP 200 OK to the DiGA.
+
+1.6 **DiGA signals revocation to the insured person**  
+The DiGA frontend displays a confirmation that the pairing has been successfully revoked.
+
+---
+
+**2) Revocation via HiMi Frontend**
+
+2.1 **Insured person initiates revocation**  
+The insured person triggers the revocation of consent for a specific pairing (Pairing ID) in the HiMi frontend.
+
+2.2 **HiMi invalidates authorization artifacts**  
+The HiMi authorization server performs the following actions for the given Pairing ID:
+- Invalidates the authorization grant
+- Invalidates the refresh token
+- Invalidates any active access tokens
+- Invalidates the stored consent
+
+2.3 **HiMi signals revocation to the insured person**  
+The HiMi frontend displays a confirmation that the pairing has been successfully revoked.
+
+2.4 **DiGA attempts data access (after revocation)**  
+If the DiGA tries to access data at the HiMi resource server after revocation, the request fails with HTTP 401 UNAUTHORIZED and an "invalid_token" error.
+
+2.5 **DiGA attempts token refresh**  
+The DiGA backend attempts to refresh the access token using the revoked refresh token at the HiMi authorization server.
+
+2.6 **HiMi rejects token refresh**  
+The HiMi authorization server responds with HTTP 400 Bad Request and "invalid_grant".
+
+2.7 **DiGA invalidates local consent**  
+The DiGA backend marks the consent associated with the Pairing ID as invalid.
+
+2.8 **Optional: DiGA signals invalidation to the insured person**  
+Optionally, the DiGA frontend displays a notification that the consent has been invalidated.
+
+---
+
+**Notes**
+
+> **Revocation propagation:** Revocation at either the DiGA or HiMi frontend ensures that all related tokens and consents are invalidated on both sides.  
+> **Pairing ID:** All revocation actions are bound to the Pairing ID, ensuring precise targeting of the affected pairing.  
+> **Error handling:** After revocation, any attempt by the DiGA to access data or refresh tokens will result in appropriate error responses from the HiMi authorization server.  
+> **User feedback:** Both frontends (DiGA and HiMi) must provide clear feedback to the insured person regarding the status of the revocation.
+
+
+### Unpairing by the System
+
+The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and a
+medical aid or implant (HiMi) under specific conditions. 
+
+<div style="width: 100%;">
+  <img src="assets/images/unpairing_by_system.svg" style="width: 100%;" />
+</div>
+
+---
+
+**1) Prescription duration for Pairing ID expired**
+
+1.1 **DiGA checks consent validity**  
+The DiGA backend regularly checks whether the consent (Pairing ID) is still valid, comparing the system time with the expiry date of the prescription.
+
+1.2 **Prescription about to expire**  
+If the prescription is about to expire, the DiGA frontend informs the insured person about the upcoming expiry.
+
+1.3 **Prescription expired**  
+If the prescription has expired:
+- The DiGA backend invalidates the consent for the Pairing ID.
+- The DiGA backend sends a revocation request to the HiMi authorization server’s `/revoke` endpoint, referencing the Pairing ID and the refresh token.
+
+1.4 **HiMi invalidates authorization artifacts**  
+The HiMi authorization server:
+- Invalidates the authorization grant for the Pairing ID.
+- Invalidates the refresh token.
+- Invalidates any active access tokens.
+- Invalidates the stored consent.
+
+1.5 **HiMi confirms revocation**  
+The HiMi authorization server responds with HTTP 200 OK to the DiGA.
+
+1.6 **DiGA signals revocation to the insured person**  
+The DiGA frontend displays a confirmation that the pairing has been successfully revoked.
+
+---
+
+**2) DiGA loses authorization for §374a interface**
+
+2.1 **Manufacturer checks DiGA status**  
+The DiGA or HiMi manufacturer queries the DiGA registry to check the status of the DiGA (client_id).
+
+2.2 **DiGA retired or not found**  
+If the DiGA is retired or not found in the registry:
+- The registry responds with "retired" status or HTTP 404 NOT FOUND.
+
+2.3 **Manufacturer requests revocation at HiMi**  
+The manufacturer instructs the HiMi authorization server to:
+- Invalidate the authorization grant for the Pairing ID.
+- Invalidate the refresh token.
+- Invalidate any active access tokens.
+- Invalidate the stored consent.
+- Deregister the DiGA.
+
+2.4 **HiMi signals revocation to the insured person**  
+The HiMi frontend displays a notification that the consent has been invalidated.
+
+2.5 **DiGA data access after revocation**  
+If the DiGA attempts to access data at the HiMi resource server after revocation, the request fails with HTTP 401 UNAUTHORIZED and an "invalid_token" error.
+
+2.6 **DiGA attempts token refresh**  
+The DiGA backend attempts to refresh the access token using the revoked refresh token at the HiMi authorization server.
+
+2.7 **HiMi rejects token refresh**  
+The HiMi authorization server responds with HTTP 400 Bad Request ("invalid_grant") or HTTP 401 UNAUTHORIZED ("authentication failed") if the DiGA has been deregistered.
+
+2.8 **DiGA invalidates local consent**  
+The DiGA backend marks the consent associated with the Pairing ID as invalid.
+
+2.9 **Optional: DiGA signals invalidation to the insured person**  
+Optionally, the DiGA frontend displays a notification that the consent has been invalidated.
+
+---
+
+**3) HiMi no longer offers §374a interface**
+
+3.1 **Manufacturer checks HiMi status**  
+The DiGA or HiMi manufacturer queries the HiMi registry to check the status of the HiMi (HiMi-ID).
+
+3.2 **HiMi retired or not found**  
+If the HiMi is retired or not found in the registry:
+- The registry responds with "retired" status or HTTP 404 NOT FOUND.
+
+3.3 **Manufacturer requests revocation at DiGA**  
+The manufacturer instructs the DiGA backend to:
+- Invalidate the consent for the Pairing ID.
+- Remove configurations for the HiMi.
+
+3.4 **DiGA signals revocation to the insured person**  
+The DiGA frontend displays a notification that the consent has been invalidated.
+
+---
+
+**Notes**
+
+> **Automatic revocation:** System-initiated unpairing ensures that expired prescriptions, deregistered DiGAs, or retired HiMis result in the invalidation of all related tokens and consents.  
+> **Pairing ID:** All revocation actions are bound to the Pairing ID, ensuring precise targeting of the affected pairing.  
+> **Error handling:** After revocation, any attempt by the DiGA to access data or refresh tokens will result in appropriate error responses from the HiMi authorization server.  
+> **User feedback:** Both frontends (DiGA and HiMi) must provide clear feedback to the insured person regarding the status of the revocation.

@@ -1,0 +1,71 @@
+@startuml
+
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+title Insured-Initiated Revocation
+
+actor V as "Insured"
+
+participant D order 0 [
+	=DiGA
+	----
+	""Frontend | Backend""
+]
+participant H order 10 [
+	=HiMi Authorization
+	----
+	""Frontend | Backend""
+]
+
+<style>
+  sequenceDiagram {
+    reference {
+      BackGroundColor #ebf5fb
+    }
+}
+</style>
+skinparam SequenceDividerBackgroundColor #d1f2eb
+
+== Revocation at the DiGA ==
+V -> D: Revoke consent via DiGA frontend
+activate V
+activate D
+D -> D: Invalidate consent (Pairing-ID)
+D -> H: Request revocation of refresh token (Pairing-ID)\nat /revoke endpoint
+activate H
+H -> H: Invalidate authorization grant (Pairing-ID)
+H -> H: Invalidate refresh token (Pairing-ID)
+H -> H: Invalidate access token (Pairing-ID)
+H -> H: Invalidate consent for Pairing-ID
+H -> D: HTTP 200 OK
+D -> V: Signal revocation confirmation via DiGA frontend
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+== Revocation at the Medical Device ==
+V -> H: Revoke consent via HiMi frontend
+activate V
+activate H
+H -> H: Invalidate authorization grant (Pairing-ID)
+H -> H: Invalidate refresh token (Pairing-ID)
+H -> H: Invalidate access token (Pairing-ID)
+H -> H: Invalidate consent for Pairing-ID
+H -> V: Signal revocation confirmation via HiMi frontend
+... Data request of the DiGA at HiMi Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
+D -> H: Request re-authorization with refresh token (Pairing-ID)
+H -> D: HTTP 400 Bad Request "invalid_grant"
+activate D
+D -> D: Invalidate consent
+alt optional
+	D -> V: Signal invalidation of consent via DiGA frontend
+end
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+@enduml
