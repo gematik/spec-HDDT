@@ -1,0 +1,32 @@
+@startuml
+
+!define MANUFACTURER #CDE0FF
+!define VIBW #7ED321
+!define BFARM #F5A623
+!define SPEC #FBFDB1
+
+title MIVs and Profiles
+skinparam packageStyle rectangle
+
+    class IV as "Measured Value" <<FHIR Observation>> MANUFACTURER {
+        code : classification of the measured value [1..1]
+    }
+
+    class DR as "Aggregated Report" <<FHIR DomainResource>> MANUFACTURER {
+    }
+    IV <.. DR : "based on"
+
+    class RP as "ReportProfile" <<FHIR StructureDefinition>> SPEC {
+    }
+    class OP as "ObservationProfile" <<FHIR StructureDefinition>> SPEC {
+    }
+
+    enum MIV <<FHIR ValueSet>> VIBW{
+    }
+
+MIV <.. OP : "implements"
+IV <. OP : "defines"
+DR <. RP : "defines"
+IV::code ..> MIV : "included with"
+
+@enduml

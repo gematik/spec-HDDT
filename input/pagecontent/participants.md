@@ -1,25 +1,36 @@
-### Status: Draft (unvollständig)
-* Verantwortlich: @jcaumann
-* ToDo:
-    * Text zur Grafik
-    * Tabelle prüfen 
-    * ggf. deutsche Begriffe in der Tabelle ergänzen
 
-<hr>
 
-INTRO
+
+### Responsibilities
+§ 374a SGB V as the legal foundation of the HDDT specification names several actors that take certain roles in the definition and the operation of the HDDT ecosystem:
+* __gematik__ is responsible for providing the technical and semantical HDDT specifications for all aspects related to security and health data transfer. gematik may define further non-functional requirements that manufacturers of medical aids, implants and/or DiGA have to consider (e.g. service levels). gematik may define rules and procedures for approval of conformance with the HDDT specification.
+* __BfArM__ is responsible or setting up and operating registers for DiGA and devices affected by § 374a SGB V (see [certification relevant systems](certification-relevant-systems.html)). BfArM is responsible for setting up processes for DiGA manufacturers and manufacturers of medical aid and implant to register with these registries. 
+* __manufacturers of medical aids and implants__ MUST implement and provide the HDDT API if they fulfill the criteria listed for [certification relevant systems](certification-relevant-systems.html). They MUST actively register details about their implementation with the _BfArM Device Registry_ As further detailled below, this affects manufacturs of the device hardware as well as entieties who are operating backend systems where data from these devices is persisted.
+
+__Manufacturers of DiGA__ MAY implement the requestor (client) part of the HDDT API. If they do so, they MUST provide relevant information to BfArM for registration with the _BfArM DiGA registry_ and appyl for conformance approval by gematik (if requested by gematik).
+
+### Logical Decomposition
+
+The HDDT ecosystem can be divided into sereral logical building blocks that are operated by the listed actors. For the components operated by the manufacturers of the medical aids' and implants' devices, frontends and backend systems, the HDDT specification follows the logical decomposition defined by the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance):
+* The __Personal Device__ is the hardware of the medical aid or implant and realizes the sensory recording of data on, at or inside the patient. 
+* The data is transmitted via a local point-to-point connection to an __Aggregation Manager__, which validates the data, prepares it and, if necessary, merges it with other data. For most devices, the Aggregation Manager will be a mobile application on a smartphone or tablet, but it is not uncommon to have dedicated mobile controllers (e.g. in some insulin pumps), desktop systems or web portals (e.g. for wired data import) or set-top boxes (e.g. in implants). 
+* The data is transmitted to a background system via an internet connection and persisted there in a __Health Record__. 
+
+Every Personal Device that falls under the regulation of § 374a SGB V is registered with the __BfArM Device Registry__. Every data recording platform (Aggregation Manager together with its connected Health Record) that is a [HDDT certification relevanzt system](certification-relevant-system.html) is registered with the BfArM Device Registry, too.  
+
+DiGA can access device data only through the Health Record. Access is restricted to authorized DiGA which are listed with the __BfArM DiGA Registry__. DiGA can proof authorization to the Health Record through an OAuth Access Token. This token is issued by an __Authorization Server__ which is operated by the owner of the Health Record. The Authorization Server not only consideres a DiGA's permissions as recodred in the BfArM DiGA Registry but as well takes care, that the patient has given a valid consent for sharing his health data with authorized DiGA.
+
+Manufacturers of certification relevant device data recording platforms MUST implement the HDDT API which consists of:
+* the FHIR based API of the Health Record for reading and searching data from medical aids and implants
+* the OAuth2 compliant API of the Authorization Server for requesting and managing authorization tokens. 
+
+Manufacturers of certification relevant device data recording platforms MUST be able to access APIs of the central service of the HDDT ecosystem. In particular they must be able to
+* gather information about connecting DiGA from the BfArM DiGA Registy,
+* update their own entries with the BfArM Device Registry, and
+* to retrieve identified FHIR ValueSet resources from the __German Central Terminology Server__ (ZTS).
+
+The figure below shows how these logical building blocks interact with each other.
 
 <div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="60%"></div>
 <br clear="all"/>
-
-
-| Component                               | Role / Responsible          | Functions / Data in Context of § 374a SGB V                                                                                                                                                                                                                                                                                   | Interfaces / APIs                                                                                                                                            |
-|-----------------------------------------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **BfArM DiGA Registry (DiGA-VZ)**       | BfArM                       | - Lists DiGA authorized to use § 374a interface<br>- Provides authenticity verification of DiGA<br>- Provides legally permissible authorizations<br>- Provides registration info for DiGA at device<br>- Optional: notification mechanism for entry changes                                                                   | None                                                                                                                                                         |
-| **BfArM Device Registry (HiMi-SST-VZ)** | BfArM (in development)      | - Lists devices/implants with implemented § 374a interface<br>- Provides manufacturer/device info<br>- Provides supported sensors/measuring devices<br>- Provides data made available via interface<br>- Authenticity verification of devices<br>- Endpoint discovery<br>- Optional: notification mechanism for entry changes | None (working title: HiMi-SST-VZ API)                                                                                                                        |
-| **Zertraler Terminologieserver (ZTS)**  | BfArM                       | - Provides binding coding systems & value sets<br>- Versioning of value sets<br>- Signals changes to value sets                                                                                                                                                                                                               | None                                                                                                                                                         |
-| **Medical Device / Implant – Backend**  | Device/Implant Manufacturer | - Requests & manages user consent<br>- Regular validity checks<br>- Allows revocation/amendment of consent<br>- Authenticates DiGA<br>- Authorizes DiGA based on pseudonym<br>- Provides medical data as FHIR resources per ZTS value sets<br>- Monitoring & documentation of interface functionality                         | - RESTful FHIR API<br>- OAuth 2.0 ACG API<br>- Frontend API (manufacturer-specific)<br>- ZTS API<br>- (optional: DiGA API)                                   |
-| **Medical Device / Implant – Frontend** | Device/Implant Manufacturer | - Presents requested/authorized permissions<br>- Captures user consent<br>- Presents granted consents<br>- Captures revocation/amendments<br>- Informs about changes in consent/coupling                                                                                                                                      | - Frontend API (manufacturer-specific)<br>**Consent:** accessible and informed consent                                                                       |
-| **DiGA – Backend**                      | DiGA Manufacturer           | - Initiates authorization<br>- Requests & manages consent<br>- Regular validity checks<br>- Allows revocation/amendment<br>- Authenticates device/implant<br>- Retrieves data (FHIR)<br>- Interprets data per ZTS value sets<br>- Monitoring & documentation                                                                  | - RESTful FHIR API<br>- OAuth 2.0 ACG API<br>- Frontend API (manufacturer-specific)<br>- ZTS API<br>- (optional: HiMi-SST-VZ API)                            |
-| **DiGA – Frontend**                     | DiGA Manufacturer           | - Displays § 374a interface info<br>- Displays consent info<br>- Presents supported/authorized devices & sensors<br>- Presents required permissions<br>- Captures user selection & consent<br>- Presents granted consents<br>- Captures revocation/amendment                                                                  | - Frontend API (manufacturer-specific)<br>- `/authorize` endpoint of OAuth ACG API<br>**Consent:** accessible and informed consent<br>**Security:** RFC 8252 |
 

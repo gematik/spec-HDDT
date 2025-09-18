@@ -33,7 +33,7 @@ The necessary prerequisite for a medical aid or implant to fall under the regula
 
 In addition, the aid or implant must have an interface through which the collected data is extracted and forwarded to a Health Record in a back-end system via an Aggregation manager. These two components - Aggregation manager and Health Record - are usually combined into a single product that implements a vendor specific data sharing platform. For manufacturers who have multiple personal Health Record products, data from these products is often recorded in this unique platform and thus allows for integrating data from different devices to gain additional insight into a patient's health status.
 
-Therefore, the HDDT specification considers the Aggregation manager and the Health Record as a single logical component. This component is named _device data recorder_. This logical division of the ecosystem is outlined in the figure below.
+Therefore, the HDDT specification considers the Aggregation Manager and the Health Record as a single logical component. This component is named _Device Data Recorder_. This logical division of the ecosystem is outlined in the figure below.
 
 <div><img src="/HDC Medical Aid Subsystems.png" alt="subsystems of the personal health device ecosystem" width="60%"></div>
 <br clear="all"/>

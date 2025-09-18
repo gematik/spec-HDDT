@@ -1,12 +1,3 @@
-### Status: Draft
-* Verantwortlich: @jcaumann
-* ToDo:
-    * kontinuierliche Daten mit ihren Sonderfällen
-    * aggregierte Daten
-    * Durchsprache im Team
-    * QS (insb. Sprache)
-
-<hr>
 
 The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide the following types of data to DiGA via the HDDT interfaces:
 

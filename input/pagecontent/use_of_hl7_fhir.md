@@ -1,9 +1,3 @@
-### Status: Pre-Final
-* Verantwortlich: @jcaumann
-* ToDo:
-    * Festlegungen zu "must support" konsentieren
-    * QS (insb. Sprache)
-
 
 ### FHIR Version
 This specification is based on HL7 FHIR R4 (v4.0.1), which is the normative FHIR version for the German healthcare system.
@@ -38,3 +32,15 @@ Optional elements are elements with a minimum cardinality of 0 (min=0) which are
 
 Remark: _Ignoring_ an element means that the element is not interpreted by the device data consumer and does not affect the device data consumer's perception of the semantics of the resource.
 
+### Derived Profiles and Extensions 
+Manufactures who implement the HDDT FHIR API with their Health Record MAY implement any FHIR profiles that
+* further constrain the HDDT FHIR profiles as long as
+    * _Must Support_ elements from the HDDT profile are _mandatory_ or _Must Support_ in the derived profile
+    * _Mandatory_ elements from the HDDT profile are still _mandatory_ with the derived profile
+* is compliant with the _mandatory_ and _Must Support_ elements of the HDDT profiles. Such profiles MAY further constrain any _optional_ elements from the HDDT profile.
+
+In any case the implementor MUST be aware that a DiGA as the consumer of the HDDT FHIR resources MAY
+* ignore any `extension` elements with the resource unless these extensions are defined by the HDDT specification
+* throw an error upon receipt of resources that contain `modifierExtension`.
+
+Implementations that regularely trigger errors with a resource consuming DiGA MAY be considered as not compliant with the HDDT specifications. DiGA manufacturers who are affected by such errors MAY request gematik for a renewal of the conformance approval of the resource providing Health Record's HDDT implementation.
