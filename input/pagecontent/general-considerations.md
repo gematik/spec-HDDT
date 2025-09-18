@@ -12,17 +12,17 @@ Personal Health Devices store the collected data in a back-end system in the for
 It is the aim of the HDDT specification that manufacturers of personal health devices can expand these existing interfaces as easily as possible with the HDDT-specific processes and content. Ideally, any necessary changes to existing systems should be limited to the syntax of data exchange and should not require any changes to the basic architecture of the interaction between personal medical device, aggregation manager and health record. To achieve this, the specifications and the non-functional implementation requirements associated with them follow the following principles:
 * All interfaces are based on international standards.  
 * Profiling of these standards is only carried out if this is absolutely necessary. The basis of the documentation is the standard. HDDT constraints the syntax and semantics of data fields defined in the standard only if this is absolutely necessary for the interoperability of the HDDT interface. 
-* The health record should not restricted with regard to the provisioning of optional data fields. However, DiGA may ignore these data fields. This is intended to enable a health record, for example, to reuse a FHIR profile that has already been implemented in other contexts.
+* The health record should not be restricted with regard to the provisioning of optional data fields. However, DiGA may ignore these data fields. This is intended to enable a health record, for example, to reuse a FHIR profile that has already been implemented in other contexts.
 * Only data that is managed in the health record is affected by the HDDT interface. The manufacturer therefore does not have to forward data processed exclusively in the device or in the aggregation manager to the health record solely for the purpose of implementing the HDDT specification.
 
 ### Role of the Controller
 Following the reference model of the Continua Health Alliance, the HDDT specifications asume that the personal health device connects to an aggregation manager (e.g. a mobile app) which acts as a gateway to the health record. Aggregation manager and health record together are called the _Device Data Recorder_ in HDDT (see [Certification Relevant Systems](certification-relevant-systems.md) for details).
 
-The device data recorder acts as the controller of all flows of data and control between the personal health device at the partient's site and the backend located health record. The HDDT specification does not affect or weaken this role. In particular the HDDT specifications make no determinations on: 
+The device data recorder acts as the controller of all flows of data and control between the personal health device at the patient's site and the backend located health record. The HDDT specification does not affect or weaken this role. In particular the HDDT specifications make no determinations on: 
 * the frequency of data collection at the personal health device and the modus and frequency of data synchronization between the personal health device and the aggregation manager
 * the frequency of data transmission from the aggregation manager to the health record (e.g. if an aggregation manager only transmits data to the health record once a day, then a DiGA will only be able to receive up-to-date data at this frequency via the HDDT interface)
 * how the aggregation manager handles data from uncalibrated devices, e.g. if this data is pushed to the health record or not
-* which concrete algorithms the device data recorder implements for calculating key figures (e.g. it is up to the device data recorder of a rtCGM if it considers data from the device's warm-up phase for the calculation of the Glucose Manageemnt Index)
+* which concrete algorithms the device data recorder implements for calculating key figures (e.g. it is up to the device data recorder of a rtCGM if it considers data from the device's warm-up phase for the calculation of the Glucose Management Index)
 * if and how the aggregation manager pre-processes raw data, e.g. if outliners are mitigated in order to come up with smoother curves
 
 

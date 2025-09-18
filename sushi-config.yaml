@@ -130,6 +130,9 @@ pages:
   conventions-for-device-resources.html:
     title: Conventions for Device Resources
     generation: markdown
+  roadmap.html:
+    title: Roadmap
+    generation: markdown
   standardisation-plan.html:
     title: Standardisation plan
     generation: markdown  
@@ -150,7 +153,7 @@ menu:
   Home: index.html
   General:
     Motivation: motivation.html
-    Standardisation Plan: standardisation-plan.html
+    Roadmap: roadmap.html
     Glossary: glossary.html
   Release Notes: release-notes.html
   Definition and Rules: 
