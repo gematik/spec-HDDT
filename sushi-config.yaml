@@ -77,7 +77,7 @@ pages:
     title: Use of HL7 FHIR
     generation: markdown
   zts-api.html:
-    title: ZTS API – Full Detailed Specification and Usage Guide
+    title: ZTS Terminology API – Usage Guide
     generation: markdown
   mivs.html:
     title: Mandatory Interoperable Values (MIVs)
