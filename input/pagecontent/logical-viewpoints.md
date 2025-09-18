@@ -45,7 +45,9 @@ The pairing flow is based on the OAuth2 standard. The requested measured data wh
 
 The sequence diagramm below sketches the pairing flow between DiGA and personal heath device.
 
-__@sergej-reiser-fbeta: Bitte hier noch ein vereinfachtes Sequenzdiagramm zu dem Pairing-Flow einfügen.__
+<div style="width: 100%;">
+  <img src="assets/images/pairing_sequence_high_level.svg" style="width: 100%;" />
+</div>
 
 Further information on the authorization server and the authorization flow is given in the section [Pairing](pairing.md). The technical sepcification of the HDDT profile on the OAuth2 standard can be found in the section [OAuth API](oauth-api.md).
 
