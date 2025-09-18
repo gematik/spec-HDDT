@@ -167,20 +167,22 @@ menu:
     Pairing: pairing.html
     Smart Scopes: smart-scopes.html
     Retrieving Data: retrieving-data.html
-  REST API:
-    HIMI DiGA FHIR API: himi-diga-api.html
-    HIMI Directory API: himi-vz-api.html
-    DiGA Directory API: diga-vz-api.html
-    ZTS API: zts-api.html
-    OAuth 2.0 ACG API: oauth-api.html
-  UseCase Diabetes Self Management:
+  Generic APIs:
+    Generic HiMi FHIR API: himi-diga-api.html
+    Generic HiMi AuthZ API: oauth-api.html
+    BfArM HIMI Directory API: himi-vz-api.html
+    BfArM DiGA Directory API: diga-vz-api.html
+    ZTS Terminology API: zts-api.html
+  MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
-    Information Model Diabetes: information-model-diabetes.html
-    Measurement Blood Glucose: measurement-blood-glucose.html
-    Measurement Tissue Glucose: measurement-tissue-glucose.html
-    Aggregated Reports CGM: aggregated-reports-cgm.html
-    Conventions for Device* Ressources: conventions-for-device-resources.html
-    Examples: examples.html
+    MIV - Blood Glucose Value: measurement-blood-glucose.html
+    MIV - ISF Samples Data Value: measurement-tissue-glucose.html
+  #  Information Model Diabetes: information-model-diabetes.html
+  #  Measurement Blood Glucose: measurement-blood-glucose.html
+  #  Measurement Tissue Glucose: measurement-tissue-glucose.html
+  #  Aggregated Reports CGM: aggregated-reports-cgm.html
+  #  Conventions for Device* Ressources: conventions-for-device-resources.html
+  #  Examples: examples.html
   Artifacts:
     Artifacts Summary: artifacts.html
 

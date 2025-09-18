@@ -2,6 +2,30 @@
 * Update to last information model status (Emil, Jie)
 * Review (Jie)
 
+### Introduction
+
+### Endpoints
+Hinweis auf metadata, DeviceMetric und Device Endpunkte, die generisch sind und an anderer Stelle definiert sind
+
+### MIV-Specific Observation Profile
+
+Baum und Tabelle als include
+
+#### Conventions and Good Practices
+
+#### Examples 
+
+### FHIR RESTful Interactions
+
+#### read
+Nutzung, Parameter, Beispiele
+
+#### search
+Nutzung, Parameter, Beispiele
+
+### Conventions for DeviceMetric and Device Resources
+
+
 ## Observation for a Single Measurement - MIV Blood Sugar
 
 This [Observation](https://hl7.org/fhir/R4/observation.html) profile captures a single blood glucose measurement obtained from a glucometer. For this use case, only `valueQuantity` is permitted as the result of the Observation.
@@ -18,7 +42,7 @@ The table below identifies elements that are further constrained by this profile
 | Description | FHIR Attribute | FHIR Data Type | Cardinality | Note |
 |------------|----------------|----------------|------------|------|
 | Status of the Observation | `status` | code | 1..1 | Should be "final". |
-| The result of the Observation | `valueuQuantity` | Quantity | 0..1 | May be missing, but in such cases, a `dataAbsentReason` must be specified. |
+| The result of the Observation | `valueQuantity` | Quantity | 0..1 | May be missing, but in such cases, a `dataAbsentReason` must be specified. |
 | Unit of individual measurement | `valueQuantity.unit` | string | 1..1 | Text representation fo the unit, e.g., "mg/dL" |
 | Code system of the measurement unit | `valueQuantity.system` | uri | 1..1 | UCUM: http://unitsofmeasure.org |
 | Code of the measurement unit from the specified code system | `valueQuantity.code` | code | 1..1 | Code from UCUM, e.g., "mg/dL".Should match the unit specified in the LOINC code in `Observation.code`. |
@@ -34,6 +58,14 @@ The table below identifies elements that are further constrained by this profile
 ### Profile
 
 The full profile definition can be found at the following places:
+
+
+<hr>
+<div id="all-tbl-key-inner">
+    {%include StructureDefinition-Observation-Blood-Glucose-snapshot-by-key-all.xhtml%}
+</div>
+<hr>
+
 
 - In this specification under Artifacts -> [StructureDefinition/Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html)
 - **ToDo**: Verlinkung https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blood-Glucose

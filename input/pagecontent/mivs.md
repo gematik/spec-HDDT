@@ -23,24 +23,27 @@ The MIV _Blood Glucose Value_ is defied by the FHIR [ValueSet](https://hl7.org/f
 
 This ValueSet contains LOINC codes for blood glucose measurements using blood or plasma as reference methods with the values provided as mass/volume and moles/volume. In addition more granular LOINC codes for "Glucose in Capillary blood by Glucometer" provided as mass/volume and moles/volume are included with the value set because these codes are recently used by several manufacturers of glucometers for sharing blood sugar values. 
 
-#### HDDT FHIR Observation Profile
-
-<div id="all-tbl-key-inner">
-    {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml%}
-</div>
+#### HDDT FHIR Observation Profile and API
+Health Data Recorders provide _Blood Glucose Values_ to DiGA using the MIV-specific Observation Profile [__Blood Glucose Measurement__](measurement-blood-glucose.html). This profile allows to share a set of blood glucose values as single FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. Access to the ressources is given through standard FHIR _read_ and _search_ RESTful interactions as described in [Retrieving Data](retrieving-data.html#querying-for-device-data).
 
 #### Aggregated and Derived Data
 By now there are no aggregated or derived data defined for the MIV "Blood Glucose Value".
 
 ### ISF Glucose Sampled Value
+The MIV _ISF Glucose Sampled Value_ covers values from continuous monitoring of the glucose level in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to one value per minute. By this _ISF Glucose Sampled Values_ can e.g. be used to assess dependencies between a patient's individual habits and behavious and his glucose level. Due to the high density of values over a long period of time, many key figures can be derived from _ISF Glucose Sampled Values_ which help the patient and his doctor to easily capture the status of the patient's health and therapy.
 
 #### Defining ValueSet
-GEM_HDC_VS_Tissue_Glucose_CGM
-This ValueSet includes codes relevant to continuous glucose monitoring (CGM) of tissue glucose, facilitating interoperability for CGM device data.
+The MIV _ISF Glucose Sampled Value_ is defined by the FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) [__GEM_HDC_VS_Tissue_Glucose_CGM__](https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM).
 
-**ToDo**: Verlinkung https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM
+This ValueSet includes codes relevant to continuous glucose monitoring (CGM) of ISF glucose, considering mass/volume and moles/volume as commonly used units.
 
 #### HDDT FHIR Observation Profile
+Health Data Recorders provide _ISF Glucose Sampled Value_ to DiGA using the MIV-specific Observation Profile [__ISF Glucose Measurement__](measurement-tissue-glucose.html). This profile allows to share sampled ISF glucose values as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. Each resource holds multiple values while the time stamp of each value can be determined by the time stamp of the first value and the fixed sample rate. Access to the ressources is given through standard FHIR _read_ and _search_ RESTful interactions as described in [Retrieving Data](retrieving-data.html#querying-for-device-data).
 
 #### Aggregated Report: CGM Summary
+As stated above, _ISF Glucose Sampled Values_ are a basis for many key figures used in diabetes therapy monitoring, such as:
+* times in ranges (e.g. times in hypoglycemia and hyperglycemia) including %TIR as a potential substitute for the HbA1c laboratory value 
+* Glucose Management Index (GMI)
+* 
+
 

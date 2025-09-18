@@ -2,6 +2,38 @@
 * Update to last information model status (Emil, Jie)
 * Review (Jie)
 
+### Introduction
+
+### MIV-Specific Observation Profile
+
+Baum und Tabelle als include
+
+#### Conventions and Good Practices
+
+#### Examples 
+
+### FHIR RESTful Interactions
+
+#### read
+Nutzung, Parameter, Beispiele
+
+#### search
+Nutzung, Parameter, Beispiele
+
+### MIV-Specific Aggregated Report (falls vorhanden)
+
+#### FHIR Profile
+
+#### FHIR Operation
+
+openAPI
+
+#### Example
+
+### Conventions for DeviceMetric and Device Resources
+
+
+
 ## Observation for Time Series Measurement - MIV Tissue Glucose
 
 This [Observation](https://hl7.org/fhir/R4/observation.html) profile represents a continuous glucose monitoring (CGM) measurement produced by a CGM device. For this use case, only `valueSampledData` is allowed as the result of the Observation.
@@ -40,6 +72,12 @@ The full profile definition can be found at the following places:
 
 - In this specification under Artifacts -> [StructureDefinition/Observation-Tissue-Glucose-CGM-Measurement-Series](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Observation-CGM-Measurement-Series.html)
 - **ToDo**: Verlinkung https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Measurement-Series
+
+<hr>
+<div id="all-tbl-key-inner">
+    {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml%}
+</div>
+<hr>
 
 
 ### Search parameters
