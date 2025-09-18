@@ -10,23 +10,33 @@
 * Fehlercodes grob Erwähnen (Emil)
 
 
-**Description**  
+### Description 
 Standardized access to medical device/implant data as FHIR resources for authorized DiGA.  
 
 | Description | Standard | Specifications | Quality Criteria |
 |-------------|-----------|----------------|------------------|
 | RESTful FHIR R4 API | rfc8705 | **No** certificate-bound access tokens<br>Manufacturer-specific access tokens | Security: Mutual-TLS Client Authentication |
-
 ---
+
+### Read Interactions
+
+Endpoints that are required to support the REST interaction "READ", **MUST** be available under `[BASE_URL]/[resourceType]/[ID]`, [as specified by FHIR](https://www.hl7.org/fhir/R4/http.html#read).
+
+Resource instances returned by the READ interactions, **MUST** conform to the HDDT FHIR Profiles.
+
+### Search Interactions
+
+Endpoints that are required to support the "SEARCH" interactions, **MUST** allow searching via HTTP GET. Endpoints **MAY** choose to support search request via HTTP POST. See [FHIR RESTful Search - Introduction](https://www.hl7.org/fhir/R4/search.html#Introduction).
+
 
 ### Endpoints
 
 | Endpoint | Use Cases | Specifications | Data Objects |
 |----------|-----------|----------------|--------------|
 | `/metadata` | • Information on supported FHIR version & profiles for DiGA vendor<br> • Supported resources & operations<br>- Supported search parameters & filters | • No Mutual-TLS Client Authentication (public endpoint)<br>• **FHIR R4** (from context)<br>• Endpoint **MUST** be available to declare: supported FHIR version, resources, operations, search parameters, profiles | **FHIR CapabilityStatement**<br>Supported Profiles: <br> • Device, DeviceMetric, Observation<br><br>Resource Interactions:<br>• Device: read <br>• DeviceMetric: read <br> • Observation: read, search<br>
-| `/Observation` | • Query most recent measurement (single values)<br>• Query time series data for a patient<br> | • Data **MUST** conform to defined FHIR Profiles (e.g. [SD-Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html))<br>• Single values: `valueQuantity`<br>• Time series: `valueSampledData`<br>• Reference to either Device or DeviceMetric **REQUIRED**<br>• Values must be fully normalized (`unit/system/code`)| **FHIR Observation**<br>Single value: `valueQuantity`<br>Time series: `valueSampledData`<br>**FHIR DeviceMetric** (via `device`)<br>**FHIR Device** (via `device`) | 
-| `/Device` |• Query the configuration and properties of the device instance based on the last measurement or last measurement series.<br> • Query information about the stored device instance for device validation (e.g., serial number, type, manufacturer). <br> • Complements the query of Observation/DeviceMetric, since information about the underlying device is not always delivered directly with the measurement. | • Only allows FHIR read interaction using the Device ID, retrieved from an Observation or DeviceMetric.<br>• Returns Device instances (e.g. glucometers)<br>• Identifier may include device registry number<br>• Referenced by either `DeviceMetric.source` or `Observation.device` (**REQUIRED**)<br>• Serial number required for validation<br>• Does **not** support `_include` or `?_id=`; use `/Device/{id}` to obtain a single resource. | **FHIR Device** <br> `Device.status` - is the device active <br> `Device.expirationDate` <br><br> The following properties are used for user verification and consent: <br> `Device.deviceName` <br> `Device.manufacturer` <br> `Device.serialNumber` | 
-| `/DeviceMetric`| • Query the calibration status of the device for the last measurement or last measurement series. <br> • Reference to the specific device instance to maintain the link between measurement data and the physical sensor. | • Only allows FHIR read interaction using the DeviceMetric ID retrieved from `/Observations`.<br>• Returns only the DeviceMetric referenced in the Observation, for data protection reasons.<br>• Does **not** support `_include` or `?_id=`; use `/DeviceMetric/{id}` to obtain a single resource. | **FHIR DeviceMetric**<br> <br> `calibration` - relevant for some devices (e.g. glucometer), where calibrating the device is needed <br> **FHIR Device** (via `source`)|
+| `/Observation` |  • Query most recent measurement (single values)<br>• Query time series data for a patient<br> | • Allowed interactions: READ, SEARCH <br> • Data **MUST** conform to defined FHIR Profiles (e.g. [SD-Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html))<br>• Single values: `valueQuantity`<br>• Time series: `valueSampledData`<br>• Reference to either Device or DeviceMetric **REQUIRED**<br>• Values must be fully normalized (`unit/system/code`)| **FHIR Observation**<br>Single value: `valueQuantity`<br>Time series: `valueSampledData`<br>**FHIR DeviceMetric** (via `device`)<br>**FHIR Device** (via `device`) | 
+| `/Device` |• Query the configuration and properties of the device instance based on the last measurement or last measurement series.<br> • Query information about the stored device instance for device validation (e.g., serial number, type, manufacturer). <br> • Complements the query of Observation/DeviceMetric, since information about the underlying device is not always delivered directly with the measurement. | • Only allows FHIR READ interaction using the Device ID, retrieved from an Observation or DeviceMetric.<br>• Returns Device instances (e.g. glucometers)<br>• Identifier may include device registry number<br>• Referenced by either `DeviceMetric.source` or `Observation.device` (**REQUIRED**)<br>• Serial number required for validation<br>• Does **not** support `_include` or `?_id=`; use `/Device/{id}` to obtain a single resource. | **FHIR Device** <br> `Device.status` - is the device active <br> `Device.expirationDate` <br><br> The following properties are used for user verification and consent: <br> `Device.deviceName` <br> `Device.manufacturer` <br> `Device.serialNumber` | 
+| `/DeviceMetric`| • Query the calibration status of the device for the last measurement or last measurement series. <br> • Reference to the specific device instance to maintain the link between measurement data and the physical sensor. | • Only allows FHIR READ interaction using the DeviceMetric ID retrieved from `/Observations`.<br>• Returns only the DeviceMetric referenced in the Observation, for data protection reasons.<br>• Does **not** support `_include` or `?_id=`; use `/DeviceMetric/{id}` to obtain a single resource. | **FHIR DeviceMetric**<br> <br> `calibration` - relevant for some devices (e.g. glucometer), where calibrating the device is needed <br> **FHIR Device** (via `source`)|
  
 
 ---

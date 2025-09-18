@@ -256,11 +256,11 @@ paths:
         
       parameters:
         - name: id
-            in: path
-            required: true
-            schema:
-              type: string
-            description: DeviceMetric resource identifier
+          in: path
+          required: true
+          schema:
+            type: string
+          description: DeviceMetric resource identifier
         - $ref: "#/components/parameters/AcceptHeader"
         - $ref: "#/components/parameters/AuthorizationHeader"
 
