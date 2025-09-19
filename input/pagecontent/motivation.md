@@ -19,5 +19,5 @@ The overall benefits of this specification on the health care sectors are
 * to strengthen digital healthcare and lay the foundation for the creation of new structured care programs such as digital disease management programs (dDMPs)
 * to strengthen DiGA and enable innovative care offerings as well as expansion to additional indications by tapping into new data sources and facilitating the simpler, standardized integration of medical aids and implants
 * to enable patients to more effectively monitor their health status and get earlier feedback on treatments by automatically and privacy‑compliantly transferring data from medical devices and implants into digital health applications
-* to empower healthcare professionals, via new DiGA solutions, to objectively assess therapy outcomes and intervene at an earlier stage when necessary
+* to empower healthcare professionals, via new DiGA solutions, to assess therapy outcomes by objective  patient's measurements and intervene at an earlier stage when necessary
 

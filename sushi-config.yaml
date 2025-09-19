@@ -133,9 +133,6 @@ pages:
   roadmap.html:
     title: Roadmap
     generation: markdown
-  standardisation-plan.html:
-    title: Standardisation plan
-    generation: markdown  
   aggregated-reports-cgm.html:
     title: Aggregated Reports CGM
     generation: markdown
