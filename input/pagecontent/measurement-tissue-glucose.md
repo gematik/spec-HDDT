@@ -26,7 +26,13 @@ Nutzung, Parameter, Beispiele
 
 #### FHIR Operation
 
-openAPI
+| | |
+|-|-|
+| **Resource** | Observation |
+| **Operation name** | `$cgm-summary-data-report` |
+|**Purpose** |  Request a summary of desired CGM values (e.g tissue glucose values below lower threshold) for a certain range of time. |
+|**Parameters** |  See section "[OpenAPI Description](#openapi-description) for parameter definitions and examples.<br> • `effectivePeriodStart (dateTime)` (optional) <br> • `effectivePeriodEnd (dateTime)` (optional) - End of the effective time period <br> •  `related (boolean)` (optional)|
+| **Specifications** | • Summary is calculated at run-time and results are not stored persistently. <br> •  **MUST** support all profiles listed in `Bundle-Search-Summary-Data-Measurements`. <br> • **MUST** support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which **MUST** cover at least 14 days.<br> •  The Summary-Operation **MUST** support a minimal duration of 7 days for the effective period, and an error must be returned if the client requests a shorter time period. |
 
 #### Example
 

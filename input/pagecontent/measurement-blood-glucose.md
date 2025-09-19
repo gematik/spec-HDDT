@@ -4,79 +4,163 @@
 
 ### Introduction
 
+This document provides implementation guidance for manufacturers integrating glucometer data using a RESTful FHIR API. It builds on the [Generic FHIR API](himi-diga-api.html) and describes the specific requirements for exposing blood glucose measurements to DiGA, including:
+
+- The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html), including any required FHIR operations.
+- The relevant FHIR profiles for blood glucose measurement and how they should be returned by the API.
+- Conventions for using FHIR resources to ensure compliance with the [Information model](information-model.html).
+- Example requests and responses to support implementation.
+
+
 ### Endpoints
-Hinweis auf metadata, DeviceMetric und Device Endpunkte, die generisch sind und an anderer Stelle definiert sind
 
-### MIV-Specific Observation Profile
+The server **MUST** support the following endpoints.
 
-Baum und Tabelle als include
+**Authentication**: The authentication and authorization requirements for these endpoints are the same as the [Generic HiMi FHIR API](himi-diga-api.html).
 
-#### Conventions and Good Practices
+#### Metadata
 
-#### Examples 
-
-### FHIR RESTful Interactions
-
-#### read
-Nutzung, Parameter, Beispiele
-
-#### search
-Nutzung, Parameter, Beispiele
-
-### Conventions for DeviceMetric and Device Resources
-
-
-## Observation for a Single Measurement - MIV Blood Sugar
-
-This [Observation](https://hl7.org/fhir/R4/observation.html) profile captures a single blood glucose measurement obtained from a glucometer. For this use case, only `valueQuantity` is permitted as the result of the Observation.
-
-The `code` element must be selected from the [Blood Glucose ValueSet](ValueSet-vs-blood-glucose.html), reflecting both the measurement method and the units supported by the device. The unit defined in the LOINC code’s display must align with the `valueQuantity.unit` or `valueQuantity.code`.
-
-Because glucometers can generate and transmit readings even when uncalibrated, a reference to a [DeviceMetric](StructureDefinition-DeviceMetric-Personal-Health-Device.html) resource via the `device` element is required. This ensures that the calibration status of the sensor is properly captured.
-
-The table below identifies elements that are further constrained by this profile, or that carry particular semantic importance for this use case of measuring blood glucose.
-
-
-**FHIR resource type**: Observation
-
-| Description | FHIR Attribute | FHIR Data Type | Cardinality | Note |
-|------------|----------------|----------------|------------|------|
-| Status of the Observation | `status` | code | 1..1 | Should be "final". |
-| The result of the Observation | `valueQuantity` | Quantity | 0..1 | May be missing, but in such cases, a `dataAbsentReason` must be specified. |
-| Unit of individual measurement | `valueQuantity.unit` | string | 1..1 | Text representation fo the unit, e.g., "mg/dL" |
-| Code system of the measurement unit | `valueQuantity.system` | uri | 1..1 | UCUM: http://unitsofmeasure.org |
-| Code of the measurement unit from the specified code system | `valueQuantity.code` | code | 1..1 | Code from UCUM, e.g., "mg/dL".Should match the unit specified in the LOINC code in `Observation.code`. |
-| Coding of this measurement (type of measurement) | `code` | CodeableConcept | 1..1 | e.g., "2339-0" (blood glucose) from ValueSet [VS_HiMi_BloodGlucose](ValueSet-vs-blood-glucose.html) |
-| Reason for missing data | `dataAbsentReason` | CodeableConcept | 0..1 | A reason must be given if `valueQuantity` is not set. | 
-| Reference to the device configuration (DeviceMetric) | `device` | Reference | 0..1 | Reference to [DeviceMetric](StructureDefinition-DeviceMetric-Personal-Health-Device.html) to keep track of the sensor's calibration status.  |
-| Measurement time or period | `effective[x]` | dateTime / Period | 1..1 |  |
-| Measurement method | `method` | CodeableConcept | 0..1 | e.g. code for test strip, sensor. Element is flagged as **must support** |
-
+| | |
+|-|-|
+| **Endpoint** | `/metadata` |
+|**Description** | Provide a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) that contains information about the supported endpoints, resource interactions, and search parameters. |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
 ---
 
-### Profile
 
-The full profile definition can be found at the following places:
+#### Observation
 
+| | |
+|-|-|
+| **Endpoint** | `/Observation` |
+| **HTTP Method** | GET |
+| **Interactions**| READ, SEARCH |
+| **Description** | A DiGA must be able to retrieve blood glucose measurements from this endpoint. Common use cases include retrieving the latest observation, retrieving only observations that measure blood glucose in mg/dL, retrive all measurements accross a certain date range. <br><br> On request, the endpoint should also provide the calibration status (via DeviceMetric), as it is required for the correct interpretation of the measured values. On request the endpoint should also provide the device instance data (via Device). | 
+| **Request Parameters** | `/Observation/<id>` - Referring to the internal server id of the Observation.
+| **Search Parameters** | Parameters that MUST be supported are:<br> • `code` - Search for Observations of a specific type<br> • `date` - specify a date range <br> • `_include` - optionally include Device and DeviceMetric resources, referenced by `Observation.device`. <br><br> The server MAY support other search parameters, see [FHIR Observation](StructureDefinition-Device-Personal-Health-Device.html) for an overview of all HL7-defined search parameters on Observation resources. |
+| **Returned Objects** | • [Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html) <br> • [DeviceMetric-Personal-Health-Device](StructureDefinition-DeviceMetric-Personal-Health-Device.html) <br> • [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html)
+| **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html), for a list of the expected HTTP status codes |
 
-<hr>
-<div id="all-tbl-key-inner">
-    {%include StructureDefinition-Observation-Blood-Glucose-snapshot-by-key-all.xhtml%}
+---
+
+#### DeviceMetric
+
+| | |
+|-|-|
+| **Endpoint** | `/DeviceMetric` |
+| **HTTP Method** | GET |
+| **Description** | Access device configuration and calibration status. |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### Device
+
+| | |
+|-|-|
+| **Endpoint** | `/Device` |
+| **HTTP Method** | GET |
+| **Description** | Retrieve information about the device-instasnce, e.g. glucometer serial number, manufacturer, model name. | 
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+### MIV-Specific Observation Profile
+
+<div id="tabs-diff">
+  <div id="tbl-diff">
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Observation-Blood-Glucose'].title}}</p>
+    <p>
+      This structure is derived from
+      <a href="{{site.data.structuredefinitions['Observation-Blood-Glucose'].basepath}}">
+        {{site.data.structuredefinitions['Observation-Blood-Glucose'].basename}}
+      </a>
+    </p>
+    <div id="tbl-diff-inner">
+      {% include StructureDefinition-Observation-Blood-Glucose-diff.xhtml %}
+      <a name="tx"></a>
+      <!-- Terminology Bindings heading in the fragment -->
+      {% include StructureDefinition-Observation-Blood-Glucose-tx-diff.xhtml %}
+
+      {% capture invariantsdiff %}
+        {% include StructureDefinition-Observation-Blood-Glucose-inv-diff.xhtml %}
+      {% endcapture %}
+      <!-- 218 is size of empty table -->
+      {% unless invariantsdiff.size <= 218 %}
+        <a name="inv-diff"></a>
+        <!-- Constraints heading in the fragment -->
+        {% include StructureDefinition-Observation-Blood-Glucose-inv-diff.xhtml %}
+      {% endunless %}
+    </div>
+  </div>
 </div>
-<hr>
+
+#### Conventions and Best-Practice
+
+- Always use the latest version of the Observation profile.
+- Only `valueQuantity` is permitted as the result of the Observation for blood glucose measurements.
+- The `code` element must be selected from the [Blood Glucose ValueSet](ValueSet-vs-blood-glucose.html), reflecting both the measurement method and the units supported by the device.
+- The unit defined in the LOINC code’s display must align with both `valueQuantity.unit` and `valueQuantity.code`.
+- Because glucometers can generate and transmit readings even when uncalibrated, a reference to a [DeviceMetric](StructureDefinition-DeviceMetric-Personal-Health-Device.html) resource via the `device` element is required to capture the calibration status of the sensor, in order to ensure the proper interpretation of the data.
+- If `valueQuantity` is missing, a `dataAbsentReason` must be specified, giving the reason for missing data.
+- Set `status` to "final" for completed measurements.
 
 
-- In this specification under Artifacts -> [StructureDefinition/Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html)
-- **ToDo**: Verlinkung https://gematik.de/fhir/hdc/StructureDefinition/Observation-Blood-Glucose
+#### Examples
 
+**Example: Blood Glucose Observation Resource**
 
-### Search parameters
+```json
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "2339-0",
+        "display": "Glucose [Mass/volume] in Blood"
+      }
+    ]
+  },
+  "valueQuantity": {
+    "value": 95,
+    "unit": "mg/dL",
+    "system": "http://unitsofmeasure.org",
+    "code": "mg/dl"
+  },
+  "effectiveDateTime": "2025-09-18T08:30:00+01:00",
+  "device": {
+    "reference": "DeviceMetric/12345"
+  }
+}
+```
 
-The following search parameters **MUST** be supported by the medical aid manufacturer. Examples can be found in the [FHIR API specification](himi-diga-api.html).
+### FHIR RESTful Interactions
 
-| Search parameter | Description |
-| --- | -- | 
-|`code` | Request Observations of a particular type, e.g. list all Observations that measure blood glucose in mg/dL  from a blood sample | 
-|`date` | Request Observations for a particular time range, e.g in the last 14 days. |
-| `_include` | An addition to the search query, allowing to also request the full DeviceMetric resource, referenced in `device`. |
+Manufacturers MUST support the following interactions for the Observation resource:
+
+#### READ
+
+Retrieve a single Observation by its resource ID.
+
+**Example:**  
+`GET /Observation/{id}`
+
+#### SEARCH
+
+Search for Observations using supported parameters.
+
+**Example:**  
+`GET /Observation?code=2339-0&date=ge2025-09-01`
+
+Supported search parameters: `code`, `date`, `_include` (for DeviceMetric).
+
+### Conventions for DeviceMetric and Device Resources
+
+- `/DeviceMetric` and `/Device` endpoints only support read by resource ID.
+- Do not support `_include` or `?_id=` queries.
+- Refer to [himi-diga-api.md](himi-diga-api.html) for generic implementation details.
+- DeviceMetric should capture calibration and configuration status.
+- Device should provide manufacturer, serial number, and device type.
