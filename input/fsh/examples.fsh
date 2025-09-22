@@ -35,12 +35,12 @@ Description: "Example of a personal health device (glucometer) used for blood gl
 * definition = Reference(Example-Glucometer-Def)
 
 Instance: Example-Glucometer-Metric
-InstanceOf: DeviceMetric-Personal-Health-Device
+InstanceOf: DeviceMetric-Sensor-Type-and-Calibration-Status
 Usage: #example
 Title: "Glucometer Device Metric"
 Description: "Example of a device metric for blood glucose measurements from a glucometer."
 * id = "example-glucometer-metric"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/DeviceMetric-Personal-Health-Device"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/DeviceMetric-Sensor-Type-and-Calibration-Status"
 * type = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * unit = $unitsofmeasure#mg/dL "milligram per deciliter"
 * source = Reference(Example-Glucometer)
@@ -181,7 +181,7 @@ Usage: #example
 * expirationDate = "2025-09-10"
 
 Instance: Example-DeviceMetric-CGM
-InstanceOf: DeviceMetric_Personal_Health_Device
+InstanceOf: DeviceMetric_Sensor_Type_and_Calibration_Status
 Title: "DeviceMetric – CGM tissue glucose configuration"
 Description: "Example configuration for CGM measurements"
 Usage: #example

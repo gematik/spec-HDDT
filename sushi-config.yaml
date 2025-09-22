@@ -12,7 +12,7 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: health-device-data-transfer
 canonical: https://gematik.de/fhir/hddt
-version: 0.2.0
+version: 0.3.0
 name: healthDeviceDataTransfer
 title: Health Device Data Transfer
 status: draft
@@ -26,7 +26,7 @@ description: This specification describes the technical and semantic approach fo
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
-releaseLabel: CI Build
+releaseLabel: Pre-Release
 
 
 dependencies:
@@ -52,9 +52,9 @@ pages:
   index.html:
     title: Overview
     generation: markdown
-  examples.html:
-    title: Examples
-    generation: markdown
+  # examples.html:
+  #   title: Examples
+  #   generation: markdown
   himi-diga-api.html:
     title: HiMi DiGA RESTful FHIR API
     generation: markdown
@@ -97,12 +97,12 @@ pages:
   compatibility-of-the-gematik-specification.html:
     title: Compatibility of the gematik Specification
     generation: markdown
-  implementation_guide_diga.html:
-    title: Implementation guide for DiGA
-    generation: markdown
-  implementation_guide_himi.html:
-    title: Implementation guide for HiMi
-    generation: markdown
+  # implementation_guide_diga.html:
+  #   title: Implementation guide for DiGA
+  #   generation: markdown
+  # implementation_guide_himi.html:
+  #   title: Implementation guide for HiMi
+  #   generation: markdown
   pairing.html:
     title: Pairing
     generation: markdown
@@ -118,24 +118,28 @@ pages:
   diga-vz-api.html:
     title: DiGA Directory API (?)
     generation: markdown
-  information-model-diabetes.html:
-    title: Information Model Diabetes
-    generation: markdown
-  measurement-blood-glucose.html:
-    title: Measurement Blood Glucose
-    generation: markdown
-  measurement-tissue-glucose.html:
-    title: Measurement Tissue Glucose
-    generation: markdown
-  conventions-for-device-resources.html:
-    title: Conventions for Device Resources
-    generation: markdown
+  # information-model-diabetes.html:
+  #   title: Information Model Diabetes
+  #   generation: markdown
+  # measurement-blood-glucose.html:
+  #   title: Measurement Blood Glucose
+  #   generation: markdown
+  # measurement-tissue-glucose.html:
+  #   title: Measurement Tissue Glucose
+  #   generation: markdown
+  # conventions-for-device-resources.html:
+  #   title: Conventions for Device Resources
+  #   generation: markdown
   roadmap.html:
     title: Roadmap
     generation: markdown
-  aggregated-reports-cgm.html:
-    title: Aggregated Reports CGM
-    generation: markdown
+#   standardisation-plan.html:
+#     title: Standardisation plan
+#     generation: markdown  
+  # aggregated-reports-cgm.html:
+  #   title: Aggregated Reports CGM
+  #   generation: markdown
+
   glossary.html:
     title: Glossary
     generation: markdown
@@ -183,7 +187,7 @@ menu:
   #  Aggregated Reports CGM: aggregated-reports-cgm.html
   #  Conventions for Device* Ressources: conventions-for-device-resources.html
   #  Examples: examples.html
-  Artifacts:
+  FHIR Artifacts:
     Artifacts Summary: artifacts.html
 
 
