@@ -28,7 +28,7 @@ The Bundle is of type *collection* and **MUST** contain only resources of the fo
     - [Days of Wear](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-days-of-wear.html)
     - [Sensor Active Percentage](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)
 
-- DeviceMetric resources conforming to `DeviceMetric-Personal-Health-Device` to provide configuration details for the CGM measurement device.  
+- DeviceMetric resources conforming to `DeviceMetric-Sensor-Type-and-Calibration-Status` to provide configuration details for the CGM measurement device.  
 - Device resources conforming to `Device-Personal-Health-Device` to provide context about the actual Personal Health Device device used.  
 
 The purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  
