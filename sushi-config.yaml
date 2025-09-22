@@ -30,7 +30,7 @@ releaseLabel: Pre-Release
 
 
 dependencies:
-  hl7.fhir.uv.cgm: 1.0.0-ballot
+  hl7.fhir.uv.cgm: current
 
 parameters:
   show-inherited-invariants: false

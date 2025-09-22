@@ -18,6 +18,7 @@ This document defines the generic API definition - the API specification that is
 | Description | Standard | Specifications | Quality Criteria |
 |-------------|-----------|----------------|------------------|
 | RESTful FHIR R4 API | rfc8705 | **No** certificate-bound access tokens<br>Manufacturer-specific access tokens | Security: Mutual-TLS Client Authentication |
+
 ---
 
 ### Read Interactions
