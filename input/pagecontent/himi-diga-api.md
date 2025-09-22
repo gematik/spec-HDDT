@@ -63,9 +63,9 @@ For each resource type, all standard FHIR search parameters MAY be supported. Se
 | Endpoint | Use Cases | Specifications | Data Objects |
 |----------|-----------|----------------|--------------|
 | `/metadata` | • Information on supported FHIR version & profiles for DiGA vendor<br> • Supported resources & operations<br>- Supported search parameters & filters | • No Mutual-TLS Client Authentication (public endpoint)<br>• **FHIR R4** (from context)<br>• Endpoint **MUST** be available to declare: supported FHIR version, resources, operations, search parameters, profiles | **FHIR CapabilityStatement**<br>Supported Profiles: <br> • Device, DeviceMetric, Observation<br><br>Resource Interactions:<br>• Device: read <br>• DeviceMetric: read <br> • Observation: read, search<br>
-| `/Observation` |  • Query most recent measurement (single values)<br>• Query time series data for a patient<br> | • Allowed interactions: READ, SEARCH <br> • Data **MUST** conform to defined FHIR Profiles (e.g. [SD-Device-Personal-Health-Device](StructureDefinition-Observation-Blood-Glucose.html))<br>• Single values: `valueQuantity`<br>• Time series: `valueSampledData`<br>• Reference to either Device or DeviceMetric **REQUIRED**<br>• Values must be fully normalized (`unit/system/code`)| **FHIR Observation**<br>Single value: `valueQuantity`<br>Time series: `valueSampledData`<br>**FHIR DeviceMetric** (via `device`)<br>**FHIR Device** (via `device`) | 
+| `/Observation` |  • Query most recent measurement (single values)<br>• Query time series data for a patient<br> | • Allowed interactions: READ, SEARCH <br> • Data **MUST** conform to defined FHIR Profiles (e.g. [StructureDefinition-Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html))<br>• Single values: `valueQuantity`<br>• Time series: `valueSampledData`<br>• Reference to either Device or DeviceMetric **REQUIRED**<br>• Values must be fully normalized (`unit/system/code`)| **FHIR Observation**<br>Single value: `valueQuantity`<br>Time series: `valueSampledData`<br>**FHIR DeviceMetric** (via `device`)<br>**FHIR Device** (via `device`) | 
 | `/Device` |• Query the configuration and properties of the device instance based on the last measurement or last measurement series.<br> • Query information about the stored device instance for device validation (e.g., serial number, type, manufacturer). <br> • Complements the query of Observation/DeviceMetric, since information about the underlying device is not always delivered directly with the measurement. | • Only allows FHIR READ interaction using the Device ID, retrieved from an Observation or DeviceMetric.<br>• Returns Device instances (e.g. glucometers)<br>• Identifier may include device registry number<br>• Referenced by either `DeviceMetric.source` or `Observation.device` (**REQUIRED**)<br>• Serial number required for validation<br>• Does **not** support `_include` or `?_id=`; use `/Device/{id}` to obtain a single resource. | **FHIR Device** <br> `Device.status` - is the device active <br> `Device.expirationDate` <br><br> The following properties are used for user verification and consent: <br> `Device.deviceName` <br> `Device.manufacturer` <br> `Device.serialNumber` | 
-| `/DeviceMetric`| • Query the calibration status of the device for the last measurement or last measurement series. <br> • Reference to the specific device instance to maintain the link between measurement data and the physical sensor. | • Only allows FHIR READ interaction using the DeviceMetric ID retrieved from `/Observations`.<br>• Returns only the DeviceMetric referenced in the Observation, for data protection reasons.<br>• Does **not** support `_include` or `?_id=`; use `/DeviceMetric/{id}` to obtain a single resource. | **FHIR DeviceMetric**<br> <br> `calibration` - relevant for some devices (e.g. glucometer), where calibrating the device is needed <br> **FHIR Device** (via `source`)|
+| `/DeviceMetric`| • Query the sensor type and the calibration status of the device for the last measurement or last measurement series. <br> • Reference to the specific device instance to maintain the link between measurement data and the physical sensor. | • Only allows FHIR READ interaction using the DeviceMetric ID retrieved from `/Observations`.<br>• Returns only the DeviceMetric referenced in the Observation, for data protection reasons.<br>• Does **not** support `_include` or `?_id=`; use `/DeviceMetric/{id}` to obtain a single resource. | **FHIR DeviceMetric**<br> <br> `calibration` - relevant for some devices (e.g. glucometer), where calibrating the device is needed <br> **FHIR Device** (via `source`)|
 
 ---
 
@@ -93,7 +93,7 @@ For each resource type, all standard FHIR search parameters MAY be supported. Se
 | **Description** | Query measurement data from the HiMi FHIR server **The description of this endpoint is MIV-specific, and varies between use cases.**.**The description of this endpoint is MIV-specific, and varies between use cases.**. |
 | **Authentication** | OAuth2 Bearer token required |
 | **Request Parameters** | `/Observation/<id>` (resource ID) |
-| **Search Parameters** | Search parameters are MIV-specific. <br><br> The server MAY support search parameters, defined by the FHIR standard, see [FHIR Observation](StructureDefinition-Device-Personal-Health-Device.html) for an overview of all HL7-defined search parameters on Observation resources. |
+| **Search Parameters** | Search parameters are MIV-specific. <br><br> The server MAY support search parameters, defined by the FHIR standard, see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
 | **Returned Objects** | • FHIR Observation<br><br>Optionally (via search interaction `_include`):<br> •DeviceMetric (via `device`)<br> •Device (via `device`) |
 | **Specifications** | Returned resources must conform to the relevant FHIR profiles for the use-case. Values must be normalized (`unit/system/code`). |
 | **Error codes** |•`400` OperationOutcome (Invalid query parameters / Invalid search parameters)<br>•`401` (Unauthorized)<br> •`403` OperationOutcome (Forbidden)<br>•`404` OperationOutcome (Not found)<br> •`500` (Internal Server Error) |
@@ -205,27 +205,27 @@ For the complete definitions, refer to the [Artifacts](artifacts.html) page.
 
 <div id="tabs-diff">
   <div id="tbl-diff">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['DeviceMetric-Personal-Health-Device'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['DeviceMetric-Personal-Health-Device'].basepath}}">
-        {{site.data.structuredefinitions['DeviceMetric-Personal-Health-Device'].basename}}
+      <a href="{{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].basepath}}">
+        {{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].basename}}
       </a>
     </p>
     <div id="tbl-diff-inner">
-      {% include StructureDefinition-DeviceMetric-Personal-Health-Device-diff.xhtml %}
+      {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-diff.xhtml %}
       <a name="tx"></a>
       <!-- Terminology Bindings heading in the fragment -->
-      {% include StructureDefinition-DeviceMetric-Personal-Health-Device-tx-diff.xhtml %}
+      {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-tx-diff.xhtml %}
 
       {% capture invariantsdiff %}
-        {% include StructureDefinition-DeviceMetric-Personal-Health-Device-inv-diff.xhtml %}
+        {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-inv-diff.xhtml %}
       {% endcapture %}
       <!-- 218 is size of empty table -->
       {% unless invariantsdiff.size <= 218 %}
         <a name="inv-diff"></a>
         <!-- Constraints heading in the fragment -->
-        {% include StructureDefinition-DeviceMetric-Personal-Health-Device-inv-diff.xhtml %}
+        {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-inv-diff.xhtml %}
       {% endunless %}
     </div>
   </div>

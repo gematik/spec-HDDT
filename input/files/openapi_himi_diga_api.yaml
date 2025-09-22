@@ -104,7 +104,7 @@ paths:
                       - mode: server
                         resource:
                           - type: Device
-                            profile: "Device_Medical_Aid"
+                            profile: "Device_Personal_Health_Device"
                             interaction:
                               - code: read
                               - code: search-type
@@ -244,7 +244,7 @@ paths:
       description: |
         Supports querying [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources, primarily to obtain calibration status or to access the linked [Device](https://hl7.org/fhir/R4/device.html).  
 
-        Returned resources **MUST** conform to the [DeviceMetric_Medical_Aid](StructureDefinition-DeviceMetric-Personal-Health-Device.html) profile.  
+        Returned resources **MUST** conform to the [DeviceMetric_Sensor_Type_and_Calibration_Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) profile.  
         
         This is a FHIR read interaction, and does not allow any search parameters. 
         
@@ -322,7 +322,7 @@ paths:
       description: |
         Supports querying [Device](https://hl7.org/fhir/R4/device.html) resources in order to view device details such as name, manufacturer, serial number, and configuration.  
 
-        Returned resources **MUST** conform to the [Device_Medical_Aid](StructureDefinition-Device-Personal-Health-Device.html) profile.  
+        Returned resources **MUST** conform to the [Device_Personal_Health_Device](StructureDefinition-Device-Personal-Health-Device.html) profile.  
         
         This is a FHIR read interaction, and does not allow any search parameters. 
         

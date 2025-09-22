@@ -169,13 +169,14 @@ Description: "Profile for capturing a CGM measurement time series (tissue glucos
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for tissue glucose measurements."
 * effective[x] 1..1
 * effective[x] only Period
-* effective[x] ^short = "Measurement time point or period"
-* effective[x] ^definition = "The time or period when the CGM measurement was taken."
+* effective[x] ^short = "The chunk-time-span of measurements"
+* effective[x] ^definition = "The owner of the device data recorder MUST define the chunk-time-span of measurements that can be covered by a chunk. E.g. if the owner of the device data recorder defines a chunk-time-span of 24 hours for a chunk, each chunk can hold up to 1440 data points for a personal health device that measures data every minute. A chunk MAY cover a shorter period of time than the chunk-time-span (e.g. when the calibration status of the device changed during measurments), but it MUST NOT exceed that value."
 * effective[x].start 1..1
-* effective[x].start ^short = "Start of measurement period"
-* effective[x].start ^definition = "The starting time of the CGM measurement period."
-* effective[x].end ^short = "End of measurement period"
-* effective[x].end ^definition = "The ending time of the CGM measurement period. If the end is missing, the measurement is ongoing."
+* effective[x].start ^short = "Start of chunk-time-span"
+* effective[x].start ^definition = "The starting time of the chunk-time-span of measurements."
+* effective[x].end 1..1
+* effective[x].end ^short = "End of chunk-time-span"
+* effective[x].end ^definition = "The ending time of the chunk-time-span of measurements."
 * value[x] MS
 * value[x] only SampledData
 * value[x] ^short = "Time series"
@@ -259,7 +260,7 @@ Description: "Codes used to identify medical devices."
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/VS-Device-Type"
-* ^version = "0.1.0"
+* ^version = "0.3.0"
 * ^status = #draft
 * ^experimental = true
 * ^publisher = "BfArM"

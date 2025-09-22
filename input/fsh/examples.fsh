@@ -154,13 +154,6 @@ Usage: #example
 * code = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-09-01T08:00:00+02:00"
 * effectivePeriod.end   = "2025-09-01T10:00:00+02:00"
-* valueSampledData.origin.value = 0
-* valueSampledData.origin.unit = "mg/dL"
-* valueSampledData.origin.system = "http://unitsofmeasure.org"
-* valueSampledData.origin.code = #mg/dL
-* valueSampledData.period = 60000
-* valueSampledData.dimensions = 1
-* valueSampledData.data = "110 112 111 113 114 115"
 * dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown "temporarily unavailable"
 * device = Reference(Example-DeviceMetric-CGM)
 * note.text = "Sensor warm-up phase, values not yet validated."

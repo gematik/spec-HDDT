@@ -46,7 +46,7 @@ This [Observation](https://hl7.org/fhir/R4/observation.html) profile represents 
 
 The `code` element must be selected from the [Tissue Glucose CGM ValueSet](ValueSet-vs-tissue-glucose-cgm.html), consistent with the units supported by the device. The unit specified in the LOINC code’s display must match the `valueSampledData.unit` or `valueSampledData.code`.
 
-When calibration status is relevant, the `device` element must reference a [DeviceMetric](StructureDefinition-DeviceMetric-Personal-Health-Device.html) resource, where calibration details are recorded. If calibration is not relevant for the device, then `device` must instead reference a [Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html) resource.
+When calibration status is relevant, the `device` element must reference a [DeviceMetric](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) resource, where sensor type and calibration details are recorded. If calibration is not relevant for the device, then `device` must instead reference a [Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html) resource.
 
 The `status` of the Observavtion reflects whether the Observation is "complete", i.e. if no more `valueSampledData.data` can be added. See chapter [Retrieving Data](retrieving-data.html), for the full list of considerations.
 
@@ -58,16 +58,18 @@ The table below highlights elements that are additionally constrained by this pr
 | Description | FHIR Attribute | FHIR Data Type | Cardinality | Note |
 |------------|----------------|----------------|------------|------|
 | Status of the Observation | `status` | code | 1..1 | See chapter [Retrieving Data](retrieving-data.html)  |
-| Result of the Observation | `valueSampledData` | SampledData |  0..1 | In cases where data is missing, a reason must be given via `dataAbsentReason` |
-| Values of the measurement series | `valueSampledData.data` | string | 1..1 | The actual data.  |
-| Unit of the measurement series | `valueSampledData.origin.unit` | string | 1..1 | The measurement unit. Shoud be the same as the unit from the LOINC code in `Observation.code`. |
+| Result of the Observation | `valueSampledData` | SampledData |  0..1 | This field is flagged as **must support**. In cases where data is missing, a reason must be given via `dataAbsentReason` |
+| Unit of the measurement series | `valueSampledData.origin.unit` | string | 0..1 | The measurement unit. Shoud be the same as the unit from the LOINC code in `Observation.code`. |
 | Code system of the unit | `valueSampledData.origin.system` | uri | 1..1 | UCUM: http://unitsofmeasure.org  |
 | Code of the unit from the specified code system | `valueSampledData.origin.code` | code | 1..1 | Code of the unit, from the UCUM code system.  |
+| Period of the measurement series | `valueSampledData.period` | decimal | 1..1 | The period of the measurement series.   |
+| Values of the measurement series | `valueSampledData.data` | string | 1..1 | The actual data.|
+| Number of sample points at each time point | `valueSampledData.dimension` | positiveInt | 1..1 | e. g. 1|
 | Coding of this measurement (type of measurement) | `code` | CodeableConcept | 1..1 | e.g., "105272-9" (	Glucose [Moles/volume] in Interstitial fluid) from ValueSet [VS_Tissue_Glucose_CGM](ValueSet-vs-tissue-glucose-cgm.html). |
 | Reason for missing data | `dataAbsentReason` | CodeableConcept | 0..1 | A reason must be given if `valueSampledData` is not set. | 
 | Reference to the device configuration ([DeviceMetric](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-DeviceMetric-Personal-Health-Device.html)) or a device instance ([Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html)) | `device` | Reference | 1..1 | The type of resource referenced, depends on whether sensor calibration is required for the correct interpretation of the data (DeviceMetric), or device does not need calibration (Device). |
 | Measurement time or period | `effective[x]` |  Period | 1..1 |  |
-| Measurement method | `method` | CodeableConcept | 0..1 | e.g., continuous blood monitoring. This field is flagged as **must support**. |
+| Measurement method | `method` | CodeableConcept | 0..1 | e.g., continuous blood monitoring. |
 
 
 ---
@@ -76,7 +78,7 @@ The table below highlights elements that are additionally constrained by this pr
 
 The full profile definition can be found at the following places:
 
-- In this specification under Artifacts -> [StructureDefinition/Observation-Tissue-Glucose-CGM-Measurement-Series](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Observation-CGM-Measurement-Series.html)
+- In this specification under Artifacts -> [StructureDefinition/Observation-Tissue-Glucose-CGM-Measurement-Series](StructureDefinition-Observation-CGM-Measurement-Series.html)
 - **ToDo**: Verlinkung https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Measurement-Series
 
 <hr>

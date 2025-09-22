@@ -121,12 +121,12 @@ pages:
   # information-model-diabetes.html:
   #   title: Information Model Diabetes
   #   generation: markdown
-  # measurement-blood-glucose.html:
-  #   title: Measurement Blood Glucose
-  #   generation: markdown
-  # measurement-tissue-glucose.html:
-  #   title: Measurement Tissue Glucose
-  #   generation: markdown
+  measurement-blood-glucose.html:
+    title: MIV - Blood Glucose Value
+    generation: markdown
+  measurement-tissue-glucose.html:
+    title: MIV - ISF Samples Data Value
+    generation: markdown
   # conventions-for-device-resources.html:
   #   title: Conventions for Device Resources
   #   generation: markdown
