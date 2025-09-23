@@ -1,3 +1,7 @@
+Medical aids and implants often can measure various kinds of data, depending from the kind of device and the concrete product. Not all of this data can be considered by mid 2027 when § 347a SGB V comes into effect. Therefore an assessment on typical use cases within prioritized domains was conducted in order to discover the kinds of data that are especially relevant for care scenarios which can be supported by DIGA (see chapter on [Methodology](methodology.html)). 
+
+This page lists these __Mandatory Interoperable Values (MIVs)__ for the domains that have been assessed so far.
+
 
 ### Domain: Diabetes Self-Management
 
