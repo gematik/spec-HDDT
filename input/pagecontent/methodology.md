@@ -13,9 +13,9 @@ To meet this legal requirement – namely, to design the interface according to 
 
 In a first step, gematik and the Federal Ministry of Health identified domains that seemed particularly relevant for data exchange between medical aids and digital health applications (DiGA). A domain can roughly be understood as an area of use or a care environment for existing and, above all, future DiGA.
 
-The selection of domains to be prioritized took into account prescription numbers of certain medical aids as well as the potential of DiGA to support therapy management from a patient's perspective. It was also important to initially choose domains that overlap with Disease Management Programs (DMP). Starting in 2027, the concept of “digital DMPs” will provide an innovation-friendly framework for the use of DiGA in the care of people with chronic illnesses. Having access to device data will help to position innovative DiGA in this new regulatory environment.
+The selection of domains to be prioritized considered prescription numbers of certain medical aids as well as the potential of DiGA to support therapy management from a patient's perspective. It was also important to initially choose domains that overlap with Disease Management Programs (DMP). Starting in 2027, the concept of “digital DMPs” will provide an innovation-friendly framework for the use of DiGA in the care of people with chronic illnesses. Having access to device data will help to position innovative DiGA in this new regulatory environment.
 
-The table below shows the domains and related DMP that haven been chosen for the first set of FHIR guidelines.
+The table below shows the domains and related DMP that have been chosen for the first set of FHIR guidelines.
 
 | Domain                    | related DMP                                                         |
 |---------------------------|---------------------------------------------------------------------|
@@ -26,10 +26,10 @@ The table below shows the domains and related DMP that haven been chosen for the
 
 For each domain, three aspects were analyzed: __medical aids__, __interoperable values__, and __use cases__. Each aspect was understood as a perspective from which the other two aspects could also be considered.
 * __Medical aids__: Which aids and implants are typical for care in this domain? What kind of data do these medical aids and implants generate? In which situations are such aids usually prescribed by physicians? How do patients use them in everyday life?
-* __Interoperable values__: Which data are typically processed in this domain? Where does this data come from? In which situations do physicians need it? How can this data also support patients in managing their condition and implementing therapy? How must the data be defined so that it can be exchanged as interoperable values?
+* __Interoperable values__: Which data is typically processed in this domain? Where does this data come from? In which situations do physicians need it? How can this data also support patients in managing their condition and implementing therapy? How must the data be defined so that it can be exchanged as interoperable values?
 * __Use cases__: Which care scenarios are typical for this domain? What added value could a DiGA provide in such scenarios? Which interoperable values would a DiGA need in order to generate these benefits?
 
-Based on these analyses, the next step was to evaluate the interoperable values in terms of their contribution to the use cases and their relevance for the underlying care scenarios. It was considered which properties of the values are important for the use cases and how the various concrete data can be assigned to these values. From this, a manageable set of particularly relevant interoperable values was conceptually defined for each domain. These are called __"mandatory interoperable values" (MIVs)__ because every medical aid or implant that processes one or more MIVs is a potential [HDDT certificatio relevant system](certification-relevant-systems.html) that is obliged to implement the HDDT API for the provided MIVs.  
+Based on these analyses, the next step was to evaluate the interoperable values in terms of their contribution to the use cases and their relevance for the underlying care scenarios. It was considered which properties of the values are important for the use cases and how the various concrete data can be assigned to these values. From this, a manageable set of particularly relevant interoperable values was conceptually defined for each domain. These are called __"mandatory interoperable values" (MIVs)__ because every medical aid or implant that processes one or more MIVs is a potential [HDDT certification relevant system](certification-relevant-systems.html) that is obliged to implement the HDDT API for the provided MIVs.  
 
 MIVs are "conceptually defined" through their properties and purposes within the context of typical DiGA device data processing scenarios. This kind of rather logical than technical definition  reflects the legal obligation from § 374a SGB V that a DiGA must only process device data if and only if this data is needed for the intended purposes of the DiGA. 
 
@@ -37,7 +37,7 @@ Example: _Blood Glucose Value_ and _ISF Glucose Sampled Value_ are two different
 
 ### From MIVs to APIs
 
-Once a MIV is defined, a MIV-specific __HDDT Observation Profile__ is specified. This profile constraints the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition to match the requirements and specialities of the MIV. Measured values for MIVs are made available by the backend of a medical aid or implant through the standard FHIR RESTful `read` and `search` interactions. 
+Once a MIV is defined, a MIV-specific __HDDT Observation Profile__ is specified. This profile constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition to match the requirements and specialties of the MIV. Measured values for MIVs are made available by the backend of a medical aid or implant through the standard FHIR RESTful `read` and `search` interactions. 
 
 Some MIVs are the basis for aggregated or derived data. Such data is provided to DiGA as structured, standardized reports. Depending on the report's content and structure, a dedicated FHIR profile (e.g. based on Observation or DiagnosticReport resource definitions) and a dedicated FHIR operation are defined for each report.
 
@@ -53,10 +53,10 @@ The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow)
 
 ### Defined MIVs
 
-The table below lists the use cases, medical aids, and interoperable values that have been assessed so far. Interoperable values in fat letters are MIVs of the first specification stage (MVP). Medical aids in fat letters are devices that presumerably are certification relevant systems with respect to the identified MIVs.
+The table below lists the use cases, medical aids, and interoperable values that have been assessed so far. Interoperable values in fat letters are MIVs of the first specification stage (MVP). Medical aids in fat letters are devices that presumably are certification relevant systems with respect to the identified MIVs.
 
 | Domain                    | Use Cases | Medical Aids                                                                         | Interoperable Values                                                                        |
 |---------------------------|-----------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------| 
-| Diabetes Self-Management  |           | • __blood glucose meter__ <br> • __rtCGM__ <br> • smart pen <br> • insulin pump <br> | • __Blood Glucose Value__<br>• __ISF Glucose Sampled Value__<br>• insulin intake |
-| Respiratory Monitoring    |           | • __peak flow meter__<br>• __spirometer__<br>• CPAP<br>• APAP                                | • __PEF__<br>• __FEV1__<br>• FVC<br>• FEV6, ...                                             |
-| Simple Cardiac Monitoring |           | • __blood pressure cuff__<br>• scale                                                 | • __Blood Pressure__<br>• __Pulse__<br>• body weight                                        |
+| Diabetes Self-Management  |• DiGA zur Dosisfindung bei Langzeitinsulinen<br>• DiGA mit digitalem Diabetestagebuch<br>• Niederschwelliges Telemonitoring<br>• Vermeidung von Blutzuckerspitzen<br>• Alerting beim Erreichen zuvor festgelegter kritischer Grenzwerte  | • __blood glucose meter__ <br> • __rtCGM__ <br> • smart pen <br> • insulin pump <br> | • __Blood Glucose Value__<br>• __ISF Glucose Sampled Value__<br>• insulin intake |
+| Respiratory Monitoring    | • Behandlung von schwerem Asthma<br>• Behandlung von Schlafapnoe          | • __peak flow meter__<br>• __spirometer__<br>• CPAP<br>• APAP                                | • __PEF__<br>• __FEV1__<br>• FVC<br>• FEV6, ...                                             |
+| Simple Cardiac Monitoring | _to be defined_           | • __blood pressure cuff__<br>• scale                                                 | • __Blood Pressure__<br>• __Pulse__<br>• body weight                                        |
