@@ -86,6 +86,16 @@ If the device data recorder does not provide a `device` reference to a [DeviceMe
 
 The [Device](https://hl7.org/fhir/R4/device.html) resource MUST contain a `definition` reference to the device's product definition as registered with the BfArM device registry. The reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfARM device registry. The reference MAY contain a _version_ value.
 
+Every device data recorder holds information about its static properties as part of its definition. These properties can be obtained as key-value-pairs from the BfArM Device Directory. The table below lists the keys defined so far.
+
+| key                  | value | obligation | comments |
+|----------------------|-------|------------|----------|
+| Store-Capacity-Count | number of measured values that can be stored locally with the sensor | MUST | In cases where the sensor cannot synchronize with the aggregation manager (e.g. due to connection failures) data gets lost if the amount of measured data since the last synchronization exceeds _Store-Capacity-Count_ |
+| Historic-Data-Period | minimum number of days historic data is available at the device data recorder | MUST | If a DiGA queries for data that is older than _Historic-Data -Period_ the device data recorder, the device data recorder MAY respond with an error. _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
+| Grace-Period | Time span a DiGA must wait between two requests for the same patient's data. | MUST | A device data recorder MAY reject a new request that is issued before the end of this time span. | 
+| Chunk-Time-Span      | size of a chunk for sharing sampled data (see below) | MUST if applicable | This property is only applicable for device data recorders that provide MIVs as sampled data |  
+
+
 #### Dedicated Measurements
 
 In general HDDT only requests a minimum of data elements to be mandatory with an [Observation](https://hl7.org/fhir/R4/observation.html) resource that reflects a single measurement. The example below is based on the HDDT FHIR impementation guideline for _glucose in capillary blood_. 

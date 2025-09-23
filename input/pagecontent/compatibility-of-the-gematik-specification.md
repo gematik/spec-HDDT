@@ -16,7 +16,7 @@ In this technical specification, the following standards have been used:
 
 ### Compatibility of the HDDT FHIR Profiles
 
-While deriving FHIR profiles from the assessed use cases (see [methodology](methodology.html)) existing profiles from other countries and organizations have been considered in order to be as compliant as possible with existing solutions. 
+While deriving FHIR profiles from the assessed use cases (see [methodology](methodology.html)), existing profiles from other countries and organizations have been considered in order to be as compliant as possible with existing solutions. 
 
 | HDDT FHIR profile | international profile  | HDDT compliance statement |
 |-------------------|-----------------|---------|
@@ -33,3 +33,5 @@ While deriving FHIR profiles from the assessed use cases (see [methodology](meth
 As can bee seen in the table, the only derivation from existing profiles is that HDDT makes the `device` element mandatory with raw glucose measurement data. The reason for this is to address specific patient safety issues which arise from the specific HDDT use cases:
 * neither DiGA nor the medical aids' backend systems do securely identify the patient. They just match authenticated patient accounts. Therefore the `serialNumber` as provided with a [Device](https://hl7.org/fhir/R4/device.html) resource is the only identifier that allows the patient to verify that data originated from his personal health device.
 * DiGA can be medical devices of MDR class IIa or even MDR class IIb that process medical data for therapeutic purposes, e.g. including the adaptation of insulin correction factors. For this a DiGA MUST be able to verify that data comes from a calibrated system. The respective information is only available through the [DeviceMetric](https://hl7.org/fhir/R4/observation.html) resource.
+
+The definition of elements as mandatory or _Must Support_ within HDDT FHIR profiles follows the guidelines of the [HL7-D Best Practices for Profiling FHIR](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current).

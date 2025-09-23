@@ -30,8 +30,10 @@ The MIV _Blood Glucose Value_ covers values from "bloody measurments" using capi
 | __FHIR Observation Profile__  | Health Data Recorders provide _Blood Glucose Values_ to DiGA using the MIV-specific Observation Profile [__Blood Glucose Measurement__](measurement-blood-glucose.html). This profile allows to share a set of blood glucose values as single FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. |
 | __FHIR Interactions__ | Access to the ressources is given through standard FHIR _read_ and _search_ RESTful interactions as described in [Retrieving Data](retrieving-data.html#querying-for-device-data). |
 | __Aggregated and Derived Data__ | By now there are no aggregated or derived data defined for the MIV "Blood Glucose Value". |
-|  |  |
-
+| __`Historic-Data-Period`__ | Device data recorders that that provide _Blood Glucose Values_ MUST make the measured values retrievable for at least __30 days__.  |
+| __`Grace-Period`__ | A device data recorder MAY reject a DiGA's request for a patient's _Blood Glucose Value_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
+| __`Chunk-Time-Span`__ | _not applicable_ |
+|  |   | 
 
 #### ISF Glucose Sampled Value
 The MIV _ISF Glucose Sampled Value_ covers values from continuous monitoring of the glucose level in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to one value per minute. By this _ISF Glucose Sampled Values_ can e.g. be used to assess dependencies between a patient's individual habits and behavious and his glucose level. Due to the high density of values over a long period of time, many key figures can be derived from _ISF Glucose Sampled Values_ which help the patient and his doctor to easily capture the status of the patient's health and therapy.
@@ -41,7 +43,10 @@ The MIV _ISF Glucose Sampled Value_ covers values from continuous monitoring of 
 |__Defining ValueSet__ | The MIV _ISF Glucose Sampled Value_ is defined by the FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) [__GEM_HDC_VS_Tissue_Glucose_CGM__](https://gematik.de/fhir/hdc/ValueSet/VS-Tissue-Glucose-CGM).<br>This ValueSet includes codes relevant to continuous glucose monitoring (CGM) of ISF glucose, considering mass/volume and moles/volume as commonly used units. |
 |__FHIR Observation Profile__ | Health Data Recorders provide _ISF Glucose Sampled Value_ to DiGA using the MIV-specific Observation Profile [__ISF Glucose Measurement__](measurement-tissue-glucose.html). This profile allows to share sampled ISF glucose values as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. Each resource holds multiple values while the time stamp of each value can be determined by the time stamp of the first value and the fixed sample rate. |
 |__FHIR Interactions__ | Access to the ressources is given through standard FHIR _read_ and _search_ RESTful interactions as described in [Retrieving Data](retrieving-data.html#querying-for-device-data).|
-| __Aggregated and Derived Data__ | As stated above, _ISF Glucose Sampled Values_ are a basis for many key figures used in diabetes therapy monitoring, e.g. times in ranges (e.g. times in hypoglycemia and hyperglycemia) and Glucose Management Index (GMI).<br>Health Data Recorders MUST provide the structured, coded part of the _HL7 CGM Summary Report_ to DiGA using the MIV-specific Profile [__HDDT CGM Summary__](measurement-tissue-glucose.html). This profile allows to share a well defined set of relevant key figures as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. 
+| __Aggregated and Derived Data__ | As stated above, _ISF Glucose Sampled Values_ are a basis for many key figures used in diabetes therapy monitoring, e.g. times in ranges (e.g. times in hypoglycemia and hyperglycemia) and Glucose Management Index (GMI).<br>Health Data Recorders MUST provide the structured, coded part of the _HL7 CGM Summary Report_ to DiGA using the MIV-specific Profile [__HDDT CGM Summary Report__](measurement-tissue-glucose.html). This profile allows to share a well defined set of relevant key figures as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. 
+| __`Historic-Data-Period`__ | Device data recorders that that provide _ISF Glucose Sampled Values_ MUST make the measured values and derived key figures (per _CGM Summary Report_) retrievable for at least __30 days__.  |
+| __`Grace-Period`__ | A device data recorder MAY reject a DiGA's request for a patient's _ISF Glucose Sampled Value_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
+| __`Chunk-Time-Span`__ | The _Chunk-Time-Span_ depends on the sample rate of the personal health device. Chunks of sampled data SHOULD be sized to hold between 200 and 2000 single data points. |
 |  |   |
 
 
