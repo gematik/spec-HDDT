@@ -22,7 +22,7 @@ contact:
     telecom:
       - system: url
         value: https://www.gematik.de
-description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to §374a SGB V.
+description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to § 374a SGB V.
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
@@ -52,9 +52,18 @@ pages:
   index.html:
     title: Overview
     generation: markdown
+  motivation.html:
+    title: Motivation
+    generation: markdown
+  roadmap.html:
+    title: Roadmap
+    generation: markdown
+  glossary.html:
+    title: Glossary
+    generation: markdown
   # examples.html:
-  #   title: Examples
-  #   generation: markdown
+    #   title: Examples
+    #   generation: markdown
   himi-diga-api.html:
     title: HiMi DiGA RESTful FHIR API
     generation: markdown
@@ -81,9 +90,6 @@ pages:
     generation: markdown
   mivs.html:
     title: Mandatory Interoperable Values (MIVs)
-    generation: markdown
-  motivation.html:
-    title: Motivation
     generation: markdown
   release-notes.html:
     title: Release Notes
@@ -130,19 +136,12 @@ pages:
   # conventions-for-device-resources.html:
   #   title: Conventions for Device Resources
   #   generation: markdown
-  roadmap.html:
-    title: Roadmap
-    generation: markdown
 #   standardisation-plan.html:
 #     title: Standardisation plan
 #     generation: markdown  
   # aggregated-reports-cgm.html:
   #   title: Aggregated Reports CGM
   #   generation: markdown
-
-  glossary.html:
-    title: Glossary
-    generation: markdown
   general-considerations.html:
     title: General Considerations
     generation: markdown

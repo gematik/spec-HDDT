@@ -2,7 +2,7 @@
    "name" : "de.gematik.hddc.diabetes",
   "version" : "0.2.0",
   "title" : "Health Device Data Transfer FHIR Profiles",
-  "description" : "This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to §374a SGB V.",
+  "description" : "This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to § 374a SGB V.",
   "author" : "gematik GmbH",
   "dependencies": {
     "hl7.fhir.r4.core": "4.0.1",
