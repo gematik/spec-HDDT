@@ -58,8 +58,17 @@ pages:
   roadmap.html:
     title: Roadmap
     generation: markdown
+  compatibility-of-the-gematik-specification.html:
+    title: Compatibility 
+    generation: markdown
   glossary.html:
     title: Glossary
+    generation: markdown
+  methodology.html:
+    title: Methodology
+    generation: markdown
+  conventions.html:
+    title: Keywords and Conventions
     generation: markdown
   # examples.html:
     #   title: Examples
@@ -72,9 +81,6 @@ pages:
     generation: markdown
   information-model.html:
     title: Information Model
-    generation: markdown
-  methodology.html:
-    title: Methodology
     generation: markdown
   oauth-api.html:
     title: OAuth 2.0 ACG API
@@ -99,9 +105,6 @@ pages:
      generation: markdown
   certification-relevant-systems.html:
     title: Certification relevant systems
-    generation: markdown
-  compatibility-of-the-gematik-specification.html:
-    title: Compatibility of the gematik Specification
     generation: markdown
   # implementation_guide_diga.html:
   #   title: Implementation guide for DiGA
@@ -154,14 +157,15 @@ menu:
   General:
     Motivation: motivation.html
     Roadmap: roadmap.html
+    Compatibility: compatibility-of-the-gematik-specification.html
     Glossary: glossary.html
   Release Notes: release-notes.html
   Definition and Rules: 
     Methodology: methodology.html
+    Keywords and Conventions: conventions.html
     Certification relevant systems: certification-relevant-systems.html
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html
-    Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
     Security and Privacy: security-and-privacy.html
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html

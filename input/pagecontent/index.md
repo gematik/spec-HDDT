@@ -25,9 +25,6 @@ Please submit questions and comments via our [request portal](https://service.ge
 
 If you do not have access to the request portal and would like to use it, please send us a message to hddt [at] gematik.de with the subject “Portal access”.
 
-### Use of Keywords
-Requirements, as an expression of normative specifications, are indicated by the keywords "MUST", "SHOULD", "MAY", "SHOULD NOT", "MUST NOT", "REQUIRED", "RECOMMENDED" and "OPTIONAL" as defined in [RFC 2119](https://tools.ietf.org/html/rfc2119 "RFC 2119"). "SHALL" is used synonymous to "MUST". 
-
 ### License Information
 This implementation guide is published unter the __XXXXX__ license. 
 
