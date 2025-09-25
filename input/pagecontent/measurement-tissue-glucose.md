@@ -4,27 +4,296 @@
 
 ### Introduction
 
-### MIV-Specific Observation Profile
+This document provides implementation guidance for manufacturers integrating data from continuous glucose measurement (CGM) devices, using a RESTful FHIR API. It builds on the [Generic FHIR API](himi-diga-api.html) and describes the specific requirements for exposing interstitial fluid glucose measurements to DiGA, including:
 
-Baum und Tabelle als include
+- The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html), including any required FHIR operations.
+- The relevant FHIR profiles for interstitial fluid glucose measurement and how they should be returned by the API.
+- Conventions for using FHIR resources to ensure compliance with the [Information model](information-model.html).
+- Example requests and responses to support implementation.
 
-#### Conventions and Good Practices
+### FHIR API
 
-#### Examples 
+The server MUST support the following endpoints.
 
-### FHIR RESTful Interactions
+**FHIR Interactions**: The specified FHIR interactions are the same as in [Generic HiMi FHIR API](himi-diga-api.html).
 
-#### read
-Nutzung, Parameter, Beispiele
+**Authentication**: The authentication and authorization requirements for these endpoints are the same as the [Generic HiMi FHIR API](himi-diga-api.html).
 
-#### search
-Nutzung, Parameter, Beispiele
+### Endpoint - Metadata
 
-### MIV-Specific Aggregated Report (falls vorhanden)
+| | |
+|-|-|
+| **Endpoint** | `/metadata` |
+|**Description** | Provide a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) that contains information about the supported endpoints, resource interactions, and search parameters. |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
-#### FHIR Profile
+---
 
-#### FHIR Operation
+### Endpoint - Observation
+
+#### Observation - READ
+
+| | |
+|-|-|
+| **Endpoint** | `/Observation/<id>` |
+| **HTTP Method** | GET |
+| **Interaction** | READ |
+| **Description** | Retrieve a single interstitial fluid glucose Observation by its internal server ID. Such scenario is unlikely to occur, but MUST be supported. <br> The returned Observation MUST conform to the HDDT Observation-CGM-Measurement-Series profile. Subsequent request can be made on the `/Device` or `/DeviceMetric` endpoints, to resolve the reference in `Observation.device`, and obtain the device calibration status or configuration. |
+| **Request Parameters** | `id` - Referring to the internal server ID of the Observation. |
+| **Returned Objects** | • [Observation-CGM-Measurement-Series](StructureDefinition-Observation-CGM-Measurement-Series.html) |
+| **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
+
+---
+
+#### Observation - SEARCH
+
+| | |
+|-|-|
+| **Endpoint** | `/Observation` |
+| **HTTP Method** | GET / POST |
+| **Interaction** | SEARCH |
+| **Description** | Search for interstitial fluid glucose Observations. Common use cases include retrieving the latest observation, retrieving only observations that measure interstitial fluid glucose in mg/dL, and retrieving all measurements across a certain date range. <br>Requests with the search parameter `_include=Observation:device` can be used to return DeviceMetric and Device resources referenced by `Observation.device` in the same Bundle. |
+| **Search Parameters** | Parameters that MUST be supported are:<br> • `code` - Search for Observations of a specific type<br> • `date` - Specify a date range <br> • `_include` - Optionally include DeviceMetric and Device resources, referenced by `Observation.device`. <br><br> The server MAY support other search parameters; see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
+| **Returned Objects** | • Bundle containing [Observation-CGM-Measurement-Series](StructureDefinition-Observation-CGM-Measurement-Series.html) entries and optionally [DeviceMetric-Sensor-Type-and-Calibration-Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) and [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) when requested via `_include`. |
+| **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
+
+#### Profile
+
+<div id="tabs-key">
+  <div id="tbl-key">
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].title}}</p>
+    <p>
+      This structure is derived from
+      <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">
+        {{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}
+      </a>
+    </p>
+    <div id="tbl-key-inner">
+      {% include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml %}
+    </div>
+  </div>
+</div>
+
+
+#### Examples - FHIR Search GET
+
+**Request**: GET `/Observation?date=ge2025-08-01`
+
+**Description**: Request all CGM measurements, since the 1st of August. Return a Bundle. This one contains only a single observation.
+
+**Response:**
+
+```json
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/Observation/65",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "obs-cgm-series-001",
+                "status": "preliminary",
+                "code": {
+                    "coding": [
+                    {
+                        "system": "http://loinc.org",
+                        "code": "105272-9",
+                        "display": "Glucose [Moles/volume] in Interstitial fluid"
+                    }
+                    ]
+                },
+                "effectivePeriod": {
+                    "start": "2025-08-28T08:00:00Z",
+                    "end": "2025-08-28T10:00:00Z"
+                },
+                "valueSampledData": {
+                    "origin": {
+                    "value": 0,
+                    "unit": "mmol/L"
+                    },
+                    "period": 300,
+                    "data": "5.6 5.8 6.0 5.9 5.7"
+                }
+        }
+    ]
+}
+
+```
+
+#### Examples - FHIR Search POST
+
+**Request**: POST `/Observation/_search`
+
+**Headers:**
+
+- `Content-Type: application/json`
+- `Accept: application/json`
+
+**Body:**
+
+```json
+{
+    "code": "99504-3"
+}
+```
+
+**Description:** Use a POST requests, with the search parameters in the request body, to query all Observations that measure interstitial fluid glucose in mg/dL. Response is a Bundle.
+
+**Response:**
+
+```json
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/Observation/65",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "65",
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2339-0",
+                            "display": "Glucose [Mass/volume] in Blood"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2025-08-20T07:05:02.165Z",
+                "valueQuantity": {
+                    "value": 301,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "mg/dL"
+                },
+                "device": {
+                    "reference": "DeviceMetric/67"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/Observation/68",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "68",
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2339-0",
+                            "display": "Glucose [Mass/volume] in Blood"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2025-08-20T07:05:03.664Z",
+                "valueQuantity": {
+                    "value": 125,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "mg/dL"
+                },
+                "device": {
+                    "reference": "DeviceMetric/67"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}
+```
+
+
+### Endpoint - DeviceMetric
+
+#### DeviceMetric - READ
+
+| | |
+|-|-|
+| **Endpoint** | `/DeviceMetric/<id>` |
+| **HTTP Method** | GET |
+| **Interaction** | READ |
+| **Description** | Retrieve a single DeviceMetric instance (sensor type and calibration status) by its internal ID. Use this endpoint to obtain the calibration state required for correct interpretation of measurement values. The ID can be obtained via `Observation.device` from previous requests on the `/Observation` endpoint. |
+| **Request Parameters** | `/DeviceMetric/<id>` - Referring to the internal server ID of the DeviceMetric. |
+| **Returned Objects** | • [DeviceMetric-Sensor-Type-and-Calibration-Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### DeviceMetric - SEARCH
+
+| | |
+|-|-|
+| **Endpoint** | `/DeviceMetric` |
+| **HTTP Method** | GET |
+| **Interaction** | SEARCH |
+| **Description** | Search for DeviceMetric resources, for example to query calibration status across devices or time ranges. Returned DeviceMetric resources should reference the Device instance via `source` to maintain the link between the measurement data and the physical sensor. |
+| **Search Parameters** | Commonly used search parameters are `type`, `source`, and `_include`. <br> The server MAY support standard DeviceMetric search parameters. See [FHIR DeviceMetric - Search Parameters](https://hl7.org/fhir/R4/devicemetric.html#search) for details. |
+| **Returned Objects** | • Bundle containing [DeviceMetric-Sensor-Type-and-Calibration-Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) entries. Optionally, additional [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) entries when using `_include`. |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### Profile
+
+No deviation from the [Generic FHIR API](himi-diga-api.html).
+
+
+#### Examples
+
+No deviation from the [Generic FHIR API](himi-diga-api.html).
+
+
+
+### Endpoint - Device
+
+#### Device - READ
+
+| | |
+|-|-|
+| **Endpoint** | `/Device/<id>` |
+| **HTTP Method** | GET |
+| **Interaction** | READ |
+| **Description** | Retrieve a single Device instance by its internal ID. Use this to obtain configuration and properties of the device instance (e.g., serial number, manufacturer, device type) needed for device validation. Device ID is usually obtained from previous requests, either via `Observation.device`, or `DeviceMetric.source`. |
+| **Request Parameters** | `/Device/<id>` - Referring to the internal server ID of the Device. |
+| **Returned Objects** | • [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### Device - SEARCH
+
+| | |
+|-|-|
+| **Endpoint** | `/Device` |
+| **HTTP Method** | GET |
+| **Interaction** | SEARCH |
+| **Description** | Search for Device instances, for example to list devices by manufacturer, type, or serial number.  |
+| **Search Parameters** | Commonly used search parameters are `deviceName`, `manufacturer`, and `_include`. <br> The server MAY support standard Device search parameters. See [FHIR Device - Search Parameters](https://hl7.org/fhir/R4/device.html#search) for details. |
+| **Returned Objects** | • Bundle containing [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) entries |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### Profile
+
+No deviation from the [Generic FHIR API](himi-diga-api.html).
+
+
+#### Examples
+
+No deviation from the [Generic FHIR API](himi-diga-api.html).
+
+
+### FHIR Operation
 
 | | |
 |-|-|
@@ -32,68 +301,142 @@ Nutzung, Parameter, Beispiele
 | **Operation name** | `$cgm-summary-data-report` |
 |**Purpose** |  Request a summary of desired CGM values (e.g tissue glucose values below lower threshold) for a certain range of time. |
 |**Parameters** |  See section "[OpenAPI Description](#openapi-description) for parameter definitions and examples.<br> • `effectivePeriodStart (dateTime)` (optional) <br> • `effectivePeriodEnd (dateTime)` (optional) - End of the effective time period <br> •  `related (boolean)` (optional)|
-| **Specifications** | • Summary is calculated at run-time and results are not stored persistently. <br> •  **MUST** support all profiles listed in `Bundle-Search-Summary-Data-Measurements`. <br> • **MUST** support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which **MUST** cover at least 14 days.<br> •  The Summary-Operation **MUST** support a minimal duration of 7 days for the effective period, and an error must be returned if the client requests a shorter time period. |
+| **Specifications** | • Summary is calculated at run-time and results are not stored persistently. <br> •  MUST support all profiles listed in `Bundle-Search-Summary-Data-Measurements`. <br> • MUST support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which MUST cover at least 14 days.<br> •  The Summary-Operation MUST support a minimal duration of 7 days for the effective period, and an error must be returned if the client requests a shorter time period. |
+
+#### Profiles
+
+
+
+<div id="tabs-key">
+  <div id="tbl-key">
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].title}}</p>
+    <p>
+      This structure is derived from
+      <a href="{{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].basepath}}">
+        {{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].basename}}
+      </a>
+    </p>
+    <div id="tbl-key-inner">
+      {% include StructureDefinition-Bundle-Search-Summary-Data-Measurements-diff-all.xhtml %}
+    </div>
+  </div>
+</div>
+
+---
+---
+
+The Observation profile for the CGM summary report is defined by HL7: [StructureDefinition-cgm-summary](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)
+
 
 #### Example
 
+**Request:** POST `/Observation$cgm-summary-data-report`
+
+**Request Body:**
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "effectivePeriodStart",
+      "valueDateTime": "2025-08-01T00:00:00Z"
+    },
+    {
+      "name": "effectivePeriodEnd",
+      "valueDateTime": "2025-08-31T23:59:59Z"
+    },
+    {
+      "name": "related",
+      "valueBoolean": true
+    }
+  ]
+}
+```
+
+**Description:**
+
+Perform the FHIR Operation to request a summary of aggregated values over the specified time range. The Bundle should also include all Device and DeviceMetric resource instances, that were needed to calculate the data summary.
+
+**Response:**
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cgmSummaryExample",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/cgm/CodeSystem/cgm-summary-codes-temporary",
+              "code": "cgm-summary"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/patientExample"
+        },
+        "effectivePeriod": {
+          "start": "2025-08-01",
+          "end": "2025-08-31"
+        },
+        "hasMember": [
+          {
+            "reference": "Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"
+          },
+          {
+            "reference": "Observation/cgmSummaryTimesInRangesExample"
+          },
+          {
+            "reference": "Observation/cgmSummaryGMIExample"
+          },
+          {
+            "reference": "Observation/cgmSummaryCoefficientOfVariationExample"
+          },
+          {
+            "reference": "Observation/cgmSummaryDaysOfWearExample"
+          },
+          {
+            "reference": "Observation/cgmSummarySensorActivePercentageExample"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+### Conventions and Best Practice
+
+- Always use the latest version of the Observation profile.
+- Only `valueSampledData` is permitted as the result of the Observation for tissue glucose time-series (CGM) measurements.
+- The `code` element MUST be selected from the [Tissue Glucose CGM ValueSet](ValueSet-vs-tissue-glucose-cgm.html) and be consistent with the units supported by the device.
+- The unit in the LOINC code’s display MUST match `valueSampledData.unit` or `valueSampledData.code`.
+- When calibration status is relevant, `Observation.device` MUST reference a `DeviceMetric` resource that records sensor type and calibration details.
+- If calibration is not relevant for the device, `Observation.device` MUST reference a `Device` resource.
+- If `valueSampledData` is missing, a `dataAbsentReason` MUST be provided.
+- Set `status` to reflect whether the Observation is complete (i.e., no more `valueSampledData.data` can be added); see [Retrieving Data](retrieving-data.html) for additional considerations.
+- Ensure referenced Device/DeviceMetric resources are available (use `_include=Observation:device` in searches when appropriate).
+
+
 ### Conventions for DeviceMetric and Device Resources
 
-
-
-## Observation for Time Series Measurement - MIV Tissue Glucose
-
-This [Observation](https://hl7.org/fhir/R4/observation.html) profile represents a continuous glucose monitoring (CGM) measurement produced by a CGM device. For this use case, only `valueSampledData` is allowed as the result of the Observation.
-
-The `code` element must be selected from the [Tissue Glucose CGM ValueSet](ValueSet-vs-tissue-glucose-cgm.html), consistent with the units supported by the device. The unit specified in the LOINC code’s display must match the `valueSampledData.unit` or `valueSampledData.code`.
-
-When calibration status is relevant, the `device` element must reference a [DeviceMetric](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) resource, where sensor type and calibration details are recorded. If calibration is not relevant for the device, then `device` must instead reference a [Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html) resource.
-
-The `status` of the Observavtion reflects whether the Observation is "complete", i.e. if no more `valueSampledData.data` can be added. See chapter [Retrieving Data](retrieving-data.html), for the full list of considerations.
-
-The table below highlights elements that are additionally constrained by this profile, or that carry particular semantic importance for the continuous measurement of tissue glucose.
-
-
-**FHIR resource type**: Observation
-
-| Description | FHIR Attribute | FHIR Data Type | Cardinality | Note |
-|------------|----------------|----------------|------------|------|
-| Status of the Observation | `status` | code | 1..1 | See chapter [Retrieving Data](retrieving-data.html)  |
-| Result of the Observation | `valueSampledData` | SampledData |  0..1 | This field is flagged as **must support**. In cases where data is missing, a reason must be given via `dataAbsentReason` |
-| Unit of the measurement series | `valueSampledData.origin.unit` | string | 0..1 | The measurement unit. Shoud be the same as the unit from the LOINC code in `Observation.code`. |
-| Code system of the unit | `valueSampledData.origin.system` | uri | 1..1 | UCUM: http://unitsofmeasure.org  |
-| Code of the unit from the specified code system | `valueSampledData.origin.code` | code | 1..1 | Code of the unit, from the UCUM code system.  |
-| Period of the measurement series | `valueSampledData.period` | decimal | 1..1 | The period of the measurement series.   |
-| Values of the measurement series | `valueSampledData.data` | string | 1..1 | The actual data.|
-| Number of sample points at each time point | `valueSampledData.dimension` | positiveInt | 1..1 | e. g. 1|
-| Coding of this measurement (type of measurement) | `code` | CodeableConcept | 1..1 | e.g., "105272-9" (	Glucose [Moles/volume] in Interstitial fluid) from ValueSet [VS_Tissue_Glucose_CGM](ValueSet-vs-tissue-glucose-cgm.html). |
-| Reason for missing data | `dataAbsentReason` | CodeableConcept | 0..1 | A reason must be given if `valueSampledData` is not set. | 
-| Reference to the device configuration ([DeviceMetric](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-DeviceMetric-Personal-Health-Device.html)) or a device instance ([Device](https://victorious-coast-07193b503.2.azurestaticapps.net/StructureDefinition-Device-Personal-Health-Device.html)) | `device` | Reference | 1..1 | The type of resource referenced, depends on whether sensor calibration is required for the correct interpretation of the data (DeviceMetric), or device does not need calibration (Device). |
-| Measurement time or period | `effective[x]` |  Period | 1..1 |  |
-| Measurement method | `method` | CodeableConcept | 0..1 | e.g., continuous blood monitoring. |
-
-
----
-
-### Profile
-
-The full profile definition can be found at the following places:
-
-- In this specification under Artifacts -> [StructureDefinition/Observation-Tissue-Glucose-CGM-Measurement-Series](StructureDefinition-Observation-CGM-Measurement-Series.html)
-- **ToDo**: Verlinkung https://gematik.de/fhir/hdc/StructureDefinition/Observation-CGM-Measurement-Series
-
-<hr>
-<div id="all-tbl-key-inner">
-    {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml%}
-</div>
-<hr>
-
-
-### Search parameters
-
-The following search parameters **MUST** be supported by the medical aid manufacturer. Examples can be found in the [FHIR API specification](himi-diga-api.html).
-
-| Search parameter | Description |
-| --- | -- | 
-|`code` | Request Observations of a particular type, e.g. list all Observations that measure blood glucose in mg/dL  from a blood sample | 
-|`date` | Request Observations for a particular time range, e.g in the last 14 days. |
-| `_include` | An addition to the search query, allowing to also request the full Device/DeviceMetric resource, referenced in `device`. |
+- The Observation MUST reference a DeviceMetric resource if the calibration status of the device changes.
+- Refer to [himi-diga-api.md](himi-diga-api.html) for generic implementation details.
+- DeviceMetric should capture calibration and configuration status.
+- Device should provide manufacturer, serial number, and device type.
