@@ -148,6 +148,24 @@ pages:
   general-considerations.html:
     title: General Considerations
     generation: markdown
+# Temporary - testing a different API structure
+  experimental-fhir-api.html:
+    title: Experimental FHIR API
+    generation: markdown
+  experimental-api-observation.html:
+    title: Experimental API Observation
+    generation: markdown
+  experimental-api-device.html:
+    title: Experimental API Device
+    generation: markdown
+  experimental-api-devicemetric.html:
+    title: Experimental API DeviceMetric
+    generation: markdown
+  experimental-api-metadata.html:
+    title: Experimental API Metadata
+    generation: markdown
+
+
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
@@ -180,6 +198,7 @@ menu:
     BfArM HIMI Directory API: himi-vz-api.html
     BfArM DiGA Directory API: diga-vz-api.html
     ZTS Terminology API: zts-api.html
+    Experimental FHIR API: experimental-fhir-api.html
   MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
     MIV - Blood Glucose Value: measurement-blood-glucose.html
