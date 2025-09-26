@@ -32,6 +32,46 @@ Optional elements are elements with a minimum cardinality of 0 (min=0) which are
 
 Remark: _Ignoring_ an element means that the element is not interpreted by the device data consumer and does not affect the device data consumer's perception of the semantics of the resource.
 
+### Interactions and Endpoints
+HDDT builds upon standard FHIR RESTful interactions on [Observation](https://hl7.org/fhir/R4/observation.html) resources for sharing measured device data. Aggregated reports are shared using dedicated FHIR operations. Access to observational device attributes (e.g. calibration status) is possible through standard FHIR RESTful interactions on [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources. 
+
+This paragraph defines some common defintions that hold for all FHIR RESTful interactions and operations that are used in HDDT.
+
+#### Read Interactions
+Endpoints that are required to support the REST interaction __read__ MUST be available under `[BASE_URL]/[resourceType]/[ID]`, [as specified in FHIR R4](https://www.hl7.org/fhir/R4/http.html#read).
+
+Resource instances returned by the READ interactions MUST conform to the defined HDDT FHIR Profiles.
+
+#### Search Interactions
+Endpoints that are required to support the __search__ interactions MUST allow searching via HTTP GET. Endpoints MAY choose to support search requests via HTTP POST (see [FHIR RESTful Search - Introduction](https://www.hl7.org/fhir/R4/search.html#Introduction)).
+
+For each FHIR resource that is profiled by HDDT, the HDDT specifications defines a set of search parameters, that MUST be supported by Device Data Recorder actors as device data providers. This ensures that DiGA as device data consumers can rely on certain filter and search functionalities that they MAY need for processing activities on top of this data. In addition, a Device Data Recorder MAY support all of the defined standard FHIR search parameters (see [FHIR Search](https://www.hl7.org/fhir/R4/search.html)). 
+
+A Device Data Recorder MUST publish the list of supported search parameters as part of its [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) (see "`/metadata` endpoint" below).
+
+#### Authentication
+The DiGA MUST provide an OAuth2 Access Token with each FHIR RESTful interaction or operation request. For details see [Pairing - Tokens and Token Response](pairing.html#tokens-and-the-token-response).
+
+#### Error Handling
+
+For each FHIR endpoint that a Device Data Recorder MUST support, the respective HDDT specification part lists possible errors. For each error the expected HTTP error code, the type of error, and likely reasons for the occurrence of the error are given.
+
+In case of an error, the Device Data Recorder MUST return the defined HTTP error code. It MUST return a FHIR-[OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) resource if `[OperationOutcome]` is specified as the error type by the specification of the affected interaction or operation. The Device Data recorder SHOULD provide a reason for the error. For this the Device Data Recorder SHOULD either use a code in `ObservationOutcome.issue.details`, or use the free text input in `ObservationOutcome.issue.diagnostics`. 
+
+### `/metadata` Endpoint
+Each Device Data Recorder MUST provide a `/metadata` endpoint to allow a DiGA to obtain the Device Data Recorder's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html).
+
+| | |
+|-|-|
+| **Endpoint** | `/metadata` |
+| **HTTP Method** | GET |
+| **Description** | Provides a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) with information about supported FHIR version, resource types, profiles, interactions, search parameters, and filters. |
+| **Authentication** | None (public endpoint, no mTLS client authentication) |
+| **Returned Objects** | FHIR CapabilityStatement |
+| **Specifications** | • FHIR version **MUST** be R4 <br>• Must declare supported FHIR version, resources, operations, search parameters, and profiles. <br> • Supported FHIR Resource types: Device, DeviceMetric, Observation. |
+| **Error codes** | `500` (Internal Server Error) |
+
+
 ### Derived Profiles and Extensions 
 Manufactures who implement the HDDT FHIR API with their Health Record MAY implement any FHIR profiles that
 * further constrain the HDDT FHIR profiles as long as
