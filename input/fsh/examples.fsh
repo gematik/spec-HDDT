@@ -343,3 +343,58 @@ Description: "Bundle containing CGM summary observations for a patient together 
 
 * entry[9].fullUrl = "https://gematik.de/fhir/hddt/DeviceMetric/example-devicemetric-cgm"
 * entry[9].resource = Example-DeviceMetric-CGM
+
+
+Instance: HddtCgmSummaryOutcomeUnknownParam
+InstanceOf: OperationOutcome
+Title: "OperationOutcome - Unknown parameter error"
+Description: "Returned when an unsupported input parameter is provided."
+* issue[0].severity = #error
+* issue[0].code = #invalid
+* issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
+* issue[0].details.coding[0].code = #MSG_PARAM_UNKNOWN
+* issue[0].details.text = "Unknown input parameter 'foo'."
+
+
+Instance: HddtCgmSummaryOutcomeInvalid
+InstanceOf: OperationOutcome
+Title: "OperationOutcome - Invalid parameter error"
+Description: "Returned when a parameter value is invalid."
+* issue[0].severity = #error
+* issue[0].code = #invalid
+* issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
+* issue[0].details.coding[0].code = #MSG_PARAM_INVALID
+* issue[0].details.text = "Invalid date format in effectivePeriodStart."
+
+
+Instance: HddtCgmSummaryOutcomeNoResults
+InstanceOf: OperationOutcome
+Title: "OperationOutcome - No results information"
+Description: "Returned when no CGM observations are found."
+* issue[0].severity = #information
+* issue[0].code = #not-found
+* issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
+* issue[0].details.coding[0].code = #MSG_PARAM_NOOP
+* issue[0].details.text = "No CGM summary observations found for the given effective period."
+
+
+Instance: HddtCgmSummaryOutcomeRequiredMissing
+InstanceOf: OperationOutcome
+Title: "OperationOutcome - Required parameter missing"
+Description: "Returned when required input parameters are missing."
+* issue[0].severity = #error
+* issue[0].code = #invalid
+* issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
+* issue[0].details.coding[0].code = #MSG_REQUIRED_MISSING
+* issue[0].details.text = "Required input parameters are missing."
+
+
+Instance: HddtCgmSummaryOutcomeBadSyntax
+InstanceOf: OperationOutcome
+Title: "OperationOutcome - Bad syntax error"
+Description: "Returned when the request is malformed."
+* issue[0].severity = #error
+* issue[0].code = #invalid
+* issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
+* issue[0].details.coding[0].code = #MSG_BAD_SYNTAX
+* issue[0].details.text = "The request is malformed."

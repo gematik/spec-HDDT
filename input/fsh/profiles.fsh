@@ -50,6 +50,7 @@ This supports use cases such as:
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * type = #collection (exactly)
 * type ^short = "The bundle is always a collection of CGM summary Observations and optionally related device resources returned by the $hddt-cgm-summary operation."
+* entry 1..*
 * entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus
 * entry.resource ^short = "Observations with their related Devices and DeviceMetrics"
 
@@ -202,7 +203,7 @@ Description: "This ValueSet contains LOINC codes for blood glucose measurements.
 * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = false
-* ^date = "2025-09-19"
+* ^date = "2025-09-26"
 * ^publisher = "BfArM"
 * ^contact.telecom[0].system = #email
 * ^contact.telecom[=].value = "klassi@bfarm.de"
@@ -225,7 +226,7 @@ Description: "This ValueSet contains LOINC codes for continuous glucose measurem
 * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = false
-* ^date = "2025-09-19"
+* ^date = "2025-09-26"
 * ^publisher = "BfArM"
 * ^contact.telecom[0].system = #email
 * ^contact.telecom[=].value = "klassi@bfarm.de"
@@ -246,6 +247,7 @@ Description: "Codes used to identify personal health devices, including BfArM, M
 * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = true
+* ^date = "2025-09-26"
 * ^publisher = "BfArM"
 * ^contact.telecom[0].system = #email
 * ^contact.telecom[=].value = "klassi@bfarm.de"
@@ -301,6 +303,13 @@ It allows clients to request CGM summary data filtered by effective period, and 
 
 **Output Parameter:**  
 - `result` *(Reference, required)*: A Bundle conforming to profile `HddtCgmSummary` profile containing all matching CGM Observations and, if requested, their related devices.  
+
+**Error handling (OperationOutcome):**  
+- `MSG_PARAM_UNKNOWN`: Returned when an unsupported input parameter is used.  
+- `MSG_PARAM_INVALID`: Returned when a parameter value is invalid (e.g., bad date format).  
+- `MSG_PARAM_NOOP`: Returned when no matching observations are found.  
+- `MSG_REQUIRED_MISSING`: Returned when required input parameters are missing.  
+- `MSG_BAD_SYNTAX`: Returned when the request is malformed.  
 
 """
 * version = "0.1.1"
