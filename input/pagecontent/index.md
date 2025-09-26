@@ -1,8 +1,7 @@
-
-This implementation guide specifies the interface between medical aids and implants with DiGA for health data transfer according to § 374a SGB V.
+§ 374a SGB V requests vendors of medical aids and implants to provide medical device data for authorized digital health applications (DiGA) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
 
 ### Content
-The implementation guide includes requirements for: 
+The HDDT implementation guide includes requirements for: 
 * Patient-initiated authorisation of the DiGA to retrieve health data from the utilised medical aid/implant (consent)
 * Management of authorisation by the patient (modifying and revoking consent)
 * Retrieval of information necessary for a DiGA to use the interfaces
@@ -12,7 +11,7 @@ The implementation guide includes requirements for:
 * Ensuring data interoperability between DiGA and medical aids/implants
 * Evidence and traceability of the operational functionality of the interface
 
-Out-of-Scope for this implementation guide are:
+Out-of-Scope for the HDDT implementation guide are:
 * Identification and authentication of the patient vis-à-vis a DiGA or a medical aid/implant (manufacturer-specific)
 * Definition of a DiGA/medical aid API for front-ends (manufacturer-specific)
 * Protection of health data storage or health data processing within a DiGA or a medical device (manufacturer-specific)
@@ -29,18 +28,6 @@ If you do not have access to the request portal and would like to use it, please
 This implementation guide is published unter the __XXXXX__ license. 
 
 
-<!--
-## Technical goals
-- Standardized profiles and value sets for interoperability between medical aids/implants and digital health applications (DiGA).
-- Mandatory codes (LOINC, UCUM) for measurement values and units.
-- Complete traceability between measurement value, device configuration, and device.
-
-## MIVs for the Domain "Diabetes Self-Management"
-Blood glucose values are provided via the FHIR resource **Observation**.  
-This contains references to **DeviceMetric** (device configuration) and **Device** (device instance).  
-Additionally, **ValueSets** are defined to specify:
-- Which measurement values (LOINC) are valid.
-- Which units (UCUM) are permitted.-->
 
 
 
