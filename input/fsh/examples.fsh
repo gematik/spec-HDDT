@@ -4,12 +4,12 @@ Alias: $sct = http://snomed.info/sct
 Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: Example-Blood-Glucose
-InstanceOf: Observation-Blood-Glucose
+InstanceOf: HddtBloodGlucoseMeasurement
 Usage: #example
 Title: "Blood Glucose Measurement"
 Description: "Example of a blood glucose measurement taken with a glucometer."
 * id = "example-blood-glucose"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Observation-Blood-Glucose"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-08-28T08:30:00Z"
@@ -20,13 +20,14 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 
 
 Instance: Example-Glucometer
-InstanceOf: Device-Personal-Health-Device
+InstanceOf: HddtPersonalHealthDevice
 Usage: #example
 Title: "Glucometer Device"
 Description: "Example of a personal health device (glucometer) used for blood glucose measurements."
 * id = "example-glucometer"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Device-Personal-Health-Device"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type =  $mdc#528401 "Glucose Monitor"
+* statusReason = #online
 * deviceName.name = "Accu-Chek Mobile"
 * deviceName.type = #user-friendly-name
 * manufacturer = "Roche"
@@ -35,12 +36,12 @@ Description: "Example of a personal health device (glucometer) used for blood gl
 * definition = Reference(Example-Glucometer-Def)
 
 Instance: Example-Glucometer-Metric
-InstanceOf: DeviceMetric-Sensor-Type-and-Calibration-Status
+InstanceOf: HddtSensorTypeAndCalibrationStatus
 Usage: #example
 Title: "Glucometer Device Metric"
 Description: "Example of a device metric for blood glucose measurements from a glucometer."
 * id = "example-glucometer-metric"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/DeviceMetric-Sensor-Type-and-Calibration-Status"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * unit = $unitsofmeasure#mg/dL "milligram per deciliter"
 * source = Reference(Example-Glucometer)
@@ -53,54 +54,55 @@ Description: "Example of a device metric for blood glucose measurements from a g
 
 
 
-Instance: Example-Glucometer-Def
-InstanceOf: DeviceDefinition
-Usage: #example
-Title: "DeviceDefinition – Roche Accu-Chek"
-Description: "Example for a medical device (CGM sensor) from the medical device directory."
-* id = "example-glucometer-def"
-* identifier.system = "https://hilfsmittelverzeichnis.de"
-* identifier.value = "12.34.56.7890" 
-* deviceName[0].name = "Accu-Chek Mobile"
-* deviceName[0].type = #user-friendly-name
-* type = $sct#105824000 "Continuous blood glucose monitoring"
-* manufacturerString = "Roche Diabetes Care"
-* parentDevice = Reference(Example-DeviceDefinition-Backend)
-* property[0].type.text = "Supported unit"
-* property[0].valueCode = $unitsofmeasure#mg/dL "milligram per deciliter"
-* property[+].type.text = "Supported unit"
-* property[=].valueCode = $unitsofmeasure#mmol/L "millimole per liter"
-* property[+].type.text = "Reference range low"
-* property[=].valueQuantity.value = 70
-* property[=].valueQuantity.unit = "mg/dL"
-* property[=].valueQuantity.system = $unitsofmeasure
-* property[+].type.text = "Reference range high"
-* property[=].valueQuantity.value = 180
-* property[=].valueQuantity.unit = "mg/dL"
-* property[=].valueQuantity.system = $unitsofmeasure
-* capability[0].type.coding[0].system = $loinc
-* capability[0].type.coding[0].code = #2339-0
-* capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
-* capability[0].type.text = "Blood glucose measurement (fingerstick and continuous monitoring)"
+// Instance: Example-Glucometer-Def
+// InstanceOf: DeviceDefinition
+// Usage: #example
+// Title: "DeviceDefinition – Roche Accu-Chek"
+// Description: "Example for a medical device (CGM sensor) from the medical device directory."
+// * id = "example-glucometer-def"
+// * identifier.system = "https://hilfsmittelverzeichnis.de"
+// * identifier.value = "12.34.56.7890" 
+// * deviceName[0].name = "Accu-Chek Mobile"
+// * deviceName[0].type = #user-friendly-name
+// * type = $sct#105824000 "Continuous blood glucose monitoring"
+// * manufacturerString = "Roche Diabetes Care"
+// * parentDevice = Reference(Example-DeviceDefinition-Backend)
+// * property[0].type.text = "Supported unit"
+// * property[0].valueCode = $unitsofmeasure#mg/dL "milligram per deciliter"
+// * property[+].type.text = "Supported unit"
+// * property[=].valueCode = $unitsofmeasure#mmol/L "millimole per liter"
+// * property[+].type.text = "Reference range low"
+// * property[=].valueQuantity.value = 70
+// * property[=].valueQuantity.unit = "mg/dL"
+// * property[=].valueQuantity.system = $unitsofmeasure
+// * property[+].type.text = "Reference range high"
+// * property[=].valueQuantity.value = 180
+// * property[=].valueQuantity.unit = "mg/dL"
+// * property[=].valueQuantity.system = $unitsofmeasure
+// * capability[0].type.coding[0].system = $loinc
+// * capability[0].type.coding[0].code = #2339-0
+// * capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
+// * capability[0].type.text = "Blood glucose measurement (fingerstick and continuous monitoring)"
 
-Instance: Example-DeviceDefinition-Backend
-InstanceOf: DeviceDefinition
-Usage: #example
-Title: "DeviceDefinition – Roche Device Backend"
-Description: "Example for a backend system for processing HiMi data according to §374a SGB V."
+// Instance: Example-DeviceDefinition-Backend
+// InstanceOf: DeviceDefinition
+// Usage: #example
+// Title: "DeviceDefinition – Roche Device Backend"
+// Description: "Example for a backend system for processing HiMi data according to §374a SGB V."
 
-* deviceName[0].name = "§374a SGB V Backend"
-* deviceName[0].type = #manufacturer-name
-* manufacturerString = "Acme Health IT GmbH"
-* type = $sct#706689003 "Health information exchange infrastructure (physical object)"
-* url = "https://himi-backend.de/fhir"
+// * deviceName[0].name = "§374a SGB V Backend"
+// * deviceName[0].type = #manufacturer-name
+// * manufacturerString = "Acme Health IT GmbH"
+// * type = $sct#706689003 "Health information exchange infrastructure (physical object)"
+// * url = "https://himi-backend.de/fhir"
 
 Instance: Example-CGM-Series
-InstanceOf: Observation-CGM-Measurement-Series
+InstanceOf: HddtContinuousGlucoseMeasurement
 Title: "CGM Measurement Series"
 Description: "Example of a CGM time series with 1-minute intervals over 1 hour (60 samples)."
 Usage: #example
 * id = "example-cgm-series"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #final
 * code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
@@ -123,11 +125,12 @@ Usage: #example
 * note.text = "Example CGM data series with 1-minute intervals over 1 hour (60 samples)."
 
 Instance: Example-CGM-Series-Incomplete
-InstanceOf: Observation-CGM-Measurement-Series
+InstanceOf: HddtContinuousGlucoseMeasurement
 Title: "CGM Measurement Series Incomplete"
 Description: "Example of a CGM time series with 1-minute intervals over 10 minutes (10 samples), but incomplete."
 Usage: #example
 * id = "example-cgm-series-incomplete"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #preliminary
 * code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
@@ -145,11 +148,12 @@ Usage: #example
 
 
 Instance: Example-Observation-CGM-Series-Data-Unavailable
-InstanceOf: Observation_CGM_Measurement_Series
+InstanceOf: HddtContinuousGlucoseMeasurement
 Title: "CGM Measurement Series – Data Unavailable"
 Description: "Example of a CGM time series with status preliminary and dataAbsentReason"
 Usage: #example
 * id = "example-cgm-series-data-unavailable"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #preliminary
 * code = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-09-01T08:00:00+02:00"
@@ -159,12 +163,14 @@ Usage: #example
 * note.text = "Sensor warm-up phase, values not yet validated."
 
 Instance: Example-Device-CGM
-InstanceOf: Device_Personal_Health_Device
+InstanceOf: HddtPersonalHealthDevice
 Title: "Personal Health Device – CGM"
 Description: "Example of a continuous glucose monitoring device"
 Usage: #example
 * id = "example-device-cgm"
 * status = #active
+* statusReason = #online
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type = Mdc#528409 "Continuous Glucose Monitor"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "Dexcom G7 Sensor"
@@ -174,11 +180,12 @@ Usage: #example
 * expirationDate = "2025-09-10"
 
 Instance: Example-DeviceMetric-CGM
-InstanceOf: DeviceMetric_Sensor_Type_and_Calibration_Status
+InstanceOf: HddtSensorTypeAndCalibrationStatus
 Title: "DeviceMetric – CGM tissue glucose configuration"
 Description: "Example configuration for CGM measurements"
 Usage: #example
 * id = "example-devicemetric-cgm"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * unit = UCUM#mg/dL "milligram per deciliter"
 * source = Reference(Example-Device-CGM)
@@ -297,13 +304,13 @@ Usage: #example
 * hasMember[sensorActivePercentage] = Reference(cgmSummarySensorActivePercentageExample)
 
 Instance: example-cgm-summary-bundle
-InstanceOf: BundleSearchSummaryDataMeasurements
+InstanceOf: HddtCgmSummary
 Usage: #example
 Title: "Example Bundle – CGM Summary Data with Device Context"
 Description: "Bundle containing CGM summary observations for a patient together with associated Device and DeviceMetric resources."
 
 * id = "example-cgm-summary-bundle"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/Bundle-Search-Summary-Data-Measurements"
+* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"
 * type = #collection
 * timestamp = "2025-10-01T09:15:00Z"
 

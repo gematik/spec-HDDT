@@ -31,7 +31,7 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 | **Request Parameters** | `id` - Internal server ID of the Observation. |
 | **Authentication** | OAuth2 Bearer token required |
 | **Returned Objects** | • FHIR Observation<br><br>Optionally (via search interaction `_include`):<br> •DeviceMetric (via `device`)<br> •Device (via `device`) |
-| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [SD-Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • Reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
+| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [Observation – Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • Reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
@@ -47,7 +47,7 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 | **Authentication** | OAuth2 Bearer token required |
 | **Search Parameters** | Search parameters are MIV-specific. Commonly used ones are `code`, `date`, `_include`. See individual use cases for specific search parameters. <br><br> The server MAY support search parameters defined by the FHIR standard; see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
 | **Returned Objects** | • FHIR Observation<br><br>Optionally (via search interaction `_include`):<br> •DeviceMetric (via `device`)<br> •Device (via `device`) |
-| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [SD-Observation-Blood-Glucose](StructureDefinition-Observation-Blood-Glucose.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • Reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
+| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [Observation – Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • Reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 
@@ -57,15 +57,15 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 
 This section describes additional requirements, when implementing the FHIR API for providing access to blood glucose data. Common use cases include retrieving the latest observation, retrieving only observations that measure blood glucose in mg/dL, and retrieving all measurements across a certain date range.
 
-Observations representing blood glucose measurements MUST conform to the [Observation-Blood-Glucose profile](StructureDefinition-Observation-Blood-Glucose.html).
+Observations representing blood glucose measurements MUST conform to the [Observation - Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html).
 
 #### Conventions
 
 - Always use the latest version of the Observation profile.
 - Only `valueQuantity` is permitted as the result of the Observation for blood glucose measurements.
-- The `code` element must be selected from the [Blood Glucose ValueSet](ValueSet-vs-blood-glucose.html), reflecting both the measurement method and the units supported by the device.
+- The `code` element must be selected from the [ValueSet Blood Glucose Measurement](ValueSet-hddt-miv-blood-glucose-measurement.html), reflecting both the measurement method and the units supported by the device.
 - The unit defined in the LOINC code’s display must align with both `valueQuantity.unit` and `valueQuantity.code`.
-- Because glucometers can generate and transmit readings even when uncalibrated, a reference to a [DeviceMetric](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) resource via the `device` element is required to capture the calibration status of the sensor, in order to ensure the proper interpretation of the data.
+- Because glucometers can generate and transmit readings even when uncalibrated, a reference to a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource via the `device` element is required to capture the calibration status of the sensor, in order to ensure the proper interpretation of the data.
 - If `valueQuantity` is missing, a `dataAbsentReason` must be specified, giving the reason for missing data.
 - Set `status` to "final" for completed measurements.
 
@@ -74,15 +74,15 @@ Observations representing blood glucose measurements MUST conform to the [Observ
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Observation-Blood-Glucose'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-blood-glucose-measurement'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Observation-Blood-Glucose'].basepath}}">
-        {{site.data.structuredefinitions['Observation-Blood-Glucose'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-blood-glucose-measurement'].basepath}}">
+        {{site.data.structuredefinitions['hddt-blood-glucose-measurement'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-Observation-Blood-Glucose-snapshot-by-key-all.xhtml %}
+      {% include StructureDefinition-hddt-blood-glucose-measurement-snapshot-by-key-all.xhtml %}
     </div>
   </div>
 </div>
@@ -162,7 +162,7 @@ Observations representing blood glucose measurements MUST conform to the [Observ
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/Observation/65",
+            "fullUrl": "https://[BASE-URL]/fhir/Observation/65",
             "resource": {
                 "resourceType": "Observation",
                 "id": "65",
@@ -191,7 +191,7 @@ Observations representing blood glucose measurements MUST conform to the [Observ
             }
         },
         {
-            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/Observation/68",
+            "fullUrl": "https://[BASE-URL]/fhir/Observation/68",
             "resource": {
                 "resourceType": "Observation",
                 "id": "68",
@@ -240,7 +240,7 @@ Observations representing blood glucose measurements MUST conform to the [Observ
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/Observation/65",
+            "fullUrl": "https://[BASE-URL]/fhir/Observation/65",
             "resource": {
                 "resourceType": "Observation",
                 "id": "65",
@@ -270,7 +270,7 @@ Observations representing blood glucose measurements MUST conform to the [Observ
             }
         },
         {
-            "fullUrl": "https://hdc-hapi-fhir.azurewebsites.net/fhir/DeviceMetric/67",
+            "fullUrl": "https://[BASE-URL]/fhir/DeviceMetric/67",
             "resource": {
                 "resourceType": "DeviceMetric",
                 "id": "67",
@@ -316,13 +316,13 @@ Observations representing blood glucose measurements MUST conform to the [Observ
 
 This section describes additional requirements, when implementing the FHIR API for providing access to interstitial fluid glucose data. Common use cases include retrieving the latest observation, retrieving only observations that measure interstitial fluid glucose in mg/dL, and retrieving all measurements across a certain date range.
 
-Observations representing interstitial fluid glucose measurements MUST conform to the [Observation-CGM-Measurement-Series profile](StructureDefinition-Observation-CGM-Measurement-Series.html).
+Observations representing interstitial fluid glucose measurements MUST conform to the [Observation – Continuous Glucose Measurement profile](StructureDefinition-ddt-continuous-glucose-measurement.html).
 
 #### Conventions and Best Practice
 
 - Always use the latest version of the Observation profile.
 - Only `valueSampledData` is permitted as the result of the Observation for tissue glucose time-series (CGM) measurements.
-- The `code` element MUST be selected from the [Tissue Glucose CGM ValueSet](ValueSet-vs-tissue-glucose-cgm.html) and be consistent with the units supported by the device.
+- The `code` element MUST be selected from the [ValueSet – Continuous Glucose Measurement](ValueSet-hddt-miv-continuous-glucose-measurement.html) and be consistent with the units supported by the device.
 - The unit in the LOINC code’s display MUST match `valueSampledData.unit` or `valueSampledData.code`.
 - When calibration status is relevant, `Observation.device` MUST reference a `DeviceMetric` resource that records sensor type and calibration details.
 - If calibration is not relevant for the device, `Observation.device` MUST reference a `Device` resource.
@@ -337,7 +337,7 @@ Manufacturers of CGM devices MUST also implement the following FHIR Operation, p
 | | |
 |-|-|
 | **Resource** | Observation |
-| **Operation name** | `$cgm-summary-data-report` |
+| **Operation name** | `$hddt-cgm-summary` |
 | **Purpose** | Request a summary of CGM values (e.g., tissue glucose values below threshold) for a specified time range. |
 | **Parameters** | `effectivePeriodStart (dateTime)`, `effectivePeriodEnd (dateTime)`, `related (boolean)` |
 | **Returned Objects** | Bundle containing summary Observation(s), DeviceMetric, and Device resources. |
@@ -349,15 +349,15 @@ Manufacturers of CGM devices MUST also implement the following FHIR Operation, p
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">
-        {{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">
+        {{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml %}
+      {% include StructureDefinition-hddt-continuous-glucose-measurement-snapshot-by-key-all.xhtml %}
     </div>
   </div>
 </div>
@@ -374,22 +374,22 @@ Manufacturers of CGM devices MUST also implement the following FHIR Operation, p
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-cgm-summary'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].basepath}}">
-        {{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-cgm-summary'].basepath}}">
+        {{site.data.structuredefinitions['hddt-cgm-summary'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-Bundle-Search-Summary-Data-Measurements-diff-all.xhtml %}
+      {% include StructureDefinition-hddt-cgm-summary-diff-all.xhtml %}
     </div>
   </div>
 </div>
 
 #### Example
 
-**Request:** POST `/Observation$cgm-summary-data-report`
+**Request:** POST `/Observation$hddt-cgm-summary`
 
 **Request Body:**
 

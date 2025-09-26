@@ -88,18 +88,18 @@ These examples illustrate how FHIR resources can be used to represent clinical m
         <div id="tbl-key-inner">
 
           <!-- @Jörg: Syntax ist StructureDefinition-{{id}}-xxx.xhtml -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-snapshot-by-key.xhtml%}
           <!--Terminology Bindings heading in the fragment -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-tx-key.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-tx-key.xhtml%}
         
           {% capture invariantskey %}
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-key.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-key.xhtml %}
           {% endcapture %}
           <!-- 218 is size of empty table -->
           {% unless invariantskey.size <= 218 %}
             <a name="inv-key"> </a>
             <!--Constraints  heading in the fragment -->
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-key.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-key.xhtml %}
           {% endunless%}
         </div>
       </div>
@@ -107,22 +107,22 @@ These examples illustrate how FHIR resources can be used to represent clinical m
     <a name="tabs-diff"> </a>
     <div id="tabs-diff">
       <div id="tbl-diff">
-        <p>This structure is derived from <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}</a>
+        <p>This structure is derived from <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}</a>
         </p>
         <div id="tbl-diff-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-diff.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-diff.xhtml%}
           <a name="tx"> </a>
           <!--Terminology Bindings heading in the fragment -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-tx-diff.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-tx-diff.xhtml%}
         
           {% capture invariantsdiff %}
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-diff.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-diff.xhtml %}
           {% endcapture %}
           <!-- 218 is size of empty table -->
           {% unless invariantsdiff.size <= 218 %}
             <a name="inv-diff"> </a>
             <!--Constraints  heading in the fragment -->
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-diff.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-diff.xhtml %}
           {% endunless%}
         </div>
       </div>
@@ -131,18 +131,18 @@ These examples illustrate how FHIR resources can be used to represent clinical m
     <div id="tabs-snap">
       <div id="tbl-snap">
         <div id="tbl-snap-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-snapshot.xhtml%}
           <!--Terminology Bindings heading in the fragment -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-tx.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-tx.xhtml%}
         
           {% capture invariants %}
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv.xhtml %}
           {% endcapture %}
           <!-- 218 is size of empty table -->
           {% unless invariants.size <= 218 %}
             <a name="inv-snap"> </a>
             <!--Constraints  heading in the fragment -->
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv.xhtml %}
           {% endunless%}
         </div>
       </div>
@@ -152,7 +152,7 @@ These examples illustrate how FHIR resources can be used to represent clinical m
     <div id="tabs-xml">
       <div id="xml">
         <div id="xml-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-pseudo-xml.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-pseudo-xml.xhtml%}
         </div>
       </div>
     </div>-->
@@ -162,7 +162,7 @@ These examples illustrate how FHIR resources can be used to represent clinical m
     <div id="tabs-json">
       <div id="json">
         <div id="json-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-pseudo-json.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-pseudo-json.xhtml%}
         </div>
       </div>
     </div>-->
@@ -172,7 +172,7 @@ These examples illustrate how FHIR resources can be used to represent clinical m
     <div id="tabs-ttl">
       <div id="ttl">
         <div id="ttl-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-pseudo-ttl.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-pseudo-ttl.xhtml%}
         </div>
       </div>
     </div>-->
@@ -180,11 +180,11 @@ These examples illustrate how FHIR resources can be used to represent clinical m
     <a name="tabs-summ"> </a>
     <div id="tabs-summ">
       <div id="tbl-summ">
-        <p>This structure is derived from <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}</a>
+        <p>This structure is derived from <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}</a>
         </p>
         <div id="tbl-summ-inner">
           <a name="summary"> </a>
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-summary.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-summary.xhtml%}
         </div>
       </div>
     </div>
@@ -195,18 +195,18 @@ These examples illustrate how FHIR resources can be used to represent clinical m
           <b>Key Elements View</b>
         </p>
         <div id="all-tbl-key-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-snapshot-by-key-all.xhtml%}
           <!--Terminology Bindings heading in the fragment -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-tx-key.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-tx-key.xhtml%}
         
           {% capture invariantskey %}
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-key.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-key.xhtml %}
           {% endcapture %}
           <!-- 218 is size of empty table -->
           {% unless invariantskey.size <= 218 %}
             <a name="inv-all-key"> </a>
             <!--Constraints  heading in the fragment -->
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-key.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-key.xhtml %}
           {% endunless%}
         </div>
       </div>
@@ -214,21 +214,21 @@ These examples illustrate how FHIR resources can be used to represent clinical m
         <p>
           <b>Differential View</b>
         </p>
-        <p>This structure is derived from <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}</a>
+        <p>This structure is derived from <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}</a>
         </p>
         <div id="all-tbl-diff-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-diff-all.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-diff-all.xhtml%}
           <!--Terminology Bindings heading in the fragment -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-tx-diff.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-tx-diff.xhtml%}
         
           {% capture invariantsdiff %}
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-diff.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-diff.xhtml %}
           {% endcapture %}
           <!-- 218 is size of empty table -->
           {% unless invariantsdiff.size <= 218 %}
             <a name="inv-all-diff"> </a>
             <!--Constraints  heading in the fragment -->
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv-diff.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv-diff.xhtml %}
           {% endunless%}
         </div>
       </div>
@@ -237,18 +237,18 @@ These examples illustrate how FHIR resources can be used to represent clinical m
           <b>Snapshot View</b>
         </p>
         <div id="all-tbl-snap-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-all.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-snapshot-all.xhtml%}
           <!--Terminology Bindings heading in the fragment -->
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-tx.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-tx.xhtml%}
         
           {% capture invariants %}
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv.xhtml %}
           {% endcapture %}
           <!-- 218 is size of empty table -->
           {% unless invariants.size <= 218 %}
             <a name="inv-all-snap"> </a>
             <!--Constraints  heading in the fragment -->
-            {% include StructureDefinition-Observation-CGM-Measurement-Series-inv.xhtml %}
+            {% include StructureDefinition-hddt-continuous-glucose-measurement-inv.xhtml %}
           {% endunless%}
         </div>
       </div>
@@ -258,7 +258,7 @@ These examples illustrate how FHIR resources can be used to represent clinical m
           <b>XML Template</b>
         </p>
         <div id="all-xml-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-pseudo-xml.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-pseudo-xml.xhtml%}
         </div>
       </div>-->
 {% endunless %}
@@ -268,7 +268,7 @@ These examples illustrate how FHIR resources can be used to represent clinical m
           <b>JSON Template</b>
         </p>
         <div id="all-json-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-pseudo-json.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-pseudo-json.xhtml%}
         </div>
       </div>-->
 {% endunless %}
@@ -278,15 +278,15 @@ These examples illustrate how FHIR resources can be used to represent clinical m
           <b>TTL Template</b>
         </p>
         <div id="all-ttl-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-pseudo-ttl.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-pseudo-ttl.xhtml%}
         </div>
       </div>-->
 {% endunless %}
       <div id="all-summ">
-        <p>This structure is derived from <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}</a>
+        <p>This structure is derived from <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}</a>
         </p>
         <div id="all-summ-inner">
-          {%include StructureDefinition-Observation-CGM-Measurement-Series-summary-all.xhtml%}
+          {%include StructureDefinition-hddt-continuous-glucose-measurement-summary-all.xhtml%}
         </div>
       </div>
     </div>

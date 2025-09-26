@@ -38,9 +38,9 @@ The server MUST support the following endpoints.
 | **Endpoint** | `/Observation/<id>` |
 | **HTTP Method** | GET |
 | **Interaction** | READ |
-| **Description** | Retrieve a single interstitial fluid glucose Observation by its internal server ID. Such scenario is unlikely to occur, but MUST be supported. <br> The returned Observation MUST conform to the HDDT Observation-CGM-Measurement-Series profile. Subsequent request can be made on the `/Device` or `/DeviceMetric` endpoints, to resolve the reference in `Observation.device`, and obtain the device calibration status or configuration. |
+| **Description** | Retrieve a single interstitial fluid glucose Observation by its internal server ID. Such scenario is unlikely to occur, but MUST be supported. <br> The returned Observation MUST conform to the HDDT hddt-continuous-glucose-measurement profile. Subsequent request can be made on the `/Device` or `/DeviceMetric` endpoints, to resolve the reference in `Observation.device`, and obtain the device calibration status or configuration. |
 | **Request Parameters** | `id` - Referring to the internal server ID of the Observation. |
-| **Returned Objects** | • [Observation-CGM-Measurement-Series](StructureDefinition-Observation-CGM-Measurement-Series.html) |
+| **Returned Objects** | • [hddt-continuous-glucose-measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) |
 | **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
 
 ---
@@ -54,22 +54,22 @@ The server MUST support the following endpoints.
 | **Interaction** | SEARCH |
 | **Description** | Search for interstitial fluid glucose Observations. Common use cases include retrieving the latest observation, retrieving only observations that measure interstitial fluid glucose in mg/dL, and retrieving all measurements across a certain date range. <br>Requests with the search parameter `_include=Observation:device` can be used to return DeviceMetric and Device resources referenced by `Observation.device` in the same Bundle. |
 | **Search Parameters** | Parameters that MUST be supported are:<br> • `code` - Search for Observations of a specific type<br> • `date` - Specify a date range <br> • `_include` - Optionally include DeviceMetric and Device resources, referenced by `Observation.device`. <br><br> The server MAY support other search parameters; see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
-| **Returned Objects** | • Bundle containing [Observation-CGM-Measurement-Series](StructureDefinition-Observation-CGM-Measurement-Series.html) entries and optionally [DeviceMetric-Sensor-Type-and-Calibration-Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) and [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) when requested via `_include`. |
+| **Returned Objects** | • Bundle containing [hddt-continuous-glucose-measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) entries and optionally [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) and [hddt-personal-health-device](StructureDefinition-hddt-personal-health-device.html) when requested via `_include`. |
 | **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
 
 #### Profile
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basepath}}">
-        {{site.data.structuredefinitions['Observation-CGM-Measurement-Series'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">
+        {{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-Observation-CGM-Measurement-Series-snapshot-by-key-all.xhtml %}
+      {% include StructureDefinition-hddt-continuous-glucose-measurement-snapshot-by-key-all.xhtml %}
     </div>
   </div>
 </div>
@@ -223,7 +223,7 @@ The server MUST support the following endpoints.
 | **Interaction** | READ |
 | **Description** | Retrieve a single DeviceMetric instance (sensor type and calibration status) by its internal ID. Use this endpoint to obtain the calibration state required for correct interpretation of measurement values. The ID can be obtained via `Observation.device` from previous requests on the `/Observation` endpoint. |
 | **Request Parameters** | `/DeviceMetric/<id>` - Referring to the internal server ID of the DeviceMetric. |
-| **Returned Objects** | • [DeviceMetric-Sensor-Type-and-Calibration-Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) |
+| **Returned Objects** | • [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) |
 |**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
 ---
@@ -237,7 +237,7 @@ The server MUST support the following endpoints.
 | **Interaction** | SEARCH |
 | **Description** | Search for DeviceMetric resources, for example to query calibration status across devices or time ranges. Returned DeviceMetric resources should reference the Device instance via `source` to maintain the link between the measurement data and the physical sensor. |
 | **Search Parameters** | Commonly used search parameters are `type`, `source`, and `_include`. <br> The server MAY support standard DeviceMetric search parameters. See [FHIR DeviceMetric - Search Parameters](https://hl7.org/fhir/R4/devicemetric.html#search) for details. |
-| **Returned Objects** | • Bundle containing [DeviceMetric-Sensor-Type-and-Calibration-Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) entries. Optionally, additional [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) entries when using `_include`. |
+| **Returned Objects** | • Bundle containing [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) entries. Optionally, additional [hddt-personal-health-device](StructureDefinition-hddt-personal-health-device.html) entries when using `_include`. |
 |**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
 ---
@@ -264,7 +264,7 @@ No deviation from the [Generic FHIR API](himi-diga-api.html).
 | **Interaction** | READ |
 | **Description** | Retrieve a single Device instance by its internal ID. Use this to obtain configuration and properties of the device instance (e.g., serial number, manufacturer, device type) needed for device validation. Device ID is usually obtained from previous requests, either via `Observation.device`, or `DeviceMetric.source`. |
 | **Request Parameters** | `/Device/<id>` - Referring to the internal server ID of the Device. |
-| **Returned Objects** | • [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) |
+| **Returned Objects** | • [hddt-personal-health-device](StructureDefinition-hddt-personal-health-device.html) |
 |**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
 ---
@@ -278,7 +278,7 @@ No deviation from the [Generic FHIR API](himi-diga-api.html).
 | **Interaction** | SEARCH |
 | **Description** | Search for Device instances, for example to list devices by manufacturer, type, or serial number.  |
 | **Search Parameters** | Commonly used search parameters are `deviceName`, `manufacturer`, and `_include`. <br> The server MAY support standard Device search parameters. See [FHIR Device - Search Parameters](https://hl7.org/fhir/R4/device.html#search) for details. |
-| **Returned Objects** | • Bundle containing [Device-Personal-Health-Device](StructureDefinition-Device-Personal-Health-Device.html) entries |
+| **Returned Objects** | • Bundle containing [hddt-personal-health-device](StructureDefinition-hddt-personal-health-device.html) entries |
 |**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
 ---
@@ -298,10 +298,10 @@ No deviation from the [Generic FHIR API](himi-diga-api.html).
 | | |
 |-|-|
 | **Resource** | Observation |
-| **Operation name** | `$cgm-summary-data-report` |
+| **Operation name** | `$hddt-cgm-summary` |
 |**Purpose** |  Request a summary of desired CGM values (e.g tissue glucose values below lower threshold) for a certain range of time. |
 |**Parameters** |  See section "[OpenAPI Description](#openapi-description) for parameter definitions and examples.<br> • `effectivePeriodStart (dateTime)` (optional) <br> • `effectivePeriodEnd (dateTime)` (optional) - End of the effective time period <br> •  `related (boolean)` (optional)|
-| **Specifications** | • Summary is calculated at run-time and results are not stored persistently. <br> •  MUST support all profiles listed in `Bundle-Search-Summary-Data-Measurements`. <br> • MUST support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which MUST cover at least 14 days.<br> •  The Summary-Operation MUST support a minimal duration of 7 days for the effective period, and an error must be returned if the client requests a shorter time period. |
+| **Specifications** | • Summary is calculated at run-time and results are not stored persistently. <br> •  MUST support all profiles listed in `hddt-cgm-summary` bundle. <br> • MUST support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which MUST cover at least 14 days.<br> •  The Summary-Operation MUST support a minimal duration of 7 days for the effective period, and an error must be returned if the client requests a shorter time period. |
 
 #### Profiles
 
@@ -309,15 +309,15 @@ No deviation from the [Generic FHIR API](himi-diga-api.html).
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-cgm-summary'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].basepath}}">
-        {{site.data.structuredefinitions['Bundle-Search-Summary-Data-Measurements'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-cgm-summary'].basepath}}">
+        {{site.data.structuredefinitions['hddt-cgm-summary'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-Bundle-Search-Summary-Data-Measurements-diff-all.xhtml %}
+      {% include StructureDefinition-hddt-cgm-summary-diff-all.xhtml %}
     </div>
   </div>
 </div>
@@ -330,7 +330,7 @@ The Observation profile for the CGM summary report is defined by HL7: [Structure
 
 #### Example
 
-**Request:** POST `/Observation$cgm-summary-data-report`
+**Request:** POST `/Observation$hddt-cgm-summary`
 
 **Request Body:**
 
@@ -425,7 +425,7 @@ Perform the FHIR Operation to request a summary of aggregated values over the sp
 
 - Always use the latest version of the Observation profile.
 - Only `valueSampledData` is permitted as the result of the Observation for tissue glucose time-series (CGM) measurements.
-- The `code` element MUST be selected from the [Tissue Glucose CGM ValueSet](ValueSet-vs-tissue-glucose-cgm.html) and be consistent with the units supported by the device.
+- The `code` element MUST be selected from the [ValueSet – Continuous Glucose Measurement](ValueSet-hddt-miv-continuous-glucose-measurement.html) and be consistent with the units supported by the device.
 - The unit in the LOINC code’s display MUST match `valueSampledData.unit` or `valueSampledData.code`.
 - When calibration status is relevant, `Observation.device` MUST reference a `DeviceMetric` resource that records sensor type and calibration details.
 - If calibration is not relevant for the device, `Observation.device` MUST reference a `Device` resource.

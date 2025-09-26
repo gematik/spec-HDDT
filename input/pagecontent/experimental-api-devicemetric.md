@@ -44,15 +44,15 @@ This document describes the semantics of querying FHIR DeviceMetric resources vi
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-sensor-type-and-calibration-status'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].basepath}}">
-        {{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-sensor-type-and-calibration-status'].basepath}}">
+        {{site.data.structuredefinitions['hddt-sensor-type-and-calibration-status'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-snapshot-by-key-all.xhtml %}
+      {% include StructureDefinition-hddt-sensor-type-and-calibration-status-snapshot-by-key-all.xhtml %}
     </div>
   </div>
 </div>

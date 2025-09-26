@@ -44,15 +44,15 @@ This document describes the semantics of querying FHIR Device resources via a RE
 
 <div id="tabs-key">
   <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Device-Personal-Health-Device'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-personal-health-device'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Device-Personal-Health-Device'].basepath}}">
-        {{site.data.structuredefinitions['Device-Personal-Health-Device'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-personal-health-device'].basepath}}">
+        {{site.data.structuredefinitions['hddt-personal-health-device'].basename}}
       </a>
     </p>
     <div id="tbl-key-inner">
-      {% include StructureDefinition-Device-Personal-Health-Device-snapshot-by-key-all.xhtml %}
+      {% include StructureDefinition-hddt-personal-health-device-snapshot-by-key-all.xhtml %}
     </div>
   </div>
 </div>

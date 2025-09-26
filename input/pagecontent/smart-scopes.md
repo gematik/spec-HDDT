@@ -9,13 +9,12 @@ case, and to allow patients to understand and control which types of health data
 
 Examples of SMART scopes:
 
-* `patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS_Blutzucker` → Read access to all blood
+* `patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/ValueSet-hddt-miv-blood-glucose-measurement` → Read access to all blood
   glucose observations, limited by a ValueSet published by BfArM.
-* `patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS_Blutdruck` → Read access to all blood
+* `patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/ValueSet-hddt-miv-blood-glucose-measurement` → Read access to all blood
   pressure observations, including systolic and diastolic values.
-* `patient/Device.r?type=https://terminologien.bfarm.de/fhir/CodeSystem/CS_HiMi_DeviceType|glucometer` → Read access to
-  device resources of type “glucometer”.
-* `patient/DeviceMetric.r` → Read access to measurement configurations, but only when tied to an Observation already
+* `patient/Device.rs` → Read access to device resources.
+* `patient/DeviceMetric.rs` → Read access to measurement configurations, but only when tied to an Observation already
   authorized by another scope.
 
 Concrete SMART scopes are always use case specific: a DiGA treating diabetes may request access to blood glucose

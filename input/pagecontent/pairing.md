@@ -186,7 +186,7 @@ An example token response (with a JWT access token) is shown below:
   "token_type": "Bearer",
   "expires_in": 600,
   "refresh_token": "9e35d65d-ec12-4b8d-a8b1-dff2f7cf6a5e",
-  "scope": "patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS_Blutzucker",
+  "scope": "patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement",
   "pairing-id": "c42a87f6-9f91-44d7-aea9-47b1e70b2213"
 }
 ```

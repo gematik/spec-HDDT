@@ -95,7 +95,7 @@ For each resource type, all standard FHIR search parameters MAY be supported. Se
 | **Request Parameters** | `id` (DeviceMetric resource identifier) |
 | **Search Parameters** | Commonly used search parameters are `type`, `source`, `_include`. <br><br> The server MAY support search parameters defined by the FHIR standard; see [FHIR DeviceMetric - Search Parameters](https://hl7.org/fhir/R4/devicemetric.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
 | **Returned Objects** | FHIR DeviceMetric (e.g., calibration status), Device (via `source`) |
-| **Specifications** | • Returned DeviceMetric resources must conform to the [Sensor Type and Calibration Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) FHIR profile. <br> • Referenced by `Observation.device` in some use-case-specific contexts. |
+| **Specifications** | • Returned DeviceMetric resources must conform to the [Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) FHIR profile. <br> • Referenced by `Observation.device` in some use-case-specific contexts. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
@@ -112,7 +112,7 @@ For each resource type, all standard FHIR search parameters MAY be supported. Se
 | **Request Parameters** | `id` (Device resource identifier) |
 | **Search Parameters** | Commonly used search parameters are `device-name`, `type`,  `manufacturer`. <br><br> The server MAY support search parameters defined by the FHIR standard; see [FHIR Device - Search Parameters](https://hl7.org/fhir/R4/device.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
 | **Returned Objects** | FHIR Device |
-| **Specifications** | • Returned resources must conform to the [Personal Health Device](StructureDefinition-Device-Personal-Health-Device.html) FHIR profiles. <br> • May include the registry number from the Medical Aid Registry as an `identifier`. <br> • Referenced by either `Observation.device` or `DeviceMetric.source`. |
+| **Specifications** | • Returned resources must conform to the [Personal Health Device](StructureDefinition-hddt-personal-health-device.html) FHIR profiles. <br> • May include the registry number from the Medical Aid Registry as an `identifier`. <br> • Referenced by either `Observation.device` or `DeviceMetric.source`. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
@@ -138,27 +138,27 @@ For the complete definitions, refer to the [Artifacts](artifacts.html) page.
 
 <div id="tabs-snap">
   <div id="tbl-snap">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['Device-Personal-Health-Device'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-personal-health-device'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['Device-Personal-Health-Device'].basepath}}">
-        {{site.data.structuredefinitions['Device-Personal-Health-Device'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-personal-health-device'].basepath}}">
+        {{site.data.structuredefinitions['hddt-personal-health-device'].basename}}
       </a>
     </p>
     <div id="tbl-snap-inner">
-      {% include StructureDefinition-Device-Personal-Health-Device-snapshot.xhtml %}
+      {% include StructureDefinition-hddt-personal-health-device-snapshot.xhtml %}
       <a name="tx"></a>
       <!-- Terminology Bindings heading in the fragment -->
-      {% include StructureDefinition-Device-Personal-Health-Device-tx.xhtml %}
+      {% include StructureDefinition-hddt-personal-health-device-tx.xhtml %}
 
       {% capture invariantssnap %}
-        {% include StructureDefinition-Device-Personal-Health-Device-inv.xhtml %}
+        {% include StructureDefinition-hddt-personal-health-device-inv.xhtml %}
       {% endcapture %}
       <!-- 218 is size of empty table -->
       {% unless invariantssnap.size <= 218 %}
         <a name="inv-snap"></a>
         <!-- Constraints heading in the fragment -->
-        {% include StructureDefinition-Device-Personal-Health-Device-inv.xhtml %}
+        {% include StructureDefinition-hddt-personal-health-device-inv.xhtml %}
       {% endunless %}
     </div>
   </div>
@@ -169,27 +169,27 @@ For the complete definitions, refer to the [Artifacts](artifacts.html) page.
 
 <div id="tabs-snap">
   <div id="tbl-snap">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].title}}</p>
+    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-sensor-type-and-calibration-status'].title}}</p>
     <p>
       This structure is derived from
-      <a href="{{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].basepath}}">
-        {{site.data.structuredefinitions['DeviceMetric-Sensor-Type-and-Calibration-Status'].basename}}
+      <a href="{{site.data.structuredefinitions['hddt-sensor-type-and-calibration-status'].basepath}}">
+        {{site.data.structuredefinitions['hddt-sensor-type-and-calibration-status'].basename}}
       </a>
     </p>
     <div id="tbl-snap-inner">
-      {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-snapshot.xhtml %}
+      {% include StructureDefinition-hddt-sensor-type-and-calibration-status-snapshot.xhtml %}
       <a name="tx"></a>
       <!-- Terminology Bindings heading in the fragment -->
-      {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-tx.xhtml %}
+      {% include StructureDefinition-hddt-sensor-type-and-calibration-status-tx.xhtml %}
 
       {% capture invariantssnap %}
-        {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-inv.xhtml %}
+        {% include StructureDefinition-hddt-sensor-type-and-calibration-status-inv.xhtml %}
       {% endcapture %}
       <!-- 218 is size of empty table -->
       {% unless invariantssnap.size <= 218 %}
         <a name="inv-snap"></a>
         <!-- Constraints heading in the fragment -->
-        {% include StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status-inv.xhtml %}
+        {% include StructureDefinition-hddt-sensor-type-and-calibration-status-inv.xhtml %}
       {% endunless %}
     </div>
   </div>
@@ -226,63 +226,41 @@ Please note that the examples below do not encompass all of the expected search 
   "resourceType": "CapabilityStatement",
   "status": "active",
   "fhirVersion": "4.0.1",
-  "format": [
-    "json",
-    "xml"
-  ],
-  "rest": [
+  "format": ["json", "xml"],
+  "resource": [
     {
-      "mode": "server",
-      "resource": [
+      "type": "Observation",
+      "supportedProfile": [
+        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement",
+        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+      ],
+      "interaction": [{ "code": "read" }, { "code": "search-type" }],
+      "operation": [
         {
-          "type": "Device",
-          "profile": "Device_Medical_Aid",
-          "interaction": [
-            {
-              "code": "read"
-            },
-            {
-              "code": "search-type"
-            }
-          ]
-        },
-        {
-          "type": "Observation",
-          "profile": "Observation_Blood_Glucose",
-          "interaction": [
-            {
-              "code": "read"
-            },
-            {
-              "code": "search-type"
-            }
-          ]
-        },
-        {
-          "type": "Observation",
-          "profile": "Observation_CGM_Measurement_Series",
-          "interaction": [
-            {
-              "code": "read"
-            },
-            {
-              "code": "search-type"
-            }
-          ]
-        },
-        {
-          "type": "Bundle",
-          "profile": "BundleSearchSummaryDataMeasurements",
-          "interaction": [
-            {
-              "code": "read"
-            },
-            {
-              "code": "search-type"
-            }
-          ]
+          "name": "hddt-cgm-summary",
+          "definition": "https://gematik.de/fhir/hddt/OperationDefinition/hddt-cgm-summary-operation"
         }
       ]
+    },
+    {
+      "type": "Bundle",
+      "supportedProfile": [
+        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"
+      ]
+    },
+    {
+      "type": "Device",
+      "supportedProfile": [
+        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+      ],
+       "interaction": [{ "code": "read" }, { "code": "search-type" }]
+    },
+    {
+      "type": "DeviceMetric",
+      "supportedProfile": [
+        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+      ],
+       "interaction": [{ "code": "read" }, { "code": "search-type" }]
     }
   ]
 }
