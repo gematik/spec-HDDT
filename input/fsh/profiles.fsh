@@ -147,7 +147,45 @@ Parent: DeviceMetric
 Id: hddt-sensor-type-and-calibration-status
 Title: "DeviceMetric – Sensor Type and Calibration Status"
 Description: """
-Profile for the sensor type and calibration status of a Personal Health Device.
+The HddtSensorTypeAndCalibrationStatus profile captures the calibration status of a sensor which is part of a Personal Health Device. 
+
+Personal Health Devices need to be calibrated in order to provide safe measurements. Some devcices are already calibrated by the 
+manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. 
+If a Personal Health Device transmits data from a non calibrated sensor to the resource server at all depends on the concrete product. 
+For a DiGA as a device data consumer to process device data in a safe manner, it must be transparent if the data it received was 
+measured by a calibrated sensor or not. 
+
+For devices where the sensor that measured a value requires automated or manual calibration, the Observation capturing this value 
+MUST refer to a HddtSensorTypeAndCalibrationStatus resource through its `Observation.device` element. 
+The HddtSensorTypeAndCalibrationStatus implements a FHIR [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource which 
+holds calibration information in a `calibration.type`, a `calibration.state` and a `calibration.date` element. In addition 
+the HddtSensorTypeAndCalibrationStatus can provide a definition of the `unit` that is preferrably to be used for presenting 
+measured values to the patient. 
+
+The HddtSensorTypeAndCalibrationStatus of a measurement MUST always refer to a HddTPersonalHealthDevice resource that represents the 
+Personal Health Device that contains the sensor. This is a many-to-one relationship which allows for a Personal Health Device to 
+contain multiple sensors for different measured values. E.g. by this a pulseoximeter as a HDDT Personal Health Device can 
+provide _pulse_ and _SPO2_ as two diffferent interoperable values with each of this values being linked with a 
+dedicated HddtSensorTypeAndCalibrationStatus resource. 
+
+**Authorization:**
+
+Authorization to receive a DeviceMetric resource that captures information about a sensor of Personal Health Device is granted 
+to DiGA within the scope of any Mandatory Interoperable Value (MIV), that can be measured by this sensor.
+The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
+
+**Obligations and Conventions:**
+
+DiGA as device data consumers SHOULD NOT rely on the `DeviceMetric.operationalStatus` of a sensor as this status does only reflects the status of the sensor 
+and does not provide information abaout the end-to-end status of the flow of device data from the sensor within the Personal Health device 
+to the resource server in the device backend. Instead DiGA SHOILD process the `Device.status` information that can be obtained through the 
+`DeviceMetric.source` reference. This element consideres the end-to-end availability of data and therefore is the only source for 
+information about potentially missing data (e.g. due to temporal problems with the bluetooth or internet connection).
+
+**Constraints applied:**  
+- `unit` is restricted to UCUM. 
+- `source` is constrained as a mandatory element in order to enable a DiGA to obtain dynamic and static device attributes through this reference
+- `calibration` is set to _Must Support_. This element and respective status information MUST be provided if the sensor performs automated or requires manual calibration after the device has been put into operation with the patient (`Device.status`is `active`).
 """
 * ^version = "0.1.1"
 * ^status = #draft
@@ -155,7 +193,7 @@ Profile for the sensor type and calibration status of a Personal Health Device.
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Configuration or setting capability of a personal health device"
-* . ^definition = "Describes the sensor type and calibration status of a personal health device as a DeviceMetric."
+* . ^definition = "Describes the sensor type and calibration status of a sensor within a Personal Health Device as a DeviceMetric."
 * unit from $ucum-units (preferred)
 * unit ^short = "Unit of the measurement as it is used when presenting data to the patient"
 * unit ^definition = "The unit in which the Personal Health Device presents its measurement values to the patient."
@@ -174,17 +212,50 @@ patient’s preference and thus to be in sync with the medical aid by displaying
 * unit ^binding.description = "for HDDT only codes from UCUM are allowed for coding units of measurements"
 * source 1..
 * source only Reference(HddtPersonalHealthDevice)
-* source ^short = "Reference to the Personal Health Device the configuration and calibration status applies to"
-* source ^definition = "Points to the specific Device resource that holds the sensor for which this device configuration and calibration status applies."
-* operationalStatus MS
+* source ^short = "Reference to the Personal Health Device holfing the sensor"
+* source ^definition = "Points to the specific Device resource that holds the sensor for which the documented calibration status applies."
+* operationalStatus 0..1
+* operationalStatus ^comment = """
+DiGA as device data consumers SHOULD NOT rely on the `operationalStatus` of a sensor as this status does only reflects the status of the sensor 
+and does not provide information abaout the end-to-end status of the flow of device data from the sensor within the Personal Health device 
+to the resource server in the device backend. Instead DiGA SHOILD process the `Device.status` information that can be obtained through the 
+`DeviceMetric.source` reference. This element consideres the end-to-end availability of data and therefore is the only source for 
+information about potentially missing data (e.g. due to temporal problems with the bluetooth or internet connection).
+"""
 * calibration MS
 * calibration.state 1..1
+* calibration.date MS
 
 Profile: HddtBloodGlucoseMeasurement
 Parent: Observation
 Id: hddt-blood-glucose-measurement
 Title: "Observation – Blood Glucose Measurement"
-Description: "Profile for capturing blood glucose measurements as Observation."
+Description: """
+Profile for capturing blood glucose measurements as FHIR Observation resources.
+
+This profile defines the exchange of measurements for the Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\" which is technically defined 
+by the ValueSet _hddt-miv-blood-glucose-measurement_. This MIV is e.g. implemented by blood glucose meter (glucometer) that can connect to 
+gateways (Aggregation Managers) through wireless or wired communication.
+
+**Authorization:**
+
+Authorization to receive an Observation resource for a blood glucose measurement is granted to DiGA within the scope _Blood Glucose Measurement_.
+The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
+
+**Obligations and Conventions:**
+
+Each Blood Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ DeviceMetric resource or to a 
+_Personal Health Device_ Device resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
+from the Observation resource if the sensor for measuring blood glucose needs to be calibrated (either automatically or by the user) 
+or if the sensor may change its calibration status over time. 
+
+**Constraints applied:**  
+- `status` is restricted to _final_
+- `code` is constrained to the ValueSet that represents the MIV _Blood Glucose Measurement_
+- `value[x]` is restricted to _valueQuantity_. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
+- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
+
+"""
 * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
@@ -256,7 +327,7 @@ Description: "Profile for capturing continuous glucose measurements (CGM) as Obs
 * value[x].data 1..
 * dataAbsentReason 0..1
 * dataAbsentReason ^definition = "Indicates why the measurement data is missing. If set to 'temp-unknown', this measurement should be re-collected at a later time."
-* dataAbsentReason ^comment = "For preliminary CGM measurements where the data is temporarily unavailable, use 'temp-unknown'. This signals that the measurement should be repeated later."
+* dataAbsentReason ^comment = "For preliminary CGM measurements where the data is temporarely unavailable, use 'temp-unknown'. This signals that the measurement should be repeated later."
 * device 1..1
 * device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
 * device ^short = "Reference to personal health device or its sensor type and calibration status"
