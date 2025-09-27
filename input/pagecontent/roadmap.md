@@ -29,7 +29,7 @@ The specification enables a DiGA to retrieve standardised health data from medic
 FHIR-based transmission of health data as Mandatory Interoperable Values (MIVs) to be provided in the form of FHIR Observation resources for vital signs e(e.g. glucose level in capillary blood). 
 
 ##### Components
-Five main systems orchestrate the legally compliant exchange of data: the BfArM DiGA and device registry, the National Terminology Server (ZTS), and the backend/frontend systems of DiGAs and medical aids/implants.
+Five main systems orchestrate the legally compliant exchange of data: the BfArM DiGA and device registry, the Central Terminology Server (ZTS), and the backend/frontend systems of DiGAs and medical aids/implants.
 
 ##### Interfaces
 OAuth 2.0 is used for secure authorisation combined with RESTful FHIR APIs for interoperable data transmission.

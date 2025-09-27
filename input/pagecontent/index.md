@@ -27,9 +27,29 @@ If you do not have access to the request portal and would like to use it, please
 ### License Information
 This implementation guide is published unter the __XXXXX__ license. 
 
+### Copyrights
+The HDDT Implementation Guide includes IP covered under the following statements.
 
+* The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. https://ucum.org/trac/wiki/TermsOfUse
+* Mandatory Interoperable Values are expressed through content from LOINC. LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license provided at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
+* The HDDT Implementation Guide derives from HL7 Ressource Definitions and the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: https://terminology.hl7.org/license.html
+* Device Properties and other attributes are encoded using vocabularies from DIN EN ISO/IEEE 11073. 
 
+### Acknowledgments
+This Implementation Guide was developed by the _German Competence Center for Interoperability in Healthcare_ (Kompetenzzentrum für Interoperabilität im Gesundheitswesen, KIG) in fulfillment of § 374a (4) SGB V.
 
+__Primary Editors__:
+* Andrea Schminck (gematik)
+* Dr. Jörg Caumanns (_fbeta GmbH)
 
+__Key Contributors:__
+
+* Thomas Kerner (gematik)
+* Jie Wu (_fbeta GmbH)
+* Sergej Reiser (_fbeta GmbH)
+* Emil Milanov (_fbeta GmbH)
+* Sophia Lückhoff (KIG)
+
+This guide benefited from contributions from rtCGM device vendors, DiGA vendors, and clinicians. Their collective insights were invaluable in shaping the requirements and use cases that were the foundation for the solution specified in this implementation guide.
 
 

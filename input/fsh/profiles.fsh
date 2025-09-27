@@ -15,10 +15,11 @@ Id: hddt-cgm-summary
 Title: "Bundle – Summary Data Measurements with related Devices/DeviceMetrics"
 Description: """
 This profile constrains the FHIR Bundle resource for use as the result container of the `$hddt-cgm-summary` operation.  
-The operation requests CGM summary data and optionally returns the related device context.  
+The operation requests a patient's glucose summary profile. The summary profile is calculated form continuous glucose monitoring data. 
+Optionally a DiGA MAY request additional information about the Personal Health Device and its current configuration.  
 
 The Bundle is of type *collection* and MUST contain only resources of the following types:  
-- Observations conforming to HL7 CGM profiles: 
+- Observations conforming to [HL7 CGM profiles](https://build.fhir.org/ig/HL7/cgm/): 
     - [CGM Summary Observation](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)
     - [Mean Glucose (Mass)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)
     - [Mean Glucose (Moles)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)
@@ -28,19 +29,25 @@ The Bundle is of type *collection* and MUST contain only resources of the follow
     - [Days of Wear](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-days-of-wear.html)!
     - [Sensor Active Percentage](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)
 
-- DeviceMetric resources conforming to `HddtSensorTypeAndCalibrationStatus` to provide configuration details for the CGM measurement device.  
+- DeviceMetric resources conforming to `HddtSensorTypeAndCalibrationStatus` to provide configuration and calibration information for the continuose glucose measurement device.  
 - Device resources conforming to `HddtPersonalHealthDevice` to provide context about the actual Personal Health Device device used.  
 
 The purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  
 It ensures interoperability across different implementations by defining a predictable response format.  
 This supports use cases such as:  
-- Retrieval of CGM summary metrics over a given time interval  
-- Retrieval of raw CGM measurement series together with the associated device configuration  
-- Combining measurement data and device metadata for downstream applications such as visualization, clinical decision support, or data export.  
+- Retrieval of CGM summary metrics over a given time interval in support for the upcoming digital disease management program (dDMP) on Diabetes, e.g. for 
+    - continuous therapy monitoring and adjustment
+    - forwarding key data to treating physicians, e.g. for clinical decision support
+    - supporting asynchonous telemonitoring by ad hoc provisioning of condensed status information
+- Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring
+
+**Authorization:**
+Authorization to receive instances of this summary profile is granted to DiGA within the scope of the Mandatory Interoperable Value (MIV) __HDDT Blood 
+Glucose Measurement__ which is implemented through the ValueSet `hddt-miv-blood-glucose-measurement`. The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
 
 **Constraints applied:**  
 - `Bundle.type` is fixed to `collection`.  
-- `Bundle.entry.resource` is restricted to CGM Observation profiles, HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus.  
+- `Bundle.entry.resource` is restricted to CGM Observation profiles, `HddtPersonalHealthDevice` or `HddtSensorTypeAndCalibrationStatus`.  
 - No other resource types are allowed in the Bundle.  
 """
 * ^version = "0.1.1"
@@ -49,23 +56,47 @@ This supports use cases such as:
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * type = #collection (exactly)
-* type ^short = "The bundle is always a collection of CGM summary Observations and optionally related device resources returned by the $hddt-cgm-summary operation."
+* type ^short = "The bundle is always a collection of CGM summary Observations and optionally related Device and DeviceMetric resources returned by the $hddt-cgm-summary operation."
 * entry 1..*
 * entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus
-* entry.resource ^short = "Observations with their related Devices and DeviceMetrics"
+* entry.resource ^short = "Observations with their related Device and DeviceMetric information"
 
 Profile: HddtPersonalHealthDevice
 Parent: Device
 Id: hddt-personal-health-device
 Title: "Device – Personal Health Device"
-Description: "Profile for a Personal Health Device used in the provision of healthcare."
+Description: """
+This profile defines a Personal Health Device within the context of § 374a SGB V. A Personal Health Device acc. to this profile is any
+medical aid or implant that 
+- is distributed to insured persons at the expense of the statutory health insurance and 
+- transmits the data about the insured person electronically to the device manufacturer or third parties, which make the data available to patients and/or physicians via publicly accessible networks. 
+ 
+Personal Health Devices that fulfill the criteria of this regulation MUST be able to pass on data to authorized Digital Health Applications (DiGA acc. § 374a SGB V) using the protocols 
+and interfaces as defined in the HDDT specification.
+
+This profile helps a device data consuming DiGA to
+- increase patient safety by comparing the serial number of a Personal Health Device as presented with this profile with the serial number the patient may have provided to the DiGA
+- increase data quality by getting information about the current status of the end-to-end communication flow from the Personal Healh Device to the device backend and thus being able to detect if there may be more data available for the requested period
+- optimize its interactions with the device data providing resource server by getting access to the DeviceDefinition resource that holds static attributes about the device and its connected backend (e.g. minimum delay between data measurement and data availability)
+
+**Authorization:**
+Authorization to receive a Device resource representing a Personal Health Device is granted to DiGA within the scope of any Mandatory Interoperable Value (MIV), that can be measured by this Personal Health Device.
+The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
+
+**Constraints applied:**  
+- `statusReason` is set to _Must Support_ in order to make as much status information available as possible
+- `serialNumber` is set to _Must Support_ to allow for a comparison with the number printed on the Personal Health Device
+- `deviceName` and `definition` are set to _Must Support_ to enable a DiGA to present device information to the patient
+- `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of upcoming sensor changes (e.g. for patient wearing a rtCGM)
+
+"""
 * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Personal Health Device"
-* . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a personal health device."
+* . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a medical aid or implant."
 * type from HddtDeviceType (required)
 * type ^short = "The machine-readable type of the Personal health device"
 * statusReason MS
