@@ -224,7 +224,7 @@ information about potentially missing data (e.g. due to temporal problems with t
 """
 * calibration MS
 * calibration.state 1..1
-* calibration.date MS
+* calibration.time MS
 
 Profile: HddtBloodGlucoseMeasurement
 Parent: Observation
