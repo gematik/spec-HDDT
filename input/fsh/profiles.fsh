@@ -42,6 +42,7 @@ This supports use cases such as:
 - Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring
 
 **Authorization:**
+
 Authorization to receive instances of this summary profile is granted to DiGA within the scope of the Mandatory Interoperable Value (MIV) __HDDT Blood 
 Glucose Measurement__ which is implemented through the ValueSet `hddt-miv-blood-glucose-measurement`. The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
 
@@ -76,19 +77,27 @@ and interfaces as defined in the HDDT specification.
 
 This profile helps a device data consuming DiGA to
 - increase patient safety by comparing the serial number of a Personal Health Device as presented with this profile with the serial number the patient may have provided to the DiGA
-- increase data quality by getting information about the current status of the end-to-end communication flow from the Personal Healh Device to the device backend and thus being able to detect if there may be more data available for the requested period
+- increase data quality by getting information about the current status of the end-to-end communication flow from the Personal Health Device to the device backend and thus being able to detect if there may be more data available for the requested period
 - optimize its interactions with the device data providing resource server by getting access to the DeviceDefinition resource that holds static attributes about the device and its connected backend (e.g. minimum delay between data measurement and data availability)
 
 **Authorization:**
+
 Authorization to receive a Device resource representing a Personal Health Device is granted to DiGA within the scope of any Mandatory Interoperable Value (MIV), that can be measured by this Personal Health Device.
 The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
 
-**Constraints applied:**  
-- `statusReason` is set to _Must Support_ in order to make as much status information available as possible
-- `serialNumber` is set to _Must Support_ to allow for a comparison with the number printed on the Personal Health Device
-- `deviceName` and `definition` are set to _Must Support_ to enable a DiGA to present device information to the patient
-- `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of upcoming sensor changes (e.g. for patient wearing a rtCGM)
+**Obligations and Conventions:**
 
+The Personal Health Device's backend regularely synchronizes with the device hardware through a gateway (_Aggregation Manager_). 
+The minimum delay that the concrete end-to-end synchronization from the Personal Health Device to the device backend imposes is provided by the BfArM _HiMi-SST-VZ_ (Device Registry)
+through the static attribute `Delay-From-Real-Time`. If a resource server has not synchronized with the connected Personal Health Device for a time span 
+longer than `Delay-From-Real-Time`(e.g. due to temporarely lost Bluetooth or internet connectivity), the `status` of the Device resource that represents the 
+Personal Health Device MUST be set to `unknown`.
+
+**Constraints applied:**  
+- `status` is set to _Must Support_ in order to allow a DiGA to detect missing data (e.g. due to connection issues)
+- `deviceName` and `serialNumber` are set to _Must Support_ to allow a validation of the source of device data by comparing this information with information printed on the Personal Health Device
+- `definition` is constrained as a mandatory element in order to enable a DiGA to obtain static device attributes through this reference
+- `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)
 """
 * ^version = "0.1.1"
 * ^status = #draft
@@ -99,19 +108,35 @@ The requesting DiGA MUST be authorized to access data for this MIV for the affec
 * . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a medical aid or implant."
 * type from HddtDeviceType (required)
 * type ^short = "The machine-readable type of the Personal health device"
-* statusReason MS
-* statusReason ^short = "Reason for the current status of the Personal health device"
-* statusReason ^definition = "A description of the reason for the current status of the Personal health device."
+* status MS
+* status ^requirements = "allow a requesting party to detect missing data (e.g. due to connection issues)"
+* status ^comment = """
+The `status` values _active_ and _inactive_ refer to the ability of the Personal Health Device to record and share measured data. E.g. a real-time 
+Continuous Glucose Monitoring device usually stops recording and sharing glucose values after 14 days of wear, 
+even though the sensor is still alive for a longer time. After these 14 days, the `status` switches from _active_ to _inactive_.
+
+If a resource server has not synchronized with the connected Personal Health Device for a time span longer 
+than stated in the static attribute `Delay-From-Real-Time`(e.g. due to temporarely lost Bluetooth or internet connectivity), 
+the `status` of the Device resource that represents the Personal Health Device MUST be set to `unknown`. The device 
+specific value of the static attribute `Delay-From-Real-Time` can be obtained through the device's DeviceDefinition resource.
+"""
 * definition 1..1
 * definition only Reference(DeviceDefinition)
 * definition ^short = "Definition of the Personal health device"
 * definition ^definition = "Reference to a DeviceDefinition resource that describes the technical and functional details of the Personal health device."
 * expirationDate MS
 * expirationDate ^short = "Date and time of expiry of this Personal health device (if applicable)"
-* expirationDate ^definition = "The date and time beyond which this Personal health device is no longer valid or should not be used (if applicable)."
+* expirationDate ^definition = "The date and time beyond which this Personal Health Device is no longer valid or should not be used (if applicable)."
+* expirationDate ^comment = """
+The expiration date signals the _end of communication_ (which is latest the devices _end of life_). E.g. a real-time 
+Continuous Glucose Monitoring device usually stops recording and sharing glucose values after 14 days of wear, 
+even though the sensor is still alive for a longer time. The `expirationDate` in this case is 14 days after the 
+patient started the sensor.  
+"""
 * serialNumber MS
 * serialNumber ^short = "Serial number of the Personal health device"
-* serialNumber ^definition = "The serial number that uniquely identifies the Personal health device instance."
+* serialNumber ^definition = "The serial number that uniquely identifies the Personal Health Device instance."
+* serialNumber ^comment = "The serial number MAY only be omitted if neither the Personal Health Device nor its manual and packaging hold the printed serial number and if the Personal Health Device does not provide an API for reading a unique number from the device hardware."
 * deviceName MS
 * deviceName ^short = "Name of the Personal health device"
 * deviceName ^definition = "The name of the Personal health device as given by the manufacturer and listed in the BfArM Device registry."
@@ -121,7 +146,9 @@ Profile: HddtSensorTypeAndCalibrationStatus
 Parent: DeviceMetric
 Id: hddt-sensor-type-and-calibration-status
 Title: "DeviceMetric – Sensor Type and Calibration Status"
-Description: "Profile for the sensor type and calibration status of a Personal Health Device."
+Description: """
+Profile for the sensor type and calibration status of a Personal Health Device.
+"""
 * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
@@ -130,13 +157,25 @@ Description: "Profile for the sensor type and calibration status of a Personal H
 * . ^short = "Configuration or setting capability of a personal health device"
 * . ^definition = "Describes the sensor type and calibration status of a personal health device as a DeviceMetric."
 * unit from $ucum-units (preferred)
-* unit ^short = "Unit of the measurement"
-* unit ^definition = "The unit in which the associated measuring device delivers its measurement values."
-* unit ^binding.description = "Defines the unit of measurement using codes from the ValueSet for blood glucose units."
+* unit ^short = "Unit of the measurement as it is used when presenting data to the patient"
+* unit ^definition = "The unit in which the Personal Health Device presents its measurement values to the patient."
+* unit ^requirements = "allow a DiGA to detect the unit the patient is used to"
+* unit ^comment = """
+This element holds the unit of measurement that is preferrably to be used for presenting measured values to the patient. 
+This unit MAY differ from the unit that is used with the `Observation.value[x]` of measured data.
+
+_Example_: A rtCGM sensor measures glucose values as mg/dl. All data is stored in the health record in this unit. 
+The resource server provides the data only using mg/dl as the unit. At the mobile app that came with the rtCGM (the rtCGM’s 
+Aggregation Manager) the patient configured the preferred unit as mmol/l. Therefore all data is calculated (by the device or 
+the app) to mmol/l before displaying it to the patient. In this example the unit of `Observation.value[x]` is mg/dl 
+while `DeviceMetric.unit` is mmol/l. The motivation for this behaviour is to allow the DiGA to obtain information about the 
+patient’s preference and thus to be in sync with the medical aid by displaying measured values in the same unit.
+"""
+* unit ^binding.description = "for HDDT only codes from UCUM are allowed for coding units of measurements"
 * source 1..
 * source only Reference(HddtPersonalHealthDevice)
-* source ^short = "Reference to the device instance"
-* source ^definition = "Points to the specific Device resource that uses this device configuration."
+* source ^short = "Reference to the Personal Health Device the configuration and calibration status applies to"
+* source ^definition = "Points to the specific Device resource that holds the sensor for which this device configuration and calibration status applies."
 * operationalStatus MS
 * calibration MS
 * calibration.state 1..1

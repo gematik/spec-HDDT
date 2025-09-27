@@ -92,6 +92,7 @@ Every device data recorder holds information about its static properties as part
 |----------------------|-------|------------|----------|
 | Store-Capacity-Count | number of measured values that can be stored locally with the sensor | MUST | In cases where the sensor cannot synchronize with the aggregation manager (e.g. due to connection failures) data gets lost if the amount of measured data since the last synchronization exceeds _Store-Capacity-Count_ |
 | Historic-Data-Period | minimum number of days historic data is available at the device data recorder | MUST | If a DiGA queries for data that is older than _Historic-Data -Period_ the device data recorder, the device data recorder MAY respond with an error. _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
+| Delay-From-Real-Time | minimum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
 | Grace-Period | Time span a DiGA must wait between two requests for the same patient's data. | MUST | A device data recorder MAY reject a new request that is issued before the end of this time span. | 
 | Chunk-Time-Span      | size of a chunk for sharing sampled data (see below) | MUST if applicable | This property is only applicable for device data recorders that provide MIVs as sampled data |  
 
