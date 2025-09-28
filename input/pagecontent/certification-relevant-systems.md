@@ -1,11 +1,11 @@
 Via the interface according to § 374a SGB V, backend systems of medical aids and implants must be able to pass on data to authorized DiGA if they are 
-- distributed to insured persons at the expense of the statutory health insurance and 
-- transmit the data about the insured person electronically to the manufacturer or third parties via publicly accessible networks. 
+- distributed to insured people at the expense of statutory health insurance and 
+- transmit data about the insured person electronically to the manufacturer or third parties via publicly accessible networks. 
 
 Examples of such medical aids and implants include rtCGM, insulin pumps and pacemakers. 
-However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oximeters and other aids that are not necessarily perceived as digital by the patient also fall under § 374a SGB V, provided that they transfer the collected data to a backend system. 
+However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oximeters and other aids that are not necessarily perceived as digital by the patient also fall under § 374a SGB V, if they transfer the collected data to a backend system. 
 
-§ 374a SGB V will be established stepwise in the German healthcare system. In a first implementation phase three domains (diabetes self management, respiratory monitoring, simple cardiac monitoring) with selected Mandatory Interoperable Values (MIVs) are affected, while more will be elaborated in the future (see [Roadmap](roadmap.html) and [Methodology](methodology.html) for details).
+§ 374a SGB V will be established stepwise in the German healthcare system. In a first implementation phase three domains (diabetes self-management, respiratory monitoring, simple cardiac monitoring) with selected Mandatory Interoperable Values (MIVs) are affected, while more will be elaborated in the future (see [Roadmap](roadmap.html) and [Methodology](methodology.html) for details).
 
 ### Building Blocks 
 
@@ -18,7 +18,7 @@ The __Personal Health Device__ is the hardware of the medical aid or implant and
 
 ### Relevant Systems
 
-The necessary prerequisite for a medical aid or implant to fall under the regulations of § 374a SGB V is the financial viability of the aid or implant through the statutory health insurance (GKV). The aid or implant is considered to be financially viable under the statutory health insurance system if:
+The necessary prerequisite for a medical aid or implant to fall under the regulations of § 374a SGB V is the financial viability of the aid or implant through statutory health insurance (GKV). The aid or implant is financially viable under the statutory health insurance system if:
 - it is listed in the [directory of medical aids of the GKV](https://hilfsmittel.gkv-spitzenverband.de/home),
 - it can be assigned to a product type defined in the list of medical aids of the GKV (7-digit number) or
 - it is reimbursed within the framework of a contract pursuant to § 140a SGB V.
@@ -41,7 +41,7 @@ ___Example 2__: Manufacturer A offers a rtCGM that can also be coupled with an i
 <div><img src="/HDDT affected systems example 2.png" alt="Example 2" width="60%"></div>
 <br clear="all"/>
 
-___Example 3__: Manufacturer A offers an rtCGM. An unaffiliated manufacturer B offers a diabetes diary that can receive data from manufacturer A's rtCGM via a proprietary interface. The diabetes diary is not a DiGA and is not otherwise reimbursable in the statutory health insurance. Manufacturer B is not obliged to implement the HDDT interface and cannot be listed in the HiMi-SST-VZ of the BfArM._
+___Example 3__: Manufacturer A offers an rtCGM. An unaffiliated manufacturer B offers a diabetes diary that can receive data from manufacturer A's rtCGM via a proprietary interface. The diabetes diary is not a DiGA and is not otherwise reimbursable in statutory health insurance. Manufacturer B is not obliged to implement the HDDT interface and cannot be listed in the HiMi-SST-VZ of the BfArM._
 
 ___Example 4__: Manufacturers A and B each offer an rtCGM. A manufacturer C that is not affiliated with A or B offers a diabetes diary as a DiGA that can receive data from the rtCGMs of manufacturers A and B via a proprietary interface. Manufacturer C is not obliged to implement the HDDT interface. However, he must disclose the interface used (interoperability criteria 3 in Annex 2 DiGAV) and take the received data into account in an appropriate form in his ePA export._
 

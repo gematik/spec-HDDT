@@ -41,13 +41,13 @@ Once a MIV is defined, a MIV-specific __HDDT Observation Profile__ is specified.
 
 Some MIVs are the basis for aggregated or derived data. Such data is provided to DiGA as structured, standardized reports. Depending on the report's content and structure, a dedicated FHIR profile (e.g. based on Observation or DiagnosticReport resource definitions) and a dedicated FHIR operation are defined for each report.
 
-HDDT Observation Profiles and profiles for structured reports are managed by gematik and made available as FHIR [StructureDefinition](https://hl7.org/fhir/R4/structuredefinition.html). FHIR operations for fetching a structured report are defined using openAPI.  
+HDDT Observation Profiles and profiles for structured reports are managed by gematik and made available as FHIR [StructureDefinition](https://hl7.org/fhir/R4/structuredefinition.html) resources. FHIR operations for fetching a structured report are defined using formal definitions of input parameters and possible resuls.  
 
 Each MIV is expressed as a FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) which is managed with the German Central Terminology Server (ZTS). The LOINC codes within a MIV's ValueSet are the only values allowed for the `code` element that classifies an FHIR Observation resource that holds a measured value for the MIV. 
 
 The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow), MIV definitions (green) and measured MIV resources (light blue).
 
-<div style="width: 40%;">
+<div style="width: 50%;">
   <img src="assets/images/methodology_miv.svg" style="width: 100%;" />
 </div>
 
@@ -57,6 +57,6 @@ The table below lists the use cases, medical aids, and interoperable values that
 
 | Domain                    | Use Cases | Medical Aids                                                                         | Interoperable Values                                                                        |
 |---------------------------|-----------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------| 
-| Diabetes Self-Management  |• DiGA zur Dosisfindung bei Langzeitinsulinen<br>• DiGA mit digitalem Diabetestagebuch<br>• Niederschwelliges Telemonitoring<br>• Vermeidung von Blutzuckerspitzen<br>• Alerting beim Erreichen zuvor festgelegter kritischer Grenzwerte  | • __blood glucose meter__ <br> • __rtCGM__ <br> • smart pen <br> • insulin pump <br> | • __Blood Glucose Value__<br>• __ISF Glucose Sampled Value__<br>• insulin intake |
-| Respiratory Monitoring    | • Behandlung von schwerem Asthma<br>• Behandlung von Schlafapnoe          | • __peak flow meter__<br>• __spirometer__<br>• CPAP<br>• APAP                                | • __PEF__<br>• __FEV1__<br>• FVC<br>• FEV6, ...                                             |
+| Diabetes Self-Management  |• DiGA for supporting the adaptation of basal insulin rate<br>• DiGA with digital diabetes diary<br>• DiGA for simple asynchronous telemonitoring<br>• DiGA for the prevention of glucose peeks<br>• DiGA for triggering alerts on critical measurements  | • __blood glucose meter__ <br> • __rtCGM__ <br> • smart pen <br> • insulin pump <br> | • __Blood Glucose Value__<br>• __ISF Glucose Sampled Value__<br>• insulin intake |
+| Respiratory Monitoring    | • DiGA to support treatment of asthma bronciale<br>• DiGA to support treatment of  sleep apnea  | • __peak flow meter__<br>• __spirometer__<br>• CPAP<br>• APAP                                | • __PEF__<br>• __FEV1__<br>• FVC<br>• FEV6, ...                                             |
 | Simple Cardiac Monitoring | _to be defined_           | • __blood pressure cuff__<br>• scale                                                 | • __Blood Pressure__<br>• __Pulse__<br>• body weight                                        |

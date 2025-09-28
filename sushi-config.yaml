@@ -127,24 +127,12 @@ pages:
   diga-vz-api.html:
     title: DiGA Directory API (?)
     generation: markdown
-  # information-model-diabetes.html:
-  #   title: Information Model Diabetes
-  #   generation: markdown
   measurement-blood-glucose.html:
     title: MIV - Blood Glucose Value
     generation: markdown
   measurement-tissue-glucose.html:
     title: MIV - ISF Samples Data Value
     generation: markdown
-  # conventions-for-device-resources.html:
-  #   title: Conventions for Device Resources
-  #   generation: markdown
-#   standardisation-plan.html:
-#     title: Standardisation plan
-#     generation: markdown  
-  # aggregated-reports-cgm.html:
-  #   title: Aggregated Reports CGM
-  #   generation: markdown
   general-considerations.html:
     title: General Considerations
     generation: markdown
@@ -176,11 +164,11 @@ menu:
     Motivation: motivation.html
     Roadmap: roadmap.html
     Compatibility: compatibility-of-the-gematik-specification.html
+    Keywords and Conventions: conventions.html
     Glossary: glossary.html
   Release Notes: release-notes.html
   Definition and Rules: 
     Methodology: methodology.html
-    Keywords and Conventions: conventions.html
     Certification relevant systems: certification-relevant-systems.html
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html

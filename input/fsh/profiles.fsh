@@ -252,9 +252,9 @@ or if the sensor may change its calibration status over time.
 **Constraints applied:**  
 - `status` is restricted to _final_
 - `code` is constrained to the ValueSet that represents the MIV _Blood Glucose Measurement_
-- `value[x]` is restricted to _valueQuantity_. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
+- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.
+- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
-
 """
 * ^version = "0.1.1"
 * ^status = #draft
@@ -279,19 +279,53 @@ or if the sensor may change its calibration status over time.
 * value[x].system 1..1
 * value[x].system = "http://unitsofmeasure.org" (exactly)
 * value[x].code 1..1
+* value[x].code ^definition = "The UCUM code representing the unit of the blood glucose measurement. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
 * value[x].code from $ucum-units (required)
-* value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet."
+* value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
 * device 1..1
 * device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
 * device ^short = "Reference to personal health device or its sensor type and calibration status"
-* device ^definition = "References a DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference Device resource that describes the personal health device itself."
+* device ^definition = "References a DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference to the Device resource that describes the personal health device itself."
 
 
 Profile: HddtContinuousGlucoseMeasurement
 Parent: Observation
 Id: hddt-continuous-glucose-measurement
 Title: "Observation – Continuous Glucose Measurement"
-Description: "Profile for capturing continuous glucose measurements (CGM) as Observation, representing a chunk of SampledData over a defined effective period."
+Description: """
+Profile for capturing continuous glucose measurements from real-time monitoring devices (esp. rtCGM). 
+
+This profile defines the exchange of measurements for the Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\" which is technically defined 
+by the ValueSet _hddt-miv-continuous-glucose-measurement_. This MIV is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control 
+an insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing data with DiGA, too.
+
+**Authorization:**
+
+Authorization to receive an Observation resource for a continuous glucose measurement is granted to DiGA within the scope _Continuous Glucose Measurement_.
+The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
+
+**Obligations and Conventions:**
+
+Devices for continuously measuring glucose values may produce data with a sample rate of more than 1000 values per day (e.g. current
+rtCGM provide measures for glucose in interstitial fluid with up to one value per minute). For sharing such data efficently, this profile
+makes use of the FHIR [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData) data type. Sampled data is portioned into
+chunks of a fixed size (for an exception see below), with the chunk size being set by the resource server (e.g. such that 24 h of measurements fit into a single chunk). If a DiGA
+requests data for a period where the end time is earlier that the expected end time of the current chunk, the resource server only fills up the chunk 
+up to the requested end time and sets the `Observation.status` to _incomplete_ while `Observation.effectivePeriod` captures the 
+full period of the chunk (see section \"Retrieving Data\" in the HDDT specification). 
+
+Each Continuous Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ DeviceMetric resource or to a 
+_Personal Health Device_ Device resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
+from the Observation resource if the sensor for continuous measuring needs to be calibrated (either automatically or by the user) 
+or if the sensor may change its calibration status over time. A change in `DeviceMetric.calibration.state` or a change of `Device.status` to _inactive_ finalizes the
+currunt chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. 
+
+**Constraints applied:**  
+- `code` is constrained to the ValueSet that represents the MIV _Continuous Glucose Measurement_
+- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory. Both a starting time and an end tme MUST be given.
+- `value[x]` is restricted to _valueSampledData_. The elements `valueSampledData.origin.unit`, `valueSampledData.origin.system`, and `valueSampledData.origin.code` are mandatory. `valueSampledData.origin.system` is restricted to UCUM. `Observation.valueSampledData` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
+- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
+"""
 * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
@@ -309,35 +343,57 @@ Description: "Profile for capturing continuous glucose measurements (CGM) as Obs
 * effective[x] ^short = "Time interval of CGM measurements chunk"
 * effective[x] ^definition = "The time span covered by this chunk of continuous glucose measurements. The chunk-time-span is defined by the data recorder of the personal health device."
 * effective[x].start 1..1
-* effective[x].start ^short = "Start of measurement chunk"
+* effective[x].start 
 * effective[x].end 1..1
-* effective[x].end ^short = "End of measurement chunk"
 * value[x] MS
 * value[x] only SampledData
 * value[x] ^short = "Series of glucose measurements"
 * value[x].origin.unit ^short = "Unit of continuous glucose measurement"
-* value[x].origin.unit ^definition = "The unit of measurement used for the origin of the SampledData in this continuous glucose measurement."
+* value[x].origin.unit ^definition = "The unit of measurement used for all data in `valueSampledData.data`."
 * value[x].origin.system 1..1
 * value[x].origin.system = "http://unitsofmeasure.org" (exactly)
 * value[x].origin.code 1..1
 * value[x].origin.code from $ucum-units (required)
-* value[x].origin.code ^short = "UCUM code for glucose unit"
-* value[x].origin.code ^definition = "The UCUM code representing the unit of the continuous glucose measurement."
+* value[x].origin.code ^short = "UCUM code for unit of measurements"
+* value[x].origin.code ^definition = "The UCUM code representing the unit of the continuous glucose measurement. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
 * value[x].origin.code ^binding.description = "Defines the measurement unit for continuous glucose values using UCUM codes."
 * value[x].data 1..
 * dataAbsentReason 0..1
-* dataAbsentReason ^definition = "Indicates why the measurement data is missing. If set to 'temp-unknown', this measurement should be re-collected at a later time."
-* dataAbsentReason ^comment = "For preliminary CGM measurements where the data is temporarely unavailable, use 'temp-unknown'. This signals that the measurement should be repeated later."
+* dataAbsentReason ^definition = """
+Indicates why the measurement data is missing. A value of 'temp-unknown' MUST only be used if no data is available at all
+for the requested period but may be available later (e.g. because the Device Data Recorder could temporarely not 
+connect with the Personal Health Device). 
+"""
+* dataAbsentReason ^comment = """
+If some data is available for the requested period with more data expected to come, an incomplete chunk MUST 
+be provided with with the avialable vaues and `Observation.status` MUST set to _incomplete_. See section 
+\"Retrieving Data\" in the HDDT specification for more details on how to deal with incomplete or missing data.
+"""
 * device 1..1
 * device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
 * device ^short = "Reference to personal health device or its sensor type and calibration status"
-* device ^definition = "Reference to the DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference Device resource that describes the personal health device itself."
+* device ^definition = "Reference to the DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference to the Device resource that describes the personal health device itself."
 
 
 ValueSet: HddtMivBloodGlucoseMeasurement
 Id: hddt-miv-blood-glucose-measurement
 Title: "ValueSet - Blood Glucose Measurement from LOINC"
-Description: "This ValueSet contains LOINC codes for blood glucose measurements."
+Description: """
+This ValueSet defines the Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\". The definition is made up from
+- this description which provides the semantics and defining characteristics of the MIV
+- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ 
+
+The MIV _Blood Glucose Measurement_ covers values from \"bloody measurements\" e.g. using capillary blood from the 
+finger tip. Measurements are performed based on a care plan (e.g. measuring blood sugar before each meal) or ad hoc 
+(e.g. a patient feeling dim what may be an indicator for a hypoglycamia). 
+Values are very acurate and therefore suited for therapeutical decision making. 
+
+The ValueSet for the MIV _Blood Glucose Measurement_ contains LOINC codes for blood glucose measurements using 
+blood or plasma as reference methods with the values provided as mass/volume and moles/volume. 
+In addition more granular LOINC codes for \"Glucose in Capillary blood by Glucometer\" provided as mass/volume 
+and moles/volume are included with the value set because these codes are already in use by several 
+manufacturers of glucometers.
+"""
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
@@ -355,12 +411,29 @@ Description: "This ValueSet contains LOINC codes for blood glucose measurements.
 * LOINC#15074-8 "Glucose [Moles/volume] in Blood"
 * LOINC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
 * LOINC#14749-6 "Glucose [Moles/volume] in Serum or Plasma"
+* LOINC#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
+* LOINC#14743-9 "Glucose [Moles/volume] in Capillary blood by Glucometer"
 
 
 ValueSet: HddtMivContinuousGlucoseMeasurement
 Id: hddt-miv-continuous-glucose-measurement
 Title: "ValueSet – Continuous Glucose Measurement from LOINC"
-Description: "This ValueSet contains LOINC codes for continuous glucose measurements."
+Description: """
+This ValueSet defines the Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\". The definition is made up from
+- this description which provides the semantics and defining characteristics of the MIV
+- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ 
+
+The MIV _Continuous Glucose Measurement_ covers values from continuous monitoring of the glucose level, e.g. 
+by rtCGM in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to 
+one value per minute. By this _Continuous Glucose Measurement_ can e.g. be used to assess dependencies between a 
+patient's individual habits and behavious and his glucose level. Due to the high density of values over a long period 
+of time, many key figures can be derived from _Continuous Glucose Measurement_ which help the patient and 
+his doctor to easily capture the status of the patient's health and therapy.
+
+The ValueSet for the MIV _Continuous Glucose Measurement_ includes codes relevant to continuous glucose 
+monitoring (CGM) in interstitial fluid (ISF), considering mass/volume and moles/volume as commonly used units. 
+In the future codes defining non-invasive glucose measuring methods may be added to this value set.
+"""
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement"
@@ -381,7 +454,10 @@ Description: "This ValueSet contains LOINC codes for continuous glucose measurem
 ValueSet: HddtDeviceType
 Id: hddt-device-type
 Title: "Device Type of personal health devices"
-Description: "Codes used to identify personal health devices, including BfArM, MDC, and SNOMED CT device concepts."
+Description: """
+Codes used to identify Personal Health Devices, Device Data Recorders, and DIGA. This ValueSet includes
+concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International.
+"""
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
