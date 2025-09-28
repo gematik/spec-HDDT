@@ -82,7 +82,7 @@ pages:
   security-and-privacy.html:
     title: Security and Privacy
     generation: markdown
-  operational-requirements.html
+  operational-requirements.html:
     title: Operational Requirements
     generation: markdown
   himi-diga-api.html:
