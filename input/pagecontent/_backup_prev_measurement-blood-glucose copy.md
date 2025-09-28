@@ -1,4 +1,8 @@
+**To Do**
+* Update to last information model status (Emil, Jie)
+* Review (Jie)
 
+### Introduction
 
 This document provides implementation guidance for manufacturers integrating glucometer data using a RESTful FHIR API. It builds on the [Generic FHIR API](himi-diga-api.html) and describes the specific requirements for exposing blood glucose measurements to DiGA, including:
 
@@ -7,24 +11,25 @@ This document provides implementation guidance for manufacturers integrating glu
 - Conventions for using FHIR resources to ensure compliance with the [Information model](information-model.html).
 - Example requests and responses to support implementation.
 
-### Implementation Duties for Manufacturers of Device Data Recorders
+### Endpoints
 
-Manufacturers of Device Data Recorders MUST register their product with BfARM. For a successful registration they MUST implement an OAuth2 Authorization Server and an FHIR Resource Server acc. to this specification. For both services they MUST consider the requirements on [security, privacy](security-and-privacy.html) and [operational service levels](operational-requirements.html).
+The server MUST support the following endpoints.
 
-#### OAuth2 Authorization Server
+**FHIR Interactions**: The specified FHIR interactions are the same as in [Generic HiMi FHIR API](himi-diga-api.html).
 
-to do: Hinweise auf die einschlägigen Stellen in der Spezifikation
+**Authentication**: The authentication and authorization requirements for these endpoints are the same as the [Generic HiMi FHIR API](himi-diga-api.html).
 
-#### FHIR Resource Server
-The FHIR Resource Server gives DiGA access to measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Blood Glucose Measurement_ MUST implement the following endpoints and profiles:
-* retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](use_of_hl7_fhir.html#metadata-endpoint).
-* _read_ and _search_ interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status].(StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#devicemetric).
-* _read_ and _search_ interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#device).
-* _read_ and _search_ interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Glucose Measurement_. The full specifications are given below.
+#### Metadata
 
-All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server. The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html).
+| | |
+|-|-|
+| **Endpoint** | `/metadata` |
+|**Description** | Provide a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) that contains information about the supported endpoints, resource interactions, and search parameters. |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
 
-### MIV-specific Endpoints and Interactions
+---
+
+
 #### Observation - READ
 
 | | |
@@ -32,9 +37,9 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 | **Endpoint** | `/Observation/<id>` |
 | **HTTP Method** | GET |
 | **Interaction** | READ |
-| **Description** | Retrieve a single blood glucose Observation by its internal server ID<br> The returned Observation MUST conform to the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. The reference given in `Observation.device` can be resolved by requests on the `/Device` or `/DeviceMetric` endpoints.|
+| **Description** | Retrieve a single blood glucose Observation by its internal server ID. Such scenario is unlikely to occur, but MUST be supported. <br> The returned Observation MUST conform to the hddt-blood-glucose-measurement profile. Subsequent request can be made on the `/Device` or `/DeviceMetric` endpoints, to resolve the reference in `Observation.device`, and obtain the device calibration status or configuration. |
 | **Request Parameters** | `id` - Referring to the internal server ID of the Observation. |
-| **Returned Objects** | [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) |
+| **Returned Objects** | • [hddt-blood-glucose-measurement](StructureDefinition-hddt-blood-glucose-measurement.html) |
 | **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
 
 ---
@@ -46,11 +51,68 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 | **Endpoint** | `/Observation` |
 | **HTTP Method** | GET |
 | **Interaction** | SEARCH |
-| **Description** | Search for blood glucose Observations. Common use cases include retrieving the latest observation, retrieving only observations that measure blood glucose in a certain unit (e.g. mg/dL), and retrieving all measurements across a certain date range. <br>Requests with the search parameter `_include=Observation:device` can be used to return DeviceMetric and Device resources referenced by `Observation.device` in the same Bundle. |
+| **Description** | Search for blood glucose Observations. Common use cases include retrieving the latest observation, retrieving only observations that measure blood glucose in mg/dL, and retrieving all measurements across a certain date range. <br>Requests with the search parameter `_include=Observation:device` can be used to return DeviceMetric and Device resources referenced by `Observation.device` in the same Bundle. |
 | **Search Parameters** | Parameters that MUST be supported are:<br> • `code` - Search for Observations of a specific type<br> • `date` - Specify a date range <br> • `_include` - Optionally include DeviceMetric and Device resources, referenced by `Observation.device`. <br><br> The server MAY support other search parameters; see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
 | **Returned Objects** | • Bundle containing [hddt-blood-glucose-measurement](StructureDefinition-hddt-blood-glucose-measurement.html) entries and optionally [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) and [Device - Personal Health Device](StructureDefinition-hddt-personal-health-device.html) when requested via `_include`. |
 | **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
 
+---
+
+#### DeviceMetric - READ
+
+| | |
+|-|-|
+| **Endpoint** | `/DeviceMetric/<id>` |
+| **HTTP Method** | GET |
+| **Interaction** | READ |
+| **Description** | Retrieve a single DeviceMetric instance (sensor type and calibration status) by its internal ID. Use this endpoint to obtain the calibration state required for correct interpretation of measurement values. The ID can be obtained via `Observation.device` from previous requests on the `/Observation` endpoint. |
+| **Request Parameters** | `/DeviceMetric/<id>` - Referring to the internal server ID of the DeviceMetric. |
+| **Returned Objects** | • [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### DeviceMetric - SEARCH
+
+| | |
+|-|-|
+| **Endpoint** | `/DeviceMetric` |
+| **HTTP Method** | GET |
+| **Interaction** | SEARCH |
+| **Description** | Search for DeviceMetric resources, for example to query calibration status across devices or time ranges. Returned DeviceMetric resources should reference the Device instance via `source` to maintain the link between the measurement data and the physical sensor. |
+| **Search Parameters** | Commonly used search parameters are `type`, `source`, and `_include`. <br> The server MAY support standard DeviceMetric search parameters. See [FHIR DeviceMetric - Search Parameters](https://hl7.org/fhir/R4/devicemetric.html#search) for details. |
+| **Returned Objects** | • Bundle containing [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) entries. Optionally, additional [Device - Personal Health Device](StructureDefinition-hddt-personal-health-device.html) entries when using `_include`. |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### Device - READ
+
+| | |
+|-|-|
+| **Endpoint** | `/Device/<id>` |
+| **HTTP Method** | GET |
+| **Interaction** | READ |
+| **Description** | Retrieve a single Device instance by its internal ID. Use this to obtain configuration and properties of the device instance (e.g., serial number, manufacturer, device type) needed for device validation. Device ID is usually obtained from previous requests, either via `Observation.device`, or `DeviceMetric.source`. |
+| **Request Parameters** | `/Device/<id>` - Referring to the internal server ID of the Device. |
+| **Returned Objects** | • [Device - Personal Health Device](StructureDefinition-hddt-personal-health-device.html) |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
+
+#### Device - SEARCH
+
+| | |
+|-|-|
+| **Endpoint** | `/Device` |
+| **HTTP Method** | GET |
+| **Interaction** | SEARCH |
+| **Description** | Search for Device instances, for example to list devices by manufacturer, type, or serial number.  |
+| **Search Parameters** | Commonly used search parameters are `deviceName`, `manufacturer`, and `_include`. <br> The server MAY support standard Device search parameters. See [FHIR Device - Search Parameters](https://hl7.org/fhir/R4/device.html#search) for details. |
+| **Returned Objects** | • Bundle containing [Devic - Personal Health Device](StructureDefinition-hddt-personal-health-device.html) entries |
+|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
+
+---
 
 ### MIV-Specific Observation Profile
 
@@ -59,6 +121,7 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 <div style="width: 60%;">
   <img src="assets/images/HDDT_Objektmodell_BZ_Complete.svg" style="width: 100%;" />
 </div>
+
 
 #### Structure Definition
 
@@ -88,6 +151,14 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 - Because glucometers can generate and transmit readings even when uncalibrated, a reference to a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource via the `device` element is required to capture the calibration status of the sensor, in order to ensure the proper interpretation of the data.
 - If `valueQuantity` is missing, a `dataAbsentReason` must be specified, giving the reason for missing data.
 - Set `status` to "final" for completed measurements.
+
+
+### Conventions for DeviceMetric and Device Resources
+
+- The Observation MUST reference a DeviceMetric resource if the calibration status of the device changes.
+- Refer to [himi-diga-api.md](himi-diga-api.html) for generic implementation details.
+- DeviceMetric should capture calibration and configuration status.
+- Device should provide manufacturer, serial number, and device type.
 
 ### Examples
 
