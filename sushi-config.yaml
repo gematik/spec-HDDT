@@ -88,9 +88,6 @@ pages:
   himi-diga-api.html:
     title: FHIR Resource Server
     generation: markdown
-  himi-vz-api.html:
-    title: HiMi Directory API
-    generation: markdown
   information-model.html:
     title: Information Model
     generation: markdown
@@ -100,8 +97,8 @@ pages:
   participants.html:
     title: Participants
     generation: markdown
-  zts-api.html:
-    title: ZTS Terminology API – Usage Guide
+  registries-and-zts.html:
+    title: BfArM Registries and ZTS
     generation: markdown
   mivs.html:
     title: Mandatory Interoperable Values (MIVs)
@@ -127,14 +124,11 @@ pages:
   retrieving-data.html:
     title: Retrieving Data
     generation: markdown
-  diga-vz-api.html:
-    title: DiGA Directory API (?)
-    generation: markdown
   measurement-blood-glucose.html:
-    title: MIV - Blood Glucose Value
+    title: MIV - Blood Glucose Measurement
     generation: markdown
   measurement-tissue-glucose.html:
-    title: MIV - ISF Samples Data Value
+    title: MIV - Continuous Glucose Measurement
     generation: markdown
 # Temporary - testing a different API structure
   experimental-fhir-api.html:
@@ -173,7 +167,7 @@ menu:
     Use of HL7 FHIR: use_of_hl7_fhir.html
     Security and Privacy: security-and-privacy.html
     Operational Requirements: operational-requirements.html
-    Access to BfArM Directories and ZTS: zts-api.html
+    Access to BfArM Registries and ZTS: registries-and-zts.html
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html
     Participants: participants.html
@@ -184,14 +178,14 @@ menu:
   Generic APIs:
     FHIR Resource Server: himi-diga-api.html
     OAuth2 Authorization Server: oauth-api.html
-    BfArM HIMI Directory API: himi-vz-api.html
-    BfArM DiGA Directory API: diga-vz-api.html
-    ZTS Terminology API: zts-api.html
+  #  BfArM HIMI Directory API: himi-vz-api.html
+  #  BfArM DiGA Directory API: diga-vz-api.html
+  #  ZTS Terminology API: zts-api.html
     Experimental FHIR API: experimental-fhir-api.html
   MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
-    MIV - Blood Glucose Value: measurement-blood-glucose.html
-    MIV - ISF Samples Data Value: measurement-tissue-glucose.html
+    MIV - Blood Glucose Measurement: measurement-blood-glucose.html
+    MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
   #  Information Model Diabetes: information-model-diabetes.html
   #  Measurement Blood Glucose: measurement-blood-glucose.html
   #  Measurement Tissue Glucose: measurement-tissue-glucose.html

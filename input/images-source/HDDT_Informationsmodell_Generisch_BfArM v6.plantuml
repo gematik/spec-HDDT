@@ -1,0 +1,65 @@
+@startuml
+
+!define MANUFACTURER #CDE0FF
+!define VIBW #7ED321
+!define BFARM #F5A623
+!define SPEC #FBFDB1
+
+title BfARM Registries and ZTS
+skinparam packageStyle rectangle
+
+package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM {
+
+    class PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
+        type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property : additional properties [0..*]
+    }
+
+    class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
+        type = 462240000|SCT [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property : additional properties [0..*]
+    }
+
+    class DiGA_Def as "DiGA Definition" <<FHIR DeviceDefinition>> {
+        type = 706689003|SCT [1..1]
+        deviceName : DiGA name [1..1]
+    }
+
+    class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
+        address : URL for the FHIR endpoint [1..1]
+        fqdn : FQDN as stated in the FHIR endpoint's X.509 certificate [1..1
+    }
+
+    class AuthZ_Endpoint as "Device Data Recorder AuthZ Endpoint" <<FHIR Endpoint>> {
+        address : URL for the AuthZ endpoint [1..1]
+        fqdn : FQDN as stated in the AuthZ endpoint's X.509 certificate [1..1
+    }
+
+    DM_Def .left.> DDR_Endpoint 
+    DM_Def .down.> AuthZ_Endpoint
+}
+
+package ZTS as "MIV Definitions (Zentraler Terminologieserver)" VIBW {
+    enum MIV <<FHIR ValueSet>> {
+        url : canonical URL for the MIV [1..1]
+        version : version of the MIV [1..1]
+        title : human-friendly name of the MIV [1..1]
+        name : machine-friendly name of the MIV [0..1]
+        description : human-readable description of the MIV [1..1]
+        compose.include : MIV defining concepts [1..*]
+    }
+}
+
+'IV::code --> MIV : "included with"
+'Metric::type --> MIV : "included with"
+
+PHD_Def <.> MIV 
+DM_Def <.> MIV 
+PHD_Def <..> DM_Def 
+DiGA_Def <..> MIV
+
+@enduml
