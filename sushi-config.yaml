@@ -49,32 +49,44 @@ parameters:
 
 
 pages:
+# Main Page
   index.html:
     title: Overview
     generation: markdown
+# General Topics    
   motivation.html:
     title: Motivation
     generation: markdown
   roadmap.html:
     title: Roadmap
     generation: markdown
-  compatibility-of-the-gematik-specification.html:
-    title: Compatibility 
-    generation: markdown
-  glossary.html:
-    title: Glossary
-    generation: markdown
   methodology.html:
     title: Methodology
+    generation: markdown
+  certification-relevant-systems.html:
+    title: Certification relevant systems
     generation: markdown
   conventions.html:
     title: Keywords and Conventions
     generation: markdown
-  # examples.html:
-    #   title: Examples
-    #   generation: markdown
+  glossary.html:
+    title: Glossary
+    generation: markdown
+# Definition and Rules
+  general-considerations.html:
+    title: General Considerations
+    generation: markdown
+  use_of_hl7_fhir.html:
+    title: Use of HL7 FHIR
+    generation: markdown
+  security-and-privacy.html:
+    title: Security and Privacy
+    generation: markdown
+  operational-requirements.html
+    title: Operational Requirements
+    generation: markdown
   himi-diga-api.html:
-    title: HiMi DiGA RESTful FHIR API
+    title: FHIR Resource Server
     generation: markdown
   himi-vz-api.html:
     title: HiMi Directory API
@@ -83,13 +95,10 @@ pages:
     title: Information Model
     generation: markdown
   oauth-api.html:
-    title: OAuth 2.0 ACG API
+    title: OAuth2 Authorization Server
     generation: markdown
   participants.html:
     title: Participants
-    generation: markdown
-  use_of_hl7_fhir.html:
-    title: Use of HL7 FHIR
     generation: markdown
   zts-api.html:
     title: ZTS Terminology API – Usage Guide
@@ -103,9 +112,6 @@ pages:
   logical-viewpoints.html:
      title: Logical Viewpoints
      generation: markdown
-  certification-relevant-systems.html:
-    title: Certification relevant systems
-    generation: markdown
   # implementation_guide_diga.html:
   #   title: Implementation guide for DiGA
   #   generation: markdown
@@ -121,9 +127,6 @@ pages:
   retrieving-data.html:
     title: Retrieving Data
     generation: markdown
-  security-and-privacy.html:
-    title: Security and Privacy
-    generation: markdown
   diga-vz-api.html:
     title: DiGA Directory API (?)
     generation: markdown
@@ -132,9 +135,6 @@ pages:
     generation: markdown
   measurement-tissue-glucose.html:
     title: MIV - ISF Samples Data Value
-    generation: markdown
-  general-considerations.html:
-    title: General Considerations
     generation: markdown
 # Temporary - testing a different API structure
   experimental-fhir-api.html:
@@ -163,16 +163,17 @@ menu:
   General:
     Motivation: motivation.html
     Roadmap: roadmap.html
-    Compatibility: compatibility-of-the-gematik-specification.html
+    Methodology: methodology.html
+    Certification relevant systems: certification-relevant-systems.html
     Keywords and Conventions: conventions.html
     Glossary: glossary.html
   Release Notes: release-notes.html
   Definition and Rules: 
-    Methodology: methodology.html
-    Certification relevant systems: certification-relevant-systems.html
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html
     Security and Privacy: security-and-privacy.html
+    Operational Requirements: operational-requirements.html
+    Access to BfArM Directories and ZTS: zts-api.html
   Logical Viewpoints: 
     Logical Viewpoints: logical-viewpoints.html
     Participants: participants.html
@@ -181,8 +182,8 @@ menu:
     Smart Scopes: smart-scopes.html
     Retrieving Data: retrieving-data.html
   Generic APIs:
-    Generic HiMi FHIR API: himi-diga-api.html
-    Generic HiMi AuthZ API: oauth-api.html
+    FHIR Resource Server: himi-diga-api.html
+    OAuth2 Authorization Server: oauth-api.html
     BfArM HIMI Directory API: himi-vz-api.html
     BfArM DiGA Directory API: diga-vz-api.html
     ZTS Terminology API: zts-api.html
@@ -194,8 +195,6 @@ menu:
   #  Information Model Diabetes: information-model-diabetes.html
   #  Measurement Blood Glucose: measurement-blood-glucose.html
   #  Measurement Tissue Glucose: measurement-tissue-glucose.html
-  #  Aggregated Reports CGM: aggregated-reports-cgm.html
-  #  Conventions for Device* Ressources: conventions-for-device-resources.html
   #  Examples: examples.html
   FHIR Artifacts:
     Artifacts Summary: artifacts.html

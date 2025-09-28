@@ -16,7 +16,8 @@ It should be noted that the `Content-Type` and `Accept` headers may include addi
 * HDDT device data providers SHOULD support the [FHIR HTTP `_format` Parameter](https://www.hl7.org/fhir/R4/http.html#parameters) and MAY support the other parameters defined at https://www.hl7.org/fhir/R4/http.html#parameters.
 
 ### _Mandatory_, _Must Support_ and _Optional_ Elements
-The elements defined within the HDDT FHIR profiles consist of _Mandatory_, _Must Support_ and _Optional_ elements. 
+The elements defined within the HDDT FHIR profiles consist of _Mandatory_, _Must Support_ and _Optional_ elements. This section defines, how resource servers as device data providers and DIGA as device data consumers MUST process _Mandatory_, _Must Support_ and _Optional_ elements. Basis for these definitions are the [HL7-D Best Practices for Profiling FHIR](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current).
+
 #### _Mandatory_ Elements
 Mandatory elements are elements with a minimum cardinality of 1 (min=1). A HDDT device data provider always MUST provide a valid value for such elements. A HDDT device data consumer MUST be able to process such elements according to the semantics as defined with the HDDT specifications or the core HL7 FHIR R4 specification.
 
@@ -31,6 +32,7 @@ A HDDT device data consumer MUST be able to process all _Must Support_ elements 
 Optional elements are elements with a minimum cardinality of 0 (min=0) which are not flagged as _Must Support_. A HDDT device data provider MAY omit optional elements from a response to a request. A HDDT device data consumer MAY ignore optional elements included with the response to a request. 
 
 Remark: _Ignoring_ an element means that the element is not interpreted by the device data consumer and does not affect the device data consumer's perception of the semantics of the resource.
+
 
 ### Interactions and Endpoints
 HDDT builds upon standard FHIR RESTful interactions on [Observation](https://hl7.org/fhir/R4/observation.html) resources for sharing measured device data. Aggregated reports are shared using dedicated FHIR operations. Access to observational device attributes (e.g. calibration status) is possible through standard FHIR RESTful interactions on [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources. 
@@ -72,15 +74,36 @@ Each Device Data Recorder MUST provide a `/metadata` endpoint to allow a DiGA to
 | **Error codes** | `500` (Internal Server Error) |
 
 
-### Derived Profiles and Extensions 
-Manufacturers who implement the HDDT FHIR API with their Health Record MAY implement any FHIR profiles that
-* further constrain the HDDT FHIR profiles as long as
-    * _Must Support_ elements from the HDDT profile are _mandatory_ or _Must Support_ in the derived profile
-    * _Mandatory_ elements from the HDDT profile are still _mandatory_ with the derived profile
-* is compliant with the _mandatory_ and _Must Support_ elements of the HDDT profiles. Such profiles MAY further constrain any _optional_ elements from the HDDT profile.
+### Using Existing and Derived Profiles  
+Manufacturers who implement the HDDT FHIR API MAY use any FHIR profile that is compliant with the _mandatory_ and _Must Support_ elements of the HDDT profiles. Such profiles MAY further constrain any _optional_ elements from the HDDT profile.
+
+Manufacturers who implement the HDDT FHIR API MAY use any FHIR profiles that further constrain the HDDT FHIR profiles as long as
+* _Must Support_ elements from the HDDT profile are _mandatory_ or _Must Support_ in the derived profile
+* _Mandatory_ elements from the HDDT profile are still _mandatory_ with the derived profile
 
 In any case the implementor MUST be aware that a DiGA as the consumer of the HDDT FHIR resources MAY
 * ignore any `extension` elements with the resource unless these extensions are defined by the HDDT specification
 * throw an error upon receipt of resources that contain `modifierExtension`.
 
 Implementations that regularly trigger errors with a resource consuming DiGA MAY be considered as not compliant with the HDDT specifications. DiGA manufacturers who are affected by such errors MAY request gematik for a renewal of the conformance approval of the resource providing Health Record's HDDT implementation.
+
+
+### Compatibility of the HDDT FHIR Profiles
+
+While deriving FHIR profiles from the assessed use cases (see [methodology](methodology.html)), existing profiles from other countries and organizations have been considered in order to be as compliant as possible with existing solutions. 
+
+| HDDT FHIR profile | international profile  | HDDT compliance statement |
+|-------------------|-----------------|---------|
+| blood glucose measurement ([Observation](https://hl7.org/fhir/R4/observation.html)) | [UK Core Observation Blood Glucose](https://simplifier.net/hl7fhirukcorer4/ukcore-observation-bloodglucose) | UK Core allows only SNOMED CT for the `Observation.code` element while HDDT only allows LOINC. <br>`Observation.device` is optional for UK Core. |
+| | [US Core R4 Observation](https://hl7.org/fhir/us/core/STU4/Observation-blood-glucose.json.html) | fully compliant except that `Observation.device` is mandatory with HDDT. |
+| | [International Patient Summary: Observation Results](https://hl7.org/fhir/uv/ips/STU1.1/StructureDefinition-Observation-results-uv-ips.html) | `Observation.device` is optional for IPS. Other derivations are minor issues that do not affect the compatibility with HDDT blood sugar measurements: IPS only allows for _final_ as an observation's `status`. IPS allows for explicitly missing effective[x] elements using an extension. |
+| | [Clinivault Observation](https://simplifier.net/clinivault/example-10) (India) | fully compliant except that `Observation.device` is mandatory with HDDT. |
+| | [KBV Basisprofile](https://simplifier.net/base1x0/kbv_pr_base_observation_glucose_concentration) (Germany) | `Observation.device` is mandatory with HDDT. HDDT only allows for a single `Observation.code` while KBV requests two (LOINC and SCT). |
+| | [ISiKLebensZustand](https://simplifier.net/guide/isik-basis-stufe-5/Einfuehrung/Artefakte/Datenobjekte_Lebenszustand?version=5.0.0) (Germany) | `Observation.device` is mandatory with HDDT. HDDT only allows for a single LOINC `code` while ISiK allows for an additional SCT code. ISiK sets `Observation.value[x]`to [1..1], while HDDT allows for values to be absent. |
+| | [Finnish PHR Blood Glucose Profile](https://simplifier.net/digious-fi/fiphrsdbloodglucose) | Finnish PHR allows for LOINC Codes which are not part of the HDDT MIVs. Finnish PHR disallows `Observation.device` which is mandatory for HDDT.  |
+| CGM summary report ([Bundle](https://hl7.org/fhir/R4/bundle.html)) | [HL7 CGM IG](https://github.com/HL7/cgm) | The HDDT _cgm summary report_ capsuled with the FHIR bundle is fully compliant with the machine readable part of the HL7 CGM IG (_CGMSummaryObservation_ profile). |
+| ISF glucose measurement ([Observation](https://hl7.org/fhir/R4/observation.html)) || _Recently there seem to be no dedicated profiles available for capturing continuous glucose monitoring (CGM) raw data as FHIR SampledData. Available CGM profile either only cover key values (see [HL7 CGM IG](https://github.com/HL7/cgm)) or provide one Observation resource per data point. The later approach was discarded due to severe efficiency problems with modern CGM with sample rates of up to one value per minute._ |
+
+As can bee seen in the table, the only derivation from existing profiles is that HDDT makes the `Observation.device` element mandatory with raw glucose measurement data. The reason for this is to address specific patient safety issues which arise from the specific HDDT use cases:
+* neither DiGA nor the medical aids' backend systems do securely identify the patient. They just match authenticated patient accounts. Therefore the `Device.serialNumber` as provided with a [Device](https://hl7.org/fhir/R4/device.html) resource is the only identifier that allows the patient to verify that data originated from his personal health device.
+* DiGA can be medical devices of MDR class IIa or even MDR class IIb that process medical data for therapeutic purposes, e.g. including the adaptation of insulin correction factors. For this a DiGA MUST be able to verify that data comes from a calibrated system. The respective information is only available through the [DeviceMetric](https://hl7.org/fhir/R4/observation.html) resource.

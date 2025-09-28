@@ -1,1 +1,0 @@
-**DEPRECATED - merged into `himi-diga-api`**
