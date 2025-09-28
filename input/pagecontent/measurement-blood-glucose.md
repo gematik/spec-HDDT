@@ -23,6 +23,7 @@ The FHIR Resource Server gives DiGA access to measured data and related informat
 * _read_ and _search_ interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#device).
 * _read_ and _search_ interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Glucose Measurement_. The full specifications are given below.
 -->
+<!--
 All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server. The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html).
 
 ### MIV-specific Endpoints and Interactions
@@ -52,6 +53,7 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 | **Returned Objects** | • Bundle containing [hddt-blood-glucose-measurement](StructureDefinition-hddt-blood-glucose-measurement.html) entries and optionally [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) and [Device - Personal Health Device](StructureDefinition-hddt-personal-health-device.html) when requested via `_include`. |
 | **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
 
+-->
 
 ### MIV-Specific Observation Profile
 

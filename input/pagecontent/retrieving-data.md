@@ -36,7 +36,7 @@ The device data recorder MUST respond to a [search](https://hl7.org/fhir/R4/http
 
 The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](oauth-api.md). This access token was issued by the Authorization Server of the device data recorder and MUST be taken as opaque by the DiGA. 
  
-The device data recorder MUST be able to discover the internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject`argument with a query, the device data recorder MUST ignore this argument and SHOULD respond with an _Invalid Request_ error (see [OpenAPI definition](himi-diga-api.md#openapi-description)).
+The device data recorder MUST be able to discover the internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject`argument with a query, the device data recorder MUST ignore this argument and SHOULD respond with an _Bad Request_ error.
 
 The device data recorder MUST be able to discover the SMART Scope from the access token, which were accepted by the device data recorder during pairing with the requesting DiGA (see section [Pairing](pairing.md)). The SMART Scope MUST implicitly be considered as the `code` argument with every query to the device date recorder's FHIR search API. If the Scope resolves to multiple LOINC codes, these must all be considered to be query argumnets (OR-semantics). A DiGA MAY explicitly further constrain the scope of the search by providing a `code` argument with a query (see below).
 
