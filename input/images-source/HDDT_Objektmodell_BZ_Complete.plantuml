@@ -9,27 +9,27 @@ title HDDT Object Model Example (Blood Glucose Measurement)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's Request for Device Data" MANUFACTURER {
-    
-    class IV2 as "Blood Glucose Measurement 2" <<Observation Blood Glucose>> {
+
+    object "Blood Glucose Measurement 2" as IV2 <<Observation Blood Glucose>> {
         status = final
         code = 2339-0|LOINC "Blood Glucose"
         date = 20250926:1630+0200
         value = 129 mg/dL
     }
 
-    class IV1 as "Blood Glucose Measurement 1" <<Observation Blood Glucose>> {
+    object "Blood Glucose Measurement 1" as IV1 <<Observation Blood Glucose>> {
         status = final
         code = 2339-0|LOINC "Blood Glucose"
         date = 20250926:1200+0200
         value = 120 mg/dL
     }
 
-    class Metric as "Glucose Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
+    object "Glucose Sensor Type and Calibration Status" as Metric <<FHIR DeviceMetric>> {
         type = 29112|iso:11073:10101
         calibration.state = calibrated
     }
 
-    class PHD as "Glucose Meter" <<FHIR Device>> {
+    object "Glucose Meter" as PHD <<FHIR Device>> {
         type = 528401|iso:11073:10101
         deviceName = "glucocheck plus"
         manufacturer = "gluko inc."
@@ -39,10 +39,10 @@ package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's
     IV2 --> Metric : "device"
     IV1 --> Metric : "device"
     Metric -> PHD : "source"
-} 
+}
 
-package gematik as "Repository for gematik FHIR IGs" SPEC {
-    class OP as "Observation Blood Glucose Profile" <<FHIR StructureDefinition>> {
+package "Repository for gematik FHIR IGs" as gematik SPEC {
+    object "Observation Blood Glucose Profile" as OP <<FHIR StructureDefinition>> {
         name = "Observation_Blood_Glucose"
         type = Observation
         baseDefinition = <<FHIR Observation>>
@@ -50,20 +50,20 @@ package gematik as "Repository for gematik FHIR IGs" SPEC {
     }
 }
 
-package ZTS as "ZTS (German Central Terminology Server)" VIBW {
-    enum MIV AS "Blood_Glucose_Value" <<FHIR ValueSet>> {
+package "ZTS (German Central Terminology Server)" as ZTS VIBW {
+    enum "Blood_Glucose_Value" as MIV  <<FHIR ValueSet>> {
         url = " https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose-Value"
         version = "1.0.0"
-        title = "Blood Glucose Value
+        title = "Blood Glucose Value"
         name = "VS_Blood_Glucose_Value"
         description = "LOINC codes for blood glucose measurements"
         compose.include = 2339-0|LOINC, 15074-8|LOINC, ...
     }
 }
 
-package HDDT_Registries as "HiMi-SST-VZ (Device Registry at BfARM)" BFARM {
+package "HiMi-SST-VZ (Device Registry at BfARM)" as HDDT_Registries BFARM {
 
-    class PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
         type = 528401|iso:11073:10101
         deviceName = "glucocheck plus"
         manufacturer = "gluko inc."
