@@ -1,4 +1,7 @@
 @startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
 
 !define MANUFACTURER #A0C5CF
 !define VIBW #C9E6CA
