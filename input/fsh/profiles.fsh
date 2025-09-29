@@ -14,9 +14,14 @@ Parent: Bundle
 Id: hddt-cgm-summary
 Title: "Bundle – Summary Data Measurements with related Devices/DeviceMetrics"
 Description: """
+This profile defines the exchange of aggregated measurement data for the Mandatory Interoperable Value (MIV) \"Continuous 
+Glucose Measurement\". By this it provides a patient's glucose profile for a defined period. The MIV \"Continuous 
+Glucose Measurement\" is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control 
+an insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing aggregated glucose profile data with DiGA, too.
+
 This profile constrains the FHIR Bundle resource for use as the result container of the `$hddt-cgm-summary` operation.  
-The operation requests a patient's glucose summary profile. The summary profile is calculated form continuous glucose monitoring data. 
-Optionally a DiGA MAY request additional information about the Personal Health Device and its current configuration.  
+The operation requests a patient's glucose profile. The glucose profile is calculated form continuous glucose measurement data
+and consists of the machine-readable parts of the [_HL7 CGM summary profile_](https://build.fhir.org/ig/HL7/cgm/). 
 
 The Bundle is of type *collection* and MUST contain only resources of the following types:  
 - Observations conforming to [HL7 CGM profiles](https://build.fhir.org/ig/HL7/cgm/): 
@@ -41,15 +46,10 @@ This supports use cases such as:
     - supporting asynchonous telemonitoring by ad hoc provisioning of condensed status information
 - Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring
 
-**Authorization:**
-
-Authorization to receive instances of this summary profile is granted to DiGA within the scope of the Mandatory Interoperable Value (MIV) __HDDT Blood 
-Glucose Measurement__ which is implemented through the ValueSet `hddt-miv-blood-glucose-measurement`. The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
-
 **Constraints applied:**  
 - `Bundle.type` is fixed to `collection`.  
-- `Bundle.entry.resource` is restricted to CGM Observation profiles, `HddtPersonalHealthDevice` or `HddtSensorTypeAndCalibrationStatus`.  
-- No other resource types are allowed in the Bundle.  
+- `Bundle.entry.resource` is restricted to CGM Observation profiles, `HddtPersonalHealthDevice` or `HddtSensorTypeAndCalibrationStatus`. No other resource types are allowed in the Bundle.  
+- `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA.
 """
 * ^version = "0.1.1"
 * ^status = #draft
@@ -79,11 +79,6 @@ This profile helps a device data consuming DiGA to
 - increase patient safety by comparing the serial number of a Personal Health Device as presented with this profile with the serial number the patient may have provided to the DiGA
 - increase data quality by getting information about the current status of the end-to-end communication flow from the Personal Health Device to the device backend and thus being able to detect if there may be more data available for the requested period
 - optimize its interactions with the device data providing resource server by getting access to the DeviceDefinition resource that holds static attributes about the device and its connected backend (e.g. minimum delay between data measurement and data availability)
-
-**Authorization:**
-
-Authorization to receive a Device resource representing a Personal Health Device is granted to DiGA within the scope of any Mandatory Interoperable Value (MIV), that can be measured by this Personal Health Device.
-The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
 
 **Obligations and Conventions:**
 
@@ -162,17 +157,11 @@ holds calibration information in a `calibration.type`, a `calibration.state` and
 the HddtSensorTypeAndCalibrationStatus can provide a definition of the `unit` that is preferrably to be used for presenting 
 measured values to the patient. 
 
-The HddtSensorTypeAndCalibrationStatus of a measurement MUST always refer to a HddTPersonalHealthDevice resource that represents the 
+The HddtSensorTypeAndCalibrationStatus of a measurement MUST always refer to a HddTPersonalHealthDevice [Device](https://hl7.org/fhir/R4/device.html) resource that represents the 
 Personal Health Device that contains the sensor. This is a many-to-one relationship which allows for a Personal Health Device to 
 contain multiple sensors for different measured values. E.g. by this a pulseoximeter as a HDDT Personal Health Device can 
 provide _pulse_ and _SPO2_ as two diffferent interoperable values with each of this values being linked with a 
 dedicated HddtSensorTypeAndCalibrationStatus resource. 
-
-**Authorization:**
-
-Authorization to receive a DeviceMetric resource that captures information about a sensor of Personal Health Device is granted 
-to DiGA within the scope of any Mandatory Interoperable Value (MIV), that can be measured by this sensor.
-The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
 
 **Obligations and Conventions:**
 
@@ -233,19 +222,14 @@ Title: "Observation – Blood Glucose Measurement"
 Description: """
 Profile for capturing blood glucose measurements as FHIR Observation resources.
 
-This profile defines the exchange of measurements for the Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\" which is technically defined 
+This profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\" which is technically defined 
 by the ValueSet _hddt-miv-blood-glucose-measurement_. This MIV is e.g. implemented by blood glucose meter (glucometer) that can connect to 
-gateways (Aggregation Managers) through wireless or wired communication.
-
-**Authorization:**
-
-Authorization to receive an Observation resource for a blood glucose measurement is granted to DiGA within the scope _Blood Glucose Measurement_.
-The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
+an Aggregation Manager (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.
 
 **Obligations and Conventions:**
 
-Each Blood Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ DeviceMetric resource or to a 
-_Personal Health Device_ Device resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
+Each Blood Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a 
+_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
 from the Observation resource if the sensor for measuring blood glucose needs to be calibrated (either automatically or by the user) 
 or if the sensor may change its calibration status over time. 
 
@@ -295,14 +279,9 @@ Title: "Observation – Continuous Glucose Measurement"
 Description: """
 Profile for capturing continuous glucose measurements from real-time monitoring devices (esp. rtCGM). 
 
-This profile defines the exchange of measurements for the Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\" which is technically defined 
+This profile defines the exchange of raw measurement data for the Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\" which is technically defined 
 by the ValueSet _hddt-miv-continuous-glucose-measurement_. This MIV is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control 
 an insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing data with DiGA, too.
-
-**Authorization:**
-
-Authorization to receive an Observation resource for a continuous glucose measurement is granted to DiGA within the scope _Continuous Glucose Measurement_.
-The requesting DiGA MUST be authorized to access data for this MIV for the affected patient. 
 
 **Obligations and Conventions:**
 
@@ -312,10 +291,10 @@ makes use of the FHIR [sampledData](https://hl7.org/fhir/R4/datatypes.html#Sampl
 chunks of a fixed size (for an exception see below), with the chunk size being set by the resource server (e.g. such that 24 h of measurements fit into a single chunk). If a DiGA
 requests data for a period where the end time is earlier that the expected end time of the current chunk, the resource server only fills up the chunk 
 up to the requested end time and sets the `Observation.status` to _incomplete_ while `Observation.effectivePeriod` captures the 
-full period of the chunk (see section \"Retrieving Data\" in the HDDT specification). 
+full period of the chunk (see section \"Retrieving Data\" in the HDDT specification for details on chunks and missing data). 
 
-Each Continuous Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ DeviceMetric resource or to a 
-_Personal Health Device_ Device resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
+Each Continuous Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a 
+_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
 from the Observation resource if the sensor for continuous measuring needs to be calibrated (either automatically or by the user) 
 or if the sensor may change its calibration status over time. A change in `DeviceMetric.calibration.state` or a change of `Device.status` to _inactive_ finalizes the
 currunt chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. 

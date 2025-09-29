@@ -32,7 +32,7 @@ The HDDT Implementation Guide includes IP covered under the following statements
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. https://ucum.org/trac/wiki/TermsOfUse
 * Mandatory Interoperable Values are expressed through content from LOINC. LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license provided at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
-* The HDDT Implementation Guide derives from HL7 Ressource Definitions and the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: https://terminology.hl7.org/license.html
+* The HDDT Implementation Guide derives from HL7 Ressource Definitions, Implementation Guides (e.g. [CGM Summary Profile](https://build.fhir.org/ig/HL7/cgm/)) and the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: https://terminology.hl7.org/license.html
 * Device Properties and other attributes are encoded using vocabularies from DIN EN ISO/IEEE 11073. 
 
 ### Acknowledgments
