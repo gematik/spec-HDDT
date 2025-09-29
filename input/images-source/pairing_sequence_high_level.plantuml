@@ -9,14 +9,14 @@ participant D  [
 	""Frontend | Backend""
 ]
 participant A  [
-	=Authorization Server
+	=OAuth2 Authorization Server
 	----
-	""(Health Device Vendor)""
+	""(Device Data Recorder)""
 ]
 participant H  [
-	=Resource Server (FHIR)
+	=FHIR Resource Server
 	----
-	""(Health Device Vendor)""
+	""(Device Data Recorder)""
 ]
 participant "Health Device Backend" as H
 
@@ -27,7 +27,7 @@ D -> A: Authorization request via frontend/user-agent redirect
 activate A
 A -> P: Initiate login via system browser and possibly app link/deep link
 activate P
-ref over P, A : Health device specific login (out-of-scope)
+ref over P, A : Device Data Recorder specific login (out-of-scope)
 A -> P: Present a consent dialog for requested scopes (fine grained access)
 P -> A: Confirm consent for DiGA
 deactivate P
