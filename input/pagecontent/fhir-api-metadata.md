@@ -1,5 +1,3 @@
-# Experimental API: Metadata (CapabilityStatement)
-
 ### Introduction
 
 This document describes the `/metadata` endpoint for retrieving the FHIR CapabilityStatement of the server. The CapabilityStatement provides information about supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.

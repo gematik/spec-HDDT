@@ -1,5 +1,3 @@
-# Experimental API: Device Resource Access
-
 ### Introduction
 
 This document describes the semantics of querying FHIR Device resources via a RESTful API. Device resources represent individual medical devices or personal health devices, such as glucometers or CGM sensors. The API supports retrieving individual Device resources and searching for Devices matching specific criteria (e.g., by manufacturer, type, or serial number). Returned resources must conform to the relevant FHIR profiles.
