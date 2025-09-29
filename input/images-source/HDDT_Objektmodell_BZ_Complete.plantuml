@@ -10,26 +10,26 @@ skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's Request for Device Data" MANUFACTURER {
     
-    object IV2 as "Blood Glucose Measurement 2" <<Observation Blood Glucose>> {
+    class IV2 as "Blood Glucose Measurement 2" <<Observation Blood Glucose>> {
         status = final
         code = 2339-0|LOINC "Blood Glucose"
         date = 20250926:1630+0200
         value = 129 mg/dL
     }
 
-    object IV1 as "Blood Glucose Measurement 1" <<Observation Blood Glucose>> {
+    class IV1 as "Blood Glucose Measurement 1" <<Observation Blood Glucose>> {
         status = final
         code = 2339-0|LOINC "Blood Glucose"
         date = 20250926:1200+0200
         value = 120 mg/dL
     }
 
-    object Metric as "Glucose Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
+    class Metric as "Glucose Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
         type = 29112|iso:11073:10101
         calibration.state = calibrated
     }
 
-    object PHD as "Glucose Meter" <<FHIR Device>> {
+    class PHD as "Glucose Meter" <<FHIR Device>> {
         type = 528401|iso:11073:10101
         deviceName = "glucocheck plus"
         manufacturer = "gluko inc."
@@ -42,7 +42,7 @@ package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's
 } 
 
 package gematik as "Repository for gematik FHIR IGs" SPEC {
-    object OP as "Observation Blood Glucose Profile" <<FHIR StructureDefinition>> {
+    class OP as "Observation Blood Glucose Profile" <<FHIR StructureDefinition>> {
         name = "Observation_Blood_Glucose"
         type = Observation
         baseDefinition = <<FHIR Observation>>
@@ -63,7 +63,7 @@ package ZTS as "ZTS (German Central Terminology Server)" VIBW {
 
 package HDDT_Registries as "HiMi-SST-VZ (Device Registry at BfARM)" BFARM {
 
-    object PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
+    class PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
         type = 528401|iso:11073:10101
         deviceName = "glucocheck plus"
         manufacturer = "gluko inc."

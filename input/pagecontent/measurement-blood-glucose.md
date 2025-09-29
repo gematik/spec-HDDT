@@ -1,5 +1,4 @@
 
-<!--
 This document provides implementation guidance for manufacturers integrating glucometer data using a RESTful FHIR API. It builds on the [Generic FHIR API](himi-diga-api.html) and describes the specific requirements for exposing blood glucose measurements to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html), including any required FHIR operations.
@@ -17,14 +16,12 @@ to do: Hinweise auf die einschlägigen Stellen in der Spezifikation
 
 #### FHIR Resource Server
 The FHIR Resource Server gives DiGA access to measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Blood Glucose Measurement_ MUST implement the following endpoints and profiles:
--->
-<!--
+
 * retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](use_of_hl7_fhir.html#metadata-endpoint).
 * _read_ and _search_ interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#devicemetric).
 * _read_ and _search_ interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#device).
 * _read_ and _search_ interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Glucose Measurement_. The full specifications are given below.
--->
-<!--
+
 All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server. The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html).
 
 ### MIV-specific Endpoints and Interactions
@@ -81,7 +78,7 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
   </div>
 </div>
 
-<!-- Constraints and terminology bindings view removed. Refer to the canonical StructureDefinition for full snapshot, constraints and terminology bindings. -->
+Constraints and terminology bindings view removed. Refer to the canonical StructureDefinition for full snapshot, constraints and terminology bindings.
 
 #### Conventions and Best Practice
 
