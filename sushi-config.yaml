@@ -130,20 +130,16 @@ pages:
   measurement-tissue-glucose.html:
     title: MIV - Continuous Glucose Measurement
     generation: markdown
-# Temporary - testing a different API structure
-  experimental-fhir-api.html:
-    title: Experimental FHIR API
-    generation: markdown
-  experimental-api-observation.html:
+  fhir-api-observation.html:
     title: Experimental API Observation
     generation: markdown
-  experimental-api-device.html:
+  fhir-api-device.html:
     title: Experimental API Device
     generation: markdown
-  experimental-api-devicemetric.html:
+  fhir-api-devicemetric.html:
     title: Experimental API DeviceMetric
     generation: markdown
-  experimental-api-metadata.html:
+  fhir-api-metadata.html:
     title: Experimental API Metadata
     generation: markdown
 
@@ -181,7 +177,6 @@ menu:
   #  BfArM HIMI Directory API: himi-vz-api.html
   #  BfArM DiGA Directory API: diga-vz-api.html
   #  ZTS Terminology API: zts-api.html
-    Experimental FHIR API: experimental-fhir-api.html
   MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
