@@ -1,9 +1,9 @@
 @startuml
 
-!define MANUFACTURER #CDE0FF
-!define VIBW #7ED321
-!define BFARM #F5A623
-!define SPEC #FBFDB1
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
 
 title HDDT Object Model Example (Blood Glucose Measurement)
 skinparam packageStyle rectangle
