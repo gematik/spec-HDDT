@@ -66,14 +66,15 @@ authorized Observations.
 
 Two constellations are relevant:
 
-<div style="width: 100%;">
+<div style="width: 50%;">
   <img src="assets/images/model_constellations.svg" style="width: 100%;" />
 </div>
 
-In Constellation A an [Observation](https://hl7.org/fhir/R4/observation.html) directly references
-the [Device](https://hl7.org/fhir/R4/device.html) that produced the measurement.
+<br>
 
-In Constellation B an [Observation](https://hl7.org/fhir/R4/observation.html) references
+* In Constellation A an [Observation](https://hl7.org/fhir/R4/observation.html) directly references
+the [Device](https://hl7.org/fhir/R4/device.html) that produced the measurement.
+* In Constellation B an [Observation](https://hl7.org/fhir/R4/observation.html) references
 a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), which in turn references a
 [Device](https://hl7.org/fhir/R4/device.html).
 
