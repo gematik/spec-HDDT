@@ -27,7 +27,8 @@ Description: "Example of a personal health device (glucometer) used for blood gl
 * id = "example-glucometer"
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type =  $mdc#528401 "Glucose Monitor"
-* statusReason = #online
+* status = #active
+// * statusReason = #online
 * deviceName.name = "Accu-Chek Mobile"
 * deviceName.type = #user-friendly-name
 * manufacturer = "Roche"
@@ -169,7 +170,7 @@ Description: "Example of a continuous glucose monitoring device"
 Usage: #example
 * id = "example-device-cgm"
 * status = #active
-* statusReason = #online
+// * statusReason = #online
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type = Mdc#528409 "Continuous Glucose Monitor"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
