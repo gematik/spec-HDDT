@@ -100,6 +100,21 @@ Every device data recorder holds information about its static properties as part
 
 When a DiGA requests for the device definition through a FHIR _read_ interaction, the device data recorder MUST provide these properties as `property` elements of the [Device](https://hl7.org/fhir/R4/device.html) resource that is returned to the DiGA. 
 
+#### Use of _include
+The Device Data Recorder must respond a _search_ request with a Bundle of type _searchset_ that contains all [Observation](https://hl7.org/fhir/R4/observation.html) resources that match the request. A DiGA MAY add the search parameter `_include=Observation:device` with the request. In this case the Device Data Recorder MUST include the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource that is referenced by the `device` element of the [Observation](https://hl7.org/fhir/R4/observation.html) in the same Bundle (see https://hl7.org/fhir/R4/search.html#revinclude for details).
+
+Example:
+```
+GET [base]/Observation/?date=gt20250912&_include=Observation:device 
+```
+will return a Bundle of type _searchset_ that contains all [Observation](https://hl7.org/fhir/R4/observation.html) resources that match the request and for each [Observation](https://hl7.org/fhir/R4/observation.html) the referenced [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource.
+
+Example:
+```
+GET [base]/Observation/?date=gt20250912&_include=Observation:device&_include:iterate=DeviceMetric:source
+```
+will return a Bundle of type _searchset_ that contains all [Observation](https://hl7.org/fhir/R4/observation.html) resources that match the request and for each [Observation](https://hl7.org/fhir/R4/observation.html) the referenced [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource. If a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource is referenced, the Bundle will also contain the [Device](https://hl7.org/fhir/R4/device.html) resource that is referenced by the `source` element of the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html).
+
 #### Dedicated Measurements
 
 In general HDDT only requests a minimum of data elements to be mandatory with an [Observation](https://hl7.org/fhir/R4/observation.html) resource that reflects a single measurement. The example below is based on the HDDT FHIR impementation guideline for the Miv _Blood Glucose Measurement_. 
@@ -132,12 +147,12 @@ In general HDDT only requests a minimum of data elements to be mandatory with an
 ```
 As the information on the time and result of the measurement is a rather straight-forward adoption of the FHIR standard, some HDDT-specific conventions have to be considered with the `device` reference (see above). The figure below shows a simple interplay of measured data ([Observation](https://hl7.org/fhir/R4/observation.html)), sensor status ([DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html)), and device configuration ([Device](https://hl7.org/fhir/R4/device.html)), e.g. in response for a query for all blood glucose data that was measured for a given patient on May 7th.
 
-<div><img src="/HDDT measurement ad hoc example 1.png" alt="Blood glucose values for a day" width="45%"></div>
+<div><img src="/HDDT measurement ad hoc example 1.png" alt="Blood glucose values for a day" width="50%"></div>
 <br clear="all"/>
 
 This gets more complex, if the status of the sensor changes. The figure below is based on the previous example, but now data is reqested for a longer period (May 7th and 8th) with the patient calibrating the device within this period.
 
-<div><img src="/HDDT measurement ad hoc example 2.png" alt="Blood glucose values including sensor calibration" width="60%"></div>
+<div><img src="/HDDT measurement ad hoc example 2.png" alt="Blood glucose values including sensor calibration" width="65%"></div>
 <br clear="all"/>
 
 As shown with the example, a calibration of a sensor leads to an update to the sensor's `DeviceMetric` resource. The device data recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer. 
@@ -161,12 +176,12 @@ In a query for continuously measured data results in multiple chunks ([Observati
 
 A chunk MAY be in a _preliminary_ `state`. This is the case if the chunk is not filled with values up to the _chunk-time-span_ and the device data recorder expects more data to come until the end of the time period covered by the chunk. The figure below shows an example of a _preliminary_ chunk for a device data recorder with a _chunk-time-span_ of 24 hours and a Personal Health Device with a sample rate of one data point per minute. The `search` query stated by an authorized DiGA requests for all data from May 4th until now. The newest data available to the decvice data recorder is from May, 6th 10:00 am. 
 
-<div><img src="/HDDT measurement sampled data example 1.png" alt="searching for values from a continuous measurement" width="45%"></div>
+<div><img src="/HDDT measurement sampled data example 1.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
 
 If the DiGA states the same `search` query again one hour later, the newest data being available at the device data recorder is now from May, 6th 11:00 am. Therefore now the _premiminary_ chunks contains 60 additional values.
 
-<div><img src="/HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="45%"></div>
+<div><img src="/HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
 
 __Remark__: In the given example the DiGA coould as well have used a `read` interaction to just obtain an updated version of the _preliminary_ chunk:
@@ -185,7 +200,7 @@ As can be seen with the example, the last chunk before calibration is set to a _
 ##### Changing Devices
 [Pairing](pairing.html) a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new `device` reference to a [Device](https://hl7.org/fhir/R4/device.html) resource that reflects the new Personal Health Device (see figure below).
 
-<div><img src="/HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="45%"></div>
+<div><img src="/HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="65%"></div>
 <br clear="all"/>
 
 ##### Missing Values with Continuous Measurements

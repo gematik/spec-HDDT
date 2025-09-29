@@ -339,7 +339,7 @@ The DiGA frontend confirms the successful pairing to the insured person.
 The unpairing process allows the insured person to terminate the connection between their DiGA and the medical aid or
 implant (HiMi). Each step is explained in detail below.
 
-<div style="width: 100%;">
+<div style="width: 75%;">
   <img src="assets/images/unpairing_by_patient.svg" style="width: 100%;" />
 </div>
 
@@ -416,7 +416,7 @@ Optionally, the DiGA frontend displays a notification that the consent has been 
 The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and a
 medical aid or implant (HiMi) under specific conditions. 
 
-<div style="width: 100%;">
+<div style="width: 80%;">
   <img src="assets/images/unpairing_by_system.svg" style="width: 100%;" />
 </div>
 

@@ -46,7 +46,7 @@ Details on the definition of the MIV [ValueSet](https://hl7.org/fhir/R4/valueset
 
 The part of the HDDT information model that is related to the Personal Health Device is implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the light blue box are used by the DiGA for [retrieving device data](retrieving-data.html) and data about the status and properties of the __Personal Health Device__ from the device data recorder.   
 
-<div style="width: 60%;">
+<div style="width: 75%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_DevicePart.svg" style="width: 100%;" />
 </div>
 
@@ -106,7 +106,7 @@ While DiGA use the the [BfArM Device Directory API](registries-and-zts.html#HiMi
 
 The class diagram below shows the classes of the HDDT information modell which are managed with the BfArM Registries together with connected classes. Correlations and dependencies between objects which are managed by the BfArM Registries internally are shown as functions on dotted lines. If such resolutions will be available as APIs or only via the registries' GUIs has no impact on the technical specification of the HDDT API and therefore is not part of this specification. 
 
-<div style="width: 60%;">
+<div style="width: 75%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_Device_and_Definition.svg" style="width: 100%;" />
 </div>
 
@@ -134,6 +134,6 @@ All FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that repres
 
 The UML class diagram below shows the full HDDT data model. The resources in the light blue box are managed by the Device Data Recorder and can be accessed by DiGA via the HDDT FHIR API. The resources in the orange box reflect the contents of the BfArM registries (Device Registry and DiGA Registry). They can be accessed by DiGA through the [BfARM Device Registry API](registries-and-zts.html#HiMi-SST-VZ) and [BfARM DiGA Registry API](registries-and-zts.html#DiGA-Verzeichnis). The green box marks the German Central Terminology Service that maintains the definitions and encodings of all _MIVs_. The [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that span the single _MIVs_ can be obtained from this service through the [ZTS-API](zts-api.html). The light yellow box holds the FHIR Observation Profiles defined for the MIVs and the FHIR profiles for aggregated reports on top of defined MIVs. These profiles will be made available by gematik through Simplifier.
 
-<div style="width: 90%;">
+<div style="width: 100%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_Complete.svg" style="width: 100%;" />
 </div>

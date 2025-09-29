@@ -31,6 +31,6 @@ Manufacturers of certification relevant device data recording platforms MUST be 
 
 The figure below shows how these logical building blocks interact with each other.
 
-<div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="60%"></div>
+<div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="65%"></div>
 <br clear="all"/>
 

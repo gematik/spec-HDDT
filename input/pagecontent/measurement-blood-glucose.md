@@ -57,7 +57,7 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 
 #### Instantiation of the HDDT Information Model
 
-<div style="width: 60%;">
+<div style="width: 75%;">
   <img src="assets/images/HDDT_Objektmodell_BZ_Complete.svg" style="width: 100%;" />
 </div>
 
@@ -81,12 +81,13 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 <span style="color:red">**@Jörg: Beispiel-Ansicht hier**</span>
 
 <div>
-    <p><strong>Option 1: Detailed description of differential elements</strong></p>
+    <p><strong>Detailed description of differential elements</strong></p>
     <a name="tabs-diff"> </a>
     <div id="tabs-diff">
       {%include StructureDefinition-hddt-blood-glucose-measurement-dict-diff.xhtml%}
     </div>
 </div>
+<!--
 <div>
     <p><strong>Option 2: Detailed description of key elements</strong></p>
     <a name="tabs-key"> </a>
@@ -94,7 +95,8 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
       {%include StructureDefinition-hddt-blood-glucose-measurement-dict-key.xhtml%}
     </div>
 </div>
-
+-->
+<!--
 <div>
     <p><strong>Option 3: Detailed description of snapshot elements</strong></p>
     <a name="tabs-snap"> </a>
@@ -102,6 +104,7 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
       {%include StructureDefinition-hddt-blood-glucose-measurement-dict.xhtml%}
     </div>
 </div>   
+-->
 
 Constraints and terminology bindings view removed. Refer to the canonical StructureDefinition for full snapshot, constraints and terminology bindings.
 

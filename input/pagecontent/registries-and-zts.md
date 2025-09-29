@@ -5,7 +5,7 @@ In oder to [authenticate with each other](security-and-privacy.html) and to shar
 
 These services are usable through the BfARM DiGA Registry and BfARM Device Registry (_DIGA Verzeichnis_ and _HiMi-SST-VZ_) and the German Central Terminology Service (_Zentraler Terminologiesrevr_, ZTS). The following class diagram shows the section of the [HDDT information model](information-model.html) that displays the BfARM registries and the ZTS along with their mutual cross-references. 
 
-<div style="width: 60%;">
+<div style="width: 75%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_BfArM.svg" style="width: 100%;" />
 </div>
 

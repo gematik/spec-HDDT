@@ -23,7 +23,7 @@ Subject of the data transmission as requested by § 374a SGB V are measured data
 
 The figure below shows the relationship between Personal Health Devices, measured data and derived data for the domain "Diabetes Self-Management". Relationships between devices and measured data is n:m which means that any device could provide many kinds of measured data while each measured data may be provided by multiple kinds of personal Personal Health Devices.
 
-<div><img src="/diabetes devices and values.png" alt="devices and values in the domain diabetes self-management" width="60%"></div>
+<div><img src="/diabetes devices and values.png" alt="devices and values in the domain diabetes self-management" width="70%"></div>
 <br clear="all"/>
 
 Further information on devices and data is given in the sections [Information Model](information-model.html) and [Retrieving Data](retrieving-data.html). The technical specifications of the FHIR resources that represent data and devices are domain specific. FHIR implementation guides for various kinds of device and data related to glucose measurements can be found in the chapter __MIV-Specific APIs__.
@@ -41,7 +41,7 @@ The pairing flow is based on the OAuth2 standard. The requested measured data wh
 
 The sequence diagramm below sketches the pairing flow between DiGA and Personal Health Device followed by a request for device data using a FHIR RESTful interaction.
 
-<div style="width: 100%;">
+<div style="width: 80%;">
   <img src="assets/images/pairing_sequence_high_level.svg" style="width: 100%;" />
 </div>
 
