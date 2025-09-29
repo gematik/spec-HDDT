@@ -7,6 +7,15 @@ skinparam DefaultFontColor #111111
 skinparam ArrowThickness 2
 skinparam ArrowColor #5E9BB1
 
+' ===== Objects (for object diagrams) =====
+skinparam object {
+  BackgroundColor white
+  BorderColor #95A4A8
+  LineThickness 1.2
+  FontColor #111111
+  StereotypeFontColor #95A4A8
+}
+
 ' ===== Generic rectangles (matches your boxes) =====
 skinparam rectangle {
   BorderColor #95A4A8

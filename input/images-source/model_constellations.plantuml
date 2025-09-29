@@ -1,0 +1,28 @@
+@startuml
+!include fbeta-theme.puml
+title Model Constellations
+
+' Constellation A
+rectangle "Constellation A" {
+  object "Observation" as OA {
+    device = Reference(Device)
+  }
+  object "Device" as DA
+}
+
+' Constellation B
+rectangle "Constellation B" {
+  object "Observation" as OB {
+    device = Reference(DeviceMetric)
+  }
+  object "DeviceMetric" as DMB {
+    source = Reference(Device)
+  }
+  object "Device" as DB
+}
+
+
+OA --> DA : device
+OB --> DMB : device
+DMB --> DB : source
+@enduml
