@@ -72,6 +72,10 @@ pages:
   glossary.html:
     title: Glossary
     generation: markdown
+# Release Notes
+  release-notes.html:
+    title: Release Notes
+    generation: markdown
 # Definition and Rules
   general-considerations.html:
     title: General Considerations
@@ -85,36 +89,19 @@ pages:
   operational-requirements.html:
     title: Operational Requirements
     generation: markdown
-  himi-diga-api.html:
-    title: FHIR Resource Server
+  registries-and-zts.html:
+    title: BfArM Registries and ZTS
     generation: markdown
-  information-model.html:
-    title: Information Model
-    generation: markdown
-  oauth-api.html:
-    title: OAuth2 Authorization Server
+# Logical Viewpoints
+  logical-viewpoints.html:
+    title: Logical Viewpoints
     generation: markdown
   participants.html:
     title: Participants
     generation: markdown
-  registries-and-zts.html:
-    title: BfArM Registries and ZTS
+  information-model.html:
+    title: Information Model
     generation: markdown
-  mivs.html:
-    title: Mandatory Interoperable Values (MIVs)
-    generation: markdown
-  release-notes.html:
-    title: Release Notes
-    generation: markdown
-  logical-viewpoints.html:
-     title: Logical Viewpoints
-     generation: markdown
-  # implementation_guide_diga.html:
-  #   title: Implementation guide for DiGA
-  #   generation: markdown
-  # implementation_guide_himi.html:
-  #   title: Implementation guide for HiMi
-  #   generation: markdown
   pairing.html:
     title: Pairing
     generation: markdown
@@ -123,6 +110,17 @@ pages:
     generation: markdown
   retrieving-data.html:
     title: Retrieving Data
+    generation: markdown
+# Generic APIs
+  himi-diga-api.html:
+    title: FHIR Resource Server
+    generation: markdown
+  oauth-api.html:
+    title: OAuth2 Authorization Server
+    generation: markdown
+# MIV-Specific APIs
+  mivs.html:
+    title: Mandatory Interoperable Values (MIVs)
     generation: markdown
   measurement-blood-glucose.html:
     title: MIV - Blood Glucose Measurement
