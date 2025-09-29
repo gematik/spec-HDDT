@@ -31,15 +31,6 @@ participant ZH order 30 [
 	""§374a Directory""
 ]
 
-<style>
-  sequenceDiagram {
-    reference {
-      BackGroundColor #ebf5fb
-    }
-}
-</style>
-skinparam SequenceDividerBackgroundColor #d1f2eb
-
 == Prescription duration of DiGA for Pairing-ID expired ==
 activate D
 D -> D: Check validity of consent (Pairing-ID) or system time vs.\nexpiry date of prescription (Pairing-ID)
