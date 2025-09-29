@@ -30,7 +30,7 @@ releaseLabel: Pre-Release
 
 
 dependencies:
-  hl7.fhir.uv.cgm: current
+  hl7.fhir.uv.cgm: 1.0.0
 
 parameters:
   show-inherited-invariants: false
