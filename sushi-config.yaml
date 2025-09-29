@@ -140,6 +140,9 @@ pages:
   fhir-api-metadata.html:
     title: Experimental API Metadata
     generation: markdown
+  general-considerations-deprecated.html:
+    title: General Considerations (DEPRECATED)
+    generation: markdown
 
 
 

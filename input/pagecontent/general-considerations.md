@@ -1,43 +1,105 @@
-To facilitate the implementation of the HDDT specification for manufacturers, various fundamental decisions were made. These aim to reduce complexity and ensure the economic feasibility of the HDDT interfaces.
+The HDDT specification is based on several fundamental decisions intended to reduce complexity and ensure that its
+interfaces remain economically viable for manufacturers.
 
 ### Use of International Standards
-The most important requirement in creating the specification for the Health Device Data Transfer (HDDT) was that all stipulations must take existing international standards into account and implement them as far as possible. This concerns not only the data formats and interfaces, but also the decomposition of aids and implants into abstract building blocks, the information model underlying the exchanged data, the security services, and the technical representation of semantically significant artifacts.
 
-| Standard | Use with HDDT |
-|----------|---------------|
-| HL7 FHIR | The logical model of HDDT is fully mapped on a FHIR compliant [information model](information-model.md). The API for requesting device data is implemented through FHIR `get` and `search`RESTful API. The data shared with this API conforms to HL7 FHIR R4. Great effort has been taken to be fully compliant with the FHIR base specification and - as much as possible - with existing FHIR profiles for device data (see [Use of HL7 FHIR](use_of_hl7_fhir.md)). |
-| ISO/IEEE 11073 | Properties and configuration settings of personal health devices are preferable encoded using ISO/IEEE 11073 nomenclature. For the information model took into account the ISO/IEEE 11073 domains models of the Personal Health Devices assessed in the HDDT MVP phase. |
-| OAuth2         | The [pairing flow](pairing.md) for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE. |
-| SMART on FHIR | DiGA authorizations are encoded as [SMART Scopes](smart-scopes.html). |
-| LOINC     | HDDT [Mandatory Interoperable Values](methodology.md)(MIVs) are mapped onto sets of LOINC codes. |
-| UCUM | units of measures are consistently encoded in UCUM. |
+The key requirement for the Health Device Data Transfer (HDDT) specification is to build on existing international
+standards wherever possible. This applies not only to data formats and interfaces, but also to how medical aids and
+implants are broken down into abstract components, to the information model behind the exchanged data, to security
+services, and to the technical representation of meaningful artifacts.
+
+| Standard       | Use with HDDT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| HL7 FHIR       | The HDDT logical model is fully aligned with a FHIR-compliant [information model](information-model.md). Device data is accessed through the FHIR's [read](https://hl7.org/fhir/R4/http.html#read) and [search](https://hl7.org/fhir/R4/http.html#search) interactions. All data exchanged through this API MUST conform to HL7 FHIR R4. HDDT places strong emphasis on compliance with the FHIR base specification and, where possible, with existing FHIR profiles for device data (see [Use of HL7 FHIR](use_of_hl7_fhir.md)). |
+| ISO/IEEE 11073 | Properties and configuration settings of Personal Health Devices SHOULD be encoded using ISO/IEEE 11073 nomenclature. The HDDT information model is based on the ISO/IEEE 11073 domain models of the devices evaluated during the HDDT MVP phase.                                                                                                                                                                                                                                                                                 |
+| OAuth2         | The [pairing flow](pairing.md) for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE.                                                                                                                                                                                                                                                                                                                                                                                               |
+| SMART on FHIR  | DiGA authorizations are restricted by [SMART Scopes](smart-scopes.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| LOINC          | HDDT [Mandatory Interoperable Values](methodology.md)(MIVs) are mapped onto sets of LOINC codes.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| UCUM           | Units of measures are consistently encoded in UCUM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 ### Minimization of HDDT-specific Implementation Efforts
-Personal Health Devices store the collected data in a back-end system in the form of a Health Record. Here, data from various measurements flow together on a patient-specific basis. The Health Record acts as a resource server to external parties. It offers interfaces to the stored data through which data of a patient can be accessed by the patient himself or his treating physicians via mobile apps or other interactive front-end systems.
 
-It is the aim of the HDDT specification that manufacturers of systems acting as resource servers can expand existing interfaces as easily as possible with HDDT-specific processes and content. Ideally, any necessary changes to existing interfaces should be limited to the syntax of data exchange and should not require any changes to the basic architecture of the interaction between Personal Health Device, Aggregation Manager and Health Record. To achieve this, the specifications and the non-functional implementation requirements associated with them follow the following principles:
-* HDDT follows [HL7-D best practices for profiling](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current) FHIR resource definitions. Profiling of standard resource definitions is only carried out if this is absolutely necessary. The basis of the documentation is the standard. HDDT constraints the syntax and semantics of elements defined in the standard only if this is absolutely necessary for the interoperability of the HDDT interface. [_Must Support_](use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements) semantics is preferred for constrained cardinalities to preserve maximum flexibility for the Health Record provider. Modifying elements are always constrained or marked as _Must Support_.
-* The resource server should not be restricted with regard to the provisioning of [optional elements](use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements) for a MIV. However, DiGA may ignore optional elements. This is intended to enable a resource server, for example, to reuse an FHIR profile that has already been implemented in other contexts.
-* Only data that is managed in the Health Record is affected by the HDDT interface. The manufacturer therefore does not have to forward data processed exclusively in the device or in the Aggregation Manager to the Health Record solely for the purpose of implementing the HDDT specification.
+Personal Health Devices store their collected data backend systems as Health Records. The backend collects measurement
+data for each patient and acts as a resource server for external parties. It provides interfaces that allow patients and
+their physicians to access the information through mobile apps or other interactive front-end systems.
+
+The HDDT specification is intended to allow manufacturers of resource servers to extend their existing interfaces with
+HDDT-specific processes and data models in a straightforward way. Ideally, any required adjustments should be limited to
+the syntax of data exchange, without changes to the core architecture that connects the Personal Health Device, the
+Aggregation Manager, and the Health Record. To support this, the specification and its non-functional requirements are
+based on the following principles:
+
+* HDDT
+  follows [HL7-D best practices for profiling](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current)
+  FHIR resource definitions. The standard itself serves as the basis for all documentation, and profiling or restricting
+  standard elements is done only when necessary to ensure interoperability. For cardinalities, [_Must
+  Support_](use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements) semantics are preferred over hard
+  constraints to give Health Record providers maximum flexibility. Any elements that modify data are either restricted
+  or marked as [_Must Support_](use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements).
+* The resource server SHOULD remain free to provide OPTIONAL elements for a MIV, even if a DiGA MAY ignore them. This
+  approach allows a resource server to reuse FHIR profiles that are already implemented in other contexts.
+* Only data that is managed in the Health Record is affected by the HDDT interface. Manufacturers DO NOT have to forward
+  data that is processed exclusively on the device or in the Aggregation Manager to the Health Record solely to comply
+  with the HDDT specification.
 
 ### Role of the Controller
-Following the reference model of the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance), the HDDT specifications asume that the Personal Health Device connects to an Aggregation Manager (e.g. a mobile app) which acts as a gateway to the Health Record. Aggregation Manager and Health Record together are called the _Device Data Recorder_ in HDDT (see [Certification Relevant Systems](certification-relevant-systems.md) for details). Within HDDT the _Device Data Recorder_ implements the FHIR resource server that DiGA connects to for requesting data that was measured by a connected Personal Health Device.
 
-The device data recorder acts as the controller of all flows of data and control between the Personal Health Device at the patient's site and the backend-located Health Record. The HDDT specification does not affect or weaken this role. In particular the HDDT specifications make no determinations on: 
-* the frequency of data collection at the Personal Health Device and the modus and frequency of data synchronization between the Personal Health Device and the Aggregation Manager
-* the frequency of data transmission from the Aggregation Manager to the Health Record (e.g. if an Aggregation Manager only transmits data to the Health Record once a day, then a DiGA will only be able to receive up-to-date data at this frequency via the HDDT interface)
-* how the Aggregation Manager handles data from uncalibrated devices, e.g. if this data is pushed to the Health Record or not
-* which concrete algorithms the device data recorder implements for calculating key figures (e.g. it is up to the device data recorder of a rtCGM if it considers data from the device's warm-up phase for the calculation of aggregated therapeutic key values such as the Glucose Management Index)
-* if and how the Aggregation Manager pre-processes raw data, e.g. if outliners are mitigated to come up with smoother curves
+The HDDT specification follows the reference model of
+the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance). It assumes that a Personal
+Health Device connects to an Aggregation Manager (e.g. a mobile app) that serves as a gateway to the Health Record. In
+HDDT, the Aggregation Manager and Health Record together are referred to as the _Device Data Recorder_ (
+see [Certification Relevant Systems](certification-relevant-systems.html) for details). The _Device Data Recorder_
+provides the FHIR resource server. A DiGA connects to this server to request and obtain data measured by a connected
+Personal Health Device.
 
+The _Device Data Recorder_ controls all data and communication flows between the patient’s Personal Health Device and
+the Health Record on the backend system. The HDDT specification DOES NOT affect this role. The specification also DOES
+NOT set requirements for:
+
+* the frequency of data collection on the Personal Health Device
+* the method and frequency of synchronization between the Personal Health Device and the Aggregation Manager
+* the frequency of data transmission from the Aggregation Manager to the Health Record (e.g. if the Aggregation Manager
+  transmits data only once per day, then a DiGA will only be able to access data at that frequency through the HDDT
+  interface)
+* how the Aggregation Manager handles data from uncalibrated devices (e.g. whether this data is sent to the Health
+  Record or not)
+* which specific algorithms the _Device Data Recorder_ uses to calculate key figures (e.g. whether an rtCGM includes
+  data from its warm-up phase when calculating therapeutic key values such as the Glucose Management Index)
+* whether and how the Aggregation Manager pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
+  curves)
 
 ### Easy maintenance and economical operations
-The HDDT specifications apply to manufacturers of all kinds of Personal Health Devices and Device Data Recorders (see [_Certification Relevant Systems_](certification-relevant-systems.html) for details). The specifications for the pairing of Device Data Recorders and DiGA as well as the specifications for the security of data exchange (authentication, authorization, logging) are identical for all types of Personal Health Devices and Device Data Recorders and are therefore provided as a common technical specification.
 
-Which [Mandatory Interoperable Values (MIVs)](methodology.html#from-use-cases-to-mivs) a Device Data Recorder's resource server exposes to DIGA depends on the kinds of Personal Health Devices taht connect to the Device Data Recorder. How these values are exchanged in concrete terms and what other data can be derived from this data depends on the kind of the MIV. To make it as easy as possible for a manufacturer to identify the relevant specifications and specification changes, the content of data transmissions is defined for each MIV individually and laid down in dedicated specifications. An overview of the defined MIVs per domain together with the MIV-specific specification parts can be found [here](mivs.html).
+The HDDT specifications apply to all types of Personal Health Devices and Device Data Recorders. Rules for pairing,
+authentication, authorization, and logging are the same for all devices and are therefore provided as one common
+technical specification.
 
-[Slicing](https://hl7.org/fhir/R4/profiling.html#slicing) is only used in the specifications of FHIR-encoded data content if all slices are related to the same kind of data. This means that even if, for example, the specifications for the provision of blood glucose data and the provision of respiratory monitoring data currently only differ in the classifying LOINC codes and the units used, these are still two dedicated specifications. Manufacturers of blood glucose meters are thus not affected by future changes to the specification parts, which only affect respiratory monitoring data. 
+The [Mandatory Interoperable Values (MIVs)](methodology.html#from-use-cases-to-mivs) that a resource server exposes to a
+DiGA depend on the types of Personal Health Devices connected to it. Each MIV has its own defined data set and rules for
+exchange. To help manufacturers identify the relevant requirements, the data set for each MIV is defined individually
+and documented in dedicated specification documents. An overview of the defined MIVs by domain, along with their
+MIV-specific specification parts, can be found [here](mivs.html).
 
-§ 374a SGB V requires that aggregated and derived data must also be made available via the HDDT interface. In the present specifications, this is limited to data calculated from the MIVs provided by the medical aid. For example, an rtCGM must only be able to provide derived key figures that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Health Record, the specifications only request for the provision of derived or summarised data in the form of standardised reports in all cases where derived/aggregated data is calculated over a period of time. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant key figures, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. As far as available and usable, these reports represent existing specifications. For rtCGM data, for example, the specification of a [CGM Summary Observation from HL7 International](https://github.com/HL7/cgm) is adopted unchanged.
+In HDDT, [slicing](https://hl7.org/fhir/R4/profiling.html#slicing) of FHIR attributes is only applied when all slices
+belong to the same type of data. Domain unrelated types of data, such as blood glucose vs. respiratory monitoring,
+always have their own specification documents — even if they differ only by LOINC codes and units. This separation
+ensures that future changes affecting one data type do not impact manufacturers of devices for another.
 
-The HDDT specification stipulates that data is primarily exchanged in the form of FHIR resources. FHIR clinical resources are designed to be stored and versioned. Therefore, the resources provided by a Health Record should be permanently retrievable under the specified identifier. In contrast, most health records associated with a Personal Health Device only store their data for a limited period of time. For the HDDT specifications, the basic rule is that a manufacturer does not have to extend the currently existing storage periods of the data in the Health Record just to meet the requirements of the FHIR-based HDDT specification. However, the assumption here is that every Health Record is generally able to store data for a defined number of days and make it available under a fixed identifier over this period. The specific period (_Historic-Data-Period_) is defined per MIV depending on typical use cases of the interaction of a DiGA with a Personal Health Device. It is listed in the table of MIV-specific specification parts and properties in the chapter [_Mandatory Interoperable Values (MIVS)_](mivs.html).
+§ 374a SGB V requires that aggregated and derived data MUST also be made available through the HDDT interface. In HDDT,
+this requirement is limited to data that can be calculated from the MIVs provided by the medical aid. For example, an
+rtCGM is only REQUIRED to provide derived values that can be computed from its continuous glucose
+measurements ([MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)). To reduce the workload for
+Health Record manufacturers, derived data MUST be provided as standardized reports whenever it is calculated over a
+period of time. A DiGA therefore SHALL NOT request a single metric, such as the number of hypoglycemias, but instead
+MUST retrieve the full report (e.g. the Ambulatory Glucose Profile (AGP)). Where possible, HDDT adopts existing
+specifications for such reports unchanged — for rtCGM data, this includes
+the [CGM Summary Observation from HL7 International](https://github.com/HL7/cgm).
+
+The HDDT specification requires that data be exchanged primarily as FHIR resources. Because FHIR clinical resources are
+designed for storage and versioning, each resource SHOULD be permanently retrievable under its identifier. In practice,
+most health records linked to Personal Health Devices store data only for a limited time. HDDT therefore states that
+manufacturers DO NOT have to extend existing storage periods solely to comply with the specification. However, every
+health record is assumed to be able to store data for a defined number of days and keep it accessible under a fixed
+identifier during that period. This period, called the _Historic-Data-Period_, is defined per MIV based on typical DiGA
+use cases and is listed in the MIV-specific specification tables in the chapter [_Mandatory Interoperable Values (
+MIVS)_](mivs.html).

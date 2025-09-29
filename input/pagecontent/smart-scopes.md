@@ -43,9 +43,8 @@ and [Device](https://hl7.org/fhir/R4/device.html).
 #### Observation as the Anchor
 
 Observations are the primary and anchoring resource for all scope enforcement. SMART scopes of the form
-`patient/Observation…` determine which clinical measurements a DiGA is entitled to access. All other resources (
-[DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), [Device](https://hl7.org/fhir/R4/device.html)) are only made
-available in relation to these Observations.
+`patient/Observation…` determine which clinical measurements a DiGA is entitled to access. All other resources
+([DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), [Device](https://hl7.org/fhir/R4/device.html)) are only made available in relation to these Observations.
 
 Concretely:
 
@@ -66,7 +65,7 @@ authorized Observations.
 
 Two constellations are relevant:
 
-<div style="width: 50%;">
+<div style="width: 40%;">
   <img src="assets/images/model_constellations.svg" style="width: 100%;" />
 </div>
 
