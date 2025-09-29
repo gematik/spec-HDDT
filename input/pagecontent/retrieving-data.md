@@ -162,7 +162,7 @@ A response of the device data recorder to a query for dedicated measurements MAY
 
 Missing data MAY even occur if the connection between the Personal Health Device and the AggregationManager or between the AggregationManager and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A DiGA can detect this situation by reading the Device resource and checking the `status` element. If the `status` of the device is _unknown_, the DiGA MAY assume that data is missing and may be available later.
 
-___Remark__: FHIR R4 does provide information about a Personal Health Device being offline through the 'statusReason` element of the [Device](https://hl7.org/fhir/R4/device.html) resource. This element is missing in FHIR R5 and therefore not used in the HDDT specification. Due to this incompatibility acrosss FHIR versions, a `status` value of _unknown_ MUST be used by the Device Data Recorder to indicate that the connecton to the Personal Health Device is temporarely broken (which is semanticly correct as the status of the device is unknown to the Health Record if it does not receive any information from the device).  
+___Remark__: FHIR R4 does provide information about a Personal Health Device being offline through the `statusReason` element of the [Device](https://hl7.org/fhir/R4/device.html) resource. This element is missing in FHIR R5 and therefore not used in the HDDT specification. Due to this incompatibility acrosss FHIR versions, a `status` value of _unknown_ MUST be used by the Device Data Recorder to indicate that the connecton to the Personal Health Device is temporarely broken (which is semanticly correct as the status of the device is unknown to the Health Record if it does not receive any information from the device).  
 
 The easiest way for a DiGA to deal with these kinds of missing data is to set the `date` argument of a new request to one second after the `effectiveDateTime` of the last [Observation](https://hl7.org/fhir/R4/observation.html) it received with the last request. 
 
@@ -192,7 +192,7 @@ GET [base]/Observation/3
 ##### Change of calibration.status
 Some sensors for continuous measurements require initial or regular calibration. If this leads to a changed value for `calibration.state` in the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) observation that is bound to a chunk, the device data recorder MUST finish the current chunk and start a new chunk. The same holds for any other change in `calibration.state`, e.g. a sensor that switches from a calibrated to an unknown state  after a certain time (see figure below.)
 
-<div><img src="/HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="45%"></div>
+<div><img src="/HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
 
 As can be seen with the example, the last chunk before calibration is set to a _final_ status and the èffectivePeriod` is adapted to the end time the calibration state changed. The new chunk is initialized with a _preliminary_ status and the fixed _chunk-time-span_. 
@@ -200,7 +200,7 @@ As can be seen with the example, the last chunk before calibration is set to a _
 ##### Changing Devices
 [Pairing](pairing.html) a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new `device` reference to a [Device](https://hl7.org/fhir/R4/device.html) resource that reflects the new Personal Health Device (see figure below).
 
-<div><img src="/HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="65%"></div>
+<div><img src="/HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
 
 ##### Missing Values with Continuous Measurements
