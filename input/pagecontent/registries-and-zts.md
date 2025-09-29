@@ -158,6 +158,18 @@ Used to resolve canonical URLs and resource identifiers.
 
 
 
+#### Example Tools and Scripts
 
+To simplify integration, Gematik provides **example clients and configurations**:
+
+-  [https://github.com/gematik/zts-api-client-examples](https://github.com/gematik/zts-api-client-examples)
+
+These examples illustrate in practice how to:
+
+* work with useful tools and helper scripts,
+* automate the download and management of FHIR packages,
+* handle authentication and token management in a secure way.
+
+The repository is continuously evolving — not only to demonstrate new and relevant use cases, but also to provide full transparency regarding the ongoing development and extension of the API.
 
 
