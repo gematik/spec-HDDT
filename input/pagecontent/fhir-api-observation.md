@@ -1,8 +1,11 @@
-# Experimental API: Observation Resource Access
-
 ### Introduction
 
 This document describes the semantics of querying FHIR Observation resources via a RESTful API. Observation resources represent measurements or assertions made about a patient, such as blood glucose or interstitial fluid glucose values. The API supports both retrieving individual Observation resources and searching for Observations matching specific criteria (e.g., by code, date range, or device). Returned resources must conform to the relevant FHIR profiles for the use case.
+
+This document describes just the generic component of the endpoint, returning measurement data. There are different considerations and additional specifications for each overarching use-case (See [MIVs](mivs.html)). Additional considerations for the Observation endpoint are listed under the **MIV-specific APIs** menu point. For example:
+
+- [MIV - Blood Glucose Measurement](measurement-blood-glucose.html)
+- [MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)
 
 #### Requests
 
@@ -53,67 +56,20 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 
 ---
 
-### Use-Case: Blood Sugar
+### FHIR Operations
 
-This section describes additional requirements, when implementing the FHIR API for providing access to blood glucose data. Common use cases include retrieving the latest observation, retrieving only observations that measure blood glucose in mg/dL, and retrieving all measurements across a certain date range.
+Additional ways to retrieve measurement data might be defined with custom [FHIR Opeartions](https://hl7.org/fhir/R4/operations.html). These operations rely on MIV-specific functionality, thus implementation details are defined under the menu **MIV-specific APIs**. The following table provides to all the operations defined in the scope of this project, and which pages they can be found on:
 
-Observations representing blood glucose measurements MUST conform to the [Observation - Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html).
+| Opeartion | Location |
+| - | - |
+| `hddt-cgm-summary` | [MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html) |
 
-#### Conventions
-
-- Always use the latest version of the Observation profile.
-- Only `valueQuantity` is permitted as the result of the Observation for blood glucose measurements.
-- The `code` element must be selected from the [ValueSet Blood Glucose Measurement](ValueSet-hddt-miv-blood-glucose-measurement.html), reflecting both the measurement method and the units supported by the device.
-- The unit defined in the LOINC code’s display must align with both `valueQuantity.unit` and `valueQuantity.code`.
-- Because glucometers can generate and transmit readings even when uncalibrated, a reference to a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource via the `device` element is required to capture the calibration status of the sensor, in order to ensure the proper interpretation of the data.
-- If `valueQuantity` is missing, a `dataAbsentReason` must be specified, giving the reason for missing data.
-- Set `status` to "final" for completed measurements.
+---
 
 
-#### Embedded Profile
 
-<div id="tabs-key">
-  <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-blood-glucose-measurement'].title}}</p>
-    <p>
-      This structure is derived from
-      <a href="{{site.data.structuredefinitions['hddt-blood-glucose-measurement'].basepath}}">
-        {{site.data.structuredefinitions['hddt-blood-glucose-measurement'].basename}}
-      </a>
-    </p>
-    <div id="tbl-key-inner">
-      {% include StructureDefinition-hddt-blood-glucose-measurement-snapshot-by-key-all.xhtml %}
-    </div>
-  </div>
-</div>
+### Examples
 
-#### Example: Blood Glucose Observation Resource
-
-```json
-{
-  "resourceType": "Observation",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "2339-0",
-        "display": "Glucose [Mass/volume] in Blood"
-      }
-    ]
-  },
-  "valueQuantity": {
-    "value": 95,
-    "unit": "mg/dL",
-    "system": "http://unitsofmeasure.org",
-    "code": "mg/dl"
-  },
-  "effectiveDateTime": "2025-09-18T08:30:00+01:00",
-  "device": {
-    "reference": "DeviceMetric/12345"
-  }
-}
-```
 
 #### Example: FHIR-READ
 
@@ -307,175 +263,5 @@ Observations representing blood glucose measurements MUST conform to the [Observ
             }
         }
     ]
-}
-```
-
----
-
-### Use-Case: Interstitial Fluid Glucose (ISF Glucose)
-
-This section describes additional requirements, when implementing the FHIR API for providing access to interstitial fluid glucose data. Common use cases include retrieving the latest observation, retrieving only observations that measure interstitial fluid glucose in mg/dL, and retrieving all measurements across a certain date range.
-
-Observations representing interstitial fluid glucose measurements MUST conform to the [Observation – Continuous Glucose Measurement profile](StructureDefinition-ddt-continuous-glucose-measurement.html).
-
-#### Conventions and Best Practice
-
-- Always use the latest version of the Observation profile.
-- Only `valueSampledData` is permitted as the result of the Observation for tissue glucose time-series (CGM) measurements.
-- The `code` element MUST be selected from the [ValueSet – Continuous Glucose Measurement](ValueSet-hddt-miv-continuous-glucose-measurement.html) and be consistent with the units supported by the device.
-- The unit in the LOINC code’s display MUST match `valueSampledData.unit` or `valueSampledData.code`.
-- When calibration status is relevant, `Observation.device` MUST reference a `DeviceMetric` resource that records sensor type and calibration details.
-- If calibration is not relevant for the device, `Observation.device` MUST reference a `Device` resource.
-- If `valueSampledData` is missing, a `dataAbsentReason` MUST be provided.
-- Set `status` to reflect whether the Observation is complete (i.e., no more `valueSampledData.data` can be added); see [Retrieving Data](retrieving-data.html) for additional considerations.
-- Ensure referenced Device/DeviceMetric resources are available (use `_include=Observation:device` in searches when appropriate).
-
-#### FHIR Operation
-
-Manufacturers of CGM devices MUST also implement the following FHIR Operation, providing access to summary data such as "Times in Range", "Time Out Of Range", "Mean Glucose", etc.
-
-| | |
-|-|-|
-| **Resource** | Observation |
-| **Operation name** | `$hddt-cgm-summary` |
-| **Purpose** | Request a summary of CGM values (e.g., tissue glucose values below threshold) for a specified time range. |
-| **Parameters** | `effectivePeriodStart (dateTime)`, `effectivePeriodEnd (dateTime)`, `related (boolean)` |
-| **Returned Objects** | Bundle containing summary Observation(s), DeviceMetric, and Device resources. |
-| **Specifications** | Summary calculated at run-time, not stored persistently. Must support all listed parameters and profiles. |
-
-#### Embedded Profiles
-
-**CGM Measurement Series**
-
-<div id="tabs-key">
-  <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].title}}</p>
-    <p>
-      This structure is derived from
-      <a href="{{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basepath}}">
-        {{site.data.structuredefinitions['hddt-continuous-glucose-measurement'].basename}}
-      </a>
-    </p>
-    <div id="tbl-key-inner">
-      {% include StructureDefinition-hddt-continuous-glucose-measurement-snapshot-by-key-all.xhtml %}
-    </div>
-  </div>
-</div>
-
-**CGM Summary**
-
-<div id="tabs-key">
-  <div id="tbl-key">
-    <p><strong>Profile: </strong> [HL7 CGM Summary](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)</p>
-  </div>
-</div>
-
-**Bundle - Summary Data Measurements**
-
-<div id="tabs-key">
-  <div id="tbl-key">
-    <p><strong>Profile: </strong> {{site.data.structuredefinitions['hddt-cgm-summary'].title}}</p>
-    <p>
-      This structure is derived from
-      <a href="{{site.data.structuredefinitions['hddt-cgm-summary'].basepath}}">
-        {{site.data.structuredefinitions['hddt-cgm-summary'].basename}}
-      </a>
-    </p>
-    <div id="tbl-key-inner">
-      {% include StructureDefinition-hddt-cgm-summary-diff-all.xhtml %}
-    </div>
-  </div>
-</div>
-
-#### Example
-
-**Request:** POST `/Observation$hddt-cgm-summary`
-
-**Request Body:**
-
-```json
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "effectivePeriodStart",
-      "valueDateTime": "2025-08-01T00:00:00Z"
-    },
-    {
-      "name": "effectivePeriodEnd",
-      "valueDateTime": "2025-08-31T23:59:59Z"
-    },
-    {
-      "name": "related",
-      "valueBoolean": true
-    }
-  ]
-}
-```
-
-**Description:**
-
-Perform the FHIR Operation to request a summary of aggregated values over the specified time range. The Bundle should also include all Device and DeviceMetric resource instances, that were needed to calculate the data summary.
-
-**Response:**
-
-```json
-{
-  "resourceType": "Bundle",
-  "type": "collection",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "cgmSummaryExample",
-        "status": "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "laboratory"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/uv/cgm/CodeSystem/cgm-summary-codes-temporary",
-              "code": "cgm-summary"
-            }
-          ]
-        },
-        "subject": {
-          "reference": "Patient/patientExample"
-        },
-        "effectivePeriod": {
-          "start": "2025-08-01",
-          "end": "2025-08-31"
-        },
-        "hasMember": [
-          {
-            "reference": "Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"
-          },
-          {
-            "reference": "Observation/cgmSummaryTimesInRangesExample"
-          },
-          {
-            "reference": "Observation/cgmSummaryGMIExample"
-          },
-          {
-            "reference": "Observation/cgmSummaryCoefficientOfVariationExample"
-          },
-          {
-            "reference": "Observation/cgmSummaryDaysOfWearExample"
-          },
-          {
-            "reference": "Observation/cgmSummarySensorActivePercentageExample"
-          }
-        ]
-      }
-    }
-  ]
 }
 ```

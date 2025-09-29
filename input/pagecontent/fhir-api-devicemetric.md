@@ -1,5 +1,3 @@
-# Experimental API: DeviceMetric Resource Access
-
 ### Introduction
 
 This document describes the semantics of querying FHIR DeviceMetric resources via a RESTful API. DeviceMetric resources represent sensor type and calibration status for medical devices. The API supports retrieving individual DeviceMetric resources and searching for DeviceMetrics matching specific criteria (e.g., by type, source device, or calibration status). Returned resources must conform to the relevant FHIR profiles.
