@@ -68,5 +68,5 @@ The sequence diagramm below sketches the pairing flow between DiGA and Device Da
   <img src="assets/images/pairing_sequence_high_level.svg" style="width: 100%;" />
 </div>
 
-Further information on the OAuth2 Authorization Server and the authorization flow is given in the section [Pairing](pairing.html). The technical sepcification of the HDDT profile on the OAuth2 standard can be found in the section [OAuth API](oauth-api.html).
+Further information on the OAuth2 Authorization Server and the authorization flow is given in the section [Pairing](pairing.html). The technical sepcification of the HDDT profile on the OAuth2 standard can be found in the section [Authorization Server](authorization-server.html).
 

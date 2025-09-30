@@ -34,7 +34,7 @@ The specification of the techncal interfaces for retrieving device data consider
 DiGA request device data from a device data recorder (see [information model](information-model.md])) using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
 The device data recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
 
-The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](oauth-api.md). This access token was issued by the Authorization Server of the device data recorder and MUST be taken as opaque by the DiGA. 
+The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](pairing.html#access-tokens). This access token was issued by the [Authorization Server](authorization-server.html) of the device data recorder and MUST be taken as opaque by the DiGA. 
  
 The device data recorder MUST be able to discover the internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject`argument with a query, the device data recorder MUST ignore this argument and SHOULD respond with an _Bad Request_ error.
 

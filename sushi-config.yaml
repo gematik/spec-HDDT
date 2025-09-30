@@ -112,8 +112,8 @@ pages:
   himi-diga-api.html:
     title: FHIR Resource Server
     generation: markdown
-  oauth-api.html:
-    title: OAuth2 Authorization Server
+  authorization-server.html:
+    title: Authorization Server
     generation: markdown
 # MIV-Specific APIs
   mivs.html:
@@ -136,6 +136,24 @@ pages:
     generation: markdown
   fhir-api-metadata.html:
     title: Experimental API Metadata
+    generation: markdown
+  authorization-server-metadata-endpoint.html:
+    title: Authorization Server Metadata Endpoint
+    generation: markdown
+  authorization-server-par-endpoint.html:
+    title: Pushed Authorization Request Endpoint
+    generation: markdown
+  authorization-server-authorization-endpoint.html:
+    title: Authorization Endpoint
+    generation: markdown
+  authorization-server-token-endpoint.html:
+    title: Token Endpoint
+    generation: markdown
+  authorization-server-revocation-endpoint.html:
+    title: Revocation Endpoint
+    generation: markdown
+  authorization-server-jwks-endpoint.html:
+    title: JSON Web Key Set (JWKS) Endpoint
     generation: markdown
   general-considerations-deprecated.html:
     title: General Considerations (DEPRECATED)
@@ -172,7 +190,7 @@ menu:
     Retrieving Data: retrieving-data.html
   Generic APIs:
     FHIR Resource Server: himi-diga-api.html
-    OAuth2 Authorization Server: oauth-api.html
+    Authorization Server: authorization-server.html
   #  BfArM HIMI Directory API: himi-vz-api.html
   #  BfArM DiGA Directory API: diga-vz-api.html
   #  ZTS Terminology API: zts-api.html

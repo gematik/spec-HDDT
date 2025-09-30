@@ -95,7 +95,7 @@ As described in the section on [certification relevant systems](certification-re
   * Fully Qualified Domain Name (FQDN) as stated in the FHIR endpoint's X.509 certificate. This allows a DIGA to securely authenticate the FHIR endpoint.
   
 * __Device Data Recorder AuthZ Endpoint__:
-  * URL of the device data recorder's Authorization Server that must be called for obtaining the access token for getting access to the FHIR API (see [OAuth API](oauth-api.html))
+  * URL of the device data recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
   * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the device fdata recorder.
 
 The links between these resources is maintained within the BfArM Device Registry. Users of the registry can discover the __Device Data Recorder FHIR Endpoint__ and the __Device Data Recorder AuthZ Endpoint__ of a device data recorder through the [BfArM Device Directory API](registries-and-zts.html#HiMi-SST-VZ). 
