@@ -1,23 +1,24 @@
-§ 374a SGB V requests vendors of medical aids and implants to provide medical device data for authorized digital health applications (DiGA) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
+§ 374a SGB V requests vendors of medical aids and implants to provide medical device data for Digitale Gesundheitsanwendungen (DiGA: authorized digital health applications) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
 
 ### Content
 The HDDT implementation guide includes requirements for: 
-* Patient-initiated authorisation of the DiGA to retrieve health data from the utilised medical aid/implant (consent)
-* Management of authorisation by the patient (modifying and revoking consent)
+* Ensuring data interoperability between DiGA and medical aids/implants through interfaces and profiles based on HL7 FHIR
+* Patient-initiated authorisation of the DiGA to retrieve health data from the utilised medical aid/implant
+* Management of authorisation by the patient
 * Retrieval of information necessary for a DiGA to use the interfaces
 * Retrieval of information necessary for a medical aid/implant to use the interfaces
 * Confidential transmission of health data from the medical aid/implant to a DiGA based on a user's pseudonym
 * Verifiability of the authenticity of DiGA and medical aid/implants
-* Ensuring data interoperability between DiGA and medical aids/implants
 * Evidence and traceability of the operational functionality of the interface
 
 Out-of-Scope for the HDDT implementation guide are:
 * Identification and authentication of the patient vis-à-vis a DiGA or a medical aid/implant (manufacturer-specific)
+* Process for identification of API endpoints
 * Definition of a DiGA/medical aid API for front-ends (manufacturer-specific)
 * Protection of health data storage or health data processing within a DiGA or a medical device (manufacturer-specific)
 
 ### About the current version
-The current __Draft version__ aims for the validation of the technical concept and specificatory aspects with affected medical aid, implant and DiGA manufacturers as well as other stakeholders. The parts describing the pairing mechanism between DiGA and medical aid or implant for authentication, authorization and logging are general requirements across all product groups and domains. The interoperable values however will be defined per domain. For this Draft version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.md)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.md) and [Roadmap](Roadmap.md).
+The current __ballot version__ aims for the validation of the technical concept and specificatory aspects with affected medical aid, implant and DiGA manufacturers as well as other stakeholders. The parts describing the pairing mechanism between DiGA and medical aid or implant for authorization and logging are general requirements across all product groups and domains. The interoperable values however will be defined per domain. For this Draft version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.md)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.md) and [Roadmap](Roadmap.md).
 
 ### Contact and feedback
 Please submit questions and comments via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16) until 30.11.2025.
@@ -35,7 +36,7 @@ The HDDT Implementation Guide includes IP covered under the following statements
 * The HDDT Implementation Guide derives from HL7 Ressource Definitions, Implementation Guides (e.g. [CGM Summary Profile](https://build.fhir.org/ig/HL7/cgm/)) and the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: https://terminology.hl7.org/license.html
 * Device Properties and other attributes are encoded using vocabularies from DIN EN ISO/IEEE 11073. 
 
-### Acknowledgments
+<!--### Acknowledgments
 This Implementation Guide was developed by the _German Competence Center for Interoperability in Healthcare_ (Kompetenzzentrum für Interoperabilität im Gesundheitswesen, KIG) in fulfillment of § 374a (4) SGB V.
 
 __Primary Editors__:
@@ -50,6 +51,6 @@ __Key Contributors:__
 * Emil Milanov (_fbeta GmbH)
 * Sophia Lückhoff (KIG)
 
-This guide benefited from contributions from rtCGM device vendors, DiGA vendors, and clinicians. Their collective insights were invaluable in shaping the requirements and use cases that were the foundation for the solution specified in this implementation guide.
+This guide benefited from contributions from rtCGM device vendors, DiGA vendors, and clinicians. Their collective insights were invaluable in shaping the requirements and use cases that were the foundation for the solution specified in this implementation guide.-->
 
 
