@@ -1,32 +1,42 @@
+' ===== Palette =====
+!define COL_BG           DFEBF0
+!define COL_TEXT         111111
+!define COL_BORDER       95A4A8
+!define COL_TEAL         5E9BB1
+!define COL_LIGHT_TEAL   A0C5CF
+!define COL_DARK_TEAL    0F2A33
+!define COL_RASPBERRY    BA2C4C
+!define COL_RASPBERRY_MD C85670
+
 ' ===== Global look =====
-skinparam backgroundColor #DFEBF0
+skinparam backgroundColor #COL_BG
 skinparam shadowing false
 skinparam dpi 150
 skinparam RoundCorner 18
-skinparam DefaultFontColor #111111
+skinparam DefaultFontColor #COL_TEXT
 skinparam ArrowThickness 2
-skinparam ArrowColor #5E9BB1
+skinparam ArrowColor #COL_TEAL
 
 ' ===== Objects (for object diagrams) =====
 skinparam object {
   BackgroundColor white
-  BorderColor #95A4A8
+  BorderColor #COL_BORDER
   LineThickness 1.2
-  FontColor #111111
-  StereotypeFontColor #95A4A8
+  FontColor #COL_TEXT
+  StereotypeFontColor #COL_BORDER
 }
 
 ' ===== Generic rectangles (matches your boxes) =====
 skinparam rectangle {
-  BorderColor #95A4A8
+  BorderColor #COL_BORDER
   LineThickness 1.2
-  FontColor #111111
+  FontColor #COL_TEXT
 }
 
 ' Personal Device (teal-blue)
 skinparam rectangle<<Personal Device>> {
-  BackgroundColor #5E9BB1
-  BorderColor #5E9BB1
+  BackgroundColor #COL_TEAL
+  BorderColor #COL_TEAL
   FontColor white
   StereotypeFontColor white
   RoundCorner 20
@@ -35,16 +45,16 @@ skinparam rectangle<<Personal Device>> {
 
 ' Configuration (light teal)
 skinparam rectangle<<Configuration>> {
-  BackgroundColor #A0C5CF
-  BorderColor #A0C5CF
-  FontColor #0F2A33
+  BackgroundColor #COL_LIGHT_TEAL
+  BorderColor #COL_LIGHT_TEAL
+  FontColor #COL_DARK_TEAL
   RoundCorner 16
 }
 
 ' Measured data (deep raspberry)
 skinparam rectangle<<measured data>> {
-  BackgroundColor #BA2C4C
-  BorderColor #BA2C4C
+  BackgroundColor #COL_RASPBERRY
+  BorderColor #COL_RASPBERRY
   FontColor white
   RoundCorner 22
   LineThickness 1.5
@@ -52,8 +62,8 @@ skinparam rectangle<<measured data>> {
 
 ' Derived data (mid raspberry)
 skinparam rectangle<<derived data>> {
-  BackgroundColor #C85670
-  BorderColor #C85670
+  BackgroundColor #COL_RASPBERRY_MD
+  BorderColor #COL_RASPBERRY_MD
   FontColor white
   RoundCorner 18
 }
@@ -61,64 +71,64 @@ skinparam rectangle<<derived data>> {
 ' Domain box (white with teal border)
 skinparam rectangle<<Domain>> {
   BackgroundColor white
-  BorderColor #5E9BB1
+  BorderColor #COL_TEAL
   LineThickness 2.2
-  FontColor #111111
+  FontColor #COL_TEXT
   RoundCorner 10
 }
 
 ' Neutral helper
 skinparam rectangle<<neutral>> {
-  BackgroundColor #DFEBF0
-  BorderColor #95A4A8
+  BackgroundColor #COL_BG
+  BorderColor #COL_BORDER
   LineThickness 1
-  FontColor #111111
+  FontColor #COL_TEXT
 }
 
 ' ===== Sequence-diagram tuning (for your pairing flow) =====
 skinparam Sequence {
-  BorderColor #95A4A8
-  ArrowColor  #5E9BB1
+  BorderColor #COL_BORDER
+  ArrowColor  #COL_TEAL
 
-  LifeLineBorderColor #95A4A8
-  LifeLineBackgroundColor #DFEBF0
+  LifeLineBorderColor #COL_BORDER
+  LifeLineBackgroundColor #COL_BG
 
-  ParticipantBorderColor #5E9BB1
-  ParticipantBackgroundColor #5E9BB1
+  ParticipantBorderColor #COL_TEAL
+  ParticipantBackgroundColor #COL_TEAL
   ParticipantFontColor white
 
-  ActorBorderColor #5E9BB1
-  ActorBackgroundColor #A0C5CF
-  ActorFontColor #0F2A33
+  ActorBorderColor #COL_TEAL
+  ActorBackgroundColor #COL_LIGHT_TEAL
+  ActorFontColor #COL_DARK_TEAL
 
   ' activation bars
-  ActivationBarColor #C85670
-  ActivationBarBorderColor #C85670
+  ActivationBarColor #COL_RASPBERRY_MD
+  ActivationBarBorderColor #COL_RASPBERRY_MD
 
   ' groups (==, alt, etc.)
-  GroupBorderColor #5E9BB1
-  GroupBackgroundColor #A0C5CF
-  GroupFontColor #0F2A33
+  GroupBorderColor #COL_TEAL
+  GroupBackgroundColor #COL_LIGHT_TEAL
+  GroupFontColor #COL_DARK_TEAL
 
   ' references
-  ReferenceBorderColor #5E9BB1
-  ReferenceBackgroundColor #A0C5CF
-  ReferenceFontColor #0F2A33
+  ReferenceBorderColor #COL_TEAL
+  ReferenceBackgroundColor #COL_LIGHT_TEAL
+  ReferenceFontColor #COL_DARK_TEAL
 
   ' notes / dividers
-  NoteBackgroundColor #BA2C4C
-  NoteBorderColor #BA2C4C
+  NoteBackgroundColor #COL_RASPBERRY
+  NoteBorderColor #COL_RASPBERRY
   NoteFontColor white
 
-  DividerBorderColor #95A4A8
-  DividerBackgroundColor #DFEBF0
-  DividerFontColor #95A4A8
+  DividerBorderColor #COL_RASPBERRY_MD
+  DividerBackgroundColor #COL_BG
+  DividerFontColor #COL_RASPBERRY_MD
 }
 
 ' ===== Title frame (red style, rounded, white text) =====
 skinparam titleFontColor white
-skinparam titleBackgroundColor #C85670
-skinparam titleBorderColor #C85670
+skinparam titleBackgroundColor #COL_RASPBERRY_MD
+skinparam titleBorderColor #COL_RASPBERRY_MD
 skinparam titleBorderThickness 0
 skinparam titleBorderRoundCorner 18
 skinparam titleFontSize 18

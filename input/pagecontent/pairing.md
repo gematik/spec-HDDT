@@ -14,18 +14,18 @@ The key requirements for the pairing procedure are:
   interoperability.
 
 From a technical perspective, the pairing process relies on OAuth 2.0 as the authorization framework, extended by SMART
-scopes. Since data retrieval is performed via a RESTful FHIR API, SMART scopes are used to align access control directly
-with FHIR resource types and search parameters. This enables fine-grained access restrictions, such as limiting a DiGA’s
-access to specific vital signs (e.g. blood glucose or blood pressure) or to particular device definitions. By binding
-consent to concrete FHIR query constraints, insured persons gain precise and enforceable control over which data
-elements are shared with a DiGA.
+scopes. Since data retrieval is performed via a RESTful FHIR API, [SMART scopes](smart-scopes.html) are used to align
+access control directly with FHIR resource types and search parameters. This enables fine-grained access restrictions,
+such as limiting a DiGA’s access to specific vital signs (e.g. blood glucose or blood pressure) or to particular device
+definitions. By binding consent to concrete FHIR query constraints, insured persons gain precise and enforceable control
+over which data elements are shared with a DiGA.
 
 A further key element of the pairing process is the pairing ID. This pseudonymous identifier links the insured person’s
 consent with the subsequent data transfer. It ensures that data flows can be traced back to a specific pairing without
 revealing the insured person’s identity.
 
-This document describes the role of the authorization server, the use of OAuth 2.0 and SMART scopes, the purpose of the
-pairing ID, and a deep dive in the pairing process itself.
+This document describes the role of the authorization server, the use of OAuth 2.0
+and [SMART scopes](smart-scopes.html), the purpose of the pairing ID, and a deep dive in the pairing process itself.
 
 ### Authorization Server Prerequisites
 
@@ -37,8 +37,8 @@ for:
 * Issuing OAuth 2.0 access tokens that enable secure communication between the DiGA and the HiMi.
 
 In practice, the authorization server is the technical anchor for the entire pairing mechanism. It ensures that OAuth
-2.0 is applied correctly and that SMART scopes are enforced, while also binding consent and subsequent data flows to the
-pairing ID.
+2.0 is applied correctly and that [SMART scopes](smart-scopes.html) are enforced, while also binding consent and
+subsequent data flows to the pairing ID.
 
 The authorization server MUST implement the following key OAuth 2.0 mechanisms:
 
@@ -64,11 +64,11 @@ The authorization server of the HiMi is operated and configured by the HiMi manu
 essential to ensure that only authorized DiGAs can obtain access tokens and that the granted scopes reflect the intended
 use cases of the HiMi.
 
-The HiMi manufacturer is responsible for publishing and enforcing the supported SMART scopes. Scopes MUST be aligned
-with the FHIR resources and search parameters relevant to the device, e.g., specific vital signs (blood glucose, blood
-pressure) or supported device types. Only scopes that are necessary for the functional use cases of the HiMi MUST be
-exposed. The set of supported scopes MUST be advertised in the authorization server metadata document as defined in
-RFC
+The HiMi manufacturer is responsible for publishing and enforcing the supported [SMART scopes](smart-scopes.html).
+Scopes MUST be aligned with the FHIR resources and search parameters relevant to the device, e.g., specific vital
+signs (blood glucose, blood pressure) or supported device types. Only scopes that are necessary for the functional use
+cases of the HiMi MUST be exposed. The set of supported scopes MUST be advertised in the authorization server metadata
+document as defined in RFC
 
 8414.
 
@@ -79,7 +79,7 @@ a minimum, the following parameters:
 
 * `client_id`
 * `redirect_uri`
-* the set of authorized SMART scopes
+* the set of authorized [SMART scopes](smart-scopes.html)
 
 The `client_id`MUST follow the structure: `urn:diga:bfarm:{DiGA-ID}` where `{DiGA-ID}` is the unique five-digit
 identifier of the DiGA as published in the DiGA directory.
@@ -90,15 +90,14 @@ without undue delay.
 
 #### SMART Scopes and Consent for fine-grained access
 
-The supported SMART scopes MUST be declared by the HiMi authorization server at its discovery endpoint (
-`/.well-known/oauth-authorization-server`) as REQUIRED by [RFC 8414].
+The supported [SMART scopes](smart-scopes.html) MUST be declared by the HiMi authorization server at its discovery
+endpoint ( `/.well-known/oauth-authorization-server`) as REQUIRED by [RFC 8414].
 
-SMART scopes restrict access to resources in a precise and use case–specific manner. They determine which FHIR
-resources, value sets, or device categories a DiGA MAY access. Because these scopes directly control the visibility
-of
-sensitive health data, they MUST be presented to the insured person in a clear and understandable fashion. This
-requirement is realized through the consent dialogue, which ensures that the patient is explicitly informed about the
-requested access rights before granting or denying them.
+[SMART scopes](smart-scopes.html) restrict access to resources in a precise and use case–specific manner. They determine
+which FHIR resources, value sets, or device categories a DiGA MAY access. Because these scopes directly control the
+visibility of sensitive health data, they MUST be presented to the insured person in a clear and understandable fashion.
+This requirement is realized through the consent dialogue, which ensures that the patient is explicitly informed about
+the requested access rights before granting or denying them.
 
 Scopes form the basis of the patient consent dialogue. The insured person MUST be presented with the requested
 scopes in
@@ -152,7 +151,7 @@ revoking these tokens.
 * The access token MUST be standard-conformant and MAY be represented either as a self-encoded JSON Web Token (
   JWT, [RFC 7519]) or as an opaque token.
 * The access token MUST include the following:
-    * the authorized SMART scopes, either in the scope claim (if JWT) or in the token response body;
+    * the authorized [SMART scopes](smart-scopes.html), either in the scope claim (if JWT) or in the token response body;
     * the pairing-id, binding the token to a specific pairing;
     * an expiration time (exp).
 * The lifetime of an access token MUST be limited to 10 minutes.
@@ -208,131 +207,17 @@ the DiGA, and the HiMi. Each step is explained in detail below.
   <img src="assets/images/pairing_sequence_detailed.svg" style="width: 100%;" />
 </div>
 
----
+<br>
 
-**1) Insured Person Initiates HiMi Pairing (DiGA UI)**
+| Process Step                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. Insured Person Initiates HiMi Pairing        | The process begins after the **insured person** logs into the **DiGA** (login is out of scope of this specification). Within the DiGA frontend, the insured person selects the option to pair with a HiMi. The **DiGA** presents a list of compatible HiMi systems and available sensors or devices; the insured person selects the desired options. Finally, the **DiGA** displays the permissions ([SMART scopes](smart-scopes.html)) it intends to request, so the insured person can preview which types of data will later be shared. <br><br> **Failure case:** If the insured person cancels here, no pairing request is initiated.                                                                                                                                                                                                  |
+| 2. Send Authorization Request to HiMi           | The **DiGA** retrieves the HiMi Authorization Server Metadata from [`/.well-known/oauth-authorization-server`](authorization-server-metadata-endpoint.html) to learn about supported endpoints, grant types, and scopes. It then determines the exact scopes required (e.g., specific MIV ValueSets) and generates PKCE parameters. Using mutual TLS, the **DiGA** submits a [Pushed Authorization Request (PAR)](authorization-server-par-endpoint.html) with details such as `client_id`, `redirect_uri`, scope, and PKCE parameters. The **HiMi Authorization Server** authenticates the DiGA via X.509 certificates, validates the request, persists it, and responds with a `request_uri`. <br><br> **Failure case:** If validation fails, the HiMi responds with an error (e.g., `400` or `401`).                                     |
+| 3. Authorization Confirmation by Insured Person | The **DiGA** redirects the **insured person’s** browser to the HiMi Authorization Server’s [`/authorize`](authorization-server-authorization-endpoint.html) endpoint, using the `request_uri` from step 2. The insured person logs into the **HiMi** (login itself is out of scope). The **HiMi** presents a consent dialogue showing the requested [SMART scopes](smart-scopes.html), mapped to categories like “blood glucose” or “blood pressure.” The insured person approves or denies the request. If pairing is approved, the **HiMi** either retrieves an existing Pairing ID for this DiGA or generates a new one, linking it to the insured person’s account and consent record. Consent is then stored and bound to the Pairing ID. <br><br> **Failure case:** If consent is denied, the flow terminates without issuing tokens. |
+| 4. Perform Authorization                        | After consent, the **HiMi Authorization Server** redirects the user agent back to the **DiGA’s** `redirect_uri` with an authorization code. The **DiGA** exchanges this code at the [`/token`](authorization-server-token-endpoint.html) endpoint over mutual TLS, providing the code, client credentials, and PKCE verifier. The **HiMi** validates the request, authenticates the DiGA, and verifies the PKCE challenge. If successful, it issues a token response containing an access token (short-lived), a refresh token (long-lived with rotation), the granted scopes, and the Pairing ID (in the JSON body and, if JWT is used, also as a claim in the token). <br><br> **Failure case:** If the authorization code is invalid or expired, the HiMi responds with `403` or `400`.                                                  |
+| 5. Complete Pairing                             | The **DiGA** stores the resulting state locally, including the Pairing ID, granted scopes, and, where applicable, the prescription or entitlement expiration date. It links this information to its internal consent record to support auditing and revocation handling. Finally, the **DiGA frontend** confirms to the insured person that the pairing has been successfully established. <br><br> **Failure case:** If state persistence fails on the DiGA side, pairing may need to be re-initiated.                                                                                                                                                                                                                                                                                                                                     |
 
-1.1 **Login to DiGA** (out of scope)  
-The insured person authenticates in the DiGA (any DiGA-specific login mechanism).
-
-1.2 **Start pairing**  
-The insured person triggers *Pair with HiMi* in the DiGA frontend.
-
-1.3 **Select HiMi and sensors/devices**  
-The DiGA frontend shows:
-
-- Compatible HiMi systems
-- Compatible sensors/devices for this DiGA  
-  The insured person selects the target HiMi and the relevant device/sensor types.
-
-1.4 **Preview REQUIRED permissions**  
-The DiGA displays the permissions it intends to request (SMART scopes), allowing the insured person to pre-review what
-will later be confirmed on the HiMi side.
-
----
-
-**2) Send Authorization Request to HiMi (Backend-to-Backend, then PAR)**
-
-2.1 **Discovery / Metadata retrieval**  
-The DiGA fetches the HiMi Authorization Server Metadata (`/.well-known/oauth-authorization-server`) to obtain endpoints,
-supported grant types, and `scopes_supported`.
-
-2.2 **Scope selection & PKCE artifacts**  
-The DiGA determines the exact scopes needed (e.g., `vibW` ValueSets; device type filters) and generates PKCE
-parameters (`code_verifier`, `code_challenge(S256)`).
-
-2.3 **Pushed Authorization Request (PAR) over mTLS**  
-The DiGA sends a PAR to the HiMi AS including `client_id`, `redirect_uri`, `scope`, `code_challenge`, etc., using mutual
-TLS (`tls_client_auth`).
-
-2.4 **Mutual authentication and request validation**
-
-- DiGA ↔ HiMi authenticate each other via X.509 certificates
-- The HiMi AS validates the PAR contents (e.g., that `redirect_uri` and requested scopes match the DiGA’s registered
-  profile)
-- The HiMi AS persists the PAR parameters and issues a `request_uri` with `expires_in`
-
----
-
-**3) Authorization Confirmation by the Insured Person (User-Agent Flow)**
-
-3.1 **Front-channel authorize**  
-The DiGA initiates `GET /authorize` with `client_id` and the `request_uri` (from PAR).  
-This is a user-agent redirect so the insured person can interact with the HiMi.
-
-3.2 **HiMi login** (out of scope)  
-The HiMi AS triggers the insured person’s login in the system browser (and, if applicable, via app/deep link).
-
-3.3 **Consent dialog (SMART scopes)**  
-The HiMi frontend displays a human-readable list of the requested scopes (mapped to categories like blood glucose /
-blood pressure, device types, etc.).  
-The insured person reviews and confirms the requested permissions for the DiGA (or cancels).
-
-3.4 **Pairing ID handling**
-
-- If a Pairing ID already exists for this insured person ↔ DiGA, the HiMi locates it
-- Otherwise, the HiMi generates a new Pairing ID, links it to the insured person’s HiMi account, and associates it with
-  this consent
-
-3.5 **Persist consent**  
-The HiMi persists consent bound to the Pairing ID and the insured person’s identity (within HiMi).  
-The consent drives scope enforcement and can be revoked later.
-
----
-
-**4) Perform Authorization (Code Exchange)**
-
-4.1 **Authorization response**  
-The HiMi AS redirects the user agent back to the DiGA `redirect_uri` with an `authorization_code`.
-
-4.2 **Token request over mTLS with PKCE**  
-The DiGA backchannel-calls the HiMi `POST /token` using mTLS (`tls_client_auth`), sending `authorization_code`,
-`code_verifier`, `client_id`, etc.
-
-4.3 **Validation & token issuance**  
-The HiMi AS:
-
-- Authenticates the DiGA via X.509 certificate
-- Validates the `authorization_code` and PKCE (`code_verifier`)
-- Issues the token response, including:
-    - `access_token` (10-minute lifetime)
-    - `refresh_token` (~30-day lifetime with rotation)
-    - Granted scope (the actually consented subset)
-    - The Pairing ID (in JSON body; if JWT is used, also as a claim)
-
----
-
-**5) Complete Pairing (State Finalization, User Feedback)**
-
-5.1 **DiGA stores pairing state**  
-The DiGA records:
-
-- The Pairing ID
-- The granted scopes
-- The prescription/entitlement end date (if applicable)
-
-5.2 **DiGA consent record**  
-The DiGA links its local consent record to the Pairing ID to reflect the patient’s choices and to enable revocation
-handling and auditability.
-
-5.3 **User confirmation**  
-The DiGA frontend confirms the successful pairing to the insured person.
-
----
-
-**Notes (clarifications that align with your model)**
-
-> **Out of scope:** DiGA login and HiMi login are implementation-specific.  
-> **mTLS & X.509:** All backchannel calls (PAR, token) use mutual TLS; both parties validate certificates against
-> registry trust data.  
-> **Scopes presentation:** Requested scopes MUST be human-readable on the HiMi consent screen; the insured person
-> can accept or deny per scope.  
-> **Pairing ID:** Always generated/managed by the HiMi; unique per DiGA–insured pairing; embedded in token response
-> and (if JWT) in the access token.  
-> **Revocation:** If the insured person revokes consent, the HiMi MUST invalidate the refresh token and render
-> related access tokens unusable; the DiGA MUST respect revocation on subsequent calls.  
-> **Resource enforcement:** Scope enforcement (e.g., `code:in=ValueSet` for Observations, `type=` for [Device](https://hl7.org/fhir/R4/device.html)) occurs on
-> the HiMi Resource Server and is described in a separate chapter on resource-server behavior.
+<br>
 
 ### Unpairing by the Insured Person
 
@@ -343,172 +228,29 @@ implant (HiMi). Each step is explained in detail below.
   <img src="assets/images/unpairing_by_patient.svg" style="width: 100%;" />
 </div>
 
----
+<br>
 
-**1) Revocation via DiGA Frontend**
+| Process Step                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. Revocation at the Diga           | The **insured person** initiates revocation of consent for a specific Pairing ID in the **DiGA frontend**. The **DiGA backend** marks the associated consent as invalid and sends a revocation request to the **HiMi Authorization Server’s** [`/revoke`](authorization-server-revocation-endpoint.html) endpoint, including the Pairing ID and refresh token. The **HiMi** invalidates the authorization grant, refresh token, any active access tokens, and the stored consent. It responds with HTTP `200 OK`, and the **DiGA frontend** displays a confirmation that the pairing has been successfully revoked. <br><br> **Failure case:** If the refresh token is already invalid, the HiMi may still return HTTP 200 (per RFC 7009).                                                                                                                                                                                                                                                   |
+| 2. Revocation at the Medical Device | The **insured person** initiates revocation for a specific Pairing ID in the **HiMi frontend**. The **HiMi Authorization Server** invalidates the authorization grant, refresh token, any active access tokens, and the stored consent. The **HiMi frontend** confirms revocation to the insured person. <br><br> After revocation, if the **DiGA** attempts to access data at the HiMi Resource Server, the request fails with HTTP `401 Unauthorized` and an `invalid_token` error. If the **DiGA** attempts to refresh tokens at the [`/token`](authorization-server-token-endpoint.html) endpoint using the revoked refresh token, the HiMi responds with HTTP `400 Bad Request` and `invalid_grant`. The **DiGA backend** then marks the local consent for the Pairing ID as invalid and may optionally notify the insured person. <br><br> **Failure case:** If the DiGA does not handle the 401/400 errors correctly, it may continue attempting to use invalid tokens until corrected. |
 
-1.1 **Insured person initiates revocation**  
-The insured person triggers the revocation of consent for a specific pairing (Pairing ID) in the DiGA frontend.
-
-1.2 **DiGA invalidates local consent**  
-The DiGA backend marks the consent associated with the Pairing ID as invalid.
-
-1.3 **DiGA requests revocation at HiMi**  
-The DiGA backend sends a revocation request to the HiMi authorization server’s `/revoke` endpoint, referencing the Pairing ID and the refresh token.
-
-1.4 **HiMi invalidates authorization artifacts**  
-The HiMi authorization server performs the following actions for the given Pairing ID:
-- Invalidates the authorization grant
-- Invalidates the refresh token
-- Invalidates any active access tokens
-- Invalidates the stored consent
-
-1.5 **HiMi confirms revocation**  
-The HiMi authorization server responds with HTTP 200 OK to the DiGA.
-
-1.6 **DiGA signals revocation to the insured person**  
-The DiGA frontend displays a confirmation that the pairing has been successfully revoked.
-
----
-
-**2) Revocation via HiMi Frontend**
-
-2.1 **Insured person initiates revocation**  
-The insured person triggers the revocation of consent for a specific pairing (Pairing ID) in the HiMi frontend.
-
-2.2 **HiMi invalidates authorization artifacts**  
-The HiMi authorization server performs the following actions for the given Pairing ID:
-- Invalidates the authorization grant
-- Invalidates the refresh token
-- Invalidates any active access tokens
-- Invalidates the stored consent
-
-2.3 **HiMi signals revocation to the insured person**  
-The HiMi frontend displays a confirmation that the pairing has been successfully revoked.
-
-2.4 **DiGA attempts data access (after revocation)**  
-If the DiGA tries to access data at the HiMi resource server after revocation, the request fails with HTTP 401 UNAUTHORIZED and an "invalid_token" error.
-
-2.5 **DiGA attempts token refresh**  
-The DiGA backend attempts to refresh the access token using the revoked refresh token at the HiMi authorization server.
-
-2.6 **HiMi rejects token refresh**  
-The HiMi authorization server responds with HTTP 400 Bad Request and "invalid_grant".
-
-2.7 **DiGA invalidates local consent**  
-The DiGA backend marks the consent associated with the Pairing ID as invalid.
-
-2.8 OPTIONAL: DiGA signals invalidation to the insured person**  
-Optionally, the DiGA frontend displays a notification that the consent has been invalidated.
-
----
-
-**Notes**
-
-> **Revocation propagation:** Revocation at either the DiGA or HiMi frontend ensures that all related tokens and consents are invalidated on both sides.  
-> **Pairing ID:** All revocation actions are bound to the Pairing ID, ensuring precise targeting of the affected pairing.  
-> **Error handling:** After revocation, any attempt by the DiGA to access data or refresh tokens will result in appropriate error responses from the HiMi authorization server.  
-> **User feedback:** Both frontends (DiGA and HiMi) MUST provide clear feedback to the insured person regarding the status of the revocation.
-
+<br>
 
 ### Unpairing by the System
 
-The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and a
-medical aid or implant (HiMi) under specific conditions. 
+The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and
+a
+medical aid or implant (HiMi) under specific conditions.
 
 <div style="width: 80%;">
   <img src="assets/images/unpairing_by_system.svg" style="width: 100%;" />
 </div>
 
----
+<br>
 
-**1) Prescription duration for Pairing ID expired**
-
-1.1 **DiGA checks consent validity**  
-The DiGA backend regularly checks whether the consent (Pairing ID) is still valid, comparing the system time with the expiry date of the prescription.
-
-1.2 **Prescription about to expire**  
-If the prescription is about to expire, the DiGA frontend informs the insured person about the upcoming expiry.
-
-1.3 **Prescription expired**  
-If the prescription has expired:
-- The DiGA backend invalidates the consent for the Pairing ID.
-- The DiGA backend sends a revocation request to the HiMi authorization server’s `/revoke` endpoint, referencing the Pairing ID and the refresh token.
-
-1.4 **HiMi invalidates authorization artifacts**  
-The HiMi authorization server:
-- Invalidates the authorization grant for the Pairing ID.
-- Invalidates the refresh token.
-- Invalidates any active access tokens.
-- Invalidates the stored consent.
-
-1.5 **HiMi confirms revocation**  
-The HiMi authorization server responds with HTTP 200 OK to the DiGA.
-
-1.6 **DiGA signals revocation to the insured person**  
-The DiGA frontend displays a confirmation that the pairing has been successfully revoked.
-
----
-
-**2) DiGA loses authorization for §374a interface**
-
-2.1 **Manufacturer checks DiGA status**  
-The DiGA or HiMi manufacturer queries the DiGA registry to check the status of the DiGA (client_id).
-
-2.2 **DiGA retired or not found**  
-If the DiGA is retired or not found in the registry:
-- The registry responds with "retired" status or HTTP 404 NOT FOUND.
-
-2.3 **Manufacturer requests revocation at HiMi**  
-The manufacturer instructs the HiMi authorization server to:
-- Invalidate the authorization grant for the Pairing ID.
-- Invalidate the refresh token.
-- Invalidate any active access tokens.
-- Invalidate the stored consent.
-- Deregister the DiGA.
-
-2.4 **HiMi signals revocation to the insured person**  
-The HiMi frontend displays a notification that the consent has been invalidated.
-
-2.5 **DiGA data access after revocation**  
-If the DiGA attempts to access data at the HiMi resource server after revocation, the request fails with HTTP 401 UNAUTHORIZED and an "invalid_token" error.
-
-2.6 **DiGA attempts token refresh**  
-The DiGA backend attempts to refresh the access token using the revoked refresh token at the HiMi authorization server.
-
-2.7 **HiMi rejects token refresh**  
-The HiMi authorization server responds with HTTP 400 Bad Request ("invalid_grant") or HTTP 401 UNAUTHORIZED ("authentication failed") if the DiGA has been deregistered.
-
-2.8 **DiGA invalidates local consent**  
-The DiGA backend marks the consent associated with the Pairing ID as invalid.
-
-2.9 OPTIONAL: DiGA signals invalidation to the insured person**  
-Optionally, the DiGA frontend displays a notification that the consent has been invalidated.
-
----
-
-**3) HiMi no longer offers §374a interface**
-
-3.1 **Manufacturer checks HiMi status**  
-The DiGA or HiMi manufacturer queries the HiMi registry to check the status of the HiMi (HiMi-ID).
-
-3.2 **HiMi retired or not found**  
-If the HiMi is retired or not found in the registry:
-- The registry responds with "retired" status or HTTP 404 NOT FOUND.
-
-3.3 **Manufacturer requests revocation at DiGA**  
-The manufacturer instructs the DiGA backend to:
-- Invalidate the consent for the Pairing ID.
-- Remove configurations for the HiMi.
-
-3.4 **DiGA signals revocation to the insured person**  
-The DiGA frontend displays a notification that the consent has been invalidated.
-
----
-
-**Notes**
-
-> **Automatic revocation:** System-initiated unpairing ensures that expired prescriptions, deregistered DiGAs, or retired HiMis result in the invalidation of all related tokens and consents.  
-> **Pairing ID:** All revocation actions are bound to the Pairing ID, ensuring precise targeting of the affected pairing.  
-> **Error handling:** After revocation, any attempt by the DiGA to access data or refresh tokens will result in appropriate error responses from the HiMi authorization server.  
-> **User feedback:** Both frontends (DiGA and HiMi) MUST provide clear feedback to the insured person regarding the status of the revocation.
+| Process Step                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. Prescription duration for Pairing ID expired | The **DiGA backend** regularly checks whether the consent associated with a Pairing ID is still valid by comparing the current system time with the prescription expiry date. If the prescription is about to expire, the **DiGA frontend** informs the insured person. Once expired, the **DiGA backend** invalidates the consent locally and sends a revocation request to the **HiMi Authorization Server’s** [`/revoke`](authorization-server-revocation-endpoint.html) endpoint. The **HiMi** invalidates the authorization grant, refresh token, active access tokens, and stored consent, then responds with HTTP `200 OK`. The **DiGA frontend** confirms to the insured person that the pairing has been revoked. <br><br> **Failure case:** If the DiGA does not trigger revocation, the HiMi tokens may still appear active until they expire naturally.                                                                                                                                   |
+| 2. DiGA loses authorization for §374a interface | The **DiGA** or **HiMi manufacturer** queries the DiGA registry to verify the DiGA’s status (`client_id`). If the DiGA is retired or not found, the registry responds with “retired” or HTTP `404 Not Found`. The **manufacturer** then instructs the **HiMi Authorization Server** to revoke the Pairing ID: it invalidates the grant, refresh token, active tokens, stored consent, and deregisters the DiGA. The **HiMi frontend** displays a notification to the insured person. After revocation, any DiGA access to the HiMi Resource Server fails with HTTP `401 Unauthorized` and `invalid_token`. Attempts to refresh the access token at the [`/token`](authorization-server-token-endpoint.html) endpoint fail with HTTP 400 `invalid_grant` or HTTP 401 Unauthorized. The **DiGA backend** marks the consent as invalid and may optionally notify the insured person. <br><br> **Failure case:** If the DiGA ignores registry updates, it may continue to operate with stale credentials. |
+| 3. HiMi no longer offers §374a interface        | The **DiGA** or **HiMi manufacturer** queries the HiMi registry to check the HiMi’s status (HiMi-ID). If the HiMi is retired or not found, the registry responds with “retired” or HTTP `404 Not Found`. The **manufacturer** then instructs the **DiGA backend** to invalidate the consent for the Pairing ID and remove HiMi-specific configurations. The **DiGA frontend** informs the insured person that the consent has been invalidated. <br><br> **Failure case:** If the DiGA backend does not remove old configurations, the insured person may see outdated device options.                                                                                                                                                                                                                                                                                                                                                                                                                |
