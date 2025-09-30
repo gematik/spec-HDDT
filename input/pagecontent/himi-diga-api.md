@@ -1,14 +1,18 @@
 ### Introduction
-This document describes the generic FHIR API for standardized access to medical device/implant data as FHIR resources for authorized DiGA. The endpoints for the medical aid API have both generic and use-case-specific components.
+Authorized DiGA can access data from medical devices and implants through standard FHIR RESTful APIs and dedicated FHIR operations. These endpoints MUST be implemented by Device Data Recorders as [certification relevant systems](certification-relevant-systems.html)
 
-The linked documents define the generic API definition—the API specification that is shared among different types of medical aid backends. The use-case-specific specification can be found under the menu **MIV-Specific APIs**.
+This chapter defines the endpoints and FHIR profiles which are common to all Mandatory Interoperable Values (MIVs). MIV-specific specifications for _HDDT Observation Profiles_ and HDDT-specific FHIR operations can be found under the menu **MIV-Specific APIs**.
 
-| Description | Standard | Specifications | Quality Criteria |
-|-------------|-----------|----------------|------------------|
-| RESTful FHIR R4 API | rfc8705 | **No** certificate-bound access tokens<br>Manufacturer-specific access tokens | Security: Mutual-TLS Client Authentication |
+### Security Considerations
+
+Access to the HiMi DiGA API MUST be secured according to [RFC 8705: OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens](https://datatracker.ietf.org/doc/html/rfc8705). Details on concrete procedures and requirements for OAuth 2.0 Mutual-TLS Client Authentication are specified in the [Security and Privacy](security-and-privacy.html) chapter. 
+
+With each request the DiGA MUST present a valid access token issued by the OAuth2 Authorization Server of the Device Data Recorder. The access token MUST be bound to the client certificate used for mutual TLS authentication. Datails about issuance and renewal of Access Token are specified in the [OAuth2 Authorization Server](oauth2-authorization-server.html) chapter. Details about the application of the SMART scopes encoded with the Access Token are given in the [Smart Scopes](smart-scopes.html) chapter.
+
+Both DiGA and Device Data Recorder MUST write access and usage logs according to the [Security and Privacy](security-and-privacy.html) chapter. 
 
 ### Endpoints
-A HiMi manufacturer MUST implement the following endpoints, for the purpose of allowing DiGA to access data from personal health devices and medical aids.
+The manufacturer of a certification relevant Device Data Recorder MUST implement the following endpoints, for the purpose of allowing DiGA to access data from medical aid and implants according to § 374a SGB V:
 
 - [API: CapabilityStatement (Metadata)](fhir-api-metadata.html)
 - [API: Observation (Measurement data)](fhir-api-observation.html)
