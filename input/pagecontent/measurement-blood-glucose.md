@@ -78,7 +78,6 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
   </div>
 </div>
 
-<span style="color:red">**@Jörg: Beispiel-Ansicht hier**</span>
 
 <div>
     <p><strong>Detailed description of differential elements</strong></p>
