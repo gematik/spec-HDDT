@@ -85,14 +85,15 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
   "type": {
     "coding": [
       {
-        "system": "http://loinc.org",
-        "code": "15074-8",
-        "display": "Blood glucose measurement"
+        "system": "urn:iso:std:iso:11073:10101",
+        "code": "29112",
+        "display": "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
       }
     ]
   },
   "calibration": {
-    "state": "calibrated"
+    "state": "calibrated",
+    "time" : "2025-09-01T09:08:04+02:00"
   },
   "source": {
     "reference": "Device/dev-123"
@@ -102,7 +103,7 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
 
 #### DeviceMetric - SEARCH
 
-**Request:** GET `/DeviceMetric?type=15074-8`
+**Request:** GET `/DeviceMetric`
 
 **Response:**
 ```json
@@ -118,14 +119,15 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
         "type": {
           "coding": [
             {
-              "system": "http://loinc.org",
-              "code": "15074-8",
-              "display": "Blood glucose measurement"
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "29112",
+              "display": "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
             }
           ]
         },
         "calibration": {
-          "state": "calibrated"
+          "state": "calibrated",
+          "time" : "2025-09-01T09:08:04+02:00"
         },
         "source": {
           "reference": "Device/dev-123"

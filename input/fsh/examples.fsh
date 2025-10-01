@@ -23,35 +23,50 @@ Instance: Example-Glucometer
 InstanceOf: HddtPersonalHealthDevice
 Usage: #example
 Title: "Glucometer Device"
-Description: "Example of a personal health device (glucometer) used for blood glucose measurements."
+Description: """
+Example of a glucometer as a personal health device (glucometer) 
+
+The device _GlukkCheck plus mg/dl_ from _Glukko Inc._ performs "bloody" measurements from capillary blood. 
+As glucometers do not expire (that is just the case for the test stripes), the expiration date is not set.
+
+The vendor-defined model number of this typeof devices is _CGPA987654_ and the serial number of the patient's 
+individual device is _SN123456_. Both identifiers are printed on the back of the device and allow the patient 
+to validate the authenticity of this Personal Health Device resource.
+"""
 * id = "example-glucometer"
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type =  $mdc#528401 "Glucose Monitor"
 * status = #active
 // * statusReason = #online
-* deviceName.name = "Accu-Chek Mobile"
+* deviceName.name = "GlukkoCheck plus mg/dl"
 * deviceName.type = #user-friendly-name
-* manufacturer = "Roche"
+* manufacturer = "Glukko Inc."
 * serialNumber = "SN123456"
-* modelNumber = "Accu-Chek Mobile U1 mg/dl"
+* modelNumber = "CGPA987654"
 * definition = Reference(Example-Glucometer-Def)
 
 Instance: Example-Glucometer-Metric
 InstanceOf: HddtSensorTypeAndCalibrationStatus
 Usage: #example
 Title: "Glucometer Device Metric"
-Description: "Example of a device metric for blood glucose measurements from a glucometer."
+Description: """
+Example of a device metric for blood glucose measurements from a glucometer:
+
+The device measures the glucose concentration from capillary blood by using test strips. 
+The patient's preferred unit is mg/dl which is used by the device for displaying measured values. 
+The glucometer needs to be calibrated by the patient using control strips. 
+The last calibration was performed in Septemer 2025 and the glucometer is still calibrated.
+"""
 * id = "example-glucometer-metric"
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
+* type = $mdc#29112 "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
 * unit = $unitsofmeasure#mg/dL "milligram per deciliter"
 * source = Reference(Example-Glucometer)
 * operationalStatus = #on
 * category = #measurement
-* measurementPeriod.repeat.frequency = 1
-* measurementPeriod.repeat.period = 1
-* measurementPeriod.repeat.periodUnit = #s
+* calibration.type = #gain
 * calibration.state = #calibrated
+* calibration.time = "2025-09-01T09:08:04+02:00"
 
 
 
@@ -165,8 +180,17 @@ Usage: #example
 
 Instance: Example-Device-CGM
 InstanceOf: HddtPersonalHealthDevice
-Title: "Personal Health Device – CGM"
-Description: "Example of a continuous glucose monitoring device"
+Title: "Personal Health Device – rtCGM"
+Description: """
+Example of a realt-time Continuous Glucose Monitoring device (rtCGM) as a personal health device (glucometer) 
+
+The device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. 
+The sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.
+
+The vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's 
+individual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient 
+to validate the authenticity of this Personal Health Device resource.
+"""
 Usage: #example
 * id = "example-device-cgm"
 * status = #active
@@ -174,27 +198,36 @@ Usage: #example
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type = Mdc#528409 "Continuous Glucose Monitor"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
-* deviceName.name = "Dexcom G7 Sensor"
+* deviceName.name = "GlukkoCGM 18"
 * deviceName.type = #user-friendly-name
-* modelNumber = "G7-2025"
+* modelNumber = "GCGMA98765"
+* manufacturer = "Glukko Inc."
 * serialNumber = "CGM1234567890"
 * expirationDate = "2025-09-10"
 
 Instance: Example-DeviceMetric-CGM
 InstanceOf: HddtSensorTypeAndCalibrationStatus
 Title: "DeviceMetric – CGM tissue glucose configuration"
-Description: "Example configuration for CGM measurements"
+Description: """
+Example configuration for measurements from a continuous glucose monitoring (CGM) device
+
+The device measures the glucose concentration from interstitial fluid with a frequency of one measurement every three minutes. 
+The patient's preferred unit is mg/dl.
+The device is calibrated by the manufacturer and does not require user calibration.
+"""
 Usage: #example
 * id = "example-devicemetric-cgm"
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* type = MDC#29140 "MDC_CONC_GLU_ISF"
 * unit = UCUM#mg/dL "milligram per deciliter"
 * source = Reference(Example-Device-CGM)
 * operationalStatus = #on
 * category = #measurement
 * measurementPeriod.repeat.frequency = 1
-* measurementPeriod.repeat.period = 5
+* measurementPeriod.repeat.period = 3
 * measurementPeriod.repeat.periodUnit = #min
+* calibration.type = #unspecified
+* calibration.state = #calibrated
 
 
 Instance: cgmSummaryMeanGlucoseMassPerVolumeExample

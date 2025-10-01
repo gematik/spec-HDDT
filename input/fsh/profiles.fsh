@@ -183,8 +183,8 @@ information about potentially missing data (e.g. due to temporal problems with t
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Configuration or setting capability of a personal health device"
 * . ^definition = "Describes the sensor type and calibration status of a sensor within a Personal Health Device as a DeviceMetric."
-* unit from $ucum-units (preferred)
-* unit ^short = "Unit of the measurement as it is used when presenting data to the patient"
+* unit from $ucum-units (required)
+* unit ^short = "UCUM code of the unit of the measurement as it is used when presenting data to the patient"
 * unit ^definition = "The unit in which the Personal Health Device presents its measurement values to the patient."
 * unit ^requirements = "allow a DiGA to detect the unit the patient is used to"
 * unit ^comment = """
@@ -198,7 +198,7 @@ the app) to mmol/l before displaying it to the patient. In this example the unit
 while `DeviceMetric.unit` is mmol/l. The motivation for this behaviour is to allow the DiGA to obtain information about the 
 patient’s preference and thus to be in sync with the medical aid by displaying measured values in the same unit.
 """
-* unit ^binding.description = "for HDDT only codes from UCUM are allowed for coding units of measurements"
+* unit ^binding.description = "For HDDT only codes from UCUM MUST be used for coding units of measurements"
 * source 1..
 * source only Reference(HddtPersonalHealthDevice)
 * source ^short = "Reference to the Personal Health Device holfing the sensor"
