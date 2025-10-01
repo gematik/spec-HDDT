@@ -126,16 +126,16 @@ pages:
     title: MIV - Continuous Glucose Measurement
     generation: markdown
   fhir-api-observation.html:
-    title: Experimental API Observation
+    title: Endpoint Observation
     generation: markdown
   fhir-api-device.html:
-    title: Experimental API Device
+    title: Endpoint Device
     generation: markdown
   fhir-api-devicemetric.html:
-    title: Experimental API DeviceMetric
+    title: Endpoint DeviceMetric
     generation: markdown
   fhir-api-metadata.html:
-    title: Experimental API Metadata
+    title: Endpoint Metadata
     generation: markdown
   authorization-server-metadata-endpoint.html:
     title: Authorization Server Metadata Endpoint

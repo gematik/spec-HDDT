@@ -1,25 +1,14 @@
 ### Introduction
 
-This document describes the semantics of querying FHIR Observation resources via a RESTful API. Observation resources represent measurements or assertions made about a patient, such as blood glucose or interstitial fluid glucose values. The API supports both retrieving individual Observation resources and searching for Observations matching specific criteria (e.g., by code, date range, or device). Returned resources must conform to the relevant FHIR profiles for the use case.
+This document describes the syntax and semantics of querying FHIR Observation resources via the standard RESTful API. Observation resources represent measurements or assertions made about a patient, such as blood glucose or interstitial fluid glucose values. The API supports 
+- [reading](#device---read) individual Observation resources.
+- [searching](#device---search) for Observation resources linked with the current patient and an authorised MIV. 
 
-This document describes just the generic component of the endpoint, returning measurement data. There are different considerations and additional specifications for each overarching use-case (See [MIVs](mivs.html)). Additional considerations for the Observation endpoint are listed under the **MIV-specific APIs** menu point. For example:
+This document provides a generic API description for accessing measurement data via FHIR Observation resources. To comply with § 374a SGB V, a Device Data Recorder must implement the Observation endpoint according to the requirements of each specific use case or [Mandatory Interoperable Value (MIV)](mivs.html). For details and additional specifications relevant to individual use cases, see the **MIV-specific APIs** menu point. For example:
 
 - [MIV - Blood Glucose Measurement](measurement-blood-glucose.html)
 - [MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)
 
-#### Requests
-
-Most commonly, a GET or POST request will be performed to get multiple Observations. Additional search parameters may be specify in order to constrain what Observations should be returned. Common use cases include:
-
-
-| Request | Explanation |
-|---------|-------------|
-|**GET** `/Observation?code=http://loinc.org\|2339-0&date=ge2025-07-23&`| Request all Observations since the 23rd of July that measure blood sugar with the specific code, and have the specified patient as subject. |
-|**GET** `/Observation?_include=Observation:device`| In the resulting Bundle also include the instances of the `DeviceMetric` resources referenced by the observations.  |
-|**GET** `/Observation?_include=Observation:device&_include:iterate=DeviceMetric:source`| In the resulting Bundle include both DeviceMetric and Device, even if the Device has been referenced only via `DeviceMetric.source`.  |
-| **GET** `/Observation?_sort=-date&_count=1` | Get the latest observation. |
-
----
 
 ### Endpoints
 
@@ -30,12 +19,12 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 | **Endpoint** | `/Observation/<id>` |
 | **HTTP Method** | GET |
 | **Interaction** | READ |
-| **Description** | Retrieve a single Observation resource by its internal server ID. The returned Observation MUST conform to the relevant profile for the use case (see below). |
-| **Request Parameters** | `id` - Internal server ID of the Observation. |
-| **Authentication** | OAuth2 Bearer token required |
-| **Returned Objects** | • FHIR Observation<br><br>Optionally (via search interaction `_include`):<br> •DeviceMetric (via `device`)<br> •Device (via `device`) |
-| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [Observation – Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • Reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
-| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
+| **Description** | Retrieve a single Observation resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id). The returned Observation MUST conform to the MIV-specific Observation profile. All constraints and obligations of the standard [FHIR `read` interaction](https://hl7.org/fhir/R4/resource.html#id) apply. |
+| **Request Parameters** | `id` - logical ID of the Observation. |
+| **Authorization** | OAuth2 Bearer token required. The resource server MUST only return an Observation resource that is linked to the patient in the token and that is accessible by the requestor according to its scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor).  |
+| **Returned Objects** | MIV-specific HDDT Observation resource. |
+| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [Observation – Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • A reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
+| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>•`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>•`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
 
@@ -46,21 +35,21 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 | **Endpoint** | `/Observation` |
 | **HTTP Method** | GET / POST |
 | **Interaction** | SEARCH |
-| **Description** | Search for Observation resources using parameters such as `code`, `date`, and `_include`. Returned Observations MUST conform to the relevant profile for the use case. |
-| **Authentication** | OAuth2 Bearer token required |
-| **Search Parameters** | Search parameters are MIV-specific. Commonly used ones are `code`, `date`, `_include`. See individual use cases for specific search parameters. <br><br> The server MAY support search parameters defined by the FHIR standard; see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
-| **Returned Objects** | • FHIR Observation<br><br>Optionally (via search interaction `_include`):<br> •DeviceMetric (via `device`)<br> •Device (via `device`) |
-| **Specifications** | • Returned resources must conform to the relevant FHIR profiles for the use case (e.g., [Observation – Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html)).<br> • Values must be normalized (`unit/system/code`).<br> • For single measurements use `valueQuantity`; for time series use `valueSampledData`.<br> • Reference via `device` is required for the correct interpretation of data or for accessing the configuration of the device instance. |
-| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
+| **Description** | Search for Observation resources. |
+| **Authorization** | OAuth2 Bearer token required. The resource server MUST only return Observation resources that is linked to the patient in the token and that is accessible by the requestor according to its scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor).  |
+| **Search Parameters** | The resource server MUST be able to discover the patient identifier from the Access Token. This identifier MUST implicitly be considered the `subject` parameter for every search request. If a DiGA explicitly provides a `subject` parameter with a query, the resource server MUST ignore this parameter and SHOULD respond with a `400 Bad Request` error.<br>The resource server MUST support search parameters `code` and `date`.<br>The resource server MAY support additional standard FHIR Observation search parameters. |
+| **Returned Objects** | Bundle containing Observation entries that match the query. Optionally, Device or DeviceMetric resources can be included in the Bundle, if requested via an `_include` search parameter.<br> If no matching Observation resources are found, an empty Bundle MUST be returned. |
+| **Specifications** | After successful [pairing](pairing.html) with a Device Data Recorder, a DiGA will start querying measurements for the patient. The DiGA MAY use search parameters to limit the types or date range of measurements returned. For additional considerations, such as minimum time ranges, handling of missing data, and common scenarios, refer to chapter [Retrieving Data](retrieving-data.html). |
+| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>•`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>•`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 
 ---
 
 ### FHIR Operations
 
-Additional ways to retrieve measurement data might be defined with custom [FHIR Opeartions](https://hl7.org/fhir/R4/operations.html). These operations rely on MIV-specific functionality, thus implementation details are defined under the menu **MIV-specific APIs**. The following table provides to all the operations defined in the scope of this project, and which pages they can be found on:
+Additional ways to retrieve measurement data might be defined with custom [FHIR Operations](https://hl7.org/fhir/R4/operations.html). These operations rely on MIV-specific functionality; implementation details are defined under the menu **MIV-specific APIs**. More information about the need for FHIR operations in the scope of HDDT, see chapter [Retrieving Data](retrieving-data.html#querying-for-aggregated-or-calculated-data). The following table lists all operations defined in the scope of this project and the pages where they can be found:
 
-| Opeartion | Location |
+| Operation | Location |
 | - | - |
 | `hddt-cgm-summary` | [MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html) |
 
@@ -69,6 +58,20 @@ Additional ways to retrieve measurement data might be defined with custom [FHIR 
 
 
 ### Examples
+
+#### Example Search Queries
+
+Most commonly, a GET or POST request will be performed to get multiple Observations. Additional search parameters may be specified in order to constrain what Observations should be returned. Common use cases include:
+
+
+| Request | Explanation |
+|---------|-------------|
+|**GET** `/Observation?code=http://loinc.org\|2339-0&date=ge2025-07-23&`| Request all Observations since the 23rd of July that measure blood sugar with the specific code, and have the specified patient as subject. |
+|**GET** `/Observation?_include=Observation:device`| In the resulting Bundle also include the instances of the `DeviceMetric` resources referenced by the observations.  |
+|**GET** `/Observation?_include=Observation:device&_include:iterate=DeviceMetric:source`| In the resulting Bundle include both DeviceMetric and Device, even if the Device has been referenced only via `DeviceMetric.source`.  |
+| **GET** `/Observation?_sort=-date&_count=1` | Get the latest observation. |
+
+---
 
 
 #### Example: FHIR-READ
@@ -265,3 +268,9 @@ Additional ways to retrieve measurement data might be defined with custom [FHIR 
     ]
 }
 ```
+
+#### OperationOutcome - Bad Syntax
+
+**Description:** Occurs alongside a `400` HTTP status code, denoting that the server is unable to process the request due to a client error — malformed request syntax, too large request size, etc.
+
+{% include OperationOutcome-HddtCgmSummaryOutcomeBadSyntax-json-html.xhtml %}
