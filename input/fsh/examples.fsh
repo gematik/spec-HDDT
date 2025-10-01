@@ -196,7 +196,7 @@ Usage: #example
 * status = #active
 // * statusReason = #online
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type = Mdc#528409 "Continuous Glucose Monitor"
+* type = $mdc#528409 "Continuous Glucose Monitor"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "GlukkoCGM 18"
 * deviceName.type = #user-friendly-name
@@ -218,7 +218,7 @@ The device is calibrated by the manufacturer and does not require user calibrati
 Usage: #example
 * id = "example-devicemetric-cgm"
 * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = MDC#29140 "MDC_CONC_GLU_ISF"
+* type = $mdc#29140 "MDC_CONC_GLU_ISF"
 * unit = UCUM#mg/dL "milligram per deciliter"
 * source = Reference(Example-Device-CGM)
 * operationalStatus = #on
