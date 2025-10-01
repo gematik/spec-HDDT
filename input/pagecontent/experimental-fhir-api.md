@@ -5,11 +5,10 @@ A HiMi manufacturer MUST implement the following endpoints, for the purpose of a
 
 ### Endpoints
 
-- [API: CapabilityStatement (Metadata)](experimental-api-metadata.html)
-- [API: Observation (Measurement data)](experimental-api-observation.html)
-- [API: DeviceMetric (Device calibration)](experimental-api-devicemetric.html)
-- [API: Device (Device instance and configuration)](experimental-api-device.html)
-
+- [API: CapabilityStatement (Metadata)](fhir-api-metadata.html)
+- [API: Observation (Measurement data)](fhir-api-observation.html)
+- [API: DeviceMetric (Device calibration)](fhir-api-devicemetric.html)
+- [API: Device (Device instance and configuration)](fhir-api-device.html)
 
 <p style="color:red">Optionally all the sections below can be removed, since they are described in other chapters. E.g. FHIR interactions and content type is described in [Use of HL7 FHIR](use_of_hl7_fhir.html).</p>
 

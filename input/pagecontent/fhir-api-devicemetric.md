@@ -1,5 +1,3 @@
-### Introduction
-
 This document describes the syntax and semantics of querying FHIR DeviceMetric resources via the standard FHIR RESTful API. A DeviceMetric resource represents a status instance of a medical aid or implant, and is always referenced by a measurement. In the context of HDDT, a DeviceMetric represents the [calibration status](retrieving-data.html#device-status-and-device-configuration) of a medical aid or implant.
 
 - [reading](#devicemetric---read) individual DeviceMetric resources that are referenced by Observations, and  

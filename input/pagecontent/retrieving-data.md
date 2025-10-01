@@ -14,7 +14,7 @@ This section describes the fundamental mechanisms for exchanging measurement dat
 ### Querying for Device Data
 
 In general, data can be measured in two different scenarios by personal health devices:
-* dedicated measurements: scheduled by a defined care plan or triggered by an unscheduled event, the patient performs a measurement using a medical aid. The measurement takes a defined period of time and records single values for one or more data items (e.g. pulse and blood pressure). Typical examples of devices, which are used ad hoc or based on a care plan are blood glucose meters, smart insulin pens, blood pressure cuffs and peak flow meters.
+* dedicated measurements: scheduled by a defined care plan or triggered by an unscheduled event (e.g. a patient feeling sick). A dedicated measurement occurs at a dedicated points in time and records single values for one or more data items (e.g. systolic and dystolic blood pressure). Typical examples of devices which are used ad hoc or based on a care plan are blood glucose meters, smart insulin pens, blood pressure cuffs and peak flow meters.
 * continuous measurements: The patient is connected to a sensor (almost) all the time and the sensor continuously measures and records data. Typical examples of devices that perform continuous measurements are rtCGM, insulin pumps and pace makers.
 
 In addition, there are also devices and scenarios, which combine both paradigms, e.g.
@@ -31,8 +31,8 @@ The specification of the techncal interfaces for retrieving device data consider
 
 #### Searching Observations Using FHIR _search_ Interactions
 
-DiGA request device data from a device data recorder (see [information model](information-model.md])) using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
-The device data recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
+DiGA request device data from a Device Data Recorder (see [information model](information-model.md])) using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
+The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
 
 The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](pairing.html#access-tokens). This access token was issued by the [Authorization Server](authorization-server.html) of the device data recorder and MUST be taken as opaque by the DiGA. 
  
@@ -72,7 +72,7 @@ ___Remark__: As stated in [General Considerations](general-considerations.md), d
 
 #### Paging
 
-In accordance with the [HL7 FHIR specification](https://hl7.org/fhir/R4/http.html#paging), supporting _paging_ is recommended but optional for device data recorders. DiGA manufacturers MUST consider, that a specific device data recorder may only be able to respond with a limited number of [Observation](https://hl7.org/fhir/R4/observation.html) resources in response to a query. 
+In accordance with the [HL7 FHIR specification](https://hl7.org/fhir/R4/http.html#paging), supporting _paging_ is recommended but optional for device data recorders (SHOULD). DiGA manufacturers MUST consider, that a specific device data recorder may only be able to respond with a limited number of [Observation](https://hl7.org/fhir/R4/observation.html) resources in response to a query. 
 
 #### Device Status and Device Configuration
 
@@ -172,7 +172,7 @@ Values from continuous measurements MUST be provided as chunks of [sampledData](
   
 The owner of the device data recorder MUST define the _chunk-time-span_ of measurements that can be covered by a single chunk. E.g. if the owner of the device data recorder defines a _chunk-time-span_ of 24 hours for a chunk, each chunk can hold up to 1440 data points for a Personal Health Device that measures data every minute. A chunk MAY cover a shorter period of time than the _chunk-time-span_ (e.g. when the calibration status of the device changed during measurments), but it MUST NOT exceed that value. The _chunk-time-span_ is part of the device definition and can be requested by DiGA trough a defined `property` of the __Device Data Recorder Definition__ resource.
 
-In a query for continuously measured data results in multiple chunks ([Observation](https://hl7.org/fhir/R4/observation.html)s), each chunk's `Observation.effectivePeriod`MUST have the length of the _chunk-time-span_. The only exceptions are changes to the `calibration.state` or a change of the personal health device (see below). In these cases a chunk's `Observation.effectivePeriod` can be shorter than the _chunk-time-span_.
+In a query for continuously measured data results in multiple chunks ([Observation](https://hl7.org/fhir/R4/observation.html)s), each chunk's `Observation.effectivePeriod` MUST have the length of the _chunk-time-span_. The only exceptions are changes to the `calibration.state` or a change of the personal health device (see below). In these cases a chunk's `Observation.effectivePeriod` can be shorter than the _chunk-time-span_.
 
 A chunk MAY be in a _preliminary_ `state`. This is the case if the chunk is not filled with values up to the _chunk-time-span_ and the device data recorder expects more data to come until the end of the time period covered by the chunk. The figure below shows an example of a _preliminary_ chunk for a device data recorder with a _chunk-time-span_ of 24 hours and a Personal Health Device with a sample rate of one data point per minute. The `search` query stated by an authorized DiGA requests for all data from May 4th until now. The newest data available to the decvice data recorder is from May, 6th 10:00 am. 
 
