@@ -175,18 +175,18 @@ The server MUST support the following endpoints.
                 "code": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
-                            "code": "2339-0",
-                            "display": "Glucose [Mass/volume] in Blood"
+                          "system": "http://loinc.org",
+                          "code": "105272-9",
+                          "display": "glucose [moles/volume] in interstitial fluid"
                         }
                     ]
                 },
                 "effectiveDateTime": "2025-08-20T07:05:02.165Z",
                 "valueQuantity": {
-                    "value": 301,
-                    "unit": "mg/dL",
+                    "value": 16.7,
+                    "unit": "mmol/L",
                     "system": "http://unitsofmeasure.org",
-                    "code": "mg/dL"
+                    "code": "mmol/L"
                 },
                 "device": {
                     "reference": "DeviceMetric/67"
@@ -205,18 +205,18 @@ The server MUST support the following endpoints.
                 "code": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
-                            "code": "2339-0",
-                            "display": "Glucose [Mass/volume] in Blood"
+                          "system": "http://loinc.org",
+                          "code": "105272-9",
+                          "display": "glucose [moles/volume] in interstitial fluid"
                         }
                     ]
                 },
                 "effectiveDateTime": "2025-08-20T07:05:03.664Z",
                 "valueQuantity": {
-                    "value": 125,
-                    "unit": "mg/dL",
+                    "value": 6.5,
+                    "unit": "mmol/L",
                     "system": "http://unitsofmeasure.org",
-                    "code": "mg/dL"
+                    "code": "mmol/L"
                 },
                 "device": {
                     "reference": "DeviceMetric/67"
@@ -357,6 +357,28 @@ Perform the FHIR Operation to request a summary of aggregated values over the sp
   ]
 }
 ```
+
+#### Example OperationOutcome - Unknown Parameter
+
+**Description:** Occurs a parameter that is not supported by the operation is sent in the request body.
+
+{% include OperationOutcome-HddtCgmSummaryOutcomeUnknownParam-json-html.xhtml %}
+
+
+#### Example OperationOutcome - Required Missing
+
+**Description:** While a FHIR search interaction that finds no matches returns an empty Bundle, this Operation returns an OperationOutcome.
+
+{% include OperationOutcome-HddtCgmSummaryOutcomeNoResults-json-html.xhtml %}
+
+
+#### Example OperationOutcome - Invalid Format
+
+**Description:** Parameters `effectivePeriodStart` and `effectivePeriodEnd` are defined to take in `date` as parameter type. If the requested date cannot be parsed by the server, the following OperationOutcome is returned.
+
+{% include OperationOutcome-HddtCgmSummaryOutcomeInvalid-json-html.xhtml %}
+
+
 
 ### Conventions and Best Practice
 

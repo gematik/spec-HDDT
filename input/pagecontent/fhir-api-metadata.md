@@ -43,7 +43,8 @@ This document describes the `/metadata` endpoint for retrieving the FHIR Capabil
           "name": "hddt-cgm-summary",
           "definition": "https://gematik.de/fhir/hddt/OperationDefinition/hddt-cgm-summary-operation"
         }
-      ]
+      ],
+      "searchParam": [{"name": "date", ...}, {"name": "code", ...}]
     },
     {
       "type": "Bundle",
@@ -56,14 +57,16 @@ This document describes the `/metadata` endpoint for retrieving the FHIR Capabil
       "supportedProfile": [
         "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
       ],
-       "interaction": [{ "code": "read" }, { "code": "search-type" }]
+       "interaction": [{ "code": "read" }, { "code": "search-type" }],
+      "searchParam": [{"name": "type", ...}]
     },
     {
       "type": "DeviceMetric",
       "supportedProfile": [
         "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
       ],
-       "interaction": [{ "code": "read" }, { "code": "search-type" }]
+       "interaction": [{ "code": "read" }, { "code": "search-type" }],
+      "searchParam": [{"name": "source", ...}]
     }
   ]
 }
