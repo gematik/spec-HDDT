@@ -6,10 +6,10 @@ Alias: $mdc = urn:iso:std:iso:11073:10101
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement
 Usage: #example
-Title: "Blood Glucose Measurement"
+Title: "HDDT Blood Glucose Obervation Example"
 Description: "Example of a blood glucose measurement taken with a glucometer."
 * id = "example-blood-glucose"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-08-28T08:30:00Z"
@@ -20,21 +20,20 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 
 
 Instance: Example-Glucometer
-InstanceOf: HddtPersonalHealthDevice
+//InstanceOf: HddtPersonalHealthDevice
+InstanceOf: Device
 Usage: #example
-Title: "Glucometer Device"
+Title: "HDDT Glucometer Device Example"
 Description: """
-Example of a glucometer as a personal health device (glucometer) 
-
+Example of a __glucometer as a personal health device__:
 The device _GlukkCheck plus mg/dl_ from _Glukko Inc._ performs "bloody" measurements from capillary blood. 
 As glucometers do not expire (that is just the case for the test stripes), the expiration date is not set.
-
 The vendor-defined model number of this typeof devices is _CGPA987654_ and the serial number of the patient's 
 individual device is _SN123456_. Both identifiers are printed on the back of the device and allow the patient 
 to validate the authenticity of this Personal Health Device resource.
 """
 * id = "example-glucometer"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type =  $mdc#528401 "Glucose Monitor"
 * status = #active
 // * statusReason = #online
@@ -46,19 +45,19 @@ to validate the authenticity of this Personal Health Device resource.
 * definition = Reference(Example-Glucometer-Def)
 
 Instance: Example-Glucometer-Metric
-InstanceOf: HddtSensorTypeAndCalibrationStatus
+// InstanceOf: HddtSensorTypeAndCalibrationStatus
+InstanceOf: DeviceMetric
 Usage: #example
-Title: "Glucometer Device Metric"
+Title: "HDDT Glucometer DeviceMetric Example"
 Description: """
-Example of a device metric for blood glucose measurements from a glucometer:
-
+Example of a __DeviceMetric for blood glucose measurements__ from a glucometer:
 The device measures the glucose concentration from capillary blood by using test strips. 
 The patient's preferred unit is mg/dl which is used by the device for displaying measured values. 
 The glucometer needs to be calibrated by the patient using control strips. 
 The last calibration was performed in Septemer 2025 and the glucometer is still calibrated.
 """
 * id = "example-glucometer-metric"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = $mdc#29112 "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
 * unit = $unitsofmeasure#mg/dL "milligram per deciliter"
 * source = Reference(Example-Glucometer)
@@ -67,7 +66,6 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 * calibration.type = #gain
 * calibration.state = #calibrated
 * calibration.time = "2025-09-01T09:08:04+02:00"
-
 
 
 // Instance: Example-Glucometer-Def
@@ -114,11 +112,11 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 
 Instance: Example-CGM-Series
 InstanceOf: HddtContinuousGlucoseMeasurement
-Title: "CGM Measurement Series"
+Title: "HDDT rtCGM Full Chunk Observation Example"
 Description: "Example of a CGM time series with 1-minute intervals over 1 hour (60 samples)."
 Usage: #example
 * id = "example-cgm-series"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #final
 * code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
@@ -142,11 +140,11 @@ Usage: #example
 
 Instance: Example-CGM-Series-Incomplete
 InstanceOf: HddtContinuousGlucoseMeasurement
-Title: "CGM Measurement Series Incomplete"
+Title: "HDDT rtCGM Incomplete Chunk Observation Example"
 Description: "Example of a CGM time series with 1-minute intervals over 10 minutes (10 samples), but incomplete."
 Usage: #example
 * id = "example-cgm-series-incomplete"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #preliminary
 * code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
@@ -165,11 +163,11 @@ Usage: #example
 
 Instance: Example-Observation-CGM-Series-Data-Unavailable
 InstanceOf: HddtContinuousGlucoseMeasurement
-Title: "CGM Measurement Series – Data Unavailable"
+Title: "HDDT rtCGM Data Unavailable Observation Example"
 Description: "Example of a CGM time series with status preliminary and dataAbsentReason"
 Usage: #example
 * id = "example-cgm-series-data-unavailable"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #preliminary
 * code = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-09-01T08:00:00+02:00"
@@ -179,14 +177,13 @@ Usage: #example
 * note.text = "Sensor warm-up phase, values not yet validated."
 
 Instance: Example-Device-CGM
-InstanceOf: HddtPersonalHealthDevice
-Title: "Personal Health Device – rtCGM"
+// InstanceOf: HddtPersonalHealthDevice
+InstanceOf: Device
+Title: "HDDT rtCGM Device Example"
 Description: """
-Example of a realt-time Continuous Glucose Monitoring device (rtCGM) as a personal health device (glucometer) 
-
+Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: 
 The device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. 
 The sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.
-
 The vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's 
 individual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient 
 to validate the authenticity of this Personal Health Device resource.
@@ -195,7 +192,7 @@ Usage: #example
 * id = "example-device-cgm"
 * status = #active
 // * statusReason = #online
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
 * type = $mdc#528409 "Continuous Glucose Monitor"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "GlukkoCGM 18"
@@ -207,24 +204,23 @@ Usage: #example
 
 Instance: Example-DeviceMetric-CGM
 InstanceOf: HddtSensorTypeAndCalibrationStatus
-Title: "DeviceMetric – CGM tissue glucose configuration"
+Title: "HDDT rtCGM DeviceMetric Example"
 Description: """
-Example configuration for measurements from a continuous glucose monitoring (CGM) device
-
-The device measures the glucose concentration from interstitial fluid with a frequency of one measurement every three minutes. 
-The patient's preferred unit is mg/dl.
+Example __configuration for measurements from a real-time Continuous Glucose Monitoring (rtCGM)__:
+The device measures the glucose concentration from interstitial fluid with a frequency of one measurement every minute. 
+The the unit set by the patient for displaying measured values is mg/dl.
 The device is calibrated by the manufacturer and does not require user calibration.
 """
 Usage: #example
 * id = "example-devicemetric-cgm"
-* meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = $mdc#29140 "MDC_CONC_GLU_ISF"
 * unit = UCUM#mg/dL "milligram per deciliter"
 * source = Reference(Example-Device-CGM)
 * operationalStatus = #on
 * category = #measurement
 * measurementPeriod.repeat.frequency = 1
-* measurementPeriod.repeat.period = 3
+* measurementPeriod.repeat.period = 1
 * measurementPeriod.repeat.periodUnit = #min
 * calibration.type = #unspecified
 * calibration.state = #calibrated
@@ -232,7 +228,7 @@ Usage: #example
 
 Instance: cgmSummaryMeanGlucoseMassPerVolumeExample
 InstanceOf: CGMSummaryMeanGlucoseMassPerVolume
-Title: "Mean Glucose (Mass) Example"
+Title: "HL7 CGM Summary: Mean Glucose (Mass) Example"
 Description: "This example is an instance of the Mean Glucose (Mass) profile. It represents a summary observation of the mean glucose level for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 145 mg/dL (mass per volume)."
 Usage: #example
 * status = #final
@@ -245,7 +241,7 @@ Usage: #example
 
 Instance: cgmSummaryMeanGlucoseMolesPerVolumeExample
 InstanceOf: CGMSummaryMeanGlucoseMolesPerVolume
-Title: "Mean Glucose (Molar) Example"
+Title: "HL7 CGM Summary: Mean Glucose (Molar) Example"
 Description: "This example is an instance of the Mean Glucose (Molar) profile. It represents a summary observation of the mean glucose level for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 8.1 mmol/L (moles per volume)."
 Usage: #example
 * status = #final
@@ -257,7 +253,7 @@ Usage: #example
 
 Instance: cgmSummaryTimesInRangesExample
 InstanceOf: CGMSummaryTimesInRanges
-Title: "CGM Summary Times in Ranges Example" 
+Title: "HL7 CGM Summary: Times in Ranges Example" 
 Usage: #example
 Description: "This example is an instance of the CGM Summary Times in Ranges profile. It represents a summary observation of the time a patient spent in different glucose ranges over the period from May 1, 2024, to May 31, 2024. The recorded values are 3% in the very low range, 8% in the low range, 65% in the target range, 20% in the high range, and 4% in the very high range."
 * status = #final
@@ -273,7 +269,7 @@ Description: "This example is an instance of the CGM Summary Times in Ranges pro
 
 Instance: cgmSummaryGMIExample
 InstanceOf: CGMSummaryGMI  
-Title: "GMI Example"
+Title: "HL7 CGM Summary: GMI Example"
 Description: "This example is an instance of the Glucose Management Indicator (GMI) profile. It represents a summary observation of the estimated A1C-like value (GMI) for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 6.8%."
 Usage: #example
 * status = #final
@@ -285,7 +281,7 @@ Usage: #example
 
 Instance: cgmSummaryCoefficientOfVariationExample
 InstanceOf: CGMSummaryCoefficientOfVariation
-Title: "Coefficient of Variation Example"
+Title: "HL7 CGM Summary: Coefficient of Variation Example"
 Description: "This example is an instance of the Coefficient of Variation (CV) profile. It represents a summary observation of the glucose variability for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded coefficient of variation value of 34%."
 Usage: #example
 * status = #final
@@ -298,7 +294,7 @@ Usage: #example
 
 Instance: cgmSummaryDaysOfWearExample
 InstanceOf: CGMSummaryDaysOfWear
-Title: "Days of Wear Example"
+Title: "HL7 CGM Summary: Days of Wear Example"
 Description: "This example is an instance of the Days of Wear profile. It represents a summary observation of the number of days a Continuous Glucose Monitoring (CGM) device was worn by the patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 28 days."
 Usage: #example
 * status = #final
@@ -310,7 +306,7 @@ Usage: #example
 
 Instance: cgmSummarySensorActivePercentageExample  
 InstanceOf: CGMSummarySensorActivePercentage
-Title: "Sensor Active Percentage Example" 
+Title: "HL7 CGM Summary: Sensor Active Percentage Example" 
 Description: "This example is an instance of the Sensor Active Percentage profile. It represents a summary observation of the percentage of time a Continuous Glucose Monitoring (CGM) sensor was active for the patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 95%." 
 Usage: #example
 * status = #final
@@ -322,7 +318,7 @@ Usage: #example
 
 Instance: cgmSummaryExample
 InstanceOf: CGMSummaryObservation
-Title: "CGM Summary Example"
+Title: "HL7 CGM Summary: CGM Summary Example"
 Description: "This example is an instance of the CGM Summary profile. It provides a consolidated summary of a patient's CGM data over one month, linking to more detailed observations for specific metrics."
 Usage: #example
 * status = #final
@@ -340,7 +336,7 @@ Usage: #example
 Instance: example-cgm-summary-bundle
 InstanceOf: HddtCgmSummary
 Usage: #example
-Title: "Example Bundle – CGM Summary Data with Device Context"
+Title: "HL7 CGM Summary: Example Bundle"
 Description: "Bundle containing CGM summary observations for a patient together with associated Device and DeviceMetric resources."
 
 * id = "example-cgm-summary-bundle"
@@ -381,7 +377,7 @@ Description: "Bundle containing CGM summary observations for a patient together 
 
 Instance: HddtCgmSummaryOutcomeUnknownParam
 InstanceOf: OperationOutcome
-Title: "OperationOutcome - Unknown parameter error"
+Title: "HL7 CGM Summary OperationOutcome Example: Unknown parameter error"
 Description: "Returned when an unsupported input parameter is provided."
 * issue[0].severity = #error
 * issue[0].code = #invalid
@@ -392,7 +388,7 @@ Description: "Returned when an unsupported input parameter is provided."
 
 Instance: HddtCgmSummaryOutcomeInvalid
 InstanceOf: OperationOutcome
-Title: "OperationOutcome - Invalid parameter error"
+Title: "HL7 CGM Summary OperationOutcome Example: Invalid parameter error"
 Description: "Returned when a parameter value is invalid."
 * issue[0].severity = #error
 * issue[0].code = #invalid
@@ -403,7 +399,7 @@ Description: "Returned when a parameter value is invalid."
 
 Instance: HddtCgmSummaryOutcomeNoResults
 InstanceOf: OperationOutcome
-Title: "OperationOutcome - No results information"
+Title: "HL7 CGM Summary OperationOutcome Example: No results information"
 Description: "Returned when no CGM observations are found."
 * issue[0].severity = #information
 * issue[0].code = #not-found
@@ -414,7 +410,7 @@ Description: "Returned when no CGM observations are found."
 
 Instance: HddtCgmSummaryOutcomeRequiredMissing
 InstanceOf: OperationOutcome
-Title: "OperationOutcome - Required parameter missing"
+Title: "HL7 CGM Summary OperationOutcome Example: Required parameter missing"
 Description: "Returned when required input parameters are missing."
 * issue[0].severity = #error
 * issue[0].code = #invalid
@@ -425,7 +421,7 @@ Description: "Returned when required input parameters are missing."
 
 Instance: HddtCgmSummaryOutcomeBadSyntax
 InstanceOf: OperationOutcome
-Title: "OperationOutcome - Bad syntax error"
+Title: "HL7 CGM Summary OperationOutcome Example: Bad syntax error"
 Description: "Returned when the request is malformed."
 * issue[0].severity = #error
 * issue[0].code = #invalid

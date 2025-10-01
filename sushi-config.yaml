@@ -45,6 +45,7 @@ parameters:
   default-publisher: false
   propagate-status: false
   showsource: true
+  skip-narrative: true
   # logging: [init, progress, tx, generate]
 
 

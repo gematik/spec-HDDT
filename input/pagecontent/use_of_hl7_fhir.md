@@ -81,9 +81,11 @@ Manufacturers who implement the HDDT FHIR API MAY use any FHIR profiles that fur
 * _Must Support_ elements from the HDDT profile are _mandatory_ or _Must Support_ in the derived profile
 * _Mandatory_ elements from the HDDT profile are still _mandatory_ with the derived profile
 
-In any case the implementor MUST be aware that a DiGA as the consumer of the HDDT FHIR resources MAY
-* ignore any `extension` elements with the resource unless these extensions are defined by the HDDT specification
-* throw an error upon receipt of resources that contain `modifierExtension`.
+When using derived or compliant profiles, the manufacturer MAY include a respective `meta.profile` reference with a resource instance. A DiGA MAY ignore such `meta.profile` references. A DiGA MUST always validate received resources against the HDDT profile regardless of value of the `meta.profile` element.
+
+In addition, the implementor of a HDDT profile MUST be aware that a DiGA as the consumer of the HDDT FHIR resources
+* MAY ignore any `extension` elements with the resource unless these extensions are defined by the HDDT specification
+* MUST throw an error upon receipt of resources that contain `modifierExtension` that the DiGA is not ableto interpret.
 
 Implementations that regularly trigger errors with a resource consuming DiGA MAY be considered as not compliant with the HDDT specifications. DiGA manufacturers who are affected by such errors MAY request gematik for a renewal of the conformance approval of the resource providing Health Record's HDDT implementation.
 
