@@ -11,6 +11,15 @@ A Device Data Recorder MUST NOT transmit any data to a DiGA that allows the DiGA
 - SHOULD NOT include a `subject` reference with any resources that are transmitted to a DiGA
 - MUST NOT use identifying data within a `subject` reference (if such a reference is included with a resource). 
 
+#### Pseudonymous Identifier
+
+To enable user-based data transmission, DiGA and Device Data Recorder MUST agree on a common identifier for the insured person. This identifier is specific to the combination of DiGA and Personal Health Device. It MUST be a pseudonym, meaning that third parties MUST NOT be able to infer the identity of the data subject solely from the identifier itself.
+
+Neither Personal Health Devices nor DiGA SHALL obtain knowledge of the patient's health insurance number (KVNR). In addition, medical data transmitted via FHIR MUST NOT contain information that reveals or enables inference of the insured person’s identity.
+
+Further normative requirements and technical details regarding the identifier are specified in the dedicated [Pairing ID](pairing.md#pairing-id)
+chapter.
+
 #### Pairing ID
 Nevertheless, DiGA and Device Data Recorder must agree on a common identifier for the patient in order to be able to implement data transmission on a user-based basis. The identifier must be specific to the combination of DiGA and Personal Health Device. It must be a pseudonym, i.e. it must be excluded that third parties can draw conclusions about the identity of the data subject solely from knowledge of the identifier. 
 
