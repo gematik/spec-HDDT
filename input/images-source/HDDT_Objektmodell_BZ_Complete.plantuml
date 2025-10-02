@@ -29,14 +29,16 @@ package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's
 
     object "Glucose Sensor Type and Calibration Status" as Metric <<FHIR DeviceMetric>> {
         type = 29112|iso:11073:10101
+        unit = mg/dL|UCUM
         calibration.state = calibrated
     }
 
     object "Glucose Meter" as PHD <<FHIR Device>> {
+        status = active
         type = 528401|iso:11073:10101
-        deviceName = "glucocheck plus"
-        manufacturer = "gluko inc."
-        serialNumber = "123456789"
+        deviceName = "GlukkoCheck plus mg/dl"
+        manufacturer = "Glukko Inc."
+        serialNumber = "SN123456
     }
 
     IV2 --> Metric : "device"
@@ -45,8 +47,8 @@ package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's
 }
 
 package "Repository for gematik FHIR IGs" as gematik SPEC {
-    object "Observation Blood Glucose Profile" as OP <<FHIR StructureDefinition>> {
-        name = "Observation_Blood_Glucose"
+    object "Observation - Blood Glucose Measurement" as OP <<FHIR StructureDefinition>> {
+        name = "HddtBloodGlucoseMeasurement"
         type = Observation
         baseDefinition = <<FHIR Observation>>
         derivation = constraint
@@ -54,12 +56,12 @@ package "Repository for gematik FHIR IGs" as gematik SPEC {
 }
 
 package "ZTS (German Central Terminology Server)" as ZTS VIBW {
-    enum "Blood_Glucose_Value" as MIV  <<FHIR ValueSet>> {
-        url = " https://terminologien.bfarm.de/fhir/ValueSet/VS-Blood-Glucose-Value"
+    enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
+        url = " https://terminologien.bfarm.de/fhir/\n           ValueSet/hddt-miv-blood-glucose-measurement"
         version = "1.0.0"
-        title = "Blood Glucose Value"
-        name = "VS_Blood_Glucose_Value"
-        description = "LOINC codes for blood glucose measurements"
+        title = "ValueSet - Blood Glucose Measurement from LOINC"
+        name = "HddtMivBloodGlucoseMeasurement"
+        description = "therapy mgmt and clinical decisions"
         compose.include = 2339-0|LOINC, 15074-8|LOINC, ...
     }
 }
@@ -68,12 +70,12 @@ package "HiMi-SST-VZ (Device Registry at BfARM)" as HDDT_Registries BFARM {
 
     object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
         type = 528401|iso:11073:10101
-        deviceName = "glucocheck plus"
-        manufacturer = "gluko inc."
-        property[0] = (Store-Capacity-Count, 200)
-        property[1] = (Real-Time-Delay, 15 minutes)
-        property[2] = (Grace-Period, 15 minutes)
-        property[3] = (Historic-Data-Period, 90 days)
+        deviceName = "GlukkoCheck plus mg/dl"
+        manufacturer = "Glukko Inc."
+        property[0] = (Real-Time-Delay, 15 minutes)
+        property[1] = (Grace-Period, 15 minutes)
+        property[2] = (Historic-Data-Period, 90 days)
+        property[3] = (Store-Capacity-Count, 200 items)
     }
 }
 
@@ -81,6 +83,5 @@ PHD --> PHD_Def : "definition"
 MIV <.up. OP : "implements"
 IV1 <. OP : "defines"
 IV1::code ..> MIV : "included with"
-
 
 @enduml

@@ -68,7 +68,7 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
 </div>
 
 
-### Example Glucometer 
+### Example: Glucometer 
 
 In this example the patient uses a glucometer that is connected to the Device Data Recorder via Bluetooth. The glucometer is used to perform blood glucose measurements that are stored as Observation resources in the Device Data Recorder. Each Observation references the Device resource that represents the glucometer (either directly or through a DeviceMetric resource).
 
@@ -76,7 +76,6 @@ The glucometer used in this example is the product _GlukkCheck plus mg/dl_ from 
 
 Remarks:
 - As glucometers do not expire (that is just the case for the test stripes), the `expirationDate` is not set, even though this element is set to _Must Support_ in the profile.
-- The `meta.profile` element is omitted in this example. Device Data Recorders MAY use any other profile than _HDDT Personal Health Device_ as long as the returned resource conforms to the constraints of the _HDDT Personal Health Device_ profile (see [Use of HL7 FHIR](use_of_hl7_fhir.html#using-existing-and-derived-profiles)).
 - The `text` element is omitted in this example to keep the example small. Nevertheless, as all HDDT resources are intended for sole machine processing, the `text` element MAY be omitted.
 
 #### Device - READ
@@ -156,14 +155,13 @@ Remarks:
 }
 ```
 
-### Example rtCGM Sensor
+### Example: rtCGM Sensor
 
 This example describes a real-time Continuous Glucose Monitoring sensor (rtCGM) as a personal health device.
 
 The example sensor is the product _GlukkoCGM 18_ from _Glukko Inc._ that performs continuous glucose measurements from interstitial fluid. The sensor in the example will stop transmitting data on September 10, 2025, and must be replaced by the patient at that date. The vendor-defined model number of this type of devices is _GCGMA98765_ and the serial number of the patient's  individual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient to validate the authenticity of this Personal Health Device resource.
 
 Remarks:
-- The `meta.profile` element is omitted in this example. Device Data Recorders MAY use any other profile than _HDDT Personal Health Device_ as long as the returned resource conforms to the constraints of the _HDDT Personal Health Device_ profile (see [Use of HL7 FHIR](use_of_hl7_fhir.html#using-existing-and-derived-profiles)).
 - The `text` element is omitted in this example to keep the example small. Nevertheless, as all HDDT resources are intended for sole machine processing, the `text` element MAY be omitted.
 
 #### Instance of the HDDT Personal Health Device profile

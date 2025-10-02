@@ -76,7 +76,6 @@ In this example the patient uses a glucometer that is connected to the Device Da
 In the given example the device measures the glucose concentration from capillary blood by using test strips. The patient’s preferred unit is mg/dl which is used by the device for displaying measured values. The glucometer needs to be calibrated by the patient using control strips. The last calibration was performed in Septemer 2025 and the glucometer is still calibrated.
 
 Remarks:
-- The `meta.profile` element is omitted in this example. Device Data Recorders MAY use any other profile than _HDDT Sensor Type and Calibration Status_ as long as the returned resource conforms to the constraints of the _HDDT Sensor Type and Calibration Status_ profile (see [Use of HL7 FHIR](use_of_hl7_fhir.html#using-existing-and-derived-profiles)).
 - The `text` element is omitted in this example to keep the example small. Nevertheless, as all HDDT resources are intended for sole machine processing, the `text` element MAY be omitted.
 
 
