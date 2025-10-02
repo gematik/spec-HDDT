@@ -392,10 +392,6 @@ Description: "Bundle containing CGM summary observations for a patient together 
 * entry[8].fullUrl = "https://gematik.de/fhir/hddt/Device/example-device-cgm"
 * entry[8].resource = Example-Device-CGM
 
-* entry[9].fullUrl = "https://gematik.de/fhir/hddt/DeviceMetric/example-devicemetric-cgm"
-* entry[9].resource = Example-DeviceMetric-CGM
-
-
 Instance: HddtCgmSummaryOutcomeUnknownParam
 InstanceOf: OperationOutcome
 Title: "HL7 CGM Summary OperationOutcome Example: Unknown parameter error"
