@@ -1,82 +1,49 @@
-**To Do**
-* Update to last information model status (Emil, Jie)
-* Review (Jie)
 
-### Introduction
 
-This document provides implementation guidance for manufacturers integrating data from continuous glucose measurement (CGM) devices, using a RESTful FHIR API. It builds on the [Generic FHIR API](himi-diga-api.html) and describes the specific requirements for exposing interstitial fluid glucose measurements to DiGA, including:
+This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Continuous Glucose Measurement_.  
 
-- The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html), including any required FHIR operations.
-- The relevant FHIR profiles for interstitial fluid glucose measurement and how they should be returned by the API.
-- Conventions for using FHIR resources to ensure compliance with the [Information model](information-model.html).
-- Example requests and responses to support implementation.
+This chapter builds on the [HDDT Information Model](information-model-html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing continuous glucose measurements to DiGA, including:
 
+- The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
+- The relevant FHIR profile for continuous glucose measurement and how it constraints and extends the [HDDT Information Model](information-model-html)
+- Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
+- Example requests and responses to support implementation
 
 ### Implementation Duties for Manufacturers of Device Data Recorders
 
-Manufacturers of Device Data Recorders MUST register their product with BfARM. For a successful registration they MUST implement an OAuth2 Authorization Server and an FHIR Resource Server acc. to this specification. For both services they MUST consider the requirements on [security, privacy](security-and-privacy.html) and [operational service levels](operational-requirements.html).
+Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ 
+- MUST implement and operate a FHIR Resource Server as defined in this chapter, 
+- MUST implement and operate an [OAuth2 Authorization Server](authorization-server.html),
+- MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HiMi-SST-VZ_ (BfArM Device Registry),
+- MUST consider the HDDT requirements on [security, privacy](security-and-privacy.html) and [operational service levels](operational-requirements.html).
 
-#### OAuth2 Authorization Server
+Further obligations MAY be defined by gematik and BfArM as part of the upcoming processes for conformance validation and registration.
 
-to do: Hinweise auf die einschlägigen Stellen in der Spezifikation
-
-#### FHIR Resource Server
-The FHIR Resource Server gives DiGA access to measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Continuous Glucose Measurement_ MUST implement the following endpoints and profiles:
+### FHIR Resource Server
+The Device Data Recorder's FHIR Resource Server gives DiGA access to continuoulsy measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Continuous Glucose Measurement_ MUST implement the following endpoints and profiles:
 
 * retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](use_of_hl7_fhir.html#metadata-endpoint).
-* _read_ and _search_ interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#devicemetric).
-* _read_ and _search_ interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interaction can be found [here](himi-diga-api.html#device).
-* _read_ and _search_ interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT-continuous-glucose-measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Continuous Glucose Measurement_. The full specifications are given below.
+* _read_ and _search_ interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](himi-diga-api.html#devicemetric).
+* _read_ and _search_ interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](himi-diga-api.html#device).
+* _read_ and _search_ interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Continuous Glucose Measurement_. The full specifications are given below.
 
-All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server. The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html).
+The figure below shows the adaption of the [HDDT Information Model](information-model-html) for the MIV _Continuous Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Continuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
 
-### FHIR API
+<div style="width: 80%;">
+  <img src="assets/images/HDDT_Informationsmodell_MIV_Cont_Glucose.svg" style="width: 100%;" />
+</div>
 
-The server MUST support the following endpoints.
+All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.md) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Continuous Glucose Measurement_ only the following scopes MUST be set:
+```
+patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement
+patient/Device.rs
+patient/DeviceMetric.rs
+```
 
-**FHIR Interactions**: The specified FHIR interactions are the same as in [Generic HiMi FHIR API](himi-diga-api.html).
+### Observation Profile _HDDT Continuous Glucose Measurement_
+This section discusses the _HDDT Continuous Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing continuous glucose measurements. For the full normative specifiction of this profile see the respective [StructureDefinition](StructureDefinition-hddt-continuous-glucose-measurement.html).
 
-**Authentication**: The authentication and authorization requirements for these endpoints are the same as the [Generic HiMi FHIR API](himi-diga-api.html).
-
-### Endpoint - Metadata
-
-| | |
-|-|-|
-| **Endpoint** | `/metadata` |
-|**Description** | Provide a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) that contains information about the supported endpoints, resource interactions, and search parameters. |
-|**Specifications** | This endpoint has no deviations from the [Generic FHIR API specifications.](himi-diga-api.html) |
-
----
-
-### Endpoint - Observation
-
-#### Observation - READ
-
-| | |
-|-|-|
-| **Endpoint** | `/Observation/<id>` |
-| **HTTP Method** | GET |
-| **Interaction** | READ |
-| **Description** | Retrieve a single interstitial fluid glucose Observation by its internal server ID. Such scenario is unlikely to occur, but MUST be supported. <br> The returned Observation MUST conform to the HDDT hddt-continuous-glucose-measurement profile. Subsequent request can be made on the `/Device` or `/DeviceMetric` endpoints, to resolve the reference in `Observation.device`, and obtain the device calibration status or configuration. |
-| **Request Parameters** | `id` - Referring to the internal server ID of the Observation. |
-| **Returned Objects** | • [hddt-continuous-glucose-measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) |
-| **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
-
----
-
-#### Observation - SEARCH
-
-| | |
-|-|-|
-| **Endpoint** | `/Observation` |
-| **HTTP Method** | GET / POST |
-| **Interaction** | SEARCH |
-| **Description** | Search for interstitial fluid glucose Observations. Common use cases include retrieving the latest observation, retrieving only observations that measure interstitial fluid glucose in mg/dL, and retrieving all measurements across a certain date range. <br>Requests with the search parameter `_include=Observation:device` can be used to return DeviceMetric and Device resources referenced by `Observation.device` in the same Bundle. |
-| **Search Parameters** | Parameters that MUST be supported are:<br> • `code` - Search for Observations of a specific type<br> • `date` - Specify a date range <br> • `_include` - Optionally include DeviceMetric and Device resources, referenced by `Observation.device`. <br><br> The server MAY support other search parameters; see [FHIR Observation - Search Parameters](https://hl7.org/fhir/R4/observation.html#search) for an overview of all HL7-defined search parameters on Observation resources. |
-| **Returned Objects** | • Bundle containing [hddt-continuous-glucose-measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) entries and optionally [hddt-sensor-type-and-calibration-status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) and [hddt-personal-health-device](StructureDefinition-hddt-personal-health-device.html) when requested via `_include`. |
-| **Error codes** | See [Generic HiMi FHIR API](himi-diga-api.html) for a list of the expected HTTP status codes |
-
-#### Profile
+#### Snapshot and Differential View of the Profile
 
 <div id="tabs-key">
   <div id="tbl-key">
@@ -92,6 +59,145 @@ The server MUST support the following endpoints.
     </div>
   </div>
 </div>
+
+<div>
+    <p><strong>Detailed description of differential elements</strong></p>
+    <a name="tabs-diff"> </a>
+    <div id="tabs-diff">
+      {%include StructureDefinition-hddt-continuous-glucose-measurement-dict-diff.xhtml%}
+    </div>
+</div>
+
+For information on general constraints and terminology bindings see the full [StructureDefinition](StructureDefinition-hddt-continuous-glucose-measurement.html) for this profile.
+
+#### Conventions and Best Practice
+
+##### Lo and Hi Values
+Real-Time Continuous Glucose Monitoring devices (rtCGM) usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the rtCGM usually indicates this with a special value (e.g. "LO" or "HI"). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, a respective indicater ("L" for value below the lower limit and "U" for values above the upper limit) MUST be placed in the data list in `valueSampledData.data`. If `valueSampledData.data` contains "L" or "U" values, the Device Data Recorder SHOULD fill the `valueSampledData.lowerLimit` and `valueSampledData.upperLimit` element with the values of the lower and upper limits for valid measurements.
+
+Example for a blood glucose measurement below the measurable range (35 mg/dl) of the rtCGM:
+
+```json
+{
+  "resourceType": "Observation",
+  "id" : "example-cgm-series",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "99504-3",
+        "display": "Glucose [Mass/volume] in Interstitial fluid"
+      }
+    ]
+  },
+  "effectivePeriod" : {
+    "start" : "2025-08-28T08:00:00Z",
+    "end" : "2025-08-28T09:00:00Z"
+  },
+  "valueSampledData": {
+    "origin" : {
+      "value" : 0,
+      "unit" : "mg/dL",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mg/dL"
+    },
+    "period" : 60000,
+    "dimensions" : 1,
+    "lowerLimit" : 35,
+    "upperLimit" : 360,
+    "data" : "110 111 112 113 114 115 116 117 118 119 
+              120 121 122 123 124 125 126 127 128 129 
+              130 129 128 127 126 125 124 123 122 121 
+              116 112 102  98  90  86  82  77  72  67 
+               60  55  52  48  44  40  36   L   L   L 
+               37  40  45  45  48  53  60  64  70  76" 
+  },
+  "device": {
+    "reference": "DeviceMetric/12345"
+  }
+}
+```
+
+##### Quality of Data and Missing Values
+The manufacturers of the Device Data Recorder MUST handle missing measurements which occured due to interrupted communication to/from the sensor. 
+
+If temporarely no data is available for the full period that is requested by the DiGA, a `valueSampledData` MUST NOT be provided. Instead, the `dataAbsentReason` element MUST be provided with the value 'temp-unknown'. The `status` MUST be set to be 'preliminary' in this case.
+
+If temporarely no data is available for the full period covered by a chunk, a `valueSampledData` MUST NOT be provided for this chunk. Instead, the `dataAbsentReason` element MUST be provided with the value 'temp-unknown'for this chunk. The `status` of this chunk MUST be set to be 'preliminary' in this case. Other chunks are filled as usual with a status set to `final`.
+
+If temporarely missing data affects only the last chunk in a response, the available data MUST be provided in `valueSampledData.data` and the `effectivePeriod` MUST cover the full period of the chunk. The `status` MUST be set to be 'preliminary'. This signals to the DiGA that the data is incomplete. The `dataAbsentReason` element MUST NOT be used in this case.
+
+The following example shows a chunk of data where onlythe first 20 minutes of the chunk period are filled with data. The remaining 40 minutes of the chunk period are missing. 
+
+```json
+{
+  "resourceType": "Observation",
+  "id" : "example-cgm-chunk-1",
+  "status": "preliminary",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "99504-3",
+        "display": "Glucose [Mass/volume] in Interstitial fluid"
+      }
+    ]
+  },
+  "effectivePeriod" : {
+    "start" : "2025-08-28T08:00:00Z",
+    "end" : "2025-08-28T09:00:00Z"
+  },
+  "valueSampledData": {
+    "origin" : {
+      "value" : 0,
+      "unit" : "mg/dL",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mg/dL"
+    },
+    "period" : 60000,
+    "dimensions" : 1,
+    "data" : "110 111 112 113 114 115 116 117 118 119 
+              120 121 122 123 124 125 126 127 128 129"
+  },
+  "device": {
+    "reference": "DeviceMetric/12345"
+  }
+}
+``` 
+A DiGA that receives such a chunk MAY use the logical `id` with consecutive _read_ interactions to just obtain the temporarely missig data. 
+
+A receiving DiGA SHOULD validate, that the unit defined in `valueSampledData.origin.code` matches the UCUM unit of the LOINC code in the `code` element. If the unit does not match, the DiGA MUST NOT use the value for any calculations or display.
+
+This specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle data from uncalibrated devices. If such data is provided by the Device Data Recorder, the `device` element MUST reference a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that indicates the calibration status of the sensor. If the `device` element does not reference a DeviceMetric resource, the DiGA MUST assume that the provided data originates from a calibrated sensor.  
+
+#### Examples
+
+The following object diagram the relationships between the FHIR resources involved in representing continuous glucose measurements according to the [HDDT Information Model](information-model-html) and the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile for two chunks of a continuous glucose measurement. The fixed chunk size is 1 hour, and the measurement interval is 5 minutes. Thus, each chunk contains 12 measurements. The later chunk is incomplete because measurements for the last 40 minutes are pending.
+Elements that are not mandatory oder MS for the MIV _Contiuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+
+<div style="width: 75%;">
+  <img src="assets/images/HDDT_Objektmodell_CGM_Complete.svg" style="width: 100%;" />
+</div>
+
+The following code example shows the concrete JSON representation of the _HDDT Continuous Glucose Measurement 1_ resource shown in the object diagram.
+
+```json
+{
+  "resourceType": "Observation",
+  "status": "final",
+}
+```
+
+
+
+### MIV-specific Endpoints and Interactions
+#### Observation - READ
+Manufactures of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile.
+
+#### Observation - SEARCH
+Manufactures of Device Data Recorders that support the MIV Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _serach_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. 
+
 
 
 #### Examples - FHIR Search GET
@@ -230,19 +336,31 @@ The server MUST support the following endpoints.
 }
 ```
 
-### FHIR Operation
+### FHIR Operation : HDDT CGM Summary
 
-| | |
-|-|-|
-| **Resource** | Observation |
-| **Operation name** | `$hddt-cgm-summary` |
-|**Purpose** |  Request a summary of desired CGM values (e.g tissue glucose values below lower threshold) for a certain range of time. |
-|**Parameters** |  See section "[OpenAPI Description](#openapi-description) for parameter definitions and examples.<br> • `effectivePeriodStart (dateTime)` (optional) <br> • `effectivePeriodEnd (dateTime)` (optional) - End of the effective time period <br> •  `related (boolean)` (optional)|
-| **Specifications** | • Summary is calculated at run-time and results are not stored persistently. <br> •  MUST support all profiles listed in `hddt-cgm-summary` bundle. <br> • MUST support all listed parameters.<br> •  If no period is specified, the server selects a time range starting from the current date, which MUST cover at least 14 days.<br> •  The Summary-Operation MUST support a minimal duration of 7 days for the effective period, and an error must be returned if the client requests a shorter time period. |
+This operation and the related profiles define the exchange of aggregated measurement data for the Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\". The operation provides a patient's glucose profile for a defined period. 
 
-#### Profiles
+#### Profile 
+The _HDDT CGM Summary_ profile constrains the FHIR Bundle resource for a glucose profile that is calculated from continuous glucose measurement data (e.g. from a CGM sensor). The profile covers the machine-readable parts of the [_HL7 CGM summary profile_](https://build.fhir.org/ig/HL7/cgm/). 
 
+The Bundle is of type _collection_ and MUST contain only resources of the following types:  
+- Observations conforming to [HL7 CGM profiles](https://build.fhir.org/ig/HL7/cgm/): 
+    - [CGM Summary Observation](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)
+    - [Mean Glucose (Mass)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)
+    - [Mean Glucose (Moles)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)
+    - [Times in Ranges](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-times-in-ranges.html)
+    - [Glycemic Variability Index (GMI)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-gmi.html)
+    - [Coefficient of Variation](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-coefficient-of-variation.html)
+    - [Days of Wear](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-days-of-wear.html)!
+    - [Sensor Active Percentage](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)
+- Device resources conforming to [HddtPersonalHealthDevice](StructureDefinition-hddt-personal-health-device.html) to provide context about the sensors that contributed to the summary data.  
 
+The purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic. It ensures interoperability across different implementations by defining a predictable response format. This supports use cases such as:  
+- Retrieval of CGM summary metrics over a given time interval in support for the upcoming digital disease management program (dDMP) on Diabetes, e.g. for 
+    - continuous therapy monitoring and adjustment
+    - forwarding key data to treating physicians, e.g. for clinical decision support
+    - supporting asynchonous telemonitoring by ad hoc provisioning of condensed status information
+- Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring
 
 <div id="tabs-key">
   <div id="tbl-key">
@@ -260,12 +378,41 @@ The server MUST support the following endpoints.
 </div>
 
 ---
----
 
 The Observation profile for the CGM summary report is defined by HL7: [StructureDefinition-cgm-summary](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)
 
+#### Operation `$hddt-cgm-summary`
 
-#### Example
+| | |
+|-|-|
+| **Resource** | Observation |
+| **Operation name** | `$hddt-cgm-summary` |
+|**Purpose** |  Request a CGM Summary Report containing CGM key values for a defined range of time. |
+|**Parameters** |  See below |
+|**Result** |  A Bundle containing one Observation resource conforming to the [HDDT CGM Summary](StructureDefinition-hddt-cgm-summary.html) profile. If the `related` parameter is set to true, the Bundle also contains all Device resources for the sensors that contributed to the report. |
+| **Specifications** | The CGM summary report is calculated at request-time. From the Device Data Recorder's perspective, the report is a snapshot solely assembled for a volatile request. Therefore the Device Fata Recorder MAY not persist the report and MAY assign a logical `id` to the report that is not addressable. As a consequence a _read_ interaction for this `id` MAY result in an _404 Not Found_ error. <br> The Device Data Recorder MUST support all Observation profiles listed in the [hddt-cgm-summary bundle](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-hddt-cgm-summary.html). If the Device Data Recorder does not support some of these observations it MUST for these observations provide Observation Resources with no `value[x]` and `dataAbsentReason` set to _unknown_.  |
+
+##### Request Parameters
+
+All parameters are provided in the request body as JSON, following the [FHIR Parameters](https://hl7.org/fhir/R4/parameters.html) resource pattern.  
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `effectivePeriodStart` | dateTime | Optional | Start of the effective time period that is to be covered by the requested report. |
+| `effectivePeriodEnd` | dateTime | Optional | End of the effective time period that is to be covered by the requested report |
+| `related` | boolean | optional | When set to true, the result bundle includes Device resources for the sensors from which the data was measured. |
+ 
+ A Device Data Recorder MUST support all listed parameters.
+ 
+ If no start for the effective period is specified, the Device Data Recorder selects a time range starting from the current date, which MUST cover at least 7 days into the past. If there is no data available for the full period, the Device Data Recorder MAY return an error.
+
+ If no end for the effective period is specified, the end date is assumed to be the current date. If the period is shorter than 7 days, the Device Data Recorder MAY return an error.
+ 
+ If neither a start time nor an end time is give, the Device Data Recorder selects a time range starting from the current date, which MUST cover at least 7 days into the past. If there is no data available for the full period, the Device Data Recorder MAY return an error.
+
+The Summary-Operation MUST support a minimal duration of 7 days for the effective period, and an error MAY be returned if the client requests a shorter time period.
+
+#### Examples
 
 **Request:** POST `/Observation$hddt-cgm-summary`
 
@@ -380,22 +527,3 @@ Perform the FHIR Operation to request a summary of aggregated values over the sp
 
 
 
-### Conventions and Best Practice
-
-- Always use the latest version of the Observation profile.
-- Only `valueSampledData` is permitted as the result of the Observation for tissue glucose time-series (CGM) measurements.
-- The `code` element MUST be selected from the [ValueSet – Continuous Glucose Measurement](ValueSet-hddt-miv-continuous-glucose-measurement.html) and be consistent with the units supported by the device.
-- The unit in the LOINC code’s display MUST match `valueSampledData.unit` or `valueSampledData.code`.
-- When calibration status is relevant, `Observation.device` MUST reference a `DeviceMetric` resource that records sensor type and calibration details.
-- If calibration is not relevant for the device, `Observation.device` MUST reference a `Device` resource.
-- If `valueSampledData` is missing, a `dataAbsentReason` MUST be provided.
-- Set `status` to reflect whether the Observation is complete (i.e., no more `valueSampledData.data` can be added); see [Retrieving Data](retrieving-data.html) for additional considerations.
-- Ensure referenced Device/DeviceMetric resources are available (use `_include=Observation:device` in searches when appropriate).
-
-
-### Conventions for DeviceMetric and Device Resources
-
-- The Observation MUST reference a DeviceMetric resource if the calibration status of the device changes.
-- Refer to [himi-diga-api.md](himi-diga-api.html) for generic implementation details.
-- DeviceMetric should capture calibration and configuration status.
-- Device should provide manufacturer, serial number, and device type.

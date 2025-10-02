@@ -6,7 +6,7 @@ Alias: $mdc = urn:iso:std:iso:11073:10101
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement
 Usage: #example
-Title: "HDDT Blood Glucose Obervation Example"
+Title: "HDDT Blood Glucose Obervation Example (general)"
 Description: "Example of a blood glucose measurement taken with a glucometer."
 * id = "example-blood-glucose"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
@@ -15,13 +15,35 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * effectiveDateTime = "2025-08-28T08:30:00Z"
 * valueQuantity = 110 'mg/dL' "mg/dL"
 * device = Reference(Example-Glucometer-Metric)
-* referenceRange.low = 70 'mg/dL' "mg/dL"
-* referenceRange.high = 140 'mg/dL' "mg/dL"
 
+Instance: Example-Blood-Glucose-Measurement-1
+InstanceOf: HddtBloodGlucoseMeasurement
+Usage: #example
+Title: "HDDT Blood Glucose Measurement 1 (from Example Object Diagram) "
+Description: "Example of a blood glucose measurement taken with a glucometer."
+* id = "example-blood-glucose-measurement-1"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+* status = #final
+* code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
+* effectiveDateTime = "2025-09-26T12:00:00+02:00"
+* valueQuantity = 120 'mg/dL' "mg/dL"
+* device = Reference(Example-Glucometer-Metric)
+
+Instance: Example-Blood-Glucose-Measurement-2
+InstanceOf: HddtBloodGlucoseMeasurement
+Usage: #example
+Title: "HDDT Blood Glucose Measurement 2 (from Example Object Diagram) "
+Description: "Example of a blood glucose measurement taken with a glucometer."
+* id = "example-blood-glucose-measurement-2"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+* status = #final
+* code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
+* effectiveDateTime = "2025-09-26T16:30:00+02:00"
+* valueQuantity = 129 'mg/dL' "mg/dL"
+* device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Glucometer
-//InstanceOf: HddtPersonalHealthDevice
-InstanceOf: Device
+InstanceOf: HddtPersonalHealthDevice
 Usage: #example
 Title: "HDDT Glucometer Device Example"
 Description: """
@@ -45,8 +67,7 @@ to validate the authenticity of this Personal Health Device resource.
 * definition = Reference(Example-Glucometer-Def)
 
 Instance: Example-Glucometer-Metric
-// InstanceOf: HddtSensorTypeAndCalibrationStatus
-InstanceOf: DeviceMetric
+InstanceOf: HddtSensorTypeAndCalibrationStatus
 Usage: #example
 Title: "HDDT Glucometer DeviceMetric Example"
 Description: """

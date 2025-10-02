@@ -1,7 +1,7 @@
 
 This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Blood Glucose Measurement_.  
 
-This chapter builds on the [HDDT Information Model](information-model-html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constaints these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model-html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
 - The relevant FHIR profile for blood glucose measurement and how it constraints and extends the [HDDT Information Model](information-model-html)
@@ -10,7 +10,7 @@ This chapter builds on the [HDDT Information Model](information-model-html), the
 
 ### Implementation Duties for Manufacturers of Device Data Recorders
 
-Manufacturers of Device Data Recorders that support the MIV _Blood Glucose Measurement" 
+Manufacturers of Device Data Recorders that support the MIV _Blood Glucose Measurement_ 
 - MUST implement and operate a FHIR Resource Server as defined in this chapter, 
 - MUST implement and operate an [OAuth2 Authorization Server](authorization-server.html),
 - MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HiMi-SST-VZ_ (BfArM Device Registry),
@@ -133,7 +133,7 @@ The following code example shows the concrete JSON representation of the _HDDT B
     ]
   },
   "valueQuantity": {
-    "value": 91205,
+    "value": 120,
     "unit": "mg/dL",
     "system": "http://unitsofmeasure.org",
     "code": "mg/dl"

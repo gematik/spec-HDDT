@@ -16,10 +16,10 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     class IV as "Interoperable Value" <<FHIR Observation>> {
         status = final
         code : classification of the measured value [1..1]
-        effectiveDateTime : date and time of the measurement [1..1]
-        valueQuantity.value : quantity value of the measurement [1..1]
-        valueQuantity.system = UCUM
-        valueQuantity.code = mg/dL|mmol/L
+        date : date and time of the measurement [1..1]
+        value.value : quantity value of the measurement [1..1]
+        value.system : UCUM
+        value.unit = mg/dL|mmol/L
     }
 
     class Metric as "Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
@@ -54,17 +54,6 @@ package gematik as "Repository for gematik FHIR IGs" SPEC {
     }
 }
 
-package "HiMi-SST-VZ (Device Registry at BfARM)" as HDDT_Registries BFARM {
-
-    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
-        type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
-        deviceName : product name [1..1]
-        manufacturer : name of the manufacturer [0..1]
-        property[0] = (Real-Time-Delay, ...)
-        property[1] = (Grace-Period, ...)
-        property[2] = (Historic-Data-Period, ...)
-    }
-}
 
 package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
     enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
@@ -80,8 +69,8 @@ package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
 'IV::code --> MIV : "included with"
 'Metric::type --> MIV : "included with"
 
-PHD --> PHD_Def : "definition"
-MIV <.up. OP : "implements"
+
+MIV <.. OP : "implements"
 IV <. OP : "defines"
 IV::code .> MIV : "included with"
 

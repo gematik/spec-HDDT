@@ -1,6 +1,14 @@
 The HDDT specification is based on several fundamental decisions intended to reduce complexity and ensure that its
 interfaces remain economically viable for manufacturers.
 
+### Holistic Approach
+
+The HDDT solution enables a DiGA to retrieve standardised health data of the same insured person of medical aids and after explicit consent of the insured person - without establishing bilateral contractual relationships between the manufacturers. The system is based on a holistic 4-pillar architectural approach:
+- Model: The FHIR-based transmission of health data as [Mandatory Interoperable Values (MIVs)](methodology.html#from-use-cases-to-mivs) in the form of [FHIR Observation resources](https://hl7.org/fhir/R4/observation.html) for vital signs (blood sugar, blood pressure, body temperature) builds upon a comprehensive [information model](information-model.md).
+- Components: Five main systems orchestrate the legally compliant data exchange:  [_DiGA Verzeichnis_](registries-and-zts.html#diga-verzeichnis) (BfArM DiGA Directory), [_HiMi-SST-VZ_](registries-and-zts.html#himi-sst-vz) (BfArM Device Directory), [ZTS](registries-and-zts.html#zentraler-terminologieserver) (Central Terminology Server), backend/front-end systems of DiGA, and backend/front-end systems of Device Data Recorders as responsible controllers of the data (see [Logical Building Blocks](logical-viewpoints.html#logical-building-blocks) for details). 
+- Interfaces: OAuth 2.0 for [secure authorization](authorization-server.html) combined with [RESTful FHIR APIs](himi-diga-api.html) allow for an interoperable data transfer based on international standards.
+- Processes: Three clearly defined main processes - [coupling of the systems](pairing.html) with user consent, [continuous data transmission](retrieving-data.html), and [regular review of authorizations](smart-scopes.html) to use the HDDT FHIR APIs - ensure a legally compliant data exchange.
+
 ### Use of International Standards
 
 The key requirement for the Health Device Data Transfer (HDDT) specification is to build on existing international
@@ -16,6 +24,14 @@ services, and to the technical representation of meaningful artifacts.
 | SMART on FHIR  | DiGA authorizations are restricted by [SMART Scopes](smart-scopes.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | LOINC          | HDDT [Mandatory Interoperable Values](methodology.md)(MIVs) are mapped onto sets of LOINC codes.                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | UCUM           | Units of measures are consistently encoded in UCUM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+
+### Authentication and Authorization 
+The HDDT solution design imposes trust as well on the transport layer of communicating IT-systemes as on the application level of a medical aid sharing data with a DiGA. The following principles apply:
+- Trust attributes of the technical communication partners are provided by the BfArM via the [_DiGA Verzeichnis_](registries-and-zts.html#diga-verzeichnis) (BfArM DiGA Directory) and the [_HiMi-SST-VZ_](registries-and-zts.html#himi-sst-vz) (BfArM Device Directory). Existing directory processes are reused.
+- § 374a SGB V requests DiGA and controllers of medical device data to obtain the patient's explicit consent for data sharing. The HDDT specification mandates that the consent is granted during the [pairing process](pairing.html) but leaves the details on how consent is presented and acknowledged in a GDPR-compliant manner to the manufacturers.  
+- Access permissions are granted through [SMART Scopes](smart-scopes.html). These scopes directly map onto FHIR resources but can as well be assessed by the underlying value sets of consented LOINC codes. By this manufacturers can either efficiently use native FHIR stores for their resource servers or enforce the access restrictions using their existing policy decision points.
+
+All flows and interfaces for authorized access to HDDT FHIR resources have been validated for easy implementability using established open-source libraries and tools (HAPI FHIR as [FHIR Resource Server](himi-diga-api.html) and Keycloak for the [OAuth2 Authorization Server](authorization-server.html)).
 
 ### Minimization of HDDT-specific Implementation Efforts
 
