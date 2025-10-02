@@ -13,26 +13,17 @@ A Device Data Recorder MUST NOT transmit any data to a DiGA that allows the DiGA
 
 #### Pseudonymous Identifier
 
-To enable user-based data transmission, DiGA and Device Data Recorder MUST agree on a common identifier for the insured person. This identifier is specific to the combination of DiGA and Personal Health Device. It MUST be a pseudonym, meaning that third parties MUST NOT be able to infer the identity of the data subject solely from the identifier itself.
+To enable user-based data transmission, DiGA and Device Data Recorder MUST agree on a common identifier for the insured
+person. This identifier is specific to the combination of DiGA and Personal Health Device. It MUST be a pseudonym,
+meaning that third parties MUST NOT be able to infer the identity of the data subject solely from the identifier itself.
 
-Neither Personal Health Devices nor DiGA SHALL obtain knowledge of the patient's health insurance number (KVNR). In addition, medical data transmitted via FHIR MUST NOT contain information that reveals or enables inference of the insured person’s identity.
+Neither Personal Health Devices nor DiGA SHALL obtain knowledge of the patient's health insurance number (KVNR). In
+addition, medical data transmitted via FHIR MUST NOT contain information that reveals or enables inference of the
+insured person’s identity.
 
-Further normative requirements and technical details regarding the identifier are specified in the dedicated [Pairing ID](pairing.md#pairing-id)
+Further normative requirements and technical details regarding the identifier are specified in the
+dedicated [Pairing ID](pairing.html#pairing-id)
 chapter.
-
-#### Pairing ID
-Nevertheless, DiGA and Device Data Recorder must agree on a common identifier for the patient in order to be able to implement data transmission on a user-based basis. The identifier must be specific to the combination of DiGA and Personal Health Device. It must be a pseudonym, i.e. it must be excluded that third parties can draw conclusions about the identity of the data subject solely from knowledge of the identifier. 
-
-The coupling-specific user pseudonym spans the coupling context between the DiGA and the Personal Health Device (proxied by the Device Data Recorder) without disclosing internal user ID of the DiGA or the Device Data Recorder. This prevents sensitive data such as e.g. email addresses commonly used for the user ID are disclosed. The pseudonym also serves for an overarching assignment of the respective consent of an insured person or the company data (protocols of DiGA and HiMi). Last but not least the pseudonym is used for writing audit trails at the DiGA and the Device Data Recorder. This pseudonym - called the __Pairing ID__ 
-1.	MUST be unique (at least) within Device Data Recorder and a DiGA and must not allow any conclusions to be drawn about the user's identity.
-2.	MUST be linked to the user account in the Device Data Recorder (Authorization Server and Resource Server) and DiGA.
-3.	MUST not be guessable, i.e. it must be unpredictable and correspondingly long.
-
-An exemplary implementation would be:
-
-`Hash(DiGA-ID, User-ID, Salt)`
-
-whereby "Salt" is a random value known only to the HiMi backend, which is never transmitted and should be at least 128 bits long.
 
 #### Identification and Authentication of the DiGA
 A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below). The DiGA's X.509 client certificate MUST be registered with the BfArM-SST-VZ. The DiGA MAY use self-signed certificates. Certificates MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
