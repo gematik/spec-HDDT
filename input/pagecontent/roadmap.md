@@ -1,13 +1,7 @@
-| to do  |
-|---|
-|    ergänzen: Was ist spezifiziert (Pairing, Datenaustausch)? Was ist dem HiMi-Hersteller überlassen (AuthN, Consent, generelle Einstellungen)? Was ist dem DiGA-Hersteller überlassen (AuthN, Abfragemodus)? ==> ggf. auch in einem anderen Kapitel unterbringen |
-| Component Overview und Foundations kommen eigentlich erst in späteren Abschnitten. Das sollte daher hier eingekürzt werden. @jcaumann gerne kürzen, wenn Inhalte woanders zu finden sind oder Link einfügen |
-<hr>
-
 ### Specification roadmap
-The standardisation of data to be transmitted from medical aids and implants will be carried out using an incremental approach by domains representing an area of use or a care environment. In an initial specification version 1, a first set of data that MUST be made available — referencing the selected domains — will be defined, specified, and published. The selection of domains and use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the frequency of prescriptions and the added value for patient care through DiGAs (see [Methodology](methodology.md)). 
+The standardisation of data to be transmitted from medical aids and implants will be carried out using an incremental approach by domains representing an area of use or a care environment. In an initial specification version 1 (MVP), a first set of data that MUST be made available — referencing the selected domains — will be defined, specified, and published. The selection of domains and use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the frequency of prescriptions and the added value for patient care through DiGAs (see [Methodology](methodology.md)). 
 
-Mandatory Interoperable Values (MIVs) will be declared for each domain to be provided by medical aids and implants processing this data. Systems that comply to [certification relevant systems](certification-relevant-systems.md) and process data which is part of the [Mandatory Interoperable Values (MIVs)](mivs.md) MUST therefore implement according to specification version 1 (MVP).
+Mandatory Interoperable Values (MIVs) will be declared for each domain to be provided by medical aids and implants processing this data. Systems that comply to [certification relevant systems](certification-relevant-systems.md) and process data which is part of the [Mandatory Interoperable Values (MIVs)](mivs.md) MUST therefore implement according to the MVP.
 
 The first specification version 1 (MVP) will specify selected [Mandatory Interoperable Values (MIVs)](mivs.md) from the domains 
 * Diabetes Self-Management
@@ -44,9 +38,9 @@ Divided into three main processes:
 -->
 
 ### Test and registration process
-Manufacturers of medical aids and implants MUST notify the _BfArM_ about the implementation of the interface, which will result in the listing of the medical aid or implant in a new device registry to be established by the _BfArM_ (BfArM device registry). Requirements for the registration in the _BfArM device registry_ will be announced by the _BfArM_.
+In order to certify the conformity of the implementation with the specification, it is foreseen to provide an assessment procedure which will enable the manufacturers to easily prove the conformity of their implementation using a locally executable testsuite. The assessment procedure leads - if passed successfully - to a _gematik_ certification of the medical aid's implementation. 
 
-In order to certify the conformity of the implementation with the specification, it is foreseen to provide an assessment procedure which will enable the manufacturers to easily prove the conformity of their implementation using a locally executable testsuite. The assessment procedure leads - if passed successfully - to a certification of the medical aid's implementation. 
+Manufacturers of medical aids and implants MUST notify the _BfArM_ about the implementation of the interface, which will result in the listing of the medical aid or implant in a new device registry to be established by the _BfArM_ (BfArM device registry). Requirements for the registration in the _BfArM device registry_ will be announced by the _BfArM_.
 
 DiGA manufacturers report to the _BfArM_ the data required for their use cases for intended use and, upon confirmation, receive authorisation to retrieve data from medical aids and implants that, according to the _BfArM device registry_, make these data available. If the interface is implemented for a DiGA that is already listed in the _DiGA directory_, a change notification with a substantiated request for data use has to be submitted to the _BfArM_.
 

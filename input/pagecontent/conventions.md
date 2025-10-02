@@ -22,8 +22,8 @@ Whenever a HDDT building block or HDDT class is introduced for the first time or
 The following German proper nouns are not translated in this specification:
 
 * Digitale Gesundheitsanwendung (_DiGA: Digital Health Application_)
-* BfArM (_engl_)
-* gematik (_National Agency for Digital Health_)
+* Bundesinstitut für Arzneimittel und Medizinprodukte (_BfArM: The Federal Institute for Drugs and Medical Devices_)
+* Gesellschaft für Telematikanwendungen der Gesundheitskarte mbH (_gematik: National Digital Health Agency_)
 * Bundesministerium für Gesundheit (_BMG: Federal Ministry of Health_)
 * Hilfsmittel-Schnittstellen-Verzeichnis (_HiMi-SST-VZ: BfArM Registry of devices and data recorders_) 
 * DiGA-Verzeichnis (_DiGA VZ: BfArM DiGA Registry_)
