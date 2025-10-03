@@ -1,9 +1,12 @@
 
 DiGA query the resource server of a Device Data Recorder via standard RESTful APIs. All device data that is measured by a Personal Health Device is represented as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources at the resource server. 
 
-HDDT defines specific profiles for Observation resources for each Mandarory Interoperable Value (MIV). This allows for considering specific requirements of typical DiGA use cases and fosters the adoption of already existing profiles. In addition, derived and aggregated values for a specific MIV can be made available as condensed reports via HDDT-defined [FHIR Operations](https://hl7.org/fhir/R4/operations.html). See [MIV-specific APIs](mivs.html) for a list of all MIV-specific Observation profiles and operations.
+HDDT defines specific profiles for Observation resources for each Mandarory Interoperable Value (MIV). This allows for considering specific requirements of typical DiGA use cases and fosters the adoption of already existing profiles. In addition, derived and aggregated values for a specific MIV can be made available as condensed reports via HDDT-defined [FHIR Operations](https://hl7.org/fhir/R4/operations.html). See 
+* [MIV-specific APIs](mivs.html) for a list of all MIV-specific Observation profiles and operations,
+* [Information Model](information-model.html) for a detailed description of elements and codings which are common to all MIV-specific Observation profiles.
+* [Retrieving Data](retrieving-data.html) for a detailed description of the overall data flow and how relationships between Observation, DeviceMetric and Device resources are affected by the calibration of a sensor or the exchange of a sensor.
 
-Nevertheless all Observation profiles share common characteristics and the same basic API interactions. This chapter describes these generic characteristics and interactions in detail. For a better understanding of the overall data flow and the difference between dedicated and continuous measurements, please refer to chapter [Retrieving Data](retrieving-data.html).
+Nevertheless all Observation profiles share common characteristics and the same basic API interactions. This chapter describes these generic interactions in detail. For a better understanding of the overall data flow and the difference between dedicated and continuous measurements, refer to chapter [Retrieving Data](retrieving-data.html).
 
 To comply with § 374a SGB V, every Device Data Recorder MUST implement an Observation endpoint that allows for: 
 - [reading](#device---read) individual Observation resources.

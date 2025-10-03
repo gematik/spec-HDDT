@@ -200,7 +200,7 @@ patient’s preference and thus to be in sync with the medical aid by displaying
 * unit ^binding.description = "For HDDT only codes from UCUM MUST be used for coding units of measurements"
 * source 1..
 * source only Reference(HddtPersonalHealthDevice)
-* source ^short = "Reference to the Personal Health Device holfing the sensor"
+* source ^short = "Reference to the Personal Health Device holding the sensor"
 * source ^definition = "Points to the specific Device resource that holds the sensor for which the documented calibration status applies."
 * operationalStatus 0..1
 * operationalStatus ^comment = """
@@ -213,6 +213,14 @@ information about potentially missing data (e.g. due to temporal problems with t
 * calibration MS
 * calibration.state 1..1
 * calibration.time MS
+* calibration.time ^short = "Time when the last calibration has been performed"
+* calibration.time ^definition = """
+The time when the last calibration has been performed. This element covers both manual calibration performed 
+by the patient and automated calibration performed by the device itself. E.g. with a self-calibrating rtCGM `calibration.time`
+signals the time when the device started sending calibrated values after the initial calibration phase. 
+
+If the sensor does not require calibration, this element MAY be omitted. 
+"""
 
 Profile: HddtBloodGlucoseMeasurement
 Parent: Observation

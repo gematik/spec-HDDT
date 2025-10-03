@@ -1,9 +1,11 @@
-This document describes the syntax and semantics of querying FHIR Device resources via the standard FHIR RESTful API. Device resources represent individual Personal Health Devices (medical aids and implants) of a patient, such as glucometers, CGM sensors, and pace makers. The API supports 
-- [reading](#device---read) individual Device resources that are referenced by Observations or DeviceMetrics, and
-- [searching](#device---search) for Device resources linked with the current patient and an authorised MIV. 
-Returned resources MUST conform to the _HDDT Personal Health Device_ [FHIR profile](#profile---hddt-personal-health-device]).
+This document describes the syntax and semantics of querying FHIR Device resources via the standard FHIR RESTful API. Device resources represent individual Personal Health Devices (medical aids and implants) of a patient, such as glucometers, CGM sensors, and pace makers. 
 
-To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these API endpoints for all supported kinds of Personal Health Devices as specified below.
+To be compliant with § 374a SGB V, a Device Data Recorder MUST implement interactions for reading and searching Device resources:
+- [reading](#device---read) individual Device resources that are referenced by Observation or DeviceMetric resources,
+- [version specific reading](#device---vread) individual Device resources that are referenced by Observation or DeviceMetric resources. This interaction MAY be omitted by a Device Data Recorder if it does not support versioning of Device resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to implement versioning of Device resources). 
+- [searching](#device---search) for Device resources linked with the current patient and an authorised MIV
+
+Returned resources MUST conform to the [_HDDT Personal Health Device_](#profile---hddt-personal-health-device) Device profile.
 
 ### Endpoints
 
@@ -18,7 +20,25 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
 | **Request Parameters** | `id` - logical ID of the Device. |
 | **Authorization** | OAuth2 Bearer token required. The resource server MUST only return a Device resource that is linked to the patient who is associated with the token. Provided Device resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor).  |
 | **Returned Objects** | HDDT Personal Health Device resource. If no matching resource exists or if the matching resource cannot be returend, an error response MUST be sent (see below). |
-| **Specifications** | The only ways for a DiGA to obtain the logical `id` of a Device resource are an `Observation.device' reference, a `DeviceMetric.source` reference or a 'search' interaction for Personal Health Devices of the given patient. <br>A DIGA MAY read a Device resource in order to validate the `status` of a Personal Health Device. E.g. a `status` value _unknown_ indicates that the Device Data Recorder has no connection to the device hardware, e.g. due to interrupted communication. |
+| **Specifications** | The only ways for a DiGA to obtain the logical `id` of a Device resource are an `Observation.device` reference, a `DeviceMetric.source` reference or a _search_ interaction for Personal Health Devices of the given patient. <br>A DIGA MAY read a Device resource in order to validate the `status` of a Personal Health Device. E.g. a `status` value _unknown_ indicates that the Device Data Recorder has no connection to the device hardware, e.g. due to interrupted communication. <br>A Device Data Recorder MUST NOT disclose information to a DiGA that allows the DiGA to identify the patient as a natural person. Respective guidance on the use of the `Device.patient` element is given in the [Security and Privacy](security-and-privacy.html#identification-and-authentication-of-the-patient) chaper of this specification. |
+| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
+
+---
+
+#### Device - VREAD
+
+__Remark:__ A Device Data Recorder MAY omit the version specific read interaction if it does not support versioning of Device resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of device properties).
+
+| | |
+|-|-|
+| **Endpoint** | `[base]/Device/<id>/_history/<versionId>` |
+| **HTTP Method** | GET |
+| **Interaction** | VREAD |
+| **Description** | Retrieve a single Device resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id) and [versionId](https://hl7.org/fhir/R4/resource.html#metadata). The returned Device resource MUST conform to the _HDDT Personal Health Device_ profile. All constraints and obligations of the standard [FHIR `vread` interaction](https://hl7.org/fhir/R4/http.html#vread) apply. |
+| **Request Parameters** | `id` - logical ID of the Device resource <br>`versionId` - version identifier of the Device resource |
+| **Authorization** | OAuth2 Bearer token required. The resource server MUST only return versions of Device resources that can be linked to the patient who is associated with the token. Provided Device resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
+| **Returned Objects** | _HDDT Personal Health Device_ resource. If no matching resource or version exists or if the matching resource or version cannot be returned, an error response MUST be sent (see below). |
+| **Specifications** | The only ways for a DiGA to obtain the logical id and the versionId of a Device resource are an `Observation.device` reference, a `DeviceMetric.source` reference, or a 'search' interaction for Device resources of the given patient. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
@@ -32,9 +52,9 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
 | **Interaction** | SEARCH |
 | **Description** | Search for Device resources.  |
 | **Authorization** | OAuth2 Bearer token required. The resource server MUST only return Device resources that are linked to the patient who is associated with the token. Provided Device resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor).<br>  |
-| **Search Parameters** | The resource server MUST be able to discover the patient identifier from the Access Token. This identifier MUST implicitly be considered as the `patient` argument with every _search_ request for Device resources. If a DiGA explicitly provides a `patient` argument with a query, the resource server MUST ignore this argument and SHOULD respond with an `400 Bad Request` error.<br>The resource server MAY support additional standard FHIR Device search parameters. |
+| **Search Parameters** | The resource server MUST be able to discover the patient identifier from the Access Token. This identifier MUST implicitly be considered as the `patient` argument with every _search_ request for Device resources. If a DiGA explicitly provides a `patient` argument with a query, the resource server MUST ignore this argument and SHOULD respond with an `400 Bad Request` error.<br>The resource server MAY support any standard FHIR Device search parameters. |
 | **Returned Objects** | Bundle containing Device entries that match the query. <br>If no matching Device resources are found, an empty Bundle MUST be returned.  |
-| **Specifications** | After successful [pairing](pairing.html) with a Device Data Recorder a DiGA SHOULD discover the Personal Health Devices of the patient by searching for Device resources. The DiGA MAY use search parameters to filter the results, e.g. by `manufacturer` or `deviceName`. The DiGA SHOULD present the discovered `Device.serialNumber` to the patient to allow him to verify the result of the pairing process.<br>The resource server MAY support the `_include:definition` parameter to allow including referenced DeviceDefinition resources in the response bundle. <br> All constraints and obligations of the standard [FHIR `search` interaction](https://hl7.org/fhir/R4/http.html#search) apply.
+| **Specifications** | After successful [pairing](pairing.html) with a Device Data Recorder a DiGA SHOULD discover the Personal Health Devices of the patient by searching for Device resources. The DiGA MAY use search parameters to filter the results, e.g. by `device-name` or `type`. The DiGA SHOULD present the discovered `Device.serialNumber` to the patient to allow him to verify the result of the pairing process.<br>The resource server MAY support the `_include:definition` parameter to allow including referenced DeviceDefinition resources in the response bundle. <br> All constraints and obligations of the standard [FHIR `search` interaction](https://hl7.org/fhir/R4/http.html#search) apply.
  |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 

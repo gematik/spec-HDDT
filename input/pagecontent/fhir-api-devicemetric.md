@@ -1,10 +1,12 @@
-This document describes the syntax and semantics of querying FHIR DeviceMetric resources via the standard FHIR RESTful API. A DeviceMetric resource represents a status instance of a medical aid or implant, and is always referenced by a measurement. In the context of HDDT, a DeviceMetric represents the [calibration status](retrieving-data.html#device-status-and-device-configuration) of a medical aid or implant.
+This document describes the syntax and semantics of querying FHIR DeviceMetric resources via the standard FHIR RESTful API. A DeviceMetric resource represents a status instance of a medical aid or implant, and MAY be referenced by a measurement. In the context of HDDT, a DeviceMetric represents the [calibration status](retrieving-data.html#device-status-and-device-configuration) of a medical aid or implant.
 
-- [reading](#devicemetric---read) individual DeviceMetric resources that are referenced by Observations, and  
-- [searching](#devicemetric---search) for DeviceMetric resources linked with the current patient and an authorised MIV. 
-Returned resources MUST conform to the _HDDT Sensor Type and Calibration Status_ [FHIR profile](#profile---hddt-sensor-type-and-calibration-status]).
+To be compliant with § 374a SGB V, a Device Data Recorder MUST implement interactions for reading and searching DeviceMetric-resources:
+- [reading](#devicemetric---read) individual DeviceMetric resources that are referenced by Observations
+- [version specific reading](#devicemetric---vread) individual DeviceMetric resources that are referenced by Observations. This interaction MAY be omitted by a Device Data Recorder if it does not support versioning of DeviceMetrc resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor). 
+- [searching](#devicemetric---search) for DeviceMetric resources linked with the current patient and an authorised MIV
 
-To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these API endpoints for all supported kinds of DeviceMetric-resources as specified below.
+Returned resources MUST conform to the [_HDDT Sensor Type and Calibration Status_](#profile---hddt-sensor-type-and-calibration-status]) DeviceMetric profile.
+
 
 ---
 
@@ -17,25 +19,45 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement these 
 | **Endpoint** | `[base]/DeviceMetric/<id>` |
 | **HTTP Method** | GET |
 | **Interaction** | READ |
-| **Description** | Retrieve a single DeviceMetric resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id). The returned DeviceMetric MUST conform to the _HDDT Sensor Type and Calibration Status_ profile. All constraints and obligations of the standard [FHIR `read` interaction](https://hl7.org/fhir/R4/resource.html#id) apply. |
+| **Description** | Retrieve a single DeviceMetric resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id). The returned DeviceMetric MUST conform to the _HDDT Sensor Type and Calibration Status_ profile. All constraints and obligations of the standard [FHIR `read` interaction](https://hl7.org/fhir/R4/http.html#read) apply. |
 | **Request Parameters** | `id` - logical ID of the DeviceMetric. |
 | **Authorization** | OAuth2 Bearer token required. The resource server MUST only return a DeviceMetric resource that can be linked to the patient who is associated with the token. Provided Device Metric resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
 | **Returned Objects** | HDDT Sensor Type and Calibration Status resource. If no matching resource exists or if the matching resource cannot be returned, an error response MUST be sent (see below). |
-| **Specifications** | The only ways for a DiGA to obtain the logical id of a DeviceMetric resource are an `Observation.device` reference, or a 'search' interaction for DeviceMetric resources of the given patient.<br>A DiGA MUST read a DeviceMetric resource in order to validate the calibration status of a medical aid or implant. The calibration status is required for correct interpretation of measurements. DeviceMetric MUST reference the Device instance via `source`. |
+| **Specifications** | The only ways for a DiGA to obtain the logical id of a DeviceMetric resource are an `Observation.device` reference, or a 'search' interaction for DeviceMetric resources of the given patient.<br>A DiGA SHOULD read a DeviceMetric resource in order to validate the calibration status of a medical aid or implant. The calibration status is required for correct interpretation of measurements. DeviceMetric MUST reference the Device instance via `DeviceMetric.source`. |
+| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
+
+---
+
+#### DeviceMetric - VREAD
+
+__Remark:__ A Device Data Recorder MAY omit the version specific read interaction if it does not support versioning of DeviceMetric resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor).
+
+| | |
+|-|-|
+| **Endpoint** | `[base]/DeviceMetric/<id>/_history/<versionId>` |
+| **HTTP Method** | GET |
+| **Interaction** | VREAD |
+| **Description** | Retrieve a single DeviceMetric resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id) and [versionId](https://hl7.org/fhir/R4/resource.html#metadata). The returned DeviceMetric MUST conform to the _HDDT Sensor Type and Calibration Status_ profile. All constraints and obligations of the standard [FHIR `vread` interaction](https://hl7.org/fhir/R4/http.html#vread) apply. |
+| **Request Parameters** | `id` - logical ID of the DeviceMetric <br>`versionId` - version identifier of the DeviceMetric |
+| **Authorization** | OAuth2 Bearer token required. The resource server MUST only return versions of DeviceMetric resources that can be linked to the patient who is associated with the token. Provided Device Metric resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
+| **Returned Objects** | HDDT Sensor Type and Calibration Status resource. If no matching resource or version exists or if the matching resource or version cannot be returned, an error response MUST be sent (see below). |
+| **Specifications** | The only ways for a DiGA to obtain the logical id and the versionId of a DeviceMetric resource are an `Observation.device` reference, or a 'search' interaction for DeviceMetric resources of the given patient. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
 
 #### DeviceMetric - SEARCH
 
+__Remark:__ The FHIR specification allows searching for resources by various parameters. However, in the context of HDDT, the only relevant search parameter is the patient who is associated with the access token. Therefore, the search interaction is restricted to this parameter only.
+
 | | |
 |-|-|
 | **Endpoint** | `/DeviceMetric` |
 | **HTTP Method** | GET / POST |
 | **Interaction** | SEARCH |
-| **Description** | Search for DeviceMetric resources using parameters such as `type`, `source`, or calibration status. |
+| **Description** | Search for DeviceMetric resources by certain properties. |
 | **Authorization** | OAuth2 Bearer token required. The resource server MUST only return DeviceMetric resources that can be linked to the patient who is associated with the token. Provided DeviceMetric resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
-| **Search Parameters** | The resource server MUST be able to discover the patient identifier from the Access Token. Thus, the endpoint MUST only return DeviceMetric-instances that belong to a medical aid or implant, belonging to the patient defined in the access token. <br>The main use-case is no search parameters, i.e. returning all DeviceMetric resources. Server MAY support standard FHIR DeviceMetric search parameters. |
+| **Search Parameters** | The resource server MAY support any standard FHIR DeviceMetric search parameters. A DiGA MAY e.g. use the `source` parameter to discover all DeviceMetric resources that belong to a given Personal Health Device instance.  |
 | **Returned Objects** | Bundle containing DeviceMetric entries that match the query. Optionally, Device entries when using `_include`. If no matching DeviceMetric resources are found, an empty Bundle MUST be returned. |
 | **Specifications** | All constraints and obligations of the standard [FHIR `search` interaction](https://hl7.org/fhir/R4/http.html#search) apply. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—may be either an OperationOutcome or plain text) |

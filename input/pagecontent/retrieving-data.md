@@ -24,10 +24,11 @@ In addition, there are also devices and scenarios, which combine both paradigms,
 The HDDT FHIR API handles dedicated and continuous measurements in different ways. Which flavor of the API is to be used, is part of the FHIR implementation guide of a [MIV](methodology.md). For combined scenarios usually the API flavor for continuous measurements is used, because it is much more efficient in transfering sampled data.
 
 #### General Requirements
-The specification of the techncal interfaces for retrieving device data considers the following determinations and requirements:
+The specification of the technical interfaces for retrieving device data considers the following determinations and requirements:
 * A DiGA pulls data from the device data recorder by stating a request for data. This may either be a FHIR RESTful interaction or a FHIR operation (for details see below). The device data recorder MUST validate the request and upon acceptance MUST respond with a set of FHIR resources that match the request.
 * For all data transmitted to a DiGA by a device data recorder it MUST be clear to the DiGA, if the device that collected the data was in a calibrated state or not. 
 * Usually a set of device data provided by a device data recorder covers a period of time that was given with the request (e.g. all measurements for the last 4 hours). For each response of a device data recorder it MUST be clear to the DiGA if the provided set of data is complete or not. E.g. a set of data may be inclomplete, if the connection between the aggregation manager and the health record was broken during the requested period and the missing data may be transmitted to the health record after the connection is re-established. 
+* A Device Data Recorder MUST NOT disclose information to a DiGA that allows the DiGA to identify the patient as a natural person. Guidance on the use of the `Device.patient` and the `Observation.subject` elements is given in the [Security and Privacy](security-and-privacy.html#identification-and-authentication-of-the-patient) chaper of this specification.
 
 #### Searching Observations Using FHIR _search_ Interactions
 
@@ -36,7 +37,7 @@ The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http
 
 The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](pairing.html#access-tokens). This access token was issued by the [Authorization Server](authorization-server.html) of the device data recorder and MUST be taken as opaque by the DiGA. 
  
-The device data recorder MUST be able to discover the internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject`argument with a query, the device data recorder MUST ignore this argument and SHOULD respond with an _Bad Request_ error.
+The device data recorder MUST be able to discover its internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject`argument with a query, the device data recorder MUST ignore this argument and SHOULD respond with an _Bad Request_ error.
 
 The device data recorder MUST be able to discover the SMART Scope from the access token, which were accepted by the device data recorder during pairing with the requesting DiGA (see section [Pairing](pairing.md)). The SMART Scope MUST implicitly be considered as the `code` argument with every query to the device date recorder's FHIR search API. If the Scope resolves to multiple LOINC codes, these must all be considered to be query argumnets (OR-semantics). A DiGA MAY explicitly further constrain the scope of the search by providing a `code` argument with a query (see below).
 
@@ -99,6 +100,29 @@ Every device data recorder holds information about its static properties as part
 | Chunk-Time-Span      | size of a chunk for sharing sampled data (see below) | MUST if applicable | This property is only applicable for device data recorders that provide MIVs as sampled data |  
 
 When a DiGA requests for the device definition through a FHIR _read_ interaction, the device data recorder MUST provide these properties as `property` elements of the [Device](https://hl7.org/fhir/R4/device.html) resource that is returned to the DiGA. 
+
+#### Versioning of Device and DeviceMetric Resources
+The HDDT specification does not mandate a specific versioning strategy for [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources. A Device Data Recorder MAY use the FHIR _versionId_ mechanism or MAY use its own versioning strategy (e.g. by creating new resources whenever a relevant element changes). 
+
+##### Versioning of Device Resources
+A Device Data Recorder MUST track the Medical Health Devices used by a patient. If a patient exchanges a Personal Health Device (e.g. gets a new insulin pump), the device data recorder MUST create a new [Device](https://hl7.org/fhir/R4/device.html) resource with a new `id` that reflects the new Personal Health Device.
+
+Unless stated otherwise in the MIV-specific implementation guide, a Device Data Recorder MAY not perform any versioning on any of the elements of the Device resource or MAY not expose such changes to the DiGA. In this case the Device Data Recorder MUST NOT change the `id` and the 'meta.versionID' of the [Device](https://hl7.org/fhir/R4/device.html) resource as long as the Personal Health Device does not change. Nevertheless, a _read_ interaction on the [Device](https://hl7.org/fhir/R4/device.html) resource MUST always return the current status of the Personal Health Device (e.g. _active_, _inactive_, _unknown_), but it is up to the manufacturer, if this leads to a new, addressable version of the resource.
+
+If a manufacturer implements versioning by creating a new version of a [Device](https://hl7.org/fhir/R4/device.html) resource whenever a relevant element changes, the manufacturer MUST implement the FHIR _vread_ interaction to allow a DiGA to request a specific version of a [Device](https://hl7.org/fhir/R4/device.html) resource. See [_vread_ interaction for Personal Health Device resources](fhir-api-device.html#device---read) for details.
+
+##### Overlapping Device Resources
+Device resources MAY overlap in time. This is e.g. the case if a patient exchanges a Personal Health Device by a new one of the same type but keeps the old device for some time (e.g. when changing a rtCGM sensor the patient may take on the new sensor while still wearing the old one until the new sensor is fully calibrated). In this case it is up to the Device Data Recorder on how to handle the overlapping devices. Depending on the concrete kind of device and its typical usage patterns, the device data recorder MAY either
+* keep both devices as active (status = _active_) until the old device is no longer used and then set the status of the old device to _inactive_. During the overlapping period the Device Data Recorder provides Observation resources from both devices. E.g. if a DiGA requests for today's continuous glucose values, the device data recorder provides Observation resources (chunks, see below) both devices. These Observation resources mix or overlap in `effectiveDateTime` or `effectivePeriod`, but the DiGA can distinguish the source of the data by the `device` reference of the Observation resources.
+
+##### Versioning of DeviceMetric Resources
+A change of the Personal Health Device MUST always lead to a new DeviceMetric resource with a new `id`. 
+
+For sensors that need to be calibrated or change their calibration status over time, the Device Data Recorder MUST at least track the changes in `calibration.state` of the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource. If the `calibration.state` changes, the device data recorder MUST either create a new DeviceMetric resource with a new `id` or MUST create a new version of the existing DeviceMetric resource by using the FHIR _versionId_ mechanism.
+
+Unless stated otherwise in the MIV-specific implementation guide, a Device Data Recorder MAY not perform any versioning on any elements of the Device resource other than `calibration.state` or MAY not expose such changes to the DiGA. In this case the Device Data Recorder MUST NOT change the `id` and the 'meta.versionID' of the [Device](https://hl7.org/fhir/R4/device.html) resource as long as the `calibration.state` does not change. 
+
+If a manufacturer implements versioning by creating a new version of a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource whenever `calibration.state` or any other relevant element changes, the manufacturer MUST implement the FHIR _vread_ interaction to allow a DiGA to request a specific version of a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource. See [_vread_ interaction for Device Configuration and Calibration Status resources](fhir-api-devicemetric.html#devicemetric---vread) for details.
 
 #### Use of _include
 The Device Data Recorder must respond a _search_ request with a Bundle of type _searchset_ that contains all [Observation](https://hl7.org/fhir/R4/observation.html) resources that match the request. A DiGA MAY add the search parameter `_include=Observation:device` with the request. In this case the Device Data Recorder MUST include the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource that is referenced by the `device` element of the [Observation](https://hl7.org/fhir/R4/observation.html) in the same Bundle (see https://hl7.org/fhir/R4/search.html#revinclude for details).
@@ -197,11 +221,17 @@ Some sensors for continuous measurements require initial or regular calibration.
 
 As can be seen with the example, the last chunk before calibration is set to a _final_ status and the èffectivePeriod` is adapted to the end time the calibration state changed. The new chunk is initialized with a _preliminary_ status and the fixed _chunk-time-span_. 
 
+It is up to the Device Data Recorder if a change of `calibration.state` leads to a new [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or if a new version of the existing resorce is created. See [Versioning of Device and DeviceMetric Resources](#versioning-of-device-and-devicemetric-resources) above for possible options related to the manufacturer's overall versioning strategy.
+
+Personal Health Devices MAY require a Personal Health Device of another type to perform the calibration (e.g. a blood glucose meter for calibrating a rtCGM). Values measured with another Personal Health Device for calibration purposes MUST NOT be part of a chunk of continuously measured data. 
+
 ##### Changing Devices
 [Pairing](pairing.html) a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new `device` reference to a [Device](https://hl7.org/fhir/R4/device.html) resource that reflects the new Personal Health Device (see figure below).
 
 <div><img src="/HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
+
+In contrast to a change of `calibration.state`, a change of the Personal Health Device MUST always result in a new Device resource with a new `id`. 
 
 ##### Missing Values with Continuous Measurements
 A response of the device data recorder to a query for continuosly measured data MAY be incomplete in a way that there MAY be more data available for the requested period, but the device data recorder does not provide this data to the DiGA. The most common case is that a DiGA requests for data that was measured very recently (e.g. within the last hour). The device data recorder MAY respond with all data that is available at the time of the request, but there MAY be more data being in transmission from the Personal Health Device to the Health Record. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Personal Health Device's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
@@ -209,6 +239,25 @@ A response of the device data recorder to a query for continuosly measured data 
 Missing data MAY even occur if the connection between the Personal Health Device and the AggregationManager or between the AggregationManager and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A Device Data Recorder MUST signal this kind of missing data by setting the `status` of the [Observation](https://hl7.org/fhir/R4/observation.html) resource that holds the chunk to _preliminary_ with the `effectivePeriod` covering the full _chunk-time-span_. 
 
 Anozther reason for missing data is a change of the Personal Health Device (e.g. a rtCGM is replaced by a new sensor). A DiGA MAY detect missing data due to device changes by analyzing the sequence of ([Observation](https://hl7.org/fhir/R4/observation.html)s) it received from a Device Data Recorder. If the `effectivePeriod.end` of a chunk is before the `effectivePeriod.start` of the next chunk, there is a gap in the data. The DiGA MAY use the `id` of the [Device](https://hl7.org/fhir/R4/device.html) resource that is referenced in the `device` element of the chunks to check if the Personal Health Device changed (see above). 
+
+##### Continuously Polling for New Data
+A DiGA MAY poll a Device Data Recorder in regular intervals for new data. For the current chunk data updates can be polled by _read_ interactions. A `status` switch from _premiminary_ to _final_ signals that the chunk is full or that the status of the Personal Health Device changed (e.g. the sensor changed its calibration status or the patient put on a new sensor). In this case the DiGA MUST use the `effectivePeriod.end` of the last chunk as a starting point for a new _search_ interaction to obtain the next chunk. 
+
+The pseudo code below shows an example of a DiGA polling for new data in regular intervals.
+
+```
+chunk = read [base]/Observation?date= [now]
+
+loop
+  while chunk.status == preliminary 
+    wait some time
+    chunk = read [base]/Observation/[chunk.id] 
+  end
+  wait some time
+  chunk = read [base]/Observation?date=gt[chunk.effectivePeriod.end + 1 second]
+end
+
+```
 
 ### Querying for Aggregated or Calculated Data
 
