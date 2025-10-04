@@ -35,6 +35,28 @@ The figure below shows how these logical building blocks interact with each othe
 <div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="65%"></div>
 <br clear="all"/>
 
+#### Obligations of Manufacturers of Device Data Recorders
+Manufacturers of Device Data Recorders MUST register the Device Data Recorder with the _HiMi-SST-VZ_. They MUST implement and operate a FHIR Resource server and an OAuth2 Authorization Server. They must provides APIs to these services according to this specification. In addition they MUST implement the following functionalities:
+- Requests, document, and manage the user's consent for the exchange of data with an authorized DiGA
+- Regularly check the validity of this consent
+- Allow the user to revoke and, if necessary, change the consent
+- Authenticate DiGA (see [Security and Prvacy](security-and-privacy.html))
+- Authorize eligible DiGA to retrieve personal data for the DiGA's legitimate purposes (see [Pairing](pairing.html))
+- Provide personal data to authenticated and authorized DiGA as a FHIR resources in accordance with this specification (see [Retrieving Data](retrieving-data.html), [Generic FHIR Resource Server API](himi-diga-api.html) and [MIV-specific APIs](mivs.html) ) 
+- Monitor and document the functionality of § 374a SGB V interfaces (see [Operational Requirements](operational-requirements.html))
+
+#### Obligations of Manufacturers of DiGA (informative)
+Manufacturers of DiGA MUST register the DiGA with the _DiGA Verzeichnis_ (BfArM DiGA Registry). In addition they MUST implement the following functionalities:
+- Request, document and manage the user's consent for the exchange of data with an medical aid or implant and the device's connected Device Data Recorder
+- Regularly check the validity of consent
+- Allow the user to revoke and, if necessary, change the consent
+- Initiate the authorization process with the Device Data Recorder (see [Pairing](pairing.html))
+- Authenticates the Device Data Recorder (see [Security and Privacy](security-and-privacy.html))
+- Request and accept the personal data provided by the Device Data Recorder through interfaces and protocols as defined in this specification (see [Retrieving Data]  (retrieving-data.html), [Generic FHIR Resource Server API](himi-diga-api.html) and [MIV-specific APIs](mivs.html) )
+- process the data according to the DiGA's legitimate purposes
+- Monitor and documentat of the functionality of § 374a SGB V interfaces (see [Operational Requirements](operational-requirements.html))
+
+
 ### Data to be transferred through the HDDT API
 
 Subject of the data transmission as requested by § 374a SGB V are measured data, aggregated/derived data and configuration data:

@@ -1,4 +1,4 @@
-This document describes the `/metadata` endpoint for retrieving the FHIR CapabilityStatement of the server. The CapabilityStatement provides information about supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.
+This document describes the `/metadata` endpoint for retrieving the FHIR CapabilityStatement of the Device Data Recorder. The CapabilityStatement provides information about supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.
 
 ---
 
@@ -11,7 +11,7 @@ This document describes the `/metadata` endpoint for retrieving the FHIR Capabil
 | **Description**      | Provides a FHIR CapabilityStatement with information about supported FHIR version, resources, operations, search parameters, and profiles.                                                                                                                                                                                       |
 | **Authentication**   | None (public endpoint)                                                                                                                                                                                                                                                                                                           |
 | **Returned Objects** | FHIR CapabilityStatement                                                                                                                                                                                                                                                                                                         |
-| **Specifications**   | • FHIR version MUST be R4.<br> • Must declare supported FHIR version, resources, operations, search parameters, and profiles.<br> • Supported FHIR Resource types: Device, DeviceMetric, Observation, Bundle.<br> • Supported interactions: read, search-type.<br> • Supported operations: `$hddt-cgm-summary` (on Observation). |
+| **Specifications**   | The CapabilityStatement MUST declare the supported FHIR version. This MUST be R4. <br>&nbsp;<br>The CapabilityStatement MUST declare the supported FHIR resources. These MUST at least be Observation, Device and DeviceMetric. <br>&nbsp;<br>The CapabilityStatement MUST declare the supported [MIV-specific](mivs.html) interactions, operations, search parameters, and profiles.  |
 | **Error codes**      | `500` (Internal Server Error)                                                                                                                                                                                                                                                                                                    |
 
 ---

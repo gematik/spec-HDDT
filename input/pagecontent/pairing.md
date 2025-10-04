@@ -124,14 +124,16 @@ The Pairing ID MUST adhere to the following properties:
 | **Stable and Retained** | The Pairing ID MUST be created once during the pairing sequence after the insured person has authenticated and given consent. <br>It MUST remain stable for the entire lifetime of the pairing and MUST be retained by the HiMi backend. |
 
 To meet these requirements, the Pairing ID SHOULD be derived from a combination of internal attributes and a secret
-random value (salt) that is known only to the HiMi backend. This approach ensures that the Pairing ID is both unique and
+random value (salt) that is known only to the Device Data Recorder. This approach ensures that the Pairing ID is both unique and
 stable, while also being resistant to brute-force or guessing attacks. A sample construction is:
 
 ```
 PairingID = Hash(DiGA-ID, User-ID, Salt)
 ```
 
-where `Salt` is a secret random value of sufficient length (e.g., 128 bits) that is securely stored in the HiMi backend.
+where 
+- `Salt` is a secret random value of sufficient length (e.g., 128 bits) that is securely stored with the Device Data Recorder and
+- and “Hash” is a secure hash function like SHA-256.
 
 ### Tokens and the Token Response
 

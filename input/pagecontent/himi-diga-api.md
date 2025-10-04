@@ -1,7 +1,16 @@
 ### Introduction
 Authorized DiGA can access data from medical devices and implants through standard FHIR RESTful APIs and dedicated FHIR operations. These endpoints MUST be implemented by Device Data Recorders as [certification relevant systems](certification-relevant-systems.html)
 
-This chapter defines the endpoints and FHIR profiles which are common to all Mandatory Interoperable Values (MIVs). MIV-specific specifications for _HDDT Observation Profiles_ and HDDT-specific FHIR operations can be found under the menu **MIV-Specific APIs**.
+This chapter defines the FHIR endpoints which are common to all Mandatory Interoperable Values (MIVs). MIV-specific specifications for _HDDT Observation Profiles_ and HDDT-specific FHIR operations can be found under the menu **MIV-Specific APIs**.
+
+### FHIR Endpoints
+The manufacturer of a certification relevant Device Data Recorder MUST implement the following endpoints, for the purpose of allowing DiGA to access data from medical aid and implants according to § 374a SGB V:
+
+- [API: CapabilityStatement (Metadata)](fhir-api-metadata.html)
+- [API: Observation (Measurement data)](fhir-api-observation.html)
+- [API: DeviceMetric (Device calibration)](fhir-api-devicemetric.html)
+- [API: Device (Device instance and configuration)](fhir-api-device.html)
+
 
 ### Security Considerations
 
@@ -13,15 +22,11 @@ Both DiGA and Device Data Recorder MUST write access and usage logs according to
 
 The sequence diagram below illustrates the access control flow between a DiGA and the Device Data Recorder's FHIR Resource Server and OAuth2 Authorization Server.
 
+<!--
 <div style="width: 75%;">
   <img src="assets/images/HDDT_Sequenz_Access_Control.svg" style="width: 100%;" />
 </div>
-
-### Endpoints
-The manufacturer of a certification relevant Device Data Recorder MUST implement the following endpoints, for the purpose of allowing DiGA to access data from medical aid and implants according to § 374a SGB V:
-
-- [API: CapabilityStatement (Metadata)](fhir-api-metadata.html)
-- [API: Observation (Measurement data)](fhir-api-observation.html)
-- [API: DeviceMetric (Device calibration)](fhir-api-devicemetric.html)
-- [API: Device (Device instance and configuration)](fhir-api-device.html)
+-->
+<div><img src="/HDDT_IMG_Sequenz_Access_Control.svg" alt="Access Control" width="75%"></div>
+<br clear="all"/>
 
