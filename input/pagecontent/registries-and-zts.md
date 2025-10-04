@@ -26,6 +26,7 @@ The BfARM Device Registry (_HiMi-SST-VZ_ ) is operated by BfArM and provides acc
    - versioning of information about registered Device Data Recorders 
 - searching and/or browsing for MIVs that are supported by certain Personal Health Devices and Device Data Recorders
 - searching and/or browsing for Personal Health Devices and Device Data Recorders that support a certain MIV
+-providing feeds for monitoring changes in the _HiMi-SST-VZ_ (e.g. new device registrations, changes in supported MIVs, changes in certificate status, etc.)
 
 The _HiMi-SST-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being build up by BfArM. A first draft of the APIs that provide the above listed functions will be published by end of October 2025. 
 
@@ -37,8 +38,9 @@ The BfARM DiGA Registry (_DiGA Verzeichnis_) is operated by BfArM and provides a
    - information for verifying the authenticity of the DiGA in electronic communications
 - listing the MIVs a defined DiGA is eligible to process
 - listing all DiGA that are eligible to process a defined MIV
+- providing feeds for monitoring changes in the _DiGA Verzeichnis_ (e.g. new DiGA registrations, changes in eligible MIVs, changes in certificate status, etc.)
 
-The _DiGA Verzeichnis_ can be reached at the URL https://diga.bfarm.de/de/verzeichnis. 
+The _DiGA Verzeichnis_ can be reached at the URL https://diga.bfarm.de/de/verzeichnis, an API is avalible at diga.api.bund.dev/. 
 
 The _DiGA Verzeichnis_ is currently being expanded to include the data, registration processes, and interfaces needed for the implementation of § 374a SGB V.
 
@@ -70,107 +72,4 @@ In addition to the GUI the ZTS provides several APIs which are designed for auto
 A short description of these APIs is provided below. More detailed descriptions are available as part of the [ZTS documentation](https://terminologien.bfarm.de/fhirpackages.html) (German only).
 
 __Remark__: The FHIR ValueSets for MIV definitions will be made available on ZTS after the end of the public review of the HDDT specification. Until then, all FHIR ValueSets for MIV definitions can be found in the [ValueSets section of the Artifact Summary](artifacts.html#terminology-value-sets).
-
-#### FHIR Package Structure
-
-A FHIR Package is distributed as a tarball (`.tar.gz`) file. Each package contains:
-
-* Directory `package/`
-* Index file: `package/.index.json`
-* Manifest: `package/package.json`
-* FHIR resources (`package/*.json`)
-
-#### General Requirements
-
-* All requests **MUST** use HTTPS (`https://terminologien.bfarm.de`).
-* Responses are JSON unless explicitly noted (feeds are XML).
-* Clients **MUST** handle HTTP status codes:
-
-  * `200 OK` – Success
-  * `302 Found` – Redirect
-  * `400 Bad Request` – Invalid parameters
-  * `401 Unauthorized` – Missing/invalid token
-  * `404 Not Found` – Resource does not exist
-  * `503 Service Unavailable` – Temporary outage
-* Protected packages require a Bearer token.
-* Clients **SHOULD** implement caching.
-* Clients **SHOULD** implement retry logic with exponential backoff.
-
-#### API Endpoints
-
-##### Token API
-
-Used to access protected packages.
-
-| Endpoint              | Method | Description                           | Request Body                      | Response                 | Notes                                   |
-| --------------------- | ------ | ------------------------------------- | --------------------------------- | ------------------------ | --------------------------------------- |
-| `/api/generate-token` | POST   | Generate token for protected packages | JSON object with `packages` array | JSON object with `token` | Token is sent in `Authorization` header |
-
-**Request Example**
-
-```
-POST https://terminologien.bfarm.de/api/generate-token
-Content-Type: application/json
-
-{
-  "packages": ["bfarm.terminologien.hddt"]
-}
-```
-
-**Response Example**
-
-```json
-{ "token": "eyJhbGciOiJIUzI1NiIsInR..." }
-```
-
----
-
-##### Package API
-
-Used to search, list, and download packages.
-
-| Endpoint                                   | Method | Description                         | Parameters                                                                                      | Response                                | Auth                                |
-| ------------------------------------------ | ------ | ----------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------------- |
-| `/packages/{packageName}/{packageVersion}` | GET    | Download a specific package version | `packageName`, `packageVersion`                                                                 | Binary `.tgz` package                   | Bearer token for protected packages |
-| `/packages/{packageName}`                  | GET    | List all versions of a package      | `packageName`                                                                                   | JSON with versions, dist-tags, unlisted | optional                            |
-| `/packages/catalog`                        | GET    | Search FHIR packages                | `name`, `version`, `canonical`, `fhirVersion`, `prerelease`, `unlisted`, `protected`, `keyword` | JSON array of package objects           | optional                            |
-
----
-
-##### Feeds API
-
-Used to monitor updates via RSS feeds.
-
-| Endpoint                  | Method | Description                                                                  | Parameters                                                                             | Response                     | Notes                 |
-| ------------------------- | ------ | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------- | --------------------- |
-| `/feeds/package-feed.xml` | GET    | Retrieve static HL7 RSS feed                                                 | None                                                                                   | XML feed (`application/xml`) | Static feed           |
-| `/feeds/**`               | GET    | Retrieve dynamic RSS feed filtered by publisher, package name, keyword, type | `publisher`, `packageName`, `keyword`, `type` (PACKAGE or PUBLICATION), `publishToHl7` | XML feed (`application/xml`) | Dynamic filtered feed |
-
----
-
-##### Canonical Redirector API
-
-Used to resolve canonical URLs and resource identifiers.
-
-| Endpoint                            | Method | Description                                             | Parameters                                                      | Response                           | Notes                                |
-| ----------------------------------- | ------ | ------------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------- | ------------------------------------ |
-| `/resolve`                          | GET    | Resolve canonical URL and redirect to ZTS resource page | `url` (required), `version` (optional)                          | `302 Found` with `Location` header | 404 if not found, 503 if unavailable |
-| `/fhir/{resourceType}/{resourceId}` | GET    | Resolve FHIR resource by type and ID                    | `resourceType` (CodeSystem, ValueSet, ConceptMap), `resourceId` | `302 Found` with `Location` header | 404 if not found, 503 if unavailable |
-
-
-
-#### Example Tools and Scripts
-
-To simplify integration, Gematik provides **example clients and configurations**:
-
--  [https://github.com/gematik/zts-api-client-examples](https://github.com/gematik/zts-api-client-examples)
-
-These examples illustrate in practice how to:
-
-* work with useful tools and helper scripts,
-* automate the download and management of FHIR packages,
-* handle authentication and token management in a secure way.
-
-The repository is continuously evolving — not only to demonstrate new and relevant use cases, but also to provide full transparency regarding the ongoing development and extension of the API.
-
 

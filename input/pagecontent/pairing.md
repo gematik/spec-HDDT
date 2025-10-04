@@ -61,24 +61,21 @@ specification. For further information, please refer to the respective RFC docum
 #### Configuration
 
 The authorization server of the HiMi is operated and configured by the HiMi manufacturer. Proper configuration is
-essential to ensure that only authorized DiGAs can obtain access tokens and that the granted scopes reflect the intended
-use cases of the HiMi.
+essential to ensure that only authorized DiGAs can obtain access tokens and that the granted scopes reflect the intended use cases of the HiMi.
 
 The HiMi manufacturer is responsible for publishing and enforcing the supported [SMART scopes](smart-scopes.html).
 Scopes MUST be aligned with the FHIR resources and search parameters relevant to the device, e.g., specific vital
 signs (blood glucose, blood pressure) or supported device types. Only scopes that are necessary for the functional use
 cases of the HiMi MUST be exposed. The set of supported scopes MUST be advertised in the authorization server metadata
-document as defined in RFC
-
-8414.
+document as defined in [RFC 8414].
 
 In addition, the HiMi manufacturer is responsible for configuring OAuth 2.0 clients corresponding to DiGAs. A DiGA MAY
 only be registered if it is listed in the official DiGA directory (DiGA-VZ). Each client configuration MUST include,
-at
-a minimum, the following parameters:
+at a minimum, the following DiGA trust attributes:
 
 * `client_id`
 * `redirect_uri`
+* 'TLS_Client_Certificate_DiGA' (for mTLS authentication)
 * the set of authorized [SMART scopes](smart-scopes.html)
 
 The `client_id`MUST follow the structure: `urn:diga:bfarm:{DiGA-ID}` where `{DiGA-ID}` is the unique five-digit
