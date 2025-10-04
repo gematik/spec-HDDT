@@ -3,39 +3,12 @@
 hide footbox
 !pragma teoz true
 
-!define MANUFACTURER #A0C5CF
-!define VIBW #C9E6CA
-!define BFARM #F6D7B6
-!define SPEC #FAF3C0
-
 
 title RESTFul FHIR API Zugriffskontrollogik
 
-participant DiGA order 0 [
-	=DiGA
-	----
-	""Backend""
-]
-participant HiMi_AuthZ order 10 [
-	=Device Data Recorder
-	----
-	""Authorization Server API""
-] 
-
-participant HiMi_Res order 11 [
-	=Device Data Recorder
-	----
-	""Resource Server API""
-]
-
-<style>
-  sequenceDiagram {
-    reference {
-      BackGroundColor #fbf5fb
-    }
-}
-</style>
-skinparam SequenceDividerBackgroundColor #A0C5CF
+participant "DiGA<n>Backend" as DiGA
+participant "Device Data Recorder<br>Authorization Server" as HiMi_AuthZ
+participant "Device Data Recorder<br>Resource Server" as HiMi_Res
 
 activate DiGA
 DiGA -> HiMi_Res: FHIR-Resource Request (access-token)
@@ -62,7 +35,7 @@ HiMi_Res -> HiMi_Res: write log entries (Pairing-ID, ...)
 HiMi_Res -> DiGA: FHIR ressources
 DiGA -> DiGA: write log entries (Pairing-ID, ...) 
 DiGA -> DiGA: Process FHIR resources for eligible purposes
-||0||
+
 deactivate DiGA
 deactivate HiMi_Res
 

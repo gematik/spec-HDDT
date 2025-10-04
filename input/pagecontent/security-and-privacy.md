@@ -60,12 +60,18 @@ Procedures for registering endpoint URLs and FQDNs with the _BfArM HiMi-SST-VZ_ 
 ### Authorization of the DiGA
 The Device Data Recorder takes the role of the Data Controller acc. Art. 4 Sentence 1 No. 7 GDPR. The Device Data Recorder MUST implement suitable technical and organizational measures to ensure and be able to prove that the processing is carried out in accordance with the GDPR (Art. 42 GDPR). This especially includes the Device Data Recorder's responsibility to ensure that device data is only disclosed to authorized DiGA. 
 
-The authorization of a DiGA to obtain data from a Device Data Recorder is based on three mechanisms:
-* a valid shared patient identifier MUSZT have been agreed for the patient this data belongs to (see above),
-* the provided data MUST be required by the DiGA for the DiGA's intended use and
-* the patient MUST have given informed consent for sharing device data with a DiGA.
+Based on the consent of a specific user, the DiGA-VZ entry with the [MIV-specific authorizations](mivs.html) for a DiGA, the Device Data Recorder MUST only grant access to a DiGA for
+- FHIR resources with only data about a specific user AND
+- FHIR resources for which this user has consented to access through a DiGA AND
+- Read-only and search-only access to FHIR resources AND
+- FHIR resources bound to MIVs for which a DiGA has been authorized by the BfArM
 
-The Device Data Recorder verifies these conditions and issues an OAuth2 Access Token for an authorized DiGA (see [pairing](pairing.html)). This token MUST be presented by the DiGA with any request for device data. HDDT does not make any presumptions on the content of this Access Token. A manufacturer of a Device Data Recorder  ;MAY place all authorization information directly into the token or use opaque tokens which just refer to information which is managed internally. 
+The Device Data Recorder verifies these conditions and issues an OAuth2 Access Token for an authorized DiGA (see [pairing](pairing.html)). This token MUST be presented by the DiGA with any request for device data. HDDT does not make any presumptions on the content of this Access Token. A manufacturer of a Device Data Recorder MAY place all authorization information directly into the token or use opaque tokens which just refer to information which is managed internally. In any case, the Device Data Recorder MUST check the authenticity and integrity of the access token against the token signature.
+
+The figure below summarizes the HDDT authorization model and shows how preconditions and context information map onto the access token that is issued to a DiGA.
+
+<div><img src="/HDDT DiGA access control.png" alt="Authorization" width="60%"></div>
+<br clear="all"/>
 
 #### Intended Use
 Upon registration with the _DiGA-VZ_, a DiGA registers the values it processes for its "intended use". For any of these values that match a defined MIV, BfArM links the DiGA with the respective MIV (see [Information Model](information-model.html)). For each request for measured or aggregated data the Device Data Recorder MUST verify that the requesting DiGA requires the requested data for its intended use. As MIVs are defined through FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) this means:
@@ -110,6 +116,20 @@ Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy
 * unauthorized access attempts to device data (Device Data Recorder)
 
 Both the DiGA and the Device Data Recorder MUST provide the patient the ability to inspect the audit trail. Both the DiGA and the Device Data Recorder MUST upon request give responsible data privacy commissionars access to the audit trails.
+
+### Obligations for Regular Inspections
+
+In order to implement and operate § 374a SGB V in accordance with the law, manufacturers of DiGA and Device Data Recorders MUST regularly inform themselves about changes in the systems relevant to them:
+
+| Manufacturer   | System | Change to be tracked | Possible Impact |
+|----------------|--------|----------------------|-----------------|
+| DiGA           | ZTS    | MIV Definitions (ValueSets) | Adjustments to the interpretation of values to be provided interoperably <br>&nbsp;<br> Requesting renewed consent due to changes in permissions |
+| | HiMi-SST-VZ  | HiMi-Status <br>&nbsp;<br>Supported vibW <br>&nbsp;<br> FQDN (FHIR, Authorization) <br>&nbsp;<br> Base URL (FHIR, OAuth) | Termination of coupling to an aid/implant <br>&nbsp;<br> Invalidating consent <br>&nbsp;<br>Configuration adjustments of the DiGA |
+| | Device Data Recorder  | FHIR Capability Statement <br>&nbsp;<br> OAuth Server Data Document | Adjustments to RESTful FHIR API calls <br>&nbsp;<br> Adjustments to the used scopes and endpoints | 
+| Aid/Implant    | ZTS    | MIV Definitions (ValueSets) | Migration to ValueSet versions <br>&nbsp;<br> Adjustments to the values to be provided interoperably | 
+|                | DiGA-VZ | DiGA-Status <br>&nbsp;<br> Permissions of a DiGA <br>&nbsp;<br> TLS_Client_Cert_DiGA <br>&nbsp;<br> redirect_uri | Configuration changes of the Authorization Server <br>&nbsp;<br>Termination of coupling to a DiGA <br>&nbsp;<br> Invalidating consent |
+
+
 
 ### Limits of security performance
 The transfer of data between Device Data Recorder and DiGA and the necessary pairing between the two is considered here. The processing of the data before or after it is transmitted is not considered. This includes internal processes at the backend operators, protection of data during storage, protection of the existing and new interfaces against hacking attacks, the authentication of the insured person in order to access DiGA, Personal Health Devices and Device Data Recorder, as well as the secure implementation of the respective front-end to back-end communication.
