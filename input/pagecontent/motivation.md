@@ -7,7 +7,7 @@ The _Kompetenzzentrum für Interoperabilität im Gesundheitswesen (KIG: Competen
 
 This interface is part of a broader ecosystem of regulated responsibilities, interoperable services and standardized process (e.g. for registering affected medicalaids and implants). The figure below sketches the overall context of the HDDT interface (red).
 
-<div><img src="/Zusammenhänge.png" alt="From Use Cases to MIVs" width="60%"></div>
+<div><img src="/Zusammenhaenge.png" alt="HDDT Ecosystem" width="60%"></div>
 <br clear="all"/>
 ___Anmerkung__. Grafik wird noch übersetzt_
 
