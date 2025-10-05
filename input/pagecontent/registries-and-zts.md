@@ -1,4 +1,4 @@
-In oder to [authenticate with each other](security-and-privacy.html) and to share device data after successful [authorization](pairing.html) for the processing of defined [Mandatory Interoperable Values](methodology.html#from-use-cases-to-mivs) (MIVs), a DiGA and a Device Data Recorder 
+In order to [authenticate with each other](security-and-privacy.html) and to share device data after successful [authorization](pairing.html) for the processing of defined [Mandatory Interoperable Values](methodology.html#from-use-cases-to-mivs) (MIVs), a DiGA and a Device Data Recorder 
 - need to discover relevant information about each other, including the MIVs the other party is eligible to process
 - must obtain information about the other party's X.509 certificates from a trusted third party
 - must be able to expand MIV-defining FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) and other ValueSets used by the HDDT-specific resource definitions
@@ -9,10 +9,10 @@ These services are usable through the BfARM DiGA Registry and BfARM Device Regis
   <img src="assets/images/HDDT_Informationsmodell_Generisch_BfArM.svg" style="width: 100%;" />
 </div>
 
-For further information an the displayed classes and attributes and their mappings to FHIR resource defintions see the detailed explanation at the [HDDT information model](information-model.html#BfArM-registries).
+For further information an the displayed classes and attributes and their mappings to FHIR resource definitions see the detailed explanation at the [HDDT information model](information-model.html#BfArM-registries).
 
 ### HiMi-SST-VZ
-The BfARM Device Registry (_HiMi-SST-VZ_ ) is operated by BfArM and provides access to definitions of registered Personal Health Devices and Device Data Recorders. For HDDT the _HiMi-SST-VZ_ provides the following functions:
+The _HiMi-SST-VZ_ (BfArM Device Registry) is operated by BfArM and provides access to definitions of registered Personal Health Devices and Device Data Recorders. For HDDT the _HiMi-SST-VZ_ provides the following functions:
 - providing information about Personal Health Devices (medical aids and implants) that are registered as HDDT [certification relevant systems](certification-relevant-systems.html), e.g. 
    - device information (name, version, etc.)
    - manufacturer and contact data 
@@ -40,7 +40,7 @@ The BfARM DiGA Registry (_DiGA Verzeichnis_) is operated by BfArM and provides a
 - listing all DiGA that are eligible to process a defined MIV
 - providing feeds for monitoring changes in the _DiGA Verzeichnis_ (e.g. new DiGA registrations, changes in eligible MIVs, changes in certificate status, etc.)
 
-The _DiGA Verzeichnis_ can be reached at the URL https://diga.bfarm.de/de/verzeichnis, an API is avalible at diga.api.bund.dev/. 
+The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), an API is avalable at [https://diga.api.bund.dev/](https://diga.api.bund.dev/). 
 
 The _DiGA Verzeichnis_ is currently being expanded to include the data, registration processes, and interfaces needed for the implementation of § 374a SGB V.
 

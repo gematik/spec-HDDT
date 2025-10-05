@@ -2,7 +2,7 @@
 ### FHIR Version
 This specification is based on HL7 FHIR R4 (v4.0.1), which is the normative FHIR version for the German healthcare system.
 
-Considering that existing implementations at affected manufactures of resource servers may use FHIR R5 or may even prepare for the upcoming release R6, serious efforts have been made to not rely on elements from FHIR R4 resource definitions that do not have corresponding elements in R5 and R6. This even is a prerequisite for a sematics-preserving possible future upgrade of the HDDT specifications to a higher FHIR version than R4. 
+Considering that existing implementations at affected manufactures of resource servers may use FHIR R5 or may even prepare for the upcoming release R6, serious efforts have been made to not rely on elements from FHIR R4 resource definitions that do not have corresponding elements in R5 and R6. This even is a prerequisite for a semnatics-preserving possible future upgrade of the HDDT specifications to a higher FHIR version than R4. 
 
 ### Representation Format
 The FHIR standard defines three different representation formats: XML, JSON, and RDF (Turtle). Within the scope of the HDDT specification, resource servers as HDDT device data providers MUST support both the XML and JSON formats. 
@@ -16,7 +16,7 @@ It should be noted that the `Content-Type` and `Accept` headers may include addi
 * HDDT device data providers SHOULD support the [FHIR HTTP `_format` Parameter](https://www.hl7.org/fhir/R4/http.html#parameters) and MAY support the other parameters defined at https://www.hl7.org/fhir/R4/http.html#parameters.
 
 ### _Mandatory_, _Must Support_ and _Optional_ Elements
-The elements defined within the HDDT FHIR profiles consist of _Mandatory_, _Must Support_ and _Optional_ elements. This section defines, how resource servers as device data providers and DIGA as device data consumers MUST process _Mandatory_, _Must Support_ and _Optional_ elements. Basis for these definitions are the [HL7-D Best Practices for Profiling FHIR](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current).
+The elements defined within the HDDT FHIR profiles consist of _Mandatory_, _Must Support_ and _Optional_ elements. This section defines how resource servers as device data providers and DIGA as device data consumers MUST process _Mandatory_, _Must Support_ and _Optional_ elements. Basis for these definitions are the [HL7-D Best Practices for Profiling FHIR](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current).
 
 #### _Mandatory_ Elements
 Mandatory elements are elements with a minimum cardinality of 1 (min=1). A HDDT device data provider always MUST provide a valid value for such elements. A HDDT device data consumer MUST be able to process such elements according to the semantics as defined with the HDDT specifications or the core HL7 FHIR R4 specification.
@@ -34,45 +34,24 @@ Optional elements are elements with a minimum cardinality of 0 (min=0) which are
 Remark: _Ignoring_ an element means that the element is not interpreted by the device data consumer and does not affect the device data consumer's perception of the semantics of the resource.
 
 
-### Interactions and Endpoints
+### Interactions and Endpoints 
 HDDT builds upon standard FHIR RESTful interactions on [Observation](https://hl7.org/fhir/R4/observation.html) resources for sharing measured device data. Aggregated reports are shared using dedicated FHIR operations. Access to observational device attributes (e.g. calibration status) is possible through standard FHIR RESTful interactions on [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources. 
 
-This paragraph defines some common definitions that hold for all FHIR RESTful interactions and operations that are used in HDDT.
+For the specifications of the required interactions and operations see the respective HDDT specification parts:
+- [Observation (Measurement data)](fhir-api-observation.html)
+- [DeviceMetric (Device dynamic attrbutes and calibration)](fhir-api-devicemetric.html)
+- [Device (Device instance and static attributes)](fhir-api-device.html)
 
-#### Read Interactions
-Endpoints that are required to support the REST interaction __read__ MUST be available under `[BASE_URL]/[resourceType]/[id]`, [as specified in FHIR R4](https://www.hl7.org/fhir/R4/http.html#read).
-
-Resource instances returned by the READ interactions MUST conform to the defined HDDT FHIR Profiles.
-
-#### Search Interactions
-Endpoints that are required to support the __search__ interactions MUST allow searching via HTTP GET. Endpoints MAY choose to support search requests via HTTP POST (see [FHIR RESTful Search - Introduction](https://www.hl7.org/fhir/R4/search.html#Introduction)).
-
-For each FHIR resource that is profiled by HDDT, the HDDT specification defines a set of search parameters that MUST be supported by Device Data Recorder actors as device data providers. This ensures that DiGA as device data consumers can rely on certain filter and search functionalities that they MAY need for processing activities on top of this data. In addition, a Device Data Recorder MAY support all other defined standard FHIR search parameters (see [FHIR Search](https://www.hl7.org/fhir/R4/search.html)). 
-
-A Device Data Recorder MUST publish the list of supported search parameters as part of its [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) (see "`/metadata` endpoint" below).
+A Device Data Recorder MUST publish the list of supported search parameters as part of its [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) (see [`/metadata` endpoint](fhir-api-metadata.html)).
 
 #### Authentication
-The DiGA MUST provide an OAuth2 Bearer Token in the HTTP `Authorization` header with each FHIR RESTful interaction or operation request, using the format `Authorization: Bearer <access_token>`. For details on how to obtain an Access Token see [Pairing - Tokens and Token Response](pairing.html#tokens-and-the-token-response).
+The DiGA MUST provide an OAuth2 Bearer Token in the HTTP `Authorization` header with each FHIR RESTful interaction or operation request, using the format `Authorization: Bearer <access_token>`. For details on how to obtain an Access Token see [Pairing - Tokens and Token Response](pairing.html#tokens-and-the-token-response). For rules on how to validate the Access Token see [Security Considerations](himi-diga-api.html#security-considerations).
 
 #### Error Handling
 
 For each FHIR endpoint that a Device Data Recorder MUST support, the respective HDDT specification part lists possible errors. For each error the expected HTTP error code, the type of error, and likely reasons for the occurrence of the error are given.
 
 In case of an error, the Device Data Recorder MUST return the defined HTTP error code. It MUST return a FHIR-[OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) resource if `[OperationOutcome]` is specified as the error type by the specification of the affected interaction or operation. The Device Data Recorder SHOULD provide a reason for the error. For this the Device Data Recorder SHOULD either use a coded value in `OperationOutcome.issue.details`, or use the free text input in `ObservationOutcome.issue.diagnostics`. 
-
-### `/metadata` Endpoint
-Each Device Data Recorder MUST provide a `/metadata` endpoint to allow a DiGA to obtain the Device Data Recorder's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html).
-
-| | |
-|-|-|
-| **Endpoint** | `/metadata` |
-| **HTTP Method** | GET |
-| **Description** | Provides a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) with information about supported FHIR version, resource types, profiles, interactions, search parameters, and filters. |
-| **Authentication** | None (public endpoint, no mTLS client authentication) |
-| **Returned Objects** | FHIR CapabilityStatement |
-| **Specifications** | • FHIR version **MUST** be R4 <br>• Must declare supported FHIR version, resources, operations, search parameters, and profiles. <br> • Supported FHIR Resource types: Device, DeviceMetric, Observation. |
-| **Error codes** | `500` (Internal Server Error) |
-
 
 ### Using Existing and Derived Profiles  
 Manufacturers who implement the HDDT FHIR API MAY use any FHIR profile that is compliant with the _mandatory_ and _Must Support_ elements of the HDDT profiles. Such profiles MAY further constrain any _optional_ elements from the HDDT profile.
@@ -85,7 +64,7 @@ When using derived or compliant profiles, the manufacturer MAY include a respect
 
 In addition, the implementor of a HDDT profile MUST be aware that a DiGA as the consumer of the HDDT FHIR resources
 * MAY ignore any `extension` elements with the resource unless these extensions are defined by the HDDT specification
-* MUST throw an error upon receipt of resources that contain `modifierExtension` that the DiGA is not ableto interpret.
+* MUST throw an error upon receipt of resources that contain `modifierExtension` that the DiGA is not able to interpret.
 
 Implementations that regularly trigger errors with a resource consuming DiGA MAY be considered as not compliant with the HDDT specifications. DiGA manufacturers who are affected by such errors MAY request gematik for a renewal of the conformance approval of the resource providing Health Record's HDDT implementation.
 
@@ -96,18 +75,18 @@ While deriving FHIR profiles from the assessed use cases (see [methodology](meth
 
 #### Compatibility with HL7 Profiles and ISO/IEEE 11073 Standards
 
-Baseline for many specifications in the area of health device data are the [__ISO/IEEE 11073 family of standards__](https://www.iso.org/standard/62785.html) for medical device communication. These standards define a common framework for the exchange, management and interoperability of medical device data. The standards define device specific domain models on top of a common data model, communication protocols, and standardized attributes for device configurations. For years several organizations, in particilar the Continua Health Alliance and the Bluetooth SIG, have worked on the definition of Health Device Profiles based on ISO/IEEE 11073 standards in order to allow interoperability between personal health devices and health IT systems. The focus of specific profiles is on the device side, i.e. the communication between a Personal Health Device and a Personal Health Gateway device (e.g. a smartphone). 
+Baseline for many specifications in the area of health device data are the [__ISO/IEEE 11073 family of standards__](https://www.iso.org/standard/62785.html) for medical device communication. These standards define a common framework for the exchange, management and interoperability of medical device data. The standards define device specific domain models on top of a common data model, communication protocols, and standardized attributes for device configurations. For years several organizations, in particular the Continua Health Alliance and the Bluetooth SIG, have worked on the definition of Health Device Profiles based on ISO/IEEE 11073 standards in order to allow interoperability between personal health devices and health IT systems. The focus of specific profiles is on the device side, i.e. communication between a Personal Health Device and a Personal Health Gateway device (e.g. a smartphone). 
 
-The [__HL7 Personal Health Device (PHD) Work Group__](https://www.hl7.org/Special/committees/personalhealthdevice/index.cfm) builds upon the work of the Continua Health Alliance by defining FHIR profiles for the exchange of health device data based on the Domain Information Model as defined in the IEEE 11073-20601 standard. The profiles cover a wide range of personal health devices including blood pressure monitors, weight scales, glucose meters, pulse oximeters, and thermometers. The profiles are designed to be used in a variety of settings including home health care, remote patient monitoring, and telehealth. The focus of the HL7 PHD profiles is on data exchange between a Continua compliant Personal Health Gateway and a receiving health IT system ("Health Record" in the former Continua notion). Another initative from HL7 - [__Point of Care Devices (PoCD)__](http://build.fhir.org/ig/HL7/uv-pocd/) - focuses on the exchange of data between point of care devices and health IT systems in clinical settings. In contrast to PHD, PoCD builds upon the Domain Information Model as defined in the ISO/IEEE 11073-10201 standard for Point-of-care medical device communication. 
+The [__HL7 Personal Health Device (PHD) Work Group__](https://www.hl7.org/Special/committees/personalhealthdevice/index.cfm) builds upon the work of the Continua Health Alliance by defining FHIR profiles for the exchange of health device data based on the Domain Information Model as defined in the IEEE 11073-20601 standard. These profiles cover a wide range of personal health devices including blood pressure monitors, weight scales, glucose meters, pulse oximeters, and thermometers. The profiles are designed to be used in a variety of settings including home health care, remote patient monitoring, and telehealth. The focus of the HL7 PHD profiles is on data exchange between a Continua compliant Personal Health Gateway and a receiving health IT system ("Health Record" in the former Continua notion). Another initiative from HL7 - [__Point of Care Devices (PoCD)__](http://build.fhir.org/ig/HL7/uv-pocd/) - focuses on the exchange of data between point of care devices and health IT systems in clinical settings. In contrast to PHD, PoCD builds upon the Domain Information Model as defined in the ISO/IEEE 11073-10201 standard for Point-of-care medical device communication. 
 
-The figure below shows, how the HDDT profiles, the ISO/IEEE 11073 standards and the HL7 PHD profiles focus on different parts of the overall communication chain from a Personal Health Device to consuming health IT application such as a DiGA.
+The figure below shows how the HDDT profiles, the ISO/IEEE 11073 standards, and the HL7 PHD profiles focus on different parts of the overall communication chain from a Personal Health Device to consuming health IT application such as a DiGA.
 <div><img src="/HDDT conformance.png" alt="conformance with 11073 and HL7 PHD" width="60%"></div>
 <br clear="all"/>
 
 The existing HL7 initiative which is best comparable with the goals of HDDT is the [__HL7 Vitals Signs Panel__](https://hl7.org/fhir/R4/observation-vitalsigns.html). This profile covers a wide range of vital signs - e.g. from a patient's wearables and personal health devices - including blood pressure, body temperature, heart rate, respiratory rate, oxygen saturation, and body weight. The purpose is to allow a client to request a patient's vital data from a resource server in a simple request and only profiling the defined observations to the minimum needed for interoperability. This is the same strategy as used with the HDDT profiles. Differences between the HL7 Vital Signs Panel and the HDDT Observation profiles are:
-- The HL7 Vital Signs Panel makes the `Observation.category` element mandatory while HDDT does not. The reason for this is that for HL7 the category is the most broad filter for search interactions while HDDT's broadest filter is the _Mandatory Interoperable Value_ (MIV) for the `Observation.code` element.
+- The HL7 Vital Signs Panel makes the `Observation.category` element mandatory while HDDT does not. The reason for this is that for HL7 the category is the broadest filter for search interactions while HDDT's broadest filter is the _Mandatory Interoperable Value_ (MIV) for the `Observation.code` element.
 - The HL7 Vital Signs Panel does not make the `Observation.device` element mandatory while HDDT does. The reason for this is that the use cases addressed by HDDT require a higher level of patient safety and data provenance than the use cases addressed by the HL7 Vital Signs Panel (see conclusion below).
-- The HL7 Vital Signs Panel require the `Observation.subject` element to be mandatory while HDDT does not. The reason for this is that DiGA and medical aids' backend systems do not securely identify the patient. They just match authenticated patient accounts. The relevant patient identifer therefore is the internal patient ID of the Device Data Recorder, which is associated with the Access Token and which is fully opaque to the requesting DiGA. In order to allow a Device Data Recorder to not disclose this identifier to the DiGA, HDDT does not make the `Observation.subject` element mandatory. DiGA and Device Data Recorder MAY use the Pairing-ID as a reference to the patient, but as this ID is as well known to both parties from the [pairing process](pairing.html), there is no need to redundently provide this ID with each Observation resource.
+- The HL7 Vital Signs Panel requires the `Observation.subject` element to be mandatory while HDDT does not. The reason for this is that DiGA and medical aids' backend systems do not securely identify the patient. They just match authenticated patient accounts. The relevant patient identifer therefore is the internal patient ID of the Device Data Recorder, which is associated with the Access Token and which is fully opaque to the requesting DiGA. In order to allow a Device Data Recorder to not disclose this identifier to the DiGA, HDDT does not make the `Observation.subject` element mandatory. DiGA and Device Data Recorder MAY use the Pairing-ID as a reference to the patient, but as this ID is as well known to both parties from the [pairing process](pairing.html), there is no need to redundantly provide this ID with each Observation resource.
 
 #### Compatibility of HDDT FHIR Profiles with Other Existing Profiles
 The following table shows the compatibility of the defined HDDT FHIR Observation profiles and aggregated report profiles with existing international profiles. 

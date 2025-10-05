@@ -2,12 +2,12 @@
 ### Identification and Authentication
 
 #### Identification and Authentication of the Patient
-Every DiGA maintains a patient account for each patient. Patients authenticate with this account using credentials that have been initialized during the patient's registration with the DiGA. By regulation, DiGA MUST NOT identify the patient as a natural person unless this is required for fulfilling regulatory requirements (e.g. exporting data to the electronic patient record). Therefore the patient identifier used internally by a DiGA is considered as a pseudonym that allows for authenticationg the owner of a patient account without identifying this person.      
+Every DiGA maintains a patient account for each patient. Patients authenticate with this account using credentials that have been initialized during the patient's registration with the DiGA. By regulation, DiGA MUST NOT identify the patient as a natural person unless this is required for fulfilling regulatory requirements (e.g. exporting data to the electronic patient record). Therefore, the patient identifier used internally by a DiGA is considered as a pseudonym that allows for authenticating the owner of a patient account without identifying this person.      
 
-With respect to Device Data Recorders, HDDT makes no asumptions about if and how a patient is identified. Again, the only asumption is that the Device Data Recorder is able to authenticate a user as the owner of a patient account that links to that user's device data. 
+With respect to Device Data Recorders, HDDT makes no assumptions about if and how a patient is identified. Again, the only assumption is that the Device Data Recorder is able to authenticate a user as the owner of a patient account that links to that user's device data. 
 
 A Device Data Recorder MUST NOT transmit any data to a DiGA that allows the DiGA to identify the patient as a natural person – neither during the authorization & pairing process nor during the actual subsequent health data transfer. In particular, the Device Data Recorder
-- MUST NOT implement a `/patient`endpoint that is accessible to DiGA
+- MUST NOT implement a `/patient` endpoint that is accessible to DiGA
 - SHOULD NOT include a `subject` reference with any resources that are transmitted to a DiGA
 - MUST NOT use identifying data within a `subject` reference (if such a reference is included with a resource). 
 
@@ -22,8 +22,7 @@ addition, medical data transmitted via FHIR MUST NOT contain information that re
 insured person’s identity.
 
 Further normative requirements and technical details regarding the identifier are specified in the
-dedicated [Pairing ID](pairing.html#pairing-id)
-chapter.
+dedicated [Pairing ID](pairing.html#pairing-id) section.
 
 #### Identification and Authentication of the DiGA
 A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below) as a client. The DiGA's X.509 client certificate MUST be registered with the BfArM-SST-VZ. The DiGA MAY use self-signed certificates. Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11). DiGA authorization is based on OAuth2 and requires a `client_id` and a `redirect_url` to be registered as trust anchors with the _DiGA-VZ_ of the BfArM. 
@@ -38,7 +37,7 @@ The following table summarizes the trust attributes for identification and authe
 
 Procedures for registering certificates and for exchanging expiring certificates will be published by BfArM as part of the HiMi-SST-VZ specification or corresponding guidelines.
 
-#### Identitfication and Authentication of the Device Data Recorder
+#### Identification and Authentication of the Device Data Recorder
 A Device Data Recorder identifies and authenticates with a DiGA during connection establishment (mutual TLS, see below) as a server. The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's [Authorization Server](authorization-server.html) MUST be registered with the BfArM-SST-VZ.
 
 When a DiGA calls the [FHIR API](retrieving-data.md) of the Device Data Recorder' FHIR Resource Server, the Device Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's FHIR Resource Server  MUST be registered with the BfArM-SST-VZ.
@@ -92,7 +91,7 @@ The period of validity of the consent MUST NOT be longer than the prescription p
 ### Secure Communication via mTLS
 Connections between the DiGA and HiMi backend are secured via a mutually authenticated TLS channel (mTLS). Since the connection takes place over the Internet, the trust space of the Internet PKI is used for server certificates. Specifically, the CAs that are members of the CA/Browser Forum form the trust space and CA Authorization (CAA, https://datatracker.ietf.org/doc/html/rfc8659) and Certificate Transparency (CT, https://datatracker.ietf.org/doc/html/rfc6962) are implemented.
 
-TLS client certificates are not issued by those Cas. Hence the client certificates can be from any pki or self-signed and will be directly registered in the DiGA directory (DiGA-VZ).
+TLS client certificates are not issued by those Cas. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the DiGA directory (DiGA-VZ).
 
 For all connections, the DiGA acts as a client and the Device Data Recorder as a server. In the course of establishing a TLS connection, the following steps must be completed as part of the certificate check:
 1. Verification of the server certificate of the Device Data Recorder by the DiGA:
@@ -120,7 +119,7 @@ Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy
 * unsuccessful pairing and unpairing attempts
 * unauthorized access attempts to device data (Device Data Recorder)
 
-Both the DiGA and the Device Data Recorder MUST provide the patient the ability to inspect the audit trail. Both the DiGA and the Device Data Recorder MUST upon request give responsible data privacy commissionars access to the audit trails.
+Both the DiGA and the Device Data Recorder MUST provide the patient with the ability to inspect the audit trail. Both the DiGA and the Device Data Recorder MUST upon request give responsible data privacy commissioners access to the audit trails.
 
 ### Obligations for Regular Inspections
 
@@ -132,8 +131,7 @@ In order to implement and operate § 374a SGB V in accordance with the law, manu
 | | HiMi-SST-VZ  | HiMi-Status <br>&nbsp;<br>Supported vibW <br>&nbsp;<br> FQDN (FHIR, Authorization) <br>&nbsp;<br> Base URL (FHIR, OAuth) | Termination of coupling to an aid/implant <br>&nbsp;<br> Invalidating consent <br>&nbsp;<br>Configuration adjustments of the DiGA |
 | | Device Data Recorder  | FHIR Capability Statement <br>&nbsp;<br> OAuth Server Data Document | Adjustments to RESTful FHIR API calls <br>&nbsp;<br> Adjustments to the used scopes and endpoints | 
 | Aid/Implant    | ZTS    | MIV Definitions (ValueSets) | Migration to ValueSet versions <br>&nbsp;<br> Adjustments to the values to be provided interoperably | 
-|                | DiGA-VZ | DiGA-Status <br>&nbsp;<br> Permissions of a DiGA <br>&nbsp;<br> TLS_Client_Cert_DiGA <br>&nbsp;<br> redirect_uri | Configuration changes of the Authorization Server <br>&nbsp;<br>Termination of coupling to a DiGA <br>&nbsp;<br> Invalidating consent |
-
+|                | DiGA-VZ | DiGA-Status <br>&nbsp;<br> Permissions of a DiGA <br>&nbsp;<br> TLS_Client_Cert_DiGA <br>&nbsp;<br> redirect_uri | Configuration changes of the Authorization Server <br>&nbsp;<br>Termination of coupling to a DiGA <br>&nbsp;<br> Invalidating consent 
 
 
 ### Limits of security performance

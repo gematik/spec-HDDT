@@ -103,7 +103,7 @@ ensures that future changes affecting one data type do not impact manufacturers 
 
 § 374a SGB V requires that aggregated and derived data MUST also be made available through the HDDT interface. In HDDT,
 this requirement is limited to data that can be calculated from the MIVs provided by the medical aid. For example, an
-rtCGM is only REQUIRED to provide derived values that can be computed from its continuous glucose
+rtCGM only MUST provide derived values that can be computed from its continuous glucose
 measurements ([MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)). To reduce the workload for
 Health Record manufacturers, derived data MUST be provided as standardized reports whenever it is calculated over a
 period of time. A DiGA therefore SHALL NOT request a single metric, such as the number of hypoglycemias, but instead
