@@ -42,7 +42,7 @@ patients and their physicians to access data through mobile apps or other intera
 The HDDT specification is intended to allow manufacturers of backend systems for Personal Health Devices to extend their existing resource servers' interfaces with
 HDDT-specific processes and data models in a straightforward way. Ideally, any required adjustments should be limited to
 the syntax of data exchange, without changes to the core architecture that connects the Personal Health Device, the
-Aggregation Manager (e.g. the mobile app that controls the device), and the Health Record. To support this, the specification and its non-functional requirements are
+Personal Health Gateway (e.g. the mobile app that controls the device), and the Health Record. To support this, the specification and its non-functional requirements are
 based on the following principles:
 
 * HDDT
@@ -57,15 +57,15 @@ based on the following principles:
   DiGA MAY ignore them. This approach allows a resource server to reuse FHIR profiles that are already implemented in
   other contexts.
 * Only data that is managed in the Health Record is affected by the HDDT interface. Manufacturers SHOULD NOT forward
-  data that is processed exclusively on the device or in the Aggregation Manager to the Health Record solely to comply
+  data that is processed exclusively on the device or in the Personal Health Gateway to the Health Record solely to comply
   with the HDDT specification.
 
 ### Role of the Controller
 
 The HDDT specification follows the reference model of
-the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance). It assumes that a Personal
-Health Device connects to an Aggregation Manager (e.g. a mobile app) that serves as a gateway to the Health Record. In
-HDDT, the Aggregation Manager and Health Record together are referred to as the _Device Data Recorder_ (see [Logical Building Blocks](logical-viewpoints.html#logical-building-blocks) for details). The _Device Data Recorder_
+the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance), which is also adopted by the [HL7 Personal Health Device WG](https://hl7.org/fhir/uv/phd/index.html). This model defines that a Personal
+Health Device connects to an Personal Health Gateway (e.g. a mobile app) that serves as a gateway to the Health Record. In
+HDDT, the Personal Health Gateway and Health Record together are referred to as the _Device Data Recorder_ (see [Logical Building Blocks](logical-viewpoints.html#logical-building-blocks) for details). The _Device Data Recorder_
 provides the FHIR resource server. A DiGA connects to this server to request and obtain data measured by a connected
 Personal Health Device.
 
@@ -73,15 +73,15 @@ The _Device Data Recorder_ controls all data and communication flows between the
 the Health Record on the backend system. The HDDT specification MUST NOT affect this role. The specification also MUST NOT set requirements for:
 
 * the frequency of data collection on the Personal Health Device
-* the method and frequency of synchronization between the Personal Health Device and the Aggregation Manager
-* the frequency of data transmission from the Aggregation Manager to the Health Record (e.g. if the Aggregation Manager
+* the method and frequency of synchronization between the Personal Health Device and the Personal Health Gateway
+* the frequency of data transmission from the Personal Health Gateway to the Health Record (e.g. if the Personal Health Gateway
   transmits data only once per day, then a DiGA will only be able to access data at that frequency through the HDDT
   interface)
-* how the Aggregation Manager handles data from uncalibrated devices (e.g. whether this data is sent to the Health
+* how the Personal Health Gateway handles data from uncalibrated devices (e.g. whether this data is sent to the Health
   Record or not)
 * which specific algorithms the _Device Data Recorder_ uses to calculate key figures (e.g. whether an rtCGM includes
   data from its warm-up phase when calculating therapeutic key values such as the Glucose Management Index)
-* whether and how the Aggregation Manager pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
+* whether and how the Personal Health Gateway pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
   curves)
 
 ### Easy Maintenance and Economical Operations

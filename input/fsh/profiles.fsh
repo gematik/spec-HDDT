@@ -81,7 +81,7 @@ This profile helps a device data consuming DiGA to
 
 **Obligations and Conventions:**
 
-The Personal Health Device's backend regularely synchronizes with the device hardware through a gateway (_Aggregation Manager_). 
+The Personal Health Device's backend regularely synchronizes with the device hardware through a gateway (_Personal Health Gateway_). 
 The minimum delay that the concrete end-to-end synchronization from the Personal Health Device to the device backend imposes is provided by the BfArM _HiMi-SST-VZ_ (Device Registry)
 through the static attribute `Delay-From-Real-Time`. If a resource server has not synchronized with the connected Personal Health Device for a time span 
 longer than `Delay-From-Real-Time`(e.g. due to temporarely lost Bluetooth or internet connectivity), the `status` of the Device resource that represents the 
@@ -192,7 +192,7 @@ This unit MAY differ from the unit that is used with the `Observation.value[x]` 
 
 _Example_: A rtCGM sensor measures glucose values as mg/dl. All data is stored in the health record in this unit. 
 The resource server provides the data only using mg/dl as the unit. At the mobile app that came with the rtCGM (the rtCGM’s 
-Aggregation Manager) the patient configured the preferred unit as mmol/l. Therefore all data is calculated (by the device or 
+Personal Health Gateway) the patient configured the preferred unit as mmol/l. Therefore all data is calculated (by the device or 
 the app) to mmol/l before displaying it to the patient. In this example the unit of `Observation.value[x]` is mg/dl 
 while `DeviceMetric.unit` is mmol/l. The motivation for this behaviour is to allow the DiGA to obtain information about the 
 patient’s preference and thus to be in sync with the medical aid by displaying measured values in the same unit.
@@ -231,7 +231,7 @@ Profile for capturing blood glucose measurements as FHIR Observation resources.
 
 This profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\" which is technically defined 
 by the ValueSet _hddt-miv-blood-glucose-measurement_. This MIV is e.g. implemented by blood glucose meter (glucometer) that can connect to 
-an Aggregation Manager (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.
+an Personal Health Gateway (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.
 
 **Obligations and Conventions:**
 
