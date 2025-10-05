@@ -23,7 +23,3 @@ for pairing:
 * [OAuth 2.0 Authorization Endpoint](authorization-server-authorization-endpoint.html) 
 * [OAuth 2.0 Token Endpoint](authorization-server-token-endpoint.html)
 * [OAuth 2.0 Revocation Endpoint](authorization-server-revocation-endpoint.html)
-* [OAuth 2.0 JWKS Endpoint](authorization-server-jwks-endpoint.html)
-
-A HiMi manufacturer MAY provide additional OAuth 2.0 endpoints (e.g., introspection, userinfo) as long as they do not
-conflict with the requirements of this specification.

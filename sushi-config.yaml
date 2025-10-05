@@ -104,7 +104,7 @@ pages:
     title: Pairing
     generation: markdown
   smart-scopes.html:
-    title: Smart Scopes
+    title: SMART Scopes
     generation: markdown
   retrieving-data.html:
     title: Retrieving Data
@@ -153,9 +153,6 @@ pages:
   authorization-server-revocation-endpoint.html:
     title: Revocation Endpoint
     generation: markdown
-  authorization-server-jwks-endpoint.html:
-    title: JSON Web Key Set (JWKS) Endpoint
-    generation: markdown
   general-considerations-deprecated.html:
     title: General Considerations (DEPRECATED)
     generation: markdown
@@ -187,7 +184,7 @@ menu:
     Logical Viewpoints: logical-viewpoints.html
     Information Model: information-model.html
     Pairing: pairing.html
-    Smart Scopes: smart-scopes.html
+    SMART Scopes: smart-scopes.html
     Retrieving Data: retrieving-data.html
   Generic APIs:
     FHIR Resource Server: himi-diga-api.html
