@@ -2,15 +2,15 @@ _Hinweis: Der Text ist einfach nur per Copilot übersetzt und muss noch geprüft
 
 ### Availability
 #### Availability Goals
-The service MUST maintain at least 99.5% monthly availability. Availability MUST be calculated based on the entire calendar month period. Planned and unplanned unavailability must be taken into account in accordance with the rules defined below.
+The service MUST maintain at least 99.5% monthly availability. Availability MUST be calculated in relation to one entire calendar month. Planned and unplanned unavailability need to be taken into account in accordance with the rules defined below.
 
 #### Uptime 
 The service MUST be available 24 hours a day, 7 days a week (24/7). 
 
 #### Maintenance Windows
-Scheduled maintenance windows MAY only be performed in connection with specification changes or product changes. Scheduled maintenance MUST be announced at least 5 business days prior to commencement, including start time, end time, expected impact, and touchpoint. During a planned maintenance window, impairments MAY occur; these times are considered planned unavailability and are excluded from the availability calculation, provided that the notification and communication obligations have been complied with.
+Scheduled maintenance windows MAY only be performed in connection with specification changes or product changes. Scheduled maintenance MUST be announced at least 5 business days prior to commencement, including start time, end time, expected impact, and touchpoint. During a planned maintenance window, impairments MAY occur; these times are considered planned unavailability and are excluded from the availability calculation, if the notification and communication obligations have been met.
 
-The service MUST provide a machine-readable identifier (e.g., specific HTTP status/error code and/or dedicated header/response body) during an active maintenance window that allows DiGA clients to clearly identify that scheduled maintenance is taking place. Alternatively or additionally, out-of-band information (e.g. status feed/status page/webhook) MUST be provided.
+The service MUST provide a machine-readable response (e.g., specific HTTP status/error code and/or dedicated header/response body) during an active maintenance window that allows DiGA clients to clearly identify that a scheduled maintenance is currently active. Alternatively or additionally, out-of-band information (e.g. status feed/status page/webhook) MUST be provided.
 
 #### Error Detection and Error Coding in Case of Unavailability
 In the event of unavailability (planned or unplanned), the service MUST provide clear, documented error codes that differentiate the cause (e.g. planned maintenance, temporary disruption, dependency failed).
@@ -28,10 +28,9 @@ A public, machine-readable status feed MUST be provided that contains at least t
 
 ### Response times (latency) in regular operation
 #### Response Time
-The service MUST base its response times on a defined reference system. The target values published in the interface documentation per endpoint/category (e.g. authentication, read, write operations) are used as a reference.
+The service MUST relate its response times on a defined reference system. The target values published in the interface documentation per endpoint/category (e.g. authentication, read, write operations) are used as a reference.
 
-For each referenced endpoint, the 95th percentile response time (P95) in the calendar month MUST be no more than 150% of the corresponding baseline.
-
+For each referenced endpoint, 95% of all responses must be fast enough that their time does not exceed one and a half times the specified reference value over a course of a calendar month (P95, 95th percentile response time).
 Example: Reference P95 = 400 ms → permissible P95 ≤ 600 ms.
 
 #### Independent monitoring of response times
@@ -40,11 +39,11 @@ The provider MUST operate continuous synthetic monitoring that captures P50/P95/
 #### AFO Throughput and Load Requirements
 The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability.
 
-Rejected requests MUST be signaled with a clear, documented error:
+Rejected requests MUST be documented with a clear error:
 * Recommended: HTTP 429 Too Many Requests with Header Retry-After.
 * Alternatively allowed: HTTP 503 with explicit rate-limit error code in the body and retry-after.
 
-Correctly signaled rejections due to documented rate limits (e.g. 429 with Retry-After) do NOT count as unavailability or downtime.
+Correctly documented rejections due to allowed rate limits (e.g. 429 with Retry-After) do NOT count as unavailability or downtime.
 
 ### Self-Logged Monitoring
 #### AFO Scope of Logging
@@ -89,5 +88,6 @@ It MUST be possible to filter logs by time period, client/tenant, endpoint, stat
 
 #### AFO Proof and Audit Capability
 The provider MUST provide proof of log integrity (e.g. checksums/signatures) and completeness for a period of time upon request.
+
 
 Changes to logging scopes, masking rules, or retention periods MUST be documented and dated with a date stamp. Affected parties SHOULD be informed at least 10 business days prior to the productive change, unless there are security reasons to the contrary.
