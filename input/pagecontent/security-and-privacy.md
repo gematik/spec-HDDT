@@ -71,7 +71,7 @@ HDDT does not make any presumptions on the content of this Access Token. A manuf
 
 The figure below summarizes the HDDT authorization model and shows how preconditions and context information map onto the access token that is issued to a DiGA.
 
-<div><img src="/HDDT DiGA access control.png" alt="Authorization" width="120%"></div>
+<div><img src="/HDDT DiGA access control.png" alt="Authorization" width="100%"></div>
 <br clear="all"/>
 
 #### Intended Use
