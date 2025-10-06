@@ -36,7 +36,7 @@ Example: Reference P95 = 400 ms → permissible P95 ≤ 600 ms.
 #### Independent monitoring of response times
 The provider MUST operate continuous synthetic monitoring that captures P50/P95/P99 response times per endpoint. The retention period is 30 days.
 
-#### AFO Throughput and Load Requirements
+#### Throughput and Load Requirements
 The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability.
 
 Rejected requests MUST be documented with a clear error:
@@ -46,7 +46,7 @@ Rejected requests MUST be documented with a clear error:
 Correctly documented rejections due to allowed rate limits (e.g. 429 with Retry-After) do NOT count as unavailability or downtime.
 
 ### Self-Logged Monitoring
-#### AFO Scope of Logging
+#### Scope of Logging
 The provider MUST log every incoming call to the interface as well as every associated response (request-response pair).
 
 The logs MUST contain at least the following metadata per operation:
@@ -73,21 +73,21 @@ The logs MUST be kept audit-proof for at least 30 days from the date of creation
 After the retention period has expired, logs MUST be deleted in a timely manner and in compliance with data protection regulations.
 
 #### Information Obligation and Provision Channel
-The provider MUST provide a dedicated request channel to request log information (e.g., email address, ticket portal, or API endpoint). This channel MUST be named in the interface documentation.
+The provider MUST offer a dedicated channel to be able to request log information (e.g., email address, ticket portal, or API endpoint). This channel MUST be named in the interface documentation.
 
-A legitimate request for the release of minutes MUST be responded to within 3 working days:
+An eligable request for the disclosure of log records MUST be acted upon within three business days as follows:
 * Confirmation of receipt 
-* Provision of the requested minutes excerpts or a binding delivery date, with justification, if not immediately possible
+* Provision of the requested log records or a binding delivery date, with valid justification, if not immediately possible
 
-The release MUST be earmarked, secure and encrypted (e.g. password-protected archives, mTLS-secured download links). The identity and authorization of the requester MUST be verified before deployment.
+The release MUST be limited to the request purpose, secure and encrypted (e.g. password-protected archives, mTLS-secured download links). The identity and authorization of the requester MUST be verified before deployment.
 
 #### Formats and Filterability
 Protocols MUST be provided in a standard machine-readable format (e.g. B. JSON lines). Timestamps MUST be ISO-8601 compliant.
 
-It MUST be possible to filter logs by time period, client/tenant, endpoint, status code, and correlation ID
+It MUST be possible to filter logs by time period, client/tenant, endpoint, status code, and correlation ID.
 
-#### AFO Proof and Audit Capability
+#### Proof and Audit Capability
 The provider MUST provide proof of log integrity (e.g. checksums/signatures) and completeness for a period of time upon request.
 
+Changes to logging scopes, masking rules, or retention periods MUST be documented and versioned with a time stamp. Affected parties SHOULD be informed at least 10 business days prior to the productive change, unless there are conflicting security reasons.
 
-Changes to logging scopes, masking rules, or retention periods MUST be documented and dated with a date stamp. Affected parties SHOULD be informed at least 10 business days prior to the productive change, unless there are security reasons to the contrary.
