@@ -10,9 +10,9 @@ hide footbox
 !define H HiMi_AuthZ
 !define V Ver
 
-title "Perform DiGA–HiMi Pairing"
+title "Perform Pairing between DiGA and Device Data Recorder (detailed)"
 
-actor V as "Insured Person"
+actor V as "patient"
 
 participant D order 1 [
 	=DiGA
@@ -21,49 +21,49 @@ participant D order 1 [
 ]
 
 participant H order 10 [
-	=HiMi AuthZ Server
+	=Device Data Recorder
 	----
-	""Frontend | Backend""
+	""Frontend | Backend | AuthZ Server""
 ]
 
-== 1. Insured Person Initiates HiMi Pairing ==
+== 1. patient Initiates HiMi Pairing ==
 ref over V, D : DiGA-specific login (out-of-scope)
-V -> D: Initiate HiMi pairing via DiGA frontend
+V -> D: Initiate pairing with Device Data Recorder via DiGA frontend
 activate V
 activate D
-D -> V: Present list of compatible HiMi systems via DiGA frontend
-V -> D: Select HiMi via DiGA frontend
-D -> V: Present list of compatible sensors/devices via DiGA frontend
-V -> D: Select sensors/devices via DiGA frontend
+D -> V: Present list of compatible Device Data Recorders via DiGA frontend
+V -> D: Select Device Data Recorder via DiGA frontend
+D -> V: Present list of compatible Personal Health Devices via DiGA frontend
+V -> D: Select Personal Health Device via DiGA frontend
 D -> V: Present required permissions via DiGA frontend
 V -> D: Confirm permissions via DiGA frontend
 ||0||
 deactivate V
 
-== 2. Send Authorization Request to HiMi ==
-D -> H: Retrieve Server Metadata Document
+== 2. Send Authorization Request to Device Data Recorder ==
+D -> H: Retrieve Authorization Server Metadata Document
 activate H
 H -> D: Server Metadata Document
 D -> D: Identify endpoints and scope (consent)
 D -> D: Generate PKCE artifacts
 D -> H: PAR with PKCE, tls_client_auth
 D -> D: Authenticate HiMi (X.509 cert)
-' The following checks are done against the registration data stored at HiMi during DiGA registration
+' The following checks are done against the registration data stored at Device Data Recorder during DiGA registration
 H -> H: Authenticate DiGA (X.509 cert)
 H -> H: Validate PAR (redirect_uri, scopes, ...)
 H -> H: Store PAR and generate request_uri
 H -> D: PAR response (request_uri, expires_in)
 deactivate H
 
-== 3. Authorization Confirmation by Insured Person ==
+== 3. Authorization Confirmation by patient ==
 D -> H: Authorization request for client_id, request_uri via frontend/user-agent redirect
 activate H
 H -> H: Validate authorization request and load PAR data
 H -> V: Initiate login via system browser and possibly app link/deep link
 activate V
 ref over V, H : HiMi-specific login (out-of-scope)
-H -> V: Present DiGA request with permissions via HiMi frontend
-V -> H: Confirm permissions for DiGA via HiMi frontend
+H -> V: Present DiGA request with permissions via Device Data Recorder frontend
+V -> H: Confirm permissions for DiGA via Device Data Recorder frontend
 deactivate V
 alt Pairing ID was previously generated and linked to user account
 	H -> H: Locate pairing ID
@@ -81,8 +81,8 @@ H -> H: Validate PKCE and authz_code
 H -> D: Token response (scope, pairing ID, access and refresh token with scope and pairing ID)
 
 == 5. Complete Pairing ==
-D -> D: Add DiGA prescription expiration date (insured person) to consent
-D -> D: Generate consent for pairing ID and link to insured identity (DiGA)
+D -> D: Add DiGA prescription expiration date (patient) to consent
+D -> D: Generate consent for pairing ID and link to patient's identity (DiGA)
 D -> V: Confirm pairing via DiGA frontend
 activate V
 ||0||

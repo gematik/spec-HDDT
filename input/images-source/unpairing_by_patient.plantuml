@@ -4,9 +4,9 @@
 hide footbox
 !pragma teoz true
 
-title Insured-Initiated Revocation
+title Patient-Initiated Consent Revocation
 
-actor V as "Insured"
+actor V as "Patient"
 
 participant D order 0 [
 	=DiGA
@@ -14,9 +14,9 @@ participant D order 0 [
 	""Frontend | Backend""
 ]
 participant H order 10 [
-	=HiMi Authorization
+	=Device Data Recorder
 	----
-	""Frontend | Backend""
+	""Frontend | OAuth2 AuthZ Server | FHIR Resource Server""
 ]
 
 == Revocation at the DiGA ==
@@ -37,16 +37,16 @@ deactivate D
 deactivate H
 deactivate V
 
-== Revocation at the Medical Device ==
-V -> H: Revoke consent via HiMi frontend
+== Revocation at the Device Data Recorder ==
+V -> H: Revoke consent via frontend of the Device Data Recorder
 activate V
 activate H
 H -> H: Invalidate authorization grant (Pairing-ID)
 H -> H: Invalidate refresh token (Pairing-ID)
 H -> H: Invalidate access token (Pairing-ID)
 H -> H: Invalidate consent for Pairing-ID
-H -> V: Signal revocation confirmation via HiMi frontend
-... Data request of the DiGA at HiMi Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
+H -> V: Signal revocation confirmation via frontend of the Device Data Recorder
+... Data request of the DiGA at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
 D -> H: Request re-authorization with refresh token (Pairing-ID)
 H -> D: HTTP 400 Bad Request "invalid_grant"
 activate D

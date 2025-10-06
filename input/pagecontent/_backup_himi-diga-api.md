@@ -107,7 +107,7 @@ For each resource type, all standard FHIR search parameters MAY be supported. Se
 | **Endpoint** | `/Device/{id}` |
 | **HTTP Method** | GET |
 | **Interactions** | READ, SEARCH |
-| **Description** | • Request and display the serial number to enable the insured person to verify that the measuring device collecting health data is correctly paired (patient security). <br> • Query the configuration and properties of the device instance, based on the last measurement or last measurement series. <br> • Complements the query of Observation -> DeviceMetric, since information about the underlying device is not always delivered directly with the measurement. |
+| **Description** | • Request and display the serial number to enable the patient to verify that the measuring device collecting health data is correctly paired (patient security). <br> • Query the configuration and properties of the device instance, based on the last measurement or last measurement series. <br> • Complements the query of Observation -> DeviceMetric, since information about the underlying device is not always delivered directly with the measurement. |
 | **Authentication** | OAuth2 Bearer token required |
 | **Request Parameters** | `id` (Device resource identifier) |
 | **Search Parameters** | Commonly used search parameters are `device-name`, `type`,  `manufacturer`. <br><br> The server MAY support search parameters defined by the FHIR standard; see [FHIR Device - Search Parameters](https://hl7.org/fhir/R4/device.html#search) for an overview of all HL7-defined search parameters on Observation resources. |

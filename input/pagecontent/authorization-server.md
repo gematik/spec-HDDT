@@ -2,7 +2,7 @@
 
 This document describes the OAuth 2.0 Authorization Server used to authorize a DiGA to access FHIR resources of
 medical devices and implants. The Authorization Server is the main component of the [pairing procedure](pairing.html).
-It is responsible for authenticating a DiGA, presenting a consent dialog to the insured person, issuing access and refresh tokens,
+It is responsible for authenticating a DiGA, presenting a consent dialog to the patient, issuing access and refresh tokens,
 and generating a [Pairing ID](pairing.html#pairing-id-as-a-central-link).
 
 The `access_token` issued by the Authorization Server is used as a **Bearer token** in the HTTP `Authorization` header

@@ -19,7 +19,7 @@ meaning that third parties MUST NOT be able to infer the identity of the data su
 
 Neither Personal Health Devices nor DiGA SHALL obtain knowledge of the patient's health insurance number (KVNR). In
 addition, medical data transmitted via FHIR MUST NOT contain information that reveals or enables inference of the
-insured person’s identity.
+patient’s identity.
 
 Further normative requirements and technical details regarding the identifier are specified in the
 dedicated [Pairing ID](pairing.html#pairing-id) section.
@@ -135,7 +135,7 @@ In order to implement and operate § 374a SGB V in accordance with the law, manu
 
 
 ### Limits of security performance
-The transfer of data between Device Data Recorder and DiGA and the necessary pairing between the two is considered here. The processing of the data before or after it is transmitted is not considered. This includes internal processes at the backend operators, protection of data during storage, protection of the existing and new interfaces against hacking attacks, the authentication of the insured person in order to access DiGA, Personal Health Devices and Device Data Recorder, as well as the secure implementation of the respective front-end to back-end communication.
+The transfer of data between Device Data Recorder and DiGA and the necessary pairing between the two is considered here. The processing of the data before or after it is transmitted is not considered. This includes internal processes at the backend operators, protection of data during storage, protection of the existing and new interfaces against hacking attacks, the authentication of the patient in order to access DiGA, Personal Health Devices and Device Data Recorder, as well as the secure implementation of the respective front-end to back-end communication.
 
 The threats and vulnerabilities affecting these parties, components, and services must be considered by those responsible. This is outside the scope for which gematik has a mandate.
 

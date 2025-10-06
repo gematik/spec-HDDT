@@ -9,14 +9,14 @@ participant D  [
 	""Frontend | Backend""
 ]
 participant A  [
-	=OAuth2 Authorization Server
+	=Device Data Recorder
 	----
-	""(Device Data Recorder)""
+	""(OAuth2 Authorization Server)""
 ]
 participant H  [
-	=FHIR Resource Server
+	=Device Data Recorder
 	----
-	""(Device Data Recorder)""
+	""(FHIR Resource Server)""
 ]
 participant "Health Device Backend" as H
 

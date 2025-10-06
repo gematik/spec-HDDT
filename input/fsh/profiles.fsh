@@ -68,8 +68,8 @@ Title: "Device – Personal Health Device"
 Description: """
 This profile defines a Personal Health Device within the context of § 374a SGB V. A Personal Health Device acc. to this profile is any
 medical aid or implant that 
-- is distributed to insured persons at the expense of the statutory health insurance and 
-- transmits the data about the insured person electronically to the device manufacturer or third parties, which make the data available to patients and/or physicians via publicly accessible networks. 
+- is distributed to patients at the expense of the statutory health insurance and 
+- transmits the data about the patient electronically to the device manufacturer or third parties, which make the data available to patients and/or physicians via publicly accessible networks. 
  
 Personal Health Devices that fulfill the criteria of this regulation MUST be able to pass on data to authorized Digital Health Applications (DiGA acc. § 374a SGB V) using the protocols 
 and interfaces as defined in the HDDT specification.

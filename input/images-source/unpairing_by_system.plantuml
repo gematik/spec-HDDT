@@ -3,10 +3,10 @@
 hide footbox
 !pragma teoz true
 
-title System-Initiated Revocation
+title System-Initiated Revocation of Authorizations
 
-actor V as "Insured"
-actor M as "Manufacturer (DiGA/HiMi)"
+actor V as "Patient"
+actor M as "Manufacturer (DiGA/Device Data Recorder)"
 
 participant D order 0 [
 	=DiGA
@@ -14,28 +14,28 @@ participant D order 0 [
 	""Frontend | Backend""
 ]
 participant H order 10 [
-	=HiMi AuthZ Server
+	=Device Data Recorder
 	----
-	""Frontend | Backend""
+	""Frontend | OAuth2 AUthZ Server""
 ]
 
 participant ZD order 20 [
-	=DiGA Registry
+	=DiGA-VZ
 	----
-	""§139e Directory""
+	""BfArM DiGA Registry""
 ]
 
 participant ZH order 30 [
-	=HiMi Registry
+	=HiMi-SST-VZ
     ----
-	""§374a Directory""
+	""BfARM Device Registry""
 ]
 
 == Prescription duration of DiGA for Pairing-ID expired ==
 activate D
 D -> D: Check validity of consent (Pairing-ID) or system time vs.\nexpiry date of prescription (Pairing-ID)
 alt Prescription about to expire
-	D -> V: Inform insured about upcoming expiry
+	D -> V: Inform patient about upcoming expiry
 	activate V
 else Prescription expired
 	D -> D: Invalidate consent (Pairing-ID)
@@ -53,7 +53,7 @@ deactivate D
 deactivate H
 deactivate V
 
-== DiGA loses authorization for §374a interface ==
+== DiGA loses authorization for interface acc. § 374a SGB V ==
 M -> ZD: Retrieve status (DiGA-ID/client_id)
 activate M
 activate ZD
@@ -70,12 +70,12 @@ M -> H: Invalidate access token (Pairing-ID)
 M -> H: Invalidate consent for Pairing-ID
 M -> H: Deregister DiGA
 deactivate M
-H -> V: Signal invalidation of consent via HiMi frontend
+H -> V: Signal invalidation of consent via frontend of the Device Data Recorder
 activate V
-... DiGA data request at HiMi Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
+... DiGA data request at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
 D -> H: Request re-authorization with refresh token (Pairing-ID)
 activate D
-D -> D: Authenticate HiMi (X.509 cert)
+D -> D: Authenticate Device Data Recorder (X.509 cert)
 H -> H: Authenticate DiGA (X.509 cert)
 alt DiGA not yet deregistered
 	H -> D: HTTP 400 Bad Request "invalid_grant"
@@ -91,11 +91,11 @@ deactivate D
 deactivate H
 deactivate V
 
-== HiMi no longer offers §374a interface ==
+== Device Data Recorder no longer offers interface acc. § 374a SGB V ==
 M -> ZH: Retrieve status (HiMi-ID)
 activate M
 activate ZH
-alt HiMi retired
+alt Device Data Recorder retired
 	ZH -> M: Status "retired"
 else HiMi not in directory
 	ZH -> M: HTTP 404 NOT FOUND
@@ -103,7 +103,7 @@ end
 deactivate ZH
 M -> D: Invalidate consent
 activate D
-M -> D: Remove configurations for HiMi
+M -> D: Remove configurations for Device Data Recorder
 deactivate M
 D -> V: Signal invalidation of consent via DiGA frontend
 activate V

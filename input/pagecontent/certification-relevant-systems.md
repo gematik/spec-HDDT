@@ -1,6 +1,6 @@
 Via the HDDT interface as requested by § 374a SGB V, backend systems of medical aids and implants must be able to pass on data to authorized DiGA if they are 
 - distributed to insured people at the expense of statutory health insurance and 
-- already transmit data about the insured person electronically to the manufacturer or third parties via publicly accessible networks. 
+- already transmit data about the patient electronically to the manufacturer or third parties via publicly accessible networks. 
 
 Examples of such medical aids and implants include rtCGM, insulin pumps and pacemakers. 
 However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oximeters and other aids that are not necessarily perceived as digital by the patient also fall under § 374a SGB V, if they transfer the collected data to a backend system. 
