@@ -73,7 +73,6 @@ The figure below summarizes the HDDT authorization model and shows how precondit
 
 <div><img src="/HDDT DiGA access control.png" alt="Authorization" width="120%"></div>
 <br clear="all"/>
-___Anmerkung:__ Grafik wird noch neu gemalt und übersetzt_
 
 #### Intended Use
 Upon registration with the _DiGA-VZ_, a DiGA registers the values it processes for its "intended use". For any of these values that match a defined MIV, BfArM links the DiGA with the respective MIV (see [Information Model](information-model.html)). For each request for measured or aggregated data the Device Data Recorder MUST verify that the requesting DiGA requires the requested data for its intended use. As MIVs are defined through FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) this means:
