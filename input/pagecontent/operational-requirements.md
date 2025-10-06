@@ -1,5 +1,3 @@
-_Hinweis: Der Text ist einfach nur per Copilot übersetzt und muss noch geprüft und angepasst werden._
-
 ### Availability
 #### Availability Goals
 The service MUST maintain at least 99.5% monthly availability. Availability MUST be calculated in relation to one entire calendar month. Planned and unplanned unavailability need to be taken into account in accordance with the rules defined below.
@@ -90,4 +88,5 @@ It MUST be possible to filter logs by time period, client/tenant, endpoint, stat
 The provider MUST provide proof of log integrity (e.g. checksums/signatures) and completeness for a period of time upon request.
 
 Changes to logging scopes, masking rules, or retention periods MUST be documented and versioned with a time stamp. Affected parties SHOULD be informed at least 10 business days prior to the productive change, unless there are conflicting security reasons.
+
 
