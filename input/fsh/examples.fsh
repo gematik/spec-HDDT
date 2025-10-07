@@ -13,7 +13,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-08-28T08:30:00Z"
-* valueQuantity = 110 'mg/dL' "mg/dL"
+* valueQuantity = 110 'mg/dL' "mg/dl"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Blood-Glucose-Measurement-1
@@ -26,7 +26,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-09-26T12:00:00+02:00"
-* valueQuantity = 120 'mg/dL' "mg/dL"
+* valueQuantity = 120 'mg/dL' "mg/dl"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Blood-Glucose-Measurement-2
@@ -39,7 +39,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-09-26T16:30:00+02:00"
-* valueQuantity = 129 'mg/dL' "mg/dL"
+* valueQuantity = 129 'mg/dL' "mg/dl"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Glucometer
@@ -143,7 +143,7 @@ Usage: #example
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
 * effectivePeriod.end   = "2025-08-28T09:00:00Z"
 * valueSampledData.origin.value = 0
-* valueSampledData.origin.unit = "mg/dL"
+* valueSampledData.origin.unit = "mg/dl"
 * valueSampledData.origin.system = $unitsofmeasure
 * valueSampledData.origin.code = #mg/dL
 * valueSampledData.period = 60000
@@ -171,7 +171,7 @@ Usage: #example
 * effectivePeriod.start = "2025-08-28T08:00:00Z"
 * effectivePeriod.end   = "2025-08-28T09:00:00Z"
 * valueSampledData.origin.value = 0
-* valueSampledData.origin.unit = "mg/dL"
+* valueSampledData.origin.unit = "mg/dl"
 * valueSampledData.origin.system = $unitsofmeasure
 * valueSampledData.origin.code = #mg/dL
 * valueSampledData.period = 60000

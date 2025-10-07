@@ -114,7 +114,7 @@ The class diagram below shows the classes of the HDDT information model which ar
 As written in the beginning of this section, a _MIV_ is technically expressed as a FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) of LOINC observation codes. Each code in a MIV's matches the conceptual definition of the _MIV_ and therefore is usable for the intended purposes of a DiGA when processing that _MIV_. Each MIV's [ValueSet](https://hl7.org/fhir/R4/valueset.html) is defined by:
 * a `description` that normatively describes the properties and purposes of the MIV
 * a canonical `url` as a unique identifier that can be used for referencing the [ValueSet](https://hl7.org/fhir/R4/valueset.html) in the HDDT specification and in BfArM registry entries. 
-* a `version` number that allows MIV value sets to evolve over time (e.g. adding new LOINC codes or splitting MIVs). 
+* a business `version` number that allows MIV value sets to evolve over time (e.g. adding new LOINC codes or splitting MIVs). 
 * a human-understandable `title` and a machine-friendly `name`. 
 * an extensional list of the LOINC codes that make up the _MIV_.
 
