@@ -32,27 +32,27 @@ The specification of the technical interfaces for retrieving device data conside
 
 #### Searching Observations Using FHIR _search_ Interactions
 
-DiGA request device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
-The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
+A DiGA requests device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type.
+The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an appropriate error.
 
-The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](pairing.html#access-tokens). This access token was issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder and MUST be taken as opaque by the DiGA. 
- 
-The Device Data Recorder MUST be able to discover its internal patient identifier from the access token. This identifier MUST implicitly be considered as the `subject` argument with every query to the device date recorder's FHIR API. If a DiGA explicitly provides a `subject` argument with a query, the Device Data Recorder MUST ignore this argument and SHOULD respond with an _Bad Request_ error.
+The request MUST include an OAuth 2.0 access token in the `Authorization` header (as defined in the HDDT [OAuth2 profile](pairing.html#access-tokens)). This access token is issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder.
 
-The Device Data Recorder MUST be able to discover the [SMART Scope](smart-scopes.html) from the access token, which were accepted by the Device Data Recorder during pairing with the requesting DiGA (see section [Pairing](pairing.md)). The SMART Scope MUST implicitly be considered as the `code` argument with every query to the device date recorder's FHIR search API. If the Scope resolves to multiple LOINC codes, these must all be considered to be query arguments (OR-semantics). A DiGA MAY explicitly further constrain the scope of the search by providing a `code` argument with a query (see below).
+The Device Data Recorder MUST be able to derive the internal patient identifier corresponding to the Pairing ID contained in the access token. This identifier MUST implicitly be used as the `subject` parameter in every query to the Device Data Recorder’s FHIR API. If a DiGA explicitly provides a `subject` parameter, the Device Data Recorder MUST ignore it and SHOULD return a `400 Bad Request` error.
 
-With every FHIR search interaction the requesting DiGA SHOULD provide a `date` argument to set the lower and/or upper bound of the time period for which data is requested. If no `date` is provided with the query, the Device Data Recorder will respond with all data that matches the other (implicit and explicit) query arguments.  
+The Device Data Recorder MUST be able to retrieve the [SMART scopes](smart-scopes.html) from the access token, which were consented to during pairing with the requesting DiGA (see [Pairing](pairing.md)). The SMART scope (with the resource type [Observation](https://hl7.org/fhir/R4/observation.html)) and it's query parameters MUST implicitly be applied as a `code` search parameter in every FHIR search query. ValueSets used in scopes MUST be expanded since they MAY consist of multiple LOINC codes. All of these codes MUST be considered in the search (logical OR semantics). A DiGA MAY further narrow the result by explicitly providing a `code` parameter.
+
+With every FHIR search interaction, the DiGA SHOULD provide a `date` parameter to limit the time period of data retrieval. If no `date` is specified, the Device Data Recorder MUST return all matching data according to the implicit and explicit query parameters.
 
 <hr>
 
 __Example__: 
 
 ```
-GET [base]/Observation/?date=gt20250912
+GET [base]/Observation?date=gt20250912
 ```
 The HTTP header holds an Access Token, from which the Device Data Recorder can obtain its internal patient identifier _123_ and a SMART scope that resolves to the [ValueSet](https://hl7.org/fhir/R4/valueset.html) _https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement_ which contains the LOINC codes [105272-9](https://loinc.org/105272-9/) and [99504-3](https://loinc.org/99504-3). The "real" query processed by the Device Data Recorder's FHIR Resource Server in this example is 
 ```
-GET [base]/Observation/?date=gt20250912&subject=Patient/123&code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement
+GET [base]/Observation?date=gt20250912&subject=Patient/123&code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement
 ```
 <hr>
 
@@ -127,13 +127,13 @@ The Device Data Recorder must respond a _search_ request with a Bundle of type _
 
 Example:
 ```
-GET [base]/Observation/?date=gt20250912&_include=Observation:device 
+GET [base]/Observation?date=gt20250912&_include=Observation:device 
 ```
 will return a Bundle of type _searchset_ that contains all [Observation](https://hl7.org/fhir/R4/observation.html) resources that match the request and for each [Observation](https://hl7.org/fhir/R4/observation.html) the referenced [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource.
 
 Example:
 ```
-GET [base]/Observation/?date=gt20250912&_include=Observation:device&_include:iterate=DeviceMetric:source
+GET [base]/Observation?date=gt20250912&_include=Observation:device&_include:iterate=DeviceMetric:source
 ```
 will return a Bundle of type _searchset_ that contains all [Observation](https://hl7.org/fhir/R4/observation.html) resources that match the request and for each [Observation](https://hl7.org/fhir/R4/observation.html) the referenced [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource. If a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource is referenced, the Bundle will also contain the [Device](https://hl7.org/fhir/R4/device.html) resource that is referenced by the `source` element of the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html).
 
