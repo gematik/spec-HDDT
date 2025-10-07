@@ -3,7 +3,7 @@ In order to [authenticate with each other](security-and-privacy.html) and to sha
 - must obtain information about the other party's X.509 certificates from a trusted third party
 - must be able to expand MIV-defining FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) and other ValueSets used by the HDDT-specific resource definitions
 
-These services are usable through the BfARM DiGA Registry and BfARM Device Registry (_DIGA Verzeichnis_ and _HiMi-SST-VZ_) and the German Central Terminology Service (_Zentraler Terminologiesrevr_, ZTS). The following class diagram shows the section of the [HDDT information model](information-model.html) that displays the BfARM registries and the ZTS along with their mutual cross-references. 
+These services are usable through the BfArM DiGA Registry and BfArM Device Registry (_DIGA Verzeichnis_ and _HiMi-SST-VZ_) and the German Central Terminology Service (_Zentraler Terminologiesrevr_, ZTS). The following class diagram shows the section of the [HDDT information model](information-model.html) that displays the BfArM registries and the ZTS along with their mutual cross-references. 
 
 <div style="width: 75%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_BfArM.svg" style="width: 100%;" />
@@ -31,7 +31,7 @@ The _HiMi-SST-VZ_ (BfArM Device Registry) is operated by BfArM and provides acce
 The _HiMi-SST-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being build up by BfArM. A first draft of the APIs that provide the above listed functions will be published by end of October 2025. 
 
 ### DiGA Verzeichnis
-The BfARM DiGA Registry (_DiGA Verzeichnis_) is operated by BfArM and provides access to definitions of registered DiGA (Digital Health Applications acc. § 33a SGB V). For HDDT the _DiGA Verzeichnis_ provides the following functions:
+The BfArM DiGA Registry (_DiGA Verzeichnis_) is operated by BfArM and provides access to definitions of registered DiGA (Digital Health Applications acc. § 33a SGB V). For HDDT the _DiGA Verzeichnis_ provides the following functions:
 - providing information about registered DiGA
    - product information (name, version, etc.)
    - manufacturer and contact data

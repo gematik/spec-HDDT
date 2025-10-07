@@ -54,7 +54,7 @@ package gematik as "Repository for gematik FHIR IGs" SPEC {
     }
 }
 
-package "HiMi-SST-VZ (Device Registry at BfARM)" as HDDT_Registries BFARM {
+package "HiMi-SST-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
 
     object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
         type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]

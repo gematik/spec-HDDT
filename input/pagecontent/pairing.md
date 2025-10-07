@@ -238,7 +238,7 @@ implant (HiMi). Each step is explained in detail below.
 The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and
 a Device Data Recorder under specific conditions.
 
-<div style="width: 80%;">
+<div style="width: 100%;">
   <img src="assets/images/unpairing_by_system.svg" style="width: 100%;" />
 </div>
 

@@ -1,4 +1,4 @@
-§ 374a SGB V requests vendors of medical aids and implants to provide medical device data for Digitale Gesundheitsanwendungen (DiGA: authorized digital health applications) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
+[§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html) requests vendors of medical aids and implants to provide medical device data for Digitale Gesundheitsanwendungen (DiGA: authorized digital health applications) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
 
 ### Content
 The HDDT implementation guide includes requirements for: 

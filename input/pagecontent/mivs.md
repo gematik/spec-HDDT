@@ -31,8 +31,8 @@ The MIV _Blood Glucose Measurement_ covers values from "bloody measurements" usi
 | __FHIR Observation Profile__  | Device Data Recorders provide _Blood Glucose Measurement_ to DiGA using the MIV-specific Observation Profile [__HDDT Blood Glucose Measurement__](StructureDefinition-hddt-blood-glucose-measurement.html). This profile allows to share a set of blood glucose values as single FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. |
 | __FHIR Interactions__ | Access to the ressources is given through standard FHIR _read_ and _search_ RESTful interactions as described in the [MIV-specific API](measurement-blood-glucose.html). |
 | __Aggregated and Derived Data__ | By now there are no aggregated or derived data defined for the MIV "Blood Glucose Measurement". |
-| __`Historic-Data-Period`__ | Device data recorders that provide _Blood Glucose Measurement_ data MUST make the measured values retrievable for at least __30 days__.  |
-| __`Grace-Period`__ | A device data recorder MAY reject a DiGA's request for a patient's _Blood Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
+| __`Historic-Data-Period`__ | Device Data Recorders that provide _Blood Glucose Measurement_ data MUST make the measured values retrievable for at least __30 days__.  |
+| __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Blood Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
 | __`Chunk-Time-Span`__ | _not applicable_ |
 |  |   | 
 
@@ -46,8 +46,8 @@ The MIV _Continuous Glucose Measurement_ covers values from continuous monitorin
 |__FHIR Observation Profile__ | Device Data Recorders provide _Continuous Glucose Measurement_ to DiGA using the MIV-specific Observation Profile [__HDDT Continuous Glucose Measurement__](StructureDefinition-hddt-continuous-glucose-measurement.html). This profile allows to share sampled glucose values as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. Each resource holds multiple values while the time stamp of each value can be determined by the time stamp of the first value and the fixed sample rate. |
 |__FHIR Interactions__ | Access to the ressources is given through standard FHIR _read_ and _search_ RESTful interactions as described in the [MIV-specific API](measurement-tissue-glucose.html). |
 | __Aggregated and Derived Data__ | As stated above, _Continuous Glucose Measurement_ sampled data are a basis for many key figures used in diabetes therapy monitoring, e.g. times in ranges (e.g. times in hypoglycemia and hyperglycemia) and Glucose Management Index (GMI).<br>Device Data Recorders MUST provide the structured, coded part of the _HL7 CGM Summary Report_ to DiGA using the MIV-specific Profile [__HDDT CGM Summary Report__](measurement-tissue-glucose.html). This profile allows to share a well defined set of relevant key figures as FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resources. Access to the summary report is provided through the FHIR operation [$hddt-cgm-summary](OperationDefinition-hddt-cgm-summary-operation.html). |
-| __`Historic-Data-Period`__ | Device data recorders that provide _Continuous Glucose Measurement_ data MUST make the measured values and derived key figures (per _CGM Summary Report_) retrievable for at least __30 days__.  |
-| __`Grace-Period`__ | A device data recorder MAY reject a DiGA's request for a patient's _Continuous Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
+| __`Historic-Data-Period`__ | Device Data Recorders that provide _Continuous Glucose Measurement_ data MUST make the measured values and derived key figures (per _CGM Summary Report_) retrievable for at least __30 days__.  |
+| __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Continuous Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
 | __`Chunk-Time-Span`__ | The _Chunk-Time-Span_ depends on the sample rate of the personal health device. Chunks of sampled data SHOULD be sized to hold between 200 and 2000 single data points. |
 |  |   |
 

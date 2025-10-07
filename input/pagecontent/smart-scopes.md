@@ -24,37 +24,30 @@ Examples of SMART scopes:
 Concrete SMART scopes are always MIV specific: a DiGA treating diabetes MAY request access to blood glucose
 measurements, while a DiGA focused on hypertension MAY request access to blood pressure values.
 
-While the SMART scopes are configured and consented to on the OAuth2 Authorization Server of the Device Data Recorder as
-described in the [pairing chapter](pairing.html), it is vital that the Device Data Recorder's FHIR Resource Server
-strictly enforces these scope restrictions. Even if a DiGA holds a valid access token, it MUST only be allowed to
-retrieve data elements explicitly covered by the granted SMART scopes. Failure to enforce these restrictions would
-undermine the purpose of fine-grained consent and could result in unauthorized disclosure of sensitive health data.
-Proper enforcement ensures that patient consent is respected at the technical level and that data access remains fully
-aligned with the intended use case.
+While the SMART scopes are configured and consented to on the Device Data Recorder's OAUth2 Authorization Server as described in the
+[pairing chapter](pairing.html), it is vital that the Device Data Recorder's FHIR Resource Server strictly enforces these scope restrictions.
+Even if a DiGA holds a valid access token, it MUST only be allowed to retrieve data elements explicitly covered by the granted SMART scopes. Failure to enforce these restrictions would undermine the purpose of fine-grained consent and could result in unauthorized disclosure of sensitive health data. Proper enforcement ensures that patient consent is respected at the technical level and that data access remains fully aligned with the intended use case.
 
 ### Enforcement of SMART Scopes on Observations, DeviceMetric, and Device
 
-All enforcement rules defined in the official SMART App Launch Framework – Scopes and Launch Context
+All enforcement rules defined in the official _SMART App Launch Framework – Scopes and Launch Context_
 specification apply without exception. These rules define the general semantics of SMART scopes and how they restrict
 FHIR resource access.
 
-However, the official SMART specification provides only a general framework without concrete knowledge of implementation
-guides (IGs) or domain-specific relationships between FHIR resources. In the context of § 374a SGB V and the
-interoperability profiles defined for DiGA and Device Data Recorders, additional enforcement rules are REQUIRED for the
-resources [Observation](https://hl7.org/fhir/R4/observation.html), [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html),
-and [Device](https://hl7.org/fhir/R4/device.html).
+However, the official SMART specification does not consider concrete implementation guides (IGs) or the domain-specific
+relationships between resources. In the context of § 374a SGB V and the interoperability profiles defined for sharing device data between Device Data Recorders and DIGA, additional enforcement rules are defined for the
+resources [Observation](https://hl7.org/fhir/R4/observation.html), [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), and [Device](https://hl7.org/fhir/R4/device.html).
 
 #### Observation as the Anchor
 
-Observations are the primary and anchoring resource for all scope enforcement. SMART scopes of the form
-`patient/Observation…` determine which clinical measurements a DiGA is entitled to access. The other resources
+Observation resources are the primary and anchoring resource for all scope enforcement. SMART scopes of the form
+`patient/Observation…` determine which clinical measurements a DiGA is entitled to access. All other resources
 ([DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), [Device](https://hl7.org/fhir/R4/device.html)) are only made available in relation to these Observations.
 
 Concretely:
 
 * Enforcement of the `code:in` search parameter MUST be applied. Only Observations whose `code` is contained in the
-  [ValueSet](https://hl7.org/fhir/R4/valueset.html)
-  referenced by the authorized SMART scope MAY be returned.
+  MIV-[ValueSet](https://hl7.org/fhir/R4/valueset.html) referenced by the authorized SMART scope MAY be returned.
 * Each [Observation](https://hl7.org/fhir/R4/observation.html) MUST belong to the patient identified by the `sub`
   /Pairing ID in the access token.
 * Observations that do not match both conditions (code and patient) MUST NOT be returned.
@@ -85,7 +78,7 @@ a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), which in turn refer
 For both constellations, the following compartment rule applies:
 
 * A [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource
-  MUST NOT be returned solely because it belongs to the patient.
+  MUST NOT be returned solely because it belongs to the patient (necessary but not sufficient condition). 
 * A [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or [Device](https://hl7.org/fhir/R4/device.html) resource
   MUST only be returned if it is referenced (directly or indirectly) by an
   [Observation](https://hl7.org/fhir/R4/observation.html)

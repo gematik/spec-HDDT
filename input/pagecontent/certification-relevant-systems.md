@@ -1,4 +1,4 @@
-Via the HDDT interface as requested by § 374a SGB V, backend systems of medical aids and implants must be able to pass on data to authorized DiGA if they are 
+Via the HDDT interface as requested by [§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html), backend systems of medical aids and implants must be able to pass on data to authorized DiGA if they are 
 - distributed to insured people at the expense of statutory health insurance and 
 - already transmit data about the patient electronically to the manufacturer or third parties via publicly accessible networks. 
 

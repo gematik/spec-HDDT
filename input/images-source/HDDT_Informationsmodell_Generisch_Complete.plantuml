@@ -64,7 +64,7 @@ package gematik as "FHIR Profiles (gematik)" SPEC {
    }
 }
 
-package HDDT_Registries as "Device Definitions (HDDT Registries at BfARM)" BFARM {
+package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM {
 
     class PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
         type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]

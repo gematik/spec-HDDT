@@ -1,3 +1,9 @@
+### Definitions
+
+__The service__ refers to the totality of services provided by the [Device Data Recorder](logical-viewpoints.html#logical-building-blocks) in order to implement the HDDT interface as defined in this specification. This particularly includes the API endpoints of the [OAuth2 Authorization Server](authorization-server.html) and the [FHIR Resource Server](himi-diga-api.html).
+
+__The provider__ refers to the entity that controls the service.
+
 ### Availability
 #### Availability Goals
 The service MUST maintain at least 99.5% monthly availability. Availability MUST be calculated in relation to one entire calendar month. Planned and unplanned unavailability need to be taken into account in accordance with the rules defined below.
