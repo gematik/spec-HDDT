@@ -4,4 +4,6 @@ The first digit X indicates a major release and specification increment and dete
 
 ## Version 0.1.1-ballot
 
-First ballot version of the technical concept an specificatory aspects for validation with stakeholders. 
+First ballot version of the technical concept and specificatory aspects for validation with stakeholders. This version includes all generic specification parts together with MIV-specific APIs and profiles for the MIVs:
+- Blood Glucose Measurement
+- Continuous Glucose Measurement
