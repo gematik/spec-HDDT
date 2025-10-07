@@ -6,11 +6,13 @@ specification: [SMART App Launch Framework – Scopes and Launch Context](https:
 The core idea behind SMART scopes is to enable applications to request only the minimum data necessary for a defined use
 case, and to allow patients to understand and control which types of health data will be shared. A SMART scope defines
 _who_ is accessing data (context), _which_ FHIR resources are involved (resource), _what actions_ are permitted (access
-mode), and _optionally_ which subsets of data are addressed through query parameters (query params).
+mode), and _optionally_ which subsets of data are addressed through query parameters (query params). The following
+diagram illustrates the structure of SMART scopes:
 
 <div style="width: 75%;">
   <img src="/smart_scopes_structure.svg" style="width: 100%;" />
 </div>
+<br>
 
 Examples of SMART scopes:
 
