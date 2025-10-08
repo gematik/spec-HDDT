@@ -87,7 +87,7 @@ If the Device Data Recorder does not provide a `device` reference to a [DeviceMe
 
 A DiGA MAY store the `id` of a [Device](https://hl7.org/fhir/R4/device.html) resource, it received through a `Observation.device` or `DeviceMetric.source` reference or from a _search_ interaction. The DiGA MAY use this `id` to request the [Device](https://hl7.org/fhir/R4/device.html) resource - and by this the device's current status - through a FHIR _read_ interaction. This information can be helpful for detecting missing data (see section _Missing Data_ below). 
 
-The [Device](https://hl7.org/fhir/R4/device.html) resource MUST contain a `definition` reference to the device's product definition as registered with the BfArM _HiMi-SST-VZ_ (Device Registry). The reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfArM _HiMi-SST-VZ_. The reference MAY contain a _version_ value.
+The [Device](https://hl7.org/fhir/R4/device.html) resource MUST contain a `definition` reference to the device's product definition as registered with the BfArM _HIIS-VZ_ (Device Registry). The reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfArM _HIIS-VZ_. The reference MAY contain a _version_ value.
 
 Every Device Data Recorder holds information about its static attributes as part of its definition. These attributes can be obtained as key-value-pairs from the BfArM Device Directory. The table below lists the keys defined so far.
 

@@ -13,7 +13,7 @@ This chapter builds on the [HDDT Information Model](information-model-html), the
 Manufacturers of Device Data Recorders that support the MIV _Blood Glucose Measurement_ 
 - MUST implement and operate a FHIR Resource Server as defined in this chapter, 
 - MUST implement and operate an [OAuth2 Authorization Server](authorization-server.html),
-- MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HiMi-SST-VZ_ (BfArM Device Registry),
+- MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HIIS-VZ_ (BfArM Device Registry),
 - MUST consider the HDDT requirements on [security, privacy](security-and-privacy.html) and [operational service levels](operational-requirements.html).
 
 Further obligations MAY be defined by gematik and BfArM as part of the upcoming processes for conformance validation and registration.
@@ -102,6 +102,8 @@ Example for a blood glucose measurement below the measurable range (30 mg/dl) of
 }
 ```
 
+___Remark__: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used._
+
 ##### Quality of Data and Missing Values
 This specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle failed measurements (e.g. too few capillary blood for a measurement). If such attempts are recorded at the Device Data Recorder, a query for device data must not result in an Observation resource with an invalid or misleading value. Instead, the Observation resource must either be omitted or must indicate the absence of a valid value using the `dataAbsentReason` element. In the second case a `value` MUST NOT be present.
 
@@ -134,9 +136,9 @@ The following code example shows the concrete JSON representation of the _HDDT B
   },
   "valueQuantity": {
     "value": 120,
-    "unit": "mg/dL",
+    "unit": "mg/dl",
     "system": "http://unitsofmeasure.org",
-    "code": "mg/dl"
+    "code": "mg/dL"
   },
   "effectiveDateTime": "20250926T:16:30+02:00"
   "device": {
@@ -179,7 +181,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
     "effectiveDateTime": "2025-08-28T10:00:00Z",
     "valueQuantity": {
         "value": 120,
-        "unit": "mg/dL",
+        "unit": "mg/dl",
         "system": "http://unitsofmeasure.org",
         "code": "mg/dL"
     },
@@ -220,7 +222,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
                 "effectiveDateTime": "2025-08-20T07:05:02.165Z",
                 "valueQuantity": {
                     "value": 301,
-                    "unit": "mg/dL",
+                    "unit": "mg/dl",
                     "system": "http://unitsofmeasure.org",
                     "code": "mg/dL"
                 },
@@ -250,7 +252,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
                 "effectiveDateTime": "2025-08-20T07:05:03.664Z",
                 "valueQuantity": {
                     "value": 125,
-                    "unit": "mg/dL",
+                    "unit": "mg/dl",
                     "system": "http://unitsofmeasure.org",
                     "code": "mg/dL"
                 },
@@ -299,7 +301,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
                 "effectiveDateTime": "2025-08-20T07:05:02.165Z",
                 "valueQuantity": {
                     "value": 301,
-                    "unit": "mg/dL",
+                    "unit": "mg/dl",
                     "system": "http://unitsofmeasure.org",
                     "code": "mg/dL"
                 },

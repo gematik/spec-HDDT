@@ -123,9 +123,9 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 // InstanceOf: DeviceDefinition
 // Usage: #example
 // Title: "DeviceDefinition – Roche Device Backend"
-// Description: "Example for a backend system for processing HiMi data according to §374a SGB V."
+// Description: "Example for a backend system for processing HiMi data according to § 374a SGB V."
 
-// * deviceName[0].name = "§374a SGB V Backend"
+// * deviceName[0].name = "§ 374a SGB V Backend"
 // * deviceName[0].type = #manufacturer-name
 // * manufacturerString = "Acme Health IT GmbH"
 // * type = $sct#706689003 "Health information exchange infrastructure (physical object)"

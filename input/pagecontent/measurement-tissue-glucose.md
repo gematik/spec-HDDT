@@ -14,7 +14,7 @@ This chapter builds on the [HDDT Information Model](information-model-html), the
 Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ 
 - MUST implement and operate a FHIR Resource Server as defined in this chapter, 
 - MUST implement and operate an [OAuth2 Authorization Server](authorization-server.html),
-- MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HiMi-SST-VZ_ (BfArM Device Registry),
+- MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HIIS-VZ_ (BfArM Device Registry),
 - MUST consider the HDDT requirements on [security, privacy](security-and-privacy.html) and [operational service levels](operational-requirements.html).
 
 Further obligations MAY be defined by gematik and BfArM as part of the upcoming processes for conformance validation and registration.
@@ -98,7 +98,7 @@ Example for a blood glucose measurement below the measurable range (35 mg/dl) of
   "valueSampledData": {
     "origin" : {
       "value" : 0,
-      "unit" : "mg/dL",
+      "unit" : "mg/dl",
       "system" : "http://unitsofmeasure.org",
       "code" : "mg/dL"
     },
@@ -118,6 +118,8 @@ Example for a blood glucose measurement below the measurable range (35 mg/dl) of
   }
 }
 ```
+
+___Remark__: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used._
 
 ##### Quality of Data and Missing Values
 The manufacturers of the Device Data Recorder MUST handle missing measurements which occured due to interrupted communication to/from the sensor. 
@@ -151,7 +153,7 @@ The following example shows a chunk of data where onlythe first 20 minutes of th
   "valueSampledData": {
     "origin" : {
       "value" : 0,
-      "unit" : "mg/dL",
+      "unit" : "mg/dl",
       "system" : "http://unitsofmeasure.org",
       "code" : "mg/dL"
     },
@@ -235,7 +237,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
                 "valueSampledData": {
                     "origin": {
                     "value": 0,
-                    "unit": "mmol/L"
+                    "code": "mmol/L"
                     },
                     "period": 300,
                     "data": "5.6 5.8 6.0 5.9 5.7"
@@ -290,7 +292,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
                 "effectiveDateTime": "2025-08-20T07:05:02.165Z",
                 "valueQuantity": {
                     "value": 16.7,
-                    "unit": "mmol/L",
+                    "unit": "mmol/l",
                     "system": "http://unitsofmeasure.org",
                     "code": "mmol/L"
                 },
@@ -320,7 +322,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
                 "effectiveDateTime": "2025-08-20T07:05:03.664Z",
                 "valueQuantity": {
                     "value": 6.5,
-                    "unit": "mmol/L",
+                    "unit": "mmol/l",
                     "system": "http://unitsofmeasure.org",
                     "code": "mmol/L"
                 },

@@ -3,7 +3,7 @@ In order to [authenticate with each other](security-and-privacy.html) and to sha
 - must obtain information about the other party's X.509 certificates from a trusted third party
 - must be able to expand MIV-defining FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) and other ValueSets used by the HDDT-specific resource definitions
 
-These services are usable through the BfArM DiGA Registry and BfArM Device Registry (_DIGA Verzeichnis_ and _HiMi-SST-VZ_) and the German Central Terminology Service (_Zentraler Terminologiesrevr_, ZTS). The following class diagram shows the section of the [HDDT information model](information-model.html) that displays the BfArM registries and the ZTS along with their mutual cross-references. 
+These services are usable through the BfArM DiGA Registry and BfArM Device Registry (_DIGA Verzeichnis_ and _Verzeichnis der Hilfsmittel- und Implantat-Schnittstellen (HIIS-VZ)_) and the German Central Terminology Service (_Zentraler Terminologiesrevr_, ZTS). The following class diagram shows the section of the [HDDT information model](information-model.html) that displays the BfArM registries and the ZTS along with their mutual cross-references. 
 
 <div style="width: 75%;">
   <img src="assets/images/HDDT_Informationsmodell_Generisch_BfArM.svg" style="width: 100%;" />
@@ -11,8 +11,8 @@ These services are usable through the BfArM DiGA Registry and BfArM Device Regis
 
 For further information an the displayed classes and attributes and their mappings to FHIR resource definitions see the detailed explanation at the [HDDT information model](information-model.html#BfArM-registries).
 
-### HiMi-SST-VZ
-The _HiMi-SST-VZ_ (BfArM Device Registry) is operated by BfArM and provides access to definitions of registered Personal Health Devices and Device Data Recorders. For HDDT the _HiMi-SST-VZ_ provides the following functions:
+### HIIS-VZ
+The _HIIS-VZ_ (BfArM Device Registry) is operated by BfArM and provides access to definitions of registered Personal Health Devices and Device Data Recorders. For HDDT the _HIIS-VZ_ provides the following functions:
 - providing information about Personal Health Devices (medical aids and implants) that are registered as HDDT [certification relevant systems](certification-relevant-systems.html), e.g. 
    - device information (name, version, etc.)
    - manufacturer and contact data 
@@ -26,9 +26,9 @@ The _HiMi-SST-VZ_ (BfArM Device Registry) is operated by BfArM and provides acce
    - versioning of information about registered Device Data Recorders 
 - searching and/or browsing for MIVs that are supported by certain Personal Health Devices and Device Data Recorders
 - searching and/or browsing for Personal Health Devices and Device Data Recorders that support a certain MIV
--providing feeds for monitoring changes in the _HiMi-SST-VZ_ (e.g. new device registrations, changes in supported MIVs, changes in certificate status, etc.)
+-providing feeds for monitoring changes in the _HIIS-VZ_ (e.g. new device registrations, changes in supported MIVs, changes in certificate status, etc.)
 
-The _HiMi-SST-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being build up by BfArM. A first draft of the APIs that provide the above listed functions will be published by end of October 2025. 
+The _HIIS-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being build up by BfArM. A first draft of the APIs that provide the above listed functions will be published by end of October 2025. 
 
 ### DiGA Verzeichnis
 The BfArM DiGA Registry (_DiGA Verzeichnis_) is operated by BfArM and provides access to definitions of registered DiGA (Digital Health Applications acc. § 33a SGB V). For HDDT the _DiGA Verzeichnis_ provides the following functions:

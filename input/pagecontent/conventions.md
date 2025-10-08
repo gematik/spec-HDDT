@@ -25,7 +25,7 @@ The following German proper nouns are not translated in this specification:
 * Bundesinstitut für Arzneimittel und Medizinprodukte (_BfArM: The Federal Institute for Drugs and Medical Devices_)
 * Gesellschaft für Telematikanwendungen der Gesundheitskarte mbH (_gematik: National Digital Health Agency_)
 * Bundesministerium für Gesundheit (_BMG: Federal Ministry of Health_)
-* Hilfsmittel-Schnittstellen-Verzeichnis (_HiMi-SST-VZ: BfArM Registry of devices and data recorders_) 
+* Verzeichnis der Hilfsmittel- und Implantat-Schnittstellen (_HIIS-VZ: BfArM Registry of devices and implants_) 
 * DiGA-Verzeichnis (_DiGA VZ: BfArM DiGA Registry_)
 * Zentraler Terminologieserver (_ZTS: German Central Terminology Server_)
 

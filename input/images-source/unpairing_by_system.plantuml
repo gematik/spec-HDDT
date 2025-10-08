@@ -26,7 +26,7 @@ participant ZD order 20 [
 ]
 
 participant ZH order 30 [
-	=HiMi-SST-VZ
+	=HIIS-VZ
     ----
 	""BfArM Device Registry""
 ]

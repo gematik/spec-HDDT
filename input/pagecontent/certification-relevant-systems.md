@@ -41,7 +41,7 @@ ___Example 2__: Manufacturer A offers a rtCGM that can also be coupled with an i
 <div><img src="/HDDT affected systems example 2.png" alt="Example 2" width="70%"></div>
 <br clear="all"/>
 
-___Example 3__: Manufacturer A offers an rtCGM. An unaffiliated manufacturer B offers a diabetes diary that can receive data from manufacturer A's rtCGM via a proprietary interface. The diabetes diary is not a DiGA and is not otherwise reimbursable in statutory health insurance. Manufacturer B is not obliged to implement the HDDT interface and cannot be listed in the HiMi-SST-VZ of the BfArM._
+___Example 3__: Manufacturer A offers an rtCGM. An unaffiliated manufacturer B offers a diabetes diary that can receive data from manufacturer A's rtCGM via a proprietary interface. The diabetes diary is not a DiGA and is not otherwise reimbursable in statutory health insurance. Manufacturer B is not obliged to implement the HDDT interface and cannot be listed in the HIIS-VZ of the BfArM._
 
 ___Example 4__: Manufacturers A and B each offer an rtCGM. A manufacturer C that is not affiliated with A or B offers a diabetes diary as a DiGA that can receive data from the rtCGMs of manufacturers A and B via a proprietary interface. Manufacturer C is not obliged to implement the HDDT interface. However, he must disclose the interface used (interoperability criteria 3 in Annex 2 DiGAV) and take the received data into account in an appropriate form in his ePA export._
 
