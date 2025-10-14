@@ -1,0 +1,54 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title HDDT FHIR Data Model (Values and Devices)
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    
+    class IV as "Interoperable Value" <<FHIR Observation>> {
+        status : status of the measured value [1..1]
+        code : classification of the measured value [1..1]
+        date : date or period of the measurement [1..1]
+        value : outcome of the measurement [0..1]
+    }
+
+    class DR as "Aggregated Report" <<FHIR DomainResource>> {
+        code : classification of the report [1..1]    
+        date : period covered by the report [1..1]
+        structured data elements as defined by the report IG
+    }
+    IV <.. DR : "based on"
+} 
+
+package gematik as "FHIR Profiles (gematik)" SPEC {
+    class RP as "ReportProfile" <<FHIR StructureDefinition>> {
+    }
+    class OP as "ObservationProfile" <<FHIR StructureDefinition>> {
+    }
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum MIV <<FHIR ValueSet>> {
+        url : canonical URL for the MIV [1..1]
+        version : version of the MIV [1..1]
+        title : human-friendly name of the MIV [1..1]
+        name : machine-friendly name of the MIV [0..1]
+        description : human-readable description of the MIV [1..1]
+        compose.include : MIV defining concepts [1..*]
+    }
+}
+
+MIV <.. OP : "implements"
+IV <. OP : "defines"
+DR <. RP : "defines"
+IV::code ..> MIV : "included with"
+
+@enduml

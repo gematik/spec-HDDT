@@ -1,8 +1,12 @@
 @startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
 
-!define MANUFACTURER #CDE0FF
-!define VIBW #7ED321
-!define BFARM #F5A623
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
 
 title FHIR Data Model for HiMi-DiGA Interface\n(Blood Glucose Example)
 skinparam packageStyle rectangle

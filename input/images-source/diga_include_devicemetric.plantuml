@@ -1,0 +1,23 @@
+@startuml
+participant      DiGA            as diga
+participant HIMI_Backend    as himi
+
+
+autonumber
+diga -> himi : **GET** /Observation?code=loinc.org|2339-0&_include=Observation:device
+himi --> diga: :Bundle (:Observation && :DeviceMetric)
+note right
+    2339-0 ist der LOINC code für Blutzuckermessungen. Dabei ist eine Sensorkalibrierung erforderlich, 
+    und Observation.device verweist auf eine DeviceMetric-Ressource. 
+    Das zurückgegebene Bundle enthält alle Blutzucker-Observations und die entsprechenden DeviceMetric-Ressourcen.
+end note
+
+diga->himi : **GET** /Device/<deviceMetric.source>
+himi-->diga: :Device
+note right
+Leider unterstützen die meisten FHIR-Server keine verschachtelten Includes.
+Um das Device zu erhalten, auf das DeviceMetric verweist, ist daher eine zusätzliche Anfrage erforderlich.
+end note
+
+
+@enduml

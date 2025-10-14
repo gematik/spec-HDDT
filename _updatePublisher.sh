@@ -17,6 +17,7 @@ build_bat_url=$scriptdlroot/_build.bat
 
 skipPrompts=false
 FORCE=false
+download_scripts=false
 
 if ! type "curl" > /dev/null; then
 	echo "ERROR: Script needs curl to download latest IG Publisher. Please install curl."
@@ -103,6 +104,9 @@ if [[ $skipPrompts != true ]]; then
     read -r -p "$message" response
   fi
 
+if [[ $download_scripts == false ]]; then
+    exit 0
+fi
 if [[ $skipPrompts == true ]] || [[ $response =~ ^[yY].*$ ]]; then
   echo "Downloading most recent scripts "
 

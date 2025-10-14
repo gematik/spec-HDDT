@@ -1,0 +1,42 @@
+@startuml 
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+
+title RESTFul FHIR API Zugriffskontrollogik
+
+participant "DiGA\nBackend" as DiGA
+participant "Device Data Recorder\nAuthorization Server" as HiMi_AuthZ
+participant "Device Data Recorder\nResource Server" as HiMi_Res
+
+activate DiGA
+DiGA -> HiMi_Res: FHIR-Resource Request (access-token)
+alt Access Token expired 
+	HiMi_Res -> DiGA: HTTP 401 UNAUTHORIZED "token_expired"
+	DiGA -> HiMi_AuthZ: token request including tls_client_auth and refresh-token
+	activate HiMi_AuthZ
+	DiGA -> DiGA: Authentication of the \nDevice Data Recorder (FQDN, X.509 Cert)
+	HiMi_AuthZ -> HiMi_AuthZ: Authentication of the DiGA \n(client_id, X.509 Cert)
+	HiMi_AuthZ -> HiMi_AuthZ: Validate status of DiGA(client_id) against DiGA-VZ 
+	HiMi_AuthZ -> HiMi_AuthZ: Validate refresh-token 
+	HiMi_AuthZ -> DiGA: token response (access-token, refresh-token)
+	deactivate HiMi_AuthZ
+	DiGA -> HiMi_Res: FHIR resource request (access-token)
+end
+DiGA -> DiGA: Authentication of the \nDevice Data Recorder (FQDN, X.509 Cert)
+HiMi_Res -> HiMi_Res: Authentication of the DiGA \n(client_id, X.509 Cert)
+HiMi_Res -> HiMi_Res: Validate access-token
+HiMi_Res -> HiMi_Res: Validate request against \n FHIR API access specifications
+HiMi_Res -> HiMi_Res: Derive Pairing-ID and internal \n patientID from access token
+HiMi_Res -> HiMi_Res: Validate request against MIVs/Scopes \n associated with the access-token
+HiMi_Res -> HiMi_Res: discover requested FHIR ressources \n(patientID, MIV, request arguments) 
+HiMi_Res -> HiMi_Res: write log entries (Pairing-ID, ...) 
+HiMi_Res -> DiGA: FHIR ressources
+DiGA -> DiGA: write log entries (Pairing-ID, ...) 
+DiGA -> DiGA: Process FHIR resources for eligible purposes
+
+deactivate DiGA
+deactivate HiMi_Res
+
+@enduml

@@ -1,13 +1,28 @@
 openapi: 3.0.3
 info:
-  title: DiGA FHIR API
+  title: Health Device Data Transfer FHIR API
   version: "1.0.0"
-  description: >
-    OpenAPI specification for a DiGA FHIR API (FHIR R4).
+  description: |
+    OpenAPI specification for a Health Device Data Transfer FHIR API (FHIR R4).
     Supports CapabilityStatement, Observation, DeviceMetric, and Device resources.
-servers:
-  - url: https://api.diga.example.com/fhir
-    description: Example FHIR server
+    
+    ## Search Parameter Types
+    - **token**: Exact match searches for coded values and identifiers
+    - **date**: Date/datetime searches with [FHIR prefixes](https://hl7.org/fhir/R4/search.html#prefix) (eq, ne, lt, le, gt, ge)
+    - **reference**: References to other FHIR resources
+    - **string**: Text-based searches with partial matching support
+    
+    ## Authentication & Authorization
+    All endpoints (except /metadata) require OAuth2 Bearer token authentication.
+    Clients must have appropriate scopes for accessing specific resource types and operations.
+    
+    ## Content-type
+    - The server **MUST** support headers `Content-type` and `Accept`
+    - The server **MUST** support interpreting content types `application/fhir+json` and `application/fhir+xml`.
+    - The server **MUST** return the response in the format that was requested from the client application.
+
+x-swagger-ui-config:
+  supportedSubmitMethods: []
 
 tags:
   - name: Metadata
@@ -15,14 +30,63 @@ tags:
   - name: DeviceMetric
   - name: Device
 
+components:
+  parameters:
+    AcceptHeader:
+      name: Accept
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: ["application/fhir+json", "application/fhir+xml"]
+      description: >
+        Content type expected in the response. FHIR servers must support
+        at least `application/fhir+json`.
+    ContentTypeHeader:
+      name: Content-Type
+      in: header
+      required: true
+      schema:
+        type: string
+        enum: ["application/fhir+json", "application/fhir+xml"]
+      description: >
+        Content type of the request body. Required for POST/PUT/PATCH requests.
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: >
+        OAuth2 Bearer token (RFC 6750).  
+        Format: `Authorization: Bearer <access_token>`.
+    XRequestIdHeader:
+      name: X-Request-ID
+      in: header
+      required: false
+      schema:
+        type: string
+      description: >
+        Unique request identifier, provided by the client for traceability.
+
 paths:
   /metadata:
     get:
       tags: [Metadata]
       summary: FHIR CapabilityStatement (public)
-      description: >
-        Public endpoint (no mTLS) that declares supported FHIR version,
-        resources, interactions, search parameters, and profiles.
+      description: |
+        ### No Authentication Required
+        This endpoint is publicly accessible (no mTLS) to allow clients to discover server capabilities before authentication.
+      
+        ### Capability Information Provided
+        - Supported FHIR version and formats
+        - Available resource types and profiles
+        - Supported interactions (read, search, create, etc.)
+        - Search parameters for each resource type
+        - Operation definitions
+        
+
+        
       responses:
         '200':
           description: CapabilityStatement
@@ -40,156 +104,166 @@ paths:
                       - mode: server
                         resource:
                           - type: Device
+                            profile: "Device_Personal_Health_Device"
                             interaction:
                               - code: read
                               - code: search-type
                           - type: Observation
+                            profile: "Observation_Blood_Glucose"
                             interaction:
                               - code: read
                               - code: search-type
-            application/fhir+xml:
-              examples:
-                capabilityXml:
-                  summary: Minimal CapabilityStatement (XML)
-                  value: |
-                    <CapabilityStatement xmlns="http://hl7.org/fhir">
-                      <status value="active"/>
-                      <fhirVersion value="4.0.1"/>
-                      <format value="json"/>
-                      <format value="xml"/>
-                      <rest>
-                        <mode value="server"/>
-                        <resource>
-                          <type value="Device"/>
-                          <interaction><code value="read"/></interaction>
-                          <interaction><code value="search-type"/></interaction>
-                        </resource>
-                        <resource>
-                          <type value="Observation"/>
-                          <interaction><code value="read"/></interaction>
-                          <interaction><code value="search-type"/></interaction>
-                        </resource>
-                      </rest>
-                    </CapabilityStatement>
-
+                          - type: Observation
+                            profile: "Observation_CGM_Measurement_Series"
+                            interaction:
+                              - code: read
+                              - code: search-type
+                          - type: Bundle
+                            profile: "BundleSearchSummaryDataMeasurements"
+                            interaction:
+                              - code: read
+                              - code: search-type
+          
   /Observation:
     get:
       tags: [Observation]
       summary: Query Observations
-      description: >
-        Supports querying single values, time series data, and threshold comparisons.
-        Data must conform to defined FHIR profiles (e.g. SD_vibW_Blutzucker).
+      description: |
+        Supports querying [Observation](https://hl7.org/fhir/R4/observation.html) resources related to blood glucose measurements.  
+        This endpoint can return either single-point measurements (e.g., fingerstick blood glucose) or time series data (e.g., continuous glucose monitoring [CGM] data). 
+        
+        Returned resources **MUST** conform to one of the following FHIR profiles:  
+        - [Observation_Blood_Glucose](StructureDefinition-Observation-Blood-Glucose.html)  
+        - [Observation_CGM_Measurement_Series](StructureDefinition-Observation-CGM-Measurement-Series.html)  
+        
+        ### Search Parameters
+        
+        | Parameter | Type | Description |
+        | --------- | ---- | ----------- |
+        | `_id` | token | The Observation resource identifier. |
+        | `_include` | Observation:device | Ensures the resulting Bundle also contains the DeviceMetric resources referenced by `Observation.device`. |
+        | `code` | token | The observation code (e.g., LOINC code for blood or tissue glucose). |
+        | `date` | date | Filters results based on `Observation.effective[x]` (date or dateTime). |
+        
+        ### Response
+        
+        - Returns a Bundle of Observation resources that match the given criteria.  
+        - Example responses include:  
+          - Single blood glucose measurement (point-in-time `valueQuantity`).  
+          - Continuous glucose monitoring series (`valueSampledData` across a time range).  
+            
+        
+        
       parameters:
-        - in: query
-          name: _id
-          schema: { type: string }
-          description: Observation ID
-        - in: query
-          name: identifier
-          schema: { type: string }
-          description: Observation identifier
-        - in: query
-          name: code
-          schema: { type: string }
-          description: LOINC code, e.g. http://loinc.org|15074-8
-        - in: query
-          name: date
-          schema: { type: string }
-          description: Date filters (ge, le, etc.)
-        - in: query
-          name: method
-          schema: { type: string }
-          description: Method code, e.g. SNOMED CT
-        - in: query
-          name: value-quantity
-          schema: { type: string }
-          description: Quantity filter (gt, lt, etc.)
-        - in: query
-          name: _include
-          schema: { type: string }
-          description: e.g. Observation:device
+        - $ref: "#/components/parameters/AcceptHeader"
+        - $ref: "#/components/parameters/AuthorizationHeader"
+        
       responses:
         '200':
           description: Bundle of Observation resources
           content:
             application/fhir+json:
               examples:
-                observationJson:
-                  summary: Observation JSON
+                observationBloodGlucoseJson:
+                  summary: Blood Glucose Observation JSON
                   value:
-                    resourceType: Bundle
-                    type: searchset
-                    entry:
-                      - resource:
-                          resourceType: Observation
-                          id: obs-123
-                          status: final
-                          code:
-                            coding:
-                              - system: http://loinc.org
-                                code: "15074-8"
-                                display: Glucose [Moles/volume] in Blood
-                          subject:
-                            reference: Patient/pat-1
-                          effectiveDateTime: "2025-07-23T10:00:00Z"
-                          valueQuantity:
-                            value: 145
-                            unit: mg/dL
-                            system: http://unitsofmeasure.org
-                            code: mg/dL
-                          device:
-                            reference: DeviceMetric/dm-123
-            application/fhir+xml:
-              examples:
-                observationXml:
-                  summary: Observation XML
-                  value: |
-                    <Bundle xmlns="http://hl7.org/fhir">
-                      <type value="searchset"/>
-                      <entry>
-                        <resource>
-                          <Observation>
-                            <id value="obs-123"/>
-                            <status value="final"/>
-                            <code>
-                              <coding>
-                                <system value="http://loinc.org"/>
-                                <code value="15074-8"/>
-                                <display value="Glucose [Moles/volume] in Blood"/>
-                              </coding>
-                            </code>
-                            <subject>
-                              <reference value="Patient/pat-1"/>
-                            </subject>
-                            <effectiveDateTime value="2025-07-23T10:00:00Z"/>
-                            <valueQuantity>
-                              <value value="145"/>
-                              <unit value="mg/dL"/>
-                              <system value="http://unitsofmeasure.org"/>
-                              <code value="mg/dL"/>
-                            </valueQuantity>
-                            <device>
-                              <reference value="DeviceMetric/dm-123"/>
-                            </device>
-                          </Observation>
-                        </resource>
-                      </entry>
-                    </Bundle>
-
-  /DeviceMetric:
+                    {
+                      "resourceType": "Observation",
+                      "id": "obs-blood-glucose-001",
+                      "status": "final",
+                      "code": {
+                        "coding": [
+                          {
+                            "system": "http://loinc.org",
+                            "code": "2339-0",
+                            "display": "Glucose [Mass/volume] in Blood"
+                          }
+                        ]
+                      },
+                      "effectiveDateTime": "2025-08-28T10:00:00Z",
+                      "valueQuantity": {
+                        "value": 120,
+                        "unit": "mg/dL",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "mg/dL"
+                      }
+                    }
+                observationCGMJson:
+                  summary: CGM Measurement Series Observation JSON
+                  value:
+                    resourceType: Observation
+                    id: obs-cgm-series-001
+                    status: preliminary
+                    code:
+                      coding:
+                        - system: http://loinc.org
+                          code: "105272-9"
+                          display: Glucose [Moles/volume] in Interstitial fluid
+                    effectivePeriod:
+                      start: "2025-08-28T08:00:00Z"
+                      end: "2025-08-28T10:00:00Z"
+                    valueSampledData:
+                      origin:
+                        value: 0
+                        unit: mmol/L
+                      period: 300
+                      data: "5.6 5.8 6.0 5.9 5.7"
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parameter |
+            | Invalid Request | [OperationOutcome] | Any other reasons |
+            ---
+            
+        '404':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Resource not found | [OperationOutcome] | Requesting a resource with a specific `_id` that does not exist. |
+        '401':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing, invalid, or expired credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [OperationOutcome] | Client does not have permissions for resource "Observation". |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. |    
+  /DeviceMetric/{id}:
     get:
       tags: [DeviceMetric]
       summary: Query DeviceMetric (restricted)
-      description: >
-        DeviceMetric resources are normally only retrievable via `_include`
-        when querying Observations.  
-        A direct GET is allowed only with `_id`, and only for authorized
-        DeviceMetrics referenced in Observations.
+      description: |
+        Supports querying [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources, primarily to obtain calibration status or to access the linked [Device](https://hl7.org/fhir/R4/device.html).  
+
+        Returned resources **MUST** conform to the [DeviceMetric_Sensor_Type_and_Calibration_Status](StructureDefinition-DeviceMetric-Sensor-Type-and-Calibration-Status.html) profile.  
+        
+        This is a FHIR read interaction, and does not allow any search parameters. 
+        
+        ### Response
+        
+        - Returns a single Device resource
+        - Example:  
+          - A single Device resource with identifiers, manufacturer, and serial number.   
+        
       parameters:
-        - in: query
-          name: _id
-          description: DeviceMetric internal ID
-          schema: { type: string }
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: DeviceMetric resource identifier
+        - $ref: "#/components/parameters/AcceptHeader"
+        - $ref: "#/components/parameters/AuthorizationHeader"
+
       responses:
         '200':
           description: DeviceMetric resource
@@ -206,58 +280,68 @@ paths:
                         - system: http://loinc.org
                           code: "15074-8"
                           display: Blood glucose measurement
-                    unit:
-                      coding:
-                        - system: http://unitsofmeasure.org
-                          code: "mg/dL"
-                          display: milligrams per deciliter
+                    calibration:
+                      state: calibrated
                     source:
-                      reference: Device/dev-123
-                    operationalStatus: on
-            application/fhir+xml:
-              examples:
-                deviceMetricXml:
-                  summary: DeviceMetric XML
-                  value: |
-                    <DeviceMetric xmlns="http://hl7.org/fhir">
-                      <id value="dm-123"/>
-                      <type>
-                        <coding>
-                          <system value="http://loinc.org"/>
-                          <code value="15074-8"/>
-                          <display value="Blood glucose measurement"/>
-                        </coding>
-                      </type>
-                      <unit>
-                        <coding>
-                          <system value="http://unitsofmeasure.org"/>
-                          <code value="mg/dL"/>
-                          <display value="milligrams per deciliter"/>
-                        </coding>
-                      </unit>
-                      <source>
-                        <reference value="Device/dev-123"/>
-                      </source>
-                      <operationalStatus value="on"/>
-                    </DeviceMetric>
-        '403':
-          description: Forbidden – DeviceMetric not authorized for this client
+                      reference: Device/66
+            
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parametera |
+            | Invalid Request | [OperationOutcome] | Any other reasons |
+            ---
+            
+        '404':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Resource not found | [OperationOutcome] | Requesting a resource with a specific `_id` that does not exist. |
         '401':
-          description: Unauthorized
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing, invalid, or expired credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [OperationOutcome] | Client does not have permissions for resource "DeviceMetric". |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. | 
 
-  /Device:
+  /Device/{id}:
     get:
       tags: [Device]
       summary: Query Device resources
-      description: >
-        Retrieve device instances (e.g. glucometers).  
-        Identifiers may include registry numbers.  
-        Devices are referenced by DeviceMetric.source.
+      description: |
+        Supports querying [Device](https://hl7.org/fhir/R4/device.html) resources in order to view device details such as name, manufacturer, serial number, and configuration.  
+
+        Returned resources **MUST** conform to the [Device_Personal_Health_Device](StructureDefinition-Device-Personal-Health-Device.html) profile.  
+        
+        This is a FHIR read interaction, and does not allow any search parameters. 
+        
+        ### Response
+        
+        - Returns a single Device resource
+        - Example:  
+          - A single Device resource with identifiers, manufacturer, and serial number.  
+        
       parameters:
-        - in: query
-          name: _id
-          description: Device ID
-          schema: { type: string }
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Device resource identifier
+        - $ref: "#/components/parameters/AcceptHeader"
+        - $ref: "#/components/parameters/AuthorizationHeader"
+
       responses:
         '200':
           description: Bundle of Device resources
@@ -267,40 +351,179 @@ paths:
                 deviceJson:
                   summary: Device JSON
                   value:
+                    resourceType: Device
+                    id: dev-123
+                    serialNumber: SN123456
+                    type:
+                      coding:
+                        - system: http://snomed.info/sct
+                          code: "46702002"
+                          display: Glucometer
+                    deviceName:
+                      - name: Accu-Chek Mobile
+                        type: user-friendly-name
+                    manufacturer: Acme Health
+                    definition:
+                      reference: DeviceDefinition/example-glucometer-def
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Invalid Query Parameters | [OperationOutcome] | Wrong format of query parameters |
+            | Unknown Search Parameters | [OperationOutcome] | Unsupported search parameter |
+            | Invalid Request | [OperationOutcome] | Any other reasons |
+            ---
+            
+        '404':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Resource not found | [OperationOutcome] | Requesting a resource with a specific `_id` that does not exist. |
+        '401':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing, invalid or expired credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [OperationOutcome] | Client does not have permissions for resource "Device". |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. | 
+            
+
+  /$search-summary-data-measurement:
+    post:
+      tags: [Observation]
+      summary: Custom operation to search summary data measurements
+      description: |
+        Supports the custom FHIR operation **$search-summary-data-measurement** to obtain aggregated measurement data.  
+        Optionally, related Device and DeviceMetric resources can be included in the result.  
+        
+        
+        Results **MUST** conform to the [BundleSearchSummaryDataMeasurements](StructureDefinition-Bundle-Search-Summary-Data-Measurements.html) profile.  
+        
+        ### Request Parameters
+        
+        All parameters are provided in the request body as JSON, following the [FHIR Parameters](https://hl7.org/fhir/R4/parameters.html) resource pattern.  
+        
+        | Parameter | Type | Required | Description |
+        |-----------|------|----------|-------------|
+        | `effectivePeriodStart` | dateTime | No | Start of the effective time period. |
+        | `effectivePeriodEnd` | dateTime | No | End of the effective time period. |
+        | `related` | boolean | No | When set to true, includes Device resources from which the data was measured and DeviceMetric resources for calibration status. |
+        
+        ### Response
+        
+        - Returns a Bundle containing summary measurement Observations, and optionally related Device and DeviceMetric resources.  
+        - Example responses include:  
+          - Aggregated CGM summary data (e.g., mean glucose, times in ranges, GMI). 
+          
+      parameters:
+      - $ref: "#/components/parameters/AcceptHeader"
+      - $ref: "#/components/parameters/ContentTypeHeader"
+      - $ref: "#/components/parameters/AuthorizationHeader"
+      - $ref: "#/components/parameters/XRequestIdHeader"
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+              properties:
+                resourceType:
+                  type: string
+                  enum: ["Parameters"]
+                  description: Must be "Parameters" for FHIR operations
+                parameter:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      valueString:
+                        type: string
+                      valueDateTime:
+                        type: string
+                        format: date-time
+                      valueBoolean:
+                        type: boolean
+                      valueReference:
+                        type: object
+                        properties:
+                          reference:
+                            type: string
+            example:
+              resourceType: "Parameters"
+              parameter:
+                - name: "effectivePeriodStart"
+                  valueDateTime: "2025-08-01T00:00:00Z"
+                - name: "effectivePeriodEnd"
+                  valueDateTime: "2025-08-31T23:59:59Z"
+                - name: "related"
+                  valueBoolean: true
+      responses:
+        '200':
+          description: Return a Bundle, containing search summary data measurements and optionally related resources
+          content:
+            application/fhir+json:
+              examples:
+                aggregateBundleJson:
+                  summary: CGM Summary Bundle Example
+                  value:
                     resourceType: Bundle
-                    type: searchset
+                    type: collection
                     entry:
                       - resource:
-                          resourceType: Device
-                          id: dev-123
-                          serialNumber: SN123456
-                          type:
+                          resourceType: Observation
+                          id: cgmSummaryExample
+                          status: final
+                          category:
+                            - coding:
+                                - system: http://terminology.hl7.org/CodeSystem/observation-category
+                                  code: laboratory
+                          code:
                             coding:
-                              - system: http://snomed.info/sct
-                                code: "46702002"
-                                display: Glucometer
-                          manufacturer: Acme Health
-            application/fhir+xml:
-              examples:
-                deviceXml:
-                  summary: Device XML
-                  value: |
-                    <Bundle xmlns="http://hl7.org/fhir">
-                      <type value="searchset"/>
-                      <entry>
-                        <resource>
-                          <Device>
-                            <id value="dev-123"/>
-                            <serialNumber value="SN123456"/>
-                            <type>
-                              <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="46702002"/>
-                                <display value="Glucometer"/>
-                              </coding>
-                            </type>
-                            <manufacturer value="Acme Health"/>
-                          </Device>
-                        </resource>
-                      </entry>
-                    </Bundle>
+                              - system: http://hl7.org/fhir/uv/cgm/CodeSystem/cgm-summary-codes-temporary
+                                code: cgm-summary
+                          subject:
+                            reference: Patient/patientExample
+                          effectivePeriod:
+                            start: 2025-08-01
+                            end: 2025-08-31
+                          hasMember:
+                            - reference: Observation/cgmSummaryMeanGlucoseMassPerVolumeExample
+                            - reference: Observation/cgmSummaryTimesInRangesExample
+                            - reference: Observation/cgmSummaryGMIExample
+                            - reference: Observation/cgmSummaryCoefficientOfVariationExample
+                            - reference: Observation/cgmSummaryDaysOfWearExample
+                            - reference: Observation/cgmSummarySensorActivePercentageExample
+        '400':
+          description: |
+            | Message | Type | Reason |
+            |---------|------|--------|
+            | Unknown Parameters | [OperationOutcome] | Unsupported parameters were provided |
+            | Not a Parameters-Resource | [OperationOutcome] | The request body is not in the FHIR-Paremeters format |
+            | Invalid Request | [OperationOutcome] | Any other reason |
+            ---
+            
+        '401':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Unauthorized | [string] | Missing, invalid, or expired credentials. |
+        '403':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Forbidden | [OperationOutcome] | Client does not have permissions to see the results of this operation. |
+        '500':
+          description: |
+            | Message | Type | Reason |
+            |-|-|-|
+            | Any other error | [string] | For internal server errors, etc. | 

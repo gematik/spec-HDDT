@@ -11,26 +11,26 @@
 # │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: health-device-data-transfer
-canonical: https://gematik.de/fhir/hdc
-version: 0.1.0
+canonical: https://gematik.de/fhir/hddt
+version: 0.1.1
 name: healthDeviceDataTransfer
 title: Health Device Data Transfer
 status: draft
 publisher: gematik GmbH
 contact:
-  - name: BfArM
+  - name: gematik
     telecom:
       - system: url
         value: https://www.gematik.de
-description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to §374a SGB V.
+description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to § 374a SGB V.
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
-releaseLabel: CI Build
+releaseLabel: Pre-Release
 
 
 dependencies:
-  hl7.fhir.uv.cgm: 1.0.0-ballot
+  hl7.fhir.uv.cgm: 1.0.0
 
 parameters:
   show-inherited-invariants: false
@@ -45,103 +45,120 @@ parameters:
   default-publisher: false
   propagate-status: false
   showsource: true
+  skip-narrative: true
   # logging: [init, progress, tx, generate]
 
 
 pages:
+# Main Page
   index.html:
     title: Overview
     generation: markdown
-  examples.html:
-    title: Examples
+# General Topics    
+  motivation.html:
+    title: Motivation
     generation: markdown
-  himi-diga-api.html:
-    title: HiMi DiGA RESTful FHIR API
-    generation: markdown
-  himi-vz-api.html:
-    title: HiMi Directory API
-    generation: markdown
-  information-model.html:
-    title: Information Model
+  roadmap.html:
+    title: Roadmap
     generation: markdown
   methodology.html:
     title: Methodology
     generation: markdown
-  oauth-api.html:
-    title: OAuth 2.0 ACG API
-    generation: markdown
-  participants.html:
-    title: Participants
-    generation: markdown
-  representation_formats.html:
-    title: Representation Formats
-    generation: markdown
-  zts-api.html:
-    title: ZTS API
-    generation: markdown
-  mivs.html:
-    title: Mandatory Interoperable Values (MIVs)
-    generation: markdown
-  motivation.html:
-    title: Motivation
-    generation: markdown
-  release-notes.html:
-    title: Release Notes
-    generation: markdown
-  logical-viewpoints.html:
-     title: Logical Viewpoints
-     generation: markdown
   certification-relevant-systems.html:
     title: Certification relevant systems
     generation: markdown
-  compatibility-of-the-gematik-specification.html:
-    title: Compatibility of the gematik Specification
+  conventions.html:
+    title: Keywords and Conventions
     generation: markdown
-  must-support.html:
-    title: Must-Support flags
+  glossary.html:
+    title: Glossary
     generation: markdown
-  implementation_guide_diga.html:
-    title: Implementation guide for DiGA
+# Release Notes
+  release-notes.html:
+    title: Release Notes
     generation: markdown
-  implementation_guide_himi.html:
-    title: Implementation guide for HiMi
+# Definition and Rules
+  general-considerations.html:
+    title: General Considerations
     generation: markdown
-  pairing.html:
-    title: Pairing
-    generation: markdown
-  retrieving-data.html:
-    title: Retrieving Data
+  use_of_hl7_fhir.html:
+    title: Use of HL7 FHIR
     generation: markdown
   security-and-privacy.html:
     title: Security and Privacy
     generation: markdown
-  hdc-device-metric-api.html:
-    title: HDC Device Metric API
+  operational-requirements.html:
+    title: Operational Requirements
     generation: markdown
-  hdc-device-api.html:
-    title: HDC Device API
+  registries-and-zts.html:
+    title: BfArM Registries and ZTS
     generation: markdown
-  diga-vz-api.html:
-    title: DiGA Directory API (?)
+# Logical Viewpoints
+  logical-viewpoints.html:
+    title: Logical Viewpoints
     generation: markdown
-  information-model-diabetes.html:
-    title: Information Model Diabetes
+  information-model.html:
+    title: Information Model
     generation: markdown
-  semantics.html:
-    title: Semantics
+  pairing.html:
+    title: Pairing
+    generation: markdown
+  smart-scopes.html:
+    title: SMART Scopes
+    generation: markdown
+  retrieving-data.html:
+    title: Retrieving Data
+    generation: markdown
+# Generic APIs
+  himi-diga-api.html:
+    title: FHIR Resource Server
+    generation: markdown
+  authorization-server.html:
+    title: Authorization Server
+    generation: markdown
+# MIV-Specific APIs
+  mivs.html:
+    title: Mandatory Interoperable Values (MIVs)
     generation: markdown
   measurement-blood-glucose.html:
-    title: Measurement Blood Glucose
+    title: MIV - Blood Glucose Measurement
     generation: markdown
   measurement-tissue-glucose.html:
-    title: Measurement Tissue Glucose
+    title: MIV - Continuous Glucose Measurement
     generation: markdown
-  conventions-for-device-resources.html:
-    title: Conventions for Device Resources
+  fhir-api-observation.html:
+    title: Endpoint Observation
     generation: markdown
-  execution-plan.html:
-    title: Execution Plan
-    generation: markdown  
+  fhir-api-device.html:
+    title: Endpoint Device
+    generation: markdown
+  fhir-api-devicemetric.html:
+    title: Endpoint DeviceMetric
+    generation: markdown
+  fhir-api-metadata.html:
+    title: Endpoint Metadata
+    generation: markdown
+  authorization-server-metadata-endpoint.html:
+    title: Authorization Server Metadata Endpoint
+    generation: markdown
+  authorization-server-par-endpoint.html:
+    title: Pushed Authorization Request Endpoint
+    generation: markdown
+  authorization-server-authorization-endpoint.html:
+    title: Authorization Endpoint
+    generation: markdown
+  authorization-server-token-endpoint.html:
+    title: Token Endpoint
+    generation: markdown
+  authorization-server-revocation-endpoint.html:
+    title: Revocation Endpoint
+    generation: markdown
+  general-considerations-deprecated.html:
+    title: General Considerations (DEPRECATED)
+    generation: markdown
+  _deprecated_participants.html:
+    title: Participants (DEPRECATED)
+    generation: markdown
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
@@ -151,41 +168,39 @@ menu:
   Home: index.html
   General:
     Motivation: motivation.html
-    Execution Plan: execution-plan.html
-  Release Notes: release-notes.html
-  Logical Viewpoints: 
-    Logical Viewpoints: logical-viewpoints.html
-    Participants: participants.html
-    Information Model: information-model.html
-    Pairing: pairing.html
-    Retrieving Data: retrieving-data.html
-  Definition and Rules: 
+    Roadmap: roadmap.html
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
-    Compatibility of the gematik Specification: compatibility-of-the-gematik-specification.html
-    Must-Support flags: must-support.html
-    Representation Format: representation_formats.html
+    Keywords and Conventions: conventions.html
+    Glossary: glossary.html
+  Release Notes: release-notes.html
+  Definition and Rules: 
+    General Considerations: general-considerations.html
+    Use of HL7 FHIR: use_of_hl7_fhir.html
     Security and Privacy: security-and-privacy.html
-  REST API:
-    HIMI DiGA FHIR API: himi-diga-api.html
-    HDC Device Metric API: hdc-device-metric-api.html
-    HDC Device API: hdc-device-api.html
-    HIMI Directory API: himi-vz-api.html
-    DiGA Directory API: diga-vz-api.html
-    ZTS API: zts-api.html
-    OAuth 2.0 ACG API: oauth-api.html
-  UseCase Diabetes Self Management:
+    Operational Requirements: operational-requirements.html
+    Access to BfArM Registries and ZTS: registries-and-zts.html
+  System Overview: 
+    Logical Viewpoints: logical-viewpoints.html
+    Information Model: information-model.html
+    Pairing: pairing.html
+    SMART Scopes: smart-scopes.html
+    Retrieving Data: retrieving-data.html
+  Generic APIs:
+    FHIR Resource Server: himi-diga-api.html
+    Authorization Server: authorization-server.html
+  #  BfArM HIMI Directory API: himi-vz-api.html
+  #  BfArM DiGA Directory API: diga-vz-api.html
+  #  ZTS Terminology API: zts-api.html
+  MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
-    Information Model Diabetes: information-model-diabetes.html
-    Semantics: semantics.html
-    Measurement Blood Glucose: measurement-blood-glucose.html
-    Measurement Tissue Glucose: measurement-tissue-glucose.html
-    Conventions for Device* Ressources: conventions-for-device-resources.html
-    Examples: examples.html
-  ImplementationGuide:
-    Implementation guide for DiGA: implementation_guide_diga.html
-    Implementation guide for HiMi: implementation_guide_himi.html
-  Artifacts:
+    MIV - Blood Glucose Measurement: measurement-blood-glucose.html
+    MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
+  #  Information Model Diabetes: information-model-diabetes.html
+  #  Measurement Blood Glucose: measurement-blood-glucose.html
+  #  Measurement Tissue Glucose: measurement-tissue-glucose.html
+  #  Examples: examples.html
+  FHIR Artifacts:
     Artifacts Summary: artifacts.html
 
 

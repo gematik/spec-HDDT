@@ -7,16 +7,24 @@ RUN /usr/local/bin/docker-entrypoint.sh true
 RUN git clone --depth 1 https://github.com/gematik/fhir-ig-template.git /home/publisher/fhir-ig-template
 
 WORKDIR /home/publisher/ig
+RUN ls -la /home/publisher/ig
 COPY . .
+
+# Ensure script is executable
+RUN chmod +x _genonce.sh
+RUN chmod +x _updatePublisher.sh
 
 RUN set -eux; \
     sushi .; \
-    _updatePublisher.sh -y; \
-    _genonce.sh; \
+    bash _updatePublisher.sh -y; \
+    bash _genonce.sh; \
     test -d output; \
     cd temp/pages; \
     jekyll build --destination "/home/publisher/ig/output"; \
-    cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/;
+    cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/; \
+    cp -rf /home/publisher/ig/temp/pages/_includes/*.svg /home/publisher/ig/output/assets/images/; \
+    cp -rf /home/publisher/ig/giscus.client.js /home/publisher/ig/output/assets/js/giscus.client.js; \
+    rm /home/publisher/ig/output/assets/css/prism.css;
 
 # ---------- Export-only stage ----------
 FROM scratch AS export

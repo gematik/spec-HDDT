@@ -1,0 +1,115 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+title System-Initiated Revocation of Authorizations
+
+actor V as "Patient"
+actor M as "Manufacturer (DiGA/Device Data Recorder)"
+
+participant D order 0 [
+	=DiGA
+	----
+	""Frontend | Backend""
+]
+participant H order 10 [
+	=Device Data Recorder
+	----
+	""Frontend | OAuth2 AUthZ Server""
+]
+
+participant ZD order 20 [
+	=DiGA-VZ
+	----
+	""BfArM DiGA Registry""
+]
+
+participant ZH order 30 [
+	=HIIS-VZ
+    ----
+	""BfArM Device Registry""
+]
+
+== Prescription duration of DiGA for Pairing-ID expired ==
+activate D
+D -> D: Check validity of consent (Pairing-ID) or system time vs.\nexpiry date of prescription (Pairing-ID)
+alt Prescription about to expire
+	D -> V: Inform patient about upcoming expiry
+	activate V
+else Prescription expired
+	D -> D: Invalidate consent (Pairing-ID)
+	D -> H: Request invalidation of refresh token (Pairing-ID)\nat /revoke endpoint
+	activate H
+	H -> H: Invalidate authorization grant (Pairing-ID)
+	H -> H: Invalidate refresh token (Pairing-ID)
+	H -> H: Invalidate access token (Pairing-ID)
+	H -> H: Invalidate consent for Pairing-ID
+	H -> D: HTTP 200 OK
+	D -> V: Signal revocation confirmation via DiGA frontend
+end
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+== DiGA loses authorization for interface acc. § 374a SGB V ==
+M -> ZD: Retrieve status (DiGA-ID/client_id)
+activate M
+activate ZD
+alt DiGA retired
+	ZD -> M: Status "retired"
+else DiGA not in directory
+	ZD -> M: HTTP 404 NOT FOUND
+end
+deactivate ZD
+M -> H: Invalidate authorization grant (Pairing-ID)
+activate H
+M -> H: Invalidate refresh token (Pairing-ID)
+M -> H: Invalidate access token (Pairing-ID)
+M -> H: Invalidate consent for Pairing-ID
+M -> H: Deregister DiGA
+deactivate M
+H -> V: Signal invalidation of consent via frontend of the Device Data Recorder
+activate V
+... DiGA data request at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
+D -> H: Request re-authorization with refresh token (Pairing-ID)
+activate D
+D -> D: Authenticate Device Data Recorder (X.509 cert)
+H -> H: Authenticate DiGA (X.509 cert)
+alt DiGA not yet deregistered
+	H -> D: HTTP 400 Bad Request "invalid_grant"
+else DiGA deregistered
+	H -> D: HTTP 401 UNAUTHORIZED "authentication failed"
+end
+D -> D: Invalidate consent
+alt optional
+	D -> V: Signal invalidation of consent via DiGA frontend
+end
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+== Device Data Recorder no longer offers interface acc. § 374a SGB V ==
+M -> ZH: Retrieve status (HiMi-ID)
+activate M
+activate ZH
+alt Device Data Recorder retired
+	ZH -> M: Status "retired"
+else HiMi not in directory
+	ZH -> M: HTTP 404 NOT FOUND
+end
+deactivate ZH
+M -> D: Invalidate consent
+activate D
+M -> D: Remove configurations for Device Data Recorder
+deactivate M
+D -> V: Signal invalidation of consent via DiGA frontend
+activate V
+||0||
+deactivate D
+deactivate H
+deactivate V
+
+@enduml

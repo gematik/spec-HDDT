@@ -1,0 +1,15 @@
+@startuml
+participant      DiGA            as diga
+participant HIMI_Backend    as himi
+
+
+autonumber
+diga -> himi : **GET** /Observation?date=ge2025-09-01&_include=Observation:device
+himi --> diga: :Bundle (:Observation && :Device)
+note right
+  Rückgabe ist eine FHIR-Bundle-Resource.
+  Darin enthalten sind mehrere Observation-Ressourcen, und die dazugehörigen Device-Ressourcen.
+end note
+
+
+@enduml

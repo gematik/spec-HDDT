@@ -1,0 +1,75 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title HDDT FHIR Data Model (Values and Devices)
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANUFACTURER {
+    
+    class IV as "Interoperable Value" <<FHIR Observation>> {
+        status : status of the measured value [1..1]
+        code : classification of the measured value [1..1]
+        date : date or period of the measurement [1..1]
+        value : outcome of the measurement [0..1]
+    }
+
+    class Metric as "Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
+        type : classification of the sensor [1..1]
+        calibration.state : calibration state [1..1]
+    }
+
+    class PHD as "Personal Health Device" <<FHIR Device>> {
+        type : machine-readable device type [0..1]
+        deviceName : product name [0..1]
+        manufacturer : name of the manufacturer [0..1]
+        serialNumber : serial number [0..1]
+        expirationDate : end of life date [0..1]
+        property : additional properties [0..*]
+    }
+
+    class DR as "Aggregated Report" <<FHIR DomainResource>> {
+        code : classification of the report [1..1]    
+        date : period covered by the report [1..1]
+        structured data elements as defined by the report IG
+    }
+    IV <.. DR : "based on"
+
+    () "{xor}" as xor
+
+    IV --> xor : "device [1..1] "
+    xor --> Metric 
+    xor --> PHD 
+    Metric -> PHD : "source [1..1]"
+'    PHD -> DDR : "parent [1..1]"
+} 
+
+package gematik as "FHIR Profiles (gematik)" SPEC {
+    class OP as "ObservationProfile" <<FHIR StructureDefinition>> {
+
+    }
+}
+
+package ZTS as "MIV Definitions (CTS)" VIBW {
+    enum MIV <<FHIR ValueSet>> {
+        url : canonical URL for the MIV [1..1]
+        version : version of the MIV [1..1]
+        title : human-friendly name of the MIV [1..1]
+        name : machine-friendly name of the MIV [0..1]
+        description : human-readable description of the MIV [1..1]
+        compose.include : MIV defining concepts [1..*]
+    }
+}
+
+MIV <.up. OP : "implements [1..1]"
+IV <. OP : "defines [*..1]"
+IV::code ..> MIV : "included with"
+
+
+@enduml

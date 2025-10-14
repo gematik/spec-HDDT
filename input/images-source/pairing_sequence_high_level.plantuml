@@ -1,0 +1,42 @@
+@startuml
+!include fbeta-theme.puml
+title DiGA–Health Device Pairing (High Level)
+
+actor Patient as P
+participant D  [
+	=DiGA
+	----
+	""Frontend | Backend""
+]
+participant A  [
+	=Device Data Recorder
+	----
+	""(OAuth2 Authorization Server)""
+]
+participant H  [
+	=Device Data Recorder
+	----
+	""(FHIR Resource Server)""
+]
+participant "Health Device Backend" as H
+
+ref over P, D : Patient is already logged in to DiGa
+P -> D: Initiate pairing request with a health device
+activate D
+D -> A: Authorization request via frontend/user-agent redirect
+activate A
+A -> P: Initiate login via system browser and possibly app link/deep link
+activate P
+ref over P, A : Device Data Recorder specific login (out-of-scope)
+A -> P: Present a consent dialog for requested scopes (fine grained access)
+P -> A: Confirm consent for DiGA
+deactivate P
+A -> A: Generate or load previously generated pairing-id
+A -> D: Token response (scope, pairing-id, access- and refresh-token)
+
+D -> D: Assign pairing-id to user account
+D -> H: Retrieve Data with access-token as Bearer
+activate H
+H -> H: Check access-token and scopes
+H -> D: Requested Data (e.g. FHIR resources)
+@enduml

@@ -1,0 +1,129 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title HDDT FHIR Data Model (complete)
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    
+    class IV as "Interoperable Value" <<FHIR Observation>> {
+        status : status of the measured value [1..1]
+        code : classification of the measured value [1..1]
+        date : date or period of the measurement [1..1]
+        value : outcome of the measurement [1..1]
+    }
+
+    class Metric as "Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
+        type : kind of value measured by the sensor [1..1]
+        calibration.state : quality indicator for measurements [1..1]
+    }
+
+    class PHD as "Personal Health Device" <<FHIR Device>> {
+        type : machine-readable device type
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        serialNumber : serial number [1..1]
+        expirationDate : end of life date [0..1]
+        property : additional properties [0..*]
+    }
+
+'    class DDR as "Device Data Recorder" <<FHIR Device>> {
+'        type = 462240000|SCT [1..1]
+'        status : operational status [1..1]
+'        deviceName : product name [1..1]
+'        manufacturer : name of the manufacturer [0..1]
+'        property : additional properties [0..*]
+'    }
+
+    class DR as "Aggregated Report\n<<FHIR Bundle/DiagnosticReport/Observation>>" {
+        code : classification of the report    
+        date : period covered by the report
+    }
+    IV <.. DR : "based on"
+
+    () "{xor}" as xor
+
+    IV -left-> xor : "device [1..1] "
+    xor -left-> Metric 
+    xor --> PHD 
+    Metric --> PHD : "source [1..1]"
+'    PHD -> DDR : "parent [1..1]"
+} 
+
+package gematik as "FHIR Profiles (gematik)" SPEC {
+   class RP as "ReportProfile" <<FHIR StructureDefinition>> {
+   }
+   class OP as "ObservationProfile" <<FHIR StructureDefinition>> {
+   }
+}
+
+package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM {
+
+    class PHD_Def as "Personal Health Device Definition" <<FHIR DeviceDefinition>> {
+        type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property : additional properties [0..*]
+    }
+
+    class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
+        type = 462240000|SCT [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property : additional properties [0..*]
+    }
+
+    class DiGA_Def as "DiGA Definition" <<FHIR DeviceDefinition>> {
+        type = 706689003|SCT [1..1]
+        deviceName : DiGA name [1..1]
+    }
+
+    class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
+        address : URL for the FHIR endpoint [1..1]
+        fqdn : FQDN as stated in the FHIR endpoint's X.509 certificate [1..1
+    }
+
+    class AuthZ_Endpoint as "Device Data Recorder AuthZ Endpoint" <<FHIR Endpoint>> {
+        address : URL for the AuthZ endpoint [1..1]
+        fqdn : FQDN as stated in the AuthZ endpoint's X.509 certificate [1..1
+    }
+
+    DM_Def .left.> DDR_Endpoint 
+    DM_Def .down.> AuthZ_Endpoint
+}
+
+PHD --> PHD_Def : "definition [1..1]"
+' DDR --> DM_Def : "definition [1..1]"
+
+package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
+    enum MIV <<FHIR ValueSet>> {
+        url : canonical URL for the MIV [1..1]
+        version : version of the MIV [1..1]
+        title : human-friendly name of the MIV [1..1]
+        name : machine-friendly name of the MIV [0..1]
+        description : human-readable description of the MIV [1..1]
+        compose.include : MIV defining concepts [1..*]
+    }
+}
+
+'IV::code --> MIV : "included with"
+'Metric::type --> MIV : "included with"
+
+PHD_Def <.> MIV 
+DM_Def <.> MIV 
+PHD_Def <..> DM_Def 
+DiGA_Def <..> MIV
+
+MIV <.. OP : "implements"
+IV <. OP : "defines"
+DR <. RP : "defines"
+IV::code ..> MIV : "included with"
+
+@enduml

@@ -1,0 +1,131 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36" version="28.2.5">
+  <diagram name="Seite-1" id="Bhri-QjF-UB471xwDvFJ">
+    <mxGraphModel dx="1437" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="liwSew6Rxu3unxpfjoll-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#DFEBF0,#DFEBF0);strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="40" y="220" width="1380" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-1" value="&amp;nbsp;sample self-contained access_token and the&lt;br&gt;scope claim = scope parameter value" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#5E9BB1;dashed=1;dashPattern=1 1;fillColor=none;verticalAlign=top;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="750" y="240" width="280" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-2" value="sub : {Pairing-ID}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DFEBF0;strokeColor=#5E9BB1;fontColor=#111111;align=left;spacingLeft=11;" parent="1" vertex="1">
+          <mxGeometry x="790" y="380" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-3" value="OAuth2 Authorization Server" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="790" y="300" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-4" value="Access Enforcement on the Resource Server" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="1150" y="300" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-6" target="O6kzLsosQIwgMXH-0cm3-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-6" value="Restrict FHIR Resources belonging to specific User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C85670;strokeColor=#C85670;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1150" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-7" value="scope :&amp;nbsp;patient/Observation.rs?code:in={MIV_ValueSet_URL}&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DFEBF0;strokeColor=#5E9BB1;fontColor=#111111;align=left;spacingLeft=11;" parent="1" vertex="1">
+          <mxGeometry x="790" y="500" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-9" target="O6kzLsosQIwgMXH-0cm3-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-9" value="&lt;div&gt;Restrict to Health Data of a specific MIV&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C85670;strokeColor=#C85670;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1150" y="500" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-10" value="scope :&amp;nbsp;patient/Device.rs&lt;div&gt;scope :&amp;nbsp;patient/DeviceMetric.rs&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DFEBF0;strokeColor=#5E9BB1;fontColor=#111111;align=left;spacingLeft=11;" parent="1" vertex="1">
+          <mxGeometry x="790" y="620" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-11" value="Restrict to Devices and DeviceMetrics that produced (or measured) the Health Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C85670;strokeColor=#C85670;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1150" y="620" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-2" target="O6kzLsosQIwgMXH-0cm3-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1450" y="770" as="sourcePoint" />
+            <mxPoint x="1500" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-7" target="O6kzLsosQIwgMXH-0cm3-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1200" y="450" as="sourcePoint" />
+            <mxPoint x="1560" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-10" target="O6kzLsosQIwgMXH-0cm3-11" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1290" y="550" as="sourcePoint" />
+            <mxPoint x="1650" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-15" value="hierarchical access control level" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="1280" y="460" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-16" value="hierarchical access control level" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="1280" y="580" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-18" target="O6kzLsosQIwgMXH-0cm3-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-18" value="User Context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A0C5CF;strokeColor=#A0C5CF;fontColor=#0F2A33;" parent="1" vertex="1">
+          <mxGeometry x="430" y="380" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-20" target="O6kzLsosQIwgMXH-0cm3-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-20" value="Health Data Context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A0C5CF;strokeColor=#A0C5CF;fontColor=#0F2A33;" parent="1" vertex="1">
+          <mxGeometry x="430" y="500" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-22" target="O6kzLsosQIwgMXH-0cm3-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-22" value="Device Context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A0C5CF;strokeColor=#A0C5CF;fontColor=#0F2A33;" parent="1" vertex="1">
+          <mxGeometry x="430" y="620" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-23" value="Access Context" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="430" y="300" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-24" value="Prerequisite" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="70" y="300" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-26" target="O6kzLsosQIwgMXH-0cm3-18" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-26" value="Consent by User (patient)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5E9BB1;strokeColor=#5E9BB1;fontColor=white;" parent="1" vertex="1">
+          <mxGeometry x="70" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-28" target="O6kzLsosQIwgMXH-0cm3-20" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-28" value="Digital Health Application (DiGA)-VZ Entry ValueSet URL to a specifiv MIV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5E9BB1;strokeColor=#5E9BB1;fontColor=white;" parent="1" vertex="1">
+          <mxGeometry x="70" y="500" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#5E9BB1;" parent="1" target="O6kzLsosQIwgMXH-0cm3-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="650" as="targetPoint" />
+            <mxPoint x="310" y="650" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-30" value="Specification Requirements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5E9BB1;strokeColor=#5E9BB1;fontColor=white;" parent="1" vertex="1">
+          <mxGeometry x="70" y="620" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O6kzLsosQIwgMXH-0cm3-31" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;strokeColor=#5E9BB1;" parent="1" source="O6kzLsosQIwgMXH-0cm3-30" target="O6kzLsosQIwgMXH-0cm3-20" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="620" as="sourcePoint" />
+            <mxPoint x="760" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
