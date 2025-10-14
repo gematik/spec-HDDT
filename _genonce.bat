@@ -42,7 +42,4 @@ XCOPY /Y /E "%CD%\input\files\*" "%output_path%\files\"
 ECHO Copying SVGs from temp/pages/_includes to output/assets/images
 XCOPY /Y /E "%CD%\temp\pages\_includes\*.svg" "%output_path%\assets\images"
 
-ECHO Copying giscus.client.js to output/assets/js
-COPY /Y "%CD%\giscus.client.js" "%output_path%\assets\js\giscus.client.js"
-
 PAUSE
