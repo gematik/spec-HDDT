@@ -4,8 +4,13 @@ on:
   push:
     branches:
       - main
+    tags:
+      - "*"
 
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build_and_deploy_job:
@@ -31,3 +36,27 @@ jobs:
           app_location: "/output"      # Path to your static files in the repo
           api_location: ""             # No API
           output_location: ""          # Not needed unless you run a build (leave empty for plain HTML)
+
+      - name: Zip /output
+        run: |
+          test -d output || { echo "'output' directory not found"; ls -la; exit 1; }
+          (cd output && zip -r ../output.zip .)
+          ls -lh output.zip
+
+      - name: Create GitHub Release for this tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}           # the tag you pushed (e.g. v1.2.3)
+          name: "Release ${{ github.ref_name }}"
+          body: |
+            Automated release for tag ${{ github.ref_name }}.
+            Run: #${{ github.run_number }}
+            Commit: ${{ github.sha }}
+            Trigger: ${{ github.event_name }}
+          files: output.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
