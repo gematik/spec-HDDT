@@ -20,7 +20,7 @@ RUN set -eux; \
     bash _genonce.sh; \
     test -d output; \
     cd temp/pages; \
-    cp /home/publisher/ig/output/qa.html /home/publisher/ig/qa.html \
+    cp /home/publisher/ig/output/qa.html /home/publisher/ig/qa.html; \
     jekyll build --destination "/home/publisher/ig/output"; \
     cp /home/publisher/ig/qa.html /home/publisher/ig/output/qa.html; \
     cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/; \
