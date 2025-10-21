@@ -20,12 +20,12 @@ echo validation "$validation"
 
 publisher=$input_cache_path/$publisher_jar
 if test -f "$publisher"; then
-	java -jar -Xmx10g $publisher -ig ig.ini $txoption $validation
+	java -jar -Xmx10g $publisher -ig ig.ini
 
 else
 	publisher=../$publisher_jar
 	if test -f "$publisher"; then
-		java -jar -Xmx10g $publisher -ig ig.ini -tx n/a -validation-off
+		java -jar -Xmx10g $publisher -ig ig.ini
 	else
 		echo IG Publisher NOT FOUND in input-cache or parent folder.  Please run _updatePublisher.  Aborting...
 	fi

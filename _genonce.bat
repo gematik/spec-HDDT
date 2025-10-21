@@ -18,9 +18,9 @@ ECHO We're online
 SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
 IF EXIST "%input_cache_path%\%publisher_jar%" (
-	JAVA -jar -Xmx10g "%input_cache_path%\%publisher_jar%" -ig ig.ini -tx %txserver% -authorise-non-conformant-tx-servers -validation-off
+	JAVA -jar -Xmx10g "%input_cache_path%\%publisher_jar%" -ig ig.ini
 ) ELSE If exist "..\%publisher_jar%" (
-	JAVA -jar -Xmx10g "..\%publisher_jar%" -ig ig.ini -tx %txserver% -authorise-non-conformant-tx-servers -validation-off
+	JAVA -jar -Xmx10g "..\%publisher_jar%" -ig ig.ini
 ) ELSE (
 	ECHO IG Publisher NOT FOUND in input-cache or parent folder.  Please run _updatePublisher.  Aborting...
 )
@@ -32,9 +32,11 @@ REM -------------------------------
 IF NOT EXIST "%output_path%\files" (
     MKDIR "%output_path%\files"
 )
+XCOPY /Y /E "%output_path%\qa.html" "%output_path%\..\qa.html"
 
 ECHO Running jekyll build...
 CALL jekyll build --source "%CD%\temp\pages" --destination "%output_path%"
+XCOPY /Y "%output_path%\..\qa.html" "%output_path%\qa.html"
 
 ECHO Copying files from input/files/ to output/files/
 XCOPY /Y /E "%CD%\input\files\*" "%output_path%\files\"

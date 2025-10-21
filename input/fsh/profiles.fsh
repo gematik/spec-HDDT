@@ -50,7 +50,7 @@ This supports use cases such as:
 - `Bundle.entry.resource` is restricted to CGM Observation profiles and `HddtPersonalHealthDevice`. No other resource types are allowed in the Bundle.  
 - `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA.
 """
-* ^version = "0.1.1"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
 * ^publisher = "gematik GmbH"
@@ -93,7 +93,7 @@ Personal Health Device MUST be set to `unknown`.
 - `definition` is constrained as a mandatory element in order to enable a DiGA to obtain static device attributes through this reference
 - `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)
 """
-* ^version = "0.1.1"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
 * ^publisher = "gematik GmbH"
@@ -175,7 +175,7 @@ information about potentially missing data (e.g. due to temporal problems with t
 - `source` is constrained as a mandatory element in order to enable a DiGA to obtain dynamic and static device attributes through this reference
 - `calibration` is set to _Must Support_. This element and respective status information MUST be provided if the sensor performs automated or requires manual calibration after the device has been put into operation with the patient (`Device.status`is `active`).
 """
-* ^version = "0.1.1"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
 * ^publisher = "gematik GmbH"
@@ -247,7 +247,7 @@ or if the sensor may change its calibration status over time.
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
-* ^version = "0.1.1"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
 * ^publisher = "gematik GmbH"
@@ -312,7 +312,7 @@ currunt chunk and therefore is the only reason why a chunk may be smaller than t
 - `value[x]` is restricted to _valueSampledData_. The elements `valueSampledData.origin.unit`, `valueSampledData.origin.system`, and `valueSampledData.origin.code` are mandatory. `valueSampledData.origin.system` is restricted to UCUM. `Observation.valueSampledData` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
-* ^version = "0.1.1"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^date = "2025-09-26"
 * ^publisher = "gematik GmbH"
@@ -382,8 +382,8 @@ manufacturers of glucometers.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
-* ^version = "0.1.1"
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-09-26"
@@ -422,8 +422,8 @@ In the future codes defining non-invasive glucose measuring methods may be added
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement"
-* ^version = "0.1.1"
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-09-26"
@@ -446,8 +446,8 @@ concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
-* ^version = "0.1.1"
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
+// * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = true
 * ^date = "2025-09-26"
@@ -510,12 +510,11 @@ It allows clients to request CGM summary data filtered by effective period, and 
 **Error handling (OperationOutcome):**  
 - `MSG_PARAM_UNKNOWN`: Returned when an unsupported input parameter is used.  
 - `MSG_PARAM_INVALID`: Returned when a parameter value is invalid (e.g., bad date format).  
-- `MSG_PARAM_NOOP`: Returned when no matching observations are found.  
-- `MSG_REQUIRED_MISSING`: Returned when required input parameters are missing.  
+- `MSG_NO_MATCH`: Returned when no matching observations are found. 
 - `MSG_BAD_SYNTAX`: Returned when the request is malformed.  
 
 """
-* version = "0.1.1"
+// * version = "0.1.1"
 * id = "hddt-cgm-summary-operation"
 * name = "HddtCgmSummaryOperation"
 * title = "Search Operation for summary data measurement"

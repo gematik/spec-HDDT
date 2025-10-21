@@ -12,40 +12,40 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: health-device-data-transfer
 canonical: https://gematik.de/fhir/hddt
-version: 0.1.1
+version: 0.1.0
 name: healthDeviceDataTransfer
 title: Health Device Data Transfer
 status: draft
-publisher: gematik GmbH
-contact:
-  - name: gematik
-    telecom:
-      - system: url
-        value: https://www.gematik.de
+publisher: 
+  name: gematik GmbH
+  url: https://www.gematik.de
 description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to § 374a SGB V.
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
-releaseLabel: Pre-Release
+releaseLabel: ballot
 
 
 dependencies:
   hl7.fhir.uv.cgm: 1.0.0
 
 parameters:
-  show-inherited-invariants: false
+  # no-narrative:
+  #   - "Bundle/*"
+  #   - "Observation/*"
+  #   - "Device/*"
+  #   - "DeviceMetric/*"
+  #   - "Patient/*"
+  #   - "ValueSet/*"
+  # show-inherited-invariants: false
   # in order to preserve the version of the resources:
-  apply-version: false
-  copyrightYear: 2025+
-  releaseLabel: CI Build
-  shownav: false
+  apply-version: true
+  shownav: true
   apply-contact: false
   default-contact: false
   apply-publisher: false
   default-publisher: false
   propagate-status: false
-  showsource: true
-  skip-narrative: true
   # logging: [init, progress, tx, generate]
 
 

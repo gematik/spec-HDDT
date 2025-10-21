@@ -80,7 +80,7 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 * id = "example-glucometer-metric"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = $mdc#29112 "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
-* unit = $unitsofmeasure#mg/dL "milligram per deciliter"
+* unit = $unitsofmeasure#mg/dL "mg/dL"
 * source = Reference(Example-Glucometer)
 * operationalStatus = #on
 * category = #measurement
@@ -89,18 +89,18 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 * calibration.time = "2025-09-01T09:08:04+02:00"
 
 
-// Instance: Example-Glucometer-Def
-// InstanceOf: DeviceDefinition
-// Usage: #example
-// Title: "DeviceDefinition – Roche Accu-Chek"
-// Description: "Example for a medical device (CGM sensor) from the medical device directory."
-// * id = "example-glucometer-def"
-// * identifier.system = "https://hilfsmittelverzeichnis.de"
-// * identifier.value = "12.34.56.7890" 
-// * deviceName[0].name = "Accu-Chek Mobile"
-// * deviceName[0].type = #user-friendly-name
-// * type = $sct#105824000 "Continuous blood glucose monitoring"
-// * manufacturerString = "Roche Diabetes Care"
+Instance: Example-Glucometer-Def
+InstanceOf: DeviceDefinition
+Usage: #example
+Title: "DeviceDefinition – Roche Accu-Chek"
+Description: "Example for a medical device (CGM sensor) from the medical device directory."
+* id = "example-glucometer-def"
+* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.value = "12.34.56.7890" 
+* deviceName[0].name = "Accu-Chek Mobile"
+* deviceName[0].type = #user-friendly-name
+* type = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* manufacturerString = "Roche Diabetes Care"
 // * parentDevice = Reference(Example-DeviceDefinition-Backend)
 // * property[0].type.text = "Supported unit"
 // * property[0].valueCode = $unitsofmeasure#mg/dL "milligram per deciliter"
@@ -156,7 +156,7 @@ Usage: #example
                           120 121 122 123 124 125 126 127 128 129 
                           130 129 128 127 126 125 124 123 122 121"
 * device = Reference(Example-DeviceMetric-CGM)
-* method = $sct#105824000 "Continuous blood glucose monitoring"
+* method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * note.text = "Example CGM data series with 1-minute intervals over 1 hour (60 samples)."
 
 Instance: Example-CGM-Series-Incomplete
@@ -178,7 +178,7 @@ Usage: #example
 * valueSampledData.dimensions = 1
 * valueSampledData.data = "110 111 112 113 114 115 116 117 118 119"
 * device = Reference(Example-DeviceMetric-CGM)
-* method = $sct#105824000 "Continuous blood glucose monitoring"
+* method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * note.text = "Example CGM data series with 1-minute intervals over 10 minutes (10 samples), but status incomplete."
 
 
@@ -193,7 +193,7 @@ Usage: #example
 * code = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-09-01T08:00:00+02:00"
 * effectivePeriod.end   = "2025-09-01T10:00:00+02:00"
-* dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown "temporarily unavailable"
+* dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown "Temporarily Unknown"
 * device = Reference(Example-DeviceMetric-CGM)
 * note.text = "Sensor warm-up phase, values not yet validated."
 
@@ -214,7 +214,7 @@ Usage: #example
 * status = #active
 // * statusReason = #online
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type = $mdc#528409 "Continuous Glucose Monitor"
+* type = $mdc#528409 "MDC_DEV_SPEC_PROFILE_CGM"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "GlukkoCGM 18"
 * deviceName.type = #user-friendly-name
@@ -236,7 +236,7 @@ Usage: #example
 * id = "example-devicemetric-cgm"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = $mdc#29140 "MDC_CONC_GLU_ISF"
-* unit = UCUM#mg/dL "milligram per deciliter"
+* unit = UCUM#mg/dL "mg/dL"
 * source = Reference(Example-Device-CGM)
 * operationalStatus = #on
 * category = #measurement
@@ -421,19 +421,8 @@ Description: "Returned when no CGM observations are found."
 * issue[0].severity = #information
 * issue[0].code = #not-found
 * issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
-* issue[0].details.coding[0].code = #MSG_PARAM_NOOP
+* issue[0].details.coding[0].code = #MSG_NO_MATCH
 * issue[0].details.text = "No CGM summary observations found for the given effective period."
-
-
-Instance: HddtCgmSummaryOutcomeRequiredMissing
-InstanceOf: OperationOutcome
-Title: "HL7 CGM Summary OperationOutcome Example: Required parameter missing"
-Description: "Returned when required input parameters are missing."
-* issue[0].severity = #error
-* issue[0].code = #invalid
-* issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
-* issue[0].details.coding[0].code = #MSG_REQUIRED_MISSING
-* issue[0].details.text = "Required input parameters are missing."
 
 
 Instance: HddtCgmSummaryOutcomeBadSyntax
@@ -445,3 +434,20 @@ Description: "Returned when the request is malformed."
 * issue[0].details.coding[0].system = "http://terminology.hl7.org/CodeSystem/operation-outcome"
 * issue[0].details.coding[0].code = #MSG_BAD_SYNTAX
 * issue[0].details.text = "The request is malformed."
+
+Instance: patientExample
+InstanceOf: Patient
+Title: "Example Patient" 
+Description: "This example represents a patient without content."
+Usage: #example
+* id = "patientExample"
+
+Instance: DeviceDefinition/device-definition-cgm-001
+InstanceOf: DeviceDefinition
+Title: "Example CGM Device"
+Description: "This example represents a Continuous Glucose Monitoring (CGM) device."
+Usage: #example
+* id = "device-definition-cgm-001"
+* type = #device
+* manufacturerString = "Example Manufacturer"
+* modelNumber = "CGM Model 1"
