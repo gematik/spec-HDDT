@@ -11,7 +11,7 @@ To meet this legal requirement – namely, to design the interface according to 
 <div><img src="/HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%"></div>
 <br clear="all"/>
 
-In a first step, gematik and the Federal Ministry of Health identified domains that seemed particularly relevant for data exchange between medical aids and DiGA. A domain can roughly be understood as an area of use or a care environment for existing and, above all, future DiGA.
+In a first step, _gematik_ and the Federal Ministry of Health identified domains that seemed particularly relevant for data exchange between medical aids and DiGA. A domain can roughly be understood as an area of use or a care environment for existing and, above all, future DiGA.
 
 The selection of domains to be prioritized considered prescription numbers of certain medical aids as well as the potential of DiGA to support therapy management from a patient's perspective. It was also important to initially choose domains that overlap with Disease Management Programs (DMP). Starting in 2027, the concept of “digital DMPs” will provide an innovation-friendly framework for the use of DiGA in the care of people with chronic diseases. Having access to device data will help to position innovative DiGA in this new regulatory environment.
 
@@ -39,9 +39,9 @@ Example: _Blood Glucose Measurement_ and _Continuous Glucose Measurement_ are tw
 
 Once a MIV is defined, a MIV-specific __HDDT Observation Profile__ is specified. This profile constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition to match the requirements and specialties of the MIV. Measured values for MIVs are made available by the backend of a medical aid or implant through the standard FHIR RESTful `read` and `search` interactions. 
 
-Some MIVs are the basis for aggregated or derived data. Such data is provided to DiGA as structured, standardized reports. Depending on the report's content and structure, a dedicated FHIR profile (e.g. based on [Observation](https://hl7.org/fhir/R4/observation.html) or [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html) resource definitions) and a dedicated FHIR operation are defined for each report.
+Some MIVs are the basis for aggregated or derived data. Such data is provided to DiGA as structured, standardized reports. Depending on the report's content and structure, a dedicated FHIR profile (e.g. based on [Observation](https://hl7.org/fhir/R4/observation.html) or [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html) resource definitions) and a dedicated FHIR operation is defined for each report.
 
-HDDT Observation Profiles and profiles for structured reports are managed by gematik and made available as FHIR [StructureDefinition](https://hl7.org/fhir/R4/structuredefinition.html) resources. FHIR operations for fetching a structured report are defined using formal definitions of input parameters and possible results.  
+HDDT Observation Profiles and profiles for structured reports are managed by _gematik_ and made available as FHIR [StructureDefinition](https://hl7.org/fhir/R4/structuredefinition.html) resources. FHIR operations for fetching a structured report are defined using formal definitions of input parameters and possible results.  
 
 Each MIV is expressed as a FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) which is managed with the _ZTS_ (German Central Terminology Server). The LOINC codes within a MIV's ValueSet are the only values allowed for the `code` element that classifies an FHIR Observation resource that holds a measured value for the MIV. 
 

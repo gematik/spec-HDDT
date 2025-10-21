@@ -86,7 +86,7 @@ An eligable request for the disclosure of log records MUST be acted upon within 
 The release MUST be limited to the request purpose, secure and encrypted (e.g. password-protected archives, mTLS-secured download links). The identity and authorization of the requester MUST be verified before deployment.
 
 #### Formats and Filterability
-Protocols MUST be provided in a standard machine-readable format (e.g. B. JSON lines). Timestamps MUST be ISO-8601 compliant.
+Protocols MUST be provided in a standard machine-readable format (e.g. JSON lines). Timestamps MUST be ISO-8601 compliant.
 
 It MUST be possible to filter logs by time period, client/tenant, endpoint, status code, and correlation ID.
 

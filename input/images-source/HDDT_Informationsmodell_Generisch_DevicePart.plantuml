@@ -11,7 +11,7 @@ hide footbox
 title HDDT FHIR Data Model (Values and Devices)
 skinparam packageStyle rectangle
 
-package HDDT_Measurements_and_Devices as "Device Data Recorde Manufacturer" MANUFACTURER {
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
         status : status of the measured value [1..1]
@@ -56,7 +56,7 @@ package gematik as "FHIR Profiles (gematik)" SPEC {
     }
 }
 
-package ZTS as "MIV Definitions (CTS)" VIBW {
+package ZTS as "MIV Definitions (ZTS)" VIBW {
     enum MIV <<FHIR ValueSet>> {
         url : canonical URL for the MIV [1..1]
         version : version of the MIV [1..1]
