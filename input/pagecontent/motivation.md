@@ -32,10 +32,10 @@ The following user stories illustrate the intended use of the HDDT interface fro
 Patients participate in HDDT as users of DiGAs and medical aids or implants. They benefit from the automatic and seamless data transfer from their medical devices to their DiGA, which can improve their care and therapy outcomes. 
 
 User Stories from the patient's perspective include:
-* As a DiGA user and patient, I can pair the DiGA with an medical aid or implant prescribed to me in order to make health data collected by the aid available to the DiGA and thus enable or support the care offered to me by the DiGA in a data-centered way.
+* As a DiGA user and patient, I can pair the DiGA with a medical aid or implant prescribed to me in order to make health data collected by the aid available to the DiGA and thus enable or support the care offered to me by the DiGA in a data-centered way.
 * As a DiGA user and patient, I can benefit from Health Device Data Tranfer regardless if the DiGA has a web frontend or is a native app.
 * As a DiGA user and patient, I would like to be informed if a newly initiated or an existing pairing between my medical aid or implant and the DiGA fails, e.g. because a consent becomes invalid due to a change in the system. In addition, I would like support that helps me to eliminate errors or explains the reasons for the failure (e.g. change in the data authorizations of the DiGA).
-* As a patient and user of a DiGA and a medical aid or implant, I can be sure that the DiGA can only retriev data for its eligible purposes. 
+* As a patient and user of a DiGA and a medical aid or implant, I can be sure that the DiGA can only retrieve data for its eligible purposes. 
 * As a patient and user of a DiGA and a medical aid or implant, I can be sure that the data transfer between my medical aid or implant and the DiGA is secure and complies with data protection regulations.
 * As a patient and user of a DiGA and a medical aid or implant, I can exchange my medical aid or implant for a device of the same type (e.g. putting on a new insulin pump) without having to perform the pairing process gain.
 
