@@ -46,6 +46,7 @@ parameters:
   apply-publisher: false
   default-publisher: false
   propagate-status: false
+  special-url-base: https://terminologien.bfarm.de/fhir
   # logging: [init, progress, tx, generate]
 
 

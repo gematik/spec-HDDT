@@ -446,7 +446,7 @@ concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
+* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
 // * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = true

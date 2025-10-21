@@ -5,9 +5,12 @@ In order to [authenticate with each other](security-and-privacy.html) and to sha
 
 These services are usable through the BfArM DiGA Registry and BfArM Device Registry (_DIGA Verzeichnis_ and _Verzeichnis der Hilfsmittel- und Implantat-Schnittstellen (HIIS-VZ)_) and the German Central Terminology Service (_Zentraler Terminologieserver_, ZTS). The following class diagram shows the section of the [HDDT information model](information-model.html) that displays the BfArM registries and the ZTS along with their mutual cross-references. 
 
-<div style="width: 75%;">
-  <img src="assets/images/HDDT_Informationsmodell_Generisch_BfArM.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Informationsmodell_Generisch_BfArM.svg %}
+  <figcaption>BfArM Registries and ZTS</figcaption>
+  </div>
+</figure>
 
 For further information about the displayed classes and attributes and their mappings to FHIR resource definitions see the detailed explanation at the [HDDT information model](information-model.html#BfArM-registries).
 

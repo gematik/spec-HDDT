@@ -1,7 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
-Alias: $mdc = urn:iso:std:iso:11073:10101
+Alias: $mdc = urn:iso:std:iso:11073:10101|20250520
 
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement
@@ -79,7 +79,7 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 """
 * id = "example-glucometer-metric"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = $mdc#29112 "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
+* type = $mdc#160184 "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
 * unit = $unitsofmeasure#mg/dL "mg/dL"
 * source = Reference(Example-Glucometer)
 * operationalStatus = #on
@@ -235,7 +235,7 @@ The device is calibrated by the manufacturer and does not require user calibrati
 Usage: #example
 * id = "example-devicemetric-cgm"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = $mdc#29140 "MDC_CONC_GLU_ISF"
+* type = $mdc#160212 "MDC_CONC_GLU_ISF"
 * unit = UCUM#mg/dL "mg/dL"
 * source = Reference(Example-Device-CGM)
 * operationalStatus = #on

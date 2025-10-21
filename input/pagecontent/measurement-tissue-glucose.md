@@ -29,9 +29,12 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to continuouls
 
 The figure below shows the adaption of the [HDDT Information Model](information-model-html) for the MIV _Continuous Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Continuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
 
-<div style="width: 80%;">
-  <img src="assets/images/HDDT_Informationsmodell_MIV_Cont_Glucose.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 80%;">
+  {% include HDDT_Informationsmodell_MIV_Cont_Glucose.svg %}
+  <figcaption>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</figcaption>
+  </div>
+</figure>
 
 All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.md) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Continuous Glucose Measurement_ only the following scopes MUST be set:
 ```
@@ -178,10 +181,13 @@ This specification makes no assumption, on how the manufacturers of the Personal
 The following object diagram the relationships between the FHIR resources involved in representing continuous glucose measurements according to the [HDDT Information Model](information-model-html) and the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile for two chunks of a continuous glucose measurement. The fixed chunk size is 1 hour, and the measurement interval is 5 minutes. Thus, each chunk contains 12 measurements. The later chunk is incomplete because measurements for the last 40 minutes are pending.
 Elements that are not mandatory oder MS for the MIV _Contiuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
-<div style="width: 75%;">
-  <img src="assets/images/HDDT_Objektmodell_CGM_Complete.svg" style="width: 100%;" />
-</div>
 
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Objektmodell_CGM_Complete.svg %}
+  <figcaption>HDDT Object Model Example (Blood Glucose Measurement)</figcaption>
+  </div>
+</figure>
 The following code example shows the concrete JSON representation of the _HDDT Continuous Glucose Measurement 1_ resource shown in the object diagram.
 
 ```json

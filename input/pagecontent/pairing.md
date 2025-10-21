@@ -199,10 +199,12 @@ An example token response (with a JWT access token) is shown below:
 The following diagram illustrates the detailed sequence of interactions during the pairing process between the patient,
 the DiGA, and the Device Data Recorder. Each step is explained in detail below.
 
-<div style="width: 100%;">
-  <img src="assets/images/pairing_sequence_detailed.svg" style="width: 100%;" />
-</div>
-
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  {% include pairing_sequence_detailed.svg %}
+  <figcaption>Perform Pairing between DiGA and Device Data Recorder (detailed)</figcaption>
+  </div>
+</figure>
 <br>
 
 | Process Step                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -220,9 +222,12 @@ the DiGA, and the Device Data Recorder. Each step is explained in detail below.
 The unpairing process allows the patient to terminate the connection between their DiGA and the medical aid or
 implant (HiMi). Each step is explained in detail below.
 
-<div style="width: 75%;">
-  <img src="assets/images/unpairing_by_patient.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include unpairing_by_patient.svg %}
+  <figcaption>Patient-Initiated Consent Revocation</figcaption>
+  </div>
+</figure>
 
 <br>
 
@@ -238,10 +243,12 @@ implant (HiMi). Each step is explained in detail below.
 The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and
 a Device Data Recorder under specific conditions.
 
-<div style="width: 100%;">
-  <img src="assets/images/unpairing_by_system.svg" style="width: 100%;" />
-</div>
-
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  {% include unpairing_by_system.svg %}
+  <figcaption>System-Initiated Revocation of Authorizations</figcaption>
+  </div>
+</figure>
 <br>
 
 | Process Step                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
