@@ -133,7 +133,7 @@ patient started the sensor.
 * serialNumber ^comment = "The serial number MAY only be omitted if neither the Personal Health Device nor its manual and packaging hold the printed serial number and if the Personal Health Device does not provide an API for reading a unique number from the device hardware."
 * deviceName MS
 * deviceName ^short = "Name of the Personal health device"
-* deviceName ^definition = "The name of the Personal health device as given by the manufacturer and listed in the BfArM Device registry."
+* deviceName ^definition = "The name of the Personal health device as given by the manufacturer and listed in the _HIIS-VZ_ (BfARM Device Registry)."
 
 
 Profile: HddtSensorTypeAndCalibrationStatus
@@ -304,7 +304,7 @@ Each Continuous Glucose Measurement MUST either hold a reference to a _Sensor Ty
 _Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided 
 from the Observation resource if the sensor for continuous measuring needs to be calibrated (either automatically or by the user) 
 or if the sensor may change its calibration status over time. A change in `DeviceMetric.calibration.state` or a change of `Device.status` to _inactive_ finalizes the
-currunt chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. 
+current chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. 
 
 **Constraints applied:**  
 - `code` is constrained to the ValueSet that represents the MIV _Continuous Glucose Measurement_

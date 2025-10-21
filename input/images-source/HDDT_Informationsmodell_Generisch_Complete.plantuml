@@ -87,12 +87,12 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM
 
     class DDR_Endpoint as "Device Data Recorder FHIR Endpoint" <<FHIR Endpoint>> {
         address : URL for the FHIR endpoint [1..1]
-        fqdn : FQDN as stated in the FHIR endpoint's X.509 certificate [1..1
+        fqdn : FQDN as stated in the FHIR endpoint's X.509 certificate [1..1]
     }
 
     class AuthZ_Endpoint as "Device Data Recorder AuthZ Endpoint" <<FHIR Endpoint>> {
         address : URL for the AuthZ endpoint [1..1]
-        fqdn : FQDN as stated in the AuthZ endpoint's X.509 certificate [1..1
+        fqdn : FQDN as stated in the AuthZ endpoint's X.509 certificate [1..1]
     }
 
     DM_Def .left.> DDR_Endpoint 
@@ -102,7 +102,7 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM
 PHD --> PHD_Def : "definition [1..1]"
 ' DDR --> DM_Def : "definition [1..1]"
 
-package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
+package ZTS as "MIV Definitions (ZTS)" VIBW {
     enum MIV <<FHIR ValueSet>> {
         url : canonical URL for the MIV [1..1]
         version : version of the MIV [1..1]

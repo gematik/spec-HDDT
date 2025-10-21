@@ -14,7 +14,7 @@ This section describes the fundamental mechanisms for exchanging measurement dat
 ### Querying for Device Data
 
 In general, data can be measured in two different scenarios by personal health devices:
-* dedicated measurements: scheduled by a defined care plan or triggered by an unscheduled event (e.g. a patient feeling symptoms of hypoglycemia). A dedicated measurement occurs at a dedicated points in time and records single values for one or more data items (e.g. systolic and diastolic blood pressure). Typical examples of devices which are used ad hoc or based on a care plan are blood glucose meters, smart insulin pens, blood pressure cuffs and peak flow meters.
+* dedicated measurements: scheduled by a defined care plan or triggered by an unscheduled event (e.g. a patient feeling symptoms of hypoglycemia). A dedicated measurement occurs at a dedicated point in time and records single values for one or more data items (e.g. systolic and diastolic blood pressure). Typical examples of devices which are used ad hoc or based on a care plan are blood glucose meters, smart insulin pens, blood pressure cuffs and peak flow meters.
 * continuous measurements: The patient is connected to a sensor (almost) all the time and the sensor continuously measures and records data. Typical examples of devices that perform continuous measurements are rtCGM, insulin pumps and pacemakers.
 
 In addition, there are also devices and scenarios, which combine both paradigms, e.g.
@@ -89,7 +89,7 @@ A DiGA MAY store the `id` of a [Device](https://hl7.org/fhir/R4/device.html) res
 
 The [Device](https://hl7.org/fhir/R4/device.html) resource MUST contain a `definition` reference to the device's product definition as registered with the BfArM _HIIS-VZ_ (Device Registry). The reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfArM _HIIS-VZ_. The reference MAY contain a _version_ value.
 
-Every Device Data Recorder holds information about its static attributes as part of its definition. These attributes can be obtained as key-value-pairs from the BfArM Device Directory. The table below lists the keys defined so far.
+Every Device Data Recorder holds information about its static attributes as part of its definition. These attributes can be obtained as key-value-pairs from the BfArM _HIIS-VZ_. The table below lists the keys defined so far.
 
 | key                  | value | obligation | comments |
 |----------------------|-------|------------|----------|
@@ -190,9 +190,9 @@ The easiest way for a DiGA to deal with these kinds of missing data is to set th
 
 #### Continuous Measurements
 
-Values from continuous measurements MUST be provided as chunks of [sampledData](/https://hl7.org/fhir/R4/datatypes.html#SampledData), where each chunk of data is represented as an [Observation](https://hl7.org/fhir/R4/observation.html) resource. As with single data points, the [Observation](https://hl7.org/fhir/R4/observation.html) holding the sampled Data MUST contain a `device` element that either refers to a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or a [Device](https://hl7.org/fhir/R4/device.html) resource.
+Values from continuous measurements MUST be provided as chunks of [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData), where each chunk of data is represented as an [Observation](https://hl7.org/fhir/R4/observation.html) resource. As with single data points, the [Observation](https://hl7.org/fhir/R4/observation.html) holding the sampled Data MUST contain a `device` element that either refers to a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or a [Device](https://hl7.org/fhir/R4/device.html) resource.
   
-The owner of the Device Data Recorder MUST define the _chunk-time-span_ of measurements that can be covered by a single chunk. E.g. if the owner of the Device Data Recorder defines a _chunk-time-span_ of 24 hours for a chunk, each chunk can hold up to 1440 data points for a Personal Health Device that measures data every minute. A chunk MAY cover a shorter period of time than the _chunk-time-span_ (e.g. when the calibration status of the device changed during measurments), but it MUST NOT exceed that value. The _chunk-time-span_ is part of the device definition and can be requested by DiGA trough a defined `property` of the __Device Data Recorder Definition__ resource.
+The owner of the Device Data Recorder MUST define the _chunk-time-span_ of measurements that can be covered by a single chunk. E.g. if the owner of the Device Data Recorder defines a _chunk-time-span_ of 24 hours for a chunk, each chunk can hold up to 1440 data points for a Personal Health Device that measures data every minute. A chunk MAY cover a shorter period of time than the _chunk-time-span_ (e.g. when the calibration status of the device changed during measurements), but it MUST NOT exceed that value. The _chunk-time-span_ is part of the device definition and can be requested by DiGA trough a defined `property` of the __Device Data Recorder Definition__ resource.
 
 If a query for continuously measured data results in multiple chunks ([Observation](https://hl7.org/fhir/R4/observation.html)s), each chunk's `Observation.effectivePeriod` MUST have the length of the _chunk-time-span_. The only exceptions are changes to the `calibration.state` or a change of the personal health device (see below). In these cases a chunk's `Observation.effectivePeriod` can be shorter than the _chunk-time-span_.
 
@@ -201,7 +201,7 @@ A chunk MAY be in a _preliminary_ `state`. This is the case if the chunk is not 
 <div><img src="/HDDT measurement sampled data example 1.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
 
-If the DiGA states the same `search` query again one hour later, the newest data being available at the Device Data Recorder is now from May, 6th 11:00 am. Therefore now the _premiminary_ chunk contains 60 additional values.
+If the DiGA states the same `search` query again one hour later, the newest data being available at the Device Data Recorder is now from May, 6th 11:00 am. Therefore now the _preliminary_ chunk contains 60 additional values.
 
 <div><img src="/HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="60%"></div>
 <br clear="all"/>
@@ -219,7 +219,7 @@ Some sensors for continuous measurements require initial or regular calibration.
 
 As can be seen with the example, the last chunk before calibration is set to a _final_ status and the `effectivePeriod` is adapted to the end time the calibration state changed. The new chunk is initialized with a _preliminary_ status and the fixed _chunk-time-span_. 
 
-It is up to the Device Data Recorder if a change of `calibration.state` leads to a new [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or if a new version of the existing resorce is created. See [Versioning of Device and DeviceMetric Resources](#versioning-of-device-and-devicemetric-resources) above for possible options related to the manufacturer's overall versioning strategy.
+It is up to the Device Data Recorder if a change of `calibration.state` leads to a new [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or if a new version of the existing resource is created. See [Versioning of Device and DeviceMetric Resources](#versioning-of-device-and-devicemetric-resources) above for possible options related to the manufacturer's overall versioning strategy.
 
 Personal Health Devices MAY require a Personal Health Device of another type to perform the calibration (e.g. a blood glucose meter for calibrating a rtCGM). Values measured with another Personal Health Device for calibration purposes MUST NOT be part of a chunk of continuously measured data. 
 

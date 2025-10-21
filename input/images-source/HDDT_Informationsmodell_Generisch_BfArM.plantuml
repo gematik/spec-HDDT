@@ -46,7 +46,7 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM
     DM_Def .down.> AuthZ_Endpoint
 }
 
-package ZTS as "MIV Definitions (Zentraler Terminologieserver)" VIBW {
+package ZTS as "MIV Definitions (ZTS)" VIBW {
     enum MIV <<FHIR ValueSet>> {
         url : canonical URL for the MIV [1..1]
         version : version of the MIV [1..1]
