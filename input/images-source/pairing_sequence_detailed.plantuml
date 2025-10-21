@@ -7,12 +7,12 @@ hide footbox
 
 ' ===== Aliases for participants =====
 !define D DiGA
-!define H HiMi_AuthZ
+!define H AuthZ
 !define V Ver
 
 title "Perform Pairing between DiGA and Device Data Recorder (detailed)"
 
-actor V as "patient"
+actor V as "Patient"
 
 participant D order 1 [
 	=DiGA
@@ -26,7 +26,7 @@ participant H order 10 [
 	""Frontend | Backend | AuthZ Server""
 ]
 
-== 1. patient Initiates HiMi Pairing ==
+== 1. Patient initiates Pairing with a Device Data Recorder ==
 ref over V, D : DiGA-specific login (out-of-scope)
 V -> D: Initiate pairing with Device Data Recorder via DiGA frontend
 activate V
@@ -47,7 +47,7 @@ H -> D: Server Metadata Document
 D -> D: Identify endpoints and scope (consent)
 D -> D: Generate PKCE artifacts
 D -> H: PAR with PKCE, tls_client_auth
-D -> D: Authenticate HiMi (X.509 cert)
+D -> D: Authenticate Device Data Recorder (X.509 cert)
 ' The following checks are done against the registration data stored at Device Data Recorder during DiGA registration
 H -> H: Authenticate DiGA (X.509 cert)
 H -> H: Validate PAR (redirect_uri, scopes, ...)
@@ -61,7 +61,7 @@ activate H
 H -> H: Validate authorization request and load PAR data
 H -> V: Initiate login via system browser and possibly app link/deep link
 activate V
-ref over V, H : HiMi-specific login (out-of-scope)
+ref over V, H : Login specific to Device Data Recorder (out-of-scope)
 H -> V: Present DiGA request with permissions via Device Data Recorder frontend
 V -> H: Confirm permissions for DiGA via Device Data Recorder frontend
 deactivate V
@@ -70,12 +70,12 @@ alt Pairing ID was previously generated and linked to user account
 else
 	H -> H: Generate pairing ID and link to user account
 end
-H -> H: Generate consent for and with pairing ID and link to insured identity (HiMi)
+H -> H: Generate consent linked to the pairing ID and the patient identity
 
 == 4. Perform Authorization ==
 H -> D: Authorization response with authz_code via frontend/user-agent redirect
 D -> H: Token request with PKCE, tls_client_auth, and authz_code
-D -> D: Authenticate HiMi (X.509 cert)
+D -> D: Authenticate Device Data Recorder (X.509 cert)
 H -> H: Authenticate DiGA (X.509 cert)
 H -> H: Validate PKCE and authz_code
 H -> D: Token response (scope, pairing ID, access and refresh token with scope and pairing ID)

@@ -92,12 +92,12 @@ deactivate H
 deactivate V
 
 == Device Data Recorder no longer offers interface acc. § 374a SGB V ==
-M -> ZH: Retrieve status (HiMi-ID)
+M -> ZH: Retrieve status of Device Data Recorder
 activate M
 activate ZH
 alt Device Data Recorder retired
 	ZH -> M: Status "retired"
-else HiMi not in directory
+else Device Data Recorder not in directory
 	ZH -> M: HTTP 404 NOT FOUND
 end
 deactivate ZH
