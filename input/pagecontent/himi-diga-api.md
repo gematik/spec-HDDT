@@ -25,8 +25,8 @@ The sequence diagram below illustrates the access control flow between a DiGA an
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Sequenz_Access_Control.svg %}
-  <figcaption>RESTFul FHIR API Access Control Logic</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>RESTFul FHIR API Access Control Logic</em></figcaption>
 </figure>
 <br clear="all"/>
 

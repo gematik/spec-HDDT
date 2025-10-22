@@ -160,7 +160,7 @@ The server MUST support the following endpoints.
 ### Conventions for DeviceMetric and Device Resources
 
 - The Observation MUST reference a DeviceMetric resource if the calibration status of the device changes.
-- Refer to [himi-diga-api.md](himi-diga-api.html) for generic implementation details.
+- Refer to [himi-diga-api.html](himi-diga-api.html) for generic implementation details.
 - DeviceMetric should capture calibration and configuration status.
 - Device should provide manufacturer, serial number, and device type.
 

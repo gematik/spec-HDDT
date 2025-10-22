@@ -21,7 +21,7 @@ In addition, there are also devices and scenarios, which combine both paradigms,
 * personal ECG recorders for recording short, single-channel ECGs based on a plan (e.g. patient is asked to perform a measurement after physical activity)
 * pulse oximeters which are used ad hoc, but record data continuously for a certain period of time (e.g. monitoring SPO2 during sleep time of a person suffering from sleep apnea)
 
-The HDDT FHIR API handles dedicated and continuous measurements in different ways. Which flavor of the API is to be used, is part of the FHIR implementation guide of a [MIV](methodology.md). For combined scenarios usually the API flavor for continuous measurements is used, because it is much more efficient in transferring sampled data.
+The HDDT FHIR API handles dedicated and continuous measurements in different ways. Which flavor of the API is to be used, is part of the FHIR implementation guide of a [MIV](methodology.html). For combined scenarios usually the API flavor for continuous measurements is used, because it is much more efficient in transferring sampled data.
 
 #### General Requirements
 The specification of the technical interfaces for retrieving device data considers the following determinations and requirements:
@@ -39,7 +39,7 @@ The request MUST include an OAuth 2.0 access token in the `Authorization` header
 
 The Device Data Recorder MUST be able to derive the internal patient identifier corresponding to the Pairing ID contained in the access token. This identifier MUST implicitly be used as the `subject` parameter in every query to the Device Data Recorder’s FHIR API. If a DiGA explicitly provides a `subject` parameter, the Device Data Recorder MUST ignore it and SHOULD return a `400 Bad Request` error.
 
-The Device Data Recorder MUST be able to retrieve the [SMART scopes](smart-scopes.html) from the access token, which were consented to during pairing with the requesting DiGA (see [Pairing](pairing.md)). The SMART scope (with the resource type [Observation](https://hl7.org/fhir/R4/observation.html)) and it's query parameters MUST implicitly be applied as a `code` search parameter in every FHIR search query. ValueSets used in scopes MUST be expanded since they MAY consist of multiple LOINC codes. All of these codes MUST be considered in the search (logical OR semantics). A DiGA MAY further narrow the result by explicitly providing a `code` parameter.
+The Device Data Recorder MUST be able to retrieve the [SMART scopes](smart-scopes.html) from the access token, which were consented to during pairing with the requesting DiGA (see [Pairing](pairing.html)). The SMART scope (with the resource type [Observation](https://hl7.org/fhir/R4/observation.html)) and it's query parameters MUST implicitly be applied as a `code` search parameter in every FHIR search query. ValueSets used in scopes MUST be expanded since they MAY consist of multiple LOINC codes. All of these codes MUST be considered in the search (logical OR semantics). A DiGA MAY further narrow the result by explicitly providing a `code` parameter.
 
 With every FHIR search interaction, the DiGA SHOULD provide a `date` parameter to limit the time period of data retrieval. If no `date` is specified, the Device Data Recorder MUST return all matching data according to the implicit and explicit query parameters.
 
@@ -69,7 +69,7 @@ Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection
 ```
 GET [base]/Observation/[id]
 ```
-___Remark__: As stated in [General Considerations](general-considerations.md), device data recordes MAY limit access to historical data to 30 days, unless the [MIV-specific specification](mivs.html) requests for a longer period. In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error (see https://hl7.org/fhir/R4/http.html#read for details on handling deleted resources). 
+___Remark__: As stated in [General Considerations](general-considerations.html), device data recordes MAY limit access to historical data to 30 days, unless the [MIV-specific specification](mivs.html) requests for a longer period. In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error (see https://hl7.org/fhir/R4/http.html#read for details on handling deleted resources). 
 
 #### Paging
 
@@ -169,12 +169,22 @@ In general, HDDT only requests a minimum of data elements to be mandatory with a
 ```
 As the information on the time and result of the measurement is a rather straight-forward adoption of the FHIR standard, some HDDT-specific conventions have to be considered with the `device` reference (see above). The figure below shows a simple interplay of measured data ([Observation](https://hl7.org/fhir/R4/observation.html)), sensor status ([DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html)), and device configuration ([Device](https://hl7.org/fhir/R4/device.html)), e.g. in response for a query for all blood glucose data that was measured for a given patient on May 7th.
 
-<div><img src="/HDDT measurement ad hoc example 1.png" alt="Blood glucose values for a day" width="50%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT measurement ad hoc example 1.png" alt="Blood glucose values for a day" width="50%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Blood glucose values for a day</em></figcaption>
+</figure>
 <br clear="all"/>
 
 This gets more complex if the status of the sensor changes. The figure below is based on the previous example, but now data is requested for a longer period (May 7th and 8th) with the patient calibrating the device within this period.
 
-<div><img src="/HDDT measurement ad hoc example 2.png" alt="Blood glucose values including sensor calibration" width="65%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT measurement ad hoc example 2.png" alt="Blood glucose values including sensor calibration" width="65%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Blood glucose values including sensor calibration</em></figcaption>
+</figure>
 <br clear="all"/>
 
 As shown with the example, a calibration of a sensor leads to an update to the sensor's `DeviceMetric` resource. The Device Data Recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer. 
@@ -198,12 +208,22 @@ If a query for continuously measured data results in multiple chunks ([Observati
 
 A chunk MAY be in a _preliminary_ `state`. This is the case if the chunk is not filled with values up to the _chunk-time-span_ and the Device Data Recorder expects more data to come until the end of the time period covered by the chunk. The figure below shows an example of a _preliminary_ chunk for a Device Data Recorder with a _chunk-time-span_ of 24 hours and a Personal Health Device with a sample rate of one data point per minute. The `search` query stated by an authorized DiGA requests for all data from May 4th until now. The newest data available to the Device Data Recorder is from May, 6th 10:00 am. 
 
-<div><img src="/HDDT measurement sampled data example 1.png" alt="searching for values from a continuous measurement" width="60%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 1.png" alt="searching for values from a continuous measurement" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+</figure>
 <br clear="all"/>
 
 If the DiGA states the same `search` query again one hour later, the newest data being available at the Device Data Recorder is now from May, 6th 11:00 am. Therefore now the _preliminary_ chunk contains 60 additional values.
 
-<div><img src="/HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="60%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+</figure>
 <br clear="all"/>
 
 __Remark__: In the given example the DiGA could as well have used a `read` interaction to just obtain an updated version of the _preliminary_ chunk:
@@ -214,7 +234,12 @@ GET [base]/Observation/3
 ##### Change of calibration.status
 Some sensors for continuous measurements require initial or regular calibration. If this leads to a changed value for `calibration.state` in the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) observation that is bound to a chunk, the Device Data Recorder MUST finish the current chunk and start a new chunk. The same holds for any other change in `calibration.state`, e.g. a sensor that switches from a calibrated to an unknown state after a certain time (see figure below.)
 
-<div><img src="/HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="60%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+</figure>
 <br clear="all"/>
 
 As can be seen with the example, the last chunk before calibration is set to a _final_ status and the `effectivePeriod` is adapted to the end time the calibration state changed. The new chunk is initialized with a _preliminary_ status and the fixed _chunk-time-span_. 
@@ -226,7 +251,12 @@ Personal Health Devices MAY require a Personal Health Device of another type to 
 ##### Changing Devices
 [Pairing](pairing.html) a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new `device` reference to a [Device](https://hl7.org/fhir/R4/device.html) resource that reflects the new Personal Health Device (see figure below).
 
-<div><img src="/HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="60%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+</figure>
 <br clear="all"/>
 
 In contrast to a change of `calibration.state`, a change of the Personal Health Device MUST always result in a new Device resource with a new `id`. 

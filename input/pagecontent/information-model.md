@@ -26,8 +26,8 @@ Data which is measured by a Personal Health Device is shared with a DiGA as an _
 <figure>
 <div class="gem-ig-svg-container" style="width: 60%;">
   {% include HDDT_Informationsmodell_Generisch_MIV.svg %}
-  <figcaption>HDDT FHIR Data Model (Values and Devices)</figcaption>
   </div>
+   <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Values and Devices)</em></figcaption>
 </figure>
 
 
@@ -56,8 +56,8 @@ The part of the HDDT information model that is related to the Personal Health De
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Informationsmodell_Generisch_DevicePart.svg %}
-  <figcaption>HDDT FHIR Data Model (Devices)</figcaption>
   </div>
+  <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Devices)</em></figcaption>
 </figure>
 
 Personal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. If a Personal Health Device transmits data from a non-calibrated sensor to the Health Record at all depends on the concrete product. For a DiGA to process device data in a safe manner, the DIGA must know if the data it received was gathered by a calibrated sensor or not. 
@@ -118,8 +118,8 @@ The class diagram below shows the classes of the HDDT information model which ar
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Informationsmodell_Generisch_Device_and_Definition.svg %}
-  <figcaption>HDDT FHIR Data Model (complete)</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (complete)</em></figcaption>
 </figure>
 
 ### MIVs
@@ -150,6 +150,6 @@ The UML class diagram below shows the full HDDT information model. The resources
 <figure>
 <div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Informationsmodell_Generisch_Complete.svg %}
-  <figcaption>HDDT FHIR Data Model (complete)</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (complete)</em></figcaption>
 </figure>

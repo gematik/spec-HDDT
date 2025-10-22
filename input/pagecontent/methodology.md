@@ -8,7 +8,12 @@ The modular “toolkit” approach was discarded. Even though this approach prov
 
 To meet this legal requirement – namely, to design the interface according to the processing purposes of the device data consumers – the approach outlined in the following diagram is used.
 
-<div><img src="/HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>From Use Cases to MIVs</em></figcaption>
+</figure>
 <br clear="all"/>
 
 The selection of domains to be prioritized considered prescription numbers of certain medical aids as well as the potential of DiGA to support therapy management from a patient's perspective. It was also important to initially choose domains that overlap with Disease Management Programs (DMP). Starting in 2027, the concept of “digital DMPs” will provide an innovation-friendly framework for the use of DiGA in the care of people with chronic diseases. Having access to device data will help to position innovative DiGA in this new regulatory environment.
@@ -41,8 +46,8 @@ The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow)
 <figure>
 <div class="gem-ig-svg-container" style="width: 50%;">
   {% include methodology_miv.svg %}
-  <figcaption>MIVs and Profiles</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>MIVs and Profiles</em></figcaption>
 </figure>
 
 ### Defined MIVs

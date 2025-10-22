@@ -1,7 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
-Alias: $mdc = urn:iso:std:iso:11073:10101|20250520
+Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement
@@ -13,7 +13,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-08-28T08:30:00Z"
-* valueQuantity = 110 'mg/dL' "mg/dl"
+* valueQuantity = 110 'mg/dL' "mg/dL"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Blood-Glucose-Measurement-1
@@ -26,7 +26,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-09-26T12:00:00+02:00"
-* valueQuantity = 120 'mg/dL' "mg/dl"
+* valueQuantity = 120 'mg/dL' "mg/dL"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Blood-Glucose-Measurement-2
@@ -39,7 +39,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-09-26T16:30:00+02:00"
-* valueQuantity = 129 'mg/dL' "mg/dl"
+* valueQuantity = 129 'mg/dL' "mg/dL"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Glucometer
@@ -59,7 +59,7 @@ to validate the authenticity of this Personal Health Device resource.
 * type =  $mdc#528401 "Glucose Monitor"
 * status = #active
 // * statusReason = #online
-* deviceName.name = "GlukkoCheck plus mg/dl"
+* deviceName.name = "GlukkoCheck plus mg/dL"
 * deviceName.type = #user-friendly-name
 * manufacturer = "Glukko Inc."
 * serialNumber = "SN123456"
@@ -92,32 +92,29 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 Instance: Example-Glucometer-Def
 InstanceOf: DeviceDefinition
 Usage: #example
-Title: "DeviceDefinition – Roche Accu-Chek"
+Title: "DeviceDefinition – GlucoCheck Plus mg/dL"
 Description: "Example for a medical device (CGM sensor) from the medical device directory."
 * id = "example-glucometer-def"
 * identifier.system = "https://hilfsmittelverzeichnis.de"
 * identifier.value = "12.34.56.7890" 
-* deviceName[0].name = "Accu-Chek Mobile"
+* deviceName[0].name = "GlucoCheck Plus mg/dL"
 * deviceName[0].type = #user-friendly-name
 * type = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
-* manufacturerString = "Roche Diabetes Care"
-// * parentDevice = Reference(Example-DeviceDefinition-Backend)
-// * property[0].type.text = "Supported unit"
-// * property[0].valueCode = $unitsofmeasure#mg/dL "milligram per deciliter"
-// * property[+].type.text = "Supported unit"
-// * property[=].valueCode = $unitsofmeasure#mmol/L "millimole per liter"
-// * property[+].type.text = "Reference range low"
-// * property[=].valueQuantity.value = 70
-// * property[=].valueQuantity.unit = "mg/dL"
-// * property[=].valueQuantity.system = $unitsofmeasure
-// * property[+].type.text = "Reference range high"
-// * property[=].valueQuantity.value = 180
-// * property[=].valueQuantity.unit = "mg/dL"
-// * property[=].valueQuantity.system = $unitsofmeasure
-// * capability[0].type.coding[0].system = $loinc
-// * capability[0].type.coding[0].code = #2339-0
-// * capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
-// * capability[0].type.text = "Blood glucose measurement (fingerstick and continuous monitoring)"
+* manufacturerString = "Glukko Inc."
+* property[0].type.text = "Supported unit"
+* property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
+* property[+].type.text = "Reference range low"
+* property[=].valueQuantity.value = 70
+* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.system = $unitsofmeasure
+* property[+].type.text = "Reference range high"
+* property[=].valueQuantity.value = 180
+* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.system = $unitsofmeasure
+* capability[0].type.coding[0].system = $loinc
+* capability[0].type.coding[0].code = #2339-0
+* capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
+* capability[0].type.text = "Blood glucose measurement (fingerstick and continuous monitoring)"
 
 // Instance: Example-DeviceDefinition-Backend
 // InstanceOf: DeviceDefinition

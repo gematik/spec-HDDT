@@ -32,11 +32,11 @@ The figure below shows the adaption of the [HDDT Information Model](information-
 <figure>
 <div class="gem-ig-svg-container" style="width: 80%;">
   {% include HDDT_Informationsmodell_MIV_Cont_Glucose.svg %}
-  <figcaption>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</em></figcaption>
 </figure>
 
-All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.md) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Continuous Glucose Measurement_ only the following scopes MUST be set:
+All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Continuous Glucose Measurement_ only the following scopes MUST be set:
 ```
 patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement
 patient/Device.rs
@@ -185,8 +185,8 @@ Elements that are not mandatory oder MS for the MIV _Contiuous Glucose Measureme
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Objektmodell_CGM_Complete.svg %}
-  <figcaption>HDDT Object Model Example (Blood Glucose Measurement)</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Blood Glucose Measurement)</em></figcaption>
 </figure>
 The following code example shows the concrete JSON representation of the _HDDT Continuous Glucose Measurement 1_ resource shown in the object diagram.
 

@@ -40,7 +40,7 @@ Procedures for registering certificates and for exchanging expiring certificates
 #### Identification and Authentication of the Device Data Recorder
 A Device Data Recorder identifies and authenticates with a DiGA during connection establishment (mutual TLS, see below) as a server. The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's [Authorization Server](authorization-server.html) MUST be registered with the BfArM-SST-VZ.
 
-When a DiGA calls the [FHIR API](retrieving-data.md) of the Device Data Recorder' FHIR Resource Server, the Device Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's FHIR Resource Server  MUST be registered with the BfArM-SST-VZ.
+When a DiGA calls the [FHIR API](retrieving-data.html) of the Device Data Recorder' FHIR Resource Server, the Device Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's FHIR Resource Server  MUST be registered with the BfArM-SST-VZ.
 
 The Device Data Recorder MUST NOT use self-signed certificates (see below). Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 
@@ -71,9 +71,12 @@ HDDT does not make any presumptions on the content of this Access Token. A manuf
 
 The figure below summarizes the HDDT authorization model and shows how preconditions and context information map onto the access token that is issued to a DiGA.
 
-<div style="width: 100%;">
-  <img src="/HDDT DiGA access control.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT DiGA access control.svg" style="width: 100%;" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>HDDT DiGA access control</em></figcaption>
+</figure>
 <br clear="all"/>
 
 #### Intended Use

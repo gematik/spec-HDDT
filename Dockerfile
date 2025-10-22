@@ -24,7 +24,6 @@ RUN set -eux; \
     jekyll build --destination "/home/publisher/ig/output"; \
     cp /home/publisher/ig/qa.html /home/publisher/ig/output/qa.html; \
     cp -rf /home/publisher/ig/input/files/. /home/publisher/ig/output/files/; \
-    # cp -rf /home/publisher/ig/temp/pages/_includes/*.svg /home/publisher/ig/output/assets/images/; \
     rm /home/publisher/ig/output/assets/css/prism.css;
 
 # ---------- Export-only stage ----------

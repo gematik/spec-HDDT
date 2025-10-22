@@ -9,9 +9,12 @@ _who_ is accessing data (context), _which_ FHIR resources are involved (resource
 mode), and _optionally_ which subsets of data are addressed through query parameters (query params). The following
 diagram illustrates the structure of SMART scopes:
 
-<div style="width: 75%;">
-  <img src="/smart_scopes_structure.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="smart_scopes_structure.svg" style="width: 75%;" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Smart scopes structure</em></figcaption>
+</figure>
 <br>
 
 Examples of SMART scopes:
@@ -68,8 +71,8 @@ Two constellations of relations between resources are relevant:
 <figure>
 <div class="gem-ig-svg-container" style="width: 40%;">
   {% include model_constellations.svg %}
-  <figcaption>Model Constellations</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>Model Constellations</em></figcaption>
 </figure>
 <br>
 

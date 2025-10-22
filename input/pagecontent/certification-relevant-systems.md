@@ -11,8 +11,13 @@ However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oxi
 
 The definition of HDDT building blocks is based on the reference model of the [_Continua Health Alliance_](https://www.slideserve.com/kanoa/continua-health-alliance), which is also adopted by the [HL7 Personal Health Device Implementation Guide](https://hl7.org/fhir/uv/phd/index.html). This model divides the communication chain from a medical aid or implant to a receiving backend system into logical building blocks.
 
-<div><img src="/HDC Medical Aid Decomposition.png" alt="reference model of the personal health device ecosystem" width="60%"></div>
-_Figure: Reference model of the personal health device ecosystem_
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDC Medical Aid Decomposition.png" alt="reference model of the personal health device ecosystem" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Reference model of the personal health device ecosystem</em></figcaption>
+</figure>
+
 <br clear="all"/>
 
 The __Personal Health Device__ is the hardware of the medical aid or implant and realizes the sensory recording of data on or in the patient. The data is transmitted via a local point-to-point connection to an __Personal Health Gateway__, which validates the data, prepares it and forwards it to a backend system. For most devices, the Personal Health Gateway will be a mobile application on a smartphone or tablet, but it is not uncommon to have dedicated mobile controllers (e.g. with some insulin pumps), desktop systems or web portals (e.g. for wired data import) or set-top boxes (e.g. for implants). The data is transmitted to a background system via an internet connection and persisted there in a __Health Record__. The HDDT interface for data transmission to DIGA provides access to data in the Health Record. Thus, only data that is available in the Health Record of a background system is affected by § 374a SGB V; data that is only processed in the Personal Device or the Personal Health Gateway does not fall under § 374a SGB V and therefore must not be made available through the HDDT API.
@@ -23,8 +28,12 @@ The necessary prerequisite for a medical aid or implant to fall under the regula
 
 Therefore, the HDDT specification considers the Personal Health Gateway and the Health Record as a single logical component. This component is named __Device Data Recorder__. This logical division of the ecosystem is outlined in the figure below.
 
-<div><img src="/HDC Medical Aid Subsystems.png" alt="subsystems of the personal health device ecosystem" width="60%"></div>
-_Figure: Device Data Recorder as a combination of Personal Health Gateway and Health Record_
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDC Medical Aid Subsystems.png" alt="subsystems of the personal health device ecosystem" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Device Data Recorder as a combination of Personal Health Gateway and Health Record</em></figcaption>
+</figure>
 <br clear="all"/>
 
 The responsibility for the implementation of the interface according to § 374a SGB V lies with the entity responsible for the Device Data Recorder. In the simplest case, the manufacturer of the Personal Health Device (medical aid or implant) is also responsible for the Device Data Recorder. If the Personal Health Device meets the conditions mentioned, then the manufacturer MUST implement and operate the HDDT interface on its backend system. This also applies to manufacturers of Personal Health Devices and the Device Data Recorders that belong to the same parent company or if one manufacturer is a subsidiary of the other manufacturer.
@@ -35,8 +44,12 @@ If both subsystems do not belong to the same manufacturer or group, the manufact
 
 ___Example 2__: Manufacturer A offers a rtCGM that can also be coupled with an insulin pump in the context of an Automated Insulin Delivery (AID) system. The rtCGM can be financed by the statutory health insurances. The rtCGM can be connected to paired apps via Bluetooth LE and thus continuously transmit the measured data to this app. Manufacturer A offers an app for its rtCGM itself and stores the data in its own backend. Manufacturer A is therefore obliged to implement the HDDT interface. However, if the rtCGM is used as part of an AID system, the rtCGM is not connected to A's app, but to the AID control app of the insulin pump manufacturer (manufacturer B). The app and insulin pump are listed as integrated aids in the list of aids of the GKV, i.e. they are reimbursed in the GKV. This means that the AID control app is part of an aid that can be financed by the GKV, which means that manufacturer B MUST implement the HDDT interface in such a way that both the original data of the insulin pump and the data taken over from the rtCGM can be made available for DiGA._
 
-<div><img src="/HDDT affected systems example 2.png" alt="Example 2" width="70%"></div>
-_Figure: Example 2 - HDDT affected systems (different colors signal different vendors)_
+<figure>
+<div class="gem-ig-svg-container">
+<img src="HDDT affected systems example 2.png" alt="Example 2" width="70%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>Example 2 - HDDT affected systems (different colors signal different vendors)</em></figcaption>
+</figure>
 <br clear="all"/>
 
 ___Example 3__: Manufacturer A offers an rtCGM. An unaffiliated manufacturer B offers a diabetes diary that can receive data from manufacturer A's rtCGM via a proprietary interface. The diabetes diary is not a DiGA and is not otherwise reimbursable in statutory health insurance. Manufacturer B is not obliged to implement the HDDT interface and cannot be listed in the HIIS-VZ of the BfArM._

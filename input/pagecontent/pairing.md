@@ -202,8 +202,8 @@ the DiGA, and the Device Data Recorder. Each step is explained in detail below.
 <figure>
 <div class="gem-ig-svg-container" style="width: 100%;">
   {% include pairing_sequence_detailed.svg %}
-  <figcaption>Perform Pairing between DiGA and Device Data Recorder (detailed)</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>Perform Pairing between DiGA and Device Data Recorder (detailed)</em></figcaption>
 </figure>
 <br>
 
@@ -225,8 +225,8 @@ implant (HiMi). Each step is explained in detail below.
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include unpairing_by_patient.svg %}
-  <figcaption>Patient-Initiated Consent Revocation</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>Patient-Initiated Consent Revocation</em></figcaption>
 </figure>
 
 <br>
@@ -246,8 +246,8 @@ a Device Data Recorder under specific conditions.
 <figure>
 <div class="gem-ig-svg-container" style="width: 100%;">
   {% include unpairing_by_system.svg %}
-  <figcaption>System-Initiated Revocation of Authorizations</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>System-Initiated Revocation of Authorizations</em></figcaption>
 </figure>
 <br>
 
