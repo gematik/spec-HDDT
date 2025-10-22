@@ -5,11 +5,11 @@ The most important requirement in creating the specification for the Health Devi
 
 | Standard | Use with HDDT |
 |----------|---------------|
-| HL7 FHIR | The logical model of HDDT is fully mapped on a FHIR compliant [information model](information-model.md). The API for requesting device data is implemented through FHIR `get` and `search`RESTful API. The data shared with this API conforms to HL7 FHIR R4. Great effort has been taken to be fully compliant with the FHIR base specification and - as much as possible - with existing FHIR profiles for device data (see [Use of HL7 FHIR](use_of_hl7_fhir.md)). |
+| HL7 FHIR | The logical model of HDDT is fully mapped on a FHIR compliant [information model](information-model.html). The API for requesting device data is implemented through FHIR `get` and `search`RESTful API. The data shared with this API conforms to HL7 FHIR R4. Great effort has been taken to be fully compliant with the FHIR base specification and - as much as possible - with existing FHIR profiles for device data (see [Use of HL7 FHIR](use_of_hl7_fhir.html)). |
 | ISO/IEEE 11073 | Properties and configuration settings of personal health devices are preferable encoded using ISO/IEEE 11073 nomenclature. For the information model took into account the ISO/IEEE 11073 domains models of the Personal Health Devices assessed in the HDDT MVP phase. |
-| OAuth2         | The [pairing flow](pairing.md) for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE. |
+| OAuth2         | The [pairing flow](pairing.html) for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE. |
 | SMART on FHIR | DiGA authorizations are encoded as [SMART Scopes](smart-scopes.html). |
-| LOINC     | HDDT [Mandatory Interoperable Values](methodology.md)(MIVs) are mapped onto sets of LOINC codes. |
+| LOINC     | HDDT [Mandatory Interoperable Values](methodology.html)(MIVs) are mapped onto sets of LOINC codes. |
 | UCUM | units of measures are consistently encoded in UCUM. |
 
 ### Minimization of HDDT-specific Implementation Efforts
@@ -21,7 +21,7 @@ It is the aim of the HDDT specification that manufacturers of systems acting as 
 * Only data that is managed in the Health Record is affected by the HDDT interface. The manufacturer therefore does not have to forward data processed exclusively in the device or in the Personal Health Gateway to the Health Record solely for the purpose of implementing the HDDT specification.
 
 ### Role of the Controller
-Following the reference model of the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance), the HDDT specifications assume that the Personal Health Device connects to an Personal Health Gateway (e.g. a mobile app) which acts as a gateway to the Health Record. Personal Health Gateway and Health Record together are called the _Device Data Recorder_ in HDDT (see [Certification Relevant Systems](certification-relevant-systems.md) for details). Within HDDT the _Device Data Recorder_ implements the FHIR resource server that DiGA connects to for requesting data that was measured by a connected Personal Health Device.
+Following the reference model of the [Continua Health Alliance](https://www.slideserve.com/kanoa/continua-health-alliance), the HDDT specifications assume that the Personal Health Device connects to an Personal Health Gateway (e.g. a mobile app) which acts as a gateway to the Health Record. Personal Health Gateway and Health Record together are called the _Device Data Recorder_ in HDDT (see [Certification Relevant Systems](certification-relevant-systems.html) for details). Within HDDT the _Device Data Recorder_ implements the FHIR resource server that DiGA connects to for requesting data that was measured by a connected Personal Health Device.
 
 The Device Data Recorder acts as the controller of all flows of data and control between the Personal Health Device at the patient's site and the backend-located Health Record. The HDDT specification does not affect or weaken this role. In particular the HDDT specifications make no determinations on:
 * the frequency of data collection at the Personal Health Device and the modus and frequency of data synchronization between the Personal Health Device and the Personal Health Gateway

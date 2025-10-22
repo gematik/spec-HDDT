@@ -40,7 +40,7 @@ Procedures for registering certificates and for exchanging expiring certificates
 #### Identification and Authentication of the Device Data Recorder
 A Device Data Recorder identifies and authenticates with a DiGA during connection establishment (mutual TLS, see below) as a server. The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's [Authorization Server](authorization-server.html) MUST be registered with the BfArM-SST-VZ.
 
-When a DiGA calls the [FHIR API](retrieving-data.md) of the Device Data Recorder' FHIR Resource Server, the Device Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's FHIR Resource Server  MUST be registered with the BfArM-SST-VZ.
+When a DiGA calls the [FHIR API](retrieving-data.html) of the Device Data Recorder' FHIR Resource Server, the Device Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's FHIR Resource Server  MUST be registered with the BfArM-SST-VZ.
 
 The Device Data Recorder MUST NOT use self-signed certificates (see below). Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 

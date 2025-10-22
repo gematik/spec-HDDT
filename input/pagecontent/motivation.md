@@ -7,13 +7,13 @@ The _Kompetenzzentrum für Interoperabilität im Gesundheitswesen (KIG: Competen
 
 This interface is part of a broader ecosystem of regulated responsibilities, interoperable services and standardized processes (e.g. for registering affected medical aids and implants). The figure below sketches the overall context of the HDDT interface (red).
 
-<div><img src="/Zusammenhaenge.png" alt="HDDT Ecosystem (aus dem Konzept)" width="80%"></div>
+<div><img src="Zusammenhaenge.png" alt="HDDT Ecosystem (aus dem Konzept)" width="80%"></div>
 <br clear="all"/>
 ___Anmerkung__. Grafik wird noch übersetzt_
 
-The present specification "Health Device Data Transfer" (HDDT) describes the functional and technical workflows as well as the requirements that must be implemented by the systems concerned (see [Certification relevant systems](certification-relevant-systems.md))*. It is supplemented by 
-- specifications for the interfaces of the BfArM registries for DiGA, medical aids and implants (see [BfArM Registries](registries-and-zts.md) for further information) 
-- FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) for defining the semantics of the data to be transferred (see [MIVs](mivs.md)) which are available through the [ZTS](registries-and-zts.html#zentraler-terminologieserver) (Central Terminology Service)
+The present specification "Health Device Data Transfer" (HDDT) describes the functional and technical workflows as well as the requirements that must be implemented by the systems concerned (see [Certification relevant systems](certification-relevant-systems.html))*. It is supplemented by 
+- specifications for the interfaces of the BfArM registries for DiGA, medical aids and implants (see [BfArM Registries](registries-and-zts.html) for further information) 
+- FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) for defining the semantics of the data to be transferred (see [MIVs](mivs.html)) which are available through the [ZTS](registries-and-zts.html#zentraler-terminologieserver) (Central Terminology Service)
 - processes for the registration of the interfaces and trust anchors of medical aids and implants as well as DiGAs with the BfArM.
 
 For further information about responsibilities for these artefacts and processes as well as statutory periods, see [§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html).
