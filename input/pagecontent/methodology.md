@@ -8,7 +8,12 @@ The modular “toolkit” approach was discarded. Even though this approach prov
 
 To meet this legal requirement – namely, to design the interface according to the processing purposes of the device data consumers – the approach outlined in the following diagram was chosen.
 
-<div><img src="HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%"></div>
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%">
+  </div>
+    <figcaption><em><strong>Figure: </strong>From Use Cases to MIVs</em></figcaption>
+</figure>
 <br clear="all"/>
 
 In a first step, _gematik_ and the Federal Ministry of Health identified domains that seemed particularly relevant for data exchange between medical aids and DiGA. A domain can roughly be understood as an area of use or a care environment for existing and, above all, future DiGA.
@@ -50,8 +55,8 @@ The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow)
 <figure>
 <div class="gem-ig-svg-container" style="width: 50%;">
   {% include methodology_miv.svg %}
-  <figcaption>MIVs and Profiles</figcaption>
   </div>
+    <figcaption><em><strong>Figure: </strong>MIVs and Profiles</em></figcaption>
 </figure>
 
 ### Defined MIVs
