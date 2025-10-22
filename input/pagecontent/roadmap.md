@@ -1,9 +1,9 @@
 ### Specification Roadmap
-The standardisation of data to be transmitted from medical aids and implants will be carried out using an incremental approach by domains representing an area of use or a care environment. In an initial specification version 1 (MVP), a first set of data that MUST be made available — referencing the selected domains — will be defined, specified, and published. The selection of domains and use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the frequency of prescriptions and the added value for patient care through DiGAs (see [Methodology](methodology.md)). 
+The standardisation of data to be transmitted from medical aids and implants will be carried out using an incremental approach by domains representing an area of use or a care environment. In an initial specification version 1 (MVP), a first set of data that MUST be made available — referencing the selected domains — will be defined, specified, and published. The selection of domains and use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the frequency of prescriptions and the added value for patient care through DiGAs (see [Methodology](methodology.html)). 
 
-Mandatory Interoperable Values (MIVs) will be declared for each domain to be provided by medical aids and implants processing this data. Systems that comply to [certification relevant systems](certification-relevant-systems.md) and process data which is part of the [Mandatory Interoperable Values (MIVs)](mivs.md) MUST therefore implement according to the MVP.
+Mandatory Interoperable Values (MIVs) will be declared for each domain to be provided by medical aids and implants processing this data. Systems that comply to [certification relevant systems](certification-relevant-systems.html) and process data which is part of the [Mandatory Interoperable Values (MIVs)](mivs.html) MUST therefore implement according to the MVP.
 
-The first specification version 1 (MVP) will specify selected [Mandatory Interoperable Values (MIVs)](mivs.md) from the domains 
+The first specification version 1 (MVP) will specify selected [Mandatory Interoperable Values (MIVs)](mivs.html) from the domains 
 * Diabetes Self-Management
 * Respiratory Monitoring
 * Simple Cardiac Monitoring

@@ -11,7 +11,7 @@ However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oxi
 
 The definition of HDDT building blocks is based on the reference model of the [_Continua Health Alliance_](https://www.slideserve.com/kanoa/continua-health-alliance), which is also adopted by the [HL7 Personal Health Device Implementation Guide](https://hl7.org/fhir/uv/phd/index.html). This model divides the communication chain from a medical aid or implant to a receiving backend system into logical building blocks.
 
-<div><img src="/HDC Medical Aid Decomposition.png" alt="reference model of the personal health device ecosystem" width="60%"></div>
+<div><img src="HDC Medical Aid Decomposition.png" alt="reference model of the personal health device ecosystem" width="60%"></div>
 _Figure: Reference model of the personal health device ecosystem_
 
 <br clear="all"/>
@@ -24,7 +24,7 @@ The necessary prerequisite for a medical aid or implant to fall under the regula
 
 Therefore, the HDDT specification considers the Personal Health Gateway and the Health Record as a single logical component. This component is named __Device Data Recorder__. This logical division of the ecosystem is outlined in the figure below.
 
-<div><img src="/HDC Medical Aid Subsystems.png" alt="subsystems of the personal health device ecosystem" width="60%"></div>
+<div><img src="HDC Medical Aid Subsystems.png" alt="subsystems of the personal health device ecosystem" width="60%"></div>
 _Figure: Device Data Recorder as a combination of Personal Health Gateway and Health Record_
 <br clear="all"/>
 
@@ -36,7 +36,7 @@ If both subsystems do not belong to the same manufacturer or group, the manufact
 
 ___Example 2__: Manufacturer A offers a rtCGM that can also be coupled with an insulin pump in the context of an Automated Insulin Delivery (AID) system. The rtCGM can be financed by the statutory health insurances. The rtCGM can be connected to paired apps via Bluetooth LE and thus continuously transmit the measured data to this app. Manufacturer A offers an app for its rtCGM itself and stores the data in its own backend. Manufacturer A is therefore obliged to implement the HDDT interface. However, if the rtCGM is used as part of an AID system, the rtCGM is not connected to A's app, but to the AID control app of the insulin pump manufacturer (manufacturer B). The app and insulin pump are listed as integrated aids in the list of aids of the GKV, i.e. they are reimbursed in the GKV. This means that the AID control app is part of an aid that can be financed by the GKV, which means that manufacturer B MUST implement the HDDT interface in such a way that both the original data of the insulin pump and the data taken over from the rtCGM can be made available for DiGA._
 
-<div><img src="/HDDT affected systems example 2.png" alt="Example 2" width="70%"></div>
+<div><img src="HDDT affected systems example 2.png" alt="Example 2" width="70%"></div>
 _Figure: Example 2 - HDDT affected systems (different colors signal different vendors)_
 <br clear="all"/>
 

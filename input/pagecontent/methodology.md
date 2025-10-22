@@ -8,7 +8,7 @@ The modular “toolkit” approach was discarded. Even though this approach prov
 
 To meet this legal requirement – namely, to design the interface according to the processing purposes of the device data consumers – the approach outlined in the following diagram was chosen.
 
-<div><img src="/HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%"></div>
+<div><img src="HDDT Methodik.png" alt="From Use Cases to MIVs" width="60%"></div>
 <br clear="all"/>
 
 In a first step, _gematik_ and the Federal Ministry of Health identified domains that seemed particularly relevant for data exchange between medical aids and DiGA. A domain can roughly be understood as an area of use or a care environment for existing and, above all, future DiGA.

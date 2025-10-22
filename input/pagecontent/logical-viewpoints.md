@@ -9,7 +9,7 @@ This chapter provides a logical view on the HDDT ecosystem and by this gives an 
 
 The legislative rational for § 374a SGB V explicitly defines the HDDT API for disclosing data from medical aids and implants to eligible DiGA as a backend API. It is assumed that the manufacturer of the medical aid or implant (or an associated vendor) operates backend services on a server or in a cloud where data measured by the device sensor is stored. Intermediate aggregators and gateways (e.g. a mobile app) receive data from the sensor and forward it to the backend services. The DiGA from its backend explicitly requests data from the medical aid's or implant's backend services through the HDDT API. 
 
-<div><img src="/HDDT core actors.png" alt="core building blocks of the HDDT ecosystem" width="60%"></div>
+<div><img src="HDDT core actors.png" alt="core building blocks of the HDDT ecosystem" width="60%"></div>
 <br clear="all"/>
 
 In the next section this regulatory perspective is complemented by a more technical view on the logical building blocks of the HDDT ecosystem. By this the vocabulary is introduced that is used throughout the rest of the HDDT specification. Especially the terms "medical aid" and "implant" will for the rest of the specification only be used if either the regulatory perspective is taken or the role of the data producer is emphasized. 
@@ -36,7 +36,7 @@ Interfaces to these three services are not part of the HDDT specification. A non
 
 The figure below shows how these logical building blocks interact with each other.
 
-<div><img src="/HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="65%"></div>
+<div><img src="HDDT building blocks.png" alt="building blocks of the HDDT ecosystem" width="65%"></div>
 <br clear="all"/>
 
 #### Obligations of Manufacturers of Device Data Recorders
@@ -72,7 +72,7 @@ Subject of the data transmission as requested by § 374a SGB V are measured data
 
 The figure below shows the relationship between Personal Health Devices, measured data and derived data for the domain "Diabetes Self-Management". Relationships between Personal Health Devices and measured data is n:m which means that a Personal Health Device could provide many kinds of measured data while each measured data may be provided by multiple kinds of Personal Health Devices.
 
-<div><img src="/diabetes devices and values.png" alt="devices and values in the domain diabetes self-management" width="70%"></div>
+<div><img src="diabetes devices and values.png" alt="devices and values in the domain diabetes self-management" width="70%"></div>
 <br clear="all"/>
 
 Further information on devices and data is given in the sections [Information Model](information-model.html) and [Retrieving Data](retrieving-data.html). The technical specifications of the FHIR resources that measured data are domain specific. FHIR implementation guides for various kinds of data related to glucose measurements can be found in the chapter __MIV-Specific APIs__.
