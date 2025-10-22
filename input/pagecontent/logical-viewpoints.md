@@ -90,9 +90,12 @@ The [pairing flow](pairing.html) is based on the OAuth2 standard. The MIV that d
 
 The sequence diagramm below sketches the pairing flow between DiGA and Device Data Recorder followed by a request for device data using a FHIR RESTful interaction.
 
-<div style="width: 80%;">
-  <img src="assets/images/pairing_sequence_high_level.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 80%;">
+  {% include pairing_sequence_high_level.svg %}
+  <figcaption>DiGA–Health Device Pairing (High Level)</figcaption>
+  </div>
+</figure>
 
 Further information on the OAuth2 Authorization Server and the authorization flow is given in the section [Pairing](pairing.html). The technical specification of the HDDT profile on the OAuth2 standard can be found in the section [Authorization Server](authorization-server.html). The required validation of access tokens for accessing FHIR resources from the Device Data Recorders FHIR Resource Server is specified in the section [Generic FHIR Resource Server API](himi-diga-api.html).
 

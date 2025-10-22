@@ -118,9 +118,13 @@ The server MUST support the following endpoints.
 
 #### Instantiation of the HDDT Information Model
 
-<div style="width: 60%;">
-  <img src="assets/images/HDDT_Objektmodell_BZ_Complete.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 60%;">
+  {% include HDDT_Objektmodell_BZ_Complete.svg %}
+  <figcaption>HDDT Object Model Example (Blood Glucose Measurement)</figcaption>
+  </div>
+</figure>
+
 
 
 #### Structure Definition

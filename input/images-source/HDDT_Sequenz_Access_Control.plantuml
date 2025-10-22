@@ -4,7 +4,7 @@ hide footbox
 !pragma teoz true
 
 
-title RESTFul FHIR API Zugriffskontrollogik
+title RESTFul FHIR API Access Control Logic
 
 participant "DiGA\nBackend" as DiGA
 participant "Device Data Recorder\nAuthorization Server" as HiMi_AuthZ

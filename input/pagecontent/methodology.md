@@ -47,9 +47,12 @@ Each MIV is expressed as a FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html
 
 The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow), MIV definitions (green) and measured MIV resources (light blue).
 
-<div style="width: 50%;">
-  <img src="assets/images/methodology_miv.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 50%;">
+  {% include methodology_miv.svg %}
+  <figcaption>MIVs and Profiles</figcaption>
+  </div>
+</figure>
 
 ### Defined MIVs
 

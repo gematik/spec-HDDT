@@ -22,8 +22,11 @@ Both DiGA and Device Data Recorder MUST write access and usage logs according to
 
 The sequence diagram below illustrates the access control flow between a DiGA and the Device Data Recorder's FHIR Resource Server and OAuth2 Authorization Server.
 
-<div style="width: 75%;">
-  <img src="assets/images/HDDT_Sequenz_Access_Control.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Sequenz_Access_Control.svg %}
+  <figcaption>RESTFul FHIR API Access Control Logic</figcaption>
+  </div>
+</figure>
 <br clear="all"/>
 
