@@ -4,7 +4,7 @@ interfaces remain economically viable for manufacturers.
 ### Holistic Approach
 
 The HDDT solution enables a DiGA to retrieve standardised health data of the same patient of medical aids and after explicit consent of the patient - without establishing bilateral contractual relationships between the manufacturers. The system is based on a holistic 4-pillar architectural approach:
-- Model: The FHIR-based transmission of health data as [Mandatory Interoperable Values (MIVs)](methodology.html#from-use-cases-to-mivs) in the form of [FHIR Observation resources](https://hl7.org/fhir/R4/observation.html) for vital signs (blood sugar, blood pressure, body temperature) builds upon a comprehensive [information model](information-model.md).
+- Model: The FHIR-based transmission of health data in the form of [FHIR Observation resources](https://hl7.org/fhir/R4/observation.html) for vital signs (blood sugar, blood pressure, body temperature) builds upon a comprehensive [information model](information-model.md) which can be tailored for specific [Mandatory Interoperable Values (MIVs)](methodology.html#from-use-cases-to-mivs).
 - Components: Five main systems orchestrate the legally compliant data exchange:  [_DiGA Verzeichnis_](registries-and-zts.html#diga-verzeichnis) (BfArM DiGA Registry), [_HIIS-VZ_](registries-and-zts.html#HIIS-VZ) (BfArM Device Registry), [ZTS](registries-and-zts.html#zentraler-terminologieserver) (Central Terminology Server), backend/front-end systems of DiGA, and backend/front-end systems of Device Data Recorders as responsible controllers of the data (see [Logical Building Blocks](logical-viewpoints.html#logical-building-blocks) for details). 
 - Interfaces: OAuth 2.0 for [secure authorization](authorization-server.html) combined with [RESTful FHIR APIs](himi-diga-api.html) allow for an interoperable data transfer based on international standards.
 - Processes: Three clearly defined main processes - [coupling of the systems](pairing.html) with user consent, [continuous data transmission](retrieving-data.html), and [regular review of authorizations](smart-scopes.html) to use the HDDT FHIR APIs - ensure a legally compliant data exchange.
@@ -23,9 +23,10 @@ services, and to the technical representation of meaningful artifacts.
 | OAuth2         | The [pairing flow](pairing.md) for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE.                                                                                                                                                                                                                                                                                                                                                                                           |
 | SMART on FHIR  | HDDT makes use of SMART 2.0 "Finer-grained resource constraints" and SMART 2.0 "patient-specific-scopes" for access permissions to FHIR resources (see [SMART Scopes](smart-scopes.html)).                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | LOINC          | HDDT [Mandatory Interoperable Values](methodology.md) (MIVs) are mapped onto sets of LOINC codes.                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| UCUM           | Units of measures are consistently encoded in UCUM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| UCUM           | Units of measures are consistently encoded in UCUM.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
-### Authentication and Authorization 
+### Trust Model
+
 The HDDT solution design imposes trust as well on the transport layer of communicating IT-systemes as on the application level of a medical aid sharing data with a DiGA. The following principles apply:
 - Trust attributes of the technical communication partners are provided by the BfArM via the [_DiGA Verzeichnis_](registries-and-zts.html#diga-verzeichnis) (BfArM DiGA Directory) and the [_HIIS-VZ_](registries-and-zts.html#HIIS-VZ) (BfArM Device Registry). Existing directory processes are reused.
 - § 374a SGB V requests DiGA and controllers of medical device data to obtain the patient's explicit consent for data sharing. The HDDT specification mandates that the consent is granted during the [pairing process](pairing.html) but leaves the details on how consent is presented and acknowledged in a GDPR-compliant manner to the manufacturers.  
@@ -93,15 +94,15 @@ technical specification.
 The [Mandatory Interoperable Values (MIVs)](methodology.html#from-use-cases-to-mivs) that a resource server exposes to a
 DiGA depend on the types of Personal Health Devices connected to it. Each MIV has its own defined data set and rules for
 exchange. To help manufacturers identify the relevant requirements, the data set for each MIV is defined individually
-and documented in dedicated specification documents. An overview of the defined MIVs by domain, along with their
+and documented in dedicated sections of the HDDT specification. An overview of the defined MIVs by domain, along with their
 MIV-specific specification parts, can be found [here](mivs.html).
 
 In HDDT, [slicing](https://hl7.org/fhir/R4/profiling.html#slicing) of FHIR attributes is only applied when all slices
 belong to the same type of data. Domain-specific types of data, such as blood glucose and peak expiratory flow, each
-always have their own specification documents — even if they differ only by LOINC codes and units. This separation
+always have their own definitions of the [FHIR Observation resource](https://hl7.org/fhir/R4/observation.html) type — even if they differ only by LOINC codes and units. This separation
 ensures that future changes affecting one data type do not impact manufacturers of devices for other domains.
 
-§ 374a SGB V requires that aggregated and derived data MUST also be made available through the HDDT interface. In HDDT,
+§ 374a SGB V requires that aggregated data MUST also be made available through the HDDT interface. In HDDT,
 this requirement is limited to data that can be calculated from the MIVs provided by the medical aid. For example, an
 rtCGM only MUST provide derived values that can be computed from its continuous glucose
 measurements ([MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)). To reduce the workload for

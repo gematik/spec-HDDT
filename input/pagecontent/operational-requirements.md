@@ -22,10 +22,10 @@ In the event of unavailability (planned or unplanned), the service MUST provide 
 For planned maintenance, a dedicated code/flag MUST be used, which is different from generic 5xx errors, so that DiGA clients can react accordingly (retry strategies, user notices).
 
 #### Duty to Provide Information 
-The provider MUST inform as early as possible in the event of (imminent or occurring) unavailability.
+The provider MUST inform as early as possible in the event of (imminent or occurring) unavailability of the service.
 
 A public, machine-readable status feed MUST be provided that contains at least the following information:
-* Current operational status (operational/demoted/unavailable)
+* Current operational status (operational/demoted/unavailable) of the service
 * Start, end (as soon as known) and cause of the fault or maintenance window
 * Affected functions/endpoints
 * Next update time or timestamp of the last update
@@ -41,13 +41,16 @@ Example: Reference P95 = 400 ms → permissible P95 ≤ 600 ms.
 The provider MUST operate continuous synthetic monitoring that captures P50/P95/P99 response times per endpoint. The retention period is 30 days.
 
 #### Throughput and Load Requirements
-The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability.
+The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability. The service provider MAY restrict the number of requests for a single client (DiGA) and patient to a reasonable extent. This grace period MUST NOT exeed the MIV-specific limit as defined through the _Grace-Period_ setting in the specific [MIV definition](mivs.html).
 
 Rejected requests MUST be documented with a clear error:
 * Recommended: HTTP 429 Too Many Requests with Header Retry-After.
 * Alternatively allowed: HTTP 503 with explicit rate-limit error code in the body and retry-after.
 
 Correctly documented rejections due to allowed rate limits (e.g. 429 with Retry-After) do NOT count as unavailability or downtime.
+
+#### Round-Trip-Times
+As stated in the [General Considerations](general-considerations.html) section, HDDT does not define minimum end-to-end round trip times for device data (from the sensor to the Health Record). Nevertheless, once data is available with the Health Record, this data MUST also be available to eligible DiGA through the HDDT interface with a maximum delay of 15 minutes. Any delays beyond this time frame MUST be documented and reported as unavailability (see _Duty to Provide Information_ above).
 
 ### Self-Logged Monitoring
 #### Scope of Logging
