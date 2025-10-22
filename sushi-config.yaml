@@ -13,7 +13,7 @@
 id: health-device-data-transfer
 canonical: https://gematik.de/fhir/hddt
 version: 0.1.0
-name: healthDeviceDataTransfer
+name: HealthDeviceDataTransfer
 title: Health Device Data Transfer
 status: draft
 publisher: 
@@ -30,14 +30,7 @@ dependencies:
   hl7.fhir.uv.cgm: 1.0.0
 
 parameters:
-  # no-narrative:
-  #   - "Bundle/*"
-  #   - "Observation/*"
-  #   - "Device/*"
-  #   - "DeviceMetric/*"
-  #   - "Patient/*"
-  #   - "ValueSet/*"
-  # show-inherited-invariants: false
+  show-inherited-invariants: true
   # in order to preserve the version of the resources:
   apply-version: true
   shownav: true

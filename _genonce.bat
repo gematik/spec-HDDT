@@ -38,8 +38,8 @@ ECHO Running jekyll build...
 CALL jekyll build --source "%CD%\temp\pages" --destination "%output_path%"
 COPY /Y "%output_path%\..\qa.html" "%output_path%\qa.html"
 
-ECHO Copying files from input/files/ to output/files/
-XCOPY /Y /E "%CD%\input\files\*" "%output_path%\files\"
+@REM ECHO Copying files from input/files/ to output/files/
+@REM XCOPY /Y /E "%CD%\input\files\*" "%output_path%\files\"
 
 @REM ECHO Copying SVGs from temp/pages/_includes to output/assets/images
 @REM XCOPY /Y /E "%CD%\temp\pages\_includes\*.svg" "%output_path%\assets\images"

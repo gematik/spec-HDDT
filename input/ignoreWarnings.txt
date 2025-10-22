@@ -1,0 +1,17 @@
+== Suppressed Messages ==
+
+# HINTS
+
+%Reference to draft CodeSystem%
+
+# WARNINGS
+
+%Best Practice Recommendation%
+%URL-Wert 'https://hilfsmittelverzeichnis.de' löst nicht auf%
+%Alle Observations sollten einen Performer haben%
+%Alle Observations sollten ein Subject haben%
+%The definition for the element 'Device.type' binds to the value set 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type' which is experimental, but this structure is not labeled as experimental%
+
+# This message refers to the FHIR F4 Bundle.language element which is not constrained in this IG.
+
+%The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated%
