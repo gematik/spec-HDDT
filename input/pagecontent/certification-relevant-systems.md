@@ -13,7 +13,6 @@ The definition of HDDT building blocks is based on the reference model of the [_
 
 <div><img src="/HDC Medical Aid Decomposition.png" alt="reference model of the personal health device ecosystem" width="60%"></div>
 _Figure: Reference model of the personal health device ecosystem_
-
 <br clear="all"/>
 
 The __Personal Health Device__ is the hardware of the medical aid or implant and realizes the sensory recording of data on or in the patient. The data is transmitted via a local point-to-point connection to an __Personal Health Gateway__, which validates the data, prepares it and forwards it to a backend system. For most devices, the Personal Health Gateway will be a mobile application on a smartphone or tablet, but it is not uncommon to have dedicated mobile controllers (e.g. with some insulin pumps), desktop systems or web portals (e.g. for wired data import) or set-top boxes (e.g. for implants). The data is transmitted to a background system via an internet connection and persisted there in a __Health Record__. The HDDT interface for data transmission to DIGA provides access to data in the Health Record. Thus, only data that is available in the Health Record of a background system is affected by § 374a SGB V; data that is only processed in the Personal Device or the Personal Health Gateway does not fall under § 374a SGB V and therefore must not be made available through the HDDT API.
