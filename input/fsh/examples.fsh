@@ -1,7 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
-Alias: $mdc = urn:iso:std:iso:11073:10101
+Alias: $mdc = urn:iso:std:iso:11073:10101|20250520
 
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement
@@ -19,7 +19,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 Instance: Example-Blood-Glucose-Measurement-1
 InstanceOf: HddtBloodGlucoseMeasurement
 Usage: #example
-Title: "HDDT Blood Glucose Measurement 1 (from Example Object Diagram) "
+Title: "HDDT Blood Glucose Measurement 1 (from Example Object Diagram)"
 Description: "Example of a blood glucose measurement taken with a glucometer."
 * id = "example-blood-glucose-measurement-1"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
@@ -32,7 +32,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 Instance: Example-Blood-Glucose-Measurement-2
 InstanceOf: HddtBloodGlucoseMeasurement
 Usage: #example
-Title: "HDDT Blood Glucose Measurement 2 (from Example Object Diagram) "
+Title: "HDDT Blood Glucose Measurement 2 (from Example Object Diagram)"
 Description: "Example of a blood glucose measurement taken with a glucometer."
 * id = "example-blood-glucose-measurement-2"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
@@ -92,14 +92,14 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 Instance: Example-Glucometer-Def
 InstanceOf: DeviceDefinition
 Usage: #example
-Title: "DeviceDefinition – GlucoCheck Plus mg/dL"
-Description: "Example for a medical device (CGM sensor) from the medical device directory."
+Title: "HDDT Glucometer DeviceDefinition Example"
+Description: "Example for a medical device definition (Glucometer) from the HIIS-VZ."
 * id = "example-glucometer-def"
 * identifier.system = "https://hilfsmittelverzeichnis.de"
 * identifier.value = "12.34.56.7890" 
 * deviceName[0].name = "GlucoCheck Plus mg/dL"
 * deviceName[0].type = #user-friendly-name
-* type = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* type = $sct#337414009 "Blood glucose meter (physical object)"
 * manufacturerString = "Glukko Inc."
 * property[0].type.text = "Supported unit"
 * property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
@@ -114,7 +114,6 @@ Description: "Example for a medical device (CGM sensor) from the medical device 
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #2339-0
 * capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
-* capability[0].type.text = "Blood glucose measurement (fingerstick and continuous monitoring)"
 
 // Instance: Example-DeviceDefinition-Backend
 // InstanceOf: DeviceDefinition
@@ -434,17 +433,35 @@ Description: "Returned when the request is malformed."
 
 Instance: patientExample
 InstanceOf: Patient
-Title: "Example Patient" 
+Title: "HL7 CGM Summary Patient Example: no content"
 Description: "This example represents a patient without content."
 Usage: #example
 * id = "patientExample"
 
 Instance: DeviceDefinition/device-definition-cgm-001
 InstanceOf: DeviceDefinition
-Title: "Example CGM Device"
-Description: "This example represents a Continuous Glucose Monitoring (CGM) device."
+Title: "HDDT rtCGM DeviceDefinition Example"
+Description: "This example represents a Continuous Glucose Monitoring (CGM) device definition from the HIIS-VZ."
 Usage: #example
 * id = "device-definition-cgm-001"
 * type = #device
-* manufacturerString = "Example Manufacturer"
-* modelNumber = "CGM Model 1"
+* manufacturerString = "rtCGM Manufacturer Inc."
+* modelNumber = "CGM Model mg/dL"
+* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.value = "30.29.05.2004"
+* deviceName[0].name = "CGM Model mg/dL"
+* deviceName[0].type = #user-friendly-name
+* type = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* property[0].type.text = "Supported unit"
+* property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
+* property[+].type.text = "Reference range low"
+* property[=].valueQuantity.value = 70
+* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.system = $unitsofmeasure
+* property[+].type.text = "Reference range high"
+* property[=].valueQuantity.value = 180
+* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.system = $unitsofmeasure
+* capability[0].type.coding[0].system = $loinc
+* capability[0].type.coding[0].code = #105272-9
+* capability[0].type.coding[0].display = "Glucose [Moles/volume] in Interstitial fluid"
