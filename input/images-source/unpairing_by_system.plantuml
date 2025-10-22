@@ -38,13 +38,15 @@ alt Prescription about to expire
 	D -> V: Inform patient about upcoming expiry
 	activate V
 else Prescription expired
-	D -> D: Invalidate consent (Pairing-ID)
-	D -> H: Request invalidation of refresh token (Pairing-ID)\nat /revoke endpoint
+	D -> D: Invalidate consent linked to Pairing-ID
+	D -> H: Request revocation at /revoke endpoint with tls_client_auth and refresh_token
+	D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
 	activate H
-	H -> H: Invalidate authorization grant (Pairing-ID)
-	H -> H: Invalidate refresh token (Pairing-ID)
-	H -> H: Invalidate access token (Pairing-ID)
-	H -> H: Invalidate consent for Pairing-ID
+	H -> H: Authenticate DiGA (client_id, X.509 cert)
+	H -> H: Invalidate authorization grant linked to Pairing-ID
+	H -> H: Invalidate refresh token linked to Pairing-ID
+	H -> H: Invalidate access token linked to Pairing-ID
+	H -> H: Invalidate consent linked to Pairing-ID
 	H -> D: HTTP 200 OK
 	D -> V: Signal revocation confirmation via DiGA frontend
 end
@@ -63,20 +65,20 @@ else DiGA not in directory
 	ZD -> M: HTTP 404 NOT FOUND
 end
 deactivate ZD
-M -> H: Invalidate authorization grant (Pairing-ID)
+M -> H: Invalidate authorization grant linked to Pairing-ID
 activate H
-M -> H: Invalidate refresh token (Pairing-ID)
-M -> H: Invalidate access token (Pairing-ID)
-M -> H: Invalidate consent for Pairing-ID
+M -> H: Invalidate refresh token linked to Pairing-ID
+M -> H: Invalidate access token linked to Pairing-ID
+M -> H: Invalidate consent linked to Pairing-ID
 M -> H: Deregister DiGA
 deactivate M
 H -> V: Signal invalidation of consent via frontend of the Device Data Recorder
 activate V
 ... DiGA data request at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
-D -> H: Request re-authorization with refresh token (Pairing-ID)
+D -> H: Request re-authorization with tls_client_auth and refresh_token
 activate D
-D -> D: Authenticate Device Data Recorder (X.509 cert)
-H -> H: Authenticate DiGA (X.509 cert)
+D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
+H -> H: Authenticate DiGA (client_id, X.509 cert)
 alt DiGA not yet deregistered
 	H -> D: HTTP 400 Bad Request "invalid_grant"
 else DiGA deregistered
@@ -92,6 +94,7 @@ deactivate H
 deactivate V
 
 == Device Data Recorder no longer offers interface acc. § 374a SGB V ==
+ref over M, H : Device Data Recorder informs the patient
 M -> ZH: Retrieve status of Device Data Recorder
 activate M
 activate ZH
@@ -100,9 +103,23 @@ alt Device Data Recorder retired
 else Device Data Recorder not in directory
 	ZH -> M: HTTP 404 NOT FOUND
 end
-deactivate ZH
-M -> D: Invalidate consent
+D -> D: Invalidate consent linked to Pairing-ID
 activate D
+D -> H: Request revocation at /revoke endpoint with tls_client_auth and refresh_token
+activate H
+D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
+H -> H: Authenticate DiGA (client_id, X.509 cert)
+H -> H: Invalidate authorization grant linked to Pairing-ID
+H -> H: Invalidate refresh token linked to Pairing-ID
+H -> H: Invalidate access token linked to Pairing-ID
+H -> H: Invalidate consent linked to Pairing-ID
+alt Device Data Recorder's Authentication Server still online
+	H -> D: HTTP 200 OK
+else DiGA deregistered
+	D -> D: Timeout
+    M -> D: Invalidate consent
+end
+deactivate ZH
 M -> D: Remove configurations for Device Data Recorder
 deactivate M
 D -> V: Signal invalidation of consent via DiGA frontend

@@ -33,9 +33,7 @@ activate V
 activate D
 D -> V: Present list of compatible Device Data Recorders via DiGA frontend
 V -> D: Select Device Data Recorder via DiGA frontend
-D -> V: Present list of compatible Personal Health Devices via DiGA frontend
-V -> D: Select Personal Health Device via DiGA frontend
-D -> V: Present required permissions via DiGA frontend
+D -> V: Present required permissions (based on Device Date Recorder scopes) via DiGA frontend
 V -> D: Confirm permissions via DiGA frontend
 ||0||
 deactivate V
@@ -46,10 +44,10 @@ activate H
 H -> D: Server Metadata Document
 D -> D: Identify endpoints and scope (consent)
 D -> D: Generate PKCE artifacts
-D -> H: PAR with PKCE, tls_client_auth
-D -> D: Authenticate Device Data Recorder (X.509 cert)
+D -> H: PAR with PKCE, client_id, tls_client_auth, scopes, redirect_uri
+D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
 ' The following checks are done against the registration data stored at Device Data Recorder during DiGA registration
-H -> H: Authenticate DiGA (X.509 cert)
+H -> H: Authenticate DiGA (client_id, X.509 cert)
 H -> H: Validate PAR (redirect_uri, scopes, ...)
 H -> H: Store PAR and generate request_uri
 H -> D: PAR response (request_uri, expires_in)
@@ -70,13 +68,13 @@ alt Pairing ID was previously generated and linked to user account
 else
 	H -> H: Generate pairing ID and link to user account
 end
-H -> H: Generate consent linked to the pairing ID and the patient identity
+H -> H: Generate consent linked to the Pairing-ID and the patient identity
 
 == 4. Perform Authorization ==
 H -> D: Authorization response with authz_code via frontend/user-agent redirect
 D -> H: Token request with PKCE, tls_client_auth, and authz_code
-D -> D: Authenticate Device Data Recorder (X.509 cert)
-H -> H: Authenticate DiGA (X.509 cert)
+D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
+H -> H: Authenticate DiGA (client_id, X.509 cert)
 H -> H: Validate PKCE and authz_code
 H -> D: Token response (scope, pairing ID, access and refresh token with scope and pairing ID)
 
