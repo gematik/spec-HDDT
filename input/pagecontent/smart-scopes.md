@@ -65,10 +65,12 @@ relationship to authorized Observations.
 
 Two constellations of relations between resources are relevant:
 
-<div style="width: 40%;">
-  <img src="assets/images/model_constellations.svg" style="width: 100%;" />
-</div>
-
+<figure>
+<div class="gem-ig-svg-container" style="width: 40%;">
+  {% include model_constellations.svg %}
+  <figcaption>Model Constellations</figcaption>
+  </div>
+</figure>
 <br>
 
 * In Constellation A an [Observation](https://hl7.org/fhir/R4/observation.html) directly references

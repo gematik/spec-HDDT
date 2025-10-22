@@ -22,9 +22,15 @@ This logical model builds the foundation of the HDDT FHIR based information mode
 
 Data which is measured by a Personal Health Device is shared with a DiGA as an __Interoperable Value__. Each __Interoperable Value__ is a FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource that implements a defined __Observation Profile__. These profiles are managed by gematik and made available as FHIR [StructureDefinition](https://hl7.org/fhir/R4/structuredefinition.html) resources on Simplifier. Each such profile constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition to match the requirements and specialties of a defined __Mandatory Interoperable Value (MIV)__. Each __MIV__ is expressed as a FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) which is managed with the _ZTS_ (German Central Terminology Server). By this, each __Interoperable Value__ is linked with a __MIV__ with respect to its syntax (Observation Profile) and semantics (definition of the MIV).
 
-<div style="width: 60%;">
-  <img src="assets/images/HDDT_Informationsmodell_Generisch_MIV.svg" style="width: 100%;" />
-</div>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 60%;">
+  {% include HDDT_Informationsmodell_Generisch_MIV.svg %}
+  <figcaption>HDDT FHIR Data Model (Values and Devices)</figcaption>
+  </div>
+</figure>
+
+
 
 Each measured data is described by:
 * a LOINC `code` that defines the kind of data, e.g. a blood sugar value measured as mass per volume. This `code` MUST be included with the value set of the MIV that is linked with the [Observation](https://hl7.org/fhir/R4/observation.html)
@@ -46,9 +52,13 @@ Details on the definition of the MIV [ValueSet](https://hl7.org/fhir/R4/valueset
 
 The part of the HDDT information model that is related to the Personal Health Device is implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the light blue box are used by the DiGA for [retrieving device data](retrieving-data.html) and data about the status and attributes of the __Personal Health Device__ from the Device Data Recorder.   
 
-<div style="width: 75%;">
-  <img src="assets/images/HDDT_Informationsmodell_Generisch_DevicePart.svg" style="width: 100%;" />
-</div>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Informationsmodell_Generisch_DevicePart.svg %}
+  <figcaption>HDDT FHIR Data Model (Devices)</figcaption>
+  </div>
+</figure>
 
 Personal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. If a Personal Health Device transmits data from a non-calibrated sensor to the Health Record at all depends on the concrete product. For a DiGA to process device data in a safe manner, the DIGA must know if the data it received was gathered by a calibrated sensor or not. 
 
@@ -105,9 +115,12 @@ While DiGA use the [BfArM Device Directory API](registries-and-zts.html#HIIS-VZ)
 
 The class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries together with connected classes. Correlations and dependencies between objects which are managed by the BfArM Registries internally are shown as functions on dotted lines. If such resolutions will be available as APIs or only via the registries' GUIs has no impact on the technical specification of the HDDT API and therefore is not part of this specification. 
 
-<div style="width: 75%;">
-  <img src="assets/images/HDDT_Informationsmodell_Generisch_Device_and_Definition.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Informationsmodell_Generisch_Device_and_Definition.svg %}
+  <figcaption>HDDT FHIR Data Model (complete)</figcaption>
+  </div>
+</figure>
 
 ### MIVs
 
@@ -133,6 +146,10 @@ All FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that repres
 
 The UML class diagram below shows the full HDDT information model. The resources in the light blue box are managed by the Device Data Recorder and can be accessed by DiGA via the Device Data Recorder's FHIR Resource Server. The resources in the orange box reflect the contents of the BfArM registries (Device Registry and DiGA Registry). They can be accessed by DiGA through the [BfArM Device Registry API](registries-and-zts.html#HIIS-VZ) and [BfArM DiGA Registry API](registries-and-zts.html#DiGA-Verzeichnis). The green box marks the German Central Terminology Service that maintains the definitions and encodings of all _MIVs_. The [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that span the single _MIVs_ can be obtained from this service through the [ZTS-API](zts-api.html). The light yellow box holds the FHIR Observation Profiles defined for the MIVs and the FHIR profiles for aggregated reports on top of defined MIVs. These profiles will be made available by gematik on Simplifier.
 
-<div style="width: 100%;">
-  <img src="assets/images/HDDT_Informationsmodell_Generisch_Complete.svg" style="width: 100%;" />
-</div>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  {% include HDDT_Informationsmodell_Generisch_Complete.svg %}
+  <figcaption>HDDT FHIR Data Model (complete)</figcaption>
+  </div>
+</figure>

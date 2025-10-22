@@ -28,11 +28,14 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
 
 The figure below shows the adaption of the [HDDT Information Model](information-model-html) for the MIV _Blood Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
 
-<div style="width: 80%;">
-  <img src="assets/images/HDDT_Informationsmodell_MIV_Blood_Glucose.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 80%;">
+  {% include HDDT_Informationsmodell_MIV_Blood_Glucose.svg %}
+  <figcaption>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</figcaption>
+  </div>
+</figure>
 
-All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.md) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Blood Glucose Measurement_ only the following scopes MUST be set:
+All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Blood Glucose Measurement_ only the following scopes MUST be set:
 ```
 patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement
 patient/Device.rs
@@ -115,9 +118,12 @@ This specification makes no assumption, on how the manufacturers of the Personal
 
 The following object diagram the relationships between the FHIR resources involved in representing blood glucose measurements according to the [HDDT Information Model](information-model-html) and the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
-<div style="width: 75%;">
-  <img src="assets/images/HDDT_Objektmodell_BZ_Complete.svg" style="width: 100%;" />
-</div>
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Objektmodell_BZ_Complete.svg %}
+  <figcaption>HDDT Object Model Example (Blood Glucose Measurement)</figcaption>
+  </div>
+</figure>
 
 The following code example shows the concrete JSON representation of the _HDDT Blood Glucose Measurement 1_ resource shown in the object diagram.
 

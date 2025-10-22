@@ -7,7 +7,7 @@ This page lists these __Mandatory Interoperable Values (MIVs)__ for the domains 
 
 Self-management tools used by patients to determine glucose levels analyze either capillary blood ("bloody measurement" on the fingertip) or interstitial fluid (e.g. measurements performed through real-time Continuous Glucose Monitoring (rtCGM)). Other measurement methods - e.g. using aterial blood - are primarily used in the doctor's office and are not taken into account for the HDDT Usecase "Diabetes Self-Management". 
 
-<div><img src="/11073 Glukose Methoden.png" alt="Glucose Methods" width="60%"></div>
+<div><img src="11073 Glukose Methoden.png" alt="Glucose Methods" width="60%"></div>
 <br clear="all"/>
 
 For the initial specification (version 1) of HDDT, two mandatory interoperable values (MIVs) are defined for diabetes self-management:
