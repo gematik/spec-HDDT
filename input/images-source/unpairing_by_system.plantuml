@@ -35,7 +35,7 @@ participant ZH order 30 [
 activate D
 D -> D: Check validity of consent (Pairing-ID) or system time vs.\nexpiry date of prescription (Pairing-ID)
 alt Prescription about to expire
-	D -> V: Inform patient about upcoming expiry
+	D -> V: Preferably inform patient about upcoming expiry in advance
 	activate V
 else Prescription expired
 	D -> D: Invalidate consent linked to Pairing-ID
