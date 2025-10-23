@@ -160,8 +160,7 @@ signing, and revoking these tokens.
 * Refresh tokens MUST be revocable by the DiGA via the revocation
   endpoint ([RFC 7009](https://www.rfc-editor.org/info/rfc7009)).
 * If the patient withdraws consent (regardless if via the DiGA or directly at the Device Data Recorder), all tokens
-  associated with the Pairing ID MUST be invalidated immediately., the corresponding refresh token and all access tokens
-  derived from it MUST be invalidated immediately.
+  associated with the Pairing ID MUST be invalidated immediately.
 
 #### Token Response
 
