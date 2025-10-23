@@ -11,7 +11,7 @@ The token endpoint is a **backend-to-backend endpoint** and requires client auth
 ### Endpoint
 
 Note: There is no strict definition of the token endpoint URL in [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). The
-URL below is a common convention. HiMi manufacturers MAY choose a different URL structure as long as it is properly
+URL below is a common convention. Device Data Recorder manufacturers MAY choose a different URL structure as long as it is properly
 documented in the [OAuth 2.0 Authorization Server Metadata](authorization-server-metadata-endpoint.html).
 
 |                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |

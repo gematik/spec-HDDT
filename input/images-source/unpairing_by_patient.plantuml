@@ -1,5 +1,4 @@
 @startuml
-
 !include fbeta-theme.puml
 hide footbox
 !pragma teoz true
@@ -23,13 +22,15 @@ participant H order 10 [
 V -> D: Revoke consent via DiGA frontend
 activate V
 activate D
-D -> D: Invalidate consent (Pairing-ID)
-D -> H: Request revocation of refresh token (Pairing-ID)\nat /revoke endpoint
+D -> D: Invalidate consent linked to Pairing-ID
+D -> H: Request revocation at /revoke endpoint with tls_client_auth and refresh_token
+D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
 activate H
-H -> H: Invalidate authorization grant (Pairing-ID)
-H -> H: Invalidate refresh token (Pairing-ID)
-H -> H: Invalidate access token (Pairing-ID)
-H -> H: Invalidate consent for Pairing-ID
+H -> H: Authenticate DiGA (client_id, X.509 cert)
+H -> H: Invalidate authorization grant linked to Pairing-ID
+H -> H: Invalidate refresh token linked to Pairing-ID
+H -> H: Invalidate access token linked to Pairing-ID
+H -> H: Invalidate consent linked to Pairing-ID
 H -> D: HTTP 200 OK
 D -> V: Signal revocation confirmation via DiGA frontend
 ||0||
@@ -41,13 +42,15 @@ deactivate V
 V -> H: Revoke consent via frontend of the Device Data Recorder
 activate V
 activate H
-H -> H: Invalidate authorization grant (Pairing-ID)
-H -> H: Invalidate refresh token (Pairing-ID)
-H -> H: Invalidate access token (Pairing-ID)
-H -> H: Invalidate consent for Pairing-ID
+H -> H: Invalidate authorization grant linked to Pairing-ID
+H -> H: Invalidate refresh token linked to Pairing-ID
+H -> H: Invalidate access token linked to Pairing-ID
+H -> H: Invalidate consent linked to Pairing-ID
 H -> V: Signal revocation confirmation via frontend of the Device Data Recorder
 ... Data request of the DiGA at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response ...
-D -> H: Request re-authorization with refresh token (Pairing-ID)
+D -> H: Request re-authorization with tls_client_auth and refresh_token
+D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
+H -> H: Authenticate DiGA (client_id, X.509 cert)
 H -> D: HTTP 400 Bad Request "invalid_grant"
 activate D
 D -> D: Invalidate consent
