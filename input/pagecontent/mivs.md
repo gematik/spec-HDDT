@@ -11,7 +11,7 @@ Self-management tools used by patients to determine glucose levels analyze eithe
 <div class="gem-ig-svg-container">
  <img src="11073 Glukose Methoden.png" alt="Glucose Methods" width="60%">
   </div>
-    <figcaption><em><strong>Figure: </strong>Glucose Methods</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Glucose Methods; red boxes signal MIVs covered by this specification</em></figcaption>
 </figure>
 <br clear="all"/>
 
@@ -23,7 +23,7 @@ The table below lists typical use cases and certification relevant systems for t
 
 | MIV                            | examples of typical use cases | examples of certification relevant systems  |
 |--------------------------------|-------------------------------|---------------------------------------------|
-| Blood Glucose Measurement      | • monitoring of BOT patients<br> • diabetes diary for DMT2 patients  | • blood glucose meter (glucometer) |
+| Blood Glucose Measurement      | • monitoring of patients with a combination of basal insulin with oral antidiabetic drugs<br> • diabetes diary for DMT2 patients  | • blood glucose meter (glucometer) |
 | Continuous Glucose Measurement | • supporting patients in flattening glucose curves<br> • analyzing behavioral effects on glucose level<br> • gathering key figures for measuring the status of the diabetes therapy<br> • analyzing hidden hypoglycaemias | • real-time Contiuous Clucose Monitoring (rtCGM)<br> • Closed Loop Systems |
 
 #### Blood Glucose Value
@@ -58,7 +58,7 @@ The MIV _Continuous Glucose Measurement_ covers values from continuous monitorin
 
 
 ### Domain: Respiratory Monitoring
-MIVs for this domain will be published by November 2025.
+MIVS for this domain are expected to be published by November 2025.
 
 ### Domain: Simple Cardiac Monitoring
-MIVs for this domain will be published by November 2025.
+MIVS for this domain are expected to be published by November 2025.

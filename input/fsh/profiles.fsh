@@ -270,7 +270,7 @@ or if the sensor may change its calibration status over time.
 * value[x].system 1..1
 * value[x].system = "http://unitsofmeasure.org" (exactly)
 * value[x].code 1..1
-* value[x].code ^definition = "The UCUM code representing the unit of the blood glucose measurement. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
+* value[x].code ^definition = "The UCUM code representing the unit of the blood glucose measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`."
 * value[x].code from $ucum-units (required)
 * value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
 * device 1..1
@@ -341,7 +341,7 @@ current chunk and therefore is the only reason why a chunk may be smaller than t
 * value[x].origin.code 1..1
 * value[x].origin.code from $ucum-units (required)
 * value[x].origin.code ^short = "UCUM code for unit of measurements"
-* value[x].origin.code ^definition = "The UCUM code representing the unit of the continuous glucose measurement. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
+* value[x].origin.code ^definition = "The UCUM code representing the unit of the continuous glucose measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`."
 * value[x].origin.code ^binding.description = "Defines the measurement unit for continuous glucose values using UCUM codes."
 * value[x].data 1..
 * dataAbsentReason 0..1
@@ -441,8 +441,17 @@ ValueSet: HddtDeviceType
 Id: hddt-device-type
 Title: "Device Type of personal health devices"
 Description: """
-Codes used to identify Personal Health Devices, Device Data Recorders, and DIGA. This ValueSet includes
-concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International.
+This ValueSet includes codes used to identify Personal Health Devices, Device Data Recorders, and DIGA. 
+
+This ValueSet's definition is an unchanged copy of the definition of the FHIR R5 ValueSet 
+[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html) for use with the FHIR R4 based HDDT profiles. 
+
+This ValueSet includes
+concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International. Codes from the 
+_ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
+included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
+may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
+code system and its contents remain copyrighted by ISO and IEEE.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en

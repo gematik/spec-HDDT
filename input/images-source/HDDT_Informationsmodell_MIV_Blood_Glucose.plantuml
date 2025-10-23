@@ -66,7 +66,7 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     }
 }
 
-package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
+package ZTS as "MIV Definitions (ZTS)" VIBW {
     enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
         url = " https://terminologien.bfarm.de/fhir/\n           ValueSet/hddt-miv-blood-glucose-measurement"
         version = "1.0.0"

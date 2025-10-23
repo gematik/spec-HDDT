@@ -41,7 +41,7 @@ Each MIV is expressed as a FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html
 
 Example: _The MIV "Continous Glucose Measurement" is expressed through the ValueSet "[Continuous Glucose Measurement from LOINC](ValueSet-hddt-miv-continuous-glucose-measurement.html)". This ValueSet includes a set of LOINC codes for typical measurements of this kind (e.g. 99504-3: Glucose [Mass/volume] in Interstitial fluid). The corresponding HDDT Observation Profile "[HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html)." constrains the `code` element of the FHIR Observation resource to only allow these LOINC codes. Continuously measured glucose values can be aggregated to calculated derived key figures such as the Glucose Management Index (GMI) and times in various ranges. For the MIV "Continous Glucose Measurement" these key figures are summarized in a single report, the [HDDT CGM Summary Report](measurement-tissue-glucose.html) which builds upon an existing HL7 standard profile for rtCGM data._
 
-The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow), MIV definitions (green) and measured MIV resources (light blue).
+The figure below summarizes the interplay of MIV-specific FHIR profiles (yellow), MIV definitions (green) and measured MIV resources (blue).
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 50%;">
