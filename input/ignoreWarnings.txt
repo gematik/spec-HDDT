@@ -8,53 +8,49 @@
 # HINTS
 # ==============================================================================
 
-# HINT: References to draft CodeSystems
-# Reason: The IG uses draft CodeSystems for internal testing or national extensions
-# that are not yet normatively published.
+# INFORMATION: References to draft CodeSystems. Reasson: The IG uses draft CodeSystems for internal testing or national extensions that are not yet normatively published.
+
 %Reference to draft CodeSystem%
 
+
+# INFORMATION: Missing publish box in generated HTML.Reason: This IG is not an official HL7 publication, so the 'publish box' requirement does not apply. The warning appears once per build and can safely be suppressed.
+
+%The html source does not contain the publish box%
 
 # ==============================================================================
 # WARNINGS
 # ==============================================================================
 
-# WARNING: Best practice recommendations
-# Reason: These warnings refer to "Best Practice Recommendations" (e.g., subject, performer)
-# that are not mandatory for all Observation profiles in this IG context.
+# WARNING: Best practice recommendations. # Reason: These warnings refer to "Best Practice Recommendations" (e.g., subject, performer) that are not mandatory for all Observation profiles in this IG context.
+
 %Best Practice Recommendation%
 
 
-# WARNING: URL resolution for non-FHIR external systems
-# Reason: The URL 'https://hilfsmittelverzeichnis.de' is a legitimate external reference
-# (not a FHIR endpoint). It does not resolve via HTTP intentionally.
+# WARNING: URL resolution for non-FHIR external systems. Reason: The URL 'https://hilfsmittelverzeichnis.de' is a legitimate external reference (not a FHIR endpoint). It does not resolve via HTTP intentionally.
+
 %URL-Wert 'https://hilfsmittelverzeichnis.de' löst nicht auf%
 %No definition could be found for URL value 'https://hilfsmittelverzeichnis.de'%
 
 
-# WARNING: Observation performer / subject
-# Reason: Some Observation examples are intentionally abstracted or device-generated
-# without explicit performer/subject for privacy or structural reasons.
+# WARNING: Observation performer / subject. Reason: Some Observation examples are intentionally abstracted or device-generated without explicit performer/subject for privacy or structural reasons.
+
 %Alle Observations sollten einen Performer haben%
 %Alle Observations sollten ein Subject haben%
 
 
-# WARNING: Device.type binding to experimental ValueSet
-# Reason: The referenced ValueSet 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type'
-# is marked experimental, but is intentionally used in this IG as part of a pilot specification.
+# WARNING: Device.type binding to experimental ValueSet. Reason: The referenced ValueSet 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type' is marked experimental, but is intentionally used in this IG as part of a pilot specification.
+
 %The definition for the element 'Device.type' binds to the value set 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type' which is experimental, but this structure is not labeled as experimental%
 
 
-# WARNING: Deprecated extension
-# Reason: The warning relates to an extension (elementdefinition-maxValueSet|5.2.0)
-# that remains temporarily used for backward compatibility.
+# WARNING: Deprecated extension. Reason: The warning relates to an extension (elementdefinition-maxValueSet|5.2.0) that remains temporarily used for backward compatibility.
+
 %The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated%
 
 
-# INFORMATION: Missing publish box in generated HTML
-# Reason: This IG is not an official HL7 publication, so the 'publish box' requirement
-# does not apply. The warning appears once per build and can safely be suppressed.
-%The html source does not contain the publish box%
+# WARNING: HTML fragment. Reason: We are using a custom template of our own
 
+%HTML fragment%
 
 # ------------------------------------------------------------------------------
 
