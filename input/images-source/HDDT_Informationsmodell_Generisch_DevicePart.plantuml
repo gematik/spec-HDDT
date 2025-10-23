@@ -8,7 +8,7 @@ hide footbox
 !define BFARM #F6D7B6
 !define SPEC #FAF3C0
 
-title HDDT FHIR Data Model (Values and Devices)
+title HDDT FHIR Data Model (Values, Devices, and MIVs)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {

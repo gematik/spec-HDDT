@@ -27,10 +27,10 @@ Data which is measured by a Personal Health Device is shared with a DiGA as an _
 <div class="gem-ig-svg-container" style="width: 60%;">
   {% include HDDT_Informationsmodell_Generisch_MIV.svg %}
   </div>
-   <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Values and Devices)</em></figcaption>
+   <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Values and MIVs)</em></figcaption>
 </figure>
 
-
+_Remark: In order to keep the UML class diagrams in this section simple and easy to read, not all attributes of the FHIR resources and their HDDT profiles are shown. Only those attributes that are relevant for understanding the HDDT information model are depicted. For the full definitions of the resources please refer to the HDDT profiles in the artifact summary._
 
 Each measured data is described by:
 * a LOINC `code` that defines the kind of data, e.g. a blood sugar value measured as mass per volume. This `code` MUST be included with the value set of the MIV that is linked with the [Observation](https://hl7.org/fhir/R4/observation.html)
@@ -44,20 +44,19 @@ Beside single observation data, a Device Data Recorder MUST be able to provide a
 
 __Example:__ The __MIV__ _Continuous Glucose Measurement_ defines a HDDT __Observation Profile__ for sampled glucose measurements as performed by real-time Continuous Glucose Monitoring (rtCGM). For these devices HL7 International defines a summary report, that holds a PDF report together with coded key figures such as times in ranges, glucose management index and data quality indicators. HDDT requests Device Data Recorders to implement the machine-readable part of this HL7 report as aggregated data for the __MIV__ _Continuous Glucose Measurement_.
 
-While the aggregated data in the glucose example is a profile on top of FHIR [Observation](https://hl7.org/fhir/R4/observation.html), other __MIV__'s reports may be implemented as FHIR [DiagnosticReport]s(https://hl7.org/fhir/R4/diagnosticreport.html) or other FHIR resources.
+While the aggregated data in the glucose example is a profile on top of FHIR [Observation](https://hl7.org/fhir/R4/observation.html), other __MIV__'s reports may be implemented as FHIR [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html)s or other FHIR resources.
 
 Details on the definition of the MIV [ValueSet](https://hl7.org/fhir/R4/valueset.html)s are given at the end of this section. 
 
 ### Personal Health Device and Device Data Recorder 
 
-The part of the HDDT information model that is related to the Personal Health Device is implemented using standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the light blue box are used by the DiGA for [retrieving device data](retrieving-data.html) and data about the status and attributes of the __Personal Health Device__ from the Device Data Recorder.   
-
+The part of the HDDT information model that is related to the Personal Health Device is implemented using profiles on standard HL7 FHIR resource definitions as shown in the UML class diagram below. Instances of the classes shown in the blue box are used by the DiGA for [retrieving interoperable values](retrieving-data.html) and information about the patient's specific __Personal Health Device__ from the Device Data Recorder.   
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Informationsmodell_Generisch_DevicePart.svg %}
   </div>
-  <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Devices)</em></figcaption>
+  <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Values, Devices, and MIVs)</em></figcaption>
 </figure>
 
 Personal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. If a Personal Health Device transmits data from a non-calibrated sensor to the Health Record at all depends on the concrete product. For a DiGA to process device data in a safe manner, the DIGA must know if the data it received was gathered by a calibrated sensor or not. 
@@ -66,7 +65,7 @@ For Personal Health Devices where the sensor that measures the values requires a
 
 Example: A rtCGM sensor measures glucose values as _mg/dl_. All data is stored in the Health Record in this unit. The FHIR Resource Server on top of the Health Record provides the data only using _mg/dl_ as the unit. At the mobile app that came with the rtCGM (the rtCGM's Personal Health Gateway) the patient configured the preferred unit as _mmol/l_. Therefore, all data is calculated (by the device or the app) to _mmol/l_ before displaying it to the patient. In this example `value.unit` of the __Interoperable Value__ is _mg/dl_ while _unit_ within __Sensor Type and Calibration Status__ is _mmol/l_. The motivation for this behavior is to allow the DiGA to obtain information about the patient's preference and thus to be in sync with the medical aid by displaying measured values in the same unit.
 
-The __Sensor Type and Calibration Status__ of a measurement refers to the __Personal Health Device__ that contains the sensor. This is a many-to-one relationship which allows for a Personal Health Device to contain multiple sensors for different measured values. E.g. by this a pulseoximeter __Personal Health Device__ can provide _pulse_ and _SPO2_ as two diffferent Interoperable Values with each of these values being linked with a dedicated __Sensor Type and Calibration Status__. 
+The __Sensor Type and Calibration Status__ of a measurement refers to the __Personal Health Device__ that contains the sensor. This is a many-to-one relationship which allows for a __Personal Health Device__ to contain multiple sensors for different measured values. E.g. by this a pulseoximeter __Personal Health Device__ can provide _pulse_ and _SPO2_ as two different Interoperable Values with each of these values being linked with a dedicated __Sensor Type and Calibration Status__. 
 
 In cases where no __Sensor Type and Calibration Status__ reference is provided with the measured value, the __Interoperable Value__ directly refers to the __Personal Health Device__ (element `device`).
 
@@ -76,13 +75,13 @@ Each instance of a __Personal Health Device__ is represented by a FHIR [Device](
 * an `expirationDate` for devices which have a defined end-of-life. An example for this is an rtCGM sensor which only transmits data for 14 or 15 days (depending on the product) and after this is to be replaced by another device.
 * further `property` elements may be defined by the HDDT specification to cover specific dynamic attributes and configuration settings of specific device types, e.g. thresholds for alarms.
 
-Each __Interoperable Value__ MUST either hold a reference to a __Sensor Type and Calibration Status__ or to a __Personal Health Device__ (eXclusive OR). A reference __Sensor Type and Calibration Status__ MUST be provided from the observation if the personal health device needs to be calibrated (either automatically or by the user) or changes its calibration status over time. If no direct reference to a __Personal Health Device__ is given from the observation, the __Personal Health Device__ MUST be linked with the __Sensor Type and Calibration Status__. By this, there is always a - direct or indirect - link from any __Interoperable Value__ to the __Personal Health Device__ that originally measured this value. The reasons for this mandatory linking are:
+Each __Interoperable Value__ MUST either hold a reference to a __Sensor Type and Calibration Status__ or to a __Personal Health Device__ (eXclusive OR). A reference to a __Sensor Type and Calibration Status__ MUST be provided from the observation if the personal health device needs to be calibrated (either automatically or by the user) or changes its calibration status over time. If no direct reference to a __Personal Health Device__ is given from the observation, the __Personal Health Device__ MUST be linked with the __Sensor Type and Calibration Status__. By this, there is always a - direct or indirect - link from any __Interoperable Value__ to the __Personal Health Device__ that originally measured this value. The reasons for this mandatory linking are:
 * provenance: the DiGA can always be sure about the full chain of provenance (Personal Health Device -> Device Data Recorder -> DiGA). This information is e.g. needed when a DiGA exports data into the patient's _ePA_ (personal health record).
 * patient safety: There may be situations where a value shown in the device app differs from the same data item when shown in a DiGA, e.g. due to different rounding algorithms or data smoothing. In this cases the `serial number` provided with the __Personal Health Device__ resource allows the DiGA and the patient to verify that the processed data really originated from the patient's physical device. 
 
 ### BfArM Registries
 
-___Remark:__ The following definitions about the BfArM Registries only define the external viewpoint. The information model focusses on what kind of information manufactures of DIGA and Device Data Recorders can expect to be available at the BfArM registries. The information model does not make any assumptions on how this information will be exposed (except for the __Personal Health Device Definition__). APIs for accessing information about registered devices and DIGA will be defined by BfArM in a separate specification (see [BfArM _HIIS-API_](registries-and-zts.html#hiis-vz) and [BfArM _DiGA-VZ-API_](registries-and-zts.html#diga-verzeichnis) for details)._ 
+___Remark:__ The following definitions about the BfArM Registries only define the external viewpoint. The information model focusses on what kind of information manufactures of DiGA and Device Data Recorders can expect to be available at the BfArM registries. The information model does not make any assumptions on how this information will be exposed (except for the Personal Health Device Definition). APIs for accessing information about registered devices and DIGA will be defined by BfArM in a separate specification (see [HIIS-API](registries-and-zts.html#HIIS-VZ) and [DiGA Verzeichnis](registries-and-zts.html#DiGA-Verzeichnis) for details)._ 
 
 Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the _HIIS-VZ_ (BfArM Device Registry). This leads to a __Personal Health Device Definition__ which is exposed as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. Each __Personal Health Device__ can be linked with a __Personal Health Device Definition__ in the _HIIS-VZ_ through the `Device.definition' element.
 
@@ -95,7 +94,7 @@ As described in the section on [certification relevant systems](certification-re
 
 * __Device Data Recorder Definition__: 
   * human readable device name and name of the manufacturer of the Device Data Recorder
-  * contact data of the owner of the Device Data Recorder, e.g. to allow a DiGA manufacturer to check for testing capabilities 
+  * contact data of the owner of the Device Data Recorder
   * additional static attributes of the device data recorder platform (e.g. the frequency the Device Data Recorder's Health Record synchronizes with the Personal Health Gateway)
   * trust anchors for secure pairing and secure communications (see [Security and Privacy](security-and-privacy.html) for details)
 
@@ -105,13 +104,13 @@ As described in the section on [certification relevant systems](certification-re
   
 * __Device Data Recorder AuthZ Endpoint__:
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
-  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the device fdata recorder.
+  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the device data recorder.
 
-The links between these resources are maintained within the _HIIS-VZ_. Users of the registry can discover the Device Data Recorder's __FHIR Resource Server__ and __OAuth2 Authorization Server__ through the [BfArM Device Directory API](registries-and-zts.html#hiis-vz). 
+The links between these resources are maintained within the _HIIS-VZ_. Users of the registry can discover the Device Data Recorder's __FHIR Resource Server__ and __OAuth2 Authorization Server__ through the _[HIIS-VZ API](registries-and-zts.html#HIIS-VZ)_ (BfArM Device Registry API). 
 
 A Personal Health Device may connect to different __Device Data Recorders__. E.g. a manufacturer of a blood glucose meter may support different diabetes management platforms of different partners that can all import data from the glucose meter. Each of these solutions may have its own Personal Health Gateway and Health Record (e.g. a SmartPen that can be linked to diabetes diary apps from many different vendors). All of these Device Data Recorders must be able to provide imported blood glucose values to DiGA via the HDDT API (see [certification relevant systems](certification-relevant-systems.html)). By this there is a many-to-many relationship between Personal Health Devices and Device Data Recorders. 
 
-While DiGA use the [BfArM Device Directory API](registries-and-zts.html#hiis-vz) for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, these manufacturers of Device Data Recorders may use the [BfArM DiGA Directory API](registries-and-zts.html#diga-verzeichnis) of the BfArM _DiGA-VZ_ (DiGA Registry) for retrieving information about a DiGA that wants to connect to a devive through the HDDT API. The [BfArM DiGA Directory API](himi-diga-api.html) builds upon a __DiGA Device Definition__ which holds data that a DiGA provided to BfArM during registration with the [DiGA-VZ](https://diga.bfarm.de/de/verzeichnis). 
+While DiGA use the _[HIIS-VZ API](registries-and-zts.html#HIIS-VZ)_ for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, the manufacturers of Device Data Recorders may use the API of the BfArM _[DiGA Verzeichnis](registries-and-zts.html#DiGA-Verzeichnis)_ (BfArM DiGA Registry) for retrieving information about a DiGA that wants to connect to a devive through the HDDT API. This API builds upon a __DiGA Device Definition__ which holds data that a DiGA provided to BfArM during registration with the _[DiGA-Verzeichnis](https://diga.bfarm.de/de/verzeichnis)_. 
 
 The class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries together with connected classes. Correlations and dependencies between objects which are managed by the BfArM Registries internally are shown as functions on dotted lines. If such resolutions will be available as APIs or only via the registries' GUIs has no impact on the technical specification of the HDDT API and therefore is not part of this specification. 
 
@@ -119,7 +118,7 @@ The class diagram below shows the classes of the HDDT information model which ar
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Informationsmodell_Generisch_Device_and_Definition.svg %}
   </div>
-    <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (complete)</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>HDDT FHIR Data Model (Devices and Device Definitions)</em></figcaption>
 </figure>
 
 ### MIVs
@@ -139,12 +138,12 @@ Most of the previously introduced classes of the HDDT information model hold ref
 |-------------------------------------|--------------------|---------------------------|
 | Interoperable Value                 | The `code` element signals the _MIV_ of the value. The `code` MUST be included with the _MIV's_ value set. | `Observation.code` |
 | Personal Health Device Definition | For each registered Personal Health Device the BfArM keeps a list of the supported _MIVs_.  | _BfArM internal reference_ |
-| Device Data Recorder Definition | For each Device Data Recorder the BfArM keeps as list of the supported _MIVs_. | _BfArM internal reference_ |
-| DiGA Definition | For each DiGA the BfArM keeps as list of the _MIVs_ that this DiGA may process for its intended purposes. | _BfArM internal reference_ |
+| Device Data Recorder Definition | For each Device Data Recorder the BfArM keeps a list of the supported _MIVs_. | _BfArM internal reference_ |
+| DiGA Definition | For each DiGA the BfArM keeps a list of the _MIVs_ that this DiGA may process for its intended purposes. | _BfArM internal reference_ |
 
 All FHIR [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that represent the defined _MIVs_ are managed within the _ZTS_ (German Central Terminology Service). DiGA vendors and providers of Device Data Recorders can download all _MIV_ value sets as FHIR packages through a standard API (see section [Zentraler Terminologieserver](registries-and-zts.html#zentraler-terminologieserver) for details).
 
-The UML class diagram below shows the full HDDT information model. The resources in the light blue box are managed by the Device Data Recorder and can be accessed by DiGA via the Device Data Recorder's FHIR Resource Server. The resources in the orange box reflect the contents of the BfArM registries (Device Registry and DiGA Registry). They can be accessed by DiGA through the [BfArM Device Registry API](registries-and-zts.html#hiis-vz) and [BfArM DiGA Registry API](registries-and-zts.html#diga-verzeichnis). The green box marks the German Central Terminology Service that maintains the definitions and encodings of all _MIVs_. The [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that span the single _MIVs_ can be obtained from this service through the _[Zentraler Terminologieserver](registries-and-zts.html#zentraler-terminologieserver)_. The light yellow box holds the FHIR Observation Profiles defined for the MIVs and the FHIR profiles for aggregated reports on top of defined MIVs. These profiles will be made available by gematik on Simplifier.
+The UML class diagram below shows the full HDDT information model. The resources in the blue box are managed by the Device Data Recorder and can be accessed by DiGA via the Device Data Recorder's FHIR Resource Server. The resources in the orange box reflect the contents of the BfArM registries (Device Registry and DiGA Registry). They can be accessed by DiGA through the BfArM _[HIIS-VZ API](registries-and-zts.html#HIIS-VZ)_ and BfARM _[DiGA Verzeichnis API](registries-and-zts.html#DiGA-Verzeichnis)_. The green box marks the _[ZTS](registries-and-zts.html#Zentraler-Terminologieserver)_ (German Central Terminology Service) that maintains the definitions and encodings of all _MIVs_. The [ValueSet](https://hl7.org/fhir/R4/valueset.html) resources that span the single _MIVs_ can be obtained from this service through a standard RESTful API. The yellow box holds the FHIR Observation Profiles defined for the MIVs and the FHIR profiles for aggregated reports on top of defined MIVs. Upon final approval, these profiles will be made available by gematik on Simplifier.
 
 
 <figure>

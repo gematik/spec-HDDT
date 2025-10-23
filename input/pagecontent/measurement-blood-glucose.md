@@ -45,7 +45,7 @@ patient/DeviceMetric.rs
 ### Observation Profile _HDDT Blood Glucose Measurement_
 This section discusses the _HDDT Blood Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing blood glucose measurements. For the full normative specifiction of this profile see the respective [StructureDefinition](StructureDefinition-hddt-blood-glucose-measurement.html).
 
-#### Snapshot and Differential View of the Profile
+#### Snapshot View of the Profile
 
 <div id="tabs-key">
   <div id="tbl-key">

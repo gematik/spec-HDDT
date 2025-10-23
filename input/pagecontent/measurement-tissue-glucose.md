@@ -33,7 +33,7 @@ The figure below shows the adaption of the [HDDT Information Model](information-
 <div class="gem-ig-svg-container" style="width: 80%;">
   {% include HDDT_Informationsmodell_MIV_Cont_Glucose.svg %}
   </div>
-    <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Continuous Glucose Measurement</em></figcaption>
 </figure>
 
 All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Continuous Glucose Measurement_ only the following scopes MUST be set:
@@ -46,7 +46,7 @@ patient/DeviceMetric.rs
 ### Observation Profile _HDDT Continuous Glucose Measurement_
 This section discusses the _HDDT Continuous Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing continuous glucose measurements. For the full normative specifiction of this profile see the respective [StructureDefinition](StructureDefinition-hddt-continuous-glucose-measurement.html).
 
-#### Snapshot and Differential View of the Profile
+#### Snapshot View of the Profile
 
 <div id="tabs-key">
   <div id="tbl-key">

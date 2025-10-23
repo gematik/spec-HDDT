@@ -8,19 +8,27 @@ hide footbox
 !define BFARM #F6D7B6
 !define SPEC #FAF3C0
 
-title Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement 
+title Profiling of the HDDT Information Model for the MIV Continuous Glucose Measurement 
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
-        status = final
+        status = final | preliminary
         code : classification of the measured value [1..1]
-        date : date and time of the measurement [1..1]
-        value.value : quantity value of the measurement [1..1]
-        value.system : UCUM
-        value.unit = mg/dL|mmol/L
+        effectivePeriod : period of the measurement [1..1]
+        valueSampledData.origin.system = UCUM
+        valueSampledData.origin.code = mg/dL|mmol/L
+        valueSampledData.period : time between samples in ms [1..1]
+        valueSampledData.dimensions = 1
+        valueSampledData.data : series of measurements [1..1]
     }
+
+    class DR as "CGM Summary Report\n<<FHIR Bundle>>" {
+        code = 107931-8|LOINC "Continuous glucose monitoring summary panel"
+        date : period covered by the report
+    }
+    IV <.. DR : "based on"
 
     class Metric as "Sensor Type and Calibration Status" <<FHIR DeviceMetric>> {
         type : kind of value measured by the sensor [0..1]
@@ -33,7 +41,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
         deviceName : product name [0..1]
         manufacturer : name of the manufacturer [0..1]
         serialNumber : serial number [0..1]
-        expirationDate : end of life date [0..1]
+        expirationDate : end of communication date [0..1]
         property : additional properties [0..*]
     }
 
@@ -46,32 +54,53 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 } 
 
 package gematik as "Repository for gematik FHIR IGs" SPEC {
-    object "Observation - Blood Glucose Measurement" as OP <<FHIR StructureDefinition>> {
-        name = "HddtBloodGlucoseMeasurement"
+    object "Bundle - Summary Data Measurements" as RP <<FHIR StructureDefinition>> {
+        name = "HddtCgmSummary"
+        type = Bundle
+        baseDefinition = <<FHIR Bundle>>
+        derivation = constraint
+   }
+
+    object "Observation - Continuous Glucose Measurement" as OP <<FHIR StructureDefinition>> {
+        name = "HddtContinuousGlucoseMeasurement"
         type = Observation
         baseDefinition = <<FHIR Observation>>
         derivation = constraint
     }
 }
 
+package "HIIS-VZ (Device Registry at BfARM)" as HDDT_Registries BFARM {
 
-package ZTS as "MIV Definitions (German Central Terminology Server)" VIBW {
-    enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
+        type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property[0] = (Real-Time-Delay, ...)
+        property[1] = (Grace-Period, ...)
+        property[2] = (Historic-Data-Period, ...)
+        property[3] = (Chunk-Time-Span, ..., ...)
+    }
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum "VS MIV Continuous Glucose Measurement" as MIV  <<FHIR ValueSet>> {
         url = " https://terminologien.bfarm.de/fhir/\n           ValueSet/hddt-miv-blood-glucose-measurement"
         version = "1.0.0"
-        title = "ValueSet - Blood Glucose Measurement from LOINC"
-        name = "HddtMivBloodGlucoseMeasurement"
-        description = "therapy mgmt and clinical decisions"
-        compose.include = 2339-0|LOINC, 15074-8|LOINC, ...
+        title = "ValueSet - Continuous Glucose Measurement from LOINC"
+        name = "HddtMivContinuousGlucoseMeasurement"
+        description = "key figures and continuous monitoring"
+        compose.include = 99504-3|LOINC, 105272-9|LOINC
     }
 }
 
 'IV::code --> MIV : "included with"
 'Metric::type --> MIV : "included with"
 
-
-MIV <.. OP : "implements"
+PHD --> PHD_Def : "definition"
+MIV <.down. OP : "implements"
 IV <. OP : "defines"
 IV::code .> MIV : "included with"
+DR <. RP : "defines"
+
 
 @enduml
