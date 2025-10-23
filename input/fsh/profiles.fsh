@@ -387,12 +387,10 @@ manufacturers of glucometers.
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-09-26"
-* ^publisher = "BfArM"
-* ^contact.telecom[0].system = #email
-* ^contact.telecom[=].value = "klassi@bfarm.de"
-* ^contact.telecom[+].system = #url
-* ^contact.telecom[=].value = "https://www.bfarm.de"
-* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
 * LOINC#2339-0 "Glucose [Mass/volume] in Blood"
 * LOINC#15074-8 "Glucose [Moles/volume] in Blood"
 * LOINC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
@@ -427,12 +425,10 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * ^status = #draft
 * ^experimental = false
 * ^date = "2025-09-26"
-* ^publisher = "BfArM"
-* ^contact.telecom[0].system = #email
-* ^contact.telecom[=].value = "klassi@bfarm.de"
-* ^contact.telecom[+].system = #url
-* ^contact.telecom[=].value = "https://www.bfarm.de"
-* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
 * LOINC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
 * LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
@@ -463,7 +459,7 @@ code system and its contents remain copyrighted by ISO and IEEE.
 * ^publisher = "BfArM"
 * ^contact.telecom[0].system = #email
 * ^contact.telecom[=].value = "klassi@bfarm.de"
-* ^contact.telecom[+].system = #url
+* ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.bfarm.de"
 * ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
 * Mdc#528391 "Blood Pressure Cuff"

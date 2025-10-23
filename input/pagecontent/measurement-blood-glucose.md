@@ -78,32 +78,9 @@ For information on general constraints and terminology bindings see the full [St
 Glucometers usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the glucometer usually indicates this with a special value (e.g. "LO" or "HI"). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, the `valueQuantity.value` element MUST be set to the respective limit value and a 'valueQuantity.comparator' element MUST be added with the value `"<"` for "LO" and `">"` for "HI".
 
 Example for a blood glucose measurement below the measurable range (30 mg/dl) of the glucometer:
-```json
-{
-  "resourceType": "Observation",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "2339-0",
-        "display": "Glucose [Mass/volume] in Blood"
-      }
-    ]
-  },
-  "valueQuantity": {
-    "value": 30,
-    "comparator": "<",
-    "unit": "mg/dl",
-    "system": "http://unitsofmeasure.org",
-    "code": "mg/dL"
-  },
-  "effectiveDateTime": "2025-09-18T08:30:00+01:00",
-  "device": {
-    "reference": "DeviceMetric/12345"
-  }
-}
-```
+
+{% include Observation-example-blood-glucose-json-html.xhtml %}
+
 
 ___Remark__: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used._
 
@@ -127,31 +104,8 @@ The following object diagram the relationships between the FHIR resources involv
 
 The following code example shows the concrete JSON representation of the _HDDT Blood Glucose Measurement 1_ resource shown in the object diagram.
 
-```json
-{
-  "resourceType": "Observation",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "2339-0",
-        "display": "Glucose [Mass/volume] in Blood"
-      }
-    ]
-  },
-  "valueQuantity": {
-    "value": 120,
-    "unit": "mg/dl",
-    "system": "http://unitsofmeasure.org",
-    "code": "mg/dL"
-  },
-  "effectiveDateTime": "20250926T:16:30+02:00"
-  "device": {
-    "reference": "DeviceMetric/12345"
-  }
-}
-```
+{% include Observation-example-blood-glucose-measurement-1-json-html.xhtml %}
+
 
 ### MIV-specific Endpoints and Interactions
 #### Observation - READ
@@ -164,38 +118,14 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
 
 #### Example: FHIR-READ
 
-**Request:** GET `/Observation/obs-blood-glucose-001`
+**Request:** GET `/Observation/example-blood-glucose-measurement-2`
 
 **Description:** With FHIR-read interactions, a client can access a single resource instance by querying its internal ID. Restrictions by the OAuth scopes apply—if the client is not allowed to read this resource, a 404 error will be returned.
 
 **Response**: Returned object is a single Observation resource.
 
-```json
-{
-    "resourceType": "Observation",
-    "id": "obs-blood-glucose-001",
-    "status": "final",
-    "code": {
-        "coding": [
-            {
-            "system": "http://loinc.org",
-            "code": "2339-0",
-            "display": "Glucose [Mass/volume] in Blood"
-            }
-        ]
-    },
-    "effectiveDateTime": "2025-08-28T10:00:00Z",
-    "valueQuantity": {
-        "value": 120,
-        "unit": "mg/dl",
-        "system": "http://unitsofmeasure.org",
-        "code": "mg/dL"
-    },
-    "device": {
-        "reference": "DeviceMetric/67"
-    }
-}
-```
+{% include Observation-example-blood-glucose-measurement-2-json-html.xhtml %}
+
 
 ### Example: FHIR-Search for specific LOINC code
 
@@ -227,7 +157,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
                 },
                 "effectiveDateTime": "2025-08-20T07:05:02.165Z",
                 "valueQuantity": {
-                    "value": 301,
+                    "value": 201,
                     "unit": "mg/dl",
                     "system": "http://unitsofmeasure.org",
                     "code": "mg/dL"
@@ -306,7 +236,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
                 },
                 "effectiveDateTime": "2025-08-20T07:05:02.165Z",
                 "valueQuantity": {
-                    "value": 301,
+                    "value": 201,
                     "unit": "mg/dl",
                     "system": "http://unitsofmeasure.org",
                     "code": "mg/dL"
@@ -338,7 +268,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
                         {
                             "system": "http://unitsofmeasure.org",
                             "code": "mg/dL",
-                            "display": "milligram per deciliter"
+                            "display": "mg/dL"
                         }
                     ]
                 },
