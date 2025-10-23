@@ -56,7 +56,7 @@ deactivate H
 deactivate V
 
 == DiGA loses authorization for interface acc. § 374a SGB V ==
-M -> ZD: Retrieve status (DiGA-ID/client_id)
+M -> ZD: Retrieve status of DiGA (DiGA-ID/client_id)
 activate M
 activate ZD
 alt DiGA retired
@@ -95,7 +95,7 @@ deactivate V
 
 == Device Data Recorder no longer offers interface acc. § 374a SGB V ==
 ref over M, H : Device Data Recorder informs the patient
-M -> ZH: Retrieve status of Device Data Recorder
+M -> ZH: Retrieve status of Device Data Recorder (Device Data Recorder ID)
 activate M
 activate ZH
 alt Device Data Recorder retired
