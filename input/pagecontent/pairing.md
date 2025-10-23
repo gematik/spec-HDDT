@@ -76,7 +76,7 @@ document as defined in [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414). Only 
 
 #### Consent for Fine-Grained Access
 
-The Device Data Recorder's OAUth2 Authorization Server is responsible for displaying and managing the patient’s consent. During the pairing process, the server MUST present a consent dialogue to the patient that clearly lists all requested data
+The Device Data Recorder's OAuth2 Authorization Server is responsible for displaying and managing the patient’s consent. During the pairing process, the server MUST present a consent dialogue to the patient that clearly lists all requested data
 categories represented by SMART scopes.
 
 The consent dialogue MUST display the requested access rights in a human-readable and comprehensible form. Each SMART
