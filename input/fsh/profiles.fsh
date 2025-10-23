@@ -413,7 +413,7 @@ The MIV _Continuous Glucose Measurement_ covers values from continuous monitorin
 by rtCGM in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to 
 one value per minute. By this _Continuous Glucose Measurement_ can e.g. be used to assess dependencies between a 
 patient's individual habits and behavious and his glucose level. Due to the high density of values over a long period 
-of time, many key figures can be derived from _Continuous Glucose Measurement_ which help the patient and 
+of time, many key metrics can be calculated from _Continuous Glucose Measurement_ which help the patient and 
 his doctor to easily capture the status of the patient's health and therapy.
 
 The ValueSet for the MIV _Continuous Glucose Measurement_ includes codes relevant to continuous glucose 

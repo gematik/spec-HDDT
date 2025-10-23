@@ -21,8 +21,8 @@ Examples of SMART scopes:
 
 | SMART Scope                                                                                                                | Description                                                                                                      |
 |----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| `patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/ValueSet-hddt-miv-blood-glucose-measurement`  | Read and Search access to all blood glucose observations of a patient, limited by a ValueSet published by BfArM. |
-| `patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/ValueSet-hddt-miv-blood-pressure-measurement` | Read and Search access to all blood pressure observations of a patient, including systolic and diastolic values. |
+| `patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement`  | Read and Search access to all blood glucose observations of a patient, limited by a ValueSet published on _ZTS_. |
+| `patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-measurement` | Read and Search access to all blood pressure observations of a patient, including systolic and diastolic values. |
 | `patient/Device.rs`                                                                                                        | Read and Search access to device resources of a patient.                                                         |
 | `patient/DeviceMetric.rs`                                                                                                  | Read and Search access to measurement configurations of a patient.                                               |
 

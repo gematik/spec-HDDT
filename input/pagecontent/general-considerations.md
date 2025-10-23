@@ -80,7 +80,7 @@ the Health Record on the backend system. The HDDT specification MUST NOT affect 
   interface)
 * how the Personal Health Gateway handles data from uncalibrated devices (e.g. whether this data is sent to the Health
   Record or not)
-* which specific algorithms the _Device Data Recorder_ uses to calculate key figures (e.g. whether an rtCGM includes
+* which specific algorithms the _Device Data Recorder_ uses to calculate key metrics (e.g. whether an rtCGM includes
   data from its warm-up phase when calculating therapeutic key values such as the Glucose Management Index)
 * whether and how the Personal Health Gateway pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
   curves)
@@ -103,10 +103,10 @@ always have their own definitions of the [FHIR Observation resource](https://hl7
 ensures that future changes affecting one data type do not impact manufacturers of devices for other domains.
 
 § 374a SGB V requires that aggregated data MUST also be made available through the HDDT interface. In HDDT,
-this requirement is limited to data that can be calculated from the MIVs provided by the medical aid. For example, an
-rtCGM only MUST provide derived values that can be computed from its continuous glucose
+this requirement is limited to aggregated data that can be calculated from the MIVs provided by the medical aid. For example, an
+rtCGM only MUST provide aggregated values that can be computed from its continuous glucose
 measurements ([MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)). To reduce the workload for
-Health Record manufacturers, derived data MUST be provided as standardized reports whenever it is calculated over a
+Health Record manufacturers, aggregated data MUST be provided as standardized reports whenever it is calculated over a
 period of time. A DiGA therefore SHALL NOT request a single metric, such as the number of hypoglycemias, but instead
 MUST retrieve the full report (e.g. the Ambulatory Glucose Profile (AGP)). Where possible, HDDT adopts existing
 specifications for such reports unchanged — for rtCGM data, this includes

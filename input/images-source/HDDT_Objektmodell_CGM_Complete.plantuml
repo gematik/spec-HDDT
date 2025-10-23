@@ -8,80 +8,57 @@ hide footbox
 !define BFARM #F6D7B6
 !define SPEC #FAF3C0
 
-title HDDT Object Model Example (Blood Glucose Measurement)
+title HDDT Object Model Example (Continuous Glucose Measurement)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's Request for Device Data" MANUFACTURER {
 
-    object "Blood Glucose Measurement 2" as IV2 <<Observation Blood Glucose>> {
+    object "CGM-1" as IV1 <<Observation Continuous Glucose Measurement>> {
         status = final
-        code = 2339-0|LOINC "Blood Glucose"
-        date = 20250926:1630+0200
-        value = 129 mg/dL
+        code = 99504-3|LOINC "Glucose [Mass/volume] in Interstitial fluid"
+        effectivePerid = 2025-09-26T16:00:00Z - 2025-09-26T16:59:59Z
+        valueSampledData.origin.system = UCUM
+        valueSampledData.origin.code = mg/dL|mmol/L
+        valueSampledData.period : 300000 ms
+        valueSampledData.dimensions = 1
+        valueSampledData.data = 123 122 126 134 129 128 130 131 129 127 127 133
     }
 
-    object "Blood Glucose Measurement 1" as IV1 <<Observation Blood Glucose>> {
-        status = final
-        code = 2339-0|LOINC "Blood Glucose"
-        date = 20250926:1200+0200
-        value = 120 mg/dL
+    object "CGM-2" as IV2 <<Observation Continuous Glucose Measurement>> {
+        status = preliminary
+        code = 99504-3|LOINC "Glucose [Mass/volume] in Interstitial fluid"
+        effectivePerid = 2025-09-26T17:00:00Z - 2025-09-26T17:59:59Z
+        valueSampledData.origin.system = UCUM
+        valueSampledData.origin.code = mg/dL|mmol/L
+        valueSampledData.period : 300000 ms
+        valueSampledData.dimensions = 1
+        valueSampledData.data = 135 118 126 122 
+    }
+
+    class DR as "CGM Summary Report\n<<FHIR Bundle>>" {
+        code = 107931-8|LOINC "Continuous glucose monitoring summary panel"
+        date : period covered by the report
     }
 
     object "Glucose Sensor Type and Calibration Status" as Metric <<FHIR DeviceMetric>> {
-        type = 29112|iso:11073:10101
+        type = 29140|iso:11073:10101
         unit = mg/dL|UCUM
         calibration.state = calibrated
     }
 
-    object "Glucose Meter" as PHD <<FHIR Device>> {
+    object "rtCGM" as PHD <<FHIR Device>> {
         status = active
-        type = 528401|iso:11073:10101
-        deviceName = "GlukkoCheck plus mg/dl"
+        type = 528409|iso:11073:10101
+        deviceName = "GlukkoCGM 18"
         manufacturer = "Glukko Inc."
-        serialNumber = "SN123456
+        serialNumber = "CGM1234567890
     }
 
     IV2 --> Metric : "device"
     IV1 --> Metric : "device"
+    DR --> PHD : "entry:Observation.device"
     Metric -> PHD : "source"
 }
 
-package "Repository for gematik FHIR IGs" as gematik SPEC {
-    object "Observation - Blood Glucose Measurement" as OP <<FHIR StructureDefinition>> {
-        name = "HddtBloodGlucoseMeasurement"
-        type = Observation
-        baseDefinition = <<FHIR Observation>>
-        derivation = constraint
-    }
-}
-
-package "ZTS (German Central Terminology Server)" as ZTS VIBW {
-    enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
-        url = " https://terminologien.bfarm.de/fhir/\n           ValueSet/hddt-miv-blood-glucose-measurement"
-        version = "1.0.0"
-        title = "ValueSet - Blood Glucose Measurement from LOINC"
-        name = "HddtMivBloodGlucoseMeasurement"
-        description = "therapy mgmt and clinical decisions"
-        compose.include = 2339-0|LOINC, 15074-8|LOINC, ...
-    }
-}
-
-package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
-
-    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
-        type = 528401|iso:11073:10101
-        deviceName = "GlukkoCheck plus mg/dl"
-        manufacturer = "Glukko Inc."
-        property[0] = (Store-Capacity-Count, 200)
-        property[1] = (Real-Time-Delay, 15 minutes)
-        property[2] = (Grace-Period, 15 minutes)
-        property[3] = (Historic-Data-Period, 90 days)
-    }
-}
-
-PHD --> PHD_Def : "definition"
-MIV <.up. OP : "implements"
-IV1 <. OP : "defines"
-IV1::code ..> MIV : "included with"
 
 @enduml
