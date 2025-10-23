@@ -147,12 +147,12 @@ pages:
   authorization-server-revocation-endpoint.html:
     title: Revocation Endpoint
     generation: markdown
-  general-considerations-deprecated.html:
-    title: General Considerations (DEPRECATED)
-    generation: markdown
-  _deprecated_participants.html:
-    title: Participants (DEPRECATED)
-    generation: markdown
+  # general-considerations-deprecated.html:
+  #   title: General Considerations (DEPRECATED)
+  #   generation: markdown
+  # _deprecated_participants.html:
+  #   title: Participants (DEPRECATED)
+  #   generation: markdown
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

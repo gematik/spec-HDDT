@@ -9,8 +9,8 @@ HDDT defines specific profiles for Observation resources for each Mandarory Inte
 Nevertheless all Observation profiles share common characteristics and the same basic API interactions. This chapter describes these generic interactions in detail. For a better understanding of the overall data flow and the difference between dedicated and continuous measurements, refer to chapter [Retrieving Data](retrieving-data.html).
 
 To comply with § 374a SGB V, every Device Data Recorder MUST implement an Observation endpoint that allows for: 
-- [reading](#device---read) individual Observation resources.
-- [searching](#device---search) for Observation resources associated with the current patient and an authorised MIV. 
+- [reading](#observation---read) individual Observation resources.
+- [searching](#observation---search) for Observation resources associated with the current patient and an authorised MIV. 
 
 
 ### Endpoints
@@ -27,12 +27,12 @@ Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection
 | **Request Parameters** | `id` - logical ID of the Observation. |
 | **Authorization** | OAuth2 Bearer token required. The resource server MUST only return a Observation resource that is linked to the patient who is associated with the token. Provided Device resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html)).  |
 | **Returned Objects** | MIV-specific HDDT Observation resource. |
-| **Specifications** | The only ways for a DiGA to obtain the logical `id` of an Observation resource is a 'search' interaction for device data of the given patient (see [searching](#device---search) below). <br>A Device Data Recorder MAY limit access to historical data (e.g. only up to 30 days into the past). In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error. A DiGA can discover the length of this period through the `Historic-Data-Period` property of definition of the associated Device resource. <br>If a requesting DiGA can only process high quality device data, it SHOULD assess the calibration status of the device that can be obtained through the [DeviceMetric)](fhir-api-devicemetric.html) resource which is accessible through the `Observation.device` reference. If the `Observation.device` reference links to a Device Resource instead of a DeviceMetric resource, the DiGA MUST consider the device to be calibrated without any need for re-calibration. |
+| **Specifications** | The only ways for a DiGA to obtain the logical `id` of an Observation resource is a 'search' interaction for device data of the given patient (see [searching](#observation---search) below). <br>A Device Data Recorder MAY limit access to historical data (e.g. only up to 30 days into the past). In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error. A DiGA can discover the length of this period through the `Historic-Data-Period` property of definition of the associated Device resource. <br>If a requesting DiGA can only process high quality device data, it SHOULD assess the calibration status of the device that can be obtained through the [DeviceMetric)](fhir-api-devicemetric.html) resource which is accessible through the `Observation.device` reference. If the `Observation.device` reference links to a Device Resource instead of a DeviceMetric resource, the DiGA MUST consider the device to be calibrated without any need for re-calibration. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>•`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>•`500` (Internal Server Error—may be either an OperationOutcome or plain text) |
 
 ---
 
-#### Observation - SEARCH 
+#### Observation - SEARCH
 
 ##### Implicit Arguments
 
@@ -71,7 +71,7 @@ With continuous measurements the patient is connected to a sensor (almost) all t
 
 For HDDT Observation Profiles that cover continuous measurements there are some constraints and obligation with respect to the generic search interaction defined above:
 
-- Values from continuous measurements MUST be provided as chunks of [sampledData](/https://hl7.org/fhir/R4/datatypes.html#SampledData), where each chunk of data is represented as an [Observation](https://hl7.org/fhir/R4/observation.html). Chunks are of fixed size with respect to the `effectivePeriod`. E.g. a chuck with a fixed size of one hour can hold up to 60 values with a sampling frequency of one value per minute. The size of a chunk MUST be registered with the _HIIS-VZ_ (BfArM Device Registry) and can be obtained from there through the definition of the device. 
+- Values from continuous measurements MUST be provided as chunks of [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData), where each chunk of data is represented as an [Observation](https://hl7.org/fhir/R4/observation.html). Chunks are of fixed size with respect to the `effectivePeriod`. E.g. a chuck with a fixed size of one hour can hold up to 60 values with a sampling frequency of one value per minute. The size of a chunk MUST be registered with the _HIIS-VZ_ (BfArM Device Registry) and can be obtained from there through the definition of the device. 
 - In a query for continuously measured data results in multiple chunks, each chunk's `Observation.effectivePeriod` MUST be of the defined fixed size. The last chunk MAY hold less data than fits to the chunk. In this case the `Observation.status` of the chunk MUST be set to _preliminary_ (see [Retrieving Data](retrieving-data.html#continuous-measurements) for details). A DiGA MAY use the logical `id` of the last chunk to request this chunk again later in order to obtain the missing data.
 - The only exceptions to the fixed chunk size are changes to the `calibration.state` or a change of the personal health device. In these cases a chunk's `Observation.effectivePeriod` can be shorter than the fixed chunk size (see [Retrieving Data](retrieving-data.html#change-of-calibrationstatus) for details). The status of the chunk MUST be set to _final_ in this case.
 

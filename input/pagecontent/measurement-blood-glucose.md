@@ -1,10 +1,10 @@
 
 This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Blood Glucose Measurement_.  
 
-This chapter builds on the [HDDT Information Model](information-model-html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
-- The relevant FHIR profile for blood glucose measurement and how it constraints and extends the [HDDT Information Model](information-model-html)
+- The relevant FHIR profile for blood glucose measurement and how it constraints and extends the [HDDT Information Model](information-model.html)
 - Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
 - Example requests and responses to support implementation
 
@@ -21,12 +21,12 @@ Further obligations MAY be defined by gematik and BfArM as part of the upcoming 
 ### FHIR Resource Server
 The Device Data Recorder's FHIR Resource Server gives DiGA access to measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Blood Glucose Measurement_ MUST implement the following endpoints and profiles:
 
-* retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](use_of_hl7_fhir.html#metadata-endpoint).
-* HDDT common RESTful interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](himi-diga-api.html#devicemetric).
-* HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](himi-diga-api.html#device).
+* retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](fhir-api-metadata.html).
+* HDDT common RESTful interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-devicemetric.html).
+* HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
 * MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Glucose Measurement_. The full specifications are given below.
 
-The figure below shows the adaption of the [HDDT Information Model](information-model-html) for the MIV _Blood Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
+The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 80%;">
@@ -116,7 +116,7 @@ This specification makes no assumption, on how the manufacturers of the Personal
 
 #### Examples
 
-The following object diagram the relationships between the FHIR resources involved in representing blood glucose measurements according to the [HDDT Information Model](information-model-html) and the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram the relationships between the FHIR resources involved in representing blood glucose measurements according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
