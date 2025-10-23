@@ -1,6 +1,6 @@
 ### Definitions
 
-__The service__ refers to the totality of services provided by the [Device Data Recorder](logical-viewpoints.html#logical-building-blocks) in order to implement the HDDT interface as defined in this specification. This particularly includes the API endpoints of the [OAuth2 Authorization Server](authorization-server.html) and the [FHIR Resource Server](himi-diga-api.html).
+In the following sections __the service__ refers to the totality of services provided by the [Device Data Recorder](logical-viewpoints.html#logical-building-blocks) in order to implement the HDDT interface as defined in this specification. This particularly includes the API endpoints of the [OAuth2 Authorization Server](authorization-server.html) and the [FHIR Resource Server](himi-diga-api.html).
 
 __The provider__ refers to the entity that controls the service.
 

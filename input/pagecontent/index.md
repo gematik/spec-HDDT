@@ -1,24 +1,23 @@
-[§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html) requests vendors of medical aids and implants to provide medical device data for Digitale Gesundheitsanwendungen (DiGA: authorized digital health applications) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
+[§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html) requests vendors of _medical aids_ and _implants_ (see [Glossary](glossary.html)) to provide medical device data for _Digitale Gesundheitsanwendungen_ (DiGA: authorized digital health applications) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT) implementation guide, which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
 
 ### Content
 The HDDT implementation guide includes requirements for: 
-* Ensuring data interoperability between DiGA and medical aids/implants through interfaces and profiles based on HL7 FHIR
-* Patient-initiated authorisation of the DiGA to retrieve health data from the utilised medical aid/implant
+* Ensuring data interoperability between _DiGA_ and _medical aids/implants_ through interfaces and profiles based on HL7 _FHIR_
+* Patient-initiated authorisation of the _DiGA_ to retrieve health data from the utilised _medical aid/implant_
 * Management of authorisation by the patient
-* Retrieval of information necessary for a DiGA to use the interfaces
-* Retrieval of information necessary for a medical aid/implant to provide the interfaces
-* Confidential transmission of health data from the medical aid/implant to a DiGA based on a user's pseudonym
-* Verifiability of the authenticity of DiGA and medical aid/implants
+* Retrieval of information necessary for a _DiGA_ to use the interfaces
+* Retrieval of information necessary for a _medical aid/implant_ to provide the interfaces
+* Confidential transmission of health data from the _medical aid/implant_ to a _DiGA_ based on a user's pseudonym
+* Verifiability of the authenticity of _DiGA_ and _medical aid/implants_
 * Evidence and traceability of the operational functionality of the interface
 
 Out-of-Scope for the HDDT implementation guide are:
-* Identification and authentication of the patient vis-à-vis a DiGA or a medical aid/implant (manufacturer-specific)
-* Process for identification of API endpoints
-* Definition of a DiGA/medical aid API for front-ends (manufacturer-specific)
-* Protection of health data storage or health data processing within a DiGA or a medical device (manufacturer-specific)
+* Identification and authentication of the patient vis-à-vis a _DiGA_ or a _medical aid/implant_ (manufacturer-specific)
+* Definition of a _DiGA/medical aid/implant API_ for front-ends (manufacturer-specific)
+* Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected medical aid, implant and DiGA manufacturers as well as other stakeholders. The parts describing the pairing mechanism between DiGA and medical aid or implant for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](roadmap.html).
+The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected _medical aid_, _implant_ and _DiGA_ manufacturers as well as other stakeholders. The parts describing the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](roadmap.html).
 
 ### Contact and feedback
 Please submit questions and comments about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16) __until 30.11.2025__.
