@@ -1,13 +1,14 @@
 
-The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide the following types of data to DiGA:
+The legal requirements specify that a medical aid or implant must be able to provide the following types of data to DiGA:
 
 * measurement data collected by the personal health device,
-* derived or aggregated data,
+* aggregated data,
 * therapy plans and configurations stored in the device.
 
-For the first implementation stage of HDDT, only measurement data collected by medical aids and the related calculated metrics will be considered.
-
-___Note__: During the analysis of HDDT use cases, possible options were discussed for making therapy settings stored as configurations in devices such as insulin pumps or respiratory devices accessible to DiGA. However, due to the heterogeneity and diversity of possible settings, and the difficulty of mapping them in a coded and standardized way to efficiently processable FHIR resources, gematik and the Federal Ministry of Health decided to initially exclude this topic from HDDT. Therefore, configuration data for the analyzed medical aids are only considered if they are directly linked to the provision of measurement data and can be represented as simple attribute–value pairs._
+For the first implementation stage of HDDT, only 
+* measurement data collected by medical aids and 
+* aggregated data in the form of calculated metrics 
+will be considered.
 
 This section describes the fundamental mechanisms for exchanging measurement data and metrics. For measurement data, both single measurements and continuously collected time series are considered.
 
@@ -56,6 +57,8 @@ GET [base]/Observation?date=gt20250912&subject=Patient/123&code:in=https://termi
 ```
 <hr>
 
+___Remark__: The MIV ValueSets will be published on the ZTS (https://terminologien.bfarm.de) after the final approval of this specification. By now the ValueSets can only be found in the [ValueSet section](artifacts.html#terminology-value-sets) of this specifications's artifact summary._
+
 A DiGA MAY further constrain the kind of requested values by providing one or more `code` arguments with the search request. In this case only [Observation](https://hl7.org/fhir/R4/observation.html) resources are returned, where the contained data exactly matches the given codes.
 
 Example: If no `code` argument is given, the data recorder of a blood glucose meter will respond to a query for blood glucose data with all glucose values regardless of the unit (e.g. _mg/dl_ and _mmol/l_). If the LOINC code `2339-0` (_Glucose [Mass/volume] in Blood_) is given as a `code` argument, the device recorder will only respond with values that were measured in blood and which are available as _mg/dl_.
@@ -95,7 +98,7 @@ Every Device Data Recorder holds information about its static attributes as part
 |----------------------|-------|------------|----------|
 | Store-Capacity-Count | number of measured values that can be stored locally with the sensor | MUST | In cases where the sensor cannot synchronize with the Personal Health Gateway (e.g. due to connection failures) data gets lost if the amount of measured data since the last synchronization exceeds _Store-Capacity-Count_ |
 | Historic-Data-Period | minimum number of days historic data is available at the Device Data Recorder | MUST | If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder MAY respond with an error. _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
-| Delay-From-Real-Time | minimum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
+| Delay-From-Real-Time | aximum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record under normal operational conditions. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
 | Grace-Period | Time span a DiGA must wait between two requests for the same patient's data. | MUST | A Device Data Recorder MAY reject a new request that is issued before the end of this time span. | 
 | Chunk-Time-Span      | size of a chunk for sharing sampled data (see below) | MUST if applicable | This property is only applicable for Device Data Recorders that provide Observation values as sampled data |  
 
@@ -190,7 +193,7 @@ This gets more complex if the status of the sensor changes. The figure below is 
 As shown with the example, a calibration of a sensor leads to an update to the sensor's `DeviceMetric` resource. The Device Data Recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer. 
 
 ##### Missing Values with Dedicated Measurements
-A response of the Device Data Recorder to a query for dedicated measurements MAY be incomplete in a way that there MAY be more data available for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The Device Data Recorder MUST respond with all data that is available at the time of the request, but there MAY be more data available that was measured a short time before the request, but not yet transmitted to the Device Data Recorder. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Personal Health Device's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
+A response of the Device Data Recorder to a query for dedicated measurements MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The Device Data Recorder MUST respond with all data that is available at the time of the request, but there MAY be more data available that was measured a short time before the request, but not yet transmitted to the Device Data Recorder. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Personal Health Device's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
 
 Missing data MAY even occur if the connection between the Personal Health Device and the Personal Health Gateway or between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A DiGA can detect this situation by reading the Device resource and checking the `status` element. If the `status` of the device is _unknown_, the DiGA SHOULD assume that data is missing and may be available later.
 
@@ -262,7 +265,7 @@ Personal Health Devices MAY require a Personal Health Device of another type to 
 In contrast to a change of `calibration.state`, a change of the Personal Health Device MUST always result in a new Device resource with a new `id`. 
 
 ##### Missing Values with Continuous Measurements
-A response of the Device Data Recorder to a query for continuously measured data MAY be incomplete in a way that there MAY be more data available for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The most common case is that a DiGA requests for data that was measured very recently (e.g. within the last hour). The Device Data Recorder MAY respond with all data that is available at the time of the request, but there MAY be more data being in transmission from the Personal Health Device to the Health Record. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Personal Health Device's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
+A response of the Device Data Recorder to a query for continuously measured data MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The most common case is that a DiGA requests for data that was measured very recently (e.g. within the last hour). The Device Data Recorder MAY respond with all data that is available at the time of the request, but there MAY be more data being in transmission from the Personal Health Device to the Health Record. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Personal Health Device's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
 
 Missing data MAY even occur if the connection between the Personal Health Device and the Personal Health Gateway or between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A Device Data Recorder MUST signal this kind of missing data by setting the `status` of the [Observation](https://hl7.org/fhir/R4/observation.html) resource that holds the chunk to _preliminary_ with the `effectivePeriod` covering the full _chunk-time-span_. 
 
@@ -287,9 +290,9 @@ end
 
 ```
 
-### Querying for Aggregated or Calculated Data
+### Querying for Aggregated Data
 
-The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated or calculated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide derived key figures that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant key figures, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. 
+The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide key metrics that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant key metrics, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. 
 
 As far as available and usable, these reports represent existing specifications. For rtCGM data, for example, the specification of a [CGM Summary Observation from HL7 International](https://github.com/HL7/cgm) is adopted unchanged. In order to be as flexible as possible for future MIVs, the specification does not limit the reports to a certain FHIR resource definition. This allows for adopting standard FHIR IGs for standardized reports regardless if they are provided as FHIR Observations, DiagnosticReports or any other kind of DomainResource. 
 
