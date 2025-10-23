@@ -6,7 +6,7 @@ The HDDT implementation guide includes requirements for:
 * Patient-initiated authorisation of the DiGA to retrieve health data from the utilised medical aid/implant
 * Management of authorisation by the patient
 * Retrieval of information necessary for a DiGA to use the interfaces
-* Retrieval of information necessary for a medical aid/implant to use the interfaces
+* Retrieval of information necessary for a medical aid/implant to provide the interfaces
 * Confidential transmission of health data from the medical aid/implant to a DiGA based on a user's pseudonym
 * Verifiability of the authenticity of DiGA and medical aid/implants
 * Evidence and traceability of the operational functionality of the interface
@@ -18,18 +18,17 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a DiGA or a medical device (manufacturer-specific)
 
 ### About the current version
-The current __ballot version__ aims for the validation of the technical concept and specificatory aspects with affected medical aid, implant and DiGA manufacturers as well as other stakeholders. The parts describing the pairing mechanism between DiGA and medical aid or implant for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this Draft version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](Roadmap.html).
+The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected medical aid, implant and DiGA manufacturers as well as other stakeholders. The parts describing the pairing mechanism between DiGA and medical aid or implant for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](Roadmap.html).
 
 ### Contact and feedback
-Please submit questions and comments via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16) until 30.11.2025.
+Please submit questions and comments about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16) __until 30.11.2025__.
 
 If you do not have access to the request portal and would like to use it, please send us a message to hddt [at] gematik.de with the subject “Portal access”.
 
-### License Information
-This implementation guide is published under the __XXXXX__ license. 
-
 ### Copyrights
-The HDDT Implementation Guide includes IP covered under the following statements.
+This IG is created and maintained by [gematik GmbH](https://www.gematik.de).
+
+It includes IP covered under the following statements:
 
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. https://ucum.org/trac/wiki/TermsOfUse
 * Mandatory Interoperable Values are expressed through content from LOINC. LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license provided at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
