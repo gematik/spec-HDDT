@@ -5,7 +5,7 @@ To be compliant with § 374a SGB V, a Device Data Recorder MUST implement intera
 - [version specific reading](#devicemetric---vread) individual DeviceMetric resources that are referenced by Observations. This interaction MAY be omitted by a Device Data Recorder if it does not support versioning of DeviceMetrc resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor). 
 - [searching](#devicemetric---search) for DeviceMetric resources linked with the current patient and an authorised MIV
 
-Returned resources MUST conform to the [_HDDT Sensor Type and Calibration Status_](#profile---hddt-sensor-type-and-calibration-status]) DeviceMetric profile.
+Returned resources MUST conform to the [_HDDT Sensor Type and Calibration Status_](#profile---hddt-sensor-type-and-calibration-status) DeviceMetric profile.
 
 
 ---
