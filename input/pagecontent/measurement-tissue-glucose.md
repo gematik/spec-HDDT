@@ -80,47 +80,8 @@ Real-Time Continuous Glucose Monitoring devices (rtCGM) usually have lower and u
 
 Example for a blood glucose measurement below the measurable range (35 mg/dl) of the rtCGM:
 
-```json
-{
-  "resourceType": "Observation",
-  "id" : "example-cgm-series",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "99504-3",
-        "display": "Glucose [Mass/volume] in Interstitial fluid"
-      }
-    ]
-  },
-  "effectivePeriod" : {
-    "start" : "2025-08-28T08:00:00Z",
-    "end" : "2025-08-28T09:00:00Z"
-  },
-  "valueSampledData": {
-    "origin" : {
-      "value" : 0,
-      "unit" : "mg/dl",
-      "system" : "http://unitsofmeasure.org",
-      "code" : "mg/dL"
-    },
-    "period" : 60000,
-    "dimensions" : 1,
-    "lowerLimit" : 35,
-    "upperLimit" : 360,
-    "data" : "110 111 112 113 114 115 116 117 118 119 
-              120 121 122 123 124 125 126 127 128 129 
-              130 129 128 127 126 125 124 123 122 121 
-              116 112 102  98  90  86  82  77  72  67 
-               60  55  52  48  44  40  36   L   L   L 
-               37  40  45  45  48  53  60  64  70  76" 
-  },
-  "device": {
-    "reference": "DeviceMetric/12345"
-  }
-}
-```
+{% include Observation-example-cgm-series-json-html.xhtml %}
+
 
 ___Remark__: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used._
 
@@ -135,44 +96,15 @@ If temporarely missing data affects only the last chunk in a response, the avail
 
 The following example shows a chunk of data where onlythe first 20 minutes of the chunk period are filled with data. The remaining 40 minutes of the chunk period are missing. 
 
-```json
-{
-  "resourceType": "Observation",
-  "id" : "example-cgm-chunk-1",
-  "status": "preliminary",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "99504-3",
-        "display": "Glucose [Mass/volume] in Interstitial fluid"
-      }
-    ]
-  },
-  "effectivePeriod" : {
-    "start" : "2025-08-28T08:00:00Z",
-    "end" : "2025-08-28T09:00:00Z"
-  },
-  "valueSampledData": {
-    "origin" : {
-      "value" : 0,
-      "unit" : "mg/dl",
-      "system" : "http://unitsofmeasure.org",
-      "code" : "mg/dL"
-    },
-    "period" : 60000,
-    "dimensions" : 1,
-    "data" : "110 111 112 113 114 115 116 117 118 119 
-              120 121 122 123 124 125 126 127 128 129"
-  },
-  "device": {
-    "reference": "DeviceMetric/12345"
-  }
-}
-``` 
+{% include Observation-example-cgm-series-incomplete-json-html.xhtml %}
+
 A DiGA that receives such a chunk MAY use the logical `id` with consecutive _read_ interactions to just obtain the temporarely missig data. 
 
 A receiving DiGA SHOULD validate, that the unit defined in `valueSampledData.origin.code` matches the UCUM unit of the LOINC code in the `code` element. If the unit does not match, the DiGA MUST NOT use the value for any calculations or display.
+
+The following additional example illustrates a case where no data is available for the requested period. In this case, `valueSampledData` is omitted and the Observation explicitly indicates the reason for missing data using `dataAbsentReason = temp-unknown` and sets `status = preliminary`.
+
+{% include Observation-example-cgm-series-data-unavailable-json-html.xhtml %}
 
 This specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle data from uncalibrated devices. If such data is provided by the Device Data Recorder, the `device` element MUST reference a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that indicates the calibration status of the sensor. If the `device` element does not reference a DeviceMetric resource, the DiGA MUST assume that the provided data originates from a calibrated sensor.  
 
@@ -190,12 +122,7 @@ Elements that are not mandatory oder MS for the MIV _Contiuous Glucose Measureme
 </figure>
 The following code example shows the concrete JSON representation of the _HDDT Continuous Glucose Measurement 1_ resource shown in the object diagram.
 
-```json
-{
-  "resourceType": "Observation",
-  "status": "final",
-}
-```
+{% include Observation-example-cgm-series-1-json-html.xhtml %}
 
 
 

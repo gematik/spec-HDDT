@@ -30,6 +30,14 @@ dependencies:
   hl7.fhir.uv.cgm: 1.0.0
 
 parameters:
+  no-narrative:
+    - "Bundle/*"
+    - "Observation/*"
+    - "Device/*"
+    - "DeviceMetric/*"
+    - "DeviceDefinition/*"
+    - "Patient/*"
+    - "OperationOutcome/*"
   show-inherited-invariants: true
   # in order to preserve the version of the resources:
   apply-version: true

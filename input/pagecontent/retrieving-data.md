@@ -141,32 +141,8 @@ will return a Bundle of type _searchset_ that contains all [Observation](https:/
 
 In general, HDDT only requests a minimum of data elements to be mandatory with an [Observation](https://hl7.org/fhir/R4/observation.html) resource that reflects a single measurement. The example below is based on the HDDT FHIR implementation guideline for the MIV _Blood Glucose Measurement_. 
 
-```
-{
-  "resourceType": "Observation",
-  "id": "345720845ad235ee32",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "2339-0",
-        "display": "Glucose [Mass/volume] in Blood"
-      }
-    ]
-  },
-  "effectiveDateTime": "2025-09-02T09:30:00+01:00",
-  "valueQuantity": {
-    "value": 132,
-    "unit": "mg/dl",
-    "system": "http://unitsofmeasure.org",
-    "code": "mg/dL"
-  },
-  "device": {
-    "reference": "DeviceMetric/dm234788148233190"
-  },
-}
-```
+{% include Observation-example-blood-glucose-measurement-1-json-html.xhtml %}
+
 As the information on the time and result of the measurement is a rather straight-forward adoption of the FHIR standard, some HDDT-specific conventions have to be considered with the `device` reference (see above). The figure below shows a simple interplay of measured data ([Observation](https://hl7.org/fhir/R4/observation.html)), sensor status ([DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html)), and device configuration ([Device](https://hl7.org/fhir/R4/device.html)), e.g. in response for a query for all blood glucose data that was measured for a given patient on May 7th.
 
 <figure>

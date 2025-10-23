@@ -12,8 +12,9 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
-* effectiveDateTime = "2025-08-28T08:30:00Z"
-* valueQuantity = 110 'mg/dL' "mg/dL"
+* effectiveDateTime = "2025-10-23T08:30:00Z"
+* valueQuantity = 30 'mg/dL' "mg/dl"
+* valueQuantity.comparator = #<
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Blood-Glucose-Measurement-1
@@ -26,7 +27,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-09-26T12:00:00+02:00"
-* valueQuantity = 120 'mg/dL' "mg/dL"
+* valueQuantity = 120 'mg/dL' "mg/dl"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Blood-Glucose-Measurement-2
@@ -39,7 +40,7 @@ Description: "Example of a blood glucose measurement taken with a glucometer."
 * status = #final
 * code = $loinc#2339-0 "Glucose [Mass/volume] in Blood"
 * effectiveDateTime = "2025-09-26T16:30:00+02:00"
-* valueQuantity = 129 'mg/dL' "mg/dL"
+* valueQuantity = 129 'mg/dL' "mg/dl"
 * device = Reference(Example-Glucometer-Metric)
 
 Instance: Example-Glucometer
@@ -105,11 +106,11 @@ Description: "Example for a medical device definition (Glucometer) from the HIIS
 * property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
 * property[+].type.text = "Reference range low"
 * property[=].valueQuantity.value = 70
-* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.unit = "mg/dl"
 * property[=].valueQuantity.system = $unitsofmeasure
 * property[+].type.text = "Reference range high"
 * property[=].valueQuantity.value = 180
-* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.unit = "mg/dl"
 * property[=].valueQuantity.system = $unitsofmeasure
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #2339-0
@@ -136,29 +137,47 @@ Usage: #example
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #final
 * code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
-* effectivePeriod.start = "2025-08-28T08:00:00Z"
-* effectivePeriod.end   = "2025-08-28T09:00:00Z"
+* effectivePeriod.start = "2025-10-28T08:00:00Z"
+* effectivePeriod.end   = "2025-10-28T09:00:00Z"
 * valueSampledData.origin.value = 0
 * valueSampledData.origin.unit = "mg/dl"
 * valueSampledData.origin.system = $unitsofmeasure
 * valueSampledData.origin.code = #mg/dL
 * valueSampledData.period = 60000
 * valueSampledData.dimensions = 1
-* valueSampledData.data = "110 111 112 113 114 115 116 117 118 119 
-                          120 121 122 123 124 125 126 127 128 129 
-                          130 129 128 127 126 125 124 123 122 121 
-                          120 119 118 117 116 115 114 113 112 111 
-                          110 111 112 113 114 115 116 117 118 119 
-                          120 121 122 123 124 125 126 127 128 129 
-                          130 129 128 127 126 125 124 123 122 121"
+* valueSampledData.lowerLimit = 35
+* valueSampledData.upperLimit = 360
+* valueSampledData.data = "110 111 112 113 114 115 116 117 118 119 120 90 77 66 56 39 36 L L L 40 51 66 81 91 99 101 120 122 121 120 119 118 117 116 115 114 113 112 111 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129"
 * device = Reference(Example-DeviceMetric-CGM)
 * method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * note.text = "Example CGM data series with 1-minute intervals over 1 hour (60 samples)."
 
+Instance: Example-CGM-Series-1
+InstanceOf: HddtContinuousGlucoseMeasurement
+Title: "HDDT rtCGM Full Chunk Observation Example"
+Description: "Example of a CGM time series with 5-minute intervals over 1 hour (12 samples)."
+Usage: #example
+* id = "example-cgm-series-1"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+* status = #final
+* code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* effectivePeriod.start = "2025-09-26T16:00:00Z"
+* effectivePeriod.end   = "2025-09-26T16:59:59Z"
+* valueSampledData.origin.value = 0
+* valueSampledData.origin.unit = "mg/dl"
+* valueSampledData.origin.system = $unitsofmeasure
+* valueSampledData.origin.code = #mg/dL
+* valueSampledData.period = 300000
+* valueSampledData.dimensions = 1
+* valueSampledData.data = "123 122 126 134 129 128 130 131 129 127 127 133"
+* device = Reference(Example-DeviceMetric-CGM)
+* method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* note.text = "Example CGM data series with 5-minute intervals over 1 hour (12 samples)."
+
 Instance: Example-CGM-Series-Incomplete
 InstanceOf: HddtContinuousGlucoseMeasurement
 Title: "HDDT rtCGM Incomplete Chunk Observation Example"
-Description: "Example of a CGM time series with 1-minute intervals over 10 minutes (10 samples), but incomplete."
+Description: "Example of a CGM time series with 1-minute intervals over 20 minutes (20 samples), but incomplete."
 Usage: #example
 * id = "example-cgm-series-incomplete"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
@@ -172,10 +191,10 @@ Usage: #example
 * valueSampledData.origin.code = #mg/dL
 * valueSampledData.period = 60000
 * valueSampledData.dimensions = 1
-* valueSampledData.data = "110 111 112 113 114 115 116 117 118 119"
+* valueSampledData.data = "110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129"
 * device = Reference(Example-DeviceMetric-CGM)
 * method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
-* note.text = "Example CGM data series with 1-minute intervals over 10 minutes (10 samples), but status incomplete."
+* note.text = "Example CGM data series with 1-minute intervals over 20 minutes (20 samples), but status incomplete."
 
 
 Instance: Example-Observation-CGM-Series-Data-Unavailable
@@ -456,11 +475,11 @@ Usage: #example
 * property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
 * property[+].type.text = "Reference range low"
 * property[=].valueQuantity.value = 70
-* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.unit = "mg/dl"
 * property[=].valueQuantity.system = $unitsofmeasure
 * property[+].type.text = "Reference range high"
 * property[=].valueQuantity.value = 180
-* property[=].valueQuantity.unit = "mg/dL"
+* property[=].valueQuantity.unit = "mg/dl"
 * property[=].valueQuantity.system = $unitsofmeasure
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #105272-9
