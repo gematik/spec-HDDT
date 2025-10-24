@@ -86,13 +86,13 @@ pages:
   use_of_hl7_fhir.html:
     title: Use of HL7 FHIR
     generation: markdown
-  security-privacy.html:
+  security-and-privacy.html:
     title: Security  Privacy
     generation: markdown
   operational-requirements.html:
     title: Operational Requirements
     generation: markdown
-  registries-zts.html:
+  registries-and-zts.html:
     title: BfArM Registries  ZTS
     generation: markdown
 # Logical Viewpoints
@@ -179,9 +179,9 @@ menu:
   Definition  Rules: 
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html
-    Security  Privacy: security-privacy.html
+    Security  Privacy: security-and-privacy.html
     Operational Requirements: operational-requirements.html
-    Access to BfArM Registries  ZTS: registries-zts.html
+    Access to BfArM Registries  ZTS: registries-and-zts.html
   System Overview: 
     Logical Viewpoints: logical-viewpoints.html
     Information Model: information-model.html
