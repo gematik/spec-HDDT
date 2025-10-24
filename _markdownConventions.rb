@@ -141,11 +141,26 @@ while (m = re_fhir.match(orig_utf8, pos))
     pos = m.end(0)
     next
   end
-  unless overlaps_any?(forbid, a, b) || changes.any? { |c| a < c.finish && b > c.start }
-    name = m[2]
-    after = "[#{name}](#{FHIR_RESOURCES[name]})"
-    changes << Change.new(a, b, orig_utf8[a...b], after, :fhir_link)
+# Ausnahmeliste – Begriffe, die NICHT verlinkt werden sollen
+FHIR_EXCEPTIONS = ["Device Data Recorder", "Personal Health Device", "MIV-specific Observation", "MIV-specific HDDT Observation", "include Observation", "include Device", "include DeviceMetric"].freeze
+
+unless overlaps_any?(forbid, a, b) || changes.any? { |c| a < c.finish && b > c.start }
+  name = m[2]
+
+  # Kontext prüfen – ob der gefundene Begriff Teil einer Ausnahmephrase ist
+  line_start = orig_utf8.rindex("\n", a - 1) || -1
+  line_start += 1
+  line_end = orig_utf8.index("\n", a) || orig_utf8.length
+  line_text = orig_utf8[line_start...line_end]
+
+  if FHIR_EXCEPTIONS.any? { |ex| line_text.include?(ex) }
+    pos = m.end(0)
+    next
   end
+
+  after = "[#{name}](#{FHIR_RESOURCES[name]})"
+  changes << Change.new(a, b, orig_utf8[a...b], after, :fhir_link)
+end
   pos = m.end(0)
 end
 

@@ -130,17 +130,17 @@ The following code example shows the concrete JSON representation of the _HDDT C
 
 #### Observation - READ
 
-Manufactures of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile.
+Manufactures of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _read_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile.
 
 #### Observation - SEARCH
 
-Manufactures of Device Data Recorders that support the MIV Continuous Glucose Measurement* MUST implement a \_search* interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _serach_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile.
+Manufactures of Device Data Recorders that support the MIV Continuous Glucose Measurement* MUST implement a \_search* interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _serach_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile.
 
 #### Examples - FHIR Search GET
 
 **Request**: GET `/Observation?date=ge2025-09-26`
 
-**Description**: Request all CGM measurements, since the 26st of September. Return a Bundle. This one contains only a single observation.
+**Description**: Request all CGM measurements, since the 26st of September. Return a Bundle. This one contains only a single [Observation](https://hl7.org/fhir/R4/observation.html).
 
 **Response:**
 
@@ -150,7 +150,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://[BASE_URL]/fhir/Observation/example-cgm-series-1",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-cgm-series-1",
             {
                 "resourceType": "Observation",
                 "id": "example-cgm-series-1",
@@ -224,7 +224,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
 }
 ```
 
-**Description:** Use a POST requests, with the search parameters in the request body, to query all Observations that measure interstitial fluid glucose in mg/dL. Response is a Bundle.
+**Description:** Use a POST requests, with the search parameters in the request body, to query all [Observation](https://hl7.org/fhir/R4/observation.html) resources that measure interstitial fluid glucose in mg/dL. Response is a Bundle.
 
 **Response:**
 
@@ -234,7 +234,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://[BASE_URL]/fhir/Observation/example-cgm-series-1",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-cgm-series-1",
             "resource": {
                 "resourceType": "Observation",
                 "id": "example-cgm-series-1",
@@ -291,7 +291,7 @@ Manufactures of Device Data Recorders that support the MIV Continuous Glucose Me
             }
         },
         {
-            "fullUrl": "https://[BASE_URL]/fhir/Observation/example-cgm-series",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-cgm-series",
             "resource": {
                 "resourceType": "Observation",
                 "id": "example-cgm-series",
@@ -357,7 +357,7 @@ This operation and the related profiles define the exchange of aggregated measur
 
 #### Profile
 
-The _HDDT CGM Summary_ profile constrains the FHIR Bundle resource for a glucose profile that is calculated from continuous glucose measurement data (e.g. from a CGM sensor). The profile covers the machine-readable parts of the [_HL7 CGM summary profile_](https://build.fhir.org/ig/HL7/cgm/).
+The _HDDT CGM Summary_ profile constrains the FHIR [Bundle](https://hl7.org/fhir/R4/bundle.html) resource for a glucose profile that is calculated from continuous glucose measurement data (e.g. from a CGM sensor). The profile covers the machine-readable parts of the [_HL7 CGM summary profile_](https://build.fhir.org/ig/HL7/cgm/).
 
 The Bundle is of type _collection_ and MUST contain only resources of the following types:
 
@@ -372,7 +372,7 @@ The Bundle is of type _collection_ and MUST contain only resources of the follow
   - [Sensor Active Percentage](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)
 - Device resources conforming to [HddtPersonalHealthDevice](StructureDefinition-hddt-personal-health-device.html) to provide context about the sensors that contributed to the summary data.
 
-The purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic. It ensures interoperability across different implementations by defining a predictable response format. This supports use cases such as:
+The purpose of this [Bundle profile](StructureDefinition-hddt-cgm-summary.html) is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic. It ensures interoperability across different implementations by defining a predictable response format. This supports use cases such as:
 
 - Retrieval of CGM summary metrics over a given time interval in support for the upcoming digital disease management program (dDMP) on Diabetes, e.g. for
   - continuous therapy monitoring and adjustment
@@ -407,7 +407,7 @@ The Observation profile for the CGM summary report is defined by HL7: [Structure
 | **Operation name** | `$hddt-cgm-summary`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **Purpose**        | Request a CGM Summary Report containing CGM key values for a defined range of time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **Parameters**     | See below                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **Result**         | A Bundle containing one Observation resource conforming to the [HDDT CGM Summary](StructureDefinition-hddt-cgm-summary.html) profile. If the `related` parameter is set to true, the Bundle also contains all Device resources for the sensors that contributed to the report.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Result**         | A Bundle containing one Observation resource conforming to the [HDDT CGM Summary](StructureDefinition-hddt-cgm-summary.html) profile. If the `related` parameter is set to true, the Bundle also contains all [Device](StructureDefinition-hddt-personal-health-device.html) resources for the sensors that contributed to the report.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | **Specifications** | The CGM summary report is calculated at request-time. From the Device Data Recorder's perspective, the report is a snapshot solely assembled for a volatile request. Therefore the Device Fata Recorder MAY not persist the report. The Device Data Recorder MAY assign a logical `id` to the report that is not addressable or MAY even omit the logical is (see last paragraph in https://hl7.org/fhir/R4/resource.html#id). As a consequence a _read_ interaction for a given `id` MAY result in an _404 Not Found_ error. <br> The Device Data Recorder MUST support all Observation profiles listed in the [hddt-cgm-summary bundle](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-hddt-cgm-summary.html). If the Device Data Recorder does not support some of these observations it MUST for these observations provide Observation Resources with no `value[x]` and `dataAbsentReason` set to _unknown_. |
 
 ##### Request Parameters
@@ -458,7 +458,7 @@ The Summary-Operation MUST support a minimal duration of 7 days for the effectiv
 
 **Description:**
 
-Perform the FHIR Operation to request a summary of aggregated values over the specified time range. The Bundle should also include all Device and DeviceMetric resource instances, that were needed to calculate the data summary.
+Perform the FHIR [Operation](https://hl7.org/fhir/R4/operationdefinition.html) to request a summary of aggregated values over the specified time range. The [Bundle](StructureDefinition-hddt-cgm-summary.html) should also include all [Device](StructureDefinition-hddt-personal-health-device.html) resource instances, that were needed to calculate the data summary.
 
 **Response:**
 
@@ -472,13 +472,13 @@ Perform the FHIR Operation to request a summary of aggregated values over the sp
 
 #### Example OperationOutcome - No Matches
 
-**Description:** While a FHIR search interaction that finds no matches returns an empty Bundle, this Operation returns an OperationOutcome.
+**Description:** While a FHIR search interaction that finds no matches returns an empty [Bundle](https://hl7.org/fhir/R4/bundle.html), this Operation returns an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html).
 
 {% include OperationOutcome-HddtCgmSummaryOutcomeNoResults-json-html.xhtml %}
 
 #### Example OperationOutcome - Invalid Format
 
-**Description:** Parameters `effectivePeriodStart` and `effectivePeriodEnd` are defined to take in `date` as parameter type. If the requested date cannot be parsed by the server, the following OperationOutcome is returned.
+**Description:** Parameters `effectivePeriodStart` and `effectivePeriodEnd` are defined to take in `date` as parameter type. If the requested date cannot be parsed by the server, the following [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) is returned.
 
 {% include OperationOutcome-HddtCgmSummaryOutcomeInvalid-json-html.xhtml %}
 

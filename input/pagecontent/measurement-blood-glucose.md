@@ -141,28 +141,34 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://[BASE-URL]/fhir/Observation/65",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-glucose-measurement-1",
             "resource": {
                 "resourceType": "Observation",
-                "id": "65",
+                "id": "example-blood-glucose-measurement-1",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+                    ]
+                },
+                "status": "final",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 120,
+                    "code": "mg/dL",
+                    "unit": "mg/dl"
+                },
                 "code": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
                             "code": "2339-0",
+                            "system": "http://loinc.org",
                             "display": "Glucose [Mass/volume] in Blood"
                         }
                     ]
                 },
-                "effectiveDateTime": "2025-08-20T07:05:02.165Z",
-                "valueQuantity": {
-                    "value": 201,
-                    "unit": "mg/dl",
-                    "system": "http://unitsofmeasure.org",
-                    "code": "mg/dL"
-                },
+                "effectiveDateTime": "2025-09-26T12:00:00+02:00",
                 "device": {
-                    "reference": "DeviceMetric/67"
+                    "reference": "DeviceMetric/example-glucometer-metric"
                 }
             },
             "search": {
@@ -170,29 +176,34 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
             }
         },
         {
-            "fullUrl": "https://[BASE-URL]/fhir/Observation/68",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-glucose-measurement-2",
             "resource": {
                 "resourceType": "Observation",
-                "id": "68",
+                "id": "example-blood-glucose-measurement-2",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+                    ]
+                },
                 "status": "final",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 129,
+                    "code": "mg/dL",
+                    "unit": "mg/dl"
+                },
                 "code": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
                             "code": "2339-0",
+                            "system": "http://loinc.org",
                             "display": "Glucose [Mass/volume] in Blood"
                         }
                     ]
                 },
-                "effectiveDateTime": "2025-08-20T07:05:03.664Z",
-                "valueQuantity": {
-                    "value": 125,
-                    "unit": "mg/dl",
-                    "system": "http://unitsofmeasure.org",
-                    "code": "mg/dL"
-                },
+                "effectiveDateTime": "2025-09-26T16:30:00+02:00",
                 "device": {
-                    "reference": "DeviceMetric/67"
+                    "reference": "DeviceMetric/example-glucometer-metric"
                 }
             },
             "search": {
@@ -206,9 +217,9 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
 ### Example: FHIR-Search include DeviceMetric
 
 
-**Request**: GET `/Observation?date=ge2025-08-15&_include=Observation:device`
+**Request**: GET `/Observation?date=ge2025-09-25&_include=Observation:device`
 
-**Description**: This query asks the server for all Observations since `2025-08-15`, and also requests that the server include resource instances referenced by `Observation.device`.
+**Description**: This query asks the server for all Observations since `2025-09-25`, and also requests that the server include resource instances referenced by `Observation.device`.
 
 **Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria, and all referenced DeviceMetric resources.
 
@@ -219,29 +230,34 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://[BASE-URL]/fhir/Observation/65",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-glucose-measurement-1",
             "resource": {
                 "resourceType": "Observation",
-                "id": "65",
+                "id": "example-blood-glucose-measurement-1",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+                    ]
+                },
                 "status": "final",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 120,
+                    "code": "mg/dL",
+                    "unit": "mg/dl"
+                },
                 "code": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
                             "code": "2339-0",
+                            "system": "http://loinc.org",
                             "display": "Glucose [Mass/volume] in Blood"
                         }
                     ]
                 },
-                "effectiveDateTime": "2025-08-20T07:05:02.165Z",
-                "valueQuantity": {
-                    "value": 201,
-                    "unit": "mg/dl",
-                    "system": "http://unitsofmeasure.org",
-                    "code": "mg/dL"
-                },
+                "effectiveDateTime": "2025-09-26T12:00:00+02:00",
                 "device": {
-                    "reference": "DeviceMetric/67"
+                    "reference": "DeviceMetric/example-glucometer-metric"
                 }
             },
             "search": {
@@ -249,35 +265,43 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
             }
         },
         {
-            "fullUrl": "https://[BASE-URL]/fhir/DeviceMetric/67",
+            "fullUrl": "https://himi.example.com/fhir/DeviceMetric/example-glucometer-metric",
             "resource": {
                 "resourceType": "DeviceMetric",
-                "id": "67",
+                "id": "example-glucometer-metric",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+                    ]
+                },
                 "type": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
-                            "code": "2339-0",
-                            "display": "Glucose [Mass/volume] in Blood"
+                            "code": "160184",
+                            "system": "urn:iso:std:iso:11073:10101",
+                            "display": "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
                         }
                     ]
                 },
                 "unit": {
                     "coding": [
                         {
-                            "system": "http://unitsofmeasure.org",
                             "code": "mg/dL",
+                            "system": "http://unitsofmeasure.org",
                             "display": "mg/dL"
                         }
                     ]
                 },
                 "source": {
-                    "reference": "Device/66"
+                    "reference": "Device/example-glucometer"
                 },
+                "operationalStatus": "on",
                 "category": "measurement",
                 "calibration": [
                     {
-                        "state": "calibrated"
+                        "type": "gain",
+                        "state": "calibrated",
+                        "time": "2025-09-01T09:08:04+02:00"
                     }
                 ]
             },
