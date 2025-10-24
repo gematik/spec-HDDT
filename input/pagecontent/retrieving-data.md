@@ -51,9 +51,9 @@ __Example__:
 ```
 GET [base]/Observation?date=gt20250912
 ```
-The HTTP header holds an Access Token, from which the Device Data Recorder can obtain its internal patient identifier _123_ and a SMART scope that resolves to the [ValueSet](https://hl7.org/fhir/R4/valueset.html) _https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement_ which contains the LOINC codes [105272-9](https://loinc.org/105272-9/) and [99504-3](https://loinc.org/99504-3). The "real" query processed by the Device Data Recorder's FHIR Resource Server in this example is 
+The HTTP header holds an Access Token, from which the Device Data Recorder can obtain its internal patient identifier _123_ and a SMART scope that resolves to the [ValueSet](https://hl7.org/fhir/R4/valueset.html) _https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement_ which contains the LOINC codes [105272-9](https://loinc.org/105272-9/) and [99504-3](https://loinc.org/99504-3). The "real" query processed by the Device Data Recorder's FHIR Resource Server in this example is 
 ```
-GET [base]/Observation?date=gt20250912&subject=Patient/123&code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement
+GET [base]/Observation?date=gt20250912&subject=Patient/123&code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement
 ```
 <hr>
 

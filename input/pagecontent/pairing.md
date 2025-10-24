@@ -185,7 +185,7 @@ An example token response (with a JWT access token) is shown below:
   "token_type": "Bearer",
   "expires_in": 600,
   "refresh_token": "9e35d65d-ec12-4b8d-a8b1-dff2f7cf6a5e",
-  "scope": "patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement patient/Device.rs patient/DeviceMetric.rs",
+  "scope": "patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement patient/Device.rs patient/DeviceMetric.rs",
   "sub": "8c9a85fe78f6ccd91a62aff2bf7cf3ea4929a8f1ccbd24f2874ab853fe4815fc"
 }
 ```

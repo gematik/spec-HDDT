@@ -38,7 +38,7 @@ curl -X POST "https://himi.example.com/par" \
   -d "client_id=urn:diga:bfarm:12345" \
   -d "response_type=code" \
   -d "redirect_uri=https%3A%2F%2Fdiga.example.com%2Fcallback" \
-  -d "scope=patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS_Blutzucker" \
+  -d "scope=patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement" \
   -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" \
   -d "code_challenge_method=S256"
 ```
