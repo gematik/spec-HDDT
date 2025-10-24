@@ -439,8 +439,8 @@ Title: "Device Type of personal health devices"
 Description: """
 This ValueSet includes codes used to identify Personal Health Devices, Device Data Recorders, and DIGA. 
 
-This ValueSet's definition is an unchanged copy of the definition of the FHIR R5 ValueSet 
-[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html) for use with the FHIR R4 based HDDT profiles. 
+This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
+[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. 
 
 This ValueSet includes
 concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International. Codes from the 
@@ -479,17 +479,17 @@ code system and its contents remain copyrighted by ISO and IEEE.
 * Mdc#528426 "Strength Equipment"
 * Mdc#528392 "Thermometer"
 * Mdc#528399 "Weight Scale"
-// * urn:oid:2.16.840.1.113883.6.276#38017 "Dry salt inhalation therapy device"
-// * urn:oid:2.16.840.1.113883.6.276#38663 "Flexible video nephroscope"
-// * urn:oid:2.16.840.1.113883.6.276#42347 "Dental implant, endosseous, partially-embedded"
-// * urn:oid:2.16.840.1.113883.6.276#46352 "Bare-metal intracranial vascular stent"
-// * urn:oid:2.16.840.1.113883.6.276#47264 "Dual-chamber implantable pacemaker, demand"
-// * urn:oid:2.16.840.1.113883.6.276#62163 "Intrauterine cannula, reusable"
-// * urn:oid:2.16.840.1.113883.6.276#62260 "Air-conduction hearing aid acoustic tube"
-// * urn:oid:2.16.840.1.113883.6.276#62423 "Spinal cord/peripheral nerve implantable analgesic electrical stimulation system lead, wired connection"
-// * urn:oid:2.16.840.1.113883.6.276#62414 "Blue-light phototherapy lamp, home-use"
-// * urn:oid:2.16.840.1.113883.6.276#64587 "Uncoated knee femur prosthesis, ceramic"
-// * urn:oid:2.16.840.1.113883.6.276#64992 "ADAMTS13 activity IVD, kit, chemiluminescent immunoassay"
+// * $gmdn#38017 "Dry salt inhalation therapy device"
+// * $gmdn#38663 "Flexible video nephroscope"
+// * $gmdn#42347 "Dental implant, endosseous, partially-embedded"
+// * $gmdn#46352 "Bare-metal intracranial vascular stent"
+// * $gmdn#47264 "Dual-chamber implantable pacemaker, demand"
+// * $gmdn#62163 "Intrauterine cannula, reusable"
+// * $gmdn#62260 "Air-conduction hearing aid acoustic tube"
+// * $gmdn#62423 "Spinal cord/peripheral nerve implantable analgesic electrical stimulation system lead, wired connection"
+// * $gmdn#62414 "Blue-light phototherapy lamp, home-use"
+// * $gmdn#64587 "Uncoated knee femur prosthesis, ceramic"
+// * $gmdn#64992 "ADAMTS13 activity IVD, kit, chemiluminescent immunoassay"
 * include codes from system SNOMED_CT where concept is-a #49062001
 
 
