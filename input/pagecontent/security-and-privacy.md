@@ -25,7 +25,7 @@ Further normative requirements and technical details regarding the identifier ar
 dedicated [Pairing ID](pairing.html#pairing-id) section.
 
 #### Identification and Authentication of the DiGA
-A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below) as a client. The DiGA's X.509 client certificate MUST be registered with the BfArM-SST-VZ. The DiGA MAY use self-signed certificates. Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11). DiGA authorization is based on OAuth2 and requires a `client_id` and a `redirect_url` to be registered as trust anchors with the _DiGA-VZ_ of the BfArM. 
+A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below) as a client. The DiGA's X.509 client certificate MUST be registered with the DiGA-VZ. The DiGA MAY use self-signed certificates. Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11). DiGA authorization is based on OAuth2 and requires a `client_id` and a `redirect_url` to be registered as trust anchors with the _DiGA-VZ_ of the BfArM. 
 
 The following table summarizes the trust attributes for identification and authentication of a DiGA that MUST be registered with the _DiGA-VZ_ of the BfArM for each DiGA:
 
@@ -38,9 +38,15 @@ The following table summarizes the trust attributes for identification and authe
 Procedures for registering certificates and for exchanging expiring certificates will be published by BfArM as part of the HIIS-VZ specification or corresponding guidelines.
 
 #### Identification and Authentication of the Device Data Recorder
-A Device Data Recorder identifies and authenticates with a DiGA during connection establishment (mutual TLS, see below) as a server. The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's [Authorization Server](authorization-server.html) MUST be registered with the BfArM-SST-VZ.
 
-When a DiGA calls the [FHIR API](retrieving-data.html) of the Device Data Recorder' FHIR Resource Server, the Device Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data Recorder's FHIR Resource Server  MUST be registered with the BfArM-SST-VZ.
+A Device Data Recorder identifies and authenticates with a DiGA during connection establishment (mutual TLS, see below)
+as a server. The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the
+Device Data Recorder's [Authorization Server](authorization-server.html) MUST be registered with the HIIS-VZ.
+
+When a DiGA calls the [FHIR API](retrieving-data.html) of the Device Data Recorder' FHIR Resource Server, the Device
+Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The
+endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data
+Recorder's FHIR Resource Server MUST be registered with the HIIS-VZ.
 
 The Device Data Recorder MUST NOT use self-signed certificates (see below). Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 
