@@ -19,6 +19,21 @@ Out-of-Scope for the HDDT implementation guide are:
 ### About the current version
 The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected _medical aid_, _implant_ and _DiGA_ manufacturers as well as other stakeholders. The parts describing the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](roadmap.html).
 
+### Intended Audience
+The primary audience for this implementation guide are product managers, developers, and architects of manufacturers of medical aids, implants and DiGA. 
+
+For developers and architects the following sections of this specification are of particular interest:
+* The [Logical Viewpoints](logical-viewpoints.html) provide a high-level overview of the system architecture and main components.
+* [Security Considerations](security-considerations.html) sketch the security services and mechanisms to be implemented. Further details on specific aspects are give in the sections [Pairing](pairing.html) and [Smart Scopes](smart-scopes.html) while the technical specifications are provided in section [Authorization Server](authorization-server.html).
+* The sections [Information Model](information-model.html) and [Retrieving Data](retrieving-data.html) provide logical descriptions of the FHIR-based data model and the RESTful interactions. Technical specifications for these interactions are provided in the section [FHIR Resource Server](himi-diga-api.html). 
+* The implementation of the data model is through dedicated FHIR profiles and value sets per _Mandatory Interoperable Values_. The section [MIVs](mivs.html) lists the Mandatory Interoperable Values defined so far and provides links to the respective FHIR profiles and value sets. An overview of all FHIR profiles and value sets defined in this implementation guide is given in section [FHIR Artifacts Summary](artifacts.html), where you find examples, too.
+
+Readers who are responsible for project management, product management, or regulatory affairs may find the following sections useful:
+* The [Roadmap](roadmap.html) describes how the technical specifications will be extended in the future to cover further domains. In addiction this sections givens first hints on the regulatory approval process and procedures for product registration.
+* [Certification Relevant Systems](certification-relevant-systems.html) describes which products and components are affected by § 374a SGB V and MUST implement the services as defined in this specification.
+* Section [Security Considerations](security-considerations.html) defines trust anchors and security objects that MUST be provided by the manufacturers of medical aids, implants, and DiGA.
+* [Operational Requirements](operational-requirements.html) describe the operational procedures and service levels that MUST be provided by manufacturers of certification relevant systems.
+
 ### Contact and feedback
 Please submit questions and comments about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16) __until 30.11.2025__.
 

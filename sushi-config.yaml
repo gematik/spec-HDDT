@@ -1,7 +1,7 @@
 # ╭────────────────────────────────────────────────────────────────────────────────────────────────╮
-# │  ACTION REQUIRED: REVIEW AND EDIT THIS FILE TO ENSURE IT ACCURATELY REFLECTS YOUR PROJECT!     │
+# │  ACTION REQUIRED: REVIEW  EDIT THIS FILE TO ENSURE IT ACCURATELY REFLECTS YOUR PROJECT!     │
 # │                                                                                                │
-# │  This file was generated from your existing project files and will be used for SUSHI           │
+# │  This file was generated from your existing project files  will be used for SUSHI           │
 # │  configuration from now on. You may delete your package.json as it is no longer needed.        │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 
@@ -19,7 +19,7 @@ status: draft
 publisher: 
   name: gematik GmbH
   url: https://www.gematik.de
-description: This specification describes the technical and semantic approach for providing vital signs (vibW) using blood glucose and tissue glucose as an example, according to § 374a SGB V.
+description: This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose  tissue glucose as an example, according to § 374a SGB V.
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
@@ -70,7 +70,7 @@ pages:
     title: Certification relevant systems
     generation: markdown
   conventions.html:
-    title: Keywords and Conventions
+    title: Keywords  Conventions
     generation: markdown
   glossary.html:
     title: Glossary
@@ -79,21 +79,21 @@ pages:
   release-notes.html:
     title: Release Notes
     generation: markdown
-# Definition and Rules
+# Definition  Rules
   general-considerations.html:
     title: General Considerations
     generation: markdown
   use_of_hl7_fhir.html:
     title: Use of HL7 FHIR
     generation: markdown
-  security-and-privacy.html:
-    title: Security and Privacy
+  security--privacy.html:
+    title: Security  Privacy
     generation: markdown
   operational-requirements.html:
     title: Operational Requirements
     generation: markdown
-  registries-and-zts.html:
-    title: BfArM Registries and ZTS
+  registries--zts.html:
+    title: BfArM Registries  ZTS
     generation: markdown
 # Logical Viewpoints
   logical-viewpoints.html:
@@ -164,7 +164,7 @@ pages:
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
-# │  To control the menu.xml using this config, uncomment and set the "menu" property.             │
+# │  To control the menu.xml using this config, uncomment  set the "menu" property.             │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
@@ -173,15 +173,15 @@ menu:
     Roadmap: roadmap.html
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
-    Keywords and Conventions: conventions.html
+    Keywords  Conventions: conventions.html
     Glossary: glossary.html
   Release Notes: release-notes.html
-  Definition and Rules: 
+  Definition  Rules: 
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html
-    Security and Privacy: security-and-privacy.html
+    Security  Privacy: security--privacy.html
     Operational Requirements: operational-requirements.html
-    Access to BfArM Registries and ZTS: registries-and-zts.html
+    Access to BfArM Registries  ZTS: registries--zts.html
   System Overview: 
     Logical Viewpoints: logical-viewpoints.html
     Information Model: information-model.html
@@ -207,7 +207,7 @@ menu:
 
 
 # ╭───────────────────────────────────────package-list.json────────────────────────────────────────╮
-# │  To control the package-list.json using this config, uncomment and set the "history" property. │
+# │  To control the package-list.json using this config, uncomment  set the "history" property. │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 # history:
 #   introduction: An example of how FSH can be used to create an IG about AustrianPatient
