@@ -59,9 +59,8 @@ curl -X GET "https://himi.example.com/.well-known/oauth-authorization-server" \
   "request_parameter_supported": false,
   "tls_client_certificate_bound_access_tokens": false,
   "scopes_supported": [
-    "patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS_Blutzucker",
-    "patient/Observation.rs?code:in=https://terminologien.bfarm.de/fhir/ValueSet/VS_Blutdruck",
-    "patient/Device.r?type=https://terminologien.bfarm.de/fhir/CodeSystem/CS_HiMi_DeviceType|glucometer",
+    "patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement",
+    "patient/Device.r?type=https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type|528401",
     "patient/DeviceMetric.r"
   ],
   "service_documentation": "https://himi.example.com/docs/client-registration"

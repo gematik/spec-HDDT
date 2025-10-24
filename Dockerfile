@@ -22,7 +22,7 @@ RUN set -eux; \
     cd temp/pages; \
     cp /home/publisher/ig/output/qa.html /home/publisher/ig/qa.html; \
     jekyll build --destination "/home/publisher/ig/output"; \
-    cp /home/publisher/ig/qa.html /home/publisher/ig/output/qa.html; \
+    cp /home/publisher/ig/qa.html /home/publisher/ig/output/qa.html;
 
 # ---------- Export-only stage ----------
 FROM scratch AS export
