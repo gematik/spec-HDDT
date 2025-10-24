@@ -39,18 +39,16 @@ Procedures for registering certificates and for exchanging expiring certificates
 
 #### Identification and Authentication of the Device Data Recorder
 
-A Device Data Recorder identifies and authenticates with a DiGA during connection establishment (mutual TLS, see below)
-as a server. The endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the
-Device Data Recorder's [Authorization Server](authorization-server.html) MUST be registered with the HIIS-VZ.
+A Device Data Recorder identifies and authenticates itself to a DiGA during every connection establishment using *
+*mutual TLS (mTLS)**. This applies to all endpoints of the Device Data Recorder, including
+the [Authorization Server](authorization-server.html) and the [FHIR Resource Server](retrieving-data.html). The endpoint
+addresses and the _Fully Qualified Domain Names (FQDNs)_ used for the X.509 certificates of these endpoints MUST be
+registered with the HIIS-VZ. During the TLS handshake, the DiGA MUST verify that the FQDN in the certificate matches the
+one registered in the HIIS-VZ.
 
-When a DiGA calls the [FHIR API](retrieving-data.html) of the Device Data Recorder' FHIR Resource Server, the Device
-Data Recorder identifies and authenticates with the DiGA during connection establishment (mutual TLS, see below). The
-endpoint address and the _Fully Qualified Domain Name (FQDN)_ used for the X.509 certificate of the Device Data
-Recorder's FHIR Resource Server MUST be registered with the HIIS-VZ.
+The Device Data Recorder MUST NOT use self-signed certificates. Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 
-The Device Data Recorder MUST NOT use self-signed certificates (see below). Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
-
-The following table summarizes the trust attributes for identification and authentication of a Device Data Recorder that MUST be registered with the _HIIS-VZ_ of the BfArM for each Device Data Recorder:
+The following table lists the trust attributes that MUST be registered in the HIIS-VZ for the identification and authentication of a Device Data Recorder:
 
 | Device Data Recorder Data Object             | Description                                                                 | Specifications                                                                 |
 |-------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------------------|
