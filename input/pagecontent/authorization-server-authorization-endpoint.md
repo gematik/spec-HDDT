@@ -33,9 +33,10 @@ the [OAuth 2.0 Authorization Server Metadata](authorization-server-metadata-endp
 **Request (user agent redirect):**
 
 ```bash
-GET /authorize?
-  client_id=urn:diga:bfarm:12345&
-  request_uri=urn:uuid:a1b2c3d4-5678-90ab-cdef-111213141516
+curl -G "https://himi.example.com/authorize" \
+  --data-urlencode "client_id=urn:diga:bfarm:12345" \
+  --data-urlencode "request_uri=urn:uuid:a1b2c3d4-5678-90ab-cdef-111213141516" \
+  -v
 ```
 
 **Response (redirect to DiGA):**
