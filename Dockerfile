@@ -23,7 +23,6 @@ RUN set -eux; \
     cp /home/publisher/ig/output/qa.html /home/publisher/ig/qa.html; \
     jekyll build --destination "/home/publisher/ig/output"; \
     cp /home/publisher/ig/qa.html /home/publisher/ig/output/qa.html; \
-    rm /home/publisher/ig/output/assets/css/prism.css;
 
 # ---------- Export-only stage ----------
 FROM scratch AS export

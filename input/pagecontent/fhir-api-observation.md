@@ -98,35 +98,14 @@ Most commonly, a GET or POST request will be performed to get multiple Observati
 
 #### Example: FHIR-READ
 
-**Request:** GET `/Observation/obs-blood-glucose-001`
+**Request:** GET `/Observation/example-blood-glucose-measurement-1`
 
 **Description:** With FHIR-read interactions, a client can access a single resource instance by querying its internal ID. Restrictions by the OAuth scopes apply—if the client is not allowed to read this resource, a 404 error will be returned.
 
 **Response**: Returned object is a single Observation resource.
 
-```json
-{
-  "resourceType": "Observation",
-  "id": "obs-blood-glucose-001",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "2339-0",
-        "display": "Glucose [Mass/volume] in Blood"
-      }
-    ]
-  },
-  "effectiveDateTime": "2025-08-28T10:00:00Z",
-  "valueQuantity": {
-    "value": 120,
-    "unit": "mg/dL",
-    "system": "http://unitsofmeasure.org",
-    "code": "mg/dL"
-  }
-}
-```
+{% include Observation-example-blood-glucose-measurement-1-json-html.xhtml %}
+
 
 #### Example: FHIR-Search for specific LOINC code
 
