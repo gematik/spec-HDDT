@@ -1,9 +1,9 @@
 ### Introduction
 
-This document describes the Pushed Authorization Request (PAR) endpoint of the OAuth 2.0 Authorization Server.  
-The PAR endpoint allows a DiGA to send an authorization request directly to the OAuth2 Authorization Server backend *
-*before user consent is collected**.  
-By doing so, sensitive request parameters are not exposed to the user agent and URL length limitations are avoided.
+This document describes the Pushed Authorization Request (PAR) endpoint of the OAuth 2.0 Authorization Server. The PAR
+endpoint allows a DiGA to send an authorization request directly to the OAuth2 Authorization Server backend **before
+user consent is collected by the Device Data Recorder**. By doing so, sensitive request parameters are not exposed to
+the user agent, URL length limitations are avoided and the DiGA is authenticated.
 
 The PAR endpoint is a **backend-to-backend endpoint** and requires client authentication using **Mutual-TLS**.
 
@@ -22,7 +22,7 @@ documented in the [OAuth 2.0 Authorization Server Metadata](authorization-server
 | **Description**      | Allows a DiGA (OAuth client) to register an authorization request with the OAuth2 Authorization Server. Returns a `request_uri` that the DiGA later uses when redirecting the patient to the `/authorize` endpoint.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Authentication**   | **Mutual-TLS Client Authentication** (see [RFC 8705](https://www.rfc-editor.org/rfc/rfc8705)), using `tls_client_auth`. The Authorization Server MUST validate the client certificate against the DiGA’s registration in the DiGA-VZ.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Returned Objects** | JSON object containing `request_uri` and `expires_in`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Specifications**   | • MUST comply with [RFC 9126](https://www.rfc-editor.org/rfc/rfc9126).<br> • The Authorization Server MUST **require** PAR for all authorization flows (`require_pushed_authorization_requests = true`).<br> • MUST use PKCE ([RFC 7636](https://www.rfc-editor.org/rfc/rfc7636)).<br> • MUST strictly validate `redirect_uri` and `scope` parameters against the DiGA-VZ registration.<br> • MUST NOT support the `request` parameter.<br> • MUST NOT support JWT-Secured Authorization Requests ([RFC 9101](https://www.rfc-editor.org/rfc/rfc9101)).<br> • MUST return a JSON object containing `request_uri` and `expires_in`.<br> • Interaction with the patient MUST NOT occur at this endpoint (backend-only).<br>• MUST handle the following attributes in the request body: <br> &ensp;•  `client_id` <br> &ensp;•  `scope` <br> &ensp;• `code_challenge` <br> &ensp;• `code_challenge_method=S256` <br> &ensp;•  `redirect_uri` <br> &ensp;•  `state` <br> &ensp;•  `response_type=code` |
+| **Specifications**   | • MUST comply with [RFC 9126](https://www.rfc-editor.org/rfc/rfc9126).<br> • The Authorization Server MUST **require** PAR for all authorization flows (`require_pushed_authorization_requests = true`).<br> • MUST use PKCE ([RFC 7636](https://www.rfc-editor.org/rfc/rfc7636)).<br> • MUST strictly validate `redirect_uri` and `scope` parameters against the DiGA-VZ registration.<br> • MUST NOT support the `request` parameter.<br> • MUST NOT support JWT-Secured Authorization Requests ([RFC 9101](https://www.rfc-editor.org/rfc/rfc9101)).<br> • MUST return a JSON object containing `request_uri` and `expires_in`.<br> • Interaction with the patient MUST NOT occur at this endpoint (backend-only).<br>• MUST accept the following parameters in the request body: <br> &ensp;•  `client_id` <br> &ensp;•  `scope` <br> &ensp;• `code_challenge` <br> &ensp;• `code_challenge_method=S256` <br> &ensp;•  `redirect_uri` <br> &ensp;•  `state` <br> &ensp;•  `response_type=code` |
 | **Error codes**      | `400` (Invalid request)<br>`401` (Unauthorized – client authentication failed)<br>`403` (Forbidden – client not authorized or scope invalid)<br>`500` (Internal Server Error)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ---
@@ -36,11 +36,12 @@ curl -X POST "https://himi.example.com/par" \
   --cert client-cert.pem --key client-key.pem \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "client_id=urn:diga:bfarm:12345" \
-  -d "response_type=code" \
-  -d "redirect_uri=https%3A%2F%2Fdiga.example.com%2Fcallback" \
   -d "scope=patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement" \
   -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" \
-  -d "code_challenge_method=S256"
+  -d "code_challenge_method=S256" \
+  -d "redirect_uri=https%3A%2F%2Fdiga.example.com%2Fcallback" \
+  -d "state=af0ifjsldkj" \
+  -d "response_type=code"
 ```
 
 **Response:**
