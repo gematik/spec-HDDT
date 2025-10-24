@@ -75,7 +75,7 @@ For information on general constraints and terminology bindings see the full [St
 #### Conventions and Best Practice
 
 ##### Lo and Hi Values
-Glucometers usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the glucometer usually indicates this with a special value (e.g. "LO" or "HI"). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, the `valueQuantity.value` element MUST be set to the respective limit value and a 'valueQuantity.comparator' element MUST be added with the value `"<"` for "LO" and `">"` for "HI".
+Glucometers usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the glucometer usually indicates this with a special value (e.g. "LO" or "HI"). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, the `valueQuantity.value` element MUST be set to the respective limit value and a `valueQuantity.comparator` element MUST be added with the value `"<"` for "LO" and `">"` for "HI".
 
 Example for a blood glucose measurement below the measurable range (30 mg/dl) of the glucometer:
 
@@ -113,7 +113,6 @@ Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measur
 
 #### Observation - SEARCH
 Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. 
-
 
 
 #### Example: FHIR-READ

@@ -91,11 +91,11 @@ Example for a blood glucose measurement below the measurable range (35 mg/dl) of
 
 The manufacturers of the Device Data Recorder MUST handle missing measurements which occured due to interrupted communication to/from the sensor.
 
-If temporarely no data is available for the full period that is requested by the DiGA, a `valueSampledData` MUST NOT be provided. Instead, the `dataAbsentReason` element MUST be provided with the value 'temp-unknown'. The `status` MUST be set to be 'preliminary' in this case.
+If temporarely no data is available for the full period that is requested by the DiGA, a `valueSampledData` MUST NOT be provided. Instead, the `dataAbsentReason` element MUST be provided with the code `temp-unknown`. The `status` MUST be set to be `preliminary` in this case.
 
-If temporarely no data is available for the full period covered by a chunk, a `valueSampledData` MUST NOT be provided for this chunk. Instead, the `dataAbsentReason` element MUST be provided with the value 'temp-unknown'for this chunk. The `status` of this chunk MUST be set to be 'preliminary' in this case. Other chunks are filled as usual with a status set to `final`.
+If temporarely no data is available for the full period covered by a chunk, a `valueSampledData` MUST NOT be provided for this chunk. Instead, the `dataAbsentReason` element MUST be provided with the code `temp-unknown` for this chunk. The `status` of this chunk MUST be set to be `preliminary` in this case. Other chunks are filled as usual with a status set to `final`.
 
-If temporarely missing data affects only the last chunk in a response, the available data MUST be provided in `valueSampledData.data` and the `effectivePeriod` MUST cover the full period of the chunk. The `status` MUST be set to be 'preliminary'. This signals to the DiGA that the data is incomplete. The `dataAbsentReason` element MUST NOT be used in this case.
+If temporarely missing data affects only the last chunk in a response, the available data MUST be provided in `valueSampledData.data` and the `effectivePeriod` MUST cover the full period of the chunk. The `status` MUST be set to be `preliminary`. This signals to the DiGA that the data is incomplete. The `dataAbsentReason` element MUST NOT be used in this case.
 
 The following example shows a chunk of data where onlythe first 20 minutes of the chunk period are filled with data. The remaining 40 minutes of the chunk period are missing.
 
