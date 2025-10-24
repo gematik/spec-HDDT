@@ -60,8 +60,8 @@ curl -X GET "https://himi.example.com/.well-known/oauth-authorization-server" \
   "tls_client_certificate_bound_access_tokens": false,
   "scopes_supported": [
     "patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement",
-    "patient/Device.r?type=https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type|528401",
-    "patient/DeviceMetric.r"
+    "patient/Device.rs",
+    "patient/DeviceMetric.rs"
   ],
   "service_documentation": "https://himi.example.com/docs/client-registration"
 }
