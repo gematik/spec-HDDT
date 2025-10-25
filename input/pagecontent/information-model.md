@@ -4,7 +4,7 @@ ___Caution__: In HL7 FHIR R4 the definitions of the [Device](https://hl7.org/fhi
 <hr>
 
 As depicted in the definition of the [HDDT logical building blocks](logical-viewpoints.html#logical-building-blocks), each medical aid or implant in the sense of § 374a SGB V can be divided into
-* __Personal Health Device__: the hardware part including the __sensors__ that measure __patient data__ (e.g. vital signs)
+* __Personal Health Device__: the hardware part including the __sensors__ that measure vital data of the patient
 * __Device Data Recorder__: components responsible for accepting, storing and further processing the device data. The Device Data Recorder consists of
     * __Personal Health Gateway__: an intermediate hardware and/or software that retrieves the sensor data at the patient's or doctor's side and takes care of securely forwarding it to a Health Record
     * __Health Record__: a backend platform that stores the device data
@@ -15,7 +15,7 @@ This logical model builds the foundation of the HDDT FHIR based information mode
 |----------------------|-------------------------------------|---------------------------------|
 | Personal Health Device      | Personal Health Device<br>Personal Health Device Definition  | [Device](https://hl7.org/fhir/R4/device.html)<br>[DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) |
 | sensor / dynamic configuration    | Sensor Type and Calibration Status  | [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html)             |
-| patient data         | Interoperable Value                 | [Observation](https://hl7.org/fhir/R4/observation.html)              |
+| vital data as measured by the sensor        | Interoperable Value                 | [Observation](https://hl7.org/fhir/R4/observation.html)              |
 | Device Data Recorder | Device Data Recorder Definition     | _BfArM internal resource_       |
 
 ### Measured Data 

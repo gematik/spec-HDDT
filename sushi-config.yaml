@@ -70,7 +70,7 @@ pages:
     title: Certification relevant systems
     generation: markdown
   conventions.html:
-    title: Keywords  Conventions
+    title: Keywords and Conventions
     generation: markdown
   glossary.html:
     title: Glossary
@@ -79,7 +79,7 @@ pages:
   release-notes.html:
     title: Release Notes
     generation: markdown
-# Definition  Rules
+# Definitions and Rules
   general-considerations.html:
     title: General Considerations
     generation: markdown
@@ -93,7 +93,7 @@ pages:
     title: Operational Requirements
     generation: markdown
   registries-and-zts.html:
-    title: BfArM Registries  ZTS
+    title: BfArM Registries and ZTS
     generation: markdown
 # Logical Viewpoints
   logical-viewpoints.html:
@@ -173,15 +173,15 @@ menu:
     Roadmap: roadmap.html
     Methodology: methodology.html
     Certification relevant systems: certification-relevant-systems.html
-    Keywords  Conventions: conventions.html
+    Keywords and Conventions: conventions.html
     Glossary: glossary.html
   Release Notes: release-notes.html
-  Definition  Rules: 
+  Definitions and Rules: 
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html
     Security  Privacy: security-and-privacy.html
     Operational Requirements: operational-requirements.html
-    Access to BfArM Registries  ZTS: registries-and-zts.html
+    Access to BfArM Registries and ZTS: registries-and-zts.html
   System Overview: 
     Logical Viewpoints: logical-viewpoints.html
     Information Model: information-model.html
