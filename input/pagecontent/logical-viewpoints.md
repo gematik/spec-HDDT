@@ -1,7 +1,7 @@
 
 § 374a SGB V requests vendors of medical aids and implants to provide medical device data for authorized digital health applications (DiGA) through a standardized backend API. This API is specified by the Health Device Data Transfer (HDDT), which provides normative definitions for the data transfer itself as well as for accomplishing security services.   
 
-This chapter provides a logical view on the HDDT ecosystem and by this gives an overview of the specification-relevant aspects of the HDDT ecosystem. It introduces the core building blocks and their interactions. It also defines the data that is subject to the HDDT specification and the security services that are required for securely grant access to a patient's device data.
+This chapter provides a logical view on the HDDT ecosystem and by this gives an overview of the specification-relevant aspects. It introduces the core building blocks and their interactions. It also defines the data that is subject to the HDDT specification and the security services that are required for securely grant access to a patient's device data.
 
 ### Logical Building Blocks
 
@@ -21,7 +21,7 @@ In order to securely operate the HDDT API, Manufacturers of Device Data Recorder
 * update their own entries with the _HIIS-VZ_ (BfArM Device Registry), and
 * retrieve semantic artifacts from the __German Central Terminology Server__ (ZTS).
 
-Interfaces to these three services are not part of the HDDT specification. A non-normative description of these services is given in the section [BfArM Registries and ZTS](registries-and-zts.html).
+_DiGA-VZ_ and _HIIS-VZ_ are not part of the HDDT specification and will be defined in dedicated technical specifications by BfArM. The German Central Terminology Service _ZTS_ is defined and operated independently from HDDT. A non-normative description of these three services and their interfaces is given in section [BfArM Registries and ZTS](registries-and-zts.html).
 
 The figure below shows how these logical building blocks interact with each other.
 

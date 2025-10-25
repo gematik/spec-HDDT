@@ -41,7 +41,7 @@ Contains calibration status and measurement unit. This resource provides informa
 
 Describes manufacturer, model name, and serial number. The device resource documents the physical device used for the measurement, including its unique identifiers, manufacturer information, and model specifications.
 
-These examples illustrate how FHIR resources can be used to represent clinical measurements, device information, and patient data in a standardized way.
+These examples illustrate how FHIR resources can be used to represent clinical measurements, device information, and interoperable values in a standardized way.
 
 <a name="profile"> </a>
 
