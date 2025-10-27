@@ -70,10 +70,11 @@ Recorder's responsibility to ensure that device data is only disclosed to author
 Based on the consent of a specific user and the [MIV-specific authorizations](mivs.html) listed for a DiGA in the
 _DiGA-VZ_, the Device Data Recorder MUST grant access to a DiGA only for
 
-- FHIR resources containing data of that specific user, **AND**
+- FHIR resources containing data of that specific user (see lane **a.** in figure below), **AND**
 - FHIR resources for which this user has granted consent to the DiGA, **AND**
 - Read-only and search-only access to FHIR resources, **AND**
-- FHIR resources bound to MIVs for which the DiGA has been authorized by the BfArM.
+  - FHIR resources bound to MIVs for which the DiGA has been authorized by the BfArM (see lane **b.** in figure below), **OR**
+  - FHIR resources containing device data from devices that have collected the MIV data for which a DiGA is authorized by BfArM (see lane **c.** in figure below).
 
 The MIV-specific authorizations are technically represented using [SMART scopes](smart-scopes.html), which define access
 rights for specific FHIR resources and search parameters. SMART scopes MUST be used consistently across the OAuth 2.0
