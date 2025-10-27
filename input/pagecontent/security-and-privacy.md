@@ -55,7 +55,7 @@ The following table lists the trust attributes that MUST be registered in the HI
 | FQDN (Authorization Server) | The Fully Qualified Domain Name (FQDN) of the Authorization Server uniquely identifies the Device Data Recorder’s authorization endpoint and enables a DiGA to verify its authenticity through the TLS certificate. The FQDN MUST be registered and published in the HIIS-VZ so that DiGAs can validate the Authorization Server’s certificate and establish a trusted connection. | FQDN as specified in the Internet TLS certificate in the Common Name (CN) or in the Subject Alternative Name (SAN) |
 | FQDN (FHIR Resource Server) | The Fully Qualified Domain Name (FQDN) of the FHIR Resource Server serves the same purpose as for the Authorization Server. It enables a DiGA to verify the server’s authenticity via the TLS certificate and MUST likewise be registered and published in the HIIS-VZ. | FQDN as specified in the Internet TLS certificate in the Common Name (CN) or in the Subject Alternative Name (SAN) |
 | Base URL FHIR-API of the FHIR Resource Server       | Device Data Recorder manufacturers/operators transmit the base URL of the Resource Server so that a DiGA can initiate endpoint discovery for the RESTful FHIR API of an aid/implant using {Base URL FHIR-API}/metadata. | url: {FQDN (Resource-Server)} / {manufacturer-specific path} <br><br>Example:<br> http://example.com/api/v1/fhir/r4 <br>http://fhir.example.com/r4 |
-| Base URL OAuth-API of the Authorization Server     | Device Data Recorder manufacturers/operators transmit the base URL of the Authorization Server so that a DiGA can initiate endpoint discovery for the OAuth ACG API of an aid/implant using {Base URL OAuth-API}//.well-known/oauth-authorization-server. | url: {FQDN (HiMi Authorization-Server)} / {manufacturer-specific path} <br><br>Examples: http://example.com/api/v1/oauth<br> http://oauth.example.com/v1 |
+| Base URL OAuth-API of the Authorization Server     | Device Data Recorder manufacturers/operators transmit the base URL of the Authorization Server so that a DiGA can initiate endpoint discovery for the OAuth ACG API of an aid/implant using {Base URL OAuth-API}//.well-known/oauth-authorization-server. | url: {FQDN (Authorization-Server)} / {manufacturer-specific path} <br><br>Examples: http://example.com/api/v1/oauth<br> http://oauth.example.com/v1 |
 
 Procedures for registering endpoint URLs and FQDNs with the _BfArM HIIS-VZ_ will be published by BfArM as part of the HIIS-VZ specification or corresponding guidelines.
 
@@ -145,13 +145,13 @@ Both the DiGA and the Device Data Recorder MUST provide the patient with the abi
 
 In order to implement and operate § 374a SGB V in accordance with the law, manufacturers of DiGA and Device Data Recorders MUST regularly inform themselves about changes in the systems relevant to them:
 
-| Manufacturer   | System | Change to be tracked | Possible Impact |
-|----------------|--------|----------------------|-----------------|
-| DiGA           | ZTS    | MIV Definitions (ValueSets) | Adjustments to the interpretation of values to be provided interoperably <br>&nbsp;<br> Requesting renewed consent due to changes in permissions |
-| | HIIS-VZ  | HiMi-Status <br>&nbsp;<br>Supported vibW <br>&nbsp;<br> FQDN (FHIR, Authorization) <br>&nbsp;<br> Base URL (FHIR, OAuth) | Termination of coupling to an aid/implant <br>&nbsp;<br> Invalidating consent <br>&nbsp;<br>Configuration adjustments of the DiGA |
-| | Device Data Recorder  | FHIR Capability Statement <br>&nbsp;<br> OAuth Server Data Document | Adjustments to RESTful FHIR API calls <br>&nbsp;<br> Adjustments to the used scopes and endpoints | 
-| Aid/Implant    | ZTS    | MIV Definitions (ValueSets) | Migration to ValueSet versions <br>&nbsp;<br> Adjustments to the values to be provided interoperably | 
-|                | DiGA-VZ | DiGA-Status <br>&nbsp;<br> Permissions of a DiGA <br>&nbsp;<br> TLS_Client_Cert_DiGA <br>&nbsp;<br> redirect_uri | Configuration changes of the Authorization Server <br>&nbsp;<br>Termination of coupling to a DiGA <br>&nbsp;<br> Invalidating consent 
+| Manufacturer   | System | Change to be tracked                                                                                                                     | Possible Impact |
+|----------------|--------|------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+| DiGA           | ZTS    | MIV Definitions (ValueSets)                                                                                                              | Adjustments to the interpretation of values to be provided interoperably <br>&nbsp;<br> Requesting renewed consent due to changes in permissions |
+| | HIIS-VZ  | Device Data Recorder Status <br>&nbsp;<br>Supported MIVs <br>&nbsp;<br> FQDN (FHIR, Authorization) <br>&nbsp;<br> Base URL (FHIR, OAuth) | Termination of coupling to an aid/implant <br>&nbsp;<br> Invalidating consent <br>&nbsp;<br>Configuration adjustments of the DiGA |
+| | Device Data Recorder  | FHIR Capability Statement <br>&nbsp;<br> OAuth Server Data Document                                                                      | Adjustments to RESTful FHIR API calls <br>&nbsp;<br> Adjustments to the used scopes and endpoints | 
+| Aid/Implant    | ZTS    | MIV Definitions (ValueSets)                                                                                                              | Migration to ValueSet versions <br>&nbsp;<br> Adjustments to the values to be provided interoperably | 
+|                | DiGA-VZ | DiGA-Status <br>&nbsp;<br> Permissions of a DiGA <br>&nbsp;<br> TLS_Client_Cert_DiGA <br>&nbsp;<br> redirect_uri                         | Configuration changes of the Authorization Server <br>&nbsp;<br>Termination of coupling to a DiGA <br>&nbsp;<br> Invalidating consent 
 
 
 ### Limits of security performance
