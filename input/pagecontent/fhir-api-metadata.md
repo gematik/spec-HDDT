@@ -1,4 +1,4 @@
-This document describes the `/metadata` endpoint for retrieving the FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) of the [Device](https://hl7.org/fhir/R4/device.html) Data Recorder. The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) provides information about supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.
+This document describes the `/metadata` endpoint for retrieving the FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) of the Device Data Recorder. The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) provides information about supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.
 
 ---
 

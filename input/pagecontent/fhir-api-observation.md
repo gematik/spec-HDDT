@@ -4,30 +4,30 @@ DiGA query the resource server of a Device Data Recorder via standard RESTful AP
 HDDT defines specific profiles for [Observation](https://hl7.org/fhir/R4/observation.html) resources for each Mandarory Interoperable Value (MIV). This allows for considering specific requirements of typical DiGA use cases and fosters the adoption of already existing profiles. In addition, aggregated values for a specific MIV can be made available as condensed reports via HDDT-defined [FHIR Operations](https://hl7.org/fhir/R4/operations.html). See 
 * [MIV-specific APIs](mivs.html) for a list of all MIV-specific Observation profiles and operations,
 * [Information Model](information-model.html) for a detailed description of elements and codings which are common to all MIV-specific Observation profiles.
-* [Retrieving Data](retrieving-data.html) for a detailed description of the overall data flow and how relationships between [Observation](https://hl7.org/fhir/R4/observation.html), [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) and [Device](https://hl7.org/fhir/R4/device.html) resources are affected by the calibration of a sensor or the exchange of a sensor.
+* [Retrieving Data](retrieving-data.html) for a detailed description of the overall data flow and how relationships between [Observation](mivs.html), [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) and [Device](StructureDefinition-hddt-personal-health-device.html) resources are affected by the calibration of a sensor or the exchange of a sensor.
 
 Nevertheless all [Observation](https://hl7.org/fhir/R4/observation.html) profiles share common characteristics and the same basic API interactions. This chapter describes these generic interactions in detail. For a better understanding of the overall data flow and the difference between dedicated and continuous measurements, refer to chapter [Retrieving Data](retrieving-data.html).
 
 To comply with § 374a SGB V, every Device Data Recorder MUST implement an Observation endpoint that allows for: 
-- [reading](#observation---read) individual [Observation](https://hl7.org/fhir/R4/observation.html) resources.
-- [searching](#observation---search) for [Observation](https://hl7.org/fhir/R4/observation.html) resources associated with the current patient and an authorised MIV. 
+- [reading](#observation---read) individual [Observation](mivs.html) resources.
+- [searching](#observation---search) for [Observation](mivs.html) resources associated with the current patient and an authorised MIV. 
 
 
 ### Endpoints
 
 #### Observation - READ
-Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection of data elements that represents a concept or entity in health care. By this each [Observation](https://hl7.org/fhir/R4/observation.html) resource a Device Data Recorder transmits to a DiGA MUST be identifiable and addressable through a logical `id`. A Device Data Recorder MUST allow a DiGA to request a known Observation by using a FHIR [_read_ interaction](https://hl7.org/fhir/R4/http.html#read)
+Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection of data elements that represents a concept or entity in health care. By this each [Observation](mivs.html) resource a Device Data Recorder transmits to a DiGA MUST be identifiable and addressable through a logical `id`. A Device Data Recorder MUST allow a DiGA to request a known Observation by using a FHIR [_read_ interaction](https://hl7.org/fhir/R4/http.html#read)
 
 | | |
 |-|-|
 | **Endpoint** | `/Observation/<id>` |
 | **HTTP Method** | GET |
 | **Interaction** | READ |
-| **Description** | Retrieve a single [Observation](https://hl7.org/fhir/R4/observation.html) resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id). The returned [Observation](https://hl7.org/fhir/R4/observation.html) resource MUST conform to the MIV-specific Observation profile. All constraints and obligations of the standard [FHIR `read` interaction](https://hl7.org/fhir/R4/resource.html#id) apply. |
-| **Request Parameters** | `id` - logical ID of the [Observation](https://hl7.org/fhir/R4/observation.html). |
-| **Authorization** | OAuth2 Bearer token REQUIRED. The resource server MUST only return a [Observation](https://hl7.org/fhir/R4/observation.html) resource that is linked to the patient who is associated with the token. Provided [Device](https://hl7.org/fhir/R4/device.html) resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html)).  |
+| **Description** | Retrieve a single [Observation](mivs.html) resource by its [logical id](https://hl7.org/fhir/R4/resource.html#id). The returned Observation resource MUST conform to the [MIV-specific Observation profile](mivs.html). All constraints and obligations of the standard [FHIR `read` interaction](https://hl7.org/fhir/R4/resource.html#id) apply. |
+| **Request Parameters** | `id` - logical ID of the [Observation](mivs.html). |
+| **Authorization** | OAuth2 Bearer token REQUIRED. The resource server MUST only return a [Observation](mivs.html) resource that is linked to the patient who is associated with the token. Provided [Device](StructureDefinition-hddt-personal-health-device.html) resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html)).  |
 | **Returned Objects** | MIV-specific HDDT Observation resource. |
-| **Specifications** | The only ways for a DiGA to obtain the logical `id` of an [Observation](https://hl7.org/fhir/R4/observation.html) resource is a 'search' interaction for device data of the given patient (see [searching](#observation---search) below). <br>A Device Data Recorder MAY limit access to historical data (e.g. only up to 30 days into the past). In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error. A DiGA can discover the length of this period through the `Historic-Data-Period` property of definition of the associated [Device](https://hl7.org/fhir/R4/device.html) resource. <br>If a requesting DiGA can only process high quality device data, it SHOULD assess the calibration status of the device that can be obtained through the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource which is accessible through the `Observation.device` reference. If the `Observation.device` reference links to a Device Resource instead of a DeviceMetric resource, the DiGA MUST consider the device to be calibrated without any need for re-calibration. |
+| **Specifications** | The only ways for a DiGA to obtain the logical `id` of an [Observation](mivs.html) resource is a 'search' interaction for device data of the given patient (see [searching](#observation---search) below). <br>A Device Data Recorder MAY limit access to historical data (e.g. only up to 30 days into the past). In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error. A DiGA can discover the length of this period through the `Historic-Data-Period` property of definition of the associated [Device](StructureDefinition-hddt-personal-health-device.html) resource. <br>If a requesting DiGA can only process high quality device data, it SHOULD assess the calibration status of the device that can be obtained through the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource which is accessible through the `Observation.device` reference. If the `Observation.device` reference links to a Device Resource instead of a DeviceMetric resource, the DiGA MUST consider the device to be calibrated without any need for re-calibration. |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>•`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>•`500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
 
 ---
@@ -36,8 +36,8 @@ Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection
 
 ##### Implicit Arguments
 
-DiGA request device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type. 
-The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an error.
+DiGA request device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](mivs.html) resource type. 
+The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](mivs.html) resources or with an error.
 
 The request header MUST contain an Access Token acc. to the HDDT [OAuth2 profile](pairing.html#access-tokens). This access token was issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder and MUST be taken as opaque by the DiGA. 
  
@@ -52,10 +52,10 @@ For more information about implicit arguments and guidance for exceptional cases
 | **Endpoint** | `/Observation` |
 | **HTTP Method** | GET / POST |
 | **Interaction** | SEARCH |
-| **Description** | Search for [Observation](https://hl7.org/fhir/R4/observation.html) resources. |
+| **Description** | Search for [Observation](mivs.html) resources. |
 | **Authorization** | OAuth2 Bearer token REQUIRED. The Device Data Recorder acting as the resource server MUST only return Observation resources that are linked to the patient in the token and that is accessible by the requestor according to its scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor).  |
 | **Search Parameters** | The Device Data Recorder MUST be able to discover the patient identifier from the Access Token. This identifier MUST implicitly be considered the `subject` parameter for every search request. If a DiGA explicitly provides a `subject` parameter with a query, the Device Data Recorder MUST ignore this parameter and SHOULD respond with a `400 Bad Request` error.<br>The Device Data Recorder MUST support search parameters `code` and `date`. If a `code` argument is provided with the request, the search is narrowed to the provided codes. If one or many of the provided `code` values are not included with the MIV's ValueSet, the Device Data Recorder MUST respond with a `400 Bad Request` error.<br>The Device Data Recorder MAY support additional standard FHIR Observation search parameters. <br>A Device Data Recorder MAY limit access to historical data (e.g. only up to 30days into the past). In case the `date` argument results in a search that only covers deleted historic data, the Device Data Recorder MUST respond with a _404 Not Found_ error in order to signal the DiGA that there MAY have been data which is no longer available. |
-| **Returned Objects** | [Bundle](https://hl7.org/fhir/R4/bundle.html) containing [Observation](https://hl7.org/fhir/R4/observation.html) entries that match the query. Optionally, [Device](https://hl7.org/fhir/R4/device.html) or [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources can be included in the [Bundle](https://hl7.org/fhir/R4/bundle.html), if requested via an `_include=Observation:device` search parameter.<br> If no matching [Observation](https://hl7.org/fhir/R4/observation.html) resources are found, an empty [Bundle](https://hl7.org/fhir/R4/bundle.html) MUST be returned. |
+| **Returned Objects** | [Bundle](https://hl7.org/fhir/R4/bundle.html) containing [Observation](mivs.html) entries that match the query. Optionally, [Device](StructureDefinition-hddt-personal-health-device.html) or [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources can be included in the [Bundle](https://hl7.org/fhir/R4/bundle.html), if requested via an `_include=Observation:device` search parameter.<br> If no matching [Observation](mivs.html) resources are found, an empty [Bundle](https://hl7.org/fhir/R4/bundle.html) MUST be returned. |
 | **Specifications** | The Device Data Recorder SHOULD support [_Paging_](https://hl7.org/fhir/R4/http.html#paging).<br> The Device Data Recorder MUST consider the delay from real time of the specific device and Device Data Recorder. This device-specific value can be obtained as the `Delay-from-real-Time` property of definition of the associated Device resource. <br> Data MAY be missing due to broken connectivity (e.g. the sensor is out of range of its mobile app). A DiGA can discover such situations by checking the `status` of the associated device.<br> Device Data Recorders MUST support `include=Observation:device` and `_include:iterate=DeviceMetric:source` as query arguments. <br> For additional information on the constraints and obligations listed above refer to chapter [Retrieving Data](retrieving-data.html). |
 | **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>•`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>•`500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
 
@@ -71,7 +71,7 @@ With continuous measurements the patient is connected to a sensor (almost) all t
 
 For HDDT Observation Profiles that cover continuous measurements there are some constraints and obligation with respect to the generic search interaction defined above:
 
-- Values from continuous measurements MUST be provided as chunks of [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData), where each chunk of data is represented as an [Observation](https://hl7.org/fhir/R4/observation.html). Chunks are of fixed size with respect to the `effectivePeriod`. E.g. a chuck with a fixed size of one hour can hold up to 60 values with a sampling frequency of one value per minute. The size of a chunk MUST be registered with the _HIIS-VZ_ (BfArM [Device](https://hl7.org/fhir/R4/device.html) Registry) and can be obtained from there through the definition of the device. 
+- Values from continuous measurements MUST be provided as chunks of [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData), where each chunk of data is represented as an [Observation](StructureDefinition-hddt-continuous-glucose-measurement.html). Chunks are of fixed size with respect to the `effectivePeriod`. E.g. a chuck with a fixed size of one hour can hold up to 60 values with a sampling frequency of one value per minute. The size of a chunk MUST be registered with the _HIIS-VZ_ (BfArM Device Registry) and can be obtained from there through the definition of the device. 
 - In a query for continuously measured data results in multiple chunks, each chunk's `Observation.effectivePeriod` MUST be of the defined fixed size. The last chunk MAY hold less data than fits to the chunk. In this case the `Observation.status` of the chunk MUST be set to _preliminary_ (see [Retrieving Data](retrieving-data.html#continuous-measurements) for details). A DiGA MAY use the logical `id` of the last chunk to request this chunk again later in order to obtain the missing data.
 - The only exceptions to the fixed chunk size are changes to the `calibration.state` or a change of the personal health device. In these cases a chunk's `Observation.effectivePeriod` can be shorter than the fixed chunk size (see [Retrieving Data](retrieving-data.html#change-of-calibrationstatus) for details). The status of the chunk MUST be set to _final_ in this case.
 
@@ -81,17 +81,17 @@ Details and examples on how to interpret and process chunks of continuously meas
 
 #### Example Search Queries
 
-Most commonly, a GET or POST request will be performed to get multiple [Observation](https://hl7.org/fhir/R4/observation.html) resources. Additional search parameters MAY be specified in order to constrain what [Observation](https://hl7.org/fhir/R4/observation.html) resources SHOULD be returned. Common use cases include:
+Most commonly, a GET or POST request will be performed to get multiple [Observation](mivs.html) resources. Additional search parameters MAY be specified in order to constrain what Observation resources SHOULD be returned. Common use cases include:
 
 
 | Request | Explanation |
 |---------|-------------|
-|**GET** `/Observation`| Request all [Observation](https://hl7.org/fhir/R4/observation.html) resources available for the current patient and the authorized MIV (Information about patient and MIV are associated with the Access Token). |
-|**GET** `/Observation?date=ge2025-07-23&`| Request all [Observation](https://hl7.org/fhir/R4/observation.html) resources since the 23rd of July for the current patient and the authorized MIV.
-|**GET** `/Observation?code=http://loinc.org\|2339-0&date=ge2025-07-23&`| Request all [Observation](https://hl7.org/fhir/R4/observation.html) resources since the 23rd of July for the current patient and the authorized MIV that hold blood sugar values of unit mg/dl. If the LOINC code 2339-0 is not included with the MIV, the Device Data Recorder will return a `400 Bad Request` error.|
-|**GET** `/Observation?_include=Observation:device`| see example-1. The resulting _searchset_ [Bundle](https://hl7.org/fhir/R4/bundle.html) also includes the instances of the [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources referenced by the [Observation](https://hl7.org/fhir/R4/observation.html) resources.  |
-|**GET** `/Observation?_include=Observation:device&_include:iterate=DeviceMetric:source`| see example-1. The resulting [Bundle](https://hl7.org/fhir/R4/bundle.html) includes all [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) and [Device](https://hl7.org/fhir/R4/device.html) resources directly or indirecly linked wth the contained [Observation](https://hl7.org/fhir/R4/observation.html) resources.  |
-| **GET** `/Observation?_sort=-date&_count=1` | Get the latest [Observation](https://hl7.org/fhir/R4/observation.html) (in case of a continuous measurement the current chunk) for the current patient and the authorized MIV. |
+|**GET** `/Observation`| Request all [Observation](mivs.html) resources available for the current patient and the authorized MIV (Information about patient and MIV are associated with the Access Token). |
+|**GET** `/Observation?date=ge2025-07-23&`| Request all [Observation](mivs.html) resources since the 23rd of July for the current patient and the authorized MIV.
+|**GET** `/Observation?code=http://loinc.org\|2339-0&date=ge2025-07-23&`| Request all [Observation](mivs.html) resources since the 23rd of July for the current patient and the authorized MIV that hold blood sugar values of unit mg/dl. If the LOINC code 2339-0 is not included with the MIV, the Device Data Recorder will return a `400 Bad Request` error.|
+|**GET** `/Observation?_include=Observation:device`| see example-1. The resulting _searchset_ [Bundle](https://hl7.org/fhir/R4/bundle.html) also includes the instances of the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources referenced by the [Observation](mivs.html) resources.  |
+|**GET** `/Observation?_include=Observation:device&_include:iterate=DeviceMetric:source`| see example-1. The resulting [Bundle](https://hl7.org/fhir/R4/bundle.html) includes all [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) and [Device](StructureDefinition-hddt-personal-health-device.html) resources directly or indirecly linked wth the contained [Observation](mivs.html) resources.  |
+| **GET** `/Observation?_sort=-date&_count=1` | Get the latest [Observation](mivs.html) (in case of a continuous measurement the current chunk) for the current patient and the authorized MIV. |
 
 ---
 
@@ -102,7 +102,7 @@ Most commonly, a GET or POST request will be performed to get multiple [Observat
 
 **Description:** With FHIR-read interactions, a client can access a single resource instance by querying its internal ID. Restrictions by the OAuth scopes apply—if the client is not allowed to read this resource, a 404 error will be returned.
 
-**Response**: Returned object is a single [Observation](https://hl7.org/fhir/R4/observation.html) resource.
+**Response**: Returned object is a single [Observation](mivs.html) resource.
 
 {% include Observation-example-blood-glucose-measurement-1-json-html.xhtml %}
 
@@ -113,7 +113,7 @@ Most commonly, a GET or POST request will be performed to get multiple [Observat
 
 **Description**: Obtain all of the Observations where `code` is the LOINC code for blood sugar measurements (in mass/volume). OAuth scopes apply, and only Observations are returned that the client is allowed to access.
 
-**Response:** Returned object is a [Bundle](https://hl7.org/fhir/R4/bundle.html) containing all [Observation](https://hl7.org/fhir/R4/observation.html) resource instances matching the search criteria.
+**Response:** Returned object is a [Bundle](https://hl7.org/fhir/R4/bundle.html) containing all [Observation](mivs.html) resource instances matching the search criteria.
 
 ```json
 {
@@ -202,7 +202,7 @@ Most commonly, a GET or POST request will be performed to get multiple [Observat
 
 **Description**: This query asks the server for all Observations since `2025-09-25`, and also requests that the server include resource instances referenced by `Observation.device`.
 
-**Response:** Returned object is a [Bundle](https://hl7.org/fhir/R4/bundle.html) containing all [Observation](https://hl7.org/fhir/R4/observation.html) resource instances matching the search criteria, and all referenced `DeviceMetric` resources.
+**Response:** Returned object is a [Bundle](https://hl7.org/fhir/R4/bundle.html) containing all [Observation](mivs.html) resource instances matching the search criteria, and all referenced `DeviceMetric` resources.
 
 ```json
 {
