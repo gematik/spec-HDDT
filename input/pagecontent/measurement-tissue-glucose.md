@@ -36,6 +36,8 @@ The figure below shows the adaption of the [HDDT Information Model](information-
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Continuous Glucose Measurement</em></figcaption>
 </figure>
 
+<br clear="all"/>
+
 All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Continuous Glucose Measurement_ only the following scopes MUST be set:
 
 ```
@@ -122,6 +124,9 @@ Elements that are not mandatory oder MS for the MIV _Contiuous Glucose Measureme
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Continuous Glucose Measurement)</em></figcaption>
 </figure>
+
+<br clear="all"/>
+
 The following code example shows the concrete JSON representation of the _HDDT Continuous Glucose Measurement 1_ resource shown in the object diagram.
 
 {% include Observation-example-cgm-series-1-json-html.xhtml %}

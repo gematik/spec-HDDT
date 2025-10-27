@@ -96,10 +96,9 @@ Every Device Data Recorder holds information about its static attributes as part
 
 | key                  | value | obligation | comments |
 |----------------------|-------|------------|----------|
-| Store-Capacity-Count | number of measured values that can be stored locally with the sensor | MUST | In cases where the sensor cannot synchronize with the Personal Health Gateway (e.g. due to connection failures) data gets lost if the amount of measured data since the last synchronization exceeds _Store-Capacity-Count_ |
 | Historic-Data-Period | minimum number of days historic data is available at the Device Data Recorder | MUST | If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder MAY respond with an error. _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
-| Delay-From-Real-Time | aximum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record under normal operational conditions. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
-| Grace-Period | Time span a DiGA must wait between two requests for the same patient's data. | MUST | A Device Data Recorder MAY reject a new request that is issued before the end of this time span. | 
+| Delay-From-Real-Time | maximum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record under normal operational conditions. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
+| Grace-Period | Time span a DiGA must wait between two requests for data that affect the same MIV and patient | MUST | A Device Data Recorder MAY reject a new request for the same MIV and patioen that is issued before the end of this time span. | 
 | Chunk-Time-Span      | size of a chunk for sharing sampled data (see below) | MUST if applicable | This property is only applicable for Device Data Recorders that provide Observation values as sampled data |  
 
 #### Versioning of Device and DeviceMetric Resources
@@ -201,7 +200,7 @@ If the DiGA states the same `search` query again one hour later, the newest data
 <div class="gem-ig-svg-container">
   <img src="HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="60%">
   </div>
-    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Continuously searching for values from a continuous measurement</em></figcaption>
 </figure>
 <br clear="all"/>
 
@@ -217,7 +216,7 @@ Some sensors for continuous measurements require initial or regular calibration.
 <div class="gem-ig-svg-container">
   <img src="HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="60%">
   </div>
-    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Continuous measurement: Calibrating the sensor</em></figcaption>
 </figure>
 <br clear="all"/>
 
@@ -228,13 +227,13 @@ It is up to the Device Data Recorder if a change of `calibration.state` leads to
 Personal Health Devices MAY require a Personal Health Device of another type to perform the calibration (e.g. a blood glucose meter for calibrating a rtCGM). Values measured with another Personal Health Device for calibration purposes MUST NOT be part of a chunk of continuously measured data. 
 
 ##### Changing Devices
-[Pairing](pairing.html) a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new `device` reference to a [Device](https://hl7.org/fhir/R4/device.html) resource that reflects the new Personal Health Device (see figure below).
+[Pairing](pairing.html) a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump or changes the rtCGM sensor) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new `device` reference to a [Device](https://hl7.org/fhir/R4/device.html) resource that reflects the new Personal Health Device (see figure below).
 
 <figure>
 <div class="gem-ig-svg-container">
   <img src="HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="60%">
   </div>
-    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Continuous measurement: Changing the sensor/device</em></figcaption>
 </figure>
 <br clear="all"/>
 

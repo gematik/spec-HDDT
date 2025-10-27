@@ -35,6 +35,8 @@ The figure below shows the adaption of the [HDDT Information Model](information-
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</em></figcaption>
 </figure>
 
+<br clear="all"/>
+
 All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Blood Glucose Measurement_ only the following scopes MUST be set:
 ```
 patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement
@@ -101,6 +103,8 @@ The following object diagram the relationships between the FHIR resources involv
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Blood Glucose Measurement)</em></figcaption>
 </figure>
+
+<br clear="all"/>
 
 The following code example shows the concrete JSON representation of the _HDDT Blood Glucose Measurement 1_ resource shown in the object diagram.
 

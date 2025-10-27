@@ -1,6 +1,6 @@
 @startuml
 !include fbeta-theme.puml
-title DiGA–Health Device Pairing (High Level)
+title High Level View on Pairing and Request for Data
 
 actor Patient as P
 participant D  [

@@ -199,7 +199,7 @@ the DiGA, and the Device Data Recorder. Each step is explained in detail below.
 <div class="gem-ig-svg-container" style="width: 100%;">
   {% include pairing_sequence_detailed.svg %}
   </div>
-    <figcaption><em><strong>Figure: </strong>Perform Pairing between DiGA and Device Data Recorder (detailed)</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Pairing between DiGA and Device Data Recorder (detailed)</em></figcaption>
 </figure>
 <br>
 
