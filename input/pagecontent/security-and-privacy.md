@@ -97,9 +97,9 @@ Data transfer from a Device Data Recorder to a DiGA MUST only be carried out on 
 The period of validity of the consent MUST NOT be longer than the prescription period of the DiGA. If a DiGA has an unlimited prescription period or a prescription period of more than one year, the consent SHOULD NOT exceed one year. The manufacturer of the Device Data Recorder is generally responsible for properly obtaining and renewing consent and monitoring any revocations as well as the follow-up obligations. 
 
 ### Secure Communication via mTLS
-Connections between the DiGA and HiMi backend are secured via a mutually authenticated TLS channel (mTLS). Since the connection takes place over the Internet, the trust space of the Internet PKI is used for server certificates. Specifically, the CAs that are members of the CA/Browser Forum form the trust space and CA Authorization (CAA, https://datatracker.ietf.org/doc/html/rfc8659) and Certificate Transparency (CT, https://datatracker.ietf.org/doc/html/rfc6962) are implemented.
+Connections between the DiGA and the backend of a Device Data Recorder are secured via a mutually authenticated TLS channel (mTLS). Since the connection takes place over the Internet, the trust space of the Internet PKI is used for server certificates. Specifically, the CAs that are members of the CA/Browser Forum form the trust space and CA Authorization (CAA, https://datatracker.ietf.org/doc/html/rfc8659) and Certificate Transparency (CT, https://datatracker.ietf.org/doc/html/rfc6962) are implemented.
 
-TLS client certificates are not issued by those Cas. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the DiGA directory (DiGA-VZ).
+TLS client certificates are not issued by those CAs. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the DiGA directory (DiGA-VZ).
 
 For all connections, the DiGA acts as a client and the Device Data Recorder as a server. In the course of establishing a TLS connection, the following steps must be completed as part of the certificate check:
 1. Verification of the server certificate of the Device Data Recorder by the DiGA:
@@ -117,7 +117,7 @@ DiGA and Device Data Recorder operators must implement CA Authorization (CAA) an
 
 ___Additional Notes___: 
 * (a) The list of signature verification keys is published by the browser manufacturers, for example. The measure ensures that no certificates are accepted that are not contained in at least two CT logs.
-* (b)	It shall be pointed out that CRLs of the Cas from the CAB Forum can be of significant size.
+* (b)	It shall be pointed out that CRLs of the CAs from the CAB Forum can be of significant size.
 * (c) During the TLS connection, only the certificate of the client is initially determined. The certificate must then be passed on to the application layer. There, a comparison must take place with the information from the DiGA-VZ of the BfArM in order to identify the DiGA. Further the identification data from the DiGA at the application layer (`client_id`) must be checked. This data has to match the identity of the DiGA meaning both certificate and `client_id` have to be in the same DiGA-VZ entry. It can be useful for the Device Data Recorder to extract all DiGA certificates from the DiGA-VZ (or at least those from registered DiGAs) to establish an DiGA trust space. This can be passed to the TLS library which verifies the certificate against that trust space during TLS handshake. Most of unauthorized connection attempts will be repelled by that measure. In any case this verification is not enough as additionally the DiGA has to be identified at application layer as described above.
 
 ### Caching of Trust-Related Information
