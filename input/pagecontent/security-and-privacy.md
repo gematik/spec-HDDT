@@ -61,19 +61,40 @@ Procedures for registering endpoint URLs and FQDNs with the _BfArM HIIS-VZ_ will
 
 
 ### Authorization of the DiGA
-The Device Data Recorder takes the role of the Data Controller acc. Art. 4 Sentence 1 No. 7 GDPR. The Device Data Recorder MUST implement suitable technical and organizational measures to ensure and be able to prove that the processing is carried out in accordance with the GDPR (Art. 42 GDPR). This especially includes the Device Data Recorder's responsibility to ensure that device data is only disclosed to authorized DiGA. 
 
-Based on the consent of a specific user, the DiGA-VZ entry with the [MIV-specific authorizations](mivs.html) for a DiGA, the Device Data Recorder MUST only grant access to a DiGA for
-- FHIR resources with only data about a specific user AND
-- FHIR resources for which this user has consented to access through a DiGA AND
-- Read-only and search-only access to FHIR resources AND
-- FHIR resources bound to MIVs for which a DiGA has been authorized by the BfArM
+The Device Data Recorder takes the role of the Data Controller acc. Art. 4 Sentence 1 No. 7 GDPR. The Device Data
+Recorder MUST implement suitable technical and organizational measures to ensure and be able to prove that the
+processing is carried out in accordance with the GDPR (Art. 42 GDPR). This especially includes the Device Data
+Recorder's responsibility to ensure that device data is only disclosed to authorized DiGA.
 
-The Device Data Recorder verifies these conditions and issues an OAuth2 Access Token for an authorized DiGA (see [pairing](pairing.html)). This token MUST be presented by the DiGA with any request for device data. The Device Data Recorder MUST check the authenticity and integrity of this token against the token signature. 
+Based on the consent of a specific user and the [MIV-specific authorizations](mivs.html) listed for a DiGA in the
+DiGA-VZ, the Device Data Recorder MUST grant access to a DiGA only for
 
-HDDT does not make any presumptions on the content of this Access Token. A manufacturer of a Device Data Recorder MAY place all authorization information directly into the token or use opaque tokens which just refer to information which is managed internally. The requirements defined in “Identification and Authentication of the Patient” MUST be met which means data that could identify the patient MUST NOT be used in the Token.
+- FHIR resources containing data of that specific user, **AND**
+- FHIR resources for which this user has granted consent to the DiGA, **AND**
+- Read-only and search-only access to FHIR resources, **AND**
+- FHIR resources bound to MIVs for which the DiGA has been authorized by the BfArM.
 
-The figure below summarizes the HDDT authorization model and shows how preconditions and context information map onto the access token that is issued to a DiGA.
+The MIV-specific authorizations are technically represented using [SMART scopes](smart-scopes.html), which define access
+rights for specific FHIR resources and search parameters. SMART scopes MUST be used consistently across the OAuth 2.0
+interface between the DiGA and the Authorization Server including the Authorization-Request and
+the [Token Response](pairing.html#token-response).
+
+The Authorization Server issues OAuth 2.0 Access Tokens to a DiGA that reflect these authorization conditions. The DiGA
+MUST provide this Access Token as a Bearer Token with every request to the Resource Server. The Resource Server MUST
+verify the authenticity and integrity of the Access Token against its signature and enforce the access restrictions
+defined above (see [Enforcement of SMART Scopes on Observations, DeviceMetric, and Device](smart-scopes.html#enforcement-of-smart-scopes-on-observations-devicemetric-and-device)).
+
+While SMART scopes define the intended access externally, the internal representation of these scopes within the Access
+Token is implementation-specific. The Authorization Server MAY embed the SMART scopes directly into the token (e.g., as
+scope-claim in a JWT) or issue an opaque token that references the corresponding authorization data managed internally.
+In either case, the Resource Server MUST apply the permissions derived from the SMART scopes associated with the issued
+token.
+
+The requirements defined in "Identification and Authentication of the Patient" MUST be met, meaning that data enabling
+patient identification MUST NOT appear in the token.
+
+The figure below summarizes the HDDT authorization model and shows how preconditions and context information map onto the access token issued to a DiGA.
 
 <figure>
 <div class="gem-ig-svg-container">
@@ -89,7 +110,7 @@ Upon registration with the _DiGA-VZ_, a DiGA registers the values it processes f
 * if a DiGA requests for aggregated data (device data report), the Device Data Recorder MUST verify that the respective FHIR Operation is linked with the MIV that the DiGA was authorized for (see [MIVs](mivs.html) for the currently defined MIVs and their associated FHIR Operations).
 * if a DiGA requests for a specific LOINC code, the Device Data Recorder MUST verify that this code is included with the ValueSet of the MIV that the DiGA was authorized for. This information can be obtained from the [ZTS](registries-and-zts.html#zentraler-terminologieserver) (German Central Terminology Server).
 
-In addition to measured and aggregated data, a DiGA can as well request information about the patient's Personal Health Device from the Device Data Recorder. See [Smart Scopes](smart-scopes.html) for the enforcement of authorization upon such requests.
+In addition to measured and aggregated data, a DiGA can as well request information about the patient's Personal Health Device from the Device Data Recorder. See [SMART Scopes](smart-scopes.html) for the enforcement of authorization upon such requests.
 
 #### Consent
 Data transfer from a Device Data Recorder to a DiGA MUST only be carried out on the basis of the affected patient's informed consent (§ 374a (1) SGB V). Both the DiGA and the Device Data Recorder MUST provide means to the patient to revoke the consent from within the DiGA and from all patient GUIs of the Device Data Recorder. Once a consent is revoked, the Access Token MUST be invalidated and the DiGA MUST NOT be able to obtain device data from the Device Data Recorder any more (see [unpairing of a DiGA](pairing.html#unpairing-by-the-patient)).
