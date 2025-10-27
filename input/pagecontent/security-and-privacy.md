@@ -102,10 +102,10 @@ Connections between the DiGA and the backend of a Device Data Recorder are secur
 TLS client certificates are not issued by those CAs. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the DiGA directory (DiGA-VZ).
 
 For all connections, the DiGA acts as a client and the Device Data Recorder as a server. In the course of establishing a TLS connection, the following steps must be completed as part of the certificate check:
-1. Verification of the server certificate of the Device Data Recorder by the DiGA:
+1. Verification of the Device Data Recorder's server certificate by the DiGA:
    - Precondition: The DiGA backend knows which Device Data Recorder it wants to communicate with and has determined the FQDN from the _BfArM HIIS-VZ_ in advance for the connection establishment.
    - Check for the trust space CA/Browser Forum
-   - Check that the called URI is covered by the FQDN (CN or SAN) specified in the presented server certificate
+   - Check that the FQDN of the called URI matches the domain listed in the server certificate - either in the Subject Alternative Name (SAN) or, if absent, in the Common Name (CN) field.
    - Checking for temporal validity
    - Check that at least two Signed Certificate Timestamps (SCT) are included in the certificate and that they are signed by known CT-Log operators (see (a) below)
    - Check the revocation status of the certificate (see (b) below) 
