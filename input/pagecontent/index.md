@@ -17,7 +17,9 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected _medical aid_, _implant_ and _DiGA_ manufacturers as well as other stakeholders. The parts describing the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](roadmap.html).
+The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected _medical aid_, _implant_ and _DiGA_ manufacturers as well as other stakeholders. The parts describing the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](roadmap.html). 
+
+FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 
 ### Intended Audience
 The primary audience for this implementation guide are product managers, developers, and architects of manufacturers of medical aids, implants and DiGA. 

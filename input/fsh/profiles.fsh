@@ -461,7 +461,7 @@ code system and its contents remain copyrighted by ISO and IEEE.
 * ^contact.telecom[=].value = "klassi@bfarm.de"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.bfarm.de"
-* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM). This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
+* ^copyright = "Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM). This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
 [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. This ValueSet includes
 concepts from [ISO/IEEE 11073-10101:2020](https://www.iso.org/standard/77338.html), SNOMED CT and HL7 International. Codes from the 
 _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
