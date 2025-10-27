@@ -92,10 +92,7 @@ pages:
   operational-requirements.html:
     title: Operational Requirements
     generation: markdown
-  registries-and-zts.html:
-    title: BfArM Registries and ZTS
-    generation: markdown
-# Logical Viewpoints
+# System Overview
   logical-viewpoints.html:
     title: Logical Viewpoints
     generation: markdown
@@ -110,6 +107,9 @@ pages:
     generation: markdown
   retrieving-data.html:
     title: Retrieving Data
+    generation: markdown
+  registries-and-zts.html:
+    title: BfArM Registries and ZTS
     generation: markdown
 # Generic APIs
   himi-diga-api.html:
@@ -181,13 +181,13 @@ menu:
     Use of HL7 FHIR: use_of_hl7_fhir.html
     Security and Privacy: security-and-privacy.html
     Operational Requirements: operational-requirements.html
-    Access to BfArM Registries and ZTS: registries-and-zts.html
   System Overview: 
     Logical Viewpoints: logical-viewpoints.html
     Information Model: information-model.html
     Pairing: pairing.html
     SMART Scopes: smart-scopes.html
     Retrieving Data: retrieving-data.html
+    Access to BfArM Registries and ZTS: registries-and-zts.html
   Generic APIs:
     FHIR Resource Server: himi-diga-api.html
     Authorization Server: authorization-server.html
