@@ -13,7 +13,7 @@ diagram illustrates the structure of SMART scopes:
 <div class="gem-ig-svg-container">
  <img src="smart_scopes_structure.svg" style="width: 75%;" />
   </div>
-    <figcaption><em><strong>Figure: </strong>Smart scopes structure</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>SMART scopes structure</em></figcaption>
 </figure>
 <br>
 
@@ -29,9 +29,25 @@ Examples of SMART scopes:
 Concrete SMART scopes are always MIV specific: a DiGA treating diabetes MAY request access to blood glucose
 measurements, while a DiGA focused on hypertension MAY request access to blood pressure values.
 
-While the SMART scopes are configured and consented to on the Device Data Recorder's OAUth2 Authorization Server as described in the
+While the SMART scopes are configured and consented to on the Device Data Recorder's OAuth2 Authorization Server as described in the
 [pairing chapter](pairing.html), it is vital that the Device Data Recorder's FHIR Resource Server strictly enforces these scope restrictions.
 Even if a DiGA holds a valid access token, it MUST only be allowed to retrieve data elements explicitly covered by the granted SMART scopes. Failure to enforce these restrictions would undermine the purpose of fine-grained consent and could result in unauthorized disclosure of sensitive health data. Proper enforcement ensures that patient consent is respected at the technical level and that data access remains fully aligned with the intended use case.
+
+### Scope Parameters Defined by MIVs
+
+Each MIV defined in the [Mandatory Interoperable Values](mivs.html) section specifies a
+corresponding [ValueSet](https://hl7.org/fhir/R4/valueset.html) that contains the LOINC codes representing the clinical
+measurements relevant to that MIV. These ValueSets are published on the Central Terminology Server (ZTS) of gematik and
+are referenced in the DiGA-VZ for each DiGA authorized to access data via the HDDT interface.
+
+Only a limited set of FHIR resources is relevant within the scope of this specification. The following resources and
+their corresponding SMART scope structure define the permissible access patterns between a DiGA and a Device Data
+Recorder.
+
+| FHIR Resource          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | SMART 2.0 Standard                                                                                                                                                                            | Specifications                                                                                                                                                                                                                                                                      |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Observation](https://hl7.org/fhir/R4/observation.html)            | FHIR Observation resources MUST be authorized using the `code:in` parameter together with a reference to the MIV-specific ValueSet. A separate scope MUST be provided for each MIV.                                                                                                                                                                                                                                                                                                             | [Finer-grained resource constraints using search parameters](https://hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html#finer-grained-resource-constraints-using-search-parameters) | `scope: patient/Observation.rs?code:in={Canonical ValueSet URL}`<br><br>• `{Canonical ValueSet URL}` MUST exactly match the URL reference stored in the DiGA-VZ for the corresponding MIV ValueSet for a specific DiGA.<br>• Authorized DiGA MUST have read and search access only. |
+| [Device](https://hl7.org/fhir/R4/device.html)<br>[DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) | FHIR Device and DeviceMetric resources MUST be authorized at the resource level. Their authorization MUST always be semantically linked to the corresponding authorized Observation resources. Only Device and DeviceMetric resources MAY be accessed that are related to the corresponding Observation resource or that performed the measurement of the MIV-specific data for that Observation. | [Patient-specific scopes](https://hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html#patient-specific-scopes)                                                                      | `scope: patient/device.rs patient/devicemetric.rs`<br><br>• Authorized DiGA MUST have read and search access only.                                                                                                                                                                  |
 
 ### Enforcement of SMART Scopes on Observations, DeviceMetric, and Device
 
@@ -45,8 +61,8 @@ resources [Observation](https://hl7.org/fhir/R4/observation.html), [DeviceMetric
 
 #### Observation as the Anchor
 
-Observation resources are the primary and anchoring resource for all scope enforcement. SMART scopes of the form
-`patient/Observation…` determine which clinical measurements a DiGA is entitled to access. All other resources
+[Observation](https://hl7.org/fhir/R4/observation.html) resources are the primary and anchoring resource for all scope enforcement. SMART scopes of the form
+`patient/Observation…` determine which clinical measurements a DiGA is entitled to access. The remaining resources
 ([DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), [Device](https://hl7.org/fhir/R4/device.html)) are only made available in relation to these Observations.
 
 Concretely:
