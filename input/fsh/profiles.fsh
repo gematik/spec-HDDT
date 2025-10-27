@@ -52,7 +52,7 @@ This supports use cases such as:
 """
 // * ^version = "0.1.1"
 * ^status = #draft
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * type = #collection (exactly)
@@ -95,7 +95,7 @@ Personal Health Device MUST be set to `unknown`.
 """
 // * ^version = "0.1.1"
 * ^status = #draft
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Personal Health Device"
@@ -177,7 +177,7 @@ information about potentially missing data (e.g. due to temporal problems with t
 """
 // * ^version = "0.1.1"
 * ^status = #draft
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Configuration or setting capability of a personal health device"
@@ -249,7 +249,7 @@ or if the sensor may change its calibration status over time.
 """
 // * ^version = "0.1.1"
 * ^status = #draft
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * status = #final (exactly)
@@ -314,7 +314,7 @@ current chunk and therefore is the only reason why a chunk may be smaller than t
 """
 // * ^version = "0.1.1"
 * ^status = #draft
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * . ^short = "Chunk of continuous glucose measurements"
@@ -386,7 +386,7 @@ manufacturers of glucometers.
 // * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = false
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -424,7 +424,7 @@ In the future codes defining non-invasive glucose measuring methods may be added
 // * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = false
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -455,7 +455,7 @@ code system and its contents remain copyrighted by ISO and IEEE.
 // * ^version = "0.1.1"
 * ^status = #draft
 * ^experimental = true
-* ^date = "2025-09-26"
+* ^date = "2025-10-27"
 * ^publisher = "BfArM"
 * ^contact.telecom[0].system = #email
 * ^contact.telecom[=].value = "klassi@bfarm.de"
@@ -533,7 +533,7 @@ It allows clients to request CGM summary data filtered by effective period, and 
 * experimental = false
 * kind = #operation
 * publisher = "gematik GmbH"
-* date = "2025-09-19"
+* date = "2025-10-27"
 * affectsState = false
 * code = #hddt-cgm-summary
 * system = false
