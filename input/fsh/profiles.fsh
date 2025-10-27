@@ -390,7 +390,7 @@ manufacturers of glucometers.
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * LOINC#2339-0 "Glucose [Mass/volume] in Blood"
 * LOINC#15074-8 "Glucose [Moles/volume] in Blood"
 * LOINC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
@@ -428,7 +428,7 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * LOINC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
 * LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
@@ -461,7 +461,13 @@ code system and its contents remain copyrighted by ISO and IEEE.
 * ^contact.telecom[=].value = "klassi@bfarm.de"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.bfarm.de"
-* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM)."
+* ^copyright = "BfArM - Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung des Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM). This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
+[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. This ValueSet includes
+concepts from [ISO/IEEE 11073-10101:2020](https://www.iso.org/standard/77338.html), SNOMED CT and HL7 International. Codes from the 
+_ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
+included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
+may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
+code system and its contents remain copyrighted by ISO and IEEE."
 * Mdc#528391 "Blood Pressure Cuff"
 * Mdc#528404 "Body Composition Analyzer"
 * Mdc#528425 "Cardiovascular Device"
