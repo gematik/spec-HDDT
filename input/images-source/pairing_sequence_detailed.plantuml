@@ -10,7 +10,7 @@ hide footbox
 !define H AuthZ
 !define V Ver
 
-title "Perform Pairing between DiGA and Device Data Recorder (detailed)"
+title "Pairing between DiGA and Device Data Recorder (detailed)"
 
 actor V as "Patient"
 

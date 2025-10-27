@@ -2,7 +2,7 @@
 ### FHIR Version
 This specification is based on HL7 FHIR R4 (v4.0.1), which is the normative FHIR version for the German healthcare system.
 
-Considering that existing implementations at affected manufactures of resource servers may use FHIR R5 or may even prepare for the upcoming release R6, serious efforts have been made to not rely on elements from FHIR R4 resource definitions that do not have corresponding elements in R5 and R6. This even is a prerequisite for a semnatics-preserving possible future upgrade of the HDDT specifications to a higher FHIR version than R4. 
+Considering that existing implementations at affected manufactures of resource servers may use FHIR R5 or may even prepare for the upcoming release R6, serious efforts have been made to not rely on elements from FHIR R4 resource definitions that do not have corresponding elements in R5 and R6. This even is a prerequisite for a semantics-preserving possible future upgrade of the HDDT specifications to a higher FHIR version than R4. 
 
 ### Representation Format
 The FHIR standard defines three different representation formats: XML, JSON, and RDF (Turtle). Within the scope of the HDDT specification, resource servers as HDDT device data providers MUST support both the XML and JSON formats. 
@@ -85,7 +85,7 @@ The figure below shows how the HDDT profiles, the ISO/IEEE 11073 standards, and 
 <div class="gem-ig-svg-container">
  <img src="HDDT conformance.png" alt="conformance with 11073 and HL7 PHD" width="60%">
   </div>
-    <figcaption><em><strong>Figure: </strong>Conformance with 11073 and HL7 PHD</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Conformance with ISO/IEEE 11073 and HL7 PHD</em></figcaption>
 </figure>
 <br clear="all"/>
 

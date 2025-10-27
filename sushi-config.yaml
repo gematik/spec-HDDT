@@ -87,7 +87,7 @@ pages:
     title: Use of HL7 FHIR
     generation: markdown
   security-and-privacy.html:
-    title: Security  Privacy
+    title: Security and Privacy
     generation: markdown
   operational-requirements.html:
     title: Operational Requirements
@@ -179,7 +179,7 @@ menu:
   Definitions and Rules: 
     General Considerations: general-considerations.html
     Use of HL7 FHIR: use_of_hl7_fhir.html
-    Security  Privacy: security-and-privacy.html
+    Security and Privacy: security-and-privacy.html
     Operational Requirements: operational-requirements.html
     Access to BfArM Registries and ZTS: registries-and-zts.html
   System Overview: 
