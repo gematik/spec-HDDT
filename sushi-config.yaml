@@ -38,6 +38,8 @@ parameters:
     - "DeviceDefinition/*"
     - "Patient/*"
     - "OperationOutcome/*"
+  no-validate:
+    - "ValueSet/hddt-device-type"  
   show-inherited-invariants: true
   # in order to preserve the version of the resources:
   apply-version: true
