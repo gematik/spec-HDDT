@@ -82,7 +82,7 @@ This profile helps a device data consuming DiGA to
 **Obligations and Conventions:**
 
 The Personal Health Device's backend regularely synchronizes with the device hardware through a gateway (_Personal Health Gateway_). 
-The minimum delay that the concrete end-to-end synchronization from the Personal Health Device to the device backend imposes is provided by the BfArM _HIIS-VZ_ (Device Registry)
+The maximum delay that the concrete end-to-end synchronization from the Personal Health Device to the FHIR resource server imposes is provided by the BfArM _HIIS-VZ_ (Device Registry)
 through the static attribute `Delay-From-Real-Time`. If a resource server has not synchronized with the connected Personal Health Device for a time span 
 longer than `Delay-From-Real-Time`(e.g. due to temporarely lost Bluetooth or internet connectivity), the `status` of the Device resource that represents the 
 Personal Health Device MUST be set to `unknown`.
@@ -143,7 +143,7 @@ Title: "DeviceMetric – Sensor Type and Calibration Status"
 Description: """
 The HddtSensorTypeAndCalibrationStatus profile captures the calibration status of a sensor which is part of a Personal Health Device. 
 
-Personal Health Devices need to be calibrated in order to provide safe measurements. Some devcices are already calibrated by the 
+Personal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the 
 manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. 
 If a Personal Health Device transmits data from a non calibrated sensor to the resource server at all depends on the concrete product. 
 For a DiGA as a device data consumer to process device data in a safe manner, it must be transparent if the data it received was 
@@ -158,16 +158,16 @@ measured values to the patient.
 
 The HddtSensorTypeAndCalibrationStatus of a measurement MUST always refer to a HddTPersonalHealthDevice [Device](https://hl7.org/fhir/R4/device.html) resource that represents the 
 Personal Health Device that contains the sensor. This is a many-to-one relationship which allows for a Personal Health Device to 
-contain multiple sensors for different measured values. E.g. by this a pulseoximeter as a HDDT Personal Health Device can 
-provide _pulse_ and _SPO2_ as two diffferent interoperable values with each of this values being linked with a 
+contain multiple sensors for different measured values. E.g. by this a pulse oximeter as a HDDT Personal Health Device can 
+provide _pulse_ and _SPO2_ as two different interoperable values with each of this values being linked with a 
 dedicated HddtSensorTypeAndCalibrationStatus resource. 
 
 **Obligations and Conventions:**
 
-DiGA as device data consumers SHOULD NOT rely on the `DeviceMetric.operationalStatus` of a sensor as this status does only reflects the status of the sensor 
-and does not provide information abaout the end-to-end status of the flow of device data from the sensor within the Personal Health device 
-to the resource server in the device backend. Instead DiGA SHOILD process the `Device.status` information that can be obtained through the 
-`DeviceMetric.source` reference. This element consideres the end-to-end availability of data and therefore is the only source for 
+DiGA as device data consumers SHOULD NOT rely on the `DeviceMetric.operationalStatus` of a sensor as this status does only reflect the status of the sensor 
+and does not provide information about the end-to-end status of the flow of device data from the sensor within the Personal Health Device 
+to the resource server in the device backend. Instead DiGA SHOULD process the `Device.status` information that can be obtained through the 
+`DeviceMetric.source` reference. This element considers the end-to-end availability of data and therefore is the only source for 
 information about potentially missing data (e.g. due to temporal problems with the bluetooth or internet connection).
 
 **Constraints applied:**  
@@ -204,10 +204,10 @@ patient’s preference and thus to be in sync with the medical aid by displaying
 * source ^definition = "Points to the specific Device resource that holds the sensor for which the documented calibration status applies."
 * operationalStatus 0..1
 * operationalStatus ^comment = """
-DiGA as device data consumers SHOULD NOT rely on the `operationalStatus` of a sensor as this status does only reflects the status of the sensor 
-and does not provide information abaout the end-to-end status of the flow of device data from the sensor within the Personal Health device 
+DiGA as device data consumers SHOULD NOT rely on the `operationalStatus` of a sensor as this status does only reflect the status of the sensor 
+and does not provide information about the end-to-end status of the flow of device data from the sensor within the Personal Health device 
 to the resource server in the device backend. Instead DiGA SHOILD process the `Device.status` information that can be obtained through the 
-`DeviceMetric.source` reference. This element consideres the end-to-end availability of data and therefore is the only source for 
+`DeviceMetric.source` reference. This element considers the end-to-end availability of data and therefore is the only source for 
 information about potentially missing data (e.g. due to temporal problems with the bluetooth or internet connection).
 """
 * calibration MS
@@ -231,7 +231,7 @@ Profile for capturing blood glucose measurements as FHIR Observation resources.
 
 This profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\" which is technically defined 
 by the ValueSet _hddt-miv-blood-glucose-measurement_. This MIV is e.g. implemented by blood glucose meter (glucometer) that can connect to 
-an Personal Health Gateway (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.
+a Personal Health Gateway (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.
 
 **Obligations and Conventions:**
 
@@ -437,7 +437,7 @@ ValueSet: HddtDeviceType
 Id: hddt-device-type
 Title: "Device Type of personal health devices"
 Description: """
-This ValueSet includes codes used to identify Personal Health Devices, Device Data Recorders, and DIGA. 
+This ValueSet includes codes used to identify Personal Health Devices and Device Data Recorders.
 
 This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
 [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. 

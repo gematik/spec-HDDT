@@ -31,7 +31,7 @@ For developers and architects the following sections of this specification are o
 * The implementation of the data model is through dedicated FHIR profiles and value sets per _Mandatory Interoperable Values_. The section [MIVs](mivs.html) lists the Mandatory Interoperable Values defined so far and provides links to the respective FHIR profiles and value sets. An overview of all FHIR profiles and value sets defined in this implementation guide is given in section [FHIR Artifacts Summary](artifacts.html), where you find examples, too.
 
 Readers who are responsible for project management, product management, or regulatory affairs may find the following sections useful:
-* The [Roadmap](roadmap.html) describes how the technical specifications will be extended in the future to cover further domains. In addiction this sections givens first hints on the regulatory approval process and procedures for product registration.
+* The [Roadmap](roadmap.html) describes how the technical specifications will be extended in the future to cover further domains. In addition this sections gives first hints on the regulatory approval process and procedures for product registration.
 * [Certification Relevant Systems](certification-relevant-systems.html) describes which products and components are affected by § 374a SGB V and MUST implement the services as defined in this specification.
 * Section [Security and Privacy](security-and-privacy.html) defines trust anchors and security objects that MUST be provided by the manufacturers of medical aids, implants, and DiGA.
 * [Operational Requirements](operational-requirements.html) describe the operational procedures and service levels that MUST be provided by manufacturers of certification relevant systems.
