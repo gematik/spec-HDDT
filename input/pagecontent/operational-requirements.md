@@ -50,7 +50,7 @@ Rejected requests MUST be documented with a clear error:
 Correctly documented rejections due to allowed rate limits (e.g. 429 with Retry-After) do NOT count as unavailability or downtime.
 
 #### Round-Trip-Times
-As stated in the [General Considerations](general-considerations.html) section, HDDT does not define minimum end-to-end round trip times for device data (from the sensor to the Health Record). Nevertheless, once data is available with the Health Record, this data MUST also be available to eligible DiGA through the HDDT interface with a maximum delay of 15 minutes. Any delays beyond this time frame MUST be documented and reported as unavailability (see _Duty to Provide Information_ above).
+As stated in the [General Considerations](general-considerations.html) section, HDDT does not define minimum end-to-end round trip times for device data (from the sensor to the Health Record). Nevertheless, once data is available with the Health Record, this data MUST also be available to eligible DiGA through the HDDT interface with minimum delay. As the acceptable delay may vary depending on the use case, HDDT defines this delay per _Mandatory Interoperable Value (MIV)_. See the row _Vendor Holdup_ in the MIV-specific tables in section [MIVs](mivs.html) for the maximum acceptable delay between data availability in the Health Record and data availability through the HDDT interface for the defined MIVs. Any delays beyond this time frame MUST be documented and reported as unavailability (see _Duty to Provide Information_ above).  
 
 ### Self-Logged Monitoring
 #### Scope of Logging

@@ -17,7 +17,7 @@ information. By binding consent to concrete FHIR query constraints, patients gai
 over which data elements are shared with a DiGA.
 
 A further key element of the pairing process is the [__Pairing ID__](#pairing-id). This pseudonymous identifier links the patient’s
-consent with the subsequent data transfer. It ensures that data flows can be traced back to a specific pairing of two odentified actors without revealing the patient’s identity.
+consent with the subsequent data transfer. It ensures that data flows can be traced back to a specific pairing of two identified actors without revealing the patient’s identity.
 
 To perform the pairing process, each Device Data Recorder MUST implement an OAuth2 Authorization Server. This document describes the role of the OAuth2 Authorization Server, the use of OAuth 2.0 and [SMART scopes](smart-scopes.html), the purpose of the Pairing ID, and a deep dive into the pairing process itself.
 
