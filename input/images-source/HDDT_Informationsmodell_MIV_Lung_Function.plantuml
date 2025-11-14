@@ -1,0 +1,132 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title HDDT FHIR Data Model (Measurements and Devices)
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    class IV_messung as "Lung Function Measurement " <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: classification of the measured value
+        effectiveDateTime [1..1]: date and time of the measurement
+        valueQuantity.value [1..1]: quantity value of the measurement
+        valueQuantity.system [1..1]: UCUM
+        valueQuantity.code [1..1]: L | L/min
+    }
+
+    class IV_referenz as "Lung Function Reference Value" <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: classification of the reference value
+        effectiveDateTime [0..1]: date and time of the measurement
+        valueQuantity.value [1..1]: quantity value of the measurement
+        valueQuantity.system [1..1]: UCUM
+        valueQuantity.code [1..1]: L | L/min
+        method [1..1]: method used to determine the reference value
+        method.coding.system [1..1]: https://../CS/hddt-lung-function-reference-value-method-codes
+        method.coding.code [1..1]: code from the code system (e.g., GLI-2022)
+    }
+
+    class IV_prozent as "Lung Function Measurement Complete" <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: classification of the calculated value - measured/predicted
+        effectiveDateTime [1..1]: date and time of the measurement
+        valueQuantity.value [1..1]: quantity value of the measurement
+        valueQuantity.system [1..1]: UCUM
+        valueQuantity.code [1..1]: %
+        derivedFrom [2..2]: references to the measurement and reference value observations
+    }
+
+    class PHD as "Personal Health Device" <<FHIR Device>> {
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        serialNumber : serial number [1..1]
+        expirationDate : end of life date [0..1]
+        property : additional properties [0..*]
+    }
+
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum VS_MIV as "VS MIV Lung Function Measurement" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-measurement
+        version: 1.0.0
+        title: ValueSet MIV Lung Function Measurement
+        name: HddtMivLungFunctionMeasurement
+        description: therapy mgmt and clinical decisions
+        compose.include: 19935-6|LOINC, 83368-1|LOINC, 20150-9|LOINC, ...
+    }
+}
+
+package gematik as "Repository for gematik FHIR IGs" SPEC {
+    object "Observation - Lung Function Measurement" as OP <<FHIR StructureDefinition>> {
+        name = "HddtLungFunctionMeasurement"
+        type = Observation
+        baseDefinition = <<FHIR Observation>>
+        derivation = constraint
+    }
+
+    object "Observation - Lung Function Reference Value" as ORV <<FHIR StructureDefinition>> {
+        name = "HddtLungFunctionReferenceValue"
+        type = Observation
+        baseDefinition = <<FHIR Observation>>
+        derivation = constraint
+    }
+
+    object "Observation - Lung Function Measurement Complete" as OPC <<FHIR StructureDefinition>> {
+        name = "HddtLungFunctionMeasurementComplete"
+        type = Observation
+        baseDefinition = <<FHIR Observation>>
+        derivation = constraint
+    }
+}
+
+package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
+
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
+        type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+        property[0] = (Real-Time-Delay, ...)
+        property[1] = (Grace-Period, ...)
+        property[2] = (Historic-Data-Period, ...)
+    }
+}
+
+    ' Vertical arrangement: measurement -> reference -> complete
+    IV_messung -[hidden]down-> IV_referenz
+    IV_referenz -[hidden]down-> IV_prozent
+    
+    ' Complete observation references measurement and reference
+    IV_prozent::derivedFrom -up-> IV_messung : "derivedFrom"
+    IV_prozent::derivedFrom -up-> IV_referenz : " derivedFrom"
+
+    ' Device below complete observation
+    IV_prozent -down-> PHD : "[1..1] device"
+    PHD -right-> PHD_Def : "definition"
+
+    ' MIV ValueSet on the left side
+    VS_MIV -right-> IV_messung::code : "Observation.code"
+    VS_MIV -right-> IV_referenz::code : "Observation.code"
+    VS_MIV -right-> IV_prozent::code : "Observation.code"
+
+    ' Gematik definitions on the right side
+    OP  .left.> IV_messung : "defines"
+    ORV .left.> IV_referenz : "defines"
+    OPC .left.> IV_prozent : "defines"
+
+    ' hidden connections for vertical alignment
+    OP -[hidden]down-> ORV
+    ORV -[hidden]down-> OPC
+    VS_MIV -[hidden]down-> PHD_Def 
+
+
+}
+
+@enduml
