@@ -43,7 +43,7 @@ The figure below shows the adaption of the [HDDT Information Model](information-
 
 <br clear="all"/>
 
-All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the reuqest follows the principles defined for [HDDT Smart Scopes](smart-scope.html). For the MIV _Lung Function Measurement_ only the following scopes MUST be set:
+All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the reuqest follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Lung Function Measurement_ only the following scopes MUST be set:
 
 ```
 patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-measurement
@@ -52,9 +52,13 @@ patient/DeviceMetric.rs
 ```
 
 ### Observation Profiles 
+This section discusses the three Lung Function Measurement profiles, which constrain the [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing lung function measurements, and all necessary supplementary information required for properly presenting and interpreting the results of lung function measurements.
+
 #### Observation Profile _HDDT Lung Function Single Measurement_
 
+The [Observation](https://hl7.org/fhir/R4/observation.html) profile _HDDT Lung Function Single Measurement_ represents a single measurement taken with a hand-held peak flow meter or spirometer. It records the raw measured value, either in liters (_L_) or liters per minute (_L/min_), depending whether the measured metric is the Peak Expiratory Flow (PEF) or the Forced Expiratory Volume in one second (FEV1).
 
+For the full normative specification of this profile, see the respective [StructureDefinition](StructureDefinition-hddt-lung-function-measurement.html).
 
 ##### Snapshot View of the Profile
 
@@ -84,6 +88,10 @@ patient/DeviceMetric.rs
 For information on general constraints and terminology bindings see the full [StructureDefinition](StructureDefinition-hddt-lung-function-measurement.html) for this profile.
 
 #### Observation Profile _HDDT Lung Function Reference Value_
+The [Observation](https://hl7.org/fhir/R4/observation.html) profile _HDDT Lung Function Reference Value_ represents a value, used as a baseline when interpreting inidividual lung function measurements of a patient (see section [Reference Value](#reference-value)).
+
+For the full normative specification of this profile, see the respective [StructureDefinition](StructureDefinition-hddt-lung-function-measurement.html) for this profile.
+
 ##### Snapshot View of the Profile
 <div id="tabs-key">
   <div id="tbl-key">
@@ -111,6 +119,11 @@ For information on general constraints and terminology bindings see the full [St
 For information on general constraints and terminology bindings see the full [StructureDefinition](StructureDefinition-hddt-lung-reference-value.html) for this profile.
 
 #### Observation Profile _HDDT Complete Lung Function Measurement_
+
+The [Observation](https://hl7.org/fhir/R4/observation.html) profile _HDDT Complete Lung Function Measurement_ represents a percentage-based value, calculated by dividing the individual lung function measurement by the reference value.
+
+For the full normative specification of this profile, see the respective [StructureDefinition](StructureDefinition-hddt-lung-function-measurement-complete.html) for this profile.
+
 ##### Snapshot View of the Profile
 <div id="tabs-key">
   <div id="tbl-key">
@@ -141,7 +154,23 @@ For information on general constraints and terminology bindings see the full [St
 
 #### Conventions and Best Practice
 
-#### Examples
+##### Reference Value
+The HDDT specification models the reference value as an [Observation](https://hl7.org/fhir/R4/Observation.html), because the PEF reference value is a "personal best", and is thus a measurement that can change periodically. In certain contexts, a FEV1 reference value, measured as a "personal best" may also be applicable.
+
+Typically, the FEV1 reference value is calculated based on the patient's demographical data, but the estimation approach varies. For example, the Global Lung Function Initiative (GLI) guidelines from 2012 state, that a patient's race should be taken into account for the reference value calculation, while the more recent guidelines (GLI 2022) provide a race-neutral formula for the calculation.
+
+For the correct interpretation of the patient's lung function measurement values, it is crucial for physicians to know how exactly the reference value was calculated. In the _HDDT Lung Function Reference Value_ [Observation](https://hl7.org/fhir/R4/Observation.html) profile, the manufacturer of the Device Data Recorder MUST specify a `method`, of how the reference value was created. The manufacturer SHOULD use a code from the _HDDT Lung Function Reference Value Method Codes_ [CodeSystem](https://hl7.org/fhir/R4/CodeSystem.html). Alternatively, the manufacturer MAY provide a plain text description of the method for calculating the reference value.
+
+##### Derived From Element
+The FHIR specification for the _MIV Lung Function Monitoring_ consists of three separate FHIR profiles. The profile _HDDT Complete Lung Function Measurement_ depends on the other two (_HDDT Lung Function Single Measurement_, and _HDDT Lung Function Reference Value_), as it is a calculation, displayed as a percentage, of an individual measurement, divided by the reference value.
+
+In order to properly model this information in the _HDDT Complete Lung Function Measurement_ FHIR profile, and provide it to the DiGA, the manufacturer of the Device Data Recorder MUST use the `derivedFrom` element to reference one of each _HDDT Lung Function Single Measurement_ and _HDDT Lung Function Reference Value_ resource instances.
+
+Since the reference value is either a normal value for a population group and is calculated only once, or if it is a "personal best" it changes once every few weeks, multiple complete lung function measurements SHOULD reference the same instance of the _HDDT Lung Function Reference Value_ resource. (TODO: Create an example for this)
+
+###  Examples
+
+The following object diagram shows the relationships between the FHIR resources involved in representing the lung function measurements according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function measurement. For readibility reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -156,7 +185,11 @@ For information on general constraints and terminology bindings see the full [St
 ### MIV-specific Endpoints and Interactions
 #### Observation - READ
 
+Manufactures of Device Data Recorders that support the MIV _Lung Function Measurement_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _read_ interaction MUST comply with the FHIR profiles listed in section [FHIR Resource Server](#fhir-resource-server) of this chapter.
+
 #### Observation - SEARCH
+
+Manufactures of Device Data Recorders that support the MIV _Lung Function Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _serach_ interaction MUST comply with the FHIR profiles listed in section [FHIR Resource Server](#fhir-resource-server) of this chapter.
 
 #### Example: FHIR-READ
 

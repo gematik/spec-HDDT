@@ -740,7 +740,8 @@ TODO: Fix url to a bfarm one
 * method 1..1
 * method only CodeableConcept
 * method ^short = "Method for determining the reference value"
-* method ^definition = "The method used to determine the lung function reference value."
+* method ^definition = "The method used to determine the lung function reference value. Preferred is the usage of a code from the Lung Function Reference Value Method ValueSet, but as an alternative a text description of the used formula for calculating the reference value can be provided."
+* method.coding 0..1
 * method.coding from HddtLungFunctionReferenceValueMethod (required)
 * method.coding ^binding.description = "Specifies the method used to determine the lung function reference value using codes from the Lung Function Reference Value Method ValueSet."
 * method.text 0..1

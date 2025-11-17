@@ -8,39 +8,40 @@ hide footbox
 !define BFARM #F6D7B6
 !define SPEC #FAF3C0
 
-title HDDT FHIR Data Model (Measurements and Devices)
+title HDDT Object Model Example (Lung Function Measurement)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
-    object "Lungenfunktion - Einzelmessung" as IV_messung <<FHIR Observation>> {
+    object "Lung Function Measurement" as IV_messung <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: 20150-9 FEV1
         date [1..1]: 2025-08-08
         value [1..1]: 3.65 L
+        device [1..1]: reference to Personal Health Device
     }
 
-    object "Lungenfunktion - Personal Best" as IV_referenz <<FHIR Observation>> {
+    object "Lung Function Reference Value " as IV_referenz <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: 20149-1 FEV1 Predicted
         date [1..1]: 2025-08-01
         value [1..1]: 4.5L
         method [1..1]: GLI-2022 - Reference Value calculated using GLI 2022
+        device [1..1]: reference to Personal Health Device
     }
 
-    object "Lungenfunktion Anteil" as IV_prozent <<FHIR Observation>> {
+    object "Lung Function Complete Measurement" as IV_prozent <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: 20152-5 FEV1 measured/predicted
         date [1..1]: 2025-08-08
         value [1..1]: 87 %
+        device [1..1]: reference to Personal Health Device
     }
 
     object "Personal Health Device" as PHD <<FHIR Device>> {
         type : 528405 | iso:11073:10101
         deviceName : "MIR Smart One"
         manufacturer : "MIR - Medical International Research"
-        serialNumber : serial number [1..1]
-        expirationDate : end of life date [0..1]
-        property : additional properties [0..*]
+        serialNumber : "SN1234567890"
     }
 
 }
@@ -53,29 +54,6 @@ package ZTS as "MIV Definitions (ZTS)" VIBW {
         name: HddtMivLungFunctionMeasurement
         description: therapy mgmt and clinical decisions
         compose.include: 19935-6|LOINC, 83368-1|LOINC, 20150-9|LOINC, ...
-    }
-}
-
-package gematik as "Repository for gematik FHIR IGs" SPEC {
-    object "Observation - Lung Function Measurement" as OP <<FHIR StructureDefinition>> {
-        name = "HddtLungFunctionMeasurement"
-        type = Observation
-        baseDefinition = <<FHIR Observation>>
-        derivation = constraint
-    }
-
-    object "Observation - Lung Function Reference Value" as ORV <<FHIR StructureDefinition>> {
-        name = "HddtLungFunctionReferenceValue"
-        type = Observation
-        baseDefinition = <<FHIR Observation>>
-        derivation = constraint
-    }
-
-    object "Observation - Lung Function Measurement Complete" as OPC <<FHIR StructureDefinition>> {
-        name = "HddtLungFunctionMeasurementComplete"
-        type = Observation
-        baseDefinition = <<FHIR Observation>>
-        derivation = constraint
     }
 }
 
@@ -102,7 +80,7 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     IV_prozent::derivedFrom -up-> IV_referenz : " derivedFrom"
 
     ' Device below complete observation
-    IV_prozent -down-> PHD : "[1..1] device"
+    IV_prozent::device -down-> PHD : "[1..1] device"
     PHD -right-> PHD_Def : "definition"
 
     ' MIV ValueSet on the left side
@@ -110,14 +88,7 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     VS_MIV -right-> IV_referenz::code : "Observation.code"
     VS_MIV -right-> IV_prozent::code : "Observation.code"
 
-    ' Gematik definitions on the right side
-    OP  .left.> IV_messung : "defines"
-    ORV .left.> IV_referenz : "defines"
-    OPC .left.> IV_prozent : "defines"
-
     ' hidden connections for vertical alignment
-    OP -[hidden]down-> ORV
-    ORV -[hidden]down-> OPC
     VS_MIV -[hidden]down-> PHD_Def 
 
 
