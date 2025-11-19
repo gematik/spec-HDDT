@@ -7,6 +7,9 @@ Alias: $cgm-summary-coefficient-of-variation = http://hl7.org/fhir/uv/cgm/Struct
 Alias: $cgm-summary-days-of-wear = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear
 Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
+Alias: LOINC = http://loinc.org
+Alias: UCUM = http://unitsofmeasure.org
+Alias: Mdc = urn:iso:std:iso:11073:10101|20250520
 // Alias: $DeviceDefinition = http://device-registry.bfarm.de/fhir/StructureDefinition/DeviceDefinition
 
 Profile: HddtCgmSummary
@@ -568,9 +571,9 @@ It allows clients to request CGM summary data filtered by effective period, and 
 
 ValueSet: HddtMivLungFunctionMeasurement
 Id: hddt-miv-lung-function-measurement
-Title: "ValueSet - Lung Function Measurement from LOINC"
+Title: "ValueSet - MIV Lung Function Measurement from LOINC"
 Description: """
-This ValueSet defines the Mandatory Interoperable Value (MIV) \"Ling Function Measurement\". The definition is made up from
+This ValueSet defines the Mandatory Interoperable Value (MIV) \"Lung Function Measurement\". The definition is made up from
 - this description which provides the semantics and defining characteristics of the MIV
 - a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ 
 
@@ -588,11 +591,67 @@ TODO: Missing code for Measured PEF / Personal Best PEF (%)
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* include codes from valueset HddtLungFunctionMeasurementValues and HddtLungFunctionReferenceValues and HddtLungFunctionRelativeValues
+
+ValueSet: HddtLungFunctionMeasurementValues
+Id: hddt-lung-function-measurement-values
+Title: "ValueSet - Lung Function Measurement Values from Loinc"
+Description: """
+This ValueSet defines the values used for individual lung function measurements.
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-measurement-values
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * LOINC#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
-* LOINC#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
 * LOINC#20150-9 "FEV1"
+
+ValueSet: HddtLungFunctionReferenceValues
+Id: hddt-lung-function-reference-values
+Title: "ValueSet - Lung Function Reference Values from LOINC"
+Description: """
+This ValueSet defines the LOINC codes, used for lung function reference values
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-values"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* LOINC#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
 * LOINC#20149-1 "FEV1 predicted"
+
+ValueSet: HddtLungFunctionRelativeValues
+Id: hddt-lung-function-relative-values
+Title: "ValueSet - Lung Function Relative Values from LOINC"
+Description: """
+This ValueSet defines the LOINC codes, used for relative lung function values.
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-relative-values"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * LOINC#20152-5 "FEV1 measured/predicted"
+* HddtLungFunctionTemporaryCodes#PEF-measured/predicted
 
 Profile: HddtLungFunctionMeasurement
 Parent: Observation
@@ -629,7 +688,7 @@ or if the sensor may change its calibration status over time.
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
-* code from HddtMivLungFunctionMeasurement (required)
+* code from HddtLungFunctionMeasurementValues (required)
 * code ^short = "Raw measurement type for lung function"
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for lung function measurements. Constrained via invariant to either PEF or FEV1."
 * effective[x] 1..1
@@ -651,12 +710,6 @@ or if the sensor may change its calibration status over time.
 * device only Reference(HddtPersonalHealthDevice)
 * device ^short = "Reference to personal health device"
 * device ^definition = "References a Device resource that describes the personal health device."
-* obeys HddtLungFunctionMeasurementCodeInvariant
-
-Invariant: HddtLungFunctionMeasurementCodeInvariant
-Description: "Observation.code must be either PEF (20150-9) or FEV1 (19935-6)"
-Severity: #error
-Expression: "code.coding.where(system='http://loinc.org').exists(code | code = '20150-9' or code = '19935-6')"
 
 
 CodeSystem: HddtLungFunctionReferenceValueMethodCodes
@@ -671,6 +724,28 @@ Description: "Codes for modelling the method used to determine lung function ref
 * #personal-best "Personal Best"
 * #GLI-2012 "Predicted Value according to Global Lung Initiative 2012"
 * #GLI-2022 "Predicted Value according to Global Lung Initiative 2022"
+
+CodeSystem: HddtLungFunctionTemporaryCodes
+Id: hddt-lung-function-temporary-codes
+Title: "CodeSystem - Lung Function Temporary Codes"
+Description: "Temporary codes for the MIV Lung Function Measurement until LOINC codes are avaiblable."
+* ^language = #en
+* ^experimental = false
+* ^caseSensitive = false
+* #PEF-measured/predicted "PEF measured/predicted"
+
+Instance: HddtLungFunctionTemporaryToLoinc
+InstanceOf: ConceptMap
+Usage: #definition
+Title: "ConceptMap - Lung Function Temporary Codes to LOINC"
+Description: "Mapping from temporary codes for the MIV Lung Function Measurement to LOINC codes."
+* name = "HddtLungFunctionTemporaryToLoinc"
+* status = #draft
+* group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
+* group[=].target = LOINC
+* group[=].element[+].code = #PEF-measured/predicted
+* group[=].element[=].target.comment = "No target LOINC code available yet."
+* group[=].element[=].target.equivalence = #unmatched
 
 
 ValueSet: HddtLungFunctionReferenceValueMethod
@@ -719,13 +794,13 @@ TODO: Fix url to a bfarm one
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
-* code from HddtMivLungFunctionMeasurement (required)
+* code from HddtLungFunctionReferenceValues (required)
 * code ^short = "Reference measurement type for lung function"
 * code ^binding.description = "Specifies for which measurement type the reference value is, using codes from the ValueSet for lung function measurements. Constrained via invariant to either PEF or FEV1."
 * effective[x] 0..1
-* effective[x] only dateTime
-* effective[x] ^short = "Time of setting the reference value"
-* effective[x] ^definition = "The time when the reference value was set - usually only when the reference value is a personal best."
+* effective[x] only Period
+* effective[x] ^short = "Time period for which reference value is valid"
+* effective[x] ^definition = "The time period for which the lung function reference value is valid. If the reference value is still active, then only the start of the period is provided."
 * value[x] MS
 * value[x] only Quantity
 * value[x] ^short = "Reference lung function value"
@@ -737,7 +812,8 @@ TODO: Fix url to a bfarm one
 * value[x].code ^definition = "The UCUM code representing the unit of the lung function measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`."
 * value[x].code from $ucum-units (required)
 * value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
-* method 1..1
+* method 0..1
+* method MS
 * method only CodeableConcept
 * method ^short = "Method for determining the reference value"
 * method ^definition = "The method used to determine the lung function reference value. Preferred is the usage of a code from the Lung Function Reference Value Method ValueSet, but as an alternative a text description of the used formula for calculating the reference value can be provided."
@@ -746,16 +822,10 @@ TODO: Fix url to a bfarm one
 * method.coding ^binding.description = "Specifies the method used to determine the lung function reference value using codes from the Lung Function Reference Value Method ValueSet."
 * method.text 0..1
 * method.text ^definition = "In case no code is provided, specify whether the value is a personal best or predicted or calculated based on some formula."
-* device 1..1
+* device 0..1
 * device only Reference(HddtPersonalHealthDevice)
 * device ^short = "Reference to personal health device"
 * device ^definition = "References a Device resource that describes the personal health device."
-* obeys HddtLungFunctionReferenceValueCodeInvariant
-
-Invariant: HddtLungFunctionReferenceValueCodeInvariant
-Description: "Observation.code must be either PEF Personal Best (83368-1) or FEV1 predicted (20149-1)"
-Severity: #error
-Expression: "code.coding.where(system='http://loinc.org').exists(code | code = '83368-1' or code = '20149-1')"
 
 Profile: HddtLungFunctionMeasurementComplete
 Parent: Observation
@@ -785,7 +855,7 @@ TODO:
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
-* code from HddtMivLungFunctionMeasurement (required)
+* code from HddtLungFunctionRelativeValues (required)
 * code ^short = "Percentage measurement type for lung function"
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for lung function measurement as percentage of the reference value. Constrained via invariant to either PEF or FEV1."
 * effective[x] 1..1
@@ -811,9 +881,3 @@ TODO:
 * derivedFrom only Reference(HddtLungFunctionMeasurement or HddtLungFunctionReferenceValue)
 * derivedFrom ^short = "Reference to raw lung function measurement and reference value"
 * derivedFrom ^definition = "Reference to the lung function measurement Observation that holds the actual measured value, and the Obsevation holding the reference range and information about the reference range determination method."
-* obeys HddtLungFunctionMeasurementCompleteCodeInvariant
-
-Invariant: HddtLungFunctionMeasurementCompleteCodeInvariant
-Description: "Observation.code must be either PEF measured / predicted (??) or FEV1 measured / predicted (20152-5)"
-Severity: #error
-Expression: "code.coding.where(system='http://loinc.org').exists(code | code = '2015205')"
