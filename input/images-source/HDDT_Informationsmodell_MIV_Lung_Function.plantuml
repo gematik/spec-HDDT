@@ -24,7 +24,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     class IV_referenz as "Lung Function Reference Value" <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: classification of the reference value
-        effectiveDateTime [0..1]: date and time of the measurement
+        effectivePeriod [0..1]: date and time of the measurement
         valueQuantity.value [1..1]: quantity value of the measurement
         valueQuantity.system [1..1]: UCUM
         valueQuantity.code [1..1]: L | L/min
@@ -60,7 +60,30 @@ package ZTS as "MIV Definitions (ZTS)" VIBW {
         title: ValueSet MIV Lung Function Measurement
         name: HddtMivLungFunctionMeasurement
         description: therapy mgmt and clinical decisions
-        compose.include: 19935-6|LOINC, 83368-1|LOINC, 20150-9|LOINC, ...
+        compose.include.valueSet: hddt-lung-function-measurement-values
+        compose.include.valueSet: hddt-lung-function-reference-values
+        compose.include.valueSet: hddt-lung-function-relative-values
+    }
+
+    enum VS_Measurement as "VS Lung Function Measurement Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-measurement-values
+        name: HddtLungFunctionMeasurementValues
+        compose.include: 19935-6|LOINC (PEF)
+        compose.include: 20150-9|LOINC (FEV1)
+    }
+
+    enum VS_Reference as "VS Lung Function Reference Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values
+        name: HddtLungFunctionReferenceValues
+        compose.include: 83368-1|LOINC (Personal best PEF)
+        compose.include: 20149-1|LOINC (FEV1 predicted)
+    }
+
+    enum VS_Relative as "VS Lung Function Relative Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values
+        name: HddtLungFunctionRelativeValues
+        compose.include: 20152-5|LOINC (FEV1 measured/predicted)
+        compose.include: PEF-measured/predicted|temp
     }
 }
 
@@ -111,10 +134,15 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     IV_prozent -down-> PHD : "[1..1] device"
     PHD -right-> PHD_Def : "definition"
 
-    ' MIV ValueSet on the left side
-    VS_MIV -right-> IV_messung::code : "Observation.code"
-    VS_MIV -right-> IV_referenz::code : "Observation.code"
-    VS_MIV -right-> IV_prozent::code : "Observation.code"
+    ' Individual ValueSets included by MIV ValueSet
+    VS_Measurement -up-> VS_MIV::compose.include.valueSet : "include.valueSet"
+    VS_Reference -up-> VS_MIV : "include.valueSet"
+    VS_Relative -up-> VS_MIV : "include.valueSet"
+
+    ' Individual ValueSets to Observations
+    VS_Measurement -right-> IV_messung::code : "Observation.code"
+    VS_Reference -right-> IV_referenz::code : "Observation.code"
+    VS_Relative -right-> IV_prozent::code : "Observation.code"
 
     ' Gematik definitions on the right side
     OP  .left.> IV_messung : "defines"
@@ -124,7 +152,11 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     ' hidden connections for vertical alignment
     OP -[hidden]down-> ORV
     ORV -[hidden]down-> OPC
-    VS_MIV -[hidden]down-> PHD_Def 
+    VS_MIV -[hidden]down-> VS_Measurement
+    VS_MIV -[hidden]right-> IV_messung
+    VS_Measurement -[hidden]down-> VS_Reference
+    VS_Reference -[hidden]down-> VS_Relative
+    VS_Relative -[hidden]down-> PHD_Def 
 
 
 }

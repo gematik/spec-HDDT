@@ -707,7 +707,7 @@ or if the sensor may change its calibration status over time.
 * value[x].code from $ucum-units (required)
 * value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
 * device 1..1
-* device only Reference(HddtPersonalHealthDevice)
+* device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
 * device ^short = "Reference to personal health device"
 * device ^definition = "References a Device resource that describes the personal health device."
 
@@ -823,7 +823,7 @@ TODO: Fix url to a bfarm one
 * method.text 0..1
 * method.text ^definition = "In case no code is provided, specify whether the value is a personal best or predicted or calculated based on some formula."
 * device 0..1
-* device only Reference(HddtPersonalHealthDevice)
+* device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
 * device ^short = "Reference to personal health device"
 * device ^definition = "References a Device resource that describes the personal health device."
 
@@ -874,10 +874,20 @@ TODO:
 * value[x].code from $ucum-units (required)
 * value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
 * device 1..1
-* device only Reference(HddtPersonalHealthDevice)
+* device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
 * device ^short = "Reference to personal health device"
 * device ^definition = "References a Device resource that describes the personal health device."
 * derivedFrom 2..2
-* derivedFrom only Reference(HddtLungFunctionMeasurement or HddtLungFunctionReferenceValue)
-* derivedFrom ^short = "Reference to raw lung function measurement and reference value"
-* derivedFrom ^definition = "Reference to the lung function measurement Observation that holds the actual measured value, and the Obsevation holding the reference range and information about the reference range determination method."
+* derivedFrom ^slicing.discriminator.type = #profile
+* derivedFrom ^slicing.discriminator.path = "resolve()"
+* derivedFrom ^slicing.rules = #closed
+* derivedFrom ^slicing.description = "Slice to require one reference to a measurement and one to a reference value"
+* derivedFrom contains
+    measurement 1..1 and
+    referenceValue 1..1
+* derivedFrom[measurement] only Reference(HddtLungFunctionMeasurement)
+* derivedFrom[measurement] ^short = "Reference to raw lung function measurement"
+* derivedFrom[measurement] ^definition = "Reference to the lung function measurement Observation that holds the actual measured value."
+* derivedFrom[referenceValue] only Reference(HddtLungFunctionReferenceValue)
+* derivedFrom[referenceValue] ^short = "Reference to lung function reference value"
+* derivedFrom[referenceValue] ^definition = "Reference to the Observation holding the reference range and information about the reference range determination method."
