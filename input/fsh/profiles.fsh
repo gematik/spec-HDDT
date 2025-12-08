@@ -740,6 +740,8 @@ Description: "Codes for modelling the method used to determine lung function ref
     "Reference value calculated based on the Global Lung Initiative 2012 equations. I.e the patient's 'race' is considered."
 * #GLI-2022 "Predicted Value according to Global Lung Initiative 2022"
     "Reference value calculated based on the Global Lung Initiative 2022 equations. I.e. a 'race'-neutral approach is used."
+* #other "Other"
+    "Other method used to determine the lung function reference value. Specify details via text input."
 
 CodeSystem: HddtLungFunctionTemporaryCodes
 Id: hddt-lung-function-temporary-codes
@@ -776,6 +778,7 @@ A ValueSet for codes used to specify the method used to determine lung function 
 - Personal Best
 - Predicted Value according to Global Lung Initiative 2012
 - Predicted Value according to Global Lung Initiative 2022
+- Other
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en

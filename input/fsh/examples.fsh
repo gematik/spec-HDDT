@@ -484,3 +484,119 @@ Usage: #example
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #105272-9
 * capability[0].type.coding[0].display = "Glucose [Moles/volume] in Interstitial fluid"
+
+// ---
+// Lung Function Examples 
+// ---
+
+Instance: Example-Peak-Flow-Simple
+InstanceOf: HddtLungFunctionMeasurement
+Usage: #example
+Title: "HDDT Lung Function Obervation Example (simple)"
+Description: "Example of a peak expiratory flow measurement (PEF) taken with a peak flow meter. 
+Simple version without a reference value or relative value."
+* id = "example-peak-flow-simple"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+* status = #final
+* code = $loinc#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+* effectiveDateTime = "2025-12-28T08:00:00Z"
+* valueQuantity = 612 'L/min' "L/min"
+* device = Reference(Example-Device-Peak-Flow)
+
+Instance: Example-FEV1-Single-Measurement
+InstanceOf: HddtLungFunctionMeasurement
+Usage: #example
+Title: "HDDT Lung Function Obervation Example (FEV1 single measurement)"
+Description: "Example of a forced expiratory volume in 1 second (FEV1) measurement taken with a digital peak flow meter."
+* id = "example-fev1-single-measurement"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+* status = #final
+* code = $loinc#20150-9 "FEV1"
+* effectiveDateTime = "2025-12-28T08:00:00Z"
+* valueQuantity = 3.4 'L' "L"
+* device = Reference(Example-Device-Peak-Flow)
+
+Instance: Example-FEV1-Reference-Value
+InstanceOf: HddtLungFunctionReferenceValue
+Usage: #example
+Title: "HDDT Lung Function Reference Value Obervation Example (FEV1 predicted)"
+Description: "Example of a forced expiratory volume in 1 second (FEV1) reference value (predicted) for a patient."
+* id = "example-fev1-reference-value"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+* status = #final
+* code = $loinc#20149-1 "FEV1 predicted"
+* effectivePeriod.start = "2025-05-01"
+* valueQuantity = 4.5 'L' "L"
+* method.coding[0].system = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes"
+* method.coding[0].code = #GLI-2022
+* device = Reference(Example-Device-Peak-Flow)
+
+Instance: Example-FEV1-Relative-Value
+InstanceOf: HddtLungFunctionMeasurementComplete
+Usage: #example
+Title: "HDDT Lung Function Relative Value Obervation Example (FEV1 measured/predicted)"
+Description: "Example of a forced expiratory volume in 1 second (FEV1) relative value (measured/predicted) for a patient."
+* id = "example-fev1-relative-value"
+// * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+* status = #final
+* code = $loinc#20152-5 "FEV1 measured/predicted"
+* effectiveDateTime = "2025-12-28T08:00:00Z"
+* valueQuantity = 75.5 '%' "%"
+* derivedFrom[0] = Reference(Example-FEV1-Single-Measurement)
+* derivedFrom[1] = Reference(Example-FEV1-Reference-Value)
+* device = Reference(Example-Device-Peak-Flow)
+
+Instance: Example-Device-Peak-Flow
+InstanceOf: Device
+Title: "HDDT Peak Flow Meter Example"
+Description: """
+Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: 
+The device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. 
+The sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.
+The vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's 
+individual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient 
+to validate the authenticity of this Personal Health Device resource.
+"""
+Usage: #example
+* id = "example-device-peak-flow-meter"
+* status = #active
+* type = $mdc#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
+* definition = Reference(DeviceDefinition/device-definition-peak-flow-001)
+* deviceName.name = "Peak Flow Pro"
+* deviceName.type = #user-friendly-name
+* modelNumber = "Smart 2"
+* manufacturer = "HealthTech GmbH"
+* serialNumber = "PFM0011223344"
+* expirationDate = "2027-12-15"
+
+Instance: DeviceDefinition/device-definition-peak-flow-001
+InstanceOf: DeviceDefinition
+Title: "HDDT Peak Flow Meter DeviceDefinition Example"
+Description: "This example represents a Peak Flow Meter device definition from the HIIS-VZ."
+Usage: #example
+* id = "device-definition-peak-flow-001"
+* type = #device
+* manufacturerString = "HealthTech GmbH"
+* modelNumber = "Smart 2"
+* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.value = "21.24.01.2005"
+* deviceName[0].name = "Peak Flow Pro"
+* deviceName[0].type = #user-friendly-name
+* type = $sct#334990001 "Peak flow meter"
+* capability[0].type.coding[0].system = $loinc
+* capability[0].type.coding[0].code = #19935-6
+* capability[0].type.coding[0].display = "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+* capability[1].type.coding[0].system = $loinc
+* capability[1].type.coding[0].code = #20150-9
+* capability[1].type.coding[0].display = "FEV1"
+* capability[2].type.coding[0].system = $loinc
+* capability[2].type.coding[0].code = #83368-1
+* capability[2].type.coding[0].display = "Personal best peak expiratory gas flow Respiratory system airway"
+* capability[3].type.coding[0].system = $loinc
+* capability[3].type.coding[0].code = #20149-1
+* capability[3].type.coding[0].display = "FEV1 predicted"
+* capability[4].type.coding[0].system = $loinc
+* capability[4].type.coding[0].code = #20152-5
+* capability[4].type.coding[0].display = "FEV1 measured/predicted"
+* capability[5].type.coding[0].system = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
+* capability[5].type.coding[0].code = #PEF-measured/predicted

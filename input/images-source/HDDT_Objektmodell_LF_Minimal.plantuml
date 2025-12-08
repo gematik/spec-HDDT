@@ -1,0 +1,76 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title HDDT Object Model Example (Lung Function Measurement)
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    object "Lung Function Measurement" as IV_messung <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: 19935-6 Maximum expiratory gas flow Respiratory system airway by Peak flow meter 
+        date [1..1]: 2025-12-28T08:00:00Z
+        value [1..1]: 612 L/min
+        device [1..1]: reference to Personal Health Device
+    }
+
+    object "Personal Health Device" as PHD <<FHIR Device>> {
+        type : 528405 | iso:11073:10101
+        deviceName : "Peak Flow Pro"
+        manufacturer : "HealthTech GmbH"
+        serialNumber : "PFM0011223344"
+        modelNumber : "Smart 2"
+    }
+
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum VS_MIV as "VS MIV Lung Function Measurement" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-measurement
+        version: 1.0.0
+        title: ValueSet MIV Lung Function Measurement
+        name: HddtMivLungFunctionMeasurement
+        description: therapy mgmt and clinical decisions
+        compose.include: 19935-6|LOINC, 83368-1|LOINC, 20150-9|LOINC, ...
+    }
+
+    enum VS_Measurement as "VS Lung Function Measurement Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-measurement-values
+        name: HddtLungFunctionMeasurementValues
+        compose.include: 19935-6|LOINC (PEF)
+        compose.include: 20150-9|LOINC (FEV1)
+    }
+}
+
+package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
+
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
+        type : 334990001 | SNOMED CT
+        identifier : 21.24.01.2005
+        deviceName : "Peak Flow Pro"
+        manufacturer : "HealthTech GmbH"
+        modelNumber : "Smart 2"
+        capability[0] = 19935-6 | LOINC
+        capability[1] = 20150-9 | LOINC
+        capability[2] = 83368-1 | LOINC
+    }
+}
+
+    ' Device below complete observation
+    IV_messung::device -down-> PHD : "[1..1] device"
+    PHD -left-> PHD_Def : "definition"
+
+    ' MIV ValueSet on the left side
+    VS_Measurement -right-> IV_messung : "Observation.code"
+
+    ' hidden connections for vertical alignment
+    VS_MIV -[hidden]right-> IV_messung
+    VS_MIV -[hidden]down-> VS_Measurement
+
+@enduml

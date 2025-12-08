@@ -170,6 +170,8 @@ Since the reference value is either a normal value for a population group and is
 
 ###  Examples
 
+#### Full example
+
 The following object diagram shows the relationships between the FHIR resources involved in representing the lung function measurements according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function measurement. For readibility reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
@@ -181,6 +183,35 @@ The following object diagram shows the relationships between the FHIR resources 
 
 <br clear="all"/>
 
+The following code example shows the concrete JSON representation of the _HDDT Lung Function Single Measurement_ resource (FEV1) shown in the object diagram.
+
+{% include Observation-example-fev1-single-measurement-json-html.xhtml %}
+
+The following code example shows the concrete JSON representation of the _HDDT Lung Function Reference Value_ resource shown in the object diagram.
+
+{% include Observation-example-fev1-reference-value-json-html.xhtml %}
+
+The following code example shows the concrete JSON representation of the _HDDT Complete Lung Function Measurement_ resource shown in the object diagram.
+
+{% include Observation-example-fev1-relative-value-json-html.xhtml %}
+
+#### Minimal Example
+
+The following object diagram shows a minimal representation of a lung function measurement, according to the [HDDT Information Model](information-model.html) taken with a peak flow meter. For readibility reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  {% include HDDT_Objektmodell_LF_Minimal.svg %}
+  </div>
+    <figcaption><em><strong>Figure: </strong>HDDT Object Model Minimal Example (Lung Function Measurement)</em></figcaption>
+</figure>
+
+<br clear="all"/>
+
+The following code example shows the concrete JSON representation of the _HDDT Lung Function Single Measurement_ resource (PEF) shown in the diagram.
+
+{% include Observation-example-peak-flow-simple-json-html.xhtml %}
+
 
 ### MIV-specific Endpoints and Interactions
 #### Observation - READ
@@ -191,9 +222,18 @@ Manufactures of Device Data Recorders that support the MIV _Lung Function Measur
 
 Manufactures of Device Data Recorders that support the MIV _Lung Function Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _serach_ interaction MUST comply with the FHIR profiles listed in section [FHIR Resource Server](#fhir-resource-server) of this chapter.
 
+#### Example: FHIR-Search for relative values LOINC code
+
 #### Example: FHIR-READ
 
-### Example: FHIR-Search for specific LOINC code
+**Request:** GET `/Observation/example-fev1-reference-value`A
 
-### Example: FHIR-Search include DeviceMetric
+**Description:** With FHIR-read interactions, a client can access a single resource instance by querying its internal ID. In this case it is suitable for obtaining the reference value of a FEV1 measurement, by querying the ID, in the `derivedFrom` of a complete Lung Function measurement. Restrictions by the OAuth scopes apply—if the client is not allowed to read this resource, a 404 error will be returned.
+
+**Response:** Returned object is a single Observation resource.
+
+{% include Observation-example-fev1-reference-value-json-html.xhtml %}
+
+
+#### Example: FHIR-Search include Device
 
