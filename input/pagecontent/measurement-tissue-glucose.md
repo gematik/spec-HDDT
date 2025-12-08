@@ -362,19 +362,19 @@ This operation and the related profiles define the exchange of aggregated measur
 
 #### Profile
 
-The _HDDT CGM Summary_ profile constrains the FHIR [Bundle](https://hl7.org/fhir/R4/bundle.html) resource for a glucose profile that is calculated from continuous glucose measurement data (e.g. from a CGM sensor). The profile covers the machine-readable parts of the [_HL7 CGM summary profile_](https://build.fhir.org/ig/HL7/cgm/).
+The _HDDT CGM Summary_ profile constrains the FHIR [Bundle](https://hl7.org/fhir/R4/bundle.html) resource for a glucose profile that is calculated from continuous glucose measurement data (e.g. from a CGM sensor). The profile covers the machine-readable parts of the [_HL7 CGM summary profile_](https://hl7.org/fhir/uv/cgm/).
 
 The Bundle is of type _collection_ and MUST contain only resources of the following types:
 
-- Observations conforming to [HL7 CGM profiles](https://build.fhir.org/ig/HL7/cgm/):
-  - [CGM Summary Observation](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)
-  - [Mean Glucose (Mass)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)
-  - [Mean Glucose (Moles)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)
-  - [Times in Ranges](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-times-in-ranges.html)
-  - [Glycemic Variability Index (GMI)](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-gmi.html)
-  - [Coefficient of Variation](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-coefficient-of-variation.html)
-  - [Days of Wear](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-days-of-wear.html)!
-  - [Sensor Active Percentage](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)
+- Observations conforming to [HL7 CGM profiles](https://hl7.org/fhir/uv/cgm/): 
+    - [CGM Summary Observation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary.html)
+    - [Mean Glucose (Mass)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)
+    - [Mean Glucose (Moles)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)
+    - [Times in Ranges](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-times-in-ranges.html)
+    - [Glycemic Variability Index (GMI)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-gmi.html)
+    - [Coefficient of Variation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-coefficient-of-variation.html)
+    - [Days of Wear](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-days-of-wear.html)
+    - [Sensor Active Percentage](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)
 - Device resources conforming to [HddtPersonalHealthDevice](StructureDefinition-hddt-personal-health-device.html) to provide context about the sensors that contributed to the summary data.
 
 The purpose of this [Bundle profile](StructureDefinition-hddt-cgm-summary.html) is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic. It ensures interoperability across different implementations by defining a predictable response format. This supports use cases such as:
@@ -402,7 +402,7 @@ The purpose of this [Bundle profile](StructureDefinition-hddt-cgm-summary.html) 
 
 ---
 
-The Observation profile for the CGM summary report is defined by HL7: [StructureDefinition-cgm-summary](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-cgm-summary.html)
+The Observation profile for the CGM summary report is defined by HL7: [StructureDefinition-cgm-summary](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary.html)
 
 #### Operation `$hddt-cgm-summary`
 
@@ -413,7 +413,7 @@ The Observation profile for the CGM summary report is defined by HL7: [Structure
 | **Purpose**        | Request a CGM Summary Report containing CGM key values for a defined range of time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **Parameters**     | See below                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Result**         | A Bundle containing one Observation resource conforming to the [HDDT CGM Summary](StructureDefinition-hddt-cgm-summary.html) profile. If the `related` parameter is set to true, the Bundle also contains all [Device](StructureDefinition-hddt-personal-health-device.html) resources for the sensors that contributed to the report.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **Specifications** | The CGM summary report is calculated at request-time. From the Device Data Recorder's perspective, the report is a snapshot solely assembled for a volatile request. Therefore the Device Data Recorder MAY not persist the report. The Device Data Recorder MAY assign a logical `id` to the report that is not addressable or MAY even omit the logical `id` (see last paragraph in https://hl7.org/fhir/R4/resource.html#id). As a consequence a _read_ interaction for a given `id` MAY result in an _404 Not Found_ error. <br> The Device Data Recorder MUST support all Observation profiles listed in the [hddt-cgm-summary bundle](https://build.fhir.org/ig/HL7/cgm/StructureDefinition-hddt-cgm-summary.html). If the Device Data Recorder does not support some of these observations it MUST for these observations provide Observation Resources with no `value[x]` and `dataAbsentReason` set to _unknown_. |
+| **Specifications** | The CGM summary report is calculated at request-time. From the Device Data Recorder's perspective, the report is a snapshot solely assembled for a volatile request. Therefore the Device Data Recorder MAY not persist the report. The Device Data Recorder MAY assign a logical `id` to the report that is not addressable or MAY even omit the logical `id` (see last paragraph in https://hl7.org/fhir/R4/resource.html#id). As a consequence a _read_ interaction for a given `id` MAY result in an _404 Not Found_ error. <br> The Device Data Recorder MUST support all Observation profiles listed in the [HDDT CGM Summary](StructureDefinition-hddt-cgm-summary.html). If the Device Data Recorder does not support some of these observations it MUST for these observations provide Observation Resources with no `value[x]` and `dataAbsentReason` set to _unknown_. |
 
 ##### Request Parameters
 

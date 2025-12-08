@@ -157,12 +157,6 @@ pages:
   authorization-server-revocation-endpoint.html:
     title: Revocation Endpoint
     generation: markdown
-  # general-considerations-deprecated.html:
-  #   title: General Considerations (DEPRECATED)
-  #   generation: markdown
-  # _deprecated_participants.html:
-  #   title: Participants (DEPRECATED)
-  #   generation: markdown
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
@@ -193,17 +187,10 @@ menu:
   Generic APIs:
     FHIR Resource Server: himi-diga-api.html
     Authorization Server: authorization-server.html
-  #  BfArM HIMI Directory API: himi-vz-api.html
-  #  BfArM DiGA Directory API: diga-vz-api.html
-  #  ZTS Terminology API: zts-api.html
   MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
     MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
-  #  Information Model Diabetes: information-model-diabetes.html
-  #  Measurement Blood Glucose: measurement-blood-glucose.html
-  #  Measurement Tissue Glucose: measurement-tissue-glucose.html
-  #  Examples: examples.html
   FHIR Artifacts:
     Artifacts Summary: artifacts.html
 
