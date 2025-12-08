@@ -1,7 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
-Alias: $mdc = urn:iso:std:iso:11073:10101|20250520
+Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement
@@ -205,7 +205,7 @@ Usage: #example
 * id = "example-cgm-series-data-unavailable"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
 * status = #preliminary
-* code = LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* code = $loinc#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 * effectivePeriod.start = "2025-09-01T08:00:00+02:00"
 * effectivePeriod.end   = "2025-09-01T10:00:00+02:00"
 * dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown "Temporarily Unknown"
@@ -251,7 +251,7 @@ Usage: #example
 * id = "example-devicemetric-cgm"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
 * type = $mdc#160212 "MDC_CONC_GLU_ISF"
-* unit = UCUM#mg/dL "mg/dL"
+* unit = $unitsofmeasure#mg/dL "mg/dL"
 * source = Reference(Example-Device-CGM)
 * operationalStatus = #on
 * category = #measurement
