@@ -34,7 +34,7 @@ The specification of the technical interfaces for retrieving device data conside
 #### Searching Observations Using FHIR _search_ Interactions
 
 A DiGA requests device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type.
-The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an appropriate error.
+The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources in the form of a [Bundle](https://hl7.org/fhir/R4/bundle.html), or with an appropriate error. In case a search interaction finds no matches, an empty [Bundle](https://hl7.org/fhir/R4/bundle.html) MUST be returned.
 
 The request MUST include an OAuth 2.0 access token in the `Authorization` header (as defined in the HDDT [OAuth2 profile](pairing.html#access-tokens)). This access token is issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder.
 
