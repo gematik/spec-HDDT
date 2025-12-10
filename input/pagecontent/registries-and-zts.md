@@ -27,6 +27,7 @@ The _HIIS-VZ_ and the processes for registering Personal Health Devices and Devi
 ### DiGA Verzeichnis
 The _DiGA Verzeichnis_ (DiGA VZ: BfArM DiGA Registry) is operated by BfArM and provides access to definitions of registered DiGA (Digital Health Applications acc. § 33a SGB V). For HDDT the _DiGA Verzeichnis_ provides the following functions:
 - providing information about registered DiGA
+   - a unique 5-digit identifier assigned by BfArM known as DiGA-ID
    - product information (name, version, etc.)
    - manufacturer and contact data
    - information for verifying the authenticity of the DiGA in electronic communications
