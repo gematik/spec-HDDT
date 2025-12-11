@@ -7,10 +7,10 @@ The legal requirements specify that a medical aid or implant must be able to pro
 
 For the first implementation stage of HDDT, only 
 * measurement data collected by medical aids and 
-* aggregated data in the form of calculated metrics 
+* aggregated data in the form of calculated clinical metrics 
 will be considered.
 
-This section describes the fundamental mechanisms for exchanging measurement data and metrics. For measurement data, both single measurements and continuously collected time series are considered.
+This section describes the fundamental mechanisms for exchanging measurement data and clinical metrics. For measurement data, both single measurements and continuously collected time series are considered.
 
 ### Querying for Device Data
 
@@ -267,7 +267,7 @@ end
 
 ### Querying for Aggregated Data
 
-The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide key metrics that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant key metrics, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. 
+The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide clinical metrics that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant clinical metrics, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. 
 
 As far as available and usable, these reports represent existing specifications. For rtCGM data, for example, the specification of a [CGM Summary Observation from HL7 International](https://github.com/HL7/cgm) is adopted unchanged. In order to be as flexible as possible for future MIVs, the specification does not limit the reports to a certain FHIR resource definition. This allows for adopting standard FHIR IGs for standardized reports regardless if they are provided as FHIR Observations, DiagnosticReports or any other kind of DomainResource. 
 

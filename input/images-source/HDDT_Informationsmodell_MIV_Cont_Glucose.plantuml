@@ -88,7 +88,7 @@ package ZTS as "MIV Definitions (ZTS)" VIBW {
         version = "1.0.0"
         title = "ValueSet - Continuous Glucose Measurement from LOINC"
         name = "HddtMivContinuousGlucoseMeasurement"
-        description = "key metrics and continuous monitoring"
+        description = "LOINC codes for continuous glucose monitoring"
         compose.include = 99504-3|LOINC, 105272-9|LOINC
     }
 }
