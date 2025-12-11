@@ -80,8 +80,8 @@ the Health Record on the backend system. The HDDT specification MUST NOT affect 
   interface)
 * how the Personal Health Gateway handles data from uncalibrated devices (e.g. whether this data is sent to the Health
   Record or not)
-* which specific algorithms the _Device Data Recorder_ uses to calculate key metrics (e.g. whether an rtCGM includes
-  data from its warm-up phase when calculating therapeutic key values such as the Glucose Management Index)
+* which specific algorithms the _Device Data Recorder_ uses to calculate clinical metrics (e.g. whether an rtCGM includes
+  data from its warm-up phase when calculating values such as the Glucose Management Index)
 * whether and how the Personal Health Gateway pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
   curves)
 
@@ -102,15 +102,7 @@ belong to the same type of data. Domain-specific types of data, such as blood gl
 always have their own definitions of the [FHIR Observation resource](https://hl7.org/fhir/R4/observation.html) type — even if they differ only by LOINC codes and units. This separation
 ensures that future changes affecting one data type do not impact manufacturers of devices for other domains.
 
-§ 374a SGB V requires that aggregated data MUST also be made available through the HDDT interface. In HDDT,
-this requirement is limited to aggregated data that can be calculated from the MIVs provided by the medical aid. For example, an
-rtCGM only MUST provide aggregated values that can be computed from its continuous glucose
-measurements ([MIV - Continuous Glucose Measurement](measurement-tissue-glucose.html)). To reduce the workload for
-Health Record manufacturers, aggregated data MUST be provided as standardized reports whenever it is calculated over a
-period of time. A DiGA therefore SHALL NOT request a single metric, such as the number of hypoglycemias, but instead
-MUST retrieve the full report (e.g. the Ambulatory Glucose Profile (AGP)). Where possible, HDDT adopts existing
-specifications for such reports unchanged — for rtCGM data, this includes
-the [CGM Summary Observation from HL7 International](https://github.com/HL7/cgm).
+§ 374a SGB V requires that aggregated data from Personal Health Devices MUST also be made available through the HDDT interface. For example, a Device Data Recorder for a realt-time Continuous Glucose Monitoring device (rtCGM) MUST provide values that can be computed from the continuously measured glucose values. Which values are to be provided is normatively defined on a per-MIV basis in the respective MIV-specific specification parts (see [Mandatory Interoperable Values (MIVs)](mivs.html)). To reduce the workload for manufacturers of Device Data Recorders, the HDDT allows for aggregated data to be provided as standardized reports. By this, Device Data Recorders can calculate all requested clinical metrics at once instead of parsing through the same data series multiple times for serving requests for single clinical metrics. Consequently HDDT does not provide APIs to DiGA for requesting single clinical metrics which are computed from sampled data, such as the number of hypoglycemic episodes or a the average glucose value. Such values MUST only be provided as part of structured reports consisting of multiple clinical metrics. Where possible, HDDT adopts existing specifications for such reports — e.g. for rtCGM data, the [HDDT CGM summary report](StructureDefinition-hddt-cgm-summary.html) is a subset of the [HL7 CGM Summary Profile](https://github.com/HL7/cgm).
 
 The HDDT specification requires that data be exchanged primarily as FHIR resources. Because FHIR clinical resources are
 designed for storage and versioning, each resource SHOULD be permanently retrievable under its identifier. In practice,

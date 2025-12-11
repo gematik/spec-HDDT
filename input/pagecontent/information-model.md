@@ -44,9 +44,9 @@ These four elements are the common defined elements of each HDDT __Observation P
 
 Beside single observation data, a Device Data Recorder MUST be able to provide aggregated data in the form of a report. Which reports have to be provided and how these reports are implemented on top of standard FHIR resource definitions is defined per MIV in the HDDT specifications. 
 
-__Example:__ The __MIV__ _Continuous Glucose Measurement_ defines a HDDT __Observation Profile__ for sampled glucose measurements as performed by real-time Continuous Glucose Monitoring (rtCGM). For these devices HL7 International defines a summary report, that holds a PDF report together with coded key metrics such as times in ranges, glucose management index and data quality indicators. HDDT requests Device Data Recorders to implement the machine-readable part of this HL7 report as aggregated data for the __MIV__ _Continuous Glucose Measurement_.
+__Example:__ The __MIV__ _Continuous Glucose Measurement_ defines a HDDT __Observation Profile__ for sampled glucose measurements as performed by real-time Continuous Glucose Monitoring devices (rtCGM). For these devices HL7 International defines a summary report, that holds a PDF report together with coded clinical metrics such as times in ranges, glucose management index and data quality indicators. HDDT requests Device Data Recorders to provide a machine-readable subset of this HL7 report as a [HDDT CGM summary report](StructureDefinition-hddt-cgm-summary.html) resource.
 
-While the aggregated data in the glucose example is a profile on top of FHIR [Observation](https://hl7.org/fhir/R4/observation.html), other __MIV__'s reports may be implemented as FHIR [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html)s or other FHIR resources.
+While the aggregated data in the glucose example is a Collection [Bundle](https://hl7.org/fhir/R4/bundle.html), other __MIV__'s reports may be implemented as FHIR [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html)s or other FHIR resources.
 
 Details on the definition of the MIV [ValueSet](https://hl7.org/fhir/R4/valueset.html)s are given at the end of this section. 
 
