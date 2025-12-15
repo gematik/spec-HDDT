@@ -12,7 +12,7 @@ The service MUST maintain at least 99.5% monthly availability. Availability MUST
 The service MUST be available 24 hours a day, 7 days a week (24/7). 
 
 #### Maintenance Windows
-Scheduled maintenance windows MAY only be performed in connection with specification changes or product changes. Scheduled maintenance MUST be announced at least 5 business days prior to commencement, including start time, end time, expected impact, and touchpoint. During a planned maintenance window, impairments MAY occur; these times are considered planned unavailability and are excluded from the availability calculation, if the notification and communication obligations have been met.
+Scheduled maintenance windows MAY only be performed in connection with specification changes or product changes. Scheduled maintenance MUST be announced at least 5 business days prior to commencement, including start time, end time, expected impact, and touchpoint. During a planned maintenance window, impairments MAY occur; these times are considered planned unavailability and are excluded from the availability calculation, if the notification and communication obligations have been met. In cases where security vulnerabilities or concerns arise, the 5-business-day notification period does not apply, and maintenance may be performed with immediate effect to address the issue.
 
 The service MUST provide a machine-readable response (e.g., specific HTTP status/error code and/or dedicated header/response body) during an active maintenance window that allows DiGA clients to clearly identify that a scheduled maintenance is currently active. Alternatively or additionally, out-of-band information (e.g. status feed/status page/webhook) MUST be provided.
 
@@ -32,13 +32,7 @@ A public, machine-readable status feed MUST be provided that contains at least t
 
 ### Response times (latency) in regular operation
 #### Response Time
-The service MUST relate its response times on a defined reference system. The target values published in the interface documentation per endpoint/category (e.g. authentication, read, write operations) are used as a reference.
-
-For each referenced endpoint, 95% of all responses must be fast enough that their time does not exceed one and a half times the specified reference value over a course of a calendar month (P95, 95th percentile response time).
-Example: Reference P95 = 400 ms → permissible P95 ≤ 600 ms.
-
-#### Independent monitoring of response times
-The provider MUST operate continuous synthetic monitoring that captures P50/P95/P99 response times per endpoint. The retention period is 30 days.
+The service SHOULD ensure acceptable response times for its operations.
 
 #### Throughput and Load Requirements
 The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability. The service provider MAY restrict the number of requests for a single client (DiGA) and patient to a reasonable extent. This grace period MUST NOT exeed the MIV-specific limit as defined through the _Grace-Period_ setting in the specific [MIV definition](mivs.html).
@@ -86,7 +80,7 @@ An eligable request for the disclosure of log records MUST be acted upon within 
 * Confirmation of receipt 
 * Provision of the requested log records or a binding delivery date, with valid justification, if not immediately possible
 
-The release MUST be limited to the request purpose, secure and encrypted (e.g. password-protected archives, mTLS-secured download links). The identity and authorization of the requester MUST be verified before deployment.
+The release MUST be limited to the request purpose, secure and encrypted (e.g. password-protected archives, TLS-secured download links). The identity and authorization of the requester MUST be verified before deployment.
 
 #### Formats and Filterability
 Protocols MUST be provided in a standard machine-readable format (e.g. JSON lines). Timestamps MUST be ISO-8601 compliant.
@@ -97,5 +91,6 @@ It MUST be possible to filter logs by time period, client/tenant, endpoint, stat
 The provider MUST provide proof of log integrity (e.g. checksums/signatures) and completeness for a period of time upon request.
 
 Changes to logging scopes, masking rules, or retention periods MUST be documented and versioned with a time stamp. Affected parties SHOULD be informed at least 10 business days prior to the productive change, unless there are conflicting security reasons.
+
 
 
