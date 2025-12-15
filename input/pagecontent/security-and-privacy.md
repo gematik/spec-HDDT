@@ -135,7 +135,13 @@ For all connections, the DiGA acts as a client and the Device Data Recorder as a
 2. Verification of the client certificate of the DiGA by the Device Data Recorder:
    - Check that the presented certificate ist exactly the same certificate as registered in the _DiGA-VZ_ for the corresponding DiGA that is claimed afterwards on application layer via `client_id` (see (c) below)
 
-DiGA and Device Data Recorder operators MUST implement CA Authorization (CAA) and publish a corresponding DNS record for their domain. DiGA and Device Data Recorder operators MUST continuously check the CT logs of the known CT log operators (https://certificate.transparency.dev/google/) for unauthorized certificates for their own domain. The measure ensures that unauthorized certificates are detected and that the operator can report this to the issuing CA. The incident does not go undetected and the affected CA can react to it. In addition, the CA then revokes the certificate issued without authorization. The measure is fully effective if, in addition to the above-mentioned verification steps, the verifying entity also checks the revocation status of the presented certificate against the revocation lists (CRL) provided by the issuing CA. Due to the not inconsiderable size of the CRLs, this can lead to performance problems.
+DiGA and Device Data Recorder operators MUST implement CA Authorization (CAA) and publish a corresponding DNS record for their domain.
+
+Device Data Recorder operators, as operators of publicly trusted TLS server certificates, MUST continuously monitor the CT logs of the known CT log operators (https://certificate.transparency.dev/google/) for unauthorized certificates issued for their own domain. The purpose of this measure is to ensure that unauthorized certificates are detected and can be reported to the issuing CA so that appropriate action (e.g. certificate revocation) can be taken. The obligation to monitor CT logs MAY be fulfilled using automated tools or services. Continuous monitoring does not imply manual inspection but requires that appropriate technical measures are in place to reliably detect unauthorized certificate issuance.
+
+DiGAs do not operate publicly trusted TLS server certificates (in context of HDDT) and therefore are not required to perform CT log monitoring.
+
+The measure is fully effective if, in addition to the above-mentioned verification steps, the verifying entity also checks the revocation status of the presented certificate against the revocation lists (CRL) provided by the issuing CA. Due to the not inconsiderable size of the CRLs, this can lead to performance problems.
 
 ___Additional Notes___: 
 * (a) The list of signature verification keys is published by the browser manufacturers, for example. The measure ensures that no certificates are accepted that are not contained in at least two CT logs.

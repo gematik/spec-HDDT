@@ -7,10 +7,10 @@ The legal requirements specify that a medical aid or implant must be able to pro
 
 For the first implementation stage of HDDT, only 
 * measurement data collected by medical aids and 
-* aggregated data in the form of calculated metrics 
+* aggregated data in the form of calculated clinical metrics 
 will be considered.
 
-This section describes the fundamental mechanisms for exchanging measurement data and metrics. For measurement data, both single measurements and continuously collected time series are considered.
+This section describes the fundamental mechanisms for exchanging measurement data and clinical metrics. For measurement data, both single measurements and continuously collected time series are considered.
 
 ### Querying for Device Data
 
@@ -34,9 +34,11 @@ The specification of the technical interfaces for retrieving device data conside
 #### Searching Observations Using FHIR _search_ Interactions
 
 A DiGA requests device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type.
-The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an appropriate error.
+The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources in the form of a standard FHIR [Bundle](https://hl7.org/fhir/R4/bundle.html), or with an appropriate error. In case a search interaction finds no matches, an empty [Bundle](https://hl7.org/fhir/R4/bundle.html) MUST be returned.
 
-The request MUST include an OAuth 2.0 access token in the `Authorization` header (as defined in the HDDT [OAuth2 profile](pairing.html#access-tokens)). This access token is issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder.
+Certain endpoints or certain MIVs may specify additional situations, where an empty Bundle is returned. In such cases, an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) MAY be included in the [Bundle](https://hl7.org/fhir/R4/bundle.html), in order to explain the reason why no matches were found.
+
+The search request MUST include an OAuth 2.0 access token in the `Authorization` header (as defined in the HDDT [OAuth2 profile](pairing.html#access-tokens)). This access token is issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder.
 
 The Device Data Recorder MUST be able to derive the internal patient identifier corresponding to the Pairing ID contained in the access token. This identifier MUST implicitly be used as the `subject` parameter in every query to the Device Data Recorder’s FHIR API. If a DiGA explicitly provides a `subject` parameter, the Device Data Recorder MUST ignore it and SHOULD return a `400 Bad Request` error.
 
@@ -63,7 +65,7 @@ A DiGA MAY further constrain the kind of requested values by providing one or mo
 
 Example: If no `code` argument is given, the data recorder of a blood glucose meter will respond to a query for blood glucose data with all glucose values regardless of the unit (e.g. _mg/dl_ and _mmol/l_). If the LOINC code `2339-0` (_Glucose [Mass/volume] in Blood_) is given as a `code` argument, the device recorder will only respond with values that were measured in blood and which are available as _mg/dl_.
 
-All `code` values provided as explicit query arguments MUST be part of the [ValueSet](https://hl7.org/fhir/R4/valueset.html) that is referenced in the SMART scope that is linked with the Access Token. If a DiGA requests for a code which is not contained with this value set, the Device Data Recorder MUST respond with an 'Invalid Request` error.
+All `code` values provided as explicit query arguments MUST be part of the [ValueSet](https://hl7.org/fhir/R4/valueset.html) that is referenced in the SMART scope that is linked with the Access Token. If a DiGA requests for a code which is not contained with this value set, the Device Data Recorder MUST return an empty [Bundle](https://hl7.org/fhir/R4/bundle.html), as if no matches are found. An [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) MAY be included in the [Bundle](https://hl7.org/fhir/R4/bundle.html), in order to explain why no search results were returned.
 
 `date` and `code` are the only search parameters that each DiGA and Device Data Recorder MUST support for all MIVs. A MIV-specific implementation guide MAY request for supporting further search arguments and MAY constrain the use and semantics of these arguments. A Device Data Recorder MAY support even more search parameters in accordance to the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource definition. In this case these arguments MUST be published through the Device Data Recorders [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html). 
 
@@ -96,9 +98,9 @@ Every Device Data Recorder holds information about its static attributes as part
 
 | key                  | value | obligation | comments |
 |----------------------|-------|------------|----------|
-| Historic-Data-Period | minimum number of days historic data is available at the Device Data Recorder | MUST | If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder MAY respond with an error. _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
+| Historic-Data-Period | minimum number of days historic data is available at the Device Data Recorder | MUST | If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder will return no matches (See section [Searching Observations using FHIR-search interactions](#searching-observations-using-fhir-search-interactions)). _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
 | Delay-From-Real-Time | maximum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record under normal operational conditions. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
-| Grace-Period | Time span a DiGA must wait between two requests for data that affect the same MIV and patient | MUST | A Device Data Recorder MAY reject a new request for the same MIV and patioen that is issued before the end of this time span. | 
+| Grace-Period | Time span a DiGA must wait between two requests for data that affect the same MIV and patient | MUST | A Device Data Recorder MAY reject a new request for the same MIV and patient that is issued before the end of this time span. | 
 | Chunk-Time-Span      | size of a chunk for sharing sampled data (see below) | MUST if applicable | This property is only applicable for Device Data Recorders that provide Observation values as sampled data |  
 
 #### Versioning of Device and DeviceMetric Resources
@@ -267,7 +269,7 @@ end
 
 ### Querying for Aggregated Data
 
-The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide key metrics that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant key metrics, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. 
+The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide clinical metrics that can be calculated exclusively on the continuously collected glucose values which represent the MIV "Continuous Glucose Measurement". In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant clinical metrics, e.g. such as those contained in the _ambulatory glucose profile (AGP)_. 
 
 As far as available and usable, these reports represent existing specifications. For rtCGM data, for example, the specification of a [CGM Summary Observation from HL7 International](https://github.com/HL7/cgm) is adopted unchanged. In order to be as flexible as possible for future MIVs, the specification does not limit the reports to a certain FHIR resource definition. This allows for adopting standard FHIR IGs for standardized reports regardless if they are provided as FHIR Observations, DiagnosticReports or any other kind of DomainResource. 
 

@@ -36,14 +36,16 @@ The figure below shows how these logical building blocks interact with each othe
 
 ### Data to be transferred through the HDDT API
 
-Subject of the data transmission as requested by § 374a SGB V are measured data, aggregated data and configuration data:
-- All data that is measured through sensors of the Personal Health Device is considered as measured data and as such subject to the HDDT specifications. Data that is obtained by the Personal Health Device or the Personal Health Gateway from other sources (e.g. entered by the patient) is not considered to be measured data.
-- All data that is aggregated from measured data is subject to the HDDT specification, if and only if it is stored with the Health Record. This includes data that is calculated by the Personal Health Device or the Personal Health Gateway as well as key metrics that are calculated by the Health Record itself. If an aggregated value is only processed locally with the Personal Health Device or the Personal Health Gateway and not stored with the Health Record, it is not subject to the HDDT specification.
-- Any static and dynamic attributes that make up the configuration of the device are subject to the HDDT specification, too. For the initial HDDT specification (Version 1) only attributes will be considered that 
-  - affect the general ability of a DiGA to process the received device data for the DiGA's eligible purposes (e.g. calibration status of the Personal Health Device) or 
-  - affect the interaction between the DiGA and the Device Data Recorder (e.g. for discovering missing data so that a request may be stated again in the future).
+Subject of the data transmission as requested by § 374a SGB V are all kinds of data that are processed by a medical aid or implant. This in particular includes measured data, clinical metrics and configuration data:
+- Measured data is all data that is measured through sensors of a Personal Health Device 
+- Clinical metrics are data that is calculated or aggregated from measured data. This data can be calculated by a Personal Health Device or a Personal Health Gateway or a Health Record. In HDDT, clinical metrics are often shared as structured reports.
+- Configuration data are all static and dynamic attributes that control the processing of measured data and clinical metrics or that are required for the interpretation of these data. 
 
-The figure below shows the relationship between Personal Health Devices, measured data and aggregated data for the domain "Diabetes Self-Management". Relationships between Personal Health Devices and measured data is n:m which means that a Personal Health Device could provide many kinds of measured data while each measured data may be provided by multiple kinds of Personal Health Devices.
+Which measured data, clinical metrics and configuration data is to be provided by a Device Data Recorder is defined per MIV by this specification.
+
+_Remark: Another category of data are account data, e.g. the name or e-mail address of the patient. Account data MUST NOT be shared though the HDDT API for privacy reasons (see section on [identification of patients](security-and-privacy.html#identification-and-authentication))._
+
+The figure below shows the relationship between Personal Health Devices, measured data and clinical metrics for the domain "Diabetes Self-Management". Relationships between Personal Health Devices and measured data is n:m which means that a Personal Health Device could provide many kinds of measured data while each measured data may be provided by multiple kinds of Personal Health Devices.
 
 <figure>
 <div class="gem-ig-svg-container">

@@ -5,9 +5,9 @@ ___Caution__: In HL7 FHIR R4 the definitions of the [Device](https://hl7.org/fhi
 
 As depicted in the definition of the [HDDT logical building blocks](logical-viewpoints.html#logical-building-blocks), each medical aid or implant in the sense of § 374a SGB V can be divided into
 * __Personal Health Device__: the hardware part including the __sensors__ that measure vital data of the patient
-* __Device Data Recorder__: components responsible for accepting, storing and further processing the device data. The Device Data Recorder consists of
+* __Device Data Recorder__: components responsible for accepting, storing and further processing the measured data. The Device Data Recorder consists of
     * __Personal Health Gateway__: an intermediate hardware and/or software that retrieves the sensor data at the patient's or doctor's side and takes care of securely forwarding it to a Health Record
-    * __Health Record__: a backend platform that stores the device data
+    * __Health Record__: a backend platform that stores the measured data
 
 This logical model builds the foundation of the HDDT FHIR based information model. Every artefact of the logical model is mapped onto a class in the HDDT information model. Each class again can be implemented by a standard FHIR R4 resource definition.
 
@@ -44,9 +44,9 @@ These four elements are the common defined elements of each HDDT __Observation P
 
 Beside single observation data, a Device Data Recorder MUST be able to provide aggregated data in the form of a report. Which reports have to be provided and how these reports are implemented on top of standard FHIR resource definitions is defined per MIV in the HDDT specifications. 
 
-__Example:__ The __MIV__ _Continuous Glucose Measurement_ defines a HDDT __Observation Profile__ for sampled glucose measurements as performed by real-time Continuous Glucose Monitoring (rtCGM). For these devices HL7 International defines a summary report, that holds a PDF report together with coded key metrics such as times in ranges, glucose management index and data quality indicators. HDDT requests Device Data Recorders to implement the machine-readable part of this HL7 report as aggregated data for the __MIV__ _Continuous Glucose Measurement_.
+__Example:__ The __MIV__ _Continuous Glucose Measurement_ defines a HDDT __Observation Profile__ for sampled glucose measurements as performed by real-time Continuous Glucose Monitoring devices (rtCGM). For these devices HL7 International defines a summary report, that holds a PDF report together with coded clinical metrics such as times in ranges, glucose management index and data quality indicators. HDDT requests Device Data Recorders to provide a machine-readable subset of this HL7 report as a [HDDT CGM summary report](StructureDefinition-hddt-cgm-summary.html) resource.
 
-While the aggregated data in the glucose example is a profile on top of FHIR [Observation](https://hl7.org/fhir/R4/observation.html), other __MIV__'s reports may be implemented as FHIR [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html)s or other FHIR resources.
+While the aggregated data in the glucose example is a Collection [Bundle](https://hl7.org/fhir/R4/bundle.html), other __MIV__'s reports may be implemented as FHIR [DiagnosticReport](https://hl7.org/fhir/R4/diagnosticreport.html)s or other FHIR resources.
 
 Details on the definition of the MIV [ValueSet](https://hl7.org/fhir/R4/valueset.html)s are given at the end of this section. 
 
@@ -63,7 +63,7 @@ The part of the HDDT information model that is related to the Personal Health De
 
 <br clear="all"/>
 
-Personal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. If a Personal Health Device transmits data from a non-calibrated sensor to the Health Record at all depends on the concrete product. For a DiGA to process device data in a safe manner, the DIGA must know if the data it received was gathered by a calibrated sensor or not. 
+Personal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the manufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. If a Personal Health Device transmits data from a non-calibrated sensor to the Health Record at all depends on the concrete product. For a DiGA to process measured data in a safe manner, the DIGA must know if the data it received was gathered by a calibrated sensor or not. 
 
 For Personal Health Devices where the sensor that measures the values requires automated or manual calibration, the __Interoperable Value__ MUST refer to the __Sensor Type and Calibration Status__. The Sensor Type and Calibration Status is mapped onto a FHIR [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource which holds calibration information in a `calibration.type`, a `calibration.state` and a `calibration.date` element. In addition, the __Sensor Type and Calibration Status__ can provide a definition of the `unit` that is preferably to be used for presenting measured values to the patient. This `unit` MAY differ from the `unit` that is used with the `value` of the Interoperable Value (which is provided through a backend system).
 
@@ -92,7 +92,7 @@ As described in the section on [certification relevant systems](certification-re
 * __Device Data Recorder Definition__: 
   * human readable device name and name of the manufacturer of the Device Data Recorder
   * contact data of the owner of the Device Data Recorder
-  * additional static attributes of the device data recorder platform (e.g. the frequency the Device Data Recorder's Health Record synchronizes with the Personal Health Gateway)
+  * additional static attributes of the Device Data Recorder platform (e.g. the frequency the Device Data Recorder's Health Record synchronizes with the Personal Health Gateway)
   * trust anchors for secure pairing and secure communications (see [Security and Privacy](security-and-privacy.html) for details)
 
 * __Device Data Recorder FHIR Endpoint__: 
@@ -101,7 +101,7 @@ As described in the section on [certification relevant systems](certification-re
   
 * __Device Data Recorder AuthZ Endpoint__:
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
-  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the device data recorder.
+  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the Device Data Recorder.
 
 The links between these resources are maintained within the _HIIS-VZ_. Users of the registry can discover the Device Data Recorder's __FHIR Resource Server__ and __OAuth2 Authorization Server__ through the _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ (BfArM Device Registry API). 
 

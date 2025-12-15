@@ -1,7 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
-Alias: $mdc = urn:iso:std:iso:11073:10101|20250520
+Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: Example-Blood-Glucose
 InstanceOf: HddtBloodGlucoseMeasurement

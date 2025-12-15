@@ -33,11 +33,11 @@ participant ZH order 30 [
 
 == Prescription duration of DiGA for Pairing-ID expired ==
 activate D
-D -> D: Check validity of consent (Pairing-ID) or system time vs.\nexpiry date of prescription (Pairing-ID)
-alt Prescription about to expire
+D -> D: Check for expired or expiring consent\nCheck for expired or expiring  prescription period (Pairing-ID)
+alt Prescription or Consent about to expire
 	D -> V: Preferably inform patient about upcoming expiry in advance
 	activate V
-else Prescription expired
+else Prescription or Consent expired
 	D -> D: Invalidate consent linked to Pairing-ID
 	D -> H: Request revocation at /revoke endpoint with tls_client_auth and refresh_token
 	D -> D: Authenticate Device Data Recorder (FQDN, X.509 cert)
