@@ -1,0 +1,117 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title HDDT Object Model Example (Lung Function Measurement)
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    object "Lung Function Measurement" as IV_messung <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: 20150-9 FEV1
+        date [1..1]: 2025-08-08
+        value [1..1]: 3.65 L
+        device [1..1]: reference to Personal Health Device
+    }
+
+    object "Lung Function Reference Value " as IV_referenz <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: 20149-1 FEV1 Predicted
+        date [1..1]: 2025-08-01
+        value [1..1]: 4.5L
+        method [1..1]: GLI-2022 - Reference Value calculated using GLI 2022
+        device [1..1]: reference to Personal Health Device
+    }
+
+    object "Lung Function Complete Measurement" as IV_prozent <<FHIR Observation>> {
+        status [1..1]: final 
+        code [1..1]: 20152-5 FEV1 measured/predicted
+        date [1..1]: 2025-08-08
+        value [1..1]: 87 %
+        device [1..1]: reference to Personal Health Device
+    }
+
+    object "Personal Health Device" as PHD <<FHIR Device>> {
+        type : 528405 | iso:11073:10101
+        deviceName : "MIR Smart One"
+        manufacturer : "MIR - Medical International Research"
+        serialNumber : "SN1234567890"
+    }
+
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum VS_MIV as "VS MIV Lung Function Measurement" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-measurement
+        version: 1.0.0
+        title: ValueSet MIV Lung Function Measurement
+        name: HddtMivLungFunctionMeasurement
+        description: therapy mgmt and clinical decisions
+        compose.include: 19935-6|LOINC, 83368-1|LOINC, 20150-9|LOINC, ...
+    }
+
+    enum VS_Measurement as "VS Lung Function Measurement Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-measurement-values
+        name: HddtLungFunctionMeasurementValues
+        compose.include: 19935-6|LOINC (PEF)
+        compose.include: 20150-9|LOINC (FEV1)
+    }
+
+    enum VS_Reference as "VS Lung Function Reference Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values
+        name: HddtLungFunctionReferenceValues
+        compose.include: 83368-1|LOINC (Personal best PEF)
+        compose.include: 20149-1|LOINC (FEV1 predicted)
+    }
+
+    enum VS_Relative as "VS Lung Function Relative Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values
+        name: HddtLungFunctionRelativeValues
+        compose.include: 20152-5|LOINC (FEV1 measured/predicted)
+        compose.include: PEF-measured/predicted|temp
+    }
+}
+
+package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
+
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
+        ' ISO code for GENERIC device
+        type : 528457 | iso:11073:10101
+        deviceName : "MedM Health Diary"
+        manufacturer : "MedM"
+        property[0] = (Real-Time-Delay, 15 min)
+        property[1] = (Grace-Period, 15 min
+        property[2] = (Historic-Data-Period, 90 days)
+        property[3] = (Store-Capacity-Count, 200 measurements)
+    }
+}
+
+    ' Complete observation references measurement and reference
+    IV_prozent::derivedFrom -up-> IV_messung : "derivedFrom"
+    IV_prozent::derivedFrom -up-> IV_referenz : " derivedFrom"
+
+    ' Device below complete observation
+    IV_prozent::device -down-> PHD : "[1..1] device"
+    PHD -left-> PHD_Def : "definition"
+
+    ' MIV ValueSet on the left side
+    VS_Measurement -right-> IV_messung : "Observation.code"
+    VS_Reference -right-> IV_referenz: "Observation.code"
+    VS_Relative -right-> IV_prozent: "Observation.code"
+
+    ' hidden connections for vertical alignment
+    IV_messung -[hidden]down-> IV_referenz
+    IV_referenz -[hidden]down-> IV_prozent
+    VS_MIV -[hidden]right-> IV_messung
+    VS_MIV -[hidden]down-> VS_Measurement
+    VS_Measurement -[hidden]down-> VS_Reference
+    VS_Reference -[hidden]down-> VS_Relative
+    VS_Relative -[hidden]down-> PHD_Def
+
+@enduml

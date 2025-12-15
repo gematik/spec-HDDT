@@ -566,3 +566,369 @@ It allows clients to request CGM summary data filtered by effective period, and 
 * parameter[=].documentation = "Result bundle (HTTP 200 OK) containing summary data of measurements and optionally related resources"
 * parameter[=].type = #Reference
 * parameter[=].targetProfile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"
+
+
+ValueSet: HddtMivLungFunctionMeasurement
+Id: hddt-miv-lung-function-measurement
+Title: "ValueSet - MIV Lung Function Measurement from LOINC"
+Description: """
+This ValueSet defines the Mandatory Interoperable Value (MIV) \"Lung Function Measurement\". The definition is made up from
+- this description which provides the semantics and defining characteristics of the MIV
+- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_.
+
+The MIV _Lung Function Measurement_ covers values from lung function measurements that are performed by exhaling air
+into a hand-held peak flow meter or spirometer. Measurements are performed twice a day, or more frequently if required
+by the care plan or the patient's condition.
+
+The ValueSet for the MIV _Lung Function Measurement_ includes LOINC codes for measuring the Peak Expiratory Flow (PEF) and
+Forced Expiratory Volume in 1 second (FEV1). Also included are LOINC codes for the corresponding reference values, and 
+relative values (e.g. FEV1 measured/predicted). This ValueSet does not include LOIC codes directly, instead the codes 
+come from three separate ValueSets:
+- HddtLungFunctionMeasurementValues: codes for individual lung function measurements
+- HddtLungFunctionReferenceValues: codes for lung function reference values
+- HddtLungFunctionRelativeValues: codes for relative lung function values, calculated in percentages (%)
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-lung-function-measurement"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* include codes from valueset HddtLungFunctionMeasurementValues
+* include codes from valueset HddtLungFunctionReferenceValues 
+* include codes from valueset HddtLungFunctionRelativeValues
+
+ValueSet: HddtLungFunctionMeasurementValues
+Id: hddt-lung-function-measurement-values
+Title: "ValueSet - Lung Function Measurement Values from Loinc"
+Description: """
+This ValueSet defines the codes used for individual lung function measurements, measured by hand-held peak flow meters or spirometers.
+Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume in 1 second (FEV1).
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-measurement-values
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* $LNC#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+* $LNC#20150-9 "FEV1"
+
+ValueSet: HddtLungFunctionReferenceValues
+Id: hddt-lung-function-reference-values
+Title: "ValueSet - Lung Function Reference Values from LOINC"
+Description: """
+This ValueSet defines the LOINC codes, used for lung function reference values. The reference value for Peak Expiratory Flow (PEF)
+is the personal best value achieved by the patient within a certain time frame. The reference value for 
+Forced Expiratory Volume in 1 second (FEV1) is in most cases a predicted value, calculated based on demographic data of the patient.
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-values"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* $LNC#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
+* $LNC#20149-1 "FEV1 predicted"
+
+ValueSet: HddtLungFunctionRelativeValues
+Id: hddt-lung-function-relative-values
+Title: "ValueSet - Lung Function Relative Values from LOINC"
+Description: """
+This ValueSet defines the LOINC codes, used for relative lung function values. The relative value is calculated by dividing the 
+individual measurement by the reference value, resulting in a percentage value (%). Included codes are for 
+- FEV1 measured/predicted
+- PEF measured/personal best
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-relative-values"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* $LNC#20152-5 "FEV1 measured/predicted"
+* HddtLungFunctionTemporaryCodes#PEF-measured/predicted
+
+Profile: HddtLungFunctionMeasurement
+Parent: Observation
+Id: hddt-lung-function-measurement
+Title: "Observation – Lung Function Measurement"
+Description: """
+Profile for capturing lung function measurements as FHIR Observation resources.
+
+This profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \"Lung Function Measurement\" which is technically defined 
+by the ValueSet _hddt-miv-lung-function-measurement_. This MIV is e.g. implemented by peak flow meter that can connect to 
+a Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.
+
+**Obligations and Conventions:**
+
+Each Lung Function Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a 
+_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be 
+to a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) 
+resource is provided for compatibility with the overarching HDDT specification.
+
+**Constraints applied:**  
+- `status` is restricted to _final_
+- `code` is constrained to a subset of the _MIV Lung Function Measurement_ ValueSet, defined by the _HddtLungFunctionMeasurementValues_ ValueSet.
+- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.
+- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
+- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
+"""
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* status = #final (exactly)
+* status ^short = "Measurement status"
+* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
+* code from HddtLungFunctionMeasurementValues (required)
+* code ^short = "Raw measurement type for lung function"
+* code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for lung function measurements. Constrained via invariant to either PEF or FEV1."
+* effective[x] 1..1
+* effective[x] only dateTime
+* effective[x] ^short = "Time of measurement"
+* effective[x] ^definition = "The time when the lung function measurement was taken."
+* value[x] MS
+* value[x] only Quantity
+* value[x] ^short = "Measured lung function value"
+* value[x] ^definition = "The quantitative lung function value, measured either in liters (L) for FEV1 or liters per minute (L/min) for PEF, represented as a UCUM Quantity."
+* value[x].value 1..1
+* value[x].system 1..1
+* value[x].system = "http://unitsofmeasure.org" (exactly)
+* value[x].code 1..1
+* value[x].code ^definition = "The UCUM code representing the unit of the lung function measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`."
+* value[x].code from $ucum-units (required)
+* value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
+* device 1..1
+* device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
+* device ^short = "Reference to personal health device"
+* device ^definition = "References a Device resource that describes the personal health device."
+
+
+CodeSystem: HddtLungFunctionReferenceValueMethodCodes
+Id: hddt-lung-function-reference-value-method-codes
+Title: "CodeSystem - Lung Function Reference Value Method Codes"
+Description: "Codes for modelling the method used to determine lung function reference values."
+* ^language = #en
+* ^experimental = false
+* ^caseSensitive = false
+// ^url = "https://terminologien.bfarm.de/fhir/CodeSystem/hddt-lung-function-reference-value-method-codes"
+// * ^version = "0.1.1"
+* #personal-best "Personal Best"
+    "Reference value based on the personal best value achieved by the patient within a certain time frame."
+* #GLI-2012 "Predicted Value according to Global Lung Initiative 2012"
+    "Reference value calculated based on the Global Lung Initiative 2012 equations. I.e the patient's 'race' is considered."
+* #GLI-2022 "Predicted Value according to Global Lung Initiative 2022"
+    "Reference value calculated based on the Global Lung Initiative 2022 equations. I.e. a 'race'-neutral approach is used."
+* #other "Other"
+    "Other method used to determine the lung function reference value. Specify details via text input."
+
+CodeSystem: HddtLungFunctionTemporaryCodes
+Id: hddt-lung-function-temporary-codes
+Title: "CodeSystem - Lung Function Temporary Codes"
+Description: "Temporary codes for the MIV Lung Function Measurement until LOINC codes are avaiblable."
+* ^language = #en
+* ^experimental = false
+* ^caseSensitive = false
+* #PEF-measured/predicted "PEF measured/predicted"
+
+Instance: HddtLungFunctionTemporaryToLoinc
+InstanceOf: ConceptMap
+Usage: #definition
+Title: "ConceptMap - Lung Function Temporary Codes to LOINC"
+Description: """
+A mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.
+In case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.
+Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
+"""
+* name = "HddtLungFunctionTemporaryToLoinc"
+* status = #draft
+* group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
+* group[=].target = $LNC
+* group[=].element[+].code = #PEF-measured/predicted
+* group[=].element[=].target.comment = "No target LOINC code available yet."
+* group[=].element[=].target.equivalence = #unmatched
+
+
+ValueSet: HddtLungFunctionReferenceValueMethod
+Id: hddt-lung-function-reference-value-method
+Title: "ValueSet - Lung Function Reference Value Method"
+Description: """
+A ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:
+- Personal Best
+- Predicted Value according to Global Lung Initiative 2012
+- Predicted Value according to Global Lung Initiative 2022
+- Other
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-value-method"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH."
+* include codes from system https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes
+
+Profile: HddtLungFunctionReferenceValue
+Parent: Observation
+Id: hddt-lung-reference-value
+Title: "Observation – Lung Function Reference Value"
+Description: """
+Profile for capturing the refence values as a FHIR Observation resource when evaluating lung function measurements.
+
+This profile defines the exchange of a single reference value for the Mandatory Interoperable Value (MIV) \"Lung Function Measurement\" which is technically defined 
+by the ValueSet _hddt-miv-lung-function-measurement_. This MIV is e.g. implemented by peak flow meter that can connect to 
+a Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.
+
+**Obligations and Conventions:**
+
+Each Lung Function Measurement MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a 
+_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be 
+to a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) 
+resource is provided for compatibility with the overarching HDDT specification.
+
+**Constraints applied:**  
+- `status` is restricted to _final_
+- `code` is constrained to a subset of the _MIV Lung Function Reference Values_ ValueSet, defined by the _HddtLungFunctionReferenceValues_ ValueSet.
+- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory.
+- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
+- `method` is considered mandatory in order to provide information about the method used to determine the reference value. It can be either a code from the _HddtLungFunctionReferenceValueMethod_ ValueSet or a text description.
+"""
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* status = #final (exactly)
+* status ^short = "Measurement status"
+* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
+* code from HddtLungFunctionReferenceValues (required)
+* code ^short = "Reference measurement type for lung function"
+* code ^binding.description = "Specifies for which measurement type the reference value is, using codes from the ValueSet for lung function measurements. Constrained via invariant to either PEF or FEV1."
+* effective[x] 0..1
+* effective[x] only Period
+* effective[x] ^short = "Time period for which reference value is valid"
+* effective[x] ^definition = "The time period for which the lung function reference value is valid. If the reference value is still active, then only the start of the period is provided."
+* value[x] MS
+* value[x] only Quantity
+* value[x] ^short = "Reference lung function value"
+* value[x] ^definition = "The quantitative reference value, measured either in liters (L) for FEV1 or liters per minute (L/min) for PEF, represented as a UCUM Quantity."
+* value[x].value 1..1
+* value[x].system 1..1
+* value[x].system = "http://unitsofmeasure.org" (exactly)
+* value[x].code 1..1
+* value[x].code ^definition = "The UCUM code representing the unit of the lung function measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`."
+* value[x].code from $ucum-units (required)
+* value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
+* method 0..1
+* method MS
+* method only CodeableConcept
+* method ^short = "Method for determining the reference value"
+* method ^definition = "The method used to determine the lung function reference value. Preferred is the usage of a code from the Lung Function Reference Value Method ValueSet, but as an alternative a text description of the used formula for calculating the reference value can be provided."
+* method.coding 0..1
+* method.coding from HddtLungFunctionReferenceValueMethod (required)
+* method.coding ^binding.description = "Specifies the method used to determine the lung function reference value using codes from the Lung Function Reference Value Method ValueSet."
+* method.text 0..1
+* method.text ^definition = "In case no code is provided, specify whether the value is a personal best or predicted or calculated based on some formula."
+* device 0..1
+* device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
+* device ^short = "Reference to personal health device"
+* device ^definition = "References a Device resource that describes the personal health device."
+
+Profile: HddtLungFunctionMeasurementComplete
+Parent: Observation
+Id: hddt-lung-function-measurement-complete
+Title: "Observation – Complete Lung Function Measurement"
+Description: """
+Profile for capturing the relative lung function measurements (i.e. an individual measurement divided by the corresponding reference value) 
+as FHIR Observation resources.
+
+This profile defines the exchange of a single relative value for the Mandatory Interoperable Value (MIV) \"Lung Function Measurement\" which is technically defined 
+by the ValueSet _hddt-miv-lung-function-measurement_. This MIV is e.g. implemented by peak flow meter that can connect to 
+a Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.
+
+**Obligations and Conventions:**
+
+Each Lung Function Measurement MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a 
+_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be 
+to a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) 
+resource is provided for compatibility with the overarching HDDT specification.
+
+Each instance of this Observation MUST reference the Observations holding the corresponding raw measurement and reference value via the `derivedFrom` element.
+
+**Constraints applied:**  
+- `status` is restricted to _final_
+- `code` is constrained to a subset of the _MIV Lung Function Relative Values_ ValueSet, defined by the _HddtLungFunctionRelativeValues_ ValueSet.
+- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.
+- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
+- `derivedFrom` is constrained to require exactly two references: one to the raw lung function measurement Observation and one to the lung function reference value Observation.
+"""
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* status = #final (exactly)
+* status ^short = "Measurement status"
+* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
+* code from HddtLungFunctionRelativeValues (required)
+* code ^short = "Percentage measurement type for lung function"
+* code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for lung function measurement as percentage of the reference value. Constrained via invariant to either PEF or FEV1."
+* effective[x] 1..1
+* effective[x] only dateTime
+* effective[x] ^short = "Time of measurement"
+* effective[x] ^definition = "The time when the lung function measurement was taken."
+* value[x] MS
+* value[x] only Quantity
+* value[x] ^short = "Calculated lung function value as percentage of reference value"
+* value[x] ^definition = "The lung function value represented as percentage of the reference value"
+* value[x].value 1..1
+* value[x].system 1..1
+* value[x].system = "http://unitsofmeasure.org" (exactly)
+* value[x].code 1..1
+* value[x].code ^definition = "The UCUM code representing the unit of the lung function measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`."
+* value[x].code from $ucum-units (required)
+* value[x].code ^binding.description = "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
+* device 1..1
+* device only Reference(HddtPersonalHealthDevice or HddtSensorTypeAndCalibrationStatus)
+* device ^short = "Reference to personal health device"
+* device ^definition = "References a Device resource that describes the personal health device."
+* derivedFrom 2..2
+* derivedFrom ^slicing.discriminator.type = #profile
+* derivedFrom ^slicing.discriminator.path = "resolve()"
+* derivedFrom ^slicing.rules = #closed
+* derivedFrom ^slicing.description = "Slice to require one reference to a measurement and one to a reference value"
+* derivedFrom contains
+    measurement 1..1 and
+    referenceValue 1..1
+* derivedFrom[measurement] only Reference(HddtLungFunctionMeasurement)
+* derivedFrom[measurement] ^short = "Reference to raw lung function measurement"
+* derivedFrom[measurement] ^definition = "Reference to the lung function measurement Observation that holds the actual measured value."
+* derivedFrom[referenceValue] only Reference(HddtLungFunctionReferenceValue)
+* derivedFrom[referenceValue] ^short = "Reference to lung function reference value"
+* derivedFrom[referenceValue] ^definition = "Reference to the Observation holding the reference range and information about the reference range determination method."
