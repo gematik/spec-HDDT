@@ -34,9 +34,11 @@ The specification of the technical interfaces for retrieving device data conside
 #### Searching Observations Using FHIR _search_ Interactions
 
 A DiGA requests device data from a Device Data Recorder using a standard FHIR [search interaction](https://hl7.org/fhir/R4/http.html#search) on the [Observation](https://hl7.org/fhir/R4/observation.html) resource type.
-The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources or with an appropriate error.
+The Device Data Recorder MUST respond to a [search](https://hl7.org/fhir/R4/http.html#search) request with a collection of [Observation](https://hl7.org/fhir/R4/observation.html) resources in the form of a standard FHIR [Bundle](https://hl7.org/fhir/R4/bundle.html), or with an appropriate error. In case a search interaction finds no matches, an empty [Bundle](https://hl7.org/fhir/R4/bundle.html) MUST be returned.
 
-The request MUST include an OAuth 2.0 access token in the `Authorization` header (as defined in the HDDT [OAuth2 profile](pairing.html#access-tokens)). This access token is issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder.
+Certain endpoints or certain MIVs may specify additional situations, where an empty Bundle is returned. In such cases, an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) MAY be included in the [Bundle](https://hl7.org/fhir/R4/bundle.html), in order to explain the reason why no matches were found.
+
+The search request MUST include an OAuth 2.0 access token in the `Authorization` header (as defined in the HDDT [OAuth2 profile](pairing.html#access-tokens)). This access token is issued by the [Authorization Server](authorization-server.html) of the Device Data Recorder.
 
 The Device Data Recorder MUST be able to derive the internal patient identifier corresponding to the Pairing ID contained in the access token. This identifier MUST implicitly be used as the `subject` parameter in every query to the Device Data Recorder’s FHIR API. If a DiGA explicitly provides a `subject` parameter, the Device Data Recorder MUST ignore it and SHOULD return a `400 Bad Request` error.
 
