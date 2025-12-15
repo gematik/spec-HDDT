@@ -235,5 +235,271 @@ Manufactures of Device Data Recorders that support the MIV _Lung Function Measur
 {% include Observation-example-fev1-reference-value-json-html.xhtml %}
 
 
-#### Example: FHIR-Search include Device
+#### Example: FHIR-Search minimal
 
+**Request**: GET `/Observation?code=19935-6&date=2025-12-15`
+
+**Description**: Obtain all of the Observations where `code` is the LOINC code for peak expiratory flow measurements (PEF) on a specific date. OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+
+**Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
+
+```json
+{
+    "resourceType": "Bundle",
+    "id": "8f3a5c2d-9b1e-4a7f-8c3d-2e6f9a1b4c5d",
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-peak-flow-measurement-1",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-peak-flow-measurement-1",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-measurement"
+                    ]
+                },
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "code": "19935-6",
+                            "system": "http://loinc.org",
+                            "display": "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2025-12-15T08:00:00+01:00",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 580,
+                    "code": "L/min",
+                    "unit": "L/min"
+                },
+                "device": {
+                    "reference": "Device/example-device-peak-flow-meter"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-peak-flow-measurement-2",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-peak-flow-measurement-2",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-measurement"
+                    ]
+                },
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "code": "19935-6",
+                            "system": "http://loinc.org",
+                            "display": "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2025-12-15T20:30:00+01:00",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 595,
+                    "code": "L/min",
+                    "unit": "L/min"
+                },
+                "device": {
+                    "reference": "Device/example-device-peak-flow-meter"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}
+```
+
+
+
+#### Example: FHIR-Search maximal
+
+**Request**: GET `/Observation?date=2025-12-15&_include=Observation:device`
+
+**Description**: Obtain all of the Observations made on a certain date (the `code` from the _MIV Lung Function Measurement_ is implicitely included). OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+
+**Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
+
+```json
+{
+    "resourceType": "Bundle",
+    "id": "a7e4b9c2-3f1d-4e8a-9b2c-5d6f8a1e3c4b",
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-fev1-single-measurement",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-fev1-single-measurement",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-measurement"
+                    ]
+                },
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "code": "20150-9",
+                            "system": "http://loinc.org",
+                            "display": "FEV1"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2025-12-28T08:00:00Z",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 3.4,
+                    "code": "L",
+                    "unit": "L"
+                },
+                "device": {
+                    "reference": "Device/example-device-peak-flow-meter"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-fev1-reference-value",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-fev1-reference-value",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value"
+                    ]
+                },
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "code": "20149-1",
+                            "system": "http://loinc.org",
+                            "display": "FEV1 predicted"
+                        }
+                    ]
+                },
+                "effectivePeriod": {
+                    "start": "2025-05-01"
+                },
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 4.5,
+                    "code": "L",
+                    "unit": "L"
+                },
+                "method": {
+                    "coding": [
+                        {
+                            "code": "GLI-2022",
+                            "system": "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes"
+                        }
+                    ]
+                },
+                "device": {
+                    "reference": "Device/example-device-peak-flow-meter"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-fev1-relative-value",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-fev1-relative-value",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-measurement-complete"
+                    ]
+                },
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "code": "20152-5",
+                            "system": "http://loinc.org",
+                            "display": "FEV1 measured/predicted"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2025-12-28T08:00:00Z",
+                "valueQuantity": {
+                    "system": "http://unitsofmeasure.org",
+                    "value": 75.5,
+                    "code": "%",
+                    "unit": "%"
+                },
+                "derivedFrom": [
+                    {
+                        "reference": "Observation/example-fev1-single-measurement"
+                    },
+                    {
+                        "reference": "Observation/example-fev1-reference-value"
+                    }
+                ],
+                "device": {
+                    "reference": "Device/example-device-peak-flow-meter"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://himi.example.com/fhir/Device/example-device-peak-flow-meter",
+            "resource": {
+                "resourceType": "Device",
+                "id": "example-device-peak-flow-meter",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+                    ]
+                },
+                "status": "active",
+                "type": {
+                    "coding": [
+                        {
+                            "code": "528405",
+                            "system": "urn:iso:std:iso:11073:10101",
+                            "display": "MDC_DEV_SPEC_PROFILE_PEFM"
+                        }
+                    ]
+                },
+                "definition": {
+                    "reference": "DeviceDefinition/device-definition-peak-flow-001"
+                },
+                "deviceName": [
+                    {
+                        "name": "Peak Flow Pro",
+                        "type": "user-friendly-name"
+                    }
+                ],
+                "modelNumber": "Smart 2",
+                "manufacturer": "HealthTech GmbH",
+                "serialNumber": "PFM0011223344",
+                "expirationDate": "2027-12-15"
+            },
+            "search": {
+                "mode": "include"
+            }
+        }
+    ]
+}
+```

@@ -7,9 +7,8 @@ Alias: $cgm-summary-coefficient-of-variation = http://hl7.org/fhir/uv/cgm/Struct
 Alias: $cgm-summary-days-of-wear = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear
 Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
-Alias: LOINC = http://loinc.org
-Alias: UCUM = http://unitsofmeasure.org
-Alias: Mdc = urn:iso:std:iso:11073:10101|20250520
+Alias: $LNC = http://loinc.org
+Alias: $mdc = urn:iso:std:iso:11073:10101|20250520
 // Alias: $DeviceDefinition = http://device-registry.bfarm.de/fhir/StructureDefinition/DeviceDefinition
 
 Profile: HddtCgmSummary
@@ -394,12 +393,12 @@ manufacturers of glucometers.
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* LOINC#2339-0 "Glucose [Mass/volume] in Blood"
-* LOINC#15074-8 "Glucose [Moles/volume] in Blood"
-* LOINC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
-* LOINC#14749-6 "Glucose [Moles/volume] in Serum or Plasma"
-* LOINC#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
-* LOINC#14743-9 "Glucose [Moles/volume] in Capillary blood by Glucometer"
+* $LNC#2339-0 "Glucose [Mass/volume] in Blood"
+* $LNC#15074-8 "Glucose [Moles/volume] in Blood"
+* $LNC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
+* $LNC#14749-6 "Glucose [Moles/volume] in Serum or Plasma"
+* $LNC#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
+* $LNC#14743-9 "Glucose [Moles/volume] in Capillary blood by Glucometer"
 
 
 ValueSet: HddtMivContinuousGlucoseMeasurement
@@ -432,8 +431,8 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* LOINC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
-* LOINC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* $LNC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
+* $LNC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
 
 ValueSet: HddtDeviceType
@@ -471,23 +470,23 @@ _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device commun
 included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
 may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
 code system and its contents remain copyrighted by ISO and IEEE."
-* Mdc#528391 "Blood Pressure Cuff"
-* Mdc#528404 "Body Composition Analyzer"
-* Mdc#528425 "Cardiovascular Device"
-* Mdc#528402 "Coagulation meter"
-* Mdc#528409 "Continuous Glucose Monitor"
-* Mdc#528390 "Electro cardiograph"
-* Mdc#528457 "Generic 20601 Device"
-* Mdc#528401 "Glucose Monitor"
-* Mdc#528455 "Independent Activity/Living Hub"
-* Mdc#528403 "Insulin Pump"
-* Mdc#528405 "Peak Flow meter"
-* Mdc#528388 "Pulse Oximeter"
-* Mdc#528397 "Respiration rate"
-* Mdc#528408 "Sleep Apnea Breathing Equipment"
-* Mdc#528426 "Strength Equipment"
-* Mdc#528392 "Thermometer"
-* Mdc#528399 "Weight Scale"
+* $mdc#528391 "Blood Pressure Cuff"
+* $mdc#528404 "Body Composition Analyzer"
+* $mdc#528425 "Cardiovascular Device"
+* $mdc#528402 "Coagulation meter"
+* $mdc#528409 "Continuous Glucose Monitor"
+* $mdc#528390 "Electro cardiograph"
+* $mdc#528457 "Generic 20601 Device"
+* $mdc#528401 "Glucose Monitor"
+* $mdc#528455 "Independent Activity/Living Hub"
+* $mdc#528403 "Insulin Pump"
+* $mdc#528405 "Peak Flow meter"
+* $mdc#528388 "Pulse Oximeter"
+* $mdc#528397 "Respiration rate"
+* $mdc#528408 "Sleep Apnea Breathing Equipment"
+* $mdc#528426 "Strength Equipment"
+* $mdc#528392 "Thermometer"
+* $mdc#528399 "Weight Scale"
 // * $gmdn#38017 "Dry salt inhalation therapy device"
 // * $gmdn#38663 "Flexible video nephroscope"
 // * $gmdn#42347 "Dental implant, endosseous, partially-embedded"
@@ -600,7 +599,9 @@ come from three separate ValueSets:
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* include codes from valueset HddtLungFunctionMeasurementValues and HddtLungFunctionReferenceValues and HddtLungFunctionRelativeValues
+* include codes from valueset HddtLungFunctionMeasurementValues
+* include codes from valueset HddtLungFunctionReferenceValues 
+* include codes from valueset HddtLungFunctionRelativeValues
 
 ValueSet: HddtLungFunctionMeasurementValues
 Id: hddt-lung-function-measurement-values
@@ -620,8 +621,8 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* LOINC#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
-* LOINC#20150-9 "FEV1"
+* $LNC#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+* $LNC#20150-9 "FEV1"
 
 ValueSet: HddtLungFunctionReferenceValues
 Id: hddt-lung-function-reference-values
@@ -642,8 +643,8 @@ Forced Expiratory Volume in 1 second (FEV1) is in most cases a predicted value, 
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* LOINC#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
-* LOINC#20149-1 "FEV1 predicted"
+* $LNC#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
+* $LNC#20149-1 "FEV1 predicted"
 
 ValueSet: HddtLungFunctionRelativeValues
 Id: hddt-lung-function-relative-values
@@ -665,7 +666,7 @@ individual measurement by the reference value, resulting in a percentage value (
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* LOINC#20152-5 "FEV1 measured/predicted"
+* $LNC#20152-5 "FEV1 measured/predicted"
 * HddtLungFunctionTemporaryCodes#PEF-measured/predicted
 
 Profile: HddtLungFunctionMeasurement
@@ -764,7 +765,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #draft
 * group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
-* group[=].target = LOINC
+* group[=].target = $LNC
 * group[=].element[+].code = #PEF-measured/predicted
 * group[=].element[=].target.comment = "No target LOINC code available yet."
 * group[=].element[=].target.equivalence = #unmatched
