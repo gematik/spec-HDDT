@@ -74,13 +74,14 @@ Per HL7 FHIR a _resource_ is a a definable, identifiable, addressable collection
 ```
 GET [base]/Observation/[id]
 ```
-___Remark__: As stated in [General Considerations](general-considerations.html), device data recordes MAY limit access to historical data to 30 days, unless the [MIV-specific specification](mivs.html) requests for a longer period. In case a DiGA requests such a historic resource by its `id` after the availability period ended, the Device Data Recorder MUST respond with a _404 Not Found_ error (see https://hl7.org/fhir/R4/http.html#read for details on handling deleted resources). 
+
+Device Data Recorders MAY limit access to historical data to a MIV-spevific `Historic Data Period`, e.g. 30 days (see [Properties of Device Data Recorders](information-model.html#properties-of-device-data-recorders) for details). In case a DiGA requests data that is older than the `Historic Data Period`, the Device Data Recorder MUST respond with a _404 Not Found_ error (see [https://hl7.org/fhir/R4/http.html#read](https://hl7.org/fhir/R4/http.html#read) for details on handling deleted resources).
 
 #### Paging
 
 In accordance with the [HL7 FHIR specification](https://hl7.org/fhir/R4/http.html#paging), supporting _paging_ is recommended but optional for Device Data Recorders (SHOULD). DiGA manufacturers MUST consider, that a specific Device Data Recorder may only be able to respond with a limited number of [Observation](https://hl7.org/fhir/R4/observation.html) resources in response to a query. 
 
-#### Device Status and Device Configuration
+#### Device Status and Device Definition
 
 Each [Observation](https://hl7.org/fhir/R4/observation.html) resource returned by a Device Data Recorder MUST contain a `device` element that either refers to a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) or a [Device](https://hl7.org/fhir/R4/device.html) resource. 
 
@@ -92,15 +93,9 @@ If the Device Data Recorder does not provide a `device` reference to a [DeviceMe
 
 A DiGA MAY store the `id` of a [Device](https://hl7.org/fhir/R4/device.html) resource, it received through a `Observation.device` or `DeviceMetric.source` reference or from a _search_ interaction. The DiGA MAY use this `id` to request the [Device](https://hl7.org/fhir/R4/device.html) resource - and by this the device's current status - through a FHIR _read_ interaction. This information can be helpful for detecting missing data (see section _Missing Data_ below). 
 
-The [Device](https://hl7.org/fhir/R4/device.html) resource MUST contain a `definition` reference to the device's product definition as registered with the BfArM _HIIS-VZ_ (Device Registry). The reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfArM _HIIS-VZ_. The reference MAY contain a _version_ value.
+The [Device](https://hl7.org/fhir/R4/device.html) resource MAY contain a `definition` reference to the device's product definition as registered with the BfArM _HIIS-VZ_ (Device Registry). If present, the reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfArM _HIIS-VZ_. The reference MAY contain a _version_ value.
 
-Every Device Data Recorder holds information about its static attributes as part of its definition. These attributes can be obtained as key-value-pairs from the BfArM _HIIS-VZ_. The table below lists the keys defined so far.
-
-| key                  | value | obligation | comments |
-|----------------------|-------|------------|----------|
-| Historic-Data-Period | minimum number of days historic data is available at the Device Data Recorder | MUST | If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder will return no matches (See section [Searching Observations using FHIR-search interactions](#searching-observations-using-fhir-search-interactions)). _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV. |
-| Delay-From-Real-Time | maximum delay in seconds of the end-to-end synchronization from the Personal Health Device to the Health Record under normal operational conditions. | MUST | if a DiGA polls for new device data in fixed intervals, the `Delay-From-Real-Time' denotes the overlap of two consecutive intervals in order to catch all measured data. | 
-| Grace-Period | Time span a DiGA must wait between two requests for data that affect the same MIV and patient | MUST | A Device Data Recorder MAY reject a new request for the same MIV and patient that is issued before the end of this time span. | 
+Every Device Data Recorder holds information about its static attributes as part of its definition. These attributes can be obtained from the BfArM _HIIS-VZ_. See [Properties of Device Data Recorders](information-model.html#properties-of-device-data-recorders) for details.
 
 #### Versioning of Device and DeviceMetric Resources
 The HDDT specification does not mandate a specific versioning strategy for [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources. A Device Data Recorder MAY use the FHIR _versionId_ mechanism or MAY use its own versioning strategy (e.g. by creating new resources whenever a relevant element changes). 
@@ -169,7 +164,7 @@ This gets more complex if the status of the sensor changes. The figure below is 
 As shown with the example, a calibration of a sensor leads to an update to the sensor's `DeviceMetric` resource. The Device Data Recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer. 
 
 ##### Missing Values with Dedicated Measurements
-A response of the Device Data Recorder to a query for dedicated measurements MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The Device Data Recorder MUST respond with all data that is available at the time of the request, but there MAY be more data available that was measured a short time before the request, but not yet transmitted to the Device Data Recorder. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Defvice Data Recorder's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
+A response of the Device Data Recorder to a query for dedicated measurements MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The Device Data Recorder MUST respond with all data that is available at the time of the request, but there MAY be more data available that was measured a short time before the request, but not yet transmitted to the Device Data Recorder. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Device Data Recorder's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see [Properties of Device Data Recorders](information-model.html#properties-of-device-data-recorders) for details) and use this value to overlap two consecutive requests for data.
 
 Missing data MAY even occur if the connection between the Personal Health Device and the Personal Health Gateway or between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A DiGA can detect this situation by reading the Device resource and checking the `status` element. If the `status` of the device is _unknown_, the DiGA SHOULD assume that data is missing and may be available later.
 
@@ -241,7 +236,7 @@ Personal Health Devices MAY require a Personal Health Device of another type to 
 In contrast to a change of `calibration.state`, a change of the Personal Health Device MUST always result in a new Device resource with a new `id`. 
 
 ##### Missing Values with Continuous Measurements
-A response of the Device Data Recorder to a query for continuously measured data MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The most common case is that a DiGA requests for data that was measured very recently (e.g. within the last hour). The Device Data Recorder MAY respond with all data that is available at the time of the request, but there MAY be more data being in transmission from the Personal Health Device to the Health Record. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Device Data Recorder's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see above) and use this value to overlap two consecutive requests for data.
+A response of the Device Data Recorder to a query for continuously measured data MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The most common case is that a DiGA requests for data that was measured very recently (e.g. within the last hour). The Device Data Recorder MAY respond with all data that is available at the time of the request, but there MAY be more data being in transmission from the Personal Health Device to the Health Record. Therefore a DiGA SHOULD always obtain the static property `Delay-From-Real-Time` from the Device Data Recorder's [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) (see [Properties of Device Data Recorders](information-model.html#properties-of-device-data-recorders) for details) and use this value to overlap two consecutive requests for data.
 
 Missing data MAY even occur if the connection between the Personal Health Device and the Personal Health Gateway or between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A Device Data Recorder MUST signal this kind of missing data by setting the `status` of the [Observation](https://hl7.org/fhir/R4/observation.html) resource that holds the chunk to _preliminary_ with the `effectivePeriod` covering the full _chunk time span_. 
 

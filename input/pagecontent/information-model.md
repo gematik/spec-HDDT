@@ -83,16 +83,17 @@ Each __Interoperable Value__ MUST either hold a reference to a __Sensor Type and
 * provenance: the DiGA can always be sure about the full chain of provenance (Personal Health Device -> Device Data Recorder -> DiGA). This information is e.g. needed when a DiGA exports data into the patient's _ePA_ (personal health record).
 * patient safety: There may be situations where a value shown in the device app differs from the same data item when shown in a DiGA, e.g. due to different rounding algorithms or data smoothing. In this cases the `serial number` provided with the __Personal Health Device__ resource allows the DiGA and the patient to verify that the processed data really originated from the patient's physical device. 
 
-### BfArM Registries
+### BfArM Registries: Device Definitions
 
 ___Remark:__ The following definitions about the BfArM Registries only define the external viewpoint. The information model focusses on what kind of information manufactures of DiGA and Device Data Recorders can expect to be available at the BfArM registries. The information model does not make any assumptions on how this information will be exposed (except for the Personal Health Device Definition). APIs for accessing information about registered devices and DIGA will be defined by BfArM in a separate specification (see [HIIS-API](registries-and-zts.html#hiis-vz) and [DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis) for details)._ 
 
+#### Device Data Recorder Definition
 As described in the section on [certification relevant systems](certification-relevant-systems.html), the responsibility for implementing the HDDT API is with a __Device Data Recorder__ who operates the Health Record where measured data is stored and made accessible to authorized DiGA through a FHIR Resource Server. These __Device Data Recorders__ must as well register themselves with the _HIIS-VZ_ (BfArM Device Registry) such that a DiGA can e.g. discover the API endpoints of the Device Data Recorder's FHIR Resource Server and OAuth2 Authorization Server. For each __Device Data Recorder__ the HDDT information model incorporates respective resources which are maintained within the _HIIS-VZ_:
 
 * __Device Data Recorder Definition__: 
   * human readable device name and name of the manufacturer of the Device Data Recorder
   * contact data of the owner of the Device Data Recorder
-  * additional static attributes of the Device Data Recorder platform (e.g. the frequency the Device Data Recorder's Health Record synchronizes with the Personal Health Gateway)
+  * additional static properties of the Device Data Recorder platform (see table below)
   * trust anchors for secure pairing and secure communications (see [Security and Privacy](security-and-privacy.html) for details)
 
 * __Device Data Recorder FHIR Endpoint__: 
@@ -105,17 +106,32 @@ As described in the section on [certification relevant systems](certification-re
 
 The links between these resources are maintained within the _HIIS-VZ_. Users of the registry can discover the Device Data Recorder's __FHIR Resource Server__ and __OAuth2 Authorization Server__ through the _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ (BfArM Device Registry API). 
 
+#### Properties of Device Data Recorders
+For each supported MIV, a Device Data Recorder MUST register the following static properties with the _HIIS-VZ_:
+
+| property             | value | comments |
+|----------------------|-------|----------|
+| Historic-Data-Period | The `Historic Data Period` defines the number of days for which a Device Data Recorder is able to provide data back into the past. E.g. if a Device Data Recorder announces a _Historic-Data-Period_ of 30 days, it MUST be able to serve any request for data that was measured up to 30 days ago. If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder will respond with an error (See section [Searching Observations using FHIR-search interactions](#searching-observations-using-fhir-search-interactions)). | _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV (see [MIV profiles](mivs.html) for details). |
+| Delay-From-Real-Time | Average number of seconds until data measured by the Personal Health Device is under normal operational conditions available at the Device Data Recorder's FHIR end point. | If a DiGA polls for countinuously measured device data in fixed intervals, the _Delay-From-Real-Time_ denotes the overlap of two consecutive intervals in order to catch all measured data. |
+| Grace-Period | The _Grace-Period_ defines the number of minutes that a DiGA MUST wait after a previous request for data from the same patient before a new request for data from that patient can be sent to the Device Data Recorder. If a DiGA sends a request for data from a patient before the _Grace-Period_ has elapsed since the last request for that patient, the Device Data Recorder MAY reject the new request. | _Grace-Period_ MUST NOT exceed the maximum grace period defined for the affected MIV (see [MIV profiles](mivs.html) for details).  | 
+
+ A DiGA can retrieve a Device Data Recorder's specific values for these properties per MIV through the BfArM [HIIS-VZ](registries-and-zts.html#hiis-vz) API.
+
+#### Personal Health Device Definition
+
 Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the _HIIS-VZ_ (BfArM Device Registry). This leads to a __Personal Health Device Definition__ which is exposed as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. Each __Personal Health Device__ can be linked with a __Personal Health Device Definition__ in the _HIIS-VZ_ through the `Device.definition' element.
 
 The __Personal Health Device Definition__ resource for a medical aid or implant is created upon registration of this medical aid or implant with the _HIIS-VZ_. The information bound to this resource include
 * a human readable `deviceName` and the name of the `manufacturer`
 * the `type` of the device given as a SNOMED CT or ISO/IEEE 11073-10101:2020 code
-* additional static properties (`property`) of the product. An example is the size of the device's internal buffer that can temporarily store measured data in case the device is not connected to the Device Data Recorder.
+* additional static properties (`property`) of the product. Recently no normative properties have been defined. However, manufacturers may provide further information about the product that may be useful for DiGA when processing data from this device.
 
 A Personal Health Device may connect to different __Device Data Recorders__. E.g. a manufacturer of a blood glucose meter may support different diabetes management platforms of different partners that can all import data from the glucose meter. Each of these solutions may have its own Personal Health Gateway and Health Record (e.g. a SmartPen that can be linked to diabetes diary apps from many different vendors). All of these Device Data Recorders must be able to provide imported blood glucose values to DiGA via the HDDT API (see [certification relevant systems](certification-relevant-systems.html)). By this there is a many-to-many relationship between Personal Health Devices and Device Data Recorders. 
 
+#### DiGA Definition
 While DiGA use the _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, the manufacturers of Device Data Recorders may use the API of the BfArM _[DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis)_ (BfArM DiGA Registry) for retrieving information about a DiGA that wants to connect to a devive through the HDDT API. This API builds upon a __DiGA Device Definition__ which holds data that a DiGA provided to BfArM during registration with the _[DiGA-Verzeichnis](https://diga.bfarm.de/de/verzeichnis)_. 
 
+#### HDDT Information Model - Devices and Device Definitions
 The class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries together with connected classes. Correlations and dependencies between objects which are managed by the BfArM Registries internally are shown as functions on dotted lines. If such resolutions will be available as APIs or only via the registries' GUIs has no impact on the technical specification of the HDDT API and therefore is not part of this specification. 
 
 <figure>
