@@ -120,7 +120,7 @@ random value (salt) that is known only to the Device Data Recorder. This approac
 unique and stable, while also being resistant to brute-force or guessing attacks. A sample construction is:
 
 ```
-PairingID = Hash(DiGA-ID, internal User-ID, Salt)
+PairingID = Hash(DiGA-ID, internal User-ID at the Device Data Recorder, Salt)
 ```
 
 where
