@@ -39,7 +39,6 @@ The MIV _Blood Glucose Measurement_ covers values from "bloody measurements" usi
 | __Vendor Holdup__ | The maximum acceptable delay between data availability in the Health Record and data availability through the HDDT interface is __60 seconds__. |
 | __`Historic-Data-Period`__ | Device Data Recorders that provide _Blood Glucose Measurement_ data MUST make the measured values retrievable for at least __30 days__.  |
 | __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Blood Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
-| __`Chunk-Time-Span`__ | _not applicable_ |
 |  |   | 
 
 #### Continuous Glucose Measurement
@@ -55,7 +54,6 @@ The MIV _Continuous Glucose Measurement_ covers values from continuous monitorin
 | __Vendor Holdup__ | The maximum acceptable delay between data availability in the Health Record and data availability through the HDDT interface is __15 minutes__. |
 | __`Historic-Data-Period`__ | Device Data Recorders that provide _Continuous Glucose Measurement_ data MUST make the measured values and aggregated clinical metrics (per _CGM Summary Report_) retrievable for at least __30 days__.  |
 | __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Continuous Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
-| __`Chunk-Time-Span`__ | The _Chunk-Time-Span_ depends on the sample rate of the personal health device. Chunks of sampled data SHOULD be sized to hold between 200 and 2000 single data points. |
 |  |   |
 
 

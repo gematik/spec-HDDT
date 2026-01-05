@@ -328,8 +328,11 @@ current chunk and therefore is the only reason why a chunk may be smaller than t
 * code ^binding.description = "Specifies the type of continuous glucose measurement using codes from the ValueSet for CGM measurements."
 * effective[x] 1..1
 * effective[x] only Period
-* effective[x] ^short = "Time interval of CGM measurements chunk"
-* effective[x] ^definition = "The time span covered by this chunk of continuous glucose measurements. The chunk-time-span is defined by the data recorder of the personal health device."
+* effective[x] ^short = "Time interval covered by the CGM measurement chunk"
+* effective[x] ^definition = """
+The time span covered by this chunk of continuous glucose measurements. The length of every time span is a fixed value defined 
+internaly by the data recorder per personal health device.
+"""
 * effective[x].start 1..1
 * effective[x].start 
 * effective[x].end 1..1

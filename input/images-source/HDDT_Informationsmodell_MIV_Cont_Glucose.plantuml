@@ -78,7 +78,6 @@ package "HIIS-VZ (Device Registry at BfARM)" as HDDT_Registries BFARM {
         property[0] = (Real-Time-Delay, ...)
         property[1] = (Grace-Period, ...)
         property[2] = (Historic-Data-Period, ...)
-        property[3] = (Chunk-Time-Span, ..., ...)
     }
 }
 
