@@ -27,7 +27,8 @@ Examples of SMART scopes:
 | `patient/DeviceMetric.rs`                                                                                                  | Read and Search access to measurement configurations of a patient.                                               |
 
 Concrete SMART scopes are always MIV specific: a DiGA treating diabetes MAY request access to blood glucose
-measurements, while a DiGA focused on hypertension MAY request access to blood pressure values.
+measurements, while a DiGA focused on hypertension MAY request access to blood pressure values. A DiGA MAY also request
+access to multiple MIVs if this is required by its intended medical purpose.
 
 While the SMART scopes are configured and consented to on the Device Data Recorder's OAuth2 Authorization Server as described in the
 [pairing chapter](pairing.html), it is vital that the Device Data Recorder's FHIR Resource Server strictly enforces these scope restrictions.
