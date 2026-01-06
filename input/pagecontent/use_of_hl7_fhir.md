@@ -23,8 +23,9 @@ Mandatory elements are elements with a minimum cardinality of 1 (min=1). A HDDT 
 
 #### _Must Support_ Elements
 _Must Support_ elements are flagged with an "S" in the HDDT FHIR profile definitions. A HDDT device data provider SHOULD provide a valid value for each _Must Support_ element. Omitting a _Must Support_ element in response to a query is only allowed if 
-* an exceptional case exists which is described in the HDDT specification
-* the element holds a codable value which is bound to a required [ValueSet](https://hl7.org/fhir/R4/valueset.html) where none of the defined codes match the value.
+* an exceptional case exists which is described in the HDDT specification,
+* the element holds a codable value which is bound to a required [ValueSet](https://hl7.org/fhir/R4/valueset.html) where none of the defined codes match the value,or
+* the element value is managed by the Personal Health Device and the Device Data Recorder as the device data provider is not able to retrieve the value from the Personal Health Device (e.g. serial number or specific configuration data). 
 
 A HDDT device data consumer MUST be able to process all _Must Support_ elements according to the semantics as defined with the HDDT specification or the core HL7 FHIR R4 specification. 
 
