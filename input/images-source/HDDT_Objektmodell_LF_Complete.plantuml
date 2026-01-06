@@ -85,10 +85,6 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
         type : 528457 | iso:11073:10101
         deviceName : "MedM Health Diary"
         manufacturer : "MedM"
-        property[0] = (Real-Time-Delay, 15 min)
-        property[1] = (Grace-Period, 15 min
-        property[2] = (Historic-Data-Period, 90 days)
-        property[3] = (Store-Capacity-Count, 200 measurements)
     }
 }
 

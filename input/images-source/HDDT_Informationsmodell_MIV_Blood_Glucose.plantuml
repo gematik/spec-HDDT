@@ -34,7 +34,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
         manufacturer : name of the manufacturer [0..1]
         serialNumber : serial number [0..1]
         expirationDate : end of life date [0..1]
-        property : additional properties [0..*]
     }
 
     () "{xor}" as xor
@@ -60,9 +59,6 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
         type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
-        property[0] = (Real-Time-Delay, ...)
-        property[1] = (Grace-Period, ...)
-        property[2] = (Historic-Data-Period, ...)
     }
 }
 
