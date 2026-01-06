@@ -77,7 +77,6 @@ Each instance of a __Personal Health Device__ is represented by a FHIR [Device](
 * a human readable `devicename` and the name of the `manufacturer`
 * its `serialNumber`. This element is flagged as _Must Support_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html#must-support-elements)) and as such MUST be provided by the Device Data Recorder's FHIR Resource Server. This allows the patient to verify that the data processed by the DiGA really originated from the device he is using.
 * an `expirationDate` for devices which have a defined end-of-life. An example for this is an rtCGM sensor which only transmits data for 14 or 15 days (depending on the product) and after this is to be replaced by another device.
-* further `property` elements may be defined by the HDDT specification to cover specific dynamic attributes and configuration settings of specific device types, e.g. thresholds for alarms.
 
 Each __Interoperable Value__ MUST either hold a reference to a __Sensor Type and Calibration Status__ or to a __Personal Health Device__ (eXclusive OR). A reference to a __Sensor Type and Calibration Status__ MUST be provided from the observation if the personal health device needs to be calibrated (either automatically or by the user) or changes its calibration status over time. If no direct reference to a __Personal Health Device__ is given from the observation, the __Personal Health Device__ MUST be linked with the __Sensor Type and Calibration Status__. By this, there is always a - direct or indirect - link from any __Interoperable Value__ to the __Personal Health Device__ that originally measured this value. The reasons for this mandatory linking are:
 * provenance: the DiGA can always be sure about the full chain of provenance (Personal Health Device -> Device Data Recorder -> DiGA). This information is e.g. needed when a DiGA exports data into the patient's _ePA_ (personal health record).
@@ -85,7 +84,7 @@ Each __Interoperable Value__ MUST either hold a reference to a __Sensor Type and
 
 ### BfArM Registries: Device Definitions
 
-___Remark:__ The following definitions about the BfArM Registries only define the external viewpoint. The information model focusses on what kind of information manufactures of DiGA and Device Data Recorders can expect to be available at the BfArM registries. The information model does not make any assumptions on how this information will be exposed (except for the Personal Health Device Definition). APIs for accessing information about registered devices and DIGA will be defined by BfArM in a separate specification (see [HIIS-API](registries-and-zts.html#hiis-vz) and [DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis) for details)._ 
+___Remark:__ The following definitions about the BfArM Registries only define the external viewpoint. The information model focusses on what kind of information manufactures of DiGA and Device Data Recorders can expect to be available at the BfArM registries. The information model does not make any assumptions on how this information will be exposed (except for the Personal Health Device Definition). APIs for accessing information about registered devices and DIGA are defined by BfArM in a separate specification (see [HIIS-API](registries-and-zts.html#hiis-vz) and [DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis) for details)._ 
 
 #### Device Data Recorder Definition
 As described in the section on [certification relevant systems](certification-relevant-systems.html), the responsibility for implementing the HDDT API is with a __Device Data Recorder__ who operates the Health Record where measured data is stored and made accessible to authorized DiGA through a FHIR Resource Server. These __Device Data Recorders__ must as well register themselves with the _HIIS-VZ_ (BfArM Device Registry) such that a DiGA can e.g. discover the API endpoints of the Device Data Recorder's FHIR Resource Server and OAuth2 Authorization Server. For each __Device Data Recorder__ the HDDT information model incorporates respective resources which are maintained within the _HIIS-VZ_:
@@ -93,7 +92,7 @@ As described in the section on [certification relevant systems](certification-re
 * __Device Data Recorder Definition__: 
   * human readable device name and name of the manufacturer of the Device Data Recorder
   * contact data of the owner of the Device Data Recorder
-  * additional static properties of the Device Data Recorder platform (see table below)
+  * additional static properties of the Device Data Recorder that describe how data for a specific MIV is provided to requesting DiGA (see subsection _MIV-Specific Properties of Device Data Recorders_ below)
   * trust anchors for secure pairing and secure communications (see [Security and Privacy](security-and-privacy.html) for details)
 
 * __Device Data Recorder FHIR Endpoint__: 
@@ -106,7 +105,7 @@ As described in the section on [certification relevant systems](certification-re
 
 The links between these resources are maintained within the _HIIS-VZ_. Users of the registry can discover the Device Data Recorder's __FHIR Resource Server__ and __OAuth2 Authorization Server__ through the _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ (BfArM Device Registry API). 
 
-#### Properties of Device Data Recorders
+#### MIV-Specific Properties of Device Data Recorders
 For each supported MIV, a Device Data Recorder MUST register the following static properties with the _HIIS-VZ_:
 
 | property             | value | comments |
@@ -122,9 +121,9 @@ For each supported MIV, a Device Data Recorder MUST register the following stati
 Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the _HIIS-VZ_ (BfArM Device Registry). This leads to a __Personal Health Device Definition__ which is exposed as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. Each __Personal Health Device__ can be linked with a __Personal Health Device Definition__ in the _HIIS-VZ_ through the `Device.definition' element.
 
 The __Personal Health Device Definition__ resource for a medical aid or implant is created upon registration of this medical aid or implant with the _HIIS-VZ_. The information bound to this resource include
-* a human readable `deviceName` and the name of the `manufacturer`
+* a human readable `deviceName` 
+* the name of the `manufacturer` of the device
 * the `type` of the device given as a SNOMED CT or ISO/IEEE 11073-10101:2020 code
-* additional static properties (`property`) of the product. Recently no normative properties have been defined. However, manufacturers may provide further information about the product that may be useful for DiGA when processing data from this device.
 
 A Personal Health Device may connect to different __Device Data Recorders__. E.g. a manufacturer of a blood glucose meter may support different diabetes management platforms of different partners that can all import data from the glucose meter. Each of these solutions may have its own Personal Health Gateway and Health Record (e.g. a SmartPen that can be linked to diabetes diary apps from many different vendors). All of these Device Data Recorders must be able to provide imported blood glucose values to DiGA via the HDDT API (see [certification relevant systems](certification-relevant-systems.html)). By this there is a many-to-many relationship between Personal Health Devices and Device Data Recorders. 
 

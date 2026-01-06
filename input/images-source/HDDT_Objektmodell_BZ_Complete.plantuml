@@ -72,10 +72,6 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
         type = 528401|iso:11073:10101
         deviceName = "GlukkoCheck plus mg/dl"
         manufacturer = "Glukko Inc."
-        property[0] = (Real-Time-Delay, 15 minutes)
-        property[1] = (Grace-Period, 15 minutes)
-        property[2] = (Historic-Data-Period, 90 days)
-        property[3] = (Store-Capacity-Count, 200 items)
     }
 }
 

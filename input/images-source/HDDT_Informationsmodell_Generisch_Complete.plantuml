@@ -31,7 +31,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
         manufacturer : name of the manufacturer [0..1]
         serialNumber : serial number [1..1]
         expirationDate : end of life date [0..1]
-        property : additional properties [0..*]
     }
 
 '    class DDR as "Device Data Recorder" <<FHIR Device>> {
@@ -39,7 +38,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 '        status : operational status [1..1]
 '        deviceName : product name [1..1]
 '        manufacturer : name of the manufacturer [0..1]
-'        property : additional properties [0..*]
 '    }
 
     class DR as "Aggregated Report\n<<FHIR Bundle/DiagnosticReport/Observation>>" {
@@ -70,14 +68,12 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM
         type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
-        property : additional properties [0..*]
     }
 
     class DM_Def as "Device Data Recorder Definition" <<FHIR DeviceDefinition>> {
         type = 462240000|SCT [1..1]
         deviceName : product name [1..1]
         manufacturer : name of the manufacturer [0..1]
-        property : additional properties [0..*]
     }
 
     class DiGA_Def as "DiGA Definition" <<FHIR DeviceDefinition>> {
@@ -95,7 +91,14 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM
         fqdn : FQDN as stated in the AuthZ endpoint's X.509 certificate [1..1]
     }
 
-    DM_Def .left.> DDR_Endpoint 
+    class DDR_Config as "Device Data Recorder Configuration"  {
+        mivUrl : canonical URL for the MIV [1..1]
+        gracePeriod : grace period in seconds [1..1]
+        historicDataPeriod : historic data period in days [1..1]
+        delayFromRealTime : delay from real-time in seconds [1..1]
+    }
+    DM_Def .left.> DDR_Config : "1..*"
+    DM_Def .down.> DDR_Endpoint 
     DM_Def .down.> AuthZ_Endpoint
 }
 
