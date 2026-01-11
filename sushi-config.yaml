@@ -160,6 +160,9 @@ pages:
   authorization-server-revocation-endpoint.html:
     title: Revocation Endpoint
     generation: markdown
+  error-codes.html:
+    title: Error Codes
+    generation: markdown
 
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
@@ -190,6 +193,7 @@ menu:
   Generic APIs:
     FHIR Resource Server: himi-diga-api.html
     Authorization Server: authorization-server.html
+    Error Codes: error-codes.html
   MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
