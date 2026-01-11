@@ -84,22 +84,22 @@ Each __Interoperable Value__ MUST either hold a reference to a __Sensor Type and
 
 ### BfArM Registries: Device Definitions
 
-___Remark:__ The following definitions about the BfArM Registries only define the external viewpoint. The information model focusses on what kind of information manufacturers of DiGA and Device Data Recorders can expect to be available at the BfArM registries. The information model does not make any assumptions on how this information will be exposed (except for the Personal Health Device Definition). APIs for accessing information about registered devices and DIGA are defined by BfArM in a separate specification (see [HIIS-API](registries-and-zts.html#hiis-vz) and [DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis) for details)._ 
+___Remark:__ The following definitions about the BfArM Registries only define the logical viewpoint by describing what kind of information manufactures of DiGA and Device Data Recorders can expect to be available at the BfArM registries. The specification of the BfArM Registries and their FHIR RESTful APIs is the responsibility of BfArM and therefore out of scope of the HDDT specification (see [HIIS-API](registries-and-zts.html#hiis-vz) and [DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis) for references to the BfArM specifications which are needed by manufacturers of DiGA, medical aids and implants for managing and discovering DiGA properties and FHIR DeviceDefinitions for Personal Health Devices and Device Data Recorders)._ 
 
 #### Device Data Recorder Definition
 As described in the section on [certification relevant systems](certification-relevant-systems.html), the responsibility for implementing the HDDT API is with a __Device Data Recorder__ who operates the Health Record where measured data is stored and made accessible to authorized DiGA through a FHIR Resource Server. These __Device Data Recorders__ must as well register themselves with the _HIIS-VZ_ (BfArM Device Registry) such that a DiGA can e.g. discover the API endpoints of the Device Data Recorder's FHIR Resource Server and OAuth2 Authorization Server. For each __Device Data Recorder__ the HDDT information model incorporates respective resources which are maintained within the _HIIS-VZ_:
 
-* __Device Data Recorder Definition__: 
+* __Device Data Recorder Definition__ (based on FHIR [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html)): 
   * human readable device name and name of the manufacturer of the Device Data Recorder
   * contact data of the owner of the Device Data Recorder
   * additional static properties of the Device Data Recorder that describe how data for a specific MIV is provided to requesting DiGA (see subsection _MIV-Specific Properties of Device Data Recorders_ below)
   * trust anchors for secure pairing and secure communications (see [Security and Privacy](security-and-privacy.html) for details)
 
-* __Device Data Recorder FHIR Endpoint__: 
+* __Device Data Recorder FHIR Endpoint__ (based on FHIR [Endpoint](https://hl7.org/fhir/R4/endpoint.html)): 
   * URL of the FHIR endpoint that a DiGA must call for getting access to the FHIR resources managed by the Device Data Recorder (see previous section). 
   * Fully Qualified Domain Name (FQDN) as stated in the FHIR endpoint's X.509 certificate. This allows a DIGA to securely authenticate the FHIR endpoint.
   
-* __Device Data Recorder AuthZ Endpoint__:
+* __Device Data Recorder AuthZ Endpoint__ (based on FHIR [Endpoint](https://hl7.org/fhir/R4/endpoint.html)):
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
   * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the Device Data Recorder.
 
@@ -120,7 +120,7 @@ For each supported MIV, a Device Data Recorder MUST register the following stati
 
 Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the _HIIS-VZ_ (BfArM Device Registry). This leads to a __Personal Health Device Definition__ which is exposed as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. Each __Personal Health Device__ can be linked with a __Personal Health Device Definition__ in the _HIIS-VZ_ through the `Device.definition` element.
 
-The __Personal Health Device Definition__ resource for a medical aid or implant is created upon registration of this medical aid or implant with the _HIIS-VZ_. The information bound to this resource include
+The __Personal Health Device Definition__ resource for a medical aid or implant is created upon registration of this medical aid or implant with the _HIIS-VZ_. The information bound to this [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource include
 * a human readable `deviceName` 
 * the name of the `manufacturer` of the device
 * the `type` of the device given as a SNOMED CT or ISO/IEEE 11073-10101:2020 code
@@ -128,12 +128,12 @@ The __Personal Health Device Definition__ resource for a medical aid or implant 
 A Personal Health Device may connect to different __Device Data Recorders__. E.g. a manufacturer of a blood glucose meter may support different diabetes management platforms of different partners that can all import data from the glucose meter. Each of these solutions may have its own Personal Health Gateway and Health Record (e.g. a SmartPen that can be linked to diabetes diary apps from many different vendors). All of these Device Data Recorders must be able to provide imported blood glucose values to DiGA via the HDDT API (see [certification relevant systems](certification-relevant-systems.html)). By this there is a many-to-many relationship between Personal Health Devices and Device Data Recorders. 
 
 #### DiGA Definition
-While DiGA use the _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, the manufacturers of Device Data Recorders may use the API of the BfArM _[DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis)_ (BfArM DiGA Registry) for retrieving information about a DiGA that wants to connect to a device through the HDDT API. This API builds upon a __DiGA Device Definition__ which holds data that a DiGA provided to BfArM during registration with the _[DiGA-Verzeichnis](https://diga.bfarm.de/de/verzeichnis)_. 
+While DiGA use the _[HIIS-VZ RESTful API](registries-and-zts.html#hiis-vz)_ for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, the manufacturers of Device Data Recorders may use the API of the BfArM _[DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis)_ (BfArM DiGA Registry) for retrieving information about a DiGA that wants to connect to a devive through the HDDT API. This API gives access to __DiGA Device Definition__ data which was provided by DiGA manufacturers to BfArM during registration with the _[DiGA-Verzeichnis](https://diga.bfarm.de/de/verzeichnis)_. 
 
 #### HDDT Information Model - Devices and Device Definitions
-The class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries together with connected classes. Correlations and dependencies between objects which are managed by the BfArM Registries internally are shown as functions on dotted lines. If such resolutions will be available as APIs or only via the registries' GUIs has no impact on the technical specification of the HDDT API and therefore is not part of this specification. 
+The orange box in the class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries. Correlations and dependencies between objects which are managed by the BfArM Registries are shown as dotted lines as it is the resüonsibility of BfArM to define the respective extensions to the standard FHIR resource types (see [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for the current version of the _HIIS-VZ_ information model) 
 
-<figure>
+<figure> 
 <div class="gem-ig-svg-container" style="width: 75%;">
   {% include HDDT_Informationsmodell_Generisch_Device_and_Definition.svg %}
   </div>
