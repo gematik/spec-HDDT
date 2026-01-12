@@ -103,7 +103,7 @@ As described in the section on [certification relevant systems](certification-re
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
   * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the Device Data Recorder.
 
-The links between these resources are maintained within the _HIIS-VZ_. Users of the registry can discover the Device Data Recorder's __FHIR Resource Server__ and __OAuth2 Authorization Server__ through the _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ (BfArM Device Registry API). 
+The links between these resources are maintained within the _HIIS-VZ_ as extensions to the FHIR [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) that represents the Device Data Recorder Definition (see _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ and [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for details). 
 
 #### MIV-Specific Properties of Device Data Recorders
 For each supported MIV, a Device Data Recorder MUST register the following static properties with the _HIIS-VZ_:
