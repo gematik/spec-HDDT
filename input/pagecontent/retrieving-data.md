@@ -97,7 +97,7 @@ A DiGA MAY store the `id` of a [Device](https://hl7.org/fhir/R4/device.html) res
 
 The [Device](https://hl7.org/fhir/R4/device.html) resource MAY contain a `definition` reference to the device's product definition as registered with the BfArM _HIIS-VZ_ (Device Registry). If present, the reference MUST be given as the canonical url of the [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource that can be obtained from the BfArM _HIIS-VZ_. The reference MAY contain a _version_ value.
 
-Every Device Data Recorder holds information about its static attributes as part of its definition. These attributes can be obtained per MIV from the BfArM _HIIS-VZ_. See [Properties of Device Data Recorders](information-model.html#properties-of-device-data-recorders) for details.
+Every Device Data Recorder holds information about its static attributes as part of its definition, which are in particular useful for for DiGA to optimize the continuous retrieval of sampled data (see [Properties of Device Data Recorders](information-model.html#properties-of-device-data-recorders) for details).
 
 #### Versioning of Device and DeviceMetric Resources
 The HDDT specification does not mandate a specific versioning strategy for [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources. A Device Data Recorder MAY use the FHIR _versionId_ mechanism or MAY use its own versioning strategy (e.g. by creating new resources whenever a relevant element changes). 
