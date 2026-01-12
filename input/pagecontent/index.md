@@ -17,7 +17,7 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The current __ballot__ version aims to gather feedback about the technical concept and specificatory aspects from affected _medical aid_, _implant_ and _DiGA_ manufacturers as well as other stakeholders. The parts describing the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. For this ballot version, the domain of __Diabetes Self-Management__ was defined as a first domain to specify data interoperability (see section [Methodology](methodology.html)). For further information on the status and roadmap for the specification, see [Release notes](release-notes.html) and [Roadmap](roadmap.html). 
+The current __rc__ version aims to gather feedback about the prerelease of the HDDT specification 1.0.0 from affected _medical aid_, _implant_ and _DiGA_ manufacturers as well as other stakeholders. The parts describing the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging are general requirements across all product groups and domains. The interoperable values to be provisioned, however, will be defined per domain. The specification for the domain of __Diabetes Self-Management__ was prereleased in October 2025. The results of the commenting process are included in the current version.  
 
 FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 
@@ -50,22 +50,5 @@ It includes IP covered under the following statements:
 * Mandatory Interoperable Values are expressed through content from LOINC. LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license provided at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 * The HDDT Implementation Guide derives from HL7 Resource Definitions, Implementation Guides (e.g. [CGM Summary Profile](https://hl7.org/fhir/uv/cgm/)) and the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: https://terminology.hl7.org/license.html
 * The HDDT Implementation Guide makes reference to codes from the _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_. These codes are included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 code system and its contents remain copyrighted by ISO and IEEE.
-
-<!--### Acknowledgments
-This Implementation Guide was developed by the _German Competence Center for Interoperability in Healthcare_ (Kompetenzzentrum für Interoperabilität im Gesundheitswesen, KIG) in fulfillment of § 374a (4) SGB V.
-
-__Primary Editors__:
-* Andrea Schminck (gematik)
-* Dr. Jörg Caumanns (_fbeta GmbH)
-
-__Key Contributors:__
-
-* Thomas Kerner (gematik)
-* Jie Wu (_fbeta GmbH)
-* Sergej Reiser (_fbeta GmbH)
-* Emil Milanov (_fbeta GmbH)
-* Sophia Lückhoff (KIG)
-
-This guide benefited from contributions from rtCGM device vendors, DiGA vendors, and clinicians. Their collective insights were invaluable in shaping the requirements and use cases that were the foundation for the solution specified in this implementation guide.-->
 
 

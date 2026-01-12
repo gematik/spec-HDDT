@@ -8,16 +8,13 @@ The first specification version 1 (MVP) will specify selected [Mandatory Interop
 * Respiratory Monitoring
 * Simple Cardiac Monitoring
 
-__Note:__ The current version of this specification (ballot) addresses only the domain of Diabetes Self-Management to demonstrate the envisioned workflows and requirements. After a validation phase, the specification version 1 containing all above mentioned domains will be presumably published until 31.03.2026.
-
 Underlying statutory deadlines can be found in [§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html).
 
-### Conformity assessment and registration Process
-In order to certify the conformity of the implementation with the specification, it is foreseen to provide an assessment procedure which will enable the manufacturers to easily prove the conformity of their implementation using a locally executable testsuite. The assessment procedure leads - if passed successfully - to a _gematik_ certification of the medical aid's implementation. 
+Further domains will be defined as a result of ongoing use cases analysis to derive the potential for use in care processes. 
 
-Manufacturers of medical aids and implants MUST notify the _BfArM_ about the implementation of the interface, which will result in the listing of the medical aid or implant in the new _Verzeichnis der Hilfsmittel- und Implantat-Schnittstellen_ (_HIIS-VZ_) to be established by the _BfArM_. Requirements for the registration in the _HIIS-VZ_ will be announced by the _BfArM_.
+### Conformity assessment and registration process
+In order to certify the conformity of the implementation with the specification, it is foreseen to provide an assessment procedure which will enable the manufacturers to easily prove the conformity of their implementation. The assessment procedure leads - if passed successfully - to a _gematik_ certification of the medical aid's implementation. As a support measure for manufacturers and as part of the conformity assessment, gematik will provide a locally exectuable testsuite that builds on the technical specification. 
+
+Manufacturers of medical aids and implants MUST notify the _BfArM_ about the implementation of the interface, which will result in the listing of the medical aid or implant in the new _Verzeichnis der Hilfsmittel- und Implantat-Schnittstellen_ (_HIIS-VZ_) to be established by the _BfArM_. Requirements for the registration in the _HIIS-VZ_ are announced by the _BfArM_.
 
 DiGA manufacturers report to the _BfArM_ the data required for their use cases for intended use and, upon confirmation, receive authorisation to retrieve data from medical aids and implants that, according to the _HIIS-VZ_ (BfARM Device Registry), make these data available. If the interface is implemented for a DiGA that is already listed in the _DiGA directory_, a change notification with a substantiated request for data use has to be submitted to the _BfArM_.
-
-### Reference Implementation
-As a support measure for manufacturers, gematik plans to provide a reference implementation that precisely realises the technical specification. The reference implementation is intended to be used for demonstration and testing purposes as well as a benchmark for assessing conformity. 
