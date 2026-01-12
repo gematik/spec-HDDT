@@ -19,6 +19,7 @@ The tags are used as follows:
 Date: xx.xx.xxxx
 
 * `fix` Corrected links to the current version (1.0.0 - STU 1) of the HL7 CGM profiles.
+* `documentation` Deleted chapter 3.3 (Reference implementation) and added information about test support to chapter 3.2
 
 ### Version 0.1.0-ballot
 
@@ -28,5 +29,4 @@ Date: 29.10.2025
 
 First ballot version of the technical concept and specificatory aspects for validation with stakeholders. This version includes all generic specification parts together with [MIV-specific APIs](mivs.html) and profiles for the _MIVs_:
 - Blood Glucose Measurement
-
 - Continuous Glucose Measurement

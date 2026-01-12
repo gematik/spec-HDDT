@@ -61,4 +61,3 @@ The table below lists the use cases, medical aids, and interoperable values that
 | Simple Cardiac Monitoring | _to be defined_           | • __blood pressure cuff__<br>• scale <br>• ...                                                | • __Blood Pressure__<br>• Pulse<br>• body weight                                        |
 
 
-___Remark__: For the current ballot version of the HDDT specification, only the Diabetes Self-Management domain is subject of the balloting._ 
