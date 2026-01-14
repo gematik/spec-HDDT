@@ -63,6 +63,13 @@ This supports use cases such as:
 * entry.resource only $cgm-summary or $cgm-summary-mean-glucose-mass-per-volume or $cgm-summary-mean-glucose-moles-per-volume or $cgm-summary-times-in-ranges or $cgm-summary-gmi or $cgm-summary-coefficient-of-variation or $cgm-summary-days-of-wear or $cgm-summary-sensor-active-percentage or HddtPersonalHealthDevice 
 * entry.resource ^short = "Observations with their related Device and DeviceMetric information"
 
+Invariant: device-definition-reference-check-1
+Description: "Ensures that any device definition reference points to the HIIS domain."
+Severity: #error
+Expression: "definition.exists() implies definition.reference.contains('hiis.bfarm.de') or definition.resolve().identifier.system.startsWith('https://hiis.bfarm.de')"
+
+
+
 Profile: HddtPersonalHealthDevice
 Parent: Device
 Id: hddt-personal-health-device
@@ -116,10 +123,11 @@ than stated in the static attribute `Delay-From-Real-Time`(e.g. due to temporare
 the `status` of the Device resource that represents the Personal Health Device MUST be set to `unknown`. The device 
 specific value of the static attribute `Delay-From-Real-Time` can be obtained through the device's DeviceDefinition resource.
 """
-* definition 1..1
-* definition only Reference(DeviceDefinition)
+* definition 0..1
+// * definition only Reference(DeviceDefinition)
 * definition ^short = "Definition of the Personal health device"
-* definition ^definition = "Reference to a DeviceDefinition resource that describes the technical and functional details of the Personal health device."
+* definition ^definition = "Reference to a DeviceDefinition resource of the HIIS that describes the technical and functional details of the Personal health device."
+* obeys device-definition-reference-check-1
 * expirationDate MS
 * expirationDate ^short = "Date and time of expiry of this Personal health device (if applicable)"
 * expirationDate ^definition = "The date and time beyond which this Personal Health Device is no longer valid or should not be used (if applicable)."
@@ -486,23 +494,40 @@ _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device commun
 included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
 may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
 code system and its contents remain copyrighted by ISO and IEEE."
-* $mdc#528391 "Blood Pressure Cuff"
-* $mdc#528404 "Body Composition Analyzer"
-* $mdc#528425 "Cardiovascular Device"
-* $mdc#528402 "Coagulation meter"
-* $mdc#528409 "Continuous Glucose Monitor"
-* $mdc#528390 "Electro cardiograph"
-* $mdc#528457 "Generic 20601 Device"
-* $mdc#528401 "Glucose Monitor"
-* $mdc#528455 "Independent Activity/Living Hub"
-* $mdc#528403 "Insulin Pump"
-* $mdc#528405 "Peak Flow meter"
-* $mdc#528388 "Pulse Oximeter"
-* $mdc#528397 "Respiration rate"
-* $mdc#528408 "Sleep Apnea Breathing Equipment"
-* $mdc#528426 "Strength Equipment"
-* $mdc#528392 "Thermometer"
-* $mdc#528399 "Weight Scale"
+* $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
+* $mdc#528404 "MDC_DEV_SPEC_PROFILE_BCA"
+* $mdc#528425 "MDC_DEV_SPEC_PROFILE_HF_CARDIO"
+* $mdc#528402 "MDC_DEV_SPEC_PROFILE_COAG"
+* $mdc#528409 "MDC_DEV_SPEC_PROFILE_CGM"
+* $mdc#528390 "MDC_DEV_SPEC_PROFILE_ECG"
+* $mdc#528457 "MDC_DEV_SPEC_PROFILE_GENERIC"
+* $mdc#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
+* $mdc#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
+* $mdc#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
+* $mdc#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
+* $mdc#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
+* $mdc#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
+* $mdc#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
+* $mdc#528426 "MDC_DEV_SPEC_PROFILE_HF_STRENGTH"
+* $mdc#528392 "MDC_DEV_SPEC_PROFILE_TEMP"
+* $mdc#528399 "MDC_DEV_SPEC_PROFILE_SCALE"
+// * $mdc#528391 "Blood Pressure Cuff"
+// * $mdc#528404 "Body Composition Analyzer"
+// * $mdc#528425 "Cardiovascular Device"
+// * $mdc#528402 "Coagulation meter"
+// * $mdc#528409 "Continuous Glucose Monitor"
+// * $mdc#528390 "Electro cardiograph"
+// * $mdc#528457 "Generic 20601 Device"
+// * $mdc#528401 "Glucose Monitor"
+// * $mdc#528455 "Independent Activity/Living Hub"
+// * $mdc#528403 "Insulin Pump"
+// * $mdc#528405 "Peak Flow meter"
+// * $mdc#528388 "Pulse Oximeter"
+// * $mdc#528397 "Respiration rate"
+// * $mdc#528408 "Sleep Apnea Breathing Equipment"
+// * $mdc#528426 "Strength Equipment"
+// * $mdc#528392 "Thermometer"
+// * $mdc#528399 "Weight Scale"
 // * $gmdn#38017 "Dry salt inhalation therapy device"
 // * $gmdn#38663 "Flexible video nephroscope"
 // * $gmdn#42347 "Dental implant, endosseous, partially-embedded"

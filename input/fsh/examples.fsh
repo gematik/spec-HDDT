@@ -57,7 +57,7 @@ to validate the authenticity of this Personal Health Device resource.
 """
 * id = "example-glucometer"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type =  $mdc#528401 "Glucose Monitor"
+* type =  $mdc#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
 * status = #active
 // * statusReason = #online
 * deviceName.name = "GlukkoCheck plus mg/dL"
@@ -96,7 +96,7 @@ Usage: #example
 Title: "HDDT Glucometer DeviceDefinition Example"
 Description: "Example for a medical device definition (Glucometer) from the HIIS-VZ."
 * id = "example-glucometer-def"
-* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.system = "https://hiis.bfarm.de"
 * identifier.value = "12.34.56.7890" 
 * deviceName[0].name = "GlucoCheck Plus mg/dL"
 * deviceName[0].type = #user-friendly-name
@@ -466,7 +466,7 @@ Usage: #example
 * type = #device
 * manufacturerString = "rtCGM Manufacturer Inc."
 * modelNumber = "CGM Model mg/dL"
-* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.system = "https://hiis.bfarm.de"
 * identifier.value = "30.29.05.2004"
 * deviceName[0].name = "CGM Model mg/dL"
 * deviceName[0].type = #user-friendly-name
@@ -547,7 +547,7 @@ Description: "Example of a forced expiratory volume in 1 second (FEV1) relative 
 * device = Reference(Example-Device-Peak-Flow)
 
 Instance: Example-Device-Peak-Flow
-InstanceOf: Device
+InstanceOf: HddtPersonalHealthDevice
 Title: "HDDT Peak Flow Meter Example"
 Description: """
 Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: 
@@ -578,7 +578,7 @@ Usage: #example
 * type = #device
 * manufacturerString = "HealthTech GmbH"
 * modelNumber = "Smart 2"
-* identifier.system = "https://hilfsmittelverzeichnis.de"
+* identifier.system = "https://hiis.bfarm.de"
 * identifier.value = "21.24.01.2005"
 * deviceName[0].name = "Peak Flow Pro"
 * deviceName[0].type = #user-friendly-name

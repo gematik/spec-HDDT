@@ -26,12 +26,6 @@
 %Best Practice Recommendation%
 
 
-# WARNING: URL resolution for non-FHIR external systems. Reason: The URL 'https://hilfsmittelverzeichnis.de' is a legitimate external reference (not a FHIR endpoint). It does not resolve via HTTP intentionally.
-
-%URL-Wert 'https://hilfsmittelverzeichnis.de' löst nicht auf%
-%No definition could be found for URL value 'https://hilfsmittelverzeichnis.de'%
-
-
 # WARNING: Observation performer / subject. Reason: Some Observation examples are intentionally abstracted or device-generated without explicit performer/subject for privacy or structural reasons.
 
 %Alle Observations sollten einen Performer haben%
@@ -51,6 +45,10 @@
 # WARNING: HTML fragment. Reason: We are using a custom template of our own
 
 %HTML fragment%
+
+# WARNING: URL resolution for non-FHIR external systems. Reason: The URL 'https://hiis.bfarm.de' is a legitimate external reference (not a FHIR endpoint). It does not resolve via HTTP intentionally.
+
+%URL-Wert 'https://hiis.bfarm.de' löst nicht auf%
 
 # ------------------------------------------------------------------------------
 
