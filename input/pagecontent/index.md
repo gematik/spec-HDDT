@@ -37,7 +37,7 @@ Readers who are responsible for project management, product management, or regul
 * [Operational Requirements](operational-requirements.html) describe the operational procedures and service levels that MUST be provided by manufacturers of certification relevant systems.
 
 ### Contact and feedback
-Please submit questions and comments about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16) __until 30.11.2025__.
+Please submit questions and comments about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16).
 
 If you do not have access to the request portal and would like to use it, please send us a message to hddt [at] gematik.de with the subject “Portal access”.
 
