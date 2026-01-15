@@ -49,6 +49,9 @@
 # WARNING: URL resolution for non-FHIR external systems. Reason: The URL 'https://hiis.bfarm.de' is a legitimate external reference (not a FHIR endpoint). It does not resolve via HTTP intentionally.
 
 %URL-Wert 'https://hiis.bfarm.de' löst nicht auf%
+%No definition could be found for URL value 'https://hiis.bfarm.de'%
+
+
 
 # ------------------------------------------------------------------------------
 

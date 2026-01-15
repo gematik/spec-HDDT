@@ -495,22 +495,73 @@ included under the terms of HL7 International’s licensing agreement with the I
 may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
 code system and its contents remain copyrighted by ISO and IEEE."
 * $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
+* $mdc#528391 ^designation.language = #en
+* $mdc#528391 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528391 ^designation.value = "Blood Pressure Cuff"
 * $mdc#528404 "MDC_DEV_SPEC_PROFILE_BCA"
+* $mdc#528404 ^designation.language = #en
+* $mdc#528404 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528404 ^designation.value = "Body Composition Analyzer"
 * $mdc#528425 "MDC_DEV_SPEC_PROFILE_HF_CARDIO"
+* $mdc#528425 ^designation.language = #en
+* $mdc#528425 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528425 ^designation.value = "Cardiovascular Device"
 * $mdc#528402 "MDC_DEV_SPEC_PROFILE_COAG"
+* $mdc#528402 ^designation.language = #en
+* $mdc#528402 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528402 ^designation.value = "Coagulation meter"
 * $mdc#528409 "MDC_DEV_SPEC_PROFILE_CGM"
+* $mdc#528409 ^designation.language = #en
+* $mdc#528409 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528409 ^designation.value = "Continuous Glucose Monitor"
 * $mdc#528390 "MDC_DEV_SPEC_PROFILE_ECG"
+* $mdc#528390 ^designation.language = #en
+* $mdc#528390 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528390 ^designation.value = "Electro cardiograph"
 * $mdc#528457 "MDC_DEV_SPEC_PROFILE_GENERIC"
+* $mdc#528457 ^designation.language = #en
+* $mdc#528457 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528457 ^designation.value = "Generic 20601 Device"
 * $mdc#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
+* $mdc#528401 ^designation.language = #en
+* $mdc#528401 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528401 ^designation.value = "Glucose Monitor"
 * $mdc#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
+* $mdc#528455 ^designation.language = #en
+* $mdc#528455 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528455 ^designation.value = "Independent Activity/Living Hub"
 * $mdc#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
+* $mdc#528403 ^designation.language = #en
+* $mdc#528403 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528403 ^designation.value = "Insulin Pump"
 * $mdc#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
+* $mdc#528405 ^designation.language = #en
+* $mdc#528405 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528405 ^designation.value = "Peak Flow meter"
 * $mdc#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
+* $mdc#528388 ^designation.language = #en
+* $mdc#528388 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528388 ^designation.value = "Pulse Oximeter"
 * $mdc#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
+* $mdc#528397 ^designation.language = #en
+* $mdc#528397 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528397 ^designation.value = "Respiration rate"
 * $mdc#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
+* $mdc#528408 ^designation.language = #en
+* $mdc#528408 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528408 ^designation.value = "Sleep Apnea Breathing Equipment"
 * $mdc#528426 "MDC_DEV_SPEC_PROFILE_HF_STRENGTH"
+* $mdc#528426 ^designation.language = #en
+* $mdc#528426 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528426 ^designation.value = "Strength Equipment"
 * $mdc#528392 "MDC_DEV_SPEC_PROFILE_TEMP"
+* $mdc#528392 ^designation.language = #en
+* $mdc#528392 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528392 ^designation.value = "Thermometer"
 * $mdc#528399 "MDC_DEV_SPEC_PROFILE_SCALE"
+* $mdc#528399 ^designation.language = #en
+* $mdc#528399 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528399 ^designation.value = "Weight Scale"
 // * $mdc#528391 "Blood Pressure Cuff"
 // * $mdc#528404 "Body Composition Analyzer"
 // * $mdc#528425 "Cardiovascular Device"
