@@ -33,7 +33,7 @@ subsequent data flows to the Pairing ID.
 
 The OAuth2 Authorization Server follows the **OAuth 2.0 Authorization Code Flow with PKCE** and **Pushed Authorization
 Requests (PAR)** over **mutual TLS (mTLS)**. Certificate-bound access tokens MUST NOT be used as mTLS already provides sufficient binding between client and server. A discovery document MUST be provided under the well-known path
-`/.well-known/oauth-authorization-server` in accordance with [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414).
+`/.well-known/oauth-authorization-server` in accordance with [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414). Certificates, keys, and protocol configurations for all mTLS secured transport MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 
 The authorization server MUST implement the following key RFCs and associated mechanisms:
 
