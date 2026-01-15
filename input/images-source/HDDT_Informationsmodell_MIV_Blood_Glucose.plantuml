@@ -76,7 +76,7 @@ package ZTS as "MIV Definitions (ZTS)" VIBW {
 'IV::code --> MIV : "included with"
 'Metric::type --> MIV : "included with"
 
-PHD --> PHD_Def : "definition"
+PHD --> PHD_Def : "definition [0..1]"
 MIV <.up. OP : "implements"
 IV <. OP : "defines"
 IV::code .> MIV : "included with"

@@ -93,8 +93,8 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     IV_prozent::derivedFrom -up-> IV_referenz : " derivedFrom"
 
     ' Device below complete observation
-    IV_prozent::device -down-> PHD : "[1..1] device"
-    PHD -left-> PHD_Def : "definition"
+    IV_prozent::device -down-> PHD : "device [1..1]"
+    PHD -left-> PHD_Def : "definition [0..1]"
 
     ' MIV ValueSet on the left side
     VS_Measurement -right-> IV_messung : "Observation.code"

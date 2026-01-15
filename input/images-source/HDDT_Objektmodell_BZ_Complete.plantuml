@@ -75,7 +75,7 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
     }
 }
 
-PHD --> PHD_Def : "definition"
+PHD --> PHD_Def : "definition [0..1]"
 MIV <.up. OP : "implements"
 IV1 <. OP : "defines"
 IV1::code ..> MIV : "included with"

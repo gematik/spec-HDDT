@@ -118,7 +118,9 @@ For each supported MIV, a Device Data Recorder MUST register the following stati
 
 #### Personal Health Device Definition
 
-Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the _HIIS-VZ_ (BfArM Device Registry). This leads to a __Personal Health Device Definition__ which is exposed as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. Each __Personal Health Device__ can be linked with a __Personal Health Device Definition__ in the _HIIS-VZ_ through the `Device.definition` element.
+Owners of medical aids and implants that fall under the regulation of § 374a SGB V must register at the _HIIS-VZ_ (BfArM Device Registry). This leads to a __Personal Health Device Definition__ which is exposed as a [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource. A __Personal Health Device__ resource MAY be linked with a __Personal Health Device Definition__ in the _HIIS-VZ_ through the `Device.definition` element.
+
+___Note__: The reference from a __Personal Health Device__ to its __Personal Health Device Definition__ is optional for the initial version of the HDDT specification because the Personal Health Device Definition resource does not hold use case relevant information which could not as well be placed in the Device resource (e.g. name and manufacturer of the medcal aid or implant). If a Device resource refers to a Device Definition, this reference MUST point to the respective Personal Health Device Definition entry in the BfArM HIIS VZ._ 
 
 The __Personal Health Device Definition__ resource for a medical aid or implant is created upon registration of this medical aid or implant with the _HIIS-VZ_. The information bound to this [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource include
 * a human readable `deviceName` 
@@ -131,7 +133,7 @@ A Personal Health Device may connect to different __Device Data Recorders__. E.g
 While DiGA use the _[HIIS-VZ RESTful API](registries-and-zts.html#hiis-vz)_ for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, the manufacturers of Device Data Recorders may use the API of the BfArM _[DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis)_ (BfArM DiGA Registry) for retrieving information about a DiGA that wants to connect to a devive through the HDDT API. This API gives access to __DiGA Device Definition__ data which was provided by DiGA manufacturers to BfArM during registration with the _[DiGA-Verzeichnis](https://diga.bfarm.de/de/verzeichnis)_. 
 
 #### HDDT Information Model - Devices and Device Definitions
-The orange box in the class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries. Correlations and dependencies between objects which are managed by the BfArM Registries are shown as dotted lines as it is the resüonsibility of BfArM to define the respective extensions to the standard FHIR resource types (see [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for the current version of the _HIIS-VZ_ information model) 
+The orange box in the class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries. Correlations and dependencies between objects which are managed by the BfArM Registries are shown as dotted lines as it is the responsibility of BfArM to define the respective extensions to the standard FHIR resource types (see [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for the current version of the _HIIS-VZ_ information model) 
 
 <figure> 
 <div class="gem-ig-svg-container" style="width: 75%;">

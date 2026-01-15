@@ -99,7 +99,7 @@ Personal Health Device MUST be set to `unknown`.
 **Constraints applied:**  
 - `status` is set to _Must Support_ in order to allow a DiGA to detect missing data (e.g. due to connection issues)
 - `deviceName` and `serialNumber` are set to _Must Support_ to allow a validation of the source of device data by comparing this information with information printed on the Personal Health Device
-- `definition` is constrained as a mandatory element in order to enable a DiGA to obtain static device attributes through this reference
+- `definition` is optional. If present it MUST refer to a DeviceDefinition resource in the BfARM HIIS VZ. This ensures that DiGA can only receive static product information which was registered by the vendor of the device.
 - `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)
 """
 // * ^version = "0.1.1"

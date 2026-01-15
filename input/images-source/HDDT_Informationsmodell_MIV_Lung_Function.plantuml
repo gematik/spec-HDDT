@@ -128,7 +128,7 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
 
     ' Device below complete observation
     IV_prozent -down-> PHD : "[1..1] device"
-    PHD -right-> PHD_Def : "definition"
+    PHD -right-> PHD_Def : "definition [0..1]"
 
     ' Individual ValueSets included by MIV ValueSet
     VS_Measurement -up-> VS_MIV::compose.include.valueSet : "include.valueSet"
