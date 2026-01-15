@@ -149,7 +149,7 @@ ___Additional Notes___:
 * (c) During the TLS connection, only the certificate of the client is initially determined. The certificate MUST then be passed on to the application layer. There, a comparison MUST take place with the information from the _DiGA-VZ_ of the BfArM in order to identify the DiGA. Further the identification data from the DiGA at the application layer (`client_id`) MUST be checked. This data has to match the identity of the DiGA meaning both certificate and `client_id` have to be in the same _DiGA-VZ_ entry. It can be useful for the Device Data Recorder to extract all DiGA certificates from the _DiGA-VZ_ (or at least those from registered DiGAs) to establish an DiGA trust space. This can be passed to the TLS library which verifies the certificate against that trust space during TLS handshake. Most of unauthorized connection attempts will be repelled by that measure. In any case this verification is not enough as additionally the DiGA has to be identified at application layer as described above.
 
 ### Caching of Trust-Related Information
-Device Data Recorders and DiGA MAY cache trust related information in order to optimize performance. The following table lists the maximum time spans for which trust-related information MAY be cached:
+Device Data Recorders and DiGA MAY cache trust related information in order to optimize performance. The following table lists the maximum time spans for which trust-related information MAY be cached in the procuction environment:
 
 | Information Source                | Information to be Cached                          | Maximum Caching Duration |
 |----------------------------------|--------------------------------------------------|-------------------------|
@@ -158,7 +158,9 @@ Device Data Recorders and DiGA MAY cache trust related information in order to o
 | _ZTS_ (German Central Terminology Server)         | MIV ValueSets                                   | 24 hours                |  
 | Certificate Authorities | Certificate status information and Certificate Revocation Lists (CRLs) | 2 hours |
 
-If a source for updating cached information is not reachable, the affected system MUST deny/reject incoming request that rely on this information.
+If a source for updating cached information is not reachable, the affected system MUST deny/reject incoming request that rely on the cached information.
+
+In order to ease bug fixing, caching times in test environmnents SHOULD be set to lower values, e.g. one hour for the listed sources and information.
 
 ### Transparency of Operations
 Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy purposes. This audit trail MUST at least log the following events for at least 30 days:
