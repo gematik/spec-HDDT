@@ -25,7 +25,7 @@ Further normative requirements and technical details regarding the identifier ar
 dedicated [Pairing ID](pairing.html#pairing-id) section.
 
 #### Identification and Authentication of the DiGA
-A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below) as a client. DiGA's X.509 client certificate MUST be registered with the _DiGA-VZ_. Self-signed certificates MAY be used by the DiGA. Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11). DiGA authorization is based on OAuth2 and requires a `client_id` and a `redirect_url` to be registered as trust anchors with the _DiGA-VZ_ of the BfArM. 
+A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below) as a client. DiGA's X.509 client certificate MUST be registered with the _DiGA-VZ_. Self-signed certificates MAY be used by the DiGA. Certificates, keys, and protocol configurations MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11). DiGA authorization is based on OAuth2 and requires a `client_id` and a `redirect_url` to be registered as trust anchors with the _DiGA-VZ_ of the BfArM. 
 
 The following table summarizes the trust attributes for identification and authentication of a DiGA that MUST be registered with the _DiGA-VZ_ of the BfArM for each DiGA:
 
@@ -39,14 +39,13 @@ Procedures for registering certificates and for exchanging expiring certificates
 
 #### Identification and Authentication of the Device Data Recorder
 
-A Device Data Recorder identifies and authenticates itself to a DiGA during every connection establishment using *
-*mutual TLS (mTLS)**. This applies to all endpoints of the Device Data Recorder, including
+A Device Data Recorder identifies and authenticates itself to a DiGA during every connection establishment using **mutual TLS (mTLS)**. This applies to all endpoints of the Device Data Recorder, including
 the [Authorization Server](authorization-server.html) and the [FHIR Resource Server](retrieving-data.html). The endpoint
 addresses and the _Fully Qualified Domain Names (FQDNs)_ used for the X.509 certificates of these endpoints MUST be
 registered with the _HIIS-VZ_. During the TLS handshake, the DiGA MUST verify that the FQDN in the certificate matches the
 one registered in the _HIIS-VZ_.
 
-The Device Data Recorder MUST NOT use self-signed certificates. Certificates and keys MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
+The Device Data Recorder MUST NOT use self-signed certificates. Certificates, keys, and protocol configurations MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 
 The following table lists the trust attributes that MUST be registered in the _HIIS-VZ_ for the identification and authentication of a Device Data Recorder:
 
@@ -121,7 +120,7 @@ The period of validity of the consent MUST NOT be longer than the prescription p
 ### Secure Communication via mTLS
 Connections between the DiGA and the backend of a Device Data Recorder are secured via a mutually authenticated TLS channel (mTLS). Since the connection takes place over the Internet, the trust space of the Internet PKI is used for server certificates. Specifically, the CAs that are members of the CA/Browser Forum form the trust space and CA Authorization (CAA, https://datatracker.ietf.org/doc/html/rfc8659) and Certificate Transparency (CT, https://datatracker.ietf.org/doc/html/rfc6962) are implemented.
 
-TLS client certificates are not issued by those CAs. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the _DiGA-VZ_ (BfArM DiGA directory).
+TLS client certificates are not issued by those CAs. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the _DiGA-VZ_ (BfArM DiGA directory). Certificates, keys, and protocol configurations for all mTLS secured transport MUST comply with [BSI TR-02102-2](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=11).
 
 For all connections, the DiGA acts as a client and the Device Data Recorder as a server. In the course of establishing a TLS connection, the following steps MUST be completed as part of the certificate check:
 1. Verification of the Device Data Recorder's server certificate by the DiGA:
