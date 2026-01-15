@@ -102,7 +102,7 @@ package HDDT_Registries as "Device Definitions (HDDT Registries at BfArM)" BFARM
     DM_Def .down.> AuthZ_Endpoint
 }
 
-PHD --> PHD_Def : "definition [1..1]"
+PHD --> PHD_Def : "definition [0..1]"
 ' DDR --> DM_Def : "definition [1..1]"
 
 package ZTS as "MIV Definitions (ZTS)" VIBW {

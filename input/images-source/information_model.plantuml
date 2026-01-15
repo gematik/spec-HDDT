@@ -114,7 +114,7 @@ Data_Interface --> vibW_Blood_Glucose : "[1..*] supported base profiles"
 
 VS_HiMi_ACM_SupportedVibW --> VS_BZ : "[1..1] subset of"
 vibW_Blood_Glucose::code --> VS_BZ : "[1..*] valueset binding for code"
-Device_Instance_Glucometer --> DD_Sensor_AccuChekMobile : "[1..1] definition"
+Device_Instance_Glucometer --> DD_Sensor_AccuChekMobile : "[0..1] definition"
 vibW_Blood_Glucose::valueQuantity.unit --> VS_Blood_Glucose_Units : "[1..*] valueQuantity.unit.binding.valueSet"
 
 
