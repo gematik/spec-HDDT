@@ -8,11 +8,11 @@ hide footbox
 !define BFARM #F6D7B6
 !define SPEC #FAF3C0
 
-title HDDT Object Model Example (Lung Function Measurement)
+title HDDT Object Model Example (Lung Function Testing)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
-    object "Lung Function Measurement" as IV_messung <<FHIR Observation>> {
+    object "Lung Function Testing" as IV_messung <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: 20150-9 FEV1
         date [1..1]: 2025-08-08
@@ -47,18 +47,18 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 }
 
 package ZTS as "MIV Definitions (ZTS)" VIBW {
-    enum VS_MIV as "VS MIV Lung Function Measurement" <<FHIR ValueSet>> {
-        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-measurement
+    enum VS_MIV as "VS MIV Lung Function Testing" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing
         version: 1.0.0
-        title: ValueSet MIV Lung Function Measurement
-        name: HddtMivLungFunctionMeasurement
+        title: ValueSet MIV Lung Function Testing
+        name: HddtMivLungFunctionTesting
         description: therapy mgmt and clinical decisions
         compose.include: 19935-6|LOINC, 83368-1|LOINC, 20150-9|LOINC, ...
     }
 
-    enum VS_Measurement as "VS Lung Function Measurement Values" <<FHIR ValueSet>> {
-        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-measurement-values
-        name: HddtLungFunctionMeasurementValues
+    enum VS_Measurement as "VS Lung Function Testing Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values
+        name: HddtLungFunctionTestingValues
         compose.include: 19935-6|LOINC (PEF)
         compose.include: 20150-9|LOINC (FEV1)
     }

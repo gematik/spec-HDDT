@@ -490,7 +490,7 @@ Usage: #example
 // ---
 
 Instance: Example-Peak-Flow-Simple
-InstanceOf: HddtLungFunctionMeasurement
+InstanceOf: HddtLungFunctionTesting
 Usage: #example
 Title: "HDDT Lung Function Obervation Example (simple)"
 Description: "Example of a peak expiratory flow measurement (PEF) taken with a peak flow meter. 
@@ -504,7 +504,7 @@ Simple version without a reference value or relative value."
 * device = Reference(Example-Device-Peak-Flow)
 
 Instance: Example-FEV1-Single-Measurement
-InstanceOf: HddtLungFunctionMeasurement
+InstanceOf: HddtLungFunctionTesting
 Usage: #example
 Title: "HDDT Lung Function Obervation Example (FEV1 single measurement)"
 Description: "Example of a forced expiratory volume in 1 second (FEV1) measurement taken with a digital peak flow meter."
@@ -532,7 +532,7 @@ Description: "Example of a forced expiratory volume in 1 second (FEV1) reference
 * device = Reference(Example-Device-Peak-Flow)
 
 Instance: Example-FEV1-Relative-Value
-InstanceOf: HddtLungFunctionMeasurementComplete
+InstanceOf: HddtLungFunctionTestingComplete
 Usage: #example
 Title: "HDDT Lung Function Relative Value Obervation Example (FEV1 measured/predicted)"
 Description: "Example of a forced expiratory volume in 1 second (FEV1) relative value (measured/predicted) for a patient."

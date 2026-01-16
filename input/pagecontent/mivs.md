@@ -37,7 +37,7 @@ The table below lists typical use cases and certification relevant systems for t
 | Blood Glucose Measurement      | • monitoring of patients with a combination of basal insulin with oral antidiabetic drugs<br> • diabetes diary for DMT2 patients  | • blood glucose meter (glucometer) |
 | Continuous Glucose Measurement | • supporting patients in flattening glucose curves<br> • analyzing behavioral effects on glucose level<br> • gathering clinical metrics for measuring the status of the diabetes therapy<br> • analyzing hidden hypoglycaemias | • real-time Contiuous Clucose Monitoring (rtCGM)<br> • Closed Loop Systems |
 
-#### Blood Glucose Value
+#### MIV: Blood Glucose Value
 The MIV _Blood Glucose Measurement_ covers values from "bloody measurements" using capillary blood from the finger tip. Measurements are performed based on a care plan (e.g. measuring blood sugar before each meal) or ad hoc (e.g. a patient feeling dim what may be an indicator for a hypoglycamia). Values are very acurate and therefore best suited for therapeutical decision making. 
 
 | | |
@@ -52,7 +52,7 @@ The MIV _Blood Glucose Measurement_ covers values from "bloody measurements" usi
 | __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Blood Glucose Measurement_ if the previous request for that patient was answered less than __15 minutes__ ago. | 
 |  |   | 
 
-#### Continuous Glucose Measurement
+#### MIV: Continuous Glucose Measurement
 The MIV _Continuous Glucose Measurement_ covers values from continuous monitoring of the glucose level, e.g. by rtCGM in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to one value per minute. By this _Continuous Glucose Measurement_ can e.g. be used to assess dependencies between a patient's individual habits and behaviours and his glucose level. Due to the high density of values over a long period of time, many clinical metrics can be calculated from _Continuous Glucose Measurement_ which help the patient and his doctor to easily capture the status of the patient's health and therapy.
 
 | | |
@@ -68,8 +68,61 @@ The MIV _Continuous Glucose Measurement_ covers values from continuous monitorin
 |  |   |
 
 
-### Domain: Respiratory Monitoring
-MIVS for this domain are expected to be published by November 2025.
+### Domain: Lung Function Testing
+In Germany, more than ten million people live with chronic lung and respiratory diseases, which significantly affect their quality of life. The most common conditions include bronchial asthma, chronic obstructive pulmonary disease (COPD), and obstructive sleep apnea syndrome (OSAS or simply sleep apnea). These conditions often require continuous monitoring and therapy. This is where aids such as peak flow meters for lung function measurement come in, allowing those affected to have more control over their condition and improving the quality of treatment.
 
-### Domain: Simple Cardiac Monitoring
-MIVS for this domain are expected to be published by November 2025.
+For the initial specification (version 1) of HDDT, one mandatory interoperable value (MIV) is defined for lung function testing:
+* Lung Function Testing: values measured using peak flow meters or spirometers to monitor lung function in patients with (chronic) respiratory diseases.
+
+The table below lists typical use cases and certification relevant systems for this MIV:
+
+| MIV                            | examples of typical use cases | examples of certification relevant systems  |
+|--------------------------------|-------------------------------|---------------------------------------------|
+| Lung Function Testing          | • DiGA to support treatment of asthma bronciale<br>• DiGA for compliance monitoring | • peak flow meter<br>• spirometer |
+
+#### MIV: Lung Function Testing
+The MIV _Lung Function Testing_ covers values from measurements using peak flow meters or spirometers to monitor lung function in patients with (chronic) respiratory diseases. Measurements are performed based on a care plan (e.g. measuring peak expiratory flow (PEF) in the morning and evening) or ad hoc (e.g. a patient experiencing breathing difficulties). 
+ 
+| | |
+|--|--| 
+|__Defining ValueSet__ | The MIV _Lung Function Testing_ is defined by the FHIR ValueSet [_Lung Function Testing_](ValueSet-hddt-miv-lung-function-testing.html).<br>This ValueSet contains LOINC codes for individual lung function testings (PEF and FEV1), LOINC codes for associated lung function reference values (e.g. personal best), and LOINC codes for relative lung function values, calculated in percentages (e.g. PEF relative to a reference value). |
+| __SMART Scopes__ |  patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing<br>&nbsp;<br>patient/Device.rs<br>&nbsp;<br>patient/DeviceMetric.rs|
+| __FHIR Observation Profile__  | Device Data Recorders provide _Lung Function Testing_ related measurements and derived values to DiGA using the MIV-specific Observation Profiles [__HDDT Lung Function Testing__](StructureDefinition-hddt-lung-function-testing.html), [__HDDT Lung Function Reference Value__](StructureDefinition-hddt-lung-reference-value.html), and [__HDDT Lung Function Testing Complete__](StructureDefinition-hddt-lung-function-testing-complete.html). |
+| __FHIR Interactions__ | Access to these resources is given through standard FHIR _read_ and _search_ RESTful interactions as described in the [MIV-specific API](measurement-lung-function.html). |
+| __Aggregated Data__ | By now there are no aggregated reports defined for the MIV "Lung FunctionTesting". |
+| __Vendor Holdup__ | The maximum acceptable delay between data availability in the Health Record and data availability through the HDDT interface is __60 seconds__. |
+| __`Historic-Data-Period`__ | Device Data Recorders that provide _Lung Function Testing_ data MUST make the measured values retrievable for at least __14 days__.  |
+| __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Lung Function Testing_ data if the previous request for that patient was answered less than __15 minutes__ ago. | 
+|  |   | 
+
+### Domain: Blood Pressure Monitoring
+Independent monitoring of blood pressure by the patient can be essential in several cases. After serious cardiac events such as a heart attack, blood pressure needs to be monitored, as it can provide information about important risk factors such as hypertension. Uncontrolled blood pressure can contribute to a repeat heart attack or heart failure. When treating with blood pressure-lowering medications, such as ACE inhibitors, regular monitoring is crucial to avoid both over- and under-treatment, which can lead to kidney damage or circulatory problems. Studies indicate that a systolic blood pressure below 120 mmHg in patients with chronic kidney disease is associated with lower mortality, fewer severe cardiovascular events, and the 
+preservation of cognitive functions.
+
+Typically, blood pressure is measured using a non-invasive method, usually by inflating a cuff on the upper arm. The cuff is inflated above the systolic blood pressure, completely occluding the artery. As the cuff pressure is slowly released and falls below the systolic pressure, the heart begins to pump blood into the partially compressed artery. The pumping of the blood causes minimal pressure fluctuations within the cuff. The amplitude of these pressure fluctuations can then be used to determine the systolic and diastolic blood pressure values through various methods. 
+
+Another non-invasive method is measuring volume changes in the vascular system via an optical interface (photoplethysmography). Currently, these optical methods are not reimbursable under the statutory health insurance (GKV) and therefore are not covered under § 374a SGB V, and thus are not considered here.
+
+For the initial specification (version 1) of HDDT, one mandatory interoperable value (MIV) is defined for blood pressure monitoring:
+* Blood Pressure Monitoring: values measured at home by the patient using a blood pressure cuff.
+
+The table below lists typical use cases and certification relevant systems for this MIV:
+
+| MIV                            | examples of typical use cases | examples of certification relevant systems  |
+|--------------------------------|-------------------------------|---------------------------------------------|
+| Blood Pressure Monitoring      | • Preeclampsia prevention in pregnancies<br>• Recording of blood pressure before a doctor's visit<br>• Monitoring blood pressure alongside medication    | • blood pressure cuff |
+
+#### MIV: Blood Pressure Value
+The MIV _Blood Pressure Value_ covers values from measurements using a blood pressure cuff at home
+
+| | |
+|--|--| 
+|__Defining ValueSet__ | The MIV _Blood Pressure Value_ is defined by the FHIR ValueSet [_Blood Pressure Value from LOINC_](ValueSet-hddt-miv-blood-pressure-value.html).<br>This ValueSet contains LOINC codes for blood pressure measurements using a blood pressure cuff. The cuff may be placed at the upper arm or above the wristblood. Different LOINC codes indicate whether blood pressure was measured using an oscillometric method, an auscultatory method, or a combination of both methods. |
+| __SMART Scopes__ |  patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value<br>&nbsp;<br>patient/Device.rs<br>&nbsp;<br>patient/DeviceMetric.rs|
+| __FHIR Observation Profile__  | Device Data Recorders provide _Blood Pressure Values_ to DiGA using the MIV-specific Observation Profile [__HDDT Blood Pressure Value__](StructureDefinition-hddt-blood-pressure-value.html). This profile allows to capture systolic, diastolic and mean aterial blood pressure values as a single FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource. |
+| __FHIR Interactions__ | Access to the resources is given through standard FHIR _read_ and _search_ RESTful interactions as described in the [MIV-specific API](measurement-blood-pressure.html). |
+| __Aggregated Data__ | By now there are no aggregated data defined for the MIV "Blood Pressure Value". |
+| __Vendor Holdup__ | The maximum acceptable delay between data availability in the Health Record and data availability through the HDDT interface is __60 seconds__. |
+| __`Historic-Data-Period`__ | Device Data Recorders that provide _Blood Pressure Values_ MUST make the measured values retrievable for at least __30 days__.  |
+| __`Grace-Period`__ | A Device Data Recorder MAY reject a DiGA's request for a patient's _Blood Pressure Values_ if the previous request for that patient was answered less than __5 minutes__ ago. | 
+|  |   | 

@@ -12,7 +12,7 @@ title HDDT FHIR Data Model (Measurements and Devices)
 skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
-    class IV_messung as "Lung Function Measurement " <<FHIR Observation>> {
+    class IV_messung as "Lung Function Testing " <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: classification of the measured value
         effectiveDateTime [1..1]: date and time of the measurement
@@ -33,7 +33,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
         method.coding.code [1..1]: code from the code system (e.g., GLI-2022)
     }
 
-    class IV_prozent as "Lung Function Measurement Complete" <<FHIR Observation>> {
+    class IV_prozent as "Lung Function Testing Complete" <<FHIR Observation>> {
         status [1..1]: final 
         code [1..1]: classification of the calculated value - measured/predicted
         effectiveDateTime [1..1]: date and time of the measurement
@@ -53,20 +53,20 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 }
 
 package ZTS as "MIV Definitions (ZTS)" VIBW {
-    enum VS_MIV as "VS MIV Lung Function Measurement" <<FHIR ValueSet>> {
-        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-measurement
+    enum VS_MIV as "VS MIV Lung Function Testing" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing
         version: 1.0.0
-        title: ValueSet MIV Lung Function Measurement
-        name: HddtMivLungFunctionMeasurement
+        title: ValueSet MIV Lung Function Testing
+        name: HddtMivLungFunctionTesting
         description: therapy mgmt and clinical decisions
-        compose.include.valueSet: hddt-lung-function-measurement-values
+        compose.include.valueSet: hddt-lung-function-testing-values
         compose.include.valueSet: hddt-lung-function-reference-values
         compose.include.valueSet: hddt-lung-function-relative-values
     }
 
-    enum VS_Measurement as "VS Lung Function Measurement Values" <<FHIR ValueSet>> {
-        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-measurement-values
-        name: HddtLungFunctionMeasurementValues
+    enum VS_Measurement as "VS Lung Function Testing Values" <<FHIR ValueSet>> {
+        url: https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values
+        name: HddtLungFunctionTestingValues
         compose.include: 19935-6|LOINC (PEF)
         compose.include: 20150-9|LOINC (FEV1)
     }
@@ -87,8 +87,8 @@ package ZTS as "MIV Definitions (ZTS)" VIBW {
 }
 
 package gematik as "Repository for gematik FHIR IGs" SPEC {
-    object "Observation - Lung Function Measurement" as OP <<FHIR StructureDefinition>> {
-        name = "HddtLungFunctionMeasurement"
+    object "Observation - Lung Function Testing" as OP <<FHIR StructureDefinition>> {
+        name = "HddtLungFunctionTesting"
         type = Observation
         baseDefinition = <<FHIR Observation>>
         derivation = constraint
@@ -101,8 +101,8 @@ package gematik as "Repository for gematik FHIR IGs" SPEC {
         derivation = constraint
     }
 
-    object "Observation - Lung Function Measurement Complete" as OPC <<FHIR StructureDefinition>> {
-        name = "HddtLungFunctionMeasurementComplete"
+    object "Observation - Lung Function Testing Complete" as OPC <<FHIR StructureDefinition>> {
+        name = "HddtLungFunctionTestingComplete"
         type = Observation
         baseDefinition = <<FHIR Observation>>
         derivation = constraint
