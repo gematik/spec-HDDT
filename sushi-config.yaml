@@ -12,10 +12,10 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: health-device-data-transfer
 canonical: https://gematik.de/fhir/hddt
-version: 0.1.0
+version: 1.0.0
 name: HealthDeviceDataTransfer
 title: Health Device Data Transfer
-status: draft
+status: active
 publisher: 
   name: gematik GmbH
   url: https://www.gematik.de
@@ -23,7 +23,9 @@ description: This specification describes the technical  semantic approach for p
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
-releaseLabel: ballot
+releaseLabel: release
+copyright: gematik GmbH
+
 
 
 dependencies:
