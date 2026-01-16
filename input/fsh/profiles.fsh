@@ -53,10 +53,10 @@ This supports use cases such as:
 - `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA.
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-10-27"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * type = #collection (exactly)
 * type ^short = "The bundle is always a collection of CGM summary Observations and optionally related Device and DeviceMetric resources returned by the $hddt-cgm-summary operation."
 * entry 1..*
@@ -103,10 +103,10 @@ Personal Health Device MUST be set to `unknown`.
 - `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-10-27"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Personal Health Device"
 * . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a medical aid or implant."
 * type from HddtDeviceType (required)
@@ -186,10 +186,10 @@ information about potentially missing data (e.g. due to temporal problems with t
 - `calibration` is set to _Must Support_. This element and respective status information MUST be provided if the sensor performs automated or requires manual calibration after the device has been put into operation with the patient (`Device.status`is `active`).
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-10-27"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Configuration or setting capability of a personal health device"
 * . ^definition = "Describes the sensor type and calibration status of a sensor within a Personal Health Device as a DeviceMetric."
 * unit from $ucum-units (required)
@@ -258,10 +258,10 @@ or if the sensor may change its calibration status over time.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-10-27"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
@@ -323,10 +323,10 @@ current chunk and therefore is the only reason why a chunk may be smaller than t
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-10-27"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Chunk of continuous glucose measurements"
 * . ^definition = "An Observation representing a continuous glucose measurement (CGM) series over a defined effective period, captured as SampledData from a personal health device."
 * status ^short = "Status of the continuous glucose measurements chunk"
@@ -401,9 +401,9 @@ manufacturers of glucometers.
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-10-27"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -443,9 +443,9 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-10-27"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -479,9 +479,9 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * ^language = #en
 * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = true
-* ^date = "2025-10-27"
+* ^date = "2026-01-16"
 * ^publisher = "BfArM"
 * ^contact.telecom[0].system = #email
 * ^contact.telecom[=].value = "klassi@bfarm.de"
@@ -623,7 +623,7 @@ It allows clients to request CGM summary data filtered by effective period, and 
 * id = "hddt-cgm-summary-operation"
 * name = "HddtCgmSummaryOperation"
 * title = "Search Operation for summary data measurement"
-* status = #draft
+* status = #active
 * experimental = false
 * kind = #operation
 * publisher = "gematik GmbH"
@@ -688,9 +688,9 @@ come from three separate ValueSets:
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-lung-function-measurement"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-11-13"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -713,9 +713,9 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-measurement-values
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-11-13"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -738,9 +738,9 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-values"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-11-13"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -764,9 +764,9 @@ individual measurement by the reference value, resulting in a percentage value (
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-relative-values"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-11-13"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -800,10 +800,10 @@ resource is provided for compatibility with the overarching HDDT specification.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-11-13"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
@@ -875,7 +875,7 @@ In case no LOINC code is available yet, the mapping indicates that with an equiv
 Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
 """
 * name = "HddtLungFunctionTemporaryToLoinc"
-* status = #draft
+* status = #active
 * group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
 * group[=].target = $LNC
 * group[=].element[+].code = #PEF-measured/predicted
@@ -897,9 +897,9 @@ A ValueSet for codes used to specify the method used to determine lung function 
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-value-method"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2025-11-13"
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -932,10 +932,10 @@ resource is provided for compatibility with the overarching HDDT specification.
 - `method` is considered mandatory in order to provide information about the method used to determine the reference value. It can be either a code from the _HddtLungFunctionReferenceValueMethod_ ValueSet or a text description.
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-11-13"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
@@ -1001,10 +1001,10 @@ Each instance of this Observation MUST reference the Observations holding the co
 - `derivedFrom` is constrained to require exactly two references: one to the raw lung function measurement Observation and one to the lung function reference value Observation.
 """
 // * ^version = "0.1.1"
-* ^status = #draft
-* ^date = "2025-11-13"
+* ^status = #active
+* ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
-* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
