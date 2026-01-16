@@ -5,7 +5,7 @@ Via the HDDT interface as requested by [§ 374a SGB V](https://www.gesetze-im-in
 Examples of such medical aids and implants include rtCGM, insulin pumps and pacemakers. 
 However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oximeters and other aids that are not necessarily perceived as digital by the patient also fall under § 374a SGB V, if they transfer the collected data to a backend system. 
 
-§ 374a SGB V will be established stepwise in the German healthcare system. In a first implementation phase three domains (diabetes self-management, respiratory monitoring, simple cardiac monitoring) with selected [Mandatory Interoperable Values](methodology.html#from-use-cases-to-mivs) (MIVs) are affected, while more will be elaborated in the future (see [Roadmap](roadmap.html) and [Methodology](methodology.html) for details).
+§ 374a SGB V will be established stepwise in the German healthcare system. In a first implementation phase three domains (diabetes self-management, lung function testing, blood pressure monitoring) with selected [Mandatory Interoperable Values](methodology.html#from-use-cases-to-mivs) (MIVs) are affected, while more will be elaborated in the future (see [Roadmap](roadmap.html) and [Methodology](methodology.html) for details).
 
 ### Building Blocks 
 

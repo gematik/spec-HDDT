@@ -133,7 +133,7 @@ pages:
     title: MIV - Continuous Glucose Measurement
     generation: markdown
   measurement-lung-function.html:
-    title: MIV - Lung Function Measurement
+    title: MIV - Lung Function Testing
     generation: markdown
   fhir-api-observation.html:
     title: Endpoint Observation
@@ -200,7 +200,7 @@ menu:
     Mandatory Interoperable Values (MIVs): mivs.html
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
     MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
-    MIV - Lung Function Measurement: measurement-lung-function.html
+    MIV - Lung Function Testing: measurement-lung-function.html
   FHIR Artifacts:
     Artifacts Summary: artifacts.html
 

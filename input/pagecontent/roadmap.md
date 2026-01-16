@@ -5,8 +5,8 @@ Mandatory Interoperable Values (MIVs) will be declared for each domain to be pro
 
 The first specification version 1 (MVP) will specify selected [Mandatory Interoperable Values (MIVs)](mivs.html) from the domains 
 * Diabetes Self-Management
-* Respiratory Monitoring
-* Simple Cardiac Monitoring
+* Lung Function Testing
+* Blood Pressure Monitoring
 
 Underlying statutory deadlines can be found in [§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html).
 
