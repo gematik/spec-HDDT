@@ -213,7 +213,19 @@ the DiGA, and the Device Data Recorder. Each step is explained in detail below.
 
 <br>
 
-### Unpairing by the patient
+### Unpairing
+
+The unpairing process allows for the termination of the connection between a DiGA and a Device Data Recorder. This can be initiated either by the patient or automatically by the system under certain conditions. The table below gives examples for such conditions:
+
+| **Condition**                                      | **Description**                                                                                                                                                                                                                       |
+|----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| **Prescription expiration**                        | If the prescription period expires, the DiGA MUST automatically initiate an unpairing sequence with the Device Data Recorder. This prescription period includes a grace period acc. DMN_4.2 of the upcoming [DiGA privacy criteria](https://www.bfarm.de/SharedDocs/Downloads/DE/Medizinprodukte/diga-dipa-datenschutzkriterien.pdf?__blob=publicationFile). If a patient provides a follow-up prescription during the prescription period, the DiGA SHOULD ask the patient, if the pairing with a connected medical aid or implant should be kept active. |
+| **DiGA authorization status changes**              | If the DiGA is removed or retired from the [_DiGA-VZ_](registries-and-zts.html#diga-verzeichnis), the DiGA MUST automatically initiate an unpairing sequence with the Device Data Recorder when the current prescription period ends. A grace period does not extend the prescription period in this case.                                    |
+| **Device Data Recorder no longer offers interface** | If the Device Data Recorder is removed or retired from the [_HIIS-VZ_](registries-and-zts.html#hiis-vz), the Device Data Recorder SHOULD initiate an unpairing sequence with the DiGA. It MUST provide an error message in response to subsequent requests from DiGA that signal the DiGA, that the Device Data Recorder is no longer supporting the HDDT APIs.                                                                                            |
+| **Patient withdraws consent**                      | The patient MAY initiate unpairing at any time via the DiGA or directly at the Device Data Recorder. This action MUST immediately invalidate all authorization artifacts (authorization grant, refresh token, access tokens, and stored consent) associated with the Pairing ID on both sides.                                                                                     |
+
+
+#### Unpairing by the patient
 
 The unpairing process allows the patient to terminate the connection between their DiGA and their Device Data Recorder.
 The patient can initiate unpairing directly from the DiGA or from the Device Data Recorder. Each scenario is explained
@@ -235,7 +247,7 @@ in detail below.
 
 <br>
 
-### Unpairing by the System
+#### Unpairing by the System
 
 The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and
 a Device Data Recorder if certain conditions are met, such as prescription expiration or changes in authorization
