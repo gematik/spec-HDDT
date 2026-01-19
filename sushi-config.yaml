@@ -30,6 +30,7 @@ copyright: gematik GmbH
 
 dependencies:
   hl7.fhir.uv.cgm: 1.0.0
+  hl7.fhir.us.vitals: 1.0.0
 
 parameters:
   no-narrative:
