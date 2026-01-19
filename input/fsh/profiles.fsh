@@ -6,6 +6,9 @@ Alias: $cgm-summary-gmi = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sum
 Alias: $cgm-summary-coefficient-of-variation = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation
 Alias: $cgm-summary-days-of-wear = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear
 Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage
+Alias: $bpm-valueset-bodylocation = http://hl7.org/fhir/us/vitals/ValueSet/bpmeasbodylocationprecoord
+Alias: $bpm-valueset-method = http://hl7.org/fhir/us/vitals/ValueSet/bpMeasMethodVS
+Alias: $bpm-valueset-numeric-in-vs = http://hl7.org/fhir/us/vitals/ValueSet/NumericResultIntVS
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $mdc = urn:iso:std:iso:11073:10101
@@ -1044,3 +1047,156 @@ Each instance of this Observation MUST reference the Observations holding the co
 * derivedFrom[referenceValue] only Reference(HddtLungFunctionReferenceValue)
 * derivedFrom[referenceValue] ^short = "Reference to lung function reference value"
 * derivedFrom[referenceValue] ^definition = "Reference to the Observation holding the reference range and information about the reference range determination method."
+
+
+ValueSet: HddtMivBloodPressureValue
+Id: hddt-miv-blood-pressure-value
+Title: "ValueSet - Blood Pressure Measurement from LOINC"
+Description: """
+This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
+Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
+
+The ValueSet _HddtMivBloodPressureValue_ defines the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\". The definition is made up from
+- this description which provides the semantics and defining characteristics of the MIV
+- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ 
+
+The MIV _Blood Pressure Monitoring_ covers values from blood pressure measurements performed using oszillometric or auscultatory, automated 
+sphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).
+DiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. 
+
+The ValueSet for the MIV _Blood Pressure Monitoring_ contains LOINC codes for blood pressure measurements including 
+systolic blood pressure, diastolic blood pressure, mean blood pressure, and the complete blood pressure panel with all children optional.
+"""
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
+// * ^version = "0.1.1"
+* ^status = #draft
+* ^experimental = false
+* ^date = "2026-01-19"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* $LNC#8480-6 "Systolic blood pressure"
+* $LNC#8462-4 "Diastolic blood pressure"
+* $LNC#8478-0 "Mean blood pressure"
+* $LNC#85354-9 "Blood pressure panel with all children optional"
+
+
+Profile: HddtBloodPressureValue
+Parent: Observation
+Id: hddt-blood-pressure-value
+Title: "Observation - HDDT Blood Pressure Value"
+Description: """
+Profile for capturing blood pressure measurements as FHIR Observation resources.
+
+This profile defines the exchange of blood pressure measurement data for the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\" which is technically defined 
+by the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to 
+a Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless or wired communication.
+
+Blood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and mean blood pressure. 
+This profile uses the LOINC panel code 85354-9 "Blood pressure panel with all children optional" to represent the complete measurement.
+
+**Obligations and Conventions:**
+
+Each Blood Pressure Measurement MUST hold a reference to a _Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource. 
+Blood pressure devices typically do not require calibration.
+
+The three blood pressure components (systolic, diastolic, mean) are captured as sliced components within the Observation resource. 
+Each component MUST include a value in mmHg (millimeters of mercury).
+
+**Constraints applied:**  
+- `status` is restricted to _final_
+- `code` is fixed to LOINC code 85354-9 "Blood pressure panel with all children optional"
+- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory
+- `component` is sliced to require three mandatory components: systolic, diastolic, and mean blood pressure
+- Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit
+- `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
+- Optional elements for `bodySite`, `method`, and `interpretation` are provided with appropriate ValueSet bindings
+"""
+* ^status = #draft
+* ^date = "2025-11-13"
+* ^publisher = "gematik GmbH"
+* ^copyright = "Copyright (c) 2025 gematik GmbH"
+* status = #final (exactly)
+* status ^short = "Measurement status"
+* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
+* status MS
+* code 1..1
+* code = $LNC#85354-9
+* code ^short = "Blood pressure panel code"
+* effective[x] 1..1
+* effective[x] only dateTime
+* effectiveDateTime ^short = "Date and time of blood pressure measurement"
+* interpretation 0..1
+* interpretation from $bpm-valueset-numeric-in-vs (extensible)
+* interpretation ^short = "Clinical interpretation of blood pressure measurement (e.g., normal, higher than normal)"
+* bodySite 0..1
+* bodySite from $bpm-valueset-bodylocation (extensible)
+* bodySite ^short = "Body site of measurement (e.g., Structure of right brachial artery (body structure))"
+* bodySite MS
+* method 0..1
+* method from $bpm-valueset-method (extensible)
+* method ^short = "Measurement method (e.g., vascular oscillometry)"
+* method MS
+* device 1..1
+* device only Reference(HddtPersonalHealthDevice)
+* device ^short = "Reference to the blood pressure measurement device"
+* device MS
+* component ^slicing.discriminator.type = #pattern
+* component ^slicing.discriminator.path = "code"
+* component ^slicing.rules = #open
+* component ^slicing.ordered = false
+* component ^slicing.description = "Slicing for blood pressure components"
+* component contains
+    systolic 1..1 and
+    diastolic 1..1 and
+    mean 1..1
+* component MS
+* component[systolic].code = $LNC#8480-6 "Systolic blood pressure"
+* component[systolic].code MS
+* component[systolic].code ^short = "Systolic blood pressure code"
+* component[systolic].value[x] 1..1
+* component[systolic].value[x] only Quantity
+* component[systolic].value[x] MS
+* component[systolic].valueQuantity.value 1..1
+* component[systolic].valueQuantity.value MS
+* component[systolic].valueQuantity.unit 1..1
+* component[systolic].valueQuantity.unit MS
+* component[systolic].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
+* component[systolic].valueQuantity.system MS
+* component[systolic].valueQuantity.code = #mm[Hg] (exactly)
+* component[systolic].valueQuantity.code MS
+* component[systolic] ^short = "Systolic blood pressure component"
+* component[diastolic].code = $LNC#8462-4 "Diastolic blood pressure"
+* component[diastolic].code MS
+* component[diastolic].code ^short = "Diastolic blood pressure code"
+* component[diastolic].value[x] 1..1
+* component[diastolic].value[x] only Quantity
+* component[diastolic].value[x] MS
+* component[diastolic].valueQuantity.value 1..1
+* component[diastolic].valueQuantity.value MS
+* component[diastolic].valueQuantity.unit 1..1
+* component[diastolic].valueQuantity.unit MS
+* component[diastolic].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
+* component[diastolic].valueQuantity.system MS
+* component[diastolic].valueQuantity.code = #mm[Hg] (exactly)
+* component[diastolic].valueQuantity.code MS
+* component[diastolic] ^short = "Diastolic blood pressure component"
+* component[mean].code = $LNC#8478-0 "Mean blood pressure"
+* component[mean].code MS
+* component[mean].code ^short = "Mean blood pressure code"
+* component[mean].value[x] 1..1
+* component[mean].value[x] only Quantity
+* component[mean].value[x] MS
+* component[mean].valueQuantity.value 1..1
+* component[mean].valueQuantity.value MS
+* component[mean].valueQuantity.unit 1..1
+* component[mean].valueQuantity.unit MS
+* component[mean].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
+* component[mean].valueQuantity.system MS
+* component[mean].valueQuantity.code = #mm[Hg] (exactly)
+* component[mean].valueQuantity.code MS
+* component[mean] ^short = "Mean blood pressure component"

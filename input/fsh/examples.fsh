@@ -1,6 +1,7 @@
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
+Alias: $oi = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
 Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: Example-Blood-Glucose
@@ -600,3 +601,75 @@ Usage: #example
 * capability[4].type.coding[0].display = "FEV1 measured/predicted"
 * capability[5].type.coding[0].system = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
 * capability[5].type.coding[0].code = #PEF-measured/predicted
+
+// ---
+// Blood Pressure Measurement Examples 
+// ---
+Instance: DeviceDefinition/device-definition-blood-pressure-cuff-001
+InstanceOf: DeviceDefinition
+Title: "HDDT Blood Pressure Cuff DeviceDefinition Example"
+Description: "This example represents a Blood Pressure Cuff device definition from the HIIS-VZ."
+Usage: #example
+* id = "device-definition-blood-pressure-cuff-001"
+* type = #device
+* manufacturerString = "HealthTech GmbH"
+* modelNumber = "Smart 2"
+* identifier.system = "https://hiis.bfarm.de"
+* identifier.value = "21.28.01.2020"
+* deviceName[0].name = "BP Cuff Pro"
+* deviceName[0].type = #user-friendly-name
+* type = $sct#70665002 "Blood pressure cuff"
+* capability[0].type.coding[0].system = $loinc
+* capability[0].type.coding[0].code = #8480-6
+* capability[0].type.coding[0].display = "Systolic blood pressure"
+* capability[1].type.coding[0].system = $loinc
+* capability[1].type.coding[0].code = #8462-4
+* capability[1].type.coding[0].display = "Diastolic blood pressure"
+* capability[2].type.coding[0].system = $loinc
+* capability[2].type.coding[0].code = #8478-0
+* capability[2].type.coding[0].display = "Mean blood pressure"
+
+
+Instance: Example-Device-Blood-Pressure-Cuff
+InstanceOf: HddtPersonalHealthDevice
+Title: "HDDT Blood Pressure Cuff Example"
+Description: """
+Example of a __blood pressure cuff as a personal health device__: 
+The device _BP Cuff Pro_ from _HealthTech GmbH_ performs blood pressure measurements. 
+The device does not have an expiration date as it is a durable medical device.
+The vendor-defined model number of this type of device is _Digital BT 2_ and the serial number of the patient's 
+individual device is _BPC0011223345_. Both identifiers are printed on the device and allow the patient 
+to validate the authenticity of this Personal Health Device resource.
+"""
+Usage: #example
+* id = "example-device-blood-pressure-cuff"
+* status = #active
+* type = $mdc#528391 "MDC_DEV_SPEC_PROFILE_PEFM"
+* definition = Reference(DeviceDefinition/device-definition-blood-pressure-cuff-001)
+* deviceName.name = "BP Cuff Pro"
+* deviceName.type = #user-friendly-name
+* modelNumber = "Digital BT 2"
+* manufacturer = "HealthTech GmbH"
+* serialNumber = "BPC0011223345"
+* expirationDate = "2027-12-15"
+
+
+Instance: Example-Blood-Pressure-Measurement
+InstanceOf: HddtBloodPressureValue
+Usage: #example
+Title: "HDDT Blood Pressure Measurement Example"
+Description: "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components."
+* id = "example-blood-pressure-measurement"
+* status = #final
+* code = $loinc#85354-9 "Blood pressure panel with all children optional"
+* effectiveDateTime = "2025-10-23T09:15:00+02:00"
+* device = Reference(Example-Device-Blood-Pressure-Cuff)
+* interpretation = $oi#N "Normal"
+* bodySite = $sct#723962009 "Structure of right brachial artery (body structure)"
+* method = $sct#31813000 "Vascular oscillometry (procedure)"
+* component[systolic].code = $loinc#8480-6 "Systolic blood pressure"
+* component[systolic].valueQuantity = 120 'mm[Hg]' "mm[Hg]"
+* component[diastolic].code = $loinc#8462-4 "Diastolic blood pressure"
+* component[diastolic].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
+* component[mean].code = $loinc#8478-0 "Mean blood pressure"
+* component[mean].valueQuantity = 93 'mm[Hg]' "mm[Hg]"
