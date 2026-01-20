@@ -25,10 +25,10 @@ All extensions and changes to the specification are either based on the regular 
 
 * `fix` Consent validity may be longer than the prescription period of the DiGA, therefore the DiGA must check both. Sequence diagram for request authorization were corrected respectively.
 * `fix` updated links to the current version (1.0.0 - STU 1) of the HL7 CGM profiles.
-* `fix` corrected the requirments on log donwloads (esp. _TLS_ instead of _mTLS_)
+* `fix` corrected the requirements on log downloads (esp. _TLS_ instead of _mTLS_)
 * `fix` some examples had been hard coded to the documentation and therefore were not validated by IG pubisher. All examples are now provided as the FSH and are validated during the build process.
 * `fix` _Must Support_ was further relaxed to cover situations were requested data elements are managed by a third party system and therefore may not be available to a Device Data Recorder.
-* `fix`  A requests for aggregated data that would result in an empty bundle, MUST give an OperationOutcome with an error or warning message as its response. In the original text it was incorrectly stated that an empty bundle should be returned.
+* `fix`  A request for aggregated data that would result in an empty bundle, MUST give an OperationOutcome with an error or warning message as its response. In the original text it was incorrectly stated that an empty bundle should be returned.
 * `fix` If a search for _Observations_ goes too far back in the past, it does not return a 404, but rather a 200 with a bundle containing an OperationOutcome with the error message.
 * `fix` attributes of the Device Data Recorder (e.g. _delay-from-real-time_) are defined per MIV. The original text incorrectly suggested that these attributes are globally defined for all MIV that are supported by a Device Data Recorder.
 * `fix` It is suggested that the attributes (_Grace-Period_, etc.) can be queried via an API. This is incorrect. According to the now available _HIIS-VZ_ specification, the attributes are part of the resource (via extension).
@@ -37,7 +37,7 @@ All extensions and changes to the specification are either based on the regular 
 * `improve` attribute _chunk-time-span_ was changed from externally visible configuration item to a sole internal value at the Device Data Recorder because DiGA can also derive this value from the sampled _Observation_ data
 * `improve` CT validation skipped for DiGA because only Device Data Recorders need validated CT for secure mTLS.
 * `improve` added recommendations for caching times in test environments
-* `improve` end of 2026 BfArM published the _HIIS-VZ_ specification including the _DeviceDefinition_ profiles. Refernces to these profiles were added to the HDDT specification. Statements about the attributes of these profiles were specified to match the _HIIS-VZ_ information model (e.g. making clear that some of these attributes are only accessible through extensions to the _DeviceDefinition_ resource type). 
+* `improve` end of 2025 BfArM published the _HIIS-VZ_ specification including the _DeviceDefinition_ profiles. Refernces to these profiles were added to the HDDT specification. Statements about the attributes of these profiles were specified to match the _HIIS-VZ_ information model (e.g. making clear that some of these attributes are only accessible through extensions to the _DeviceDefinition_ resource type). 
 * `improve` strict requirements about response times have been removed. Vendors should go for best effort instead.
 
 * `documentation` added a dedicated page about error handling including a condensed list of all error codes

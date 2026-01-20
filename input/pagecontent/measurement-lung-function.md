@@ -3,16 +3,16 @@
 [comment]: # (HDDT Lung Function Reference Value --- StructureDefinition-hddt-lung-reference-value.html)
 [comment]: # (HDDT Complete Lung Function Testing --- StructureDefinition-hddt-lung-function-testing-complete.html)
 
-This chapter provides obligations and guidelines for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Lung Function Meansurement_.
+This chapter provides obligations and guidelines for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Lung Function Testing_.
 
 This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing lung function testings to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
-- The relevant FHIR profiles for lung function testing and how they constrain and extends the [HDDT Information Model](information-model.html)
-- CConventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
+- The relevant FHIR profiles for lung function testing and how they constrain and extend the [HDDT Information Model](information-model.html)
+- Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
 - Example requests and responses to support implementation
 
-### Impelemntation Duties for Manufacturers of Device Data Recorders
+### Implementation Duties for Manufacturers of Device Data Recorders
 
 Manufacturers of Device Data Recorders that support the MIV _Lung Function Testing_:
 - MUST implement and operate a FHIR Resource Server as defined in this chapter, 
@@ -23,11 +23,11 @@ Manufacturers of Device Data Recorders that support the MIV _Lung Function Testi
 Further obligations MAY be defined by gematik and BfArM as part of the upcoming processes for conformance validation and registration.
 
 ### FHIR Resource Server
-The Device Data Recorder's FHIR Resource Server gives DIGA access to measured data and related information about devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Lung Function Testing_ MUST implement the following endpoints and profiles:
+The Device Data Recorder's FHIR Resource Server gives DiGA access to measured data and related information about devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Lung Function Testing_ MUST implement the following endpoints and profiles:
 
 * retrieval of the Resource Servers's [Capability Statement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](fhir-api-metadata.html).
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
-* MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/observation.html) endpoint that implements all observavtion profiles relevant for the MIV _Lung Function Testing_. These interactions and underlying profiles are specific for implementing the MIV. The full specifications are given below.
+* MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/observation.html) endpoint that implements all observation profiles relevant for the MIV _Lung Function Testing_. These interactions and underlying profiles are specific for implementing the MIV. The full specifications are given below.
     - [HDDT Lung Function Single Measurement](StructureDefinition-hddt-lung-function-testing.html)
     - [HDDT Lung Function Reference Value](StructureDefinition-hddt-lung-reference-value.html)
     - [HDDT Complete Lung Function Testing](StructureDefinition-hddt-lung-function-testing-complete.html)
@@ -43,7 +43,7 @@ The figure below shows the adaption of the [HDDT Information Model](information-
 
 <br clear="all"/>
 
-All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the reuqest follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Lung Function Testing_ only the following scopes MUST be set:
+All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder's OAuth2 Authorization Server (see [Pairing](pairing.html) for details). The authorization of the request follows the principles defined for [HDDT Smart Scopes](smart-scopes.html). For the MIV _Lung Function Testing_ only the following scopes MUST be set:
 
 ```
 patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing
@@ -162,7 +162,7 @@ Typically, the FEV1 reference value is calculated based on the patient's demogra
 For the correct interpretation of the patient's lung function testing values, it is crucial for physicians to know how exactly the reference value was calculated. In the _HDDT Lung Function Reference Value_ [Observation](https://hl7.org/fhir/R4/Observation.html) profile, the manufacturer of the Device Data Recorder MUST specify a `method`, of how the reference value was created. The manufacturer SHOULD use a code from the _HDDT Lung Function Reference Value Method Codes_ [CodeSystem](https://hl7.org/fhir/R4/CodeSystem.html). Alternatively, the manufacturer MAY provide a plain text description of the method for calculating the reference value.
 
 ##### Derived From Element
-The FHIR specification for the _MIV Lung Function Monitoring_ consists of three separate FHIR profiles. The profile _HDDT Complete Lung Function Testing_ depends on the other two (_HDDT Lung Function Single Measurement_, and _HDDT Lung Function Reference Value_), as it is a calculation, displayed as a percentage, of an individual measurement, divided by the reference value.
+The FHIR specification for the _MIV Lung Function Testing consists of three separate FHIR profiles. The profile _HDDT Complete Lung Function Testing_ depends on the other two (_HDDT Lung Function Single Measurement_, and _HDDT Lung Function Reference Value_), as it is a calculation, displayed as a percentage, of an individual measurement, divided by the reference value.
 
 In order to properly model this information in the _HDDT Complete Lung Function Testing_ FHIR profile, and provide it to the DiGA, the manufacturer of the Device Data Recorder MUST use the `derivedFrom` element to reference one of each _HDDT Lung Function Single Measurement_ and _HDDT Lung Function Reference Value_ resource instances.
 
@@ -172,7 +172,7 @@ Since the reference value is either a normal value for a population group and is
 
 #### Full example
 
-The following object diagram shows the relationships between the FHIR resources involved in representing the lung function testings according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function testing. For readibility reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram shows the relationships between the FHIR resources involved in representing the lung function testings according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function testing. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
