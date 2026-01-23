@@ -40,7 +40,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 '        manufacturer : name of the manufacturer [0..1]
 '    }
 
-    class DR as "Aggregated Report\n<<FHIR Bundle/DiagnosticReport/Observation>>" {
+    class DR as "Aggregated Report\n<<FHIR Bundle/Observation>>" {
         code : classification of the report    
         date : period covered by the report
     }

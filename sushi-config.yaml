@@ -136,6 +136,9 @@ pages:
   measurement-lung-function.html:
     title: MIV - Lung Function Testing
     generation: markdown
+  measurement-blood-pressure.html:
+    title: MIV - Blood Pressure Measurement
+    generation: markdown  
   fhir-api-observation.html:
     title: Endpoint Observation
     generation: markdown
@@ -202,6 +205,7 @@ menu:
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
     MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
     MIV - Lung Function Testing: measurement-lung-function.html
+    MIV - Blood Pressure Measurement: measurement-blood-pressure.html
   FHIR Artifacts:
     Artifacts Summary: artifacts.html
 
