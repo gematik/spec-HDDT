@@ -17,6 +17,10 @@
 
 %The html source does not contain the publish box%
 
+# INFORMATION: Blood Pressure component slicing. Reason: We use a custom HddtBloodPressureValue profile, IG Publisher trys to validate on the standard BP profile where the third component (mean blood pressure) is not part of.
+
+%This element does not match any known slice defined in the profile http://hl7.org/fhir/StructureDefinition/bp%
+
 # ==============================================================================
 # WARNINGS
 # ==============================================================================
