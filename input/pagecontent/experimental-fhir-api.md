@@ -42,9 +42,20 @@ The server should create and store audit logs, as defined by chapter [Security a
 
 ### Search Parameters
 
-Search parameters are an integral part of this FHIR API, as they allow the client to request only resources matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code.
+Search parameters are an integral part of this FHIR API, as they allow the client to request only resources matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code, as well as including of additional FHIR resources in the search result, sorting of search results, etc.
 
-The endpoint specification lists the most important search parameters for the generic API and for individual MIV-Specific APIs.
+The table below lists what search parameters MUST, SHOULD, or MAY be supported. Each entry links to the search parameters section of the relevant FHIR resource specification. Implementation details for each search parameter (such as syntax and behavior) are defined by their data type on the linked page. For example, `code` uses the [token](https://hl7.org/fhir/R4/search.html#token) data type, while `device-name` uses the [string](https://hl7.org/fhir/R4/search.html#string) data type.
+
+| Search parameter | Support | Applies to | Note |
+|------------------|---------|------|------|
+| `code`           | **MUST** | [Observation](https://hl7.org/fhir/R4/observation.html) | Constraining the search to a specific LOINC code, or code from a MIV [ValueSet](https://hl7.org/fhir/R4/valueset.htm).<br>[Link to search parameter list](https://hl7.org/fhir/R4/observation.html#search). |
+| `date`           | **MUST** | [Observation](https://hl7.org/fhir/R4/observation.html) | Constrain search results based on a date or date range.<br>[Link to search parameter list](https://hl7.org/fhir/R4/observation.html#search).|
+| `device-name`           | **MUST** | [Device](https://hl7.org/fhir/R4/device.html) | Search for devices by their name.<br>[Link to search parameter list](https://hl7.org/fhir/R4/device.html#search) |
+| `type`           | **MUST** | [Device](https://hl7.org/fhir/R4/device.html) | Search for devices by their coded type.<br>[Link to search parameter list](https://hl7.org/fhir/R4/device.html#search) |
+| `manufacturer`   | **MUST** | [Device](https://hl7.org/fhir/R4/device.html) | Search for devices by their manufacturer.<br>[Link to search parameter list](https://hl7.org/fhir/R4/device.html#search) |
+|`_include` | **MUST** | all | Request an additional FHIR resource to be included in the search results, e.g. search for [Observation](https://hl7.org/fhir/R4/observation.html) resources and include the referenced [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources in the resulting [Bundle](https://hl7.org/fhir/R4/bundle.html).<br>[Link](https://hl7.org/fhir/R4/search.html#include) |
+
+
 
 For each resource type, all standard FHIR search parameters MAY be supported. See [FHIR Search](https://www.hl7.org/fhir/R4/search.html).
 
