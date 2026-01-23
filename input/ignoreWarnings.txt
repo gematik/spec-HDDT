@@ -21,6 +21,10 @@
 
 %Target Code System http://loinc.org is only supported on the terminology server%
 
+# INFORMATION: Blood Pressure component slicing. Reason: We use a custom HddtBloodPressureValue profile, IG Publisher trys to validate on the standard BP profile where the third component (mean blood pressure) is not part of.
+
+%This element does not match any known slice defined in the profile http://hl7.org/fhir/StructureDefinition/bp%
+
 # ==============================================================================
 # WARNINGS
 # ==============================================================================
