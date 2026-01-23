@@ -467,7 +467,7 @@ This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet
 [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. 
 
 This ValueSet includes
-concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International. Codes from the 
+concepts from ISO/IEEE 11073-10101:2020. Codes from the 
 _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
 included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
 may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
@@ -485,18 +485,10 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * ^status = #active
 * ^experimental = true
 * ^date = "2026-01-16"
-* ^publisher = "BfArM"
-* ^contact.telecom[0].system = #email
-* ^contact.telecom[=].value = "klassi@bfarm.de"
+* ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
-* ^contact.telecom[=].value = "https://www.bfarm.de"
-* ^copyright = "Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM). This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
-[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. This ValueSet includes
-concepts from [ISO/IEEE 11073-10101:2020](https://www.iso.org/standard/77338.html), SNOMED CT and HL7 International. Codes from the 
-_ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
-included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
-may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
-code system and its contents remain copyrighted by ISO and IEEE."
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. Codes and display texts adapted and reprinted with permission from IEEE for the sole purpose of producing this specification. Copyright IEEE 2020. All rights reserved."
 * $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
 * $mdc#528391 ^designation.language = #en
 * $mdc#528391 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
@@ -593,7 +585,7 @@ code system and its contents remain copyrighted by ISO and IEEE."
 // * $gmdn#62414 "Blue-light phototherapy lamp, home-use"
 // * $gmdn#64587 "Uncoated knee femur prosthesis, ceramic"
 // * $gmdn#64992 "ADAMTS13 activity IVD, kit, chemiluminescent immunoassay"
-* include codes from system SNOMED_CT where concept is-a #49062001
+// * include codes from system SNOMED_CT where concept is-a #49062001
 
 
 Instance: HddtCgmSummaryOperation
@@ -806,6 +798,8 @@ resource is provided for compatibility with the overarching HDDT specification.
 * ^status = #active
 * ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url 
+* ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
 * status ^short = "Measurement status"
@@ -846,6 +840,12 @@ The MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating me
 values can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.
 """
 * ^language = #en
+* ^status = #active
+* ^publisher = "gematik GmbH"
+* ^date = "2026-01-23"
+* ^contact.telecom[0].system = #url 
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH."
 * ^experimental = false
 * ^caseSensitive = false
 // ^url = "https://terminologien.bfarm.de/fhir/CodeSystem/hddt-lung-function-reference-value-method-codes"
@@ -866,6 +866,12 @@ Description: "Temporary codes for the MIV Lung Function Testing until LOINC code
 * ^language = #en
 * ^experimental = false
 * ^caseSensitive = false
+* ^status = #active
+* ^publisher = "gematik GmbH"
+* ^date = "2026-01-23"
+* ^contact.telecom[0].system = #url 
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH."
 * #PEF-measured/predicted "PEF measured/predicted"
 
 Instance: HddtLungFunctionTemporaryToLoinc
@@ -879,6 +885,11 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 """
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
+* publisher = "gematik GmbH"
+* date = "2026-01-23"
+* contact.telecom[0].system = #url 
+* contact.telecom[=].value = "https://www.gematik.de"
+* copyright = "gematik GmbH."
 * group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
 * group[=].target = $LNC
 * group[=].element[+].code = #PEF-measured/predicted
@@ -1072,9 +1083,9 @@ systolic blood pressure, diastolic blood pressure, mean blood pressure, and the 
 * ^language = #en
 // * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
 // * ^version = "0.1.1"
-* ^status = #draft
+* ^status = #active
 * ^experimental = false
-* ^date = "2026-01-19"
+* ^date = "2026-01-23"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -1116,8 +1127,8 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 - `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
 - Optional elements for `bodySite`, `method`, and `interpretation` are provided with appropriate ValueSet bindings
 """
-* ^status = #draft
-* ^date = "2025-11-13"
+* ^status = #active
+* ^date = "2026-01-23"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * status = #final (exactly)
