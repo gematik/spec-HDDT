@@ -17,6 +17,10 @@
 
 %The html source does not contain the publish box%
 
+# INFORMATION: LOINC codes not validated for performance reasons.Reason: Triggers only on one ConceptMap that translates to LOINC. Since building process would take too long without a terminology server, ig-publisher does not validate codes from LOINC.
+
+%Target Code System http://loinc.org is only supported on the terminology server%
+
 # ==============================================================================
 # WARNINGS
 # ==============================================================================
