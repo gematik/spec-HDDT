@@ -51,7 +51,8 @@
 %URL-Wert 'https://hiis.bfarm.de' löst nicht auf%
 %No definition could be found for URL value 'https://hiis.bfarm.de'%
 
-
+# WARNING:  HTML has duplicate Anchor IDs. Reason: The file `measurement-lung-function.md` embeds three Observation profiles, each with a distinct 'diff' table. IG-publisher generates HTML-anchors with duplicate ids for each table.
+% The html source has duplicate anchor Ids: diff_Observation,%
 
 # ------------------------------------------------------------------------------
 
