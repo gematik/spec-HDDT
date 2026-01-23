@@ -10,27 +10,27 @@
 # │  supported properties, see:                                                                    │
 # │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: health-device-data-transfer
+id: de.gematik.hddt
 canonical: https://gematik.de/fhir/hddt
-version: 1.0.0
+version: 1.0.0-rc
 name: HealthDeviceDataTransfer
 title: Health Device Data Transfer
 status: active
 publisher: 
   name: gematik GmbH
   url: https://www.gematik.de
-description: This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose  tissue glucose as an example, according to § 374a SGB V.
+description: This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose, Continuous glucose monitoring, lung function testing and blood pressure as an example, according to § 374a SGB V.
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
 releaseLabel: release
-copyright: gematik GmbH
+copyright: gematik GmbH & IEEE 2020
 
 
 
 dependencies:
   hl7.fhir.uv.cgm: 1.0.0
-  hl7.fhir.us.vitals: 1.0.0
+  # hl7.fhir.us.vitals: 1.0.0
 
 parameters:
   no-narrative:
@@ -47,10 +47,10 @@ parameters:
   # in order to preserve the version of the resources:
   apply-version: true
   shownav: true
-  apply-contact: false
-  default-contact: false
-  apply-publisher: false
-  default-publisher: false
+  apply-contact: true
+  default-contact: true
+  apply-publisher: true
+  default-publisher: true
   propagate-status: false
   special-url-base: https://terminologien.bfarm.de/fhir
   # logging: [init, progress, tx, generate]
