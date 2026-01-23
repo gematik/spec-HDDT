@@ -877,6 +877,7 @@ A mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ C
 In case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.
 Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
 """
+* experimental = false
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
 * group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
