@@ -11,6 +11,28 @@ The manufacturer of a certification relevant Device Data Recorder MUST implement
 - [API: DeviceMetric (Device calibration)](fhir-api-devicemetric.html)
 - [API: Device (Device instance and configuration)](fhir-api-device.html)
 
+### Search Parameters
+
+Search parameters are an integral part of this FHIR API, as they allow the client to request only resources matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code, as well as including of additional FHIR resources in the search result, sorting of search results, etc.
+
+The table below lists what search parameters MUST, SHOULD, or MAY be supported. Each entry links to the search parameters section of the relevant FHIR resource specification. Implementation details for each search parameter (such as syntax and behavior) are defined by their data type on the linked page. For example, `code` uses the [token](https://hl7.org/fhir/R4/search.html#token) data type, while `device-name` uses the [string](https://hl7.org/fhir/R4/search.html#string) data type.
+
+| Search parameter | Support | Applies to | Note |
+|------------------|---------|------|------|
+| `code`           | MUST | [Observation](https://hl7.org/fhir/R4/observation.html) | Constraining the search to a specific LOINC code, or code from a MIV [ValueSet](https://hl7.org/fhir/R4/valueset.htm).<br>[Link to search parameter list](https://hl7.org/fhir/R4/observation.html#search). |
+| `date`           | MUST | [Observation](https://hl7.org/fhir/R4/observation.html) | Constrain search results based on a date or date range.<br>[Link to search parameter list](https://hl7.org/fhir/R4/observation.html#search).|
+| `subject`        | SHALL NOT\* | [Observation](https://hl7.org/fhir/R4/observation.html) | \* Special considerations apply for the `subject` search parameter. See [Retrieving Data](retrieving-data.html#searching-observations-using-fhir-search-interactions) for more details.  <br>[Link to search parameter list](https://hl7.org/fhir/R4/observation.html#search).|
+| `device-name`    | MUST | [Device](https://hl7.org/fhir/R4/device.html) | Search for devices by their name.<br>[Link to search parameter list](https://hl7.org/fhir/R4/device.html#search) |
+| `type`           | MUST | [Device](https://hl7.org/fhir/R4/device.html) | Search for devices by their coded type.<br>[Link to search parameter list](https://hl7.org/fhir/R4/device.html#search) |
+| `manufacturer`   | MUST | [Device](https://hl7.org/fhir/R4/device.html) | Search for devices by their manufacturer.<br>[Link to search parameter list](https://hl7.org/fhir/R4/device.html#search) |
+| `_id`            | MUST | all | Search for resources by their logical id.<br>[Link](https://hl7.org/fhir/R4/search.html#id) |
+|`_include`        | MUST | all | Request an additional FHIR resource to be included in the search results, e.g. search for [Observation](https://hl7.org/fhir/R4/observation.html) resources and include the referenced [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources in the resulting [Bundle](https://hl7.org/fhir/R4/bundle.html).<br>[Link](https://hl7.org/fhir/R4/search.html#include) |
+| `_sort`          | MUST | all | Specifies the order to return search results, with optional descending order using a '-' prefix.<br>[Link](https://hl7.org/fhir/R4/search.html#sort) |
+| `_count`         | MUST | all | Specifies the maximum number of resources to return in a single page of search results.<br>[Link](https://hl7.org/fhir/R4/search.html#count) |
+| `_lastUpdated`   | SHOULD | all | Search for resources based on the last time they were changed.<br>[Link](https://hl7.org/fhir/R4/search.html#lastUpdated) |
+| `_has`           | MAY | all | Allows selecting resources based on the properties of resources that refer to them (reverse chaining).<br>[Link](https://hl7.org/fhir/R4/search.html#has) |
+| `_revinclude`    | MAY | all | Requests that resources which refer to the matched search results also be included in the resulting [Bundle](https://hl7.org/fhir/R4/bundle.html).<br>[Link](https://hl7.org/fhir/R4/search.html#revinclude) |
+
 
 ### Security Considerations
 
