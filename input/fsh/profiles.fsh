@@ -401,11 +401,13 @@ manufacturers of glucometers.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -443,11 +445,13 @@ In the future codes defining non-invasive glucose measuring methods may be added
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -479,11 +483,14 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -680,11 +687,13 @@ come from three separate ValueSets:
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-lung-function-testing"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -705,11 +714,13 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-testing-values
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -730,11 +741,13 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-values"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -756,11 +769,13 @@ individual measurement by the reference value, resulting in a percentage value (
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-relative-values"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -839,9 +854,13 @@ The MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating me
 values can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.
 """
 * ^language = #en
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^publisher = "gematik GmbH"
-* ^date = "2026-01-23"
+* ^date = "2026-01-26"
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
@@ -863,11 +882,15 @@ Id: hddt-lung-function-temporary-codes
 Title: "CodeSystem - Lung Function Temporary Codes"
 Description: "Temporary codes for the MIV Lung Function Testing until LOINC codes are avaiblable."
 * ^language = #en
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^experimental = false
 * ^caseSensitive = false
 * ^status = #active
 * ^publisher = "gematik GmbH"
-* ^date = "2026-01-23"
+* ^date = "2026-01-26"
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
@@ -883,10 +906,15 @@ In case no LOINC code is available yet, the mapping indicates that with an equiv
 Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
 """
 * experimental = false
+* language = #en
+* extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* extension[=].valuePeriod.start = "2026-02-01"
+* extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* extension[=].valueContactDetail.name = "gematik GmbH"
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
 * publisher = "gematik GmbH"
-* date = "2026-01-23"
+* date = "2026-01-26"
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
@@ -909,11 +937,13 @@ A ValueSet for codes used to specify the method used to determine lung function 
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-value-method"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -1081,8 +1111,10 @@ systolic blood pressure, diastolic blood pressure, mean blood pressure, and the 
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
-// * ^version = "0.1.1"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
 * ^date = "2026-01-23"
