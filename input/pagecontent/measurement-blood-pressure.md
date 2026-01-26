@@ -26,16 +26,16 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
   <!--Question: auch relevant für BPM? -->
 * (StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-devicemetric.html).
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
-* MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Value](StructureDefinition-hddt-pressure-value.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Pressure Monitoring_. The full specifications are given below.
+* MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Pressure Monitoring_. The full specifications are given below.
 
 The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Pressure Monitoring_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)). 
 
-<!-- <figure>
+<figure>
 <div class="gem-ig-svg-container" style="width: 80%;">
-  {% include HDDT_Informationsmodell_MIV_Blood_Glucose.svg %}
+  {% include HDDT_Informationsmodell_MIV_Blood_Pressure.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Pressure Monitoring</em></figcaption>
-</figure> -->
+</figure>
 
 <br clear="all">
 
@@ -72,7 +72,7 @@ This section discusses the _HDDT Blood Pressure Monitoring_ profile, which const
     <div id="tabs-diff">
       {% include StructureDefinition-hddt-blood-pressure-value-dict-diff.xhtml %}
     </div>
-</div>
+</div> 
 
 For information on general constraints and terminology bindings see the full [StructureDefinition](StructureDefinition-hddt-blood-pressure-value.html) for this profile.
 
@@ -92,12 +92,12 @@ Including these optional elements enhances the clinical utility of the data and 
 
 The following object diagram the relationships between the FHIR resources involved in representing Blood Pressure Monitorings according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Pressure Monitoring](StructureDefinition-hddt-blood-pressure-value.html) profile for two concrete instances of a Blood Pressure Monitoring. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
-<!-- <figure>
+<figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
-  {% include HDDT_Objektmodell_BZ_Complete.svg %}
+  {% include HDDT_Objektmodell_BPM_Complete.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Blood Pressure Monitoring)</em></figcaption>
-</figure> -->
+</figure>
 
 <br clear="all"/>
 
@@ -122,7 +122,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Pressure Monit
 
 **Response**: Returned object is a single Observation resource.
 
-{% includeObservation-example-blood-pressure-value-json-html.xhtml %}
+{% include Observation-example-blood-pressure-value-json-html.xhtml %}
 
 
 ### Example: FHIR-Search for specific LOINC code
