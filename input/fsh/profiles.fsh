@@ -854,7 +854,7 @@ CodeSystem: HddtLungFunctionReferenceValueMethodCodes
 Id: hddt-lung-function-reference-value-method-codes
 Title: "Lung Function Reference Value Method Codes"
 Description: """
-This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+This CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
 Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
 
