@@ -22,8 +22,6 @@ Further obligations MAY be defined by gematik and BfArM as part of the upcoming 
 The Device Data Recorder's FHIR Resource Server gives DiGA access to measured data and related information about devices and device metrics. A Device Data Recorder's FHIR Resource Server that serves the MIV _Blood Pressure Monitoring_ MUST implement the following endpoints and profiles:
 
 * retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](fhir-api-metadata.html).
-* HDDT common RESTful interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status]
-  <!--Question: auch relevant für BPM? -->
 * (StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-devicemetric.html).
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
 * MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Pressure Monitoring_. The full specifications are given below.
@@ -43,7 +41,6 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 ```
 patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value
 patient/Device.rs
-patient/DeviceMetric.rs
 ```
 
 ### Observation Profile _HDDT Blood Pressure Monitoring_
@@ -90,7 +87,7 @@ Including these optional elements enhances the clinical utility of the data and 
 
 #### Examples
 
-The following object diagram the relationships between the FHIR resources involved in representing Blood Pressure Monitorings according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Pressure Monitoring](StructureDefinition-hddt-blood-pressure-value.html) profile for two concrete instances of a Blood Pressure Monitoring. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram the relationships between the FHIR resources involved in representing Blood Pressure Monitorings according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile for two concrete instances of a Blood Pressure Monitoring. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -101,22 +98,22 @@ The following object diagram the relationships between the FHIR resources involv
 
 <br clear="all"/>
 
-The following code example shows the concrete JSON representation of the _HDDT Blood Pressure Monitoring 1_ resource shown in the object diagram.
+The following code example shows the concrete JSON representation of the _HDDT Blood Pressure Value_ resource shown in the object diagram.
 
 {% include Observation-example-blood-pressure-value-json-html.xhtml %}
 
 
 ### MIV-specific Endpoints and Interactions
 #### Observation - READ
-Manufactures of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Blood Pressure Monitoring](StructureDefinition-hddt-blood-pressure-value.html) profile.
+Manufactures of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile.
 
 #### Observation - SEARCH
-Manufactures of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Pressure Monitoring](StructureDefinition-hddt-blood-pressure-value.html) profile. 
+Manufactures of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile. 
 
 
 #### Example: FHIR-READ
 
-**Request:** GET `/Observation/example-blood-glucose-value`
+**Request:** GET `/Observation/example-blood-pressure-value`
 
 **Description:** With FHIR-read interactions, a client can access a single resource instance by querying its internal ID. Restrictions by the OAuth scopes apply—if the client is not allowed to read this resource, a 404 error will be returned.
 
@@ -264,7 +261,7 @@ Manufactures of Device Data Recorders that support the MIV _Blood Pressure Monit
 }
 ```
 
-### Example: FHIR-Search include DeviceMetric
+### Example: FHIR-Search include Device
 
 
 **Request**: GET `/Observation?date=ge2025-10-22&_include=Observation:device`
