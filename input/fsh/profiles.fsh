@@ -12,6 +12,7 @@ Alias: $bpm-valueset-numeric-in-vs = http://hl7.org/fhir/us/vitals/ValueSet/Nume
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $mdc = urn:iso:std:iso:11073:10101
+Alias: $term-version = 1.0.0
 
 Profile: HddtCgmSummary
 Parent: Bundle
@@ -378,7 +379,7 @@ be provided with with the avialable vaues and `Observation.status` MUST set to _
 
 ValueSet: HddtMivBloodGlucoseMeasurement
 Id: hddt-miv-blood-glucose-measurement
-Title: "ValueSet - Blood Glucose Measurement from LOINC"
+Title: "Blood Glucose Measurement from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -401,6 +402,7 @@ manufacturers of glucometers.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -445,6 +447,7 @@ In the future codes defining non-invasive glucose measuring methods may be added
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -483,6 +486,7 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -663,7 +667,7 @@ It allows clients to request CGM summary data filtered by effective period, and 
 
 ValueSet: HddtMivLungFunctionTesting
 Id: hddt-miv-lung-function-testing
-Title: "ValueSet - MIV Lung Function Testing from LOINC"
+Title: "MIV Lung Function Testing from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -687,6 +691,7 @@ come from three separate ValueSets:
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -704,7 +709,7 @@ come from three separate ValueSets:
 
 ValueSet: HddtLungFunctionTestingValues
 Id: hddt-lung-function-testing-values
-Title: "ValueSet - Lung Function Testing Values from Loinc"
+Title: "Lung Function Testing Values from Loinc"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
@@ -714,6 +719,7 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -730,7 +736,7 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 
 ValueSet: HddtLungFunctionReferenceValues
 Id: hddt-lung-function-reference-values
-Title: "ValueSet - Lung Function Reference Values from LOINC"
+Title: "Lung Function Reference Values from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
@@ -741,6 +747,7 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -757,7 +764,7 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 
 ValueSet: HddtLungFunctionRelativeValues
 Id: hddt-lung-function-relative-values
-Title: "ValueSet - Lung Function Relative Values from LOINC"
+Title: "Lung Function Relative Values from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
@@ -769,6 +776,7 @@ individual measurement by the reference value, resulting in a percentage value (
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -844,7 +852,7 @@ resource is provided for compatibility with the overarching HDDT specification.
 
 CodeSystem: HddtLungFunctionReferenceValueMethodCodes
 Id: hddt-lung-function-reference-value-method-codes
-Title: "CodeSystem - Lung Function Reference Value Method Codes"
+Title: "Lung Function Reference Value Method Codes"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -854,6 +862,7 @@ The MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating me
 values can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.
 """
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -879,9 +888,10 @@ values can be determined using different methods. This CodeSystem provides codes
 
 CodeSystem: HddtLungFunctionTemporaryCodes
 Id: hddt-lung-function-temporary-codes
-Title: "CodeSystem - Lung Function Temporary Codes"
+Title: "Lung Function Temporary Codes"
 Description: "Temporary codes for the MIV Lung Function Testing until LOINC codes are avaiblable."
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -899,7 +909,7 @@ Description: "Temporary codes for the MIV Lung Function Testing until LOINC code
 Instance: HddtLungFunctionTemporaryToLoinc
 InstanceOf: ConceptMap
 Usage: #definition
-Title: "ConceptMap - Lung Function Temporary Codes to LOINC"
+Title: "Lung Function Temporary Codes to LOINC"
 Description: """
 A mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.
 In case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.
@@ -907,6 +917,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 """
 * experimental = false
 * language = #en
+* version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * extension[=].valuePeriod.start = "2026-02-01"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -927,7 +938,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 
 ValueSet: HddtLungFunctionReferenceValueMethod
 Id: hddt-lung-function-reference-value-method
-Title: "ValueSet - Lung Function Reference Value Method"
+Title: "Lung Function Reference Value Method"
 Description: """
 A ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:
 - Personal Best
@@ -937,6 +948,7 @@ A ValueSet for codes used to specify the method used to determine lung function 
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
@@ -1092,7 +1104,7 @@ Each instance of this Observation MUST reference the Observations holding the co
 
 ValueSet: HddtMivBloodPressureValue
 Id: hddt-miv-blood-pressure-value
-Title: "ValueSet - Blood Pressure Value from LOINC"
+Title: "Blood Pressure Value from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -1111,6 +1123,7 @@ systolic blood pressure, diastolic blood pressure, mean blood pressure, and the 
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
+* ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
 * ^extension[=].valuePeriod.start = "2026-02-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
