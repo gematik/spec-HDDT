@@ -1063,7 +1063,7 @@ Each instance of this Observation MUST reference the Observations holding the co
 
 ValueSet: HddtMivBloodPressureValue
 Id: hddt-miv-blood-pressure-value
-Title: "ValueSet - Blood Pressure Measurement from LOINC"
+Title: "ValueSet - Blood Pressure Value from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -1157,7 +1157,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * device only Reference(HddtPersonalHealthDevice)
 * device ^short = "Reference to the blood pressure measurement device"
 * device MS
-* component ^slicing.discriminator.type = #pattern
+* component ^slicing.discriminator.type = #value
 * component ^slicing.discriminator.path = "code"
 * component ^slicing.rules = #open
 * component ^slicing.ordered = false
@@ -1167,6 +1167,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
     diastolic 1..1 and
     mean 1..1
 * component MS
+* component[systolic] MS
 * component[systolic].code = $LNC#8480-6 "Systolic blood pressure"
 * component[systolic].code MS
 * component[systolic].code ^short = "Systolic blood pressure code"
@@ -1182,6 +1183,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * component[systolic].valueQuantity.code = #mm[Hg] (exactly)
 * component[systolic].valueQuantity.code MS
 * component[systolic] ^short = "Systolic blood pressure component"
+* component[diastolic] MS
 * component[diastolic].code = $LNC#8462-4 "Diastolic blood pressure"
 * component[diastolic].code MS
 * component[diastolic].code ^short = "Diastolic blood pressure code"
@@ -1197,6 +1199,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * component[diastolic].valueQuantity.code = #mm[Hg] (exactly)
 * component[diastolic].valueQuantity.code MS
 * component[diastolic] ^short = "Diastolic blood pressure component"
+* component[mean] MS
 * component[mean].code = $LNC#8478-0 "Mean blood pressure"
 * component[mean].code MS
 * component[mean].code ^short = "Mean blood pressure code"

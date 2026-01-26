@@ -1,0 +1,87 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title Profiling of the HDDT Information Model for the MIV Blood Pressure Monitoring 
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    
+
+    class "Blood Pressure Value" as BloodPressureValue <<FHIR Observation>>{
+        status = final
+        code : 85354-9|LOINC "Blood pressure panel with all children optional" [1..1]
+        effectiveDateTime : "2025-10-23T09:15:00+02:00"
+        bodySite : 723962009|SNOMED-CT "Structure of left brachial artery" 
+        method : 31813000|SNOMED-CT "Vascular oscillometry"
+    }
+
+    class "Systolic Blood Pressure" as SystolicValue <<FHIR Observation Component>>{
+        code : 8480-6|LOINC "Systolic blood pressure" 
+        valueQuantity.value : 120 
+        valueQuantity.system = UCUM
+        valueQuantity.code = mm[Hg]
+    }
+
+    class "Diastolic Blood Pressure" as DiastolicValue <<FHIR Observation Component>>{
+        code : 8462-4|LOINC "Diastolic blood pressure" 
+        valueQuantity.value : 80 
+        valueQuantity.system = UCUM
+        valueQuantity.code = mm[Hg]
+    }
+
+    class "Mean Blood Pressure" as MeanValue <<FHIR Observation Component>>{
+        code : 8478-0|LOINC "Mean blood pressure" 
+        valueQuantity.value : 93 
+        valueQuantity.system = UCUM
+        valueQuantity.code = mm[Hg]
+    }
+
+    class PHD as "Personal Health Device" <<FHIR Device>> {
+        type : 528391|iso: 11073:10101
+        deviceName : BP Cuff Pro 
+        manufacturer : HealthTech GmbH 
+        serialNumber : BPC0011223345
+        expirationDate : 2027-12-15
+    }
+
+    BloodPressureValue-->  SystolicValue : component:SystolicBP [1..1]
+    BloodPressureValue-->  DiastolicValue : component:DiastolicBP [1..1]
+    BloodPressureValue-->  MeanValue : component:MeanBP [1..1]
+    BloodPressureValue-down->  PHD : device [1..1]
+} 
+
+
+package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
+
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
+        type : 528391|iso: 11073:10101 
+        deviceName : BP Cuff Pro 
+        manufacturer : HealthTech GmbH 
+    }
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
+        url = " https://gematik.de/fhir/hddt/\n           ValueSet/hddt-miv-blood-pressure-value"
+        version = "1.0.0"
+        title = "ValueSet - Blood Pressure Value from LOINC"
+        name = "HddtMivBloodPressureValue"
+        description = "LOINC codes for blood pressure measurements"
+        compose.include = 8480-6|LOINC, 8462-4|LOINC, ...
+    }
+}
+
+'IV::code --> MIV : "included with"
+'Metric::type --> MIV : "included with"
+
+PHD --> PHD_Def : definition [0..1]
+BloodPressureValue::code <-- MIV : Observation.code
+
+@enduml

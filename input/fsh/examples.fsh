@@ -655,12 +655,12 @@ Usage: #example
 * expirationDate = "2027-12-15"
 
 
-Instance: Example-Blood-Pressure-Measurement
+Instance: Example-Blood-Pressure-Value
 InstanceOf: HddtBloodPressureValue
 Usage: #example
-Title: "HDDT Blood Pressure Measurement Example"
+Title: "HDDT Blood Pressure Value Example"
 Description: "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components."
-* id = "example-blood-pressure-measurement"
+* id = "example-blood-pressure-value"
 * status = #final
 * subject = Reference(patientExample)
 * category = $oc#vital-signs

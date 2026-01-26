@@ -1,0 +1,95 @@
+@startuml
+!include fbeta-theme.puml
+hide footbox
+!pragma teoz true
+
+!define MANUFACTURER #A0C5CF
+!define VIBW #C9E6CA
+!define BFARM #F6D7B6
+!define SPEC #FAF3C0
+
+title Profiling of the HDDT Information Model for the MIV Blood Pressure Monitoring 
+skinparam packageStyle rectangle
+
+package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
+    
+
+    class "Blood Pressure Value" as BloodPressureValue <<FHIR Observation>>{
+        status = final
+        code : 85354-9 Blood pressure panel with all children optional [1..1]
+        effectiveDateTime : date and time of the measurement [1..1]
+        bodySite : measurement location [0..1]
+        method : measurement method [0..1]
+    }
+
+    class "Systolic Blood Pressure" as SystolicValue <<FHIR Observation Component>>{
+        code : 8480-6 Systolic blood pressure [1..1]
+        valueQuantity.value : quantity value [1..1]
+        valueQuantity.system = UCUM
+        valueQuantity.code = mm[Hg]
+    }
+
+    class "Diastolic Blood Pressure" as DiastolicValue <<FHIR Observation Component>>{
+        code : 8462-4 Diastolic blood pressure [1..1]
+        valueQuantity.value : quantity value [1..1]
+        valueQuantity.system = UCUM
+        valueQuantity.code = mm[Hg]
+    }
+
+    class "Mean Blood Pressure" as MeanValue <<FHIR Observation Component>>{
+        code : 8478-0 Mean blood pressure [1..1]
+        valueQuantity.value : quantity value [1..1]
+        valueQuantity.system = UCUM
+        valueQuantity.code = mm[Hg]
+    }
+
+    class PHD as "Personal Health Device" <<FHIR Device>> {
+        type : machine-readable device type [0..1]
+        deviceName : product name [0..1]
+        manufacturer : name of the manufacturer [0..1]
+        serialNumber : serial number [0..1]
+        expirationDate : end of life date [0..1]
+    }
+
+    BloodPressureValue-->  SystolicValue : component:SystolicBP [1..1]
+    BloodPressureValue-->  DiastolicValue : component:DiastolicBP [1..1]
+    BloodPressureValue-->  MeanValue : component:MeanBP [1..1]
+    BloodPressureValue-down->  PHD : device [1..1]
+} 
+
+package gematik as "Repository for gematik FHIR IGs" SPEC {
+    object "Observation - Blood Pressure Monitoring" as OP <<FHIR StructureDefinition>> {
+        name = "HddtBloodPressureValue"
+        type = Observation
+        baseDefinition = <<FHIR Observation>>
+        derivation = constraint
+    }
+}
+
+package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
+
+    object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
+        type : kind of device <<SCT or ISO/IEEE 11073 code>> [1..1]
+        deviceName : product name [1..1]
+        manufacturer : name of the manufacturer [0..1]
+    }
+}
+
+package ZTS as "MIV Definitions (ZTS)" VIBW {
+    enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
+        url = " https://gematik.de/fhir/hddt/\n           ValueSet/hddt-miv-blood-pressure-value"
+        version = "1.0.0"
+        title = "ValueSet - Blood Pressure Value from LOINC"
+        name = "HddtMivBloodPressureValue"
+        description = "LOINC codes for blood pressure measurements"
+        compose.include = 8480-6|LOINC, 8462-4|LOINC, ...
+    }
+}
+
+
+PHD --> PHD_Def : "definition" [0..1]
+MIV <.up. OP : "implements"
+BloodPressureValue <. OP : "defines"
+BloodPressureValue::code .> MIV : "included with"
+
+@enduml
