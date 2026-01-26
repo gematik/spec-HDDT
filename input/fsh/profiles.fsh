@@ -424,7 +424,7 @@ manufacturers of glucometers.
 
 ValueSet: HddtMivContinuousGlucoseMeasurement
 Id: hddt-miv-continuous-glucose-measurement
-Title: "ValueSet – Continuous Glucose Measurement from LOINC"
+Title: "Continuous Glucose Measurement from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
