@@ -4,7 +4,7 @@ Authorized DiGA can access data from medical devices and implants through standa
 This chapter defines the FHIR endpoints which are common to all Mandatory Interoperable Values (MIVs). MIV-specific specifications for _HDDT Observation Profiles_ and HDDT-specific FHIR operations can be found under the menu **MIV-Specific APIs**.
 
 ### FHIR Endpoints
-The manufacturer of a certification relevant Device Data Recorder MUST implement the following endpoints, for the purpose of allowing DiGA to access data from medical aid and implants according to § 374a SGB V:
+The manufacturer of a certification relevant Device Data Recorder MUST implement the following endpoints, for the purpose of allowing DiGAs to access data from medical aids and implants according to § 374a SGB V:
 
 - [API: CapabilityStatement (Metadata)](fhir-api-metadata.html)
 - [API: Observation (Measurement data)](fhir-api-observation.html)
@@ -38,7 +38,7 @@ The table below lists what search parameters MUST, SHOULD, or MAY be supported. 
 
 Access to a Device Data Recorder's FHIR Resource Server MUST be secured according to [RFC 8705: OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens](https://datatracker.ietf.org/doc/html/rfc8705). Details on concrete procedures and requirements for OAuth 2.0 Mutual-TLS Client Authentication are specified in the [Security and Privacy](security-and-privacy.html) chapter. 
 
-With each request the DiGA MUST present a valid access token issued by the OAuth2 Authorization Server of the Device Data Recorder. The Device Data Recorder MUST validate the access token and MUST consider the data associated wth the token (patientID, eligible MIVs) with the access control decision. Details about issuance and renewal of Access Token are specified in the [OAuth2 Authorization Server](authorization-server.html) chapter. Details about the application of the SMART scopes encoded with the Access Token are given in the [Smart Scopes](smart-scopes.html) chapter.
+With each request the DiGA MUST present a valid access token issued by the OAuth2 Authorization Server of the Device Data Recorder. The Device Data Recorder MUST validate the access token and MUST consider the data associated with the token (patientID, eligible MIVs) with the access control decision. Details about issuance and renewal of Access Token are specified in the [OAuth2 Authorization Server](authorization-server.html) chapter. Details about the application of the SMART scopes encoded with the Access Token are given in the [Smart Scopes](smart-scopes.html) chapter.
 
 Both DiGA and Device Data Recorder MUST write access and usage logs according to the [Security and Privacy](security-and-privacy.html) chapter. 
 
@@ -52,4 +52,4 @@ The sequence diagram below illustrates the access control flow between a DiGA an
 </figure>
 <br clear="all"/>
 
-Remark: The FHIR Resource Server MAY cache registry information (e.g. certificate of a DiGA)and certificate status information (e.g. revocation status of a DiGA certificate). See the [Security and Privacy](security-and-privacy.html) chapter for details and maximum caching durations.
+Remark: The FHIR Resource Server MAY cache registry information (e.g. certificate of a DiGA) and certificate status information (e.g. revocation status of a DiGA certificate). See the [Security and Privacy](security-and-privacy.html) chapter for details and maximum caching durations.
