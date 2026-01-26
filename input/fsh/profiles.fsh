@@ -709,7 +709,7 @@ come from three separate ValueSets:
 
 ValueSet: HddtLungFunctionTestingValues
 Id: hddt-lung-function-testing-values
-Title: "Lung Function Testing Values from Loinc"
+Title: "Lung Function Testing Values from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
