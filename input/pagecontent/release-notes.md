@@ -12,11 +12,11 @@ The tags are used as follows:
 
 * `fix`: should only be used for fixing **errors** in the (potentially) normative content of the specification (requirements + profiles + examples); typo fixes are not included in the release notes.
 
-### Version 1.0.0
+### Version 1.0.0-rc
 
 ---
 
-Date: 30.01.2026
+Date: 29.01.2026
 
 All extensions and changes to the specification are either based on the regular project plan (e.g. adding further domains) or on feedback received during the ballot period of version 0.1.0-ballot.
 
