@@ -24,13 +24,13 @@ license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
 releaseLabel: release
-copyright: gematik GmbH & IEEE 2020
+copyright: gematik GmbH
 
 
 
 dependencies:
   hl7.fhir.uv.cgm: 1.0.0
-  # hl7.fhir.us.vitals: 1.0.0
+  hl7.fhir.us.vitals: 1.0.0
 
 parameters:
   no-narrative:
