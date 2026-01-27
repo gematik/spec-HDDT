@@ -1118,8 +1118,7 @@ The MIV _Blood Pressure Monitoring_ covers values from blood pressure measuremen
 sphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).
 DiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. 
 
-The ValueSet for the MIV _Blood Pressure Monitoring_ contains LOINC codes for blood pressure measurements including 
-systolic blood pressure, diastolic blood pressure, mean blood pressure, and the complete blood pressure panel with all children optional.
+The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for complete blood pressure panel, but should still have the option to include additional code in future updates.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -1135,10 +1134,7 @@ systolic blood pressure, diastolic blood pressure, mean blood pressure, and the 
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#8480-6 "Systolic blood pressure"
-* $LNC#8462-4 "Diastolic blood pressure"
-* $LNC#8478-0 "Mean blood pressure"
-* $LNC#85354-9 "Blood pressure panel with all children optional"
+* $LNC#35094-2 "Blood pressure panel"
 
 
 Profile: HddtBloodPressureValue
@@ -1146,14 +1142,14 @@ Parent: Observation
 Id: hddt-blood-pressure-value
 Title: "Observation - HDDT Blood Pressure Value"
 Description: """
-Profile for capturing blood pressure measurements as FHIR Observation resources.
+Profile for capturing blood pressure value as FHIR Observation resources.
 
-This profile defines the exchange of blood pressure measurement data for the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\" which is technically defined 
+This profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\" which is technically defined 
 by the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to 
-a Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless or wired communication.
+a Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.
 
 Blood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and mean blood pressure. 
-This profile uses the LOINC panel code 85354-9 "Blood pressure panel with all children optional" to represent the complete measurement.
+This profile uses the LOINC panel code 35094-2 "Blood pressure panel" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.
 
 **Obligations and Conventions:**
 
@@ -1165,7 +1161,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 
 **Constraints applied:**  
 - `status` is restricted to _final_
-- `code` is fixed to LOINC code 85354-9 "Blood pressure panel with all children optional"
+- `code` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 35094-2
 - `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory
 - `component` is sliced to require three mandatory components: systolic, diastolic, and mean blood pressure
 - Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit
