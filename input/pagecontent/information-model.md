@@ -97,11 +97,11 @@ As described in the section on [certification relevant systems](certification-re
 
 * __Device Data Recorder FHIR Endpoint__ (based on FHIR [Endpoint](https://hl7.org/fhir/R4/endpoint.html)): 
   * URL of the FHIR endpoint that a DiGA must call for getting access to the FHIR resources managed by the Device Data Recorder (see previous section). 
-  * Fully Qualified Domain Name (FQDN) as stated in the FHIR endpoint's X.509 certificate. This allows a DIGA to securely authenticate the FHIR endpoint.
+  * Fully Qualified Domain Name (FQDN) as stated in the FHIR endpoint's X.509 certificate. This allows a DiGA to securely authenticate the FHIR endpoint.
   
 * __Device Data Recorder AuthZ Endpoint__ (based on FHIR [Endpoint](https://hl7.org/fhir/R4/endpoint.html)):
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
-  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the Device Data Recorder.
+  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DiGA to securely authenticate the authorization endpoint of the Device Data Recorder.
 
 The links between these resources are maintained within the _HIIS-VZ_ as extensions to the FHIR [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) that represents the Device Data Recorder Definition (see _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ and [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for details). 
 

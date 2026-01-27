@@ -16,7 +16,7 @@ It should be noted that the `Content-Type` and `Accept` headers may include addi
 * HDDT device data providers SHOULD support the [FHIR HTTP `_format` Parameter](https://www.hl7.org/fhir/R4/http.html#parameters) and MAY support the other parameters defined at https://www.hl7.org/fhir/R4/http.html#parameters.
 
 ### _Mandatory_, _Must Support_ and _Optional_ Elements
-The elements defined within the HDDT FHIR profiles consist of _Mandatory_, _Must Support_ and _Optional_ elements. This section defines how resource servers as device data providers and DIGA as device data consumers MUST process _Mandatory_, _Must Support_ and _Optional_ elements. Basis for these definitions are the [HL7-D Best Practices for Profiling FHIR](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current).
+The elements defined within the HDDT FHIR profiles consist of _Mandatory_, _Must Support_ and _Optional_ elements. This section defines how resource servers as device data providers and DiGA as device data consumers MUST process _Mandatory_, _Must Support_ and _Optional_ elements. Basis for these definitions are the [HL7-D Best Practices for Profiling FHIR](https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current).
 
 #### _Mandatory_ Elements
 Mandatory elements are elements with a minimum cardinality of 1 (min=1). A HDDT device data provider always MUST provide a valid value for such elements. A HDDT device data consumer MUST be able to process such elements according to the semantics as defined with the HDDT specifications or the core HL7 FHIR R4 specification.
