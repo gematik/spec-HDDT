@@ -41,8 +41,8 @@ parameters:
     - "DeviceDefinition/*"
     - "Patient/*"
     - "OperationOutcome/*"
-  # no-validate:
-  #   - "ValueSet/hddt-device-type"  
+  no-validate:
+    - "DeviceDefinition/*"  
   show-inherited-invariants: true
   # in order to preserve the version of the resources:
   apply-version: true
@@ -54,6 +54,7 @@ parameters:
   propagate-status: false
   special-url-base: https://terminologien.bfarm.de/fhir
   # logging: [init, progress, tx, generate]
+
 
 
 pages:
