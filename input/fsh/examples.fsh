@@ -664,7 +664,7 @@ Description: "Example of a blood pressure measurement with systolic, diastolic, 
 * status = #final
 * subject = Reference(patientExample)
 * category = $oc#vital-signs
-* code = $loinc#85354-9 "Blood pressure panel with all children optional"
+* code = $loinc#35094-2 "Blood pressure panel"
 * effectiveDateTime = "2025-10-23T09:15:00+02:00"
 * device = Reference(Example-Device-Blood-Pressure-Cuff)
 * interpretation = $oi#N "Normal"
