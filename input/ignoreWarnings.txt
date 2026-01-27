@@ -44,6 +44,10 @@
 
 %The definition for the element 'Device.type' binds to the value set 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type' which is experimental, but this structure is not labeled as experimental%
 
+# WARNING: CodeSystem not found. Reason: This CodeSystem is currently not published.
+
+%A definition for CodeSystem 'https://fhir.bfarm.de/CodeSystem/HiisManufacturerType' could not be found%
+
 
 # WARNING: Deprecated extension. Reason: The warning relates to an extension (elementdefinition-maxValueSet|5.2.0) that remains temporarily used for backward compatibility.
 
@@ -54,10 +58,11 @@
 
 %HTML fragment%
 
-# WARNING: URL resolution for non-FHIR external systems. Reason: The URL 'https://hiis.bfarm.de' is a legitimate external reference (not a FHIR endpoint). It does not resolve via HTTP intentionally.
+# WARNING: URL resolution for non-FHIR external systems. Reason: The URLs is a legitimate external reference (not a FHIR endpoint). It does not resolve via HTTP intentionally.
 
-%URL-Wert 'https://hiis.bfarm.de' löst nicht auf%
-%No definition could be found for URL value 'https://hiis.bfarm.de'%
+%URL-Wert%
+%No definition could be found for URL value%
+
 
 # WARNING:  HTML has duplicate Anchor IDs. Reason: The file `measurement-lung-function.md` embeds three Observation profiles, each with a distinct 'diff' table. IG-publisher generates HTML-anchors with duplicate ids for each table.
 % The html source has duplicate anchor Ids: diff_Observation,%

@@ -98,12 +98,20 @@ Usage: #example
 Title: "HDDT Glucometer DeviceDefinition Example"
 Description: "Example for a medical device definition (Glucometer) from the HIIS-VZ."
 * id = "example-glucometer-def"
-* identifier.system = "https://hiis.bfarm.de"
+* identifier.system = "http://fhir.de/sid/gkv/hmnr"
 * identifier.value = "12.34.56.7890" 
 * deviceName[0].name = "GlucoCheck Plus mg/dL"
 * deviceName[0].type = #user-friendly-name
 * type = $sct#337414009 "Blood glucose meter (physical object)"
-* manufacturerString = "Glukko Inc."
+* manufacturerReference = Reference(Example-Glucometer-Manufacturer)
+* modelNumber = "GCPlus 1"
+* extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+* extension[0].extension[0].url = "mivSet"
+* extension[0].extension[0].valueReference = Reference(Example-Universal-Backend)
+* extension[1].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"
+* extension[1].extension[0].url = "deviceIdentifier"
+* extension[1].extension[0].valueString = "9912345GLUCOMETER7A"
+* parentDevice = Reference(Example-Universal-Backend)
 * property[0].type.text = "Supported unit"
 * property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
 * property[+].type.text = "Reference range low"
@@ -117,6 +125,100 @@ Description: "Example for a medical device definition (Glucometer) from the HIIS
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #2339-0
 * capability[0].type.coding[0].display = "Glucose [Mass/volume] in Blood"
+
+Instance: Example-Glucometer-Manufacturer
+InstanceOf: Organization
+Usage: #example
+Title: "HDDT Glucometer Manufacturer Example"
+Description: "Example organization representing the manufacturer of the glucometer device."
+* id = "example-glucometer-manufacturer"
+* type.coding[0].system = "https://fhir.bfarm.de/CodeSystem/HiisManufacturerType"
+* type.coding[0].code = #legal
+* type.coding[0].display = "Legal Entity"
+* name = "Glukko Inc."
+* telecom[0].system = #email
+* telecom[0].value = "info@glukko.com"
+* address[0].line[0] = "Glukko Street 1"
+* address[0].city = "Berlin"
+* address[0].postalCode = "10115"
+* address[0].country = "DE"
+* contact[0].name.given = "John"
+* contact[0].name.family = "Glucose"
+* contact[0].telecom[0].system = #phone
+* contact[0].telecom[0].value = "+49-30-1234567"
+
+Instance: Example-Universal-Backend
+InstanceOf: DeviceDefinition
+Usage: #example
+Title: "HDDT Universal Device Backend Example"
+Description: "Example for a universal backend system for processing HiMi data according to § 374a SGB V. Supports multiple device types. Values in the 'mivSet' extensions are just exemplary, and do not reflect the specification."
+* id = "example-universal-backend"
+* identifier.system = "https://fhir.bfarm.de/Identifier/HiisId"
+* identifier.value = "DE-1234567890"
+* manufacturerString = "Health IT Solutions AG"
+* deviceName[0].name = "§ 374a SGB V Universal Backend"
+* deviceName[0].type = #user-friendly-name
+* version = "1.0.0"
+* extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink"
+* extension[=].valueReference[+] = Reference(Example-Universal-Endpoint-fhir)
+* extension[+].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink"
+* extension[=].valueReference[+] = Reference(Example-Universal-Endpoint-Auth)
+//* extension[+].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.link"
+//* extension[=].extension[0].url = "relation"
+//* extension[=].extension[=].valueCode = #supports
+//* extension[=].extension[+].url = "relatedDevice"
+//* extension[=].extension[=].extension[0].url = "reference"
+//* extension[=].extension[=].extension[0].valueReference = Reference(Example-Glucometer-Def)
+//* extension[=].extension[+].url = "relatedDevice"
+//* extension[=].extension[=].extension[0].url = "reference"
+//* extension[=].extension[=].extension[0].valueReference = Reference(DeviceDefinition/device-definition-cgm-001)
+//* extension[=].extension[+].url = "relatedDevice"
+//* extension[=].extension[=].extension[0].url = "reference"
+//* extension[=].extension[=].extension[0].valueReference = Reference(DeviceDefinition/device-definition-peak-flow-001)
+//* extension[=].extension[+].url = "relatedDevice"
+//* extension[=].extension[=].extension[0].url = "reference"
+//* extension[=].extension[=].extension[0].valueReference = Reference(DeviceDefinition/device-definition-blood-pressure-cuff-001)
+* extension[+].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+* extension[=].extension[0].url = "delayFromRealTime"
+* extension[=].extension[0].valueDuration.value = 60
+* extension[=].extension[0].valueDuration.unit = "s"
+* extension[=].extension[1].url = "gracePeriod"
+* extension[=].extension[1].valueDuration.value = 15
+* extension[=].extension[1].valueDuration.unit = "min"
+* extension[=].extension[2].url = "historicDataPeriod"
+* extension[=].extension[2].valueDuration.value = 30
+* extension[=].extension[2].valueDuration.unit = "d"
+
+Instance: Example-Universal-Endpoint-fhir
+InstanceOf: Endpoint
+Usage: #example
+Title: "HDDT Universal Backend FHIR Endpoint Example"
+Description: "Example FHIR endpoint for a universal backend system for processing HiMi data according to § 374a SGB V."
+* id = "example-universal-endpoint-fhir"
+* status = #active
+* connectionType.system = "https://fhir.bfarm.de/CodeSystem/HiisEndpointConnectionType"
+* connectionType.code = #hl7-fhir-rest
+* name = "cloud.health-it.de"
+* address = "https://cloud.health-it.de/fhir"
+* payloadType[0].coding[0].system = "http://terminology.hl7.org/CodeSystem/endpoint-payload-type"
+* payloadType[0].coding[0].code = #any
+
+Instance: Example-Universal-Endpoint-Auth
+InstanceOf: Endpoint
+Usage: #example
+Title: "HDDT Universal Backend Auth Endpoint Example"
+Description: "Example authentication endpoint for a universal backend system for processing HiMi data according to § 374a SGB V."
+* id = "example-universal-endpoint-auth"
+* status = #active
+* connectionType.system = "https://fhir.bfarm.de/CodeSystem/HiisEndpointConnectionType"
+* connectionType.code = #oauth-authz-server
+* name = "cloud.health-it.de"
+* address = "https://cloud.health-it.de/.well-known/openid-configuration"
+* payloadType[0].coding[0].system = "http://terminology.hl7.org/CodeSystem/endpoint-payload-type"
+* payloadType[0].coding[0].code = #any
+
+
+
 
 // Instance: Example-DeviceDefinition-Backend
 // InstanceOf: DeviceDefinition
@@ -465,14 +567,20 @@ Title: "HDDT rtCGM DeviceDefinition Example"
 Description: "This example represents a Continuous Glucose Monitoring (CGM) device definition from the HIIS-VZ."
 Usage: #example
 * id = "device-definition-cgm-001"
-* type = #device
-* manufacturerString = "rtCGM Manufacturer Inc."
-* modelNumber = "CGM Model mg/dL"
-* identifier.system = "https://hiis.bfarm.de"
+* identifier.system = "http://fhir.de/sid/gkv/hmnr"
 * identifier.value = "30.29.05.2004"
 * deviceName[0].name = "CGM Model mg/dL"
 * deviceName[0].type = #user-friendly-name
 * type = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* manufacturerReference = Reference(Example-CGM-Manufacturer)
+* modelNumber = "CGM Model mg/dL"
+* extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+* extension[0].extension[0].url = "mivSet"
+* extension[0].extension[0].valueReference = Reference(Example-Universal-Backend)
+* extension[1].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"
+* extension[1].extension[0].url = "deviceIdentifier"
+* extension[1].extension[0].valueString = "9912345CGM001A"
+* parentDevice = Reference(Example-Universal-Backend)
 * property[0].type.text = "Supported unit"
 * property[0].valueCode = $unitsofmeasure#mg/dL "mg/dL"
 * property[+].type.text = "Reference range low"
@@ -486,6 +594,27 @@ Usage: #example
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #105272-9
 * capability[0].type.coding[0].display = "Glucose [Moles/volume] in Interstitial fluid"
+
+Instance: Example-CGM-Manufacturer
+InstanceOf: Organization
+Usage: #example
+Title: "HDDT CGM Manufacturer Example"
+Description: "Example organization representing the manufacturer of the CGM device."
+* id = "example-cgm-manufacturer"
+* type.coding[0].system = "https://fhir.bfarm.de/CodeSystem/HiisManufacturerType"
+* type.coding[0].code = #legal
+* type.coding[0].display = "Legal Entity"
+* name = "rtCGM Manufacturer Inc."
+* telecom[0].system = #email
+* telecom[0].value = "info@rtcgm-manufacturer.com"
+* address[0].line[0] = "CGM Technology Park 15"
+* address[0].city = "Munich"
+* address[0].postalCode = "80331"
+* address[0].country = "DE"
+* contact[0].name.given = "Maria"
+* contact[0].name.family = "Sensor"
+* contact[0].telecom[0].system = #phone
+* contact[0].telecom[0].value = "+49-89-9876543"
 
 // ---
 // Lung Function Examples 
@@ -577,14 +706,20 @@ Title: "HDDT Peak Flow Meter DeviceDefinition Example"
 Description: "This example represents a Peak Flow Meter device definition from the HIIS-VZ."
 Usage: #example
 * id = "device-definition-peak-flow-001"
-* type = #device
-* manufacturerString = "HealthTech GmbH"
-* modelNumber = "Smart 2"
-* identifier.system = "https://hiis.bfarm.de"
+* identifier.system = "http://fhir.de/sid/gkv/hmnr"
 * identifier.value = "21.24.01.2005"
 * deviceName[0].name = "Peak Flow Pro"
 * deviceName[0].type = #user-friendly-name
 * type = $sct#334990001 "Peak flow meter"
+* manufacturerString = "HealthTech GmbH"
+* modelNumber = "Smart 2"
+* extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+* extension[0].extension[0].url = "mivSet"
+* extension[0].extension[0].valueReference = Reference(Example-Universal-Backend)
+* extension[1].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"
+* extension[1].extension[0].url = "deviceIdentifier"
+* extension[1].extension[0].valueString = "9912345PEAKFLOW001"
+* parentDevice = Reference(Example-Universal-Backend)
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #19935-6
 * capability[0].type.coding[0].display = "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
@@ -612,14 +747,20 @@ Title: "HDDT Blood Pressure Cuff DeviceDefinition Example"
 Description: "This example represents a Blood Pressure Cuff device definition from the HIIS-VZ."
 Usage: #example
 * id = "device-definition-blood-pressure-cuff-001"
-* type = #device
-* manufacturerString = "HealthTech GmbH"
-* modelNumber = "Smart 2"
-* identifier.system = "https://hiis.bfarm.de"
+* identifier.system = "http://fhir.de/sid/gkv/hmnr"
 * identifier.value = "21.28.01.2020"
 * deviceName[0].name = "BP Cuff Pro"
 * deviceName[0].type = #user-friendly-name
 * type = $sct#70665002 "Blood pressure cuff"
+* manufacturerString = "HealthTech GmbH"
+* modelNumber = "Digital BT 2"
+* extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+* extension[0].extension[0].url = "mivSet"
+* extension[0].extension[0].valueReference = Reference(Example-Universal-Backend)
+* extension[1].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"
+* extension[1].extension[0].url = "deviceIdentifier"
+* extension[1].extension[0].valueString = "9912345BPCUFF001"
+* parentDevice = Reference(Example-Universal-Backend)
 * capability[0].type.coding[0].system = $loinc
 * capability[0].type.coding[0].code = #8480-6
 * capability[0].type.coding[0].display = "Systolic blood pressure"
@@ -629,7 +770,6 @@ Usage: #example
 * capability[2].type.coding[0].system = $loinc
 * capability[2].type.coding[0].code = #8478-0
 * capability[2].type.coding[0].display = "Mean blood pressure"
-
 
 Instance: Example-Device-Blood-Pressure-Cuff
 InstanceOf: HddtPersonalHealthDevice
@@ -662,9 +802,11 @@ Title: "HDDT Blood Pressure Value Example"
 Description: "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components."
 * id = "example-blood-pressure-value"
 * status = #final
-* subject = Reference(patientExample)
 * category = $oc#vital-signs
-* code = $loinc#35094-2 "Blood pressure panel"
+* subject = Reference(patientExample)
+// * code = $loinc#35094-2 "Blood pressure panel"
+// * code.coding[0] = $loinc#35094-2 "Blood pressure panel"
+* code.coding[0] = $loinc#85354-9 "Blood pressure panel with all children optional"
 * effectiveDateTime = "2025-10-23T09:15:00+02:00"
 * device = Reference(Example-Device-Blood-Pressure-Cuff)
 * interpretation = $oi#N "Normal"

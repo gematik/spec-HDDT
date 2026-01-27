@@ -69,8 +69,7 @@ This supports use cases such as:
 Invariant: device-definition-reference-check-1
 Description: "Ensures that any device definition reference points to the HIIS domain."
 Severity: #error
-Expression: "definition.exists() implies definition.reference.contains('hiis.bfarm.de') or definition.resolve().identifier.system.startsWith('https://hiis.bfarm.de')"
-
+Expression: "definition.exists() implies definition.reference.contains('hiis.bfarm.de') or definition.resolve().identifier.where(system ='http://fhir.de/sid/gkv/hmnr').exists()"
 
 
 Profile: HddtPersonalHealthDevice
@@ -1134,7 +1133,7 @@ The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#35094-2 "Blood pressure panel"
+* $LNC#85354-9 "Blood pressure panel with all children optional"
 
 
 Profile: HddtBloodPressureValue
