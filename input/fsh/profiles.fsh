@@ -1181,7 +1181,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
 * status MS
 * code 1..1
-* code = $LNC#85354-9
+* code from HddtMivBloodPressureValue (required)
 * code ^short = "Blood pressure panel code"
 * effective[x] 1..1
 * effective[x] only dateTime
