@@ -41,6 +41,7 @@ All extensions and changes to the specification are either based on the regular 
 * `improve` strict requirements about response times have been removed. Vendors should go for best effort instead.
 
 * `documentation` added a dedicated page about error handling including a condensed list of all error codes
+* `documentation` added a dedicated section about search parameters that MUST be supported by the FHIR Resource Server implementations
 * `documentation` section about Device Data Recorder attributes was moved to the Information Model and rewritten for better clarity. 
 * `documentation` Deleted chapter 3.3 (Reference implementation) and added information about test support to chapter 3.2
 * `documentation` clarification for building rules for the pairingID (MUST be specific for the user account of the Device Data Recorder)
