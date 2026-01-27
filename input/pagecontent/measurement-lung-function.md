@@ -3,7 +3,7 @@
 [comment]: # (HDDT Lung Function Reference Value --- StructureDefinition-hddt-lung-reference-value.html)
 [comment]: # (HDDT Complete Lung Function Testing --- StructureDefinition-hddt-lung-function-testing-complete.html)
 
-This chapter provides obligations and guidelines for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Lung Function Testing_.
+This chapter provides obligations and guidelines for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Lung Function Testing_. For an overview of this MIV including typical use cases and key values, see the [Lung Function Testing domain](mivs.html#domain-lung-function-testing) chapter.
 
 This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing lung function testings to DiGA, including:
 

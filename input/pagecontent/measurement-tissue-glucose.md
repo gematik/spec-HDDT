@@ -1,4 +1,4 @@
-This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Continuous Glucose Measurement_.
+This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Continuous Glucose Measurement_. For an overview of this MIV including typical use cases and key values, see the [Diabetes Self-Management domain](mivs.html#domain-diabetes-self-management) chapter.
 
 This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing continuous glucose measurements to DiGA, including:
 
