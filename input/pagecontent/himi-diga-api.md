@@ -13,7 +13,7 @@ The manufacturer of a certification relevant Device Data Recorder MUST implement
 
 ### Search Parameters
 
-Search parameters are an integral part of this FHIR API, as they allow the client to request only resources matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code, as well as including of additional FHIR resources in the search result, sorting of search results, etc.
+Search parameters are an integral part of this FHIR API, as they allow the client to request only resources matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code, as well as including additional FHIR resources in the search result, sorting of search results, etc.
 
 The table below lists what search parameters MUST, SHOULD, or MAY be supported. Each entry links to the search parameters section of the relevant FHIR resource specification. Implementation details for each search parameter (such as syntax and behavior) are defined by their data type on the linked page. For example, `code` uses the [token](https://hl7.org/fhir/R4/search.html#token) data type, while `device-name` uses the [string](https://hl7.org/fhir/R4/search.html#string) data type.
 
