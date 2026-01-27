@@ -57,7 +57,7 @@ specification apply without exception. These rules define the general semantics 
 FHIR resource access.
 
 However, the official SMART specification does not consider concrete implementation guides (IGs) or the domain-specific
-relationships between resources. In the context of § 374a SGB V and the interoperability profiles defined for sharing device data between Device Data Recorders and DIGA, additional enforcement rules are defined for the
+relationships between resources. In the context of § 374a SGB V and the interoperability profiles defined for sharing device data between Device Data Recorders and DiGA, additional enforcement rules are defined for the
 resources [Observation](https://hl7.org/fhir/R4/observation.html), [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html), and [Device](https://hl7.org/fhir/R4/device.html).
 
 #### Observation as the Anchor
