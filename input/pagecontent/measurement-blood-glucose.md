@@ -116,7 +116,7 @@ The following code example shows the concrete JSON representation of the _HDDT B
 Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile.
 
 #### Observation - SEARCH
-Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. 
+Manufactures of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. 
 
 
 #### Example: FHIR-READ

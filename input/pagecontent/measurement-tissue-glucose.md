@@ -139,7 +139,7 @@ Manufactures of Device Data Recorders that support the MIV _Continuous Glucose M
 
 #### Observation - SEARCH
 
-Manufactures of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _serach_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile.
+Manufactures of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Additionally the `_lastUpdated` search parameter MUST be supported. [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _serach_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. 
 
 #### Examples - FHIR Search GET
 
