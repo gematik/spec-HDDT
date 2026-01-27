@@ -34,8 +34,7 @@ The _DiGA Verzeichnis_ (DiGA VZ: BfArM DiGA Registry) is operated by BfArM and p
 - listing all DiGA that are eligible to process a defined MIV
 - providing feeds for monitoring changes in the _DiGA Verzeichnis_ (e.g. new DiGA registrations, changes in eligible MIVs, changes in certificate status, etc.)
 
-The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), an API is available at [https://simplifier.net/guide/diga](https://simplifier.net/guide/diga?version=current). To gain access to the DiGA API, it is necessary to create a user account at [https://antrag-api.bfarm.de/](https://antrag-api.bfarm.de/) and submit an application to use the DiGA API. Further information on this will be provided on the [BfArM website](https://www.bfarm.de/EN/Medical-devices/Tasks/DiGA-and-DiPA/Digital-Health-Applications/_node.html) soon. 
- 
+The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), an API is available at [https://simplifier.net/guide/diga](https://simplifier.net/guide/diga?version=current). Details and examples on how to retrieve attributes of a DiGA (e.g. X.509 certificates) are provided at https://simplifier.net/guide/diga/Home/Anwendungsflle/Generische-Anwendungsfälle. To gain access to the DiGA API, it is necessary to create a user account at [https://antrag-api.bfarm.de/](https://antrag-api.bfarm.de/) and submit an application to use the DiGA API. Further information on this will be provided on the [BfArM website](https://www.bfarm.de/EN/Medical-devices/Tasks/DiGA-and-DiPA/Digital-Health-Applications/_node.html) soon.
 
 ### Zentraler Terminologieserver
 

@@ -17,7 +17,7 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The version 1.0.0 is the results of the commenting process of the former version 0.1.0-ballot. It contains specification of the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging as well as the definition of interoperable values to be provisioned per domain (for information about included domains, see [roadmap](roadmap.html)). For information on changes, see [release notes](release-notes.html).  
+The version 1.0.0-rc is the release candidate version with results of the commenting process of the former version 0.1.0-ballot. It contains specification of the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging as well as the definition of interoperable values to be provisioned per domain (for information about included domains, see [roadmap](roadmap.html)). For information on changes, see [release notes](release-notes.html).  
 
 FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 

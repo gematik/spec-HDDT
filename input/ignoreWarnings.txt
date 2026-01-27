@@ -17,6 +17,14 @@
 
 %The html source does not contain the publish box%
 
+# INFORMATION: LOINC codes not validated for performance reasons.Reason: Triggers only on one ConceptMap that translates to LOINC. Since building process would take too long without a terminology server, ig-publisher does not validate codes from LOINC.
+
+%Target Code System http://loinc.org is only supported on the terminology server%
+
+# INFORMATION: Blood Pressure component slicing. Reason: We use a custom HddtBloodPressureValue profile, IG Publisher trys to validate on the standard BP profile where the third component (mean blood pressure) is not part of.
+
+%This element does not match any known slice defined in the profile http://hl7.org/fhir/StructureDefinition/bp%
+
 # ==============================================================================
 # WARNINGS
 # ==============================================================================
@@ -51,7 +59,8 @@
 %URL-Wert 'https://hiis.bfarm.de' löst nicht auf%
 %No definition could be found for URL value 'https://hiis.bfarm.de'%
 
-
+# WARNING:  HTML has duplicate Anchor IDs. Reason: The file `measurement-lung-function.md` embeds three Observation profiles, each with a distinct 'diff' table. IG-publisher generates HTML-anchors with duplicate ids for each table.
+% The html source has duplicate anchor Ids: diff_Observation,%
 
 # ------------------------------------------------------------------------------
 

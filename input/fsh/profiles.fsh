@@ -12,7 +12,7 @@ Alias: $bpm-valueset-numeric-in-vs = http://hl7.org/fhir/us/vitals/ValueSet/Nume
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $mdc = urn:iso:std:iso:11073:10101
-// Alias: $DeviceDefinition = http://device-registry.bfarm.de/fhir/StructureDefinition/DeviceDefinition
+Alias: $term-version = 1.0.0
 
 Profile: HddtCgmSummary
 Parent: Bundle
@@ -379,7 +379,7 @@ be provided with with the avialable vaues and `Observation.status` MUST set to _
 
 ValueSet: HddtMivBloodGlucoseMeasurement
 Id: hddt-miv-blood-glucose-measurement
-Title: "ValueSet - Blood Glucose Measurement from LOINC"
+Title: "Blood Glucose Measurement from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -402,11 +402,14 @@ manufacturers of glucometers.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -421,7 +424,7 @@ manufacturers of glucometers.
 
 ValueSet: HddtMivContinuousGlucoseMeasurement
 Id: hddt-miv-continuous-glucose-measurement
-Title: "ValueSet – Continuous Glucose Measurement from LOINC"
+Title: "Continuous Glucose Measurement from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -444,11 +447,14 @@ In the future codes defining non-invasive glucose measuring methods may be added
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-continuous-glucose-measurement"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -467,7 +473,7 @@ This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet
 [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. 
 
 This ValueSet includes
-concepts from ISO/IEEE 11073-10101:2020, SNOMED CT and HL7 International. Codes from the 
+concepts from ISO/IEEE 11073-10101:2020. Codes from the 
 _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
 included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
 may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
@@ -480,90 +486,86 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-* ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
+// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
 * ^status = #active
-* ^experimental = true
-* ^date = "2026-01-16"
-* ^publisher = "BfArM"
-* ^contact.telecom[0].system = #email
-* ^contact.telecom[=].value = "klassi@bfarm.de"
+* ^experimental = false
+* ^date = "2026-01-26"
+* ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
-* ^contact.telecom[=].value = "https://www.bfarm.de"
-* ^copyright = "Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM). This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
-[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. This ValueSet includes
-concepts from [ISO/IEEE 11073-10101:2020](https://www.iso.org/standard/77338.html), SNOMED CT and HL7 International. Codes from the 
-_ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
-included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
-may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
-code system and its contents remain copyrighted by ISO and IEEE."
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH. Codes and display texts adapted and reprinted with permission from IEEE for the sole purpose of producing this specification. Copyright IEEE 2020. All rights reserved."
 * $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
 * $mdc#528391 ^designation.language = #en
-* $mdc#528391 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528391 ^designation.value = "Blood Pressure Cuff"
 * $mdc#528404 "MDC_DEV_SPEC_PROFILE_BCA"
 * $mdc#528404 ^designation.language = #en
-* $mdc#528404 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528404 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528404 ^designation.value = "Body Composition Analyzer"
 * $mdc#528425 "MDC_DEV_SPEC_PROFILE_HF_CARDIO"
 * $mdc#528425 ^designation.language = #en
-* $mdc#528425 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528425 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528425 ^designation.value = "Cardiovascular Device"
 * $mdc#528402 "MDC_DEV_SPEC_PROFILE_COAG"
 * $mdc#528402 ^designation.language = #en
-* $mdc#528402 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528402 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528402 ^designation.value = "Coagulation meter"
 * $mdc#528409 "MDC_DEV_SPEC_PROFILE_CGM"
 * $mdc#528409 ^designation.language = #en
-* $mdc#528409 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528409 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528409 ^designation.value = "Continuous Glucose Monitor"
 * $mdc#528390 "MDC_DEV_SPEC_PROFILE_ECG"
 * $mdc#528390 ^designation.language = #en
-* $mdc#528390 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528390 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528390 ^designation.value = "Electro cardiograph"
 * $mdc#528457 "MDC_DEV_SPEC_PROFILE_GENERIC"
 * $mdc#528457 ^designation.language = #en
-* $mdc#528457 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528457 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528457 ^designation.value = "Generic 20601 Device"
 * $mdc#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
 * $mdc#528401 ^designation.language = #en
-* $mdc#528401 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528401 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528401 ^designation.value = "Glucose Monitor"
 * $mdc#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
 * $mdc#528455 ^designation.language = #en
-* $mdc#528455 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528455 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528455 ^designation.value = "Independent Activity/Living Hub"
 * $mdc#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
 * $mdc#528403 ^designation.language = #en
-* $mdc#528403 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528403 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528403 ^designation.value = "Insulin Pump"
 * $mdc#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
 * $mdc#528405 ^designation.language = #en
-* $mdc#528405 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528405 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528405 ^designation.value = "Peak Flow meter"
 * $mdc#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
 * $mdc#528388 ^designation.language = #en
-* $mdc#528388 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528388 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528388 ^designation.value = "Pulse Oximeter"
 * $mdc#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
 * $mdc#528397 ^designation.language = #en
-* $mdc#528397 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528397 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528397 ^designation.value = "Respiration rate"
 * $mdc#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
 * $mdc#528408 ^designation.language = #en
-* $mdc#528408 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528408 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528408 ^designation.value = "Sleep Apnea Breathing Equipment"
 * $mdc#528426 "MDC_DEV_SPEC_PROFILE_HF_STRENGTH"
 * $mdc#528426 ^designation.language = #en
-* $mdc#528426 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528426 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528426 ^designation.value = "Strength Equipment"
 * $mdc#528392 "MDC_DEV_SPEC_PROFILE_TEMP"
 * $mdc#528392 ^designation.language = #en
-* $mdc#528392 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528392 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528392 ^designation.value = "Thermometer"
 * $mdc#528399 "MDC_DEV_SPEC_PROFILE_SCALE"
 * $mdc#528399 ^designation.language = #en
-* $mdc#528399 ^designation.use = http://snomed.info/sct#900000000000013009 "Synonym"
+* $mdc#528399 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 * $mdc#528399 ^designation.value = "Weight Scale"
 // * $mdc#528391 "Blood Pressure Cuff"
 // * $mdc#528404 "Body Composition Analyzer"
@@ -593,7 +595,7 @@ code system and its contents remain copyrighted by ISO and IEEE."
 // * $gmdn#62414 "Blue-light phototherapy lamp, home-use"
 // * $gmdn#64587 "Uncoated knee femur prosthesis, ceramic"
 // * $gmdn#64992 "ADAMTS13 activity IVD, kit, chemiluminescent immunoassay"
-* include codes from system SNOMED_CT where concept is-a #49062001
+// * include codes from system SNOMED_CT where concept is-a #49062001
 
 
 Instance: HddtCgmSummaryOperation
@@ -665,7 +667,7 @@ It allows clients to request CGM summary data filtered by effective period, and 
 
 ValueSet: HddtMivLungFunctionTesting
 Id: hddt-miv-lung-function-testing
-Title: "ValueSet - MIV Lung Function Testing from LOINC"
+Title: "MIV Lung Function Testing from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -689,11 +691,14 @@ come from three separate ValueSets:
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-lung-function-testing"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -704,7 +709,7 @@ come from three separate ValueSets:
 
 ValueSet: HddtLungFunctionTestingValues
 Id: hddt-lung-function-testing-values
-Title: "ValueSet - Lung Function Testing Values from Loinc"
+Title: "Lung Function Testing Values from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
@@ -714,11 +719,14 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-testing-values
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -728,7 +736,7 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 
 ValueSet: HddtLungFunctionReferenceValues
 Id: hddt-lung-function-reference-values
-Title: "ValueSet - Lung Function Reference Values from LOINC"
+Title: "Lung Function Reference Values from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
@@ -739,11 +747,14 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-values"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -753,7 +764,7 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 
 ValueSet: HddtLungFunctionRelativeValues
 Id: hddt-lung-function-relative-values
-Title: "ValueSet - Lung Function Relative Values from LOINC"
+Title: "Lung Function Relative Values from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). 
@@ -765,11 +776,14 @@ individual measurement by the reference value, resulting in a percentage value (
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-relative-values"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -806,6 +820,8 @@ resource is provided for compatibility with the overarching HDDT specification.
 * ^status = #active
 * ^date = "2026-01-16"
 * ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url 
+* ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
 * status ^short = "Measurement status"
@@ -836,9 +852,9 @@ resource is provided for compatibility with the overarching HDDT specification.
 
 CodeSystem: HddtLungFunctionReferenceValueMethodCodes
 Id: hddt-lung-function-reference-value-method-codes
-Title: "CodeSystem - Lung Function Reference Value Method Codes"
+Title: "Lung Function Reference Value Method Codes"
 Description: """
-This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+This CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
 Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
 
@@ -846,6 +862,17 @@ The MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating me
 values can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.
 """
 * ^language = #en
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
+* ^status = #active
+* ^publisher = "gematik GmbH"
+* ^date = "2026-01-26"
+* ^contact.telecom[0].system = #url 
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH."
 * ^experimental = false
 * ^caseSensitive = false
 // ^url = "https://terminologien.bfarm.de/fhir/CodeSystem/hddt-lung-function-reference-value-method-codes"
@@ -861,24 +888,47 @@ values can be determined using different methods. This CodeSystem provides codes
 
 CodeSystem: HddtLungFunctionTemporaryCodes
 Id: hddt-lung-function-temporary-codes
-Title: "CodeSystem - Lung Function Temporary Codes"
+Title: "Lung Function Temporary Codes"
 Description: "Temporary codes for the MIV Lung Function Testing until LOINC codes are avaiblable."
 * ^language = #en
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^experimental = false
 * ^caseSensitive = false
+* ^status = #active
+* ^publisher = "gematik GmbH"
+* ^date = "2026-01-26"
+* ^contact.telecom[0].system = #url 
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH."
 * #PEF-measured/predicted "PEF measured/predicted"
 
 Instance: HddtLungFunctionTemporaryToLoinc
 InstanceOf: ConceptMap
 Usage: #definition
-Title: "ConceptMap - Lung Function Temporary Codes to LOINC"
+Title: "Lung Function Temporary Codes to LOINC"
 Description: """
 A mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.
 In case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.
 Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
 """
+* experimental = false
+* language = #en
+* version = $term-version
+* extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* extension[=].valuePeriod.start = "2026-02-01"
+* extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* extension[=].valueContactDetail.name = "gematik GmbH"
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
+* publisher = "gematik GmbH"
+* date = "2026-01-26"
+* contact.telecom[0].system = #url 
+* contact.telecom[=].value = "https://www.gematik.de"
+* copyright = "gematik GmbH."
 * group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
 * group[=].target = $LNC
 * group[=].element[+].code = #PEF-measured/predicted
@@ -888,7 +938,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 
 ValueSet: HddtLungFunctionReferenceValueMethod
 Id: hddt-lung-function-reference-value-method
-Title: "ValueSet - Lung Function Reference Value Method"
+Title: "Lung Function Reference Value Method"
 Description: """
 A ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:
 - Personal Best
@@ -898,11 +948,14 @@ A ValueSet for codes used to specify the method used to determine lung function 
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-lung-function-reference-value-method"
-// * ^version = "0.1.1"
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-16"
+* ^date = "2026-01-26"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -1051,7 +1104,7 @@ Each instance of this Observation MUST reference the Observations holding the co
 
 ValueSet: HddtMivBloodPressureValue
 Id: hddt-miv-blood-pressure-value
-Title: "ValueSet - Blood Pressure Measurement from LOINC"
+Title: "Blood Pressure Value from LOINC"
 Description: """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
@@ -1070,11 +1123,14 @@ systolic blood pressure, diastolic blood pressure, mean blood pressure, and the 
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-miv-blood-glucose-measurement"
-// * ^version = "0.1.1"
-* ^status = #draft
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
+* ^status = #active
 * ^experimental = false
-* ^date = "2026-01-19"
+* ^date = "2026-01-23"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -1116,8 +1172,8 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 - `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
 - Optional elements for `bodySite`, `method`, and `interpretation` are provided with appropriate ValueSet bindings
 """
-* ^status = #draft
-* ^date = "2025-11-13"
+* ^status = #active
+* ^date = "2026-01-23"
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * status = #final (exactly)
@@ -1145,7 +1201,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * device only Reference(HddtPersonalHealthDevice)
 * device ^short = "Reference to the blood pressure measurement device"
 * device MS
-* component ^slicing.discriminator.type = #pattern
+* component ^slicing.discriminator.type = #value
 * component ^slicing.discriminator.path = "code"
 * component ^slicing.rules = #open
 * component ^slicing.ordered = false
@@ -1155,6 +1211,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
     diastolic 1..1 and
     mean 1..1
 * component MS
+* component[systolic] MS
 * component[systolic].code = $LNC#8480-6 "Systolic blood pressure"
 * component[systolic].code MS
 * component[systolic].code ^short = "Systolic blood pressure code"
@@ -1170,6 +1227,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * component[systolic].valueQuantity.code = #mm[Hg] (exactly)
 * component[systolic].valueQuantity.code MS
 * component[systolic] ^short = "Systolic blood pressure component"
+* component[diastolic] MS
 * component[diastolic].code = $LNC#8462-4 "Diastolic blood pressure"
 * component[diastolic].code MS
 * component[diastolic].code ^short = "Diastolic blood pressure code"
@@ -1185,6 +1243,7 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * component[diastolic].valueQuantity.code = #mm[Hg] (exactly)
 * component[diastolic].valueQuantity.code MS
 * component[diastolic] ^short = "Diastolic blood pressure component"
+* component[mean] MS
 * component[mean].code = $LNC#8478-0 "Mean blood pressure"
 * component[mean].code MS
 * component[mean].code ^short = "Mean blood pressure code"

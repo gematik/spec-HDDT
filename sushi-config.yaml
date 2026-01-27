@@ -10,16 +10,16 @@
 # │  supported properties, see:                                                                    │
 # │  http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-development           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: health-device-data-transfer
+id: de.gematik.hddt
 canonical: https://gematik.de/fhir/hddt
-version: 1.0.0
+version: 1.0.0-rc
 name: HealthDeviceDataTransfer
 title: Health Device Data Transfer
 status: active
 publisher: 
   name: gematik GmbH
   url: https://www.gematik.de
-description: This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose  tissue glucose as an example, according to § 374a SGB V.
+description: This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose, Continuous glucose monitoring, lung function testing and blood pressure as an example, according to § 374a SGB V.
 license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
@@ -47,10 +47,10 @@ parameters:
   # in order to preserve the version of the resources:
   apply-version: true
   shownav: true
-  apply-contact: false
-  default-contact: false
-  apply-publisher: false
-  default-publisher: false
+  apply-contact: true
+  default-contact: true
+  apply-publisher: true
+  default-publisher: true
   propagate-status: false
   special-url-base: https://terminologien.bfarm.de/fhir
   # logging: [init, progress, tx, generate]
@@ -136,6 +136,9 @@ pages:
   measurement-lung-function.html:
     title: MIV - Lung Function Testing
     generation: markdown
+  measurement-blood-pressure.html:
+    title: MIV - Blood Pressure Measurement
+    generation: markdown  
   fhir-api-observation.html:
     title: Endpoint Observation
     generation: markdown
@@ -202,6 +205,7 @@ menu:
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
     MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
     MIV - Lung Function Testing: measurement-lung-function.html
+    MIV - Blood Pressure Measurement: measurement-blood-pressure.html
   FHIR Artifacts:
     Artifacts Summary: artifacts.html
 

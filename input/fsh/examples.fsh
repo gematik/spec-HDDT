@@ -2,6 +2,7 @@ Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $sct = http://snomed.info/sct
 Alias: $oi = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+Alias: $oc = http://terminology.hl7.org/CodeSystem/observation-category
 Alias: $mdc = urn:iso:std:iso:11073:10101
 
 Instance: Example-Blood-Glucose
@@ -644,7 +645,7 @@ to validate the authenticity of this Personal Health Device resource.
 Usage: #example
 * id = "example-device-blood-pressure-cuff"
 * status = #active
-* type = $mdc#528391 "MDC_DEV_SPEC_PROFILE_PEFM"
+* type = $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
 * definition = Reference(DeviceDefinition/device-definition-blood-pressure-cuff-001)
 * deviceName.name = "BP Cuff Pro"
 * deviceName.type = #user-friendly-name
@@ -654,13 +655,15 @@ Usage: #example
 * expirationDate = "2027-12-15"
 
 
-Instance: Example-Blood-Pressure-Measurement
+Instance: Example-Blood-Pressure-Value
 InstanceOf: HddtBloodPressureValue
 Usage: #example
-Title: "HDDT Blood Pressure Measurement Example"
+Title: "HDDT Blood Pressure Value Example"
 Description: "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components."
-* id = "example-blood-pressure-measurement"
+* id = "example-blood-pressure-value"
 * status = #final
+* subject = Reference(patientExample)
+* category = $oc#vital-signs
 * code = $loinc#85354-9 "Blood pressure panel with all children optional"
 * effectiveDateTime = "2025-10-23T09:15:00+02:00"
 * device = Reference(Example-Device-Blood-Pressure-Cuff)

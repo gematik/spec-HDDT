@@ -97,11 +97,11 @@ As described in the section on [certification relevant systems](certification-re
 
 * __Device Data Recorder FHIR Endpoint__ (based on FHIR [Endpoint](https://hl7.org/fhir/R4/endpoint.html)): 
   * URL of the FHIR endpoint that a DiGA must call for getting access to the FHIR resources managed by the Device Data Recorder (see previous section). 
-  * Fully Qualified Domain Name (FQDN) as stated in the FHIR endpoint's X.509 certificate. This allows a DIGA to securely authenticate the FHIR endpoint.
+  * Fully Qualified Domain Name (FQDN) as stated in the FHIR endpoint's X.509 certificate. This allows a DiGA to securely authenticate the FHIR endpoint.
   
 * __Device Data Recorder AuthZ Endpoint__ (based on FHIR [Endpoint](https://hl7.org/fhir/R4/endpoint.html)):
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
-  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DIGA to securely authenticate the authorization endpoint of the Device Data Recorder.
+  * Fully Qualified Domain Name (FQDN) as stated in the AuthZ servers's X.509 certificate. This allows a DiGA to securely authenticate the authorization endpoint of the Device Data Recorder.
 
 The links between these resources are maintained within the _HIIS-VZ_ as extensions to the FHIR [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) that represents the Device Data Recorder Definition (see _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ and [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for details). 
 
@@ -110,7 +110,7 @@ For each supported MIV, a Device Data Recorder MUST register the following stati
 
 | property             | value | comments |
 |----------------------|-------|----------|
-| Historic-Data-Period | The `Historic Data Period` defines the number of days for which a Device Data Recorder is able to provide data back into the past. E.g. if a Device Data Recorder announces a _Historic-Data-Period_ of 30 days, it MUST be able to serve any request for data that was measured up to 30 days ago. If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder will return no matches (See section [Searching Observations using FHIR-search interactions](#searching-observations-using-fhir-search-interactions)). | _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV (see [MIV profiles](mivs.html) for details). |
+| Historic-Data-Period | The `Historic Data Period` defines the number of days for which a Device Data Recorder is able to provide data back into the past. E.g. if a Device Data Recorder announces a _Historic-Data-Period_ of 30 days, it MUST be able to serve any request for data that was measured up to 30 days ago. If a DiGA queries for data that is older than _Historic-Data-Period_, the Device Data Recorder will return no matches (See [Searching Observations using FHIR-search interactions](retrieving-data.html#searching-observations-using-fhir-search-interactions)). | _Historic-Data-Period_ MUST NOT be shorter than the minimum historic data period defined for the affected MIV (see [MIV profiles](mivs.html) for details). |
 | Delay-From-Real-Time | Average number of seconds until data measured by the Personal Health Device is available under normal operational conditions at the Device Data Recorder's FHIR end point. | If a DiGA polls for continuously measured device data in fixed intervals, the _Delay-From-Real-Time_ denotes the overlap of two consecutive intervals in order to catch all measured data. |
 | Grace-Period | The _Grace-Period_ defines the number of minutes that a DiGA MUST wait after a previous request for data from the same patient before a new request for data from that patient can be sent to the Device Data Recorder. If a DiGA sends a request for data from a patient before the _Grace-Period_ has elapsed since the last request for that patient, the Device Data Recorder MAY reject the new request. | _Grace-Period_ MUST NOT exceed the maximum grace period defined for the affected MIV (see [MIV profiles](mivs.html) for details).  | 
 
