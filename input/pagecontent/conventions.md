@@ -19,7 +19,9 @@ Whenever a HDDT building block or HDDT class is introduced and defined for the f
 
 ### Regulatory vs. Technical Wording
 
-Baseline for the HDDT requirements is § 374a SGB V together with related regulations (e.g. § 139e SGB V for the _DiGA VZ_). However, the wording in the legal texts is not always suitable for technical specifications, escecially in cases where things are described in a very abstract way in the law. The most prominent example is the term "medical aids and implants" (_Hilfsmittel und Implantate_) which is used in the law from the viewpoint of reimbursement eligibility. For the technical specification this term needs to be differentiated to distinguish between the sensor device and the backend devices. Therefore, in this specification the term "medical aids and implants" is only used when referring to the legal text and its derived requirements for the HDDT specification. In all other cases, more precise technical terms are used, e.g. "Personal Health Device" and "Device Data Recorder" (see section [Building Blocks](certification-relevant-systems.html#building-blocks) for an overview of the most relevant technical terms).
+The HDDT requirements are based on § 374a SGB V and related regulations (e.g., § 139e SGB V for the _DiGA VZ_). However, the wording used in legal texts is not always suitable for technical specifications, particularly when concepts are described abstractly. A prominent example is the term "medical aids and implants" (_Hilfsmittel und Implantate_), which the law uses from a reimbursement eligibility perspective. For a technical specification, this term must be differentiated to distinguish between sensor devices and backend systems. 
+
+Therefore, this specification uses "medical aids and implants" only when directly referencing legal texts and their derived requirements. In all other contexts, more precise technical terms are used, such as "Personal Health Device" and "Device Data Recorder" (see section [Building Blocks](certification-relevant-systems.html#building-blocks) for an overview of key technical terms).
 
 ### German Proper Nouns
 

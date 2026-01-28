@@ -132,7 +132,7 @@ For all connections, the DiGA acts as a client and the Device Data Recorder as a
    - Check the revocation status of the certificate (see (b) below) 
 
 2. Verification of the client certificate of the DiGA by the Device Data Recorder:
-   - Check that the presented certificate ist exactly the same certificate as registered in the _DiGA-VZ_ for the corresponding DiGA that is claimed afterwards on application layer via `client_id` (see (c) below)
+   - Check that the presented certificate is exactly the same certificate as registered in the _DiGA-VZ_ for the corresponding DiGA that is claimed afterwards on application layer via `client_id` (see (c) below)
 
 DiGA and Device Data Recorder operators MUST implement CA Authorization (CAA) and publish a corresponding DNS record for their domain.
 
@@ -148,7 +148,7 @@ ___Additional Notes___:
 * (c) During the TLS connection, only the certificate of the client is initially determined. The certificate MUST then be passed on to the application layer. There, a comparison MUST take place with the information from the _DiGA-VZ_ of the BfArM in order to identify the DiGA. Further the identification data from the DiGA at the application layer (`client_id`) MUST be checked. This data has to match the identity of the DiGA meaning both certificate and `client_id` have to be in the same _DiGA-VZ_ entry. It can be useful for the Device Data Recorder to extract all DiGA certificates from the _DiGA-VZ_ (or at least those from registered DiGAs) to establish an DiGA trust space. This can be passed to the TLS library which verifies the certificate against that trust space during TLS handshake. Most of unauthorized connection attempts will be repelled by that measure. In any case this verification is not enough as additionally the DiGA has to be identified at application layer as described above.
 
 ### Caching of Trust-Related Information
-Device Data Recorders and DiGA MAY cache trust related information in order to optimize performance. The following table lists the maximum time spans for which trust-related information MAY be cached in the procuction environment:
+Device Data Recorders and DiGA MAY cache trust related information in order to optimize performance. The following table lists the maximum time spans for which trust-related information MAY be cached in the production environment:
 
 | Information Source                | Information to be Cached                          | Maximum Caching Duration |
 |----------------------------------|--------------------------------------------------|-------------------------|
@@ -159,7 +159,7 @@ Device Data Recorders and DiGA MAY cache trust related information in order to o
 
 If a source for updating cached information is not reachable, the affected system MUST deny/reject incoming request that rely on the cached information.
 
-In order to ease bug fixing, caching times in test environmnents SHOULD be set to lower values, e.g. one hour for the listed sources and information.
+In order to ease bug fixing, caching times in test environments SHOULD be set to lower values, e.g. one hour for the listed sources and information.
 
 ### Transparency of Operations
 Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy purposes. This audit trail MUST at least log the following events for at least 30 days:
