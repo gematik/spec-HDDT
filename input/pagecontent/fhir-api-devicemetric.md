@@ -1,12 +1,11 @@
-This document describes the syntax and semantics of querying FHIR [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources via the standard FHIR RESTful API. A [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource represents a status instance of a medical aid or implant, and MAY be referenced by a measurement. In the context of HDDT, a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) represents the [calibration status](retrieving-data.html#device-status-and-device-definition) of a medical aid or implant.
+This document describes the syntax and semantics of querying FHIR [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resources via the standard FHIR RESTful API. A [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource represents a status instance of a medical aid or implant and MAY be referenced by a measurement. In the context of HDDT, a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) represents the [calibration status](retrieving-data.html#device-status-and-device-definition) of a medical aid or implant.
 
-To be compliant with § 374a SGB V, a Device Data Recorder MUST implement interactions for reading and searching DeviceMetric resources:
+To be compliant with § 374a SGB V, a Device Data Recorder MUST implement the following interactions for reading and searching DeviceMetric resources:
 - [reading](#devicemetric---read) individual [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources that are referenced by [Observation](mivs.html) resources.
-- [version specific reading](#devicemetric---vread) individual [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources that are referenced by [Observation](mivs.html) resources. This interaction MAY be omitted by a Device Data Recorder if it does not support versioning of [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor). 
-- [searching](#devicemetric---search) for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources linked with the current patient and an authorised MIV.
+- [version specific reading](#devicemetric---vread) individual [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources that are referenced by [Observation](mivs.html) resources. A Device Data Recorder MAY omit this interaction if it does not support versioning of [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor). 
+- [searching](#devicemetric---search) for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources linked with the current patient and an authorized MIV.
 
 Returned resources MUST conform to the [_HDDT Sensor Type and Calibration Status_](#profile---hddt-sensor-type-and-calibration-status) DeviceMetric profile.
-
 
 ---
 
@@ -23,14 +22,14 @@ Returned resources MUST conform to the [_HDDT Sensor Type and Calibration Status
 | **Request Parameters** | `id` - logical ID of the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html). |
 | **Authorization** | OAuth2 Bearer token REQUIRED. The resource server MUST only return a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that can be linked to the patient who is associated with the token. Provided [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
 | **Returned Objects** | [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource. If no matching resource exists or if the matching resource cannot be returned, an error response MUST be sent (see below). |
-| **Specifications** | The only ways for a DiGA to obtain the logical id of a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource are an `Observation.device` reference, or a 'search' interaction for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources of the given patient.<br>A DiGA SHOULD read a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource in order to validate the calibration status of a medical aid or implant. The calibration status is REQUIRED for correct interpretation of measurements. [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) MUST reference the [Device](StructureDefinition-hddt-personal-health-device.html) instance via `DeviceMetric.source`. |
-| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
+| **Specifications** | The only ways for a DiGA to obtain the logical id of a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource are an `Observation.device` reference or a 'search' interaction for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources of the given patient.<br>A DiGA SHOULD read a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource to validate the calibration status of a medical aid or implant. The calibration status is REQUIRED for correct interpretation of measurements. [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) MUST reference the [Device](StructureDefinition-hddt-personal-health-device.html) instance via `DeviceMetric.source`. |
+| **Error codes** | • `400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>• `401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>• `403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>• `404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>• `500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
 
 ---
 
 #### DeviceMetric - VREAD
 
-__Remark:__ A Device Data Recorder MAY omit the version specific read interaction if it does not support versioning of DeviceMetric resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor).
+**Remark:** A Device Data Recorder MAY omit the version-specific read interaction if it does not support versioning of DeviceMetric resources (see [Retrieving Data](retrieving-data.html#versioning-of-device-and-devicemetric-resources) for a discussion on how to express changes of the calibration state of a sensor).
 
 | | |
 |-|-|
@@ -41,14 +40,14 @@ __Remark:__ A Device Data Recorder MAY omit the version specific read interactio
 | **Request Parameters** | `id` - logical ID of the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) <br>`versionId` - version identifier of the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) |
 | **Authorization** | OAuth2 Bearer token REQUIRED. The resource server MUST only return versions of [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources that can be linked to the patient who is associated with the token. Provided [Device](StructureDefinition-hddt-personal-health-device.html) Metric resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
 | **Returned Objects** | [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource. If no matching resource or version exists or if the matching resource or version cannot be returned, an error response MUST be sent (see below). |
-| **Specifications** | The only ways for a DiGA to obtain the logical id and the versionId of a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource are an `Observation.device` reference, or a 'search' interaction for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources of the given patient. |
-| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br> •`500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
+| **Specifications** | The only ways for a DiGA to obtain the logical id and the versionId of a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource are an `Observation.device` reference or a 'search' interaction for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources of the given patient. |
+| **Error codes** | • `400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>• `401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>• `403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>• `404 Not Found` **OperationOutcome** (No resource exists or is accessible with this ID.)<br>• `500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
 
 ---
 
 #### DeviceMetric - SEARCH
 
-__Remark:__ The FHIR specification allows searching for resources by various parameters. However, in the context of HDDT, the only relevant search parameter is the patient who is associated with the access token. Therefore, the search interaction is restricted to this parameter only.
+**Remark:** The FHIR specification allows searching for resources by various parameters. However, in the context of HDDT, the only relevant search parameter is the patient who is associated with the access token. Therefore, the search interaction is restricted to this parameter only.
 
 | | |
 |-|-|
@@ -57,10 +56,10 @@ __Remark:__ The FHIR specification allows searching for resources by various par
 | **Interaction** | SEARCH |
 | **Description** | Search for [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources by certain properties. |
 | **Authorization** | OAuth2 Bearer token REQUIRED. The resource server MUST only return [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources that can be linked to the patient who is associated with the token. Provided [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources MUST match the requestor's granted scopes (see [Smart Scopes](smart-scopes.html) for the compartment semantics that MUST be used for validating the authorization of the requestor). |
-| **Search Parameters** | A full list of the search parameters that this endpoint MUST support, can be found on page [FHIR Resource Server](himi-diga-api.html#search-parameters).<br>The resource server MAY support any additional standard FHIR DeviceMetric search parameters. A DiGA MAY e.g. use the `source` parameter to discover all DeviceMetric resources that belong to a given Personal Health Device instance.  |
+| **Search Parameters** | A full list of the search parameters that this endpoint MUST support can be found on page [FHIR Resource Server](himi-diga-api.html#search-parameters).<br>The resource server MAY support any additional standard FHIR DeviceMetric search parameters. A DiGA MAY, for example, use the `source` parameter to discover all DeviceMetric resources that belong to a given Personal Health Device instance. |
 | **Returned Objects** | [Bundle](https://hl7.org/fhir/R4/bundle.html) containing [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) entries that match the query. Optionally, [Device](StructureDefinition-hddt-personal-health-device.html) entries when using `_include`. If no matching [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resources are found, an empty [Bundle](https://hl7.org/fhir/R4/bundle.html) MUST be returned. |
 | **Specifications** | All constraints and obligations of the standard [FHIR `search` interaction](https://hl7.org/fhir/R4/http.html#search) apply. |
-| **Error codes** |•`400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>•`401 Unauthorized` **plaintext** (Invalid or expired JWT)<br> •`403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>•`500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
+| **Error codes** | • `400 Bad Request` **OperationOutcome** (Invalid query parameters / Invalid search parameters)<br>• `401 Unauthorized` **plaintext** (Invalid or expired JWT)<br>• `403 Forbidden` **OperationOutcome** (Empty Authorization header, or client has no permission for this resource.)<br>• `500` (Internal Server Error—MAY be either an [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) or plain text) |
 
 ---
 
@@ -93,13 +92,12 @@ __Remark:__ The FHIR specification allows searching for resources by various par
 
 ### Example: Glucometer DeviceMetric
 
-In this example the patient uses a glucometer that is connected to the Device Data Recorder via Bluetooth. The glucometer is used to perform blood glucose measurements that are stored as [Observation](mivs.html) resources in the Device Data Recorder. Each Observation references the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that holds the calibration state of the glucometer.
+In this example, the patient uses a glucometer that is connected to the Device Data Recorder via Bluetooth. The glucometer performs blood glucose measurements that are stored as [Observation](mivs.html) resources in the Device Data Recorder. Each Observation references the [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that holds the calibration state of the glucometer.
 
-In the given example the device measures the glucose concentration from capillary blood by using test strips. The patient’s preferred unit is mg/dl which is used by the device for displaying measured values. The glucometer needs to be calibrated by the patient using control strips. The last calibration was performed in Septemer 2025 and the glucometer is still calibrated.
+In the given example, the device measures the glucose concentration from capillary blood using test strips. The patient's preferred unit is mg/dl, which is used by the device for displaying measured values. The glucometer needs to be calibrated by the patient using control strips. The last calibration was performed in September 2025, and the glucometer is still calibrated.
 
-Remarks:
-- The `text` element is omitted in this example to keep the example small. Nevertheless, as all HDDT resources are intended for sole machine processing, the `text` element MAY be omitted.
-
+**Remarks:**
+- The `text` element is omitted in this example to keep it small. As all HDDT resources are intended for machine processing, the `text` element MAY be omitted.
 
 #### DeviceMetric - READ
 
