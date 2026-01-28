@@ -1,30 +1,24 @@
 ### Introduction
 
-This document describes the authorization endpoint of the OAuth 2.0 Authorization Server. The authorization endpoint is
-used to initiate the Authorization Code Flow. It is the endpoint where the patient (resource owner) is redirected
-for authentication and to give consent to a DiGA.
+This document describes the authorization endpoint of the OAuth 2.0 Authorization Server. The authorization endpoint is used to initiate the Authorization Code Flow. It is the endpoint where the patient (resource owner) is redirected for authentication and to grant consent to a DiGA.
 
-Unlike other endpoints, the authorization endpoint is called through the user agent (browser or app). It does not
-require Mutual-TLS client authentication, but it MUST strictly validate the `client_id` and `redirect_uri`.
+Unlike other endpoints, the authorization endpoint is called through the user agent (browser or app). It does not require Mutual-TLS client authentication, but it MUST strictly validate the `client_id` and `redirect_uri`.
 
 ---
 
 ### Endpoint
 
-Note: There is no strict definition of the authorization endpoint URL
-in [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). The URL below is a common convention. Device Data Recorder manufacturers MAY
-choose a different URL structure as long as it is properly documented in
-the [OAuth 2.0 Authorization Server Metadata](authorization-server-metadata-endpoint.html).
+**Note:** There is no strict definition of the authorization endpoint URL in [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749). The URL below is a common convention. Device Data Recorder manufacturers MAY choose a different URL structure as long as it is properly documented in the [OAuth 2.0 Authorization Server Metadata](authorization-server-metadata-endpoint.html).
 
-|                      |                                                                                                                                                                                                                                                                                                                                                                   |
+| | |
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Endpoint**         | `/authorize`                                                                                                                                                                                                                                                                                                                                                      |
-| **HTTP Method**      | GET (via user agent redirect)                                                                                                                                                                                                                                                                                                                                     |
-| **Description**      | Initiates the OAuth 2.0 Authorization Code Flow. The patient is authenticated at the OAuth2 Authorization Server and presented with a consent dialogue for the requested SMART scopes.                                                                                                                                                                            |
-| **Authentication**   | User authentication (patient login). No Mutual-TLS client authentication.                                                                                                                                                                                                                                                                                         |
-| **Returned Objects** | Authorization Code and State parameters (passed via redirect to DiGA `redirect_uri`).                                                                                                                                                                                                                                                                             |
-| **Specifications**   | • MUST comply with [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749).<br>• MUST present requested SMART scopes in a human-readable form for patient consent.<br> • MUST generate and bind consent to a [Pairing ID](pairing.html#pairing-id). <br> • MUST accept the following request parameters:<br> &ensp;• `client_id`<br> &ensp;• `request_uri` (from PAR). |
-| **Error codes**      | `400` (Invalid request)<br>`401` (Unauthorized – authentication failure)<br>`403` (Access denied – consent not given)<br>`500` (Internal Server Error)                                                                                                                                                                                                            |
+| **Endpoint** | `/authorize` |
+| **HTTP Method** | GET (via user agent redirect) |
+| **Description** | Initiates the OAuth 2.0 Authorization Code Flow. The patient is authenticated at the OAuth2 Authorization Server and presented with a consent dialogue for the requested SMART scopes. |
+| **Authentication** | User authentication (patient login). No Mutual-TLS client authentication. |
+| **Returned Objects** | Authorization Code and State parameters (passed via redirect to DiGA `redirect_uri`). |
+| **Specifications** | • MUST comply with [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749).<br>• MUST present requested SMART scopes in a human-readable form for patient consent.<br>• MUST generate and bind consent to a [Pairing ID](pairing.html#pairing-id).<br>• MUST accept the following request parameters:<br>&nbsp;&nbsp;• `client_id`<br>&nbsp;&nbsp;• `request_uri` (from PAR). |
+| **Error codes** | `400` (Invalid request)<br>`401` (Unauthorized – authentication failure)<br>`403` (Access denied – consent not given)<br>`500` (Internal Server Error) |
 
 ---
 

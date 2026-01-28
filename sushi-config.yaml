@@ -131,7 +131,7 @@ pages:
   measurement-blood-glucose.html:
     title: MIV - Blood Glucose Measurement
     generation: markdown
-  measurement-tissue-glucose.html:
+  measurement-cgm.html:
     title: MIV - Continuous Glucose Measurement
     generation: markdown
   measurement-lung-function.html:
@@ -204,7 +204,7 @@ menu:
   MIV-Specific APIs:
     Mandatory Interoperable Values (MIVs): mivs.html
     MIV - Blood Glucose Measurement: measurement-blood-glucose.html
-    MIV - Continuous Glucose Measurement: measurement-tissue-glucose.html
+    MIV - Continuous Glucose Measurement: measurement-cgm.html
     MIV - Lung Function Testing: measurement-lung-function.html
     MIV - Blood Pressure Measurement: measurement-blood-pressure.html
   FHIR Artifacts:

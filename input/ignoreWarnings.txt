@@ -12,6 +12,8 @@
 
 %Reference to draft CodeSystem%
 
+# INFORMATION: Conformance term check. Reason: The reference to § 374a SGB V is explanatory background text only and not intended as a formal conformance statement. The hit does not indicate an error in the specification and can be safely ignored.
+%No conformance term found in the text%
 
 # INFORMATION: Missing publish box in generated HTML.Reason: This IG is not an official HL7 publication, so the 'publish box' requirement does not apply. The warning appears once per build and can safely be suppressed.
 
