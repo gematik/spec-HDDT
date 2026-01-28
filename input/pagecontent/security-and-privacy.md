@@ -168,6 +168,8 @@ Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy
 * unsuccessful pairing and unpairing attempts
 * unauthorized access attempts to device data (Device Data Recorder)
 
+While the audit trail MUST capture the events listed above, its contents MUST be restricted to information necessary for audit and security purposes. Audit logs MUST NOT include personal data that identifies the patient.
+
 Both the DiGA and the Device Data Recorder MUST provide the patient with the ability to inspect the audit trail. Both the DiGA and the Device Data Recorder MUST upon request give responsible data privacy commissioners access to the audit trails.
 
 ### Obligations for Regular Inspections

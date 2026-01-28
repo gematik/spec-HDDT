@@ -39,6 +39,7 @@ All extensions and changes to the specification are either based on the regular 
 * `improve` [Retrieving Data](retrieving-data.html): Attribute _chunk-time-span_ was changed from an externally visible configuration item to a solely internal value at the Device Data Recorder because the DiGA can derive this value from the sampled _Observation_ data.
 * `improve` [Security and Privacy](security-and-privacy.html): CT validation was skipped for DiGA because only Device Data Recorders need validated CTs for secure mTLS.
 * `improve` [Security and Privacy](security-and-privacy.html): Added recommendations for caching times in test environments.
+* `improve` [Security and Privacy](security-and-privacy.html): Clarified that audit logs must be restricted to information necessary for audit and security purposes, and MUST NOT include personal data identifying the patient.
 * `improve` [Information Model](information-model.html): At the end of 2025, BfArM published the _HIIS-VZ_ specification including the _DeviceDefinition_ profiles. References to these profiles were added to the HDDT specification, and statements about the attributes were aligned with the _HIIS-VZ_ information model.
 * `improve` [Operational Requirements](operational-requirements.html): Strict requirements about response times were removed. Vendors should apply a best-effort approach.
 
