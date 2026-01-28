@@ -35,6 +35,7 @@ All extensions and changes to the specification are either based on the regular 
 * `fix` [Information Model](information-model.html): It was previously suggested that the attributes (_Grace-Period_, etc.) could be queried via an API. This is incorrect. According to the _HIIS-VZ_ specification, the attributes are part of the resource (via extension).
 
 
+* `improve` [Pairing](pairing.html): Clarified that the DiGA backend must check on a daily basis whether the consent or prescription period associated with a Pairing ID is still valid.
 * `improve` [Information Model](information-model.html), [Retrieving Data](retrieving-data.html): Cardinality of _Device.definition_ changed from 1..1 to 0..1 to further align with existing FHIR profiles for medical devices.
 * `improve` [Retrieving Data](retrieving-data.html): Attribute _chunk-time-span_ was changed from an externally visible configuration item to a solely internal value at the Device Data Recorder because the DiGA can derive this value from the sampled _Observation_ data.
 * `improve` [Security and Privacy](security-and-privacy.html): CT validation was skipped for DiGA because only Device Data Recorders need validated CTs for secure mTLS.
