@@ -14,7 +14,9 @@ This chapter builds on the [HDDT Information Model](information-model.html), the
 
 ### Implementation Duties for Manufacturers of Device Data Recorders
 
-Manufacturers of Device Data Recorders that support the MIV _Lung Function Testing_:
+Manufacturers of Device Data Recorders that support the MIV _Lung Function Testing_
+
+- MUST implement all requirements expressed through the RFC 2119 keywords defined in [Conventions - Use of Keywords](conventions.html#use-of-keywords). These keywords (MUST, SHOULD, MAY, etc.) are used throughout the entire specification to indicate normative requirements.
 - MUST implement and operate a FHIR Resource Server as defined in this chapter, 
 - MUST implement and operate an [OAuth2 Authorization Server](authorization-server.html),
 - MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the _BfARM HIIS-VZ_ (BfArM Device Registry),
