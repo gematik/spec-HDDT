@@ -86,7 +86,7 @@ Including these optional elements enhances the clinical utility of the data and 
 
 #### Examples
 
-The following object diagram the relationships between the FHIR resources involved in representing Blood Pressure Monitorings according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile for two concrete instances of a Blood Pressure Monitoring. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram the relationships between the FHIR resources involved in representing Blood Pressure Monitorings according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile instances of a blood pressure measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -123,9 +123,9 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
 
 ### Example: FHIR-Search for specific LOINC code
 
-**Request**: GET `/Observation?code=8480-6`
+**Request**: GET `/Observation?code=85354-9`
 
-**Description**: Obtain all of the Observations where `code` is the LOINC code for systolic blood pressure measurements (in mmHg). OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+**Description**: Obtain all of the Observations where `code` is the LOINC code for `Blood pressure panel with all children optional`. OAuth scopes apply, and only Observations are returned that the client is allowed to access.
 
 **Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
 
