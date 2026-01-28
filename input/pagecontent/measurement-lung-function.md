@@ -5,7 +5,7 @@
 
 This chapter provides obligations and guidelines for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Lung Function Testing_. For an overview of this MIV including typical use cases and key values, see the [Lung Function Testing domain](mivs.html#domain-lung-function-testing) chapter.
 
-This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing lung function testings to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing lung function tests to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
 - The relevant FHIR profiles for lung function testing and how they constrain and extend the [HDDT Information Model](information-model.html)
@@ -88,9 +88,9 @@ For the full normative specification of this profile, see the respective [Struct
 For information on general constraints and terminology bindings see the full [StructureDefinition](StructureDefinition-hddt-lung-function-testing.html) for this profile.
 
 #### Observation Profile _HDDT Lung Function Reference Value_
-The [Observation](https://hl7.org/fhir/R4/observation.html) profile _HDDT Lung Function Reference Value_ represents a value, used as a baseline when interpreting individual lung function testings of a patient (see section [Reference Value](#reference-value)).
+The [Observation](https://hl7.org/fhir/R4/observation.html) profile _HDDT Lung Function Reference Value_ represents a value, used as a baseline when interpreting individual lung function tests of a patient (see section [Reference Value](#reference-value)).
 
-For the full normative specification of this profile, see the respective [StructureDefinition](StructureDefinition-hddt-lung-function-testing.html) for this profile.
+For the full normative specification of this profile, see the respective [StructureDefinition](StructureDefinition-hddt-lung-reference-value.html) for this profile.
 
 ##### Snapshot View of the Profile
 <div id="tabs-key">
@@ -162,17 +162,17 @@ Typically, the FEV1 reference value is calculated based on the patient's demogra
 For the correct interpretation of the patient's lung function measurement values, it is crucial for physicians to know how exactly the reference value was calculated. In the _HDDT Lung Function Reference Value_ [Observation](https://hl7.org/fhir/R4/Observation.html) profile, the manufacturer of the Device Data Recorder MUST specify a `method`, of how the reference value was created. The manufacturer SHOULD use a code from the _HDDT Lung Function Reference Value Method Codes_ [CodeSystem](https://hl7.org/fhir/R4/CodeSystem.html). Alternatively, the manufacturer MAY provide a plain text description of the method for calculating the reference value.
 
 ##### Derived From Element
-The FHIR specification for the _MIV Lung Function Testing consists of three separate FHIR profiles. The profile _HDDT Complete Lung Function Testing_ depends on the other two (_HDDT Lung Function Testing_, and _HDDT Lung Function Reference Value_), as it is a calculation, displayed as a percentage, of an individual measurement, divided by the reference value.
+The FHIR specification for the _MIV Lung Function Testing_ consists of three separate FHIR profiles. The profile _HDDT Complete Lung Function Testing_ depends on the other two (_HDDT Lung Function Testing_, and _HDDT Lung Function Reference Value_), as it is a calculation, displayed as a percentage, of an individual measurement, divided by the reference value.
 
 In order to properly model this information in the _HDDT Complete Lung Function Testing_ FHIR profile, and provide it to the DiGA, the manufacturer of the Device Data Recorder MUST use the `derivedFrom` element to reference one of each _HDDT Lung Function Testing_ and _HDDT Lung Function Reference Value_ resource instances.
 
-Since the reference value is either a normal value for a population group and is calculated only once, or if it is a "personal best" it changes once every few weeks, multiple complete lung function testings SHOULD reference the same instance of the _HDDT Lung Function Reference Value_ resource. (TODO: Create an example for this)
+Since the reference value is either a normal value for a population group and is calculated only once, or if it is a "personal best" it changes once every few weeks, multiple complete lung function tests SHOULD reference the same instance of the _HDDT Lung Function Reference Value_ resource.
 
 ###  Examples
 
 #### Full example
 
-The following object diagram shows the relationships between the FHIR resources involved in representing the lung function testings according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function testing. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram shows the relationships between the FHIR resources involved in representing lung function testing according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function measurement. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -197,7 +197,7 @@ The following code example shows the concrete JSON representation of the _HDDT C
 
 #### Minimal Example
 
-The following object diagram shows a minimal representation of a lung function testing, according to the [HDDT Information Model](information-model.html) taken with a peak flow meter. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram shows a minimal representation of a lung function measurement, according to the [HDDT Information Model](information-model.html) taken with a peak flow meter. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -329,7 +329,7 @@ Manufacturers of Device Data Recorders that support the MIV _Lung Function Testi
 
 **Request**: GET `/Observation?date=2025-12-15&_include=Observation:device`
 
-**Description**: Obtain all of the Observations made on a certain date (the `code` from the _MIV Lung Function Testing_ is implicitely included). OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+**Description**: Obtain all of the Observations made on a certain date (the `code` from the _MIV Lung Function Testing_ is implicitly included). OAuth scopes apply, and only Observations are returned that the client is allowed to access.
 
 **Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
 

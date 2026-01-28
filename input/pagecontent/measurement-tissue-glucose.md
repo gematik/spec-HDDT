@@ -1,9 +1,9 @@
 This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Continuous Glucose Measurement_. For an overview of this MIV including typical use cases and key values, see the [Diabetes Self-Management domain](mivs.html#domain-diabetes-self-management) chapter.
 
-This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing continuous glucose measurements to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing continuous glucose measurements to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
-- The relevant FHIR profile for continuous glucose measurement and how it constraints and extends the [HDDT Information Model](information-model.html)
+- The relevant FHIR profile for continuous glucose measurement and how it constrains and extends the [HDDT Information Model](information-model.html)
 - Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
 - Example requests and responses to support implementation
 
@@ -20,7 +20,7 @@ Further obligations MAY be defined by gematik and BfArM as part of the upcoming 
 
 ### FHIR Resource Server
 
-The Device Data Recorder's FHIR Resource Server gives DiGA access to continuoulsy measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Continuous Glucose Measurement_ MUST implement the following endpoints and profiles:
+The Device Data Recorder's FHIR Resource Server gives DiGA access to continuously measured data and related information about metrics and devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Continuous Glucose Measurement_ MUST implement the following endpoints and profiles:
 
 - retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](fhir-api-metadata.html).
 - HDDT common RESTful interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-devicemetric.html).
@@ -48,7 +48,7 @@ patient/DeviceMetric.rs
 
 ### Observation Profile _HDDT Continuous Glucose Measurement_
 
-This section discusses the _HDDT Continuous Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing continuous glucose measurements. For the full normative specifiction of this profile see the respective [StructureDefinition](StructureDefinition-hddt-continuous-glucose-measurement.html).
+This section discusses the _HDDT Continuous Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing continuous glucose measurements. For the full normative specification of this profile see the respective [StructureDefinition](StructureDefinition-hddt-continuous-glucose-measurement.html).
 
 #### Snapshot View of the Profile
 
@@ -81,29 +81,29 @@ For information on general constraints and terminology bindings see the full [St
 
 ##### Lo and Hi Values
 
-Real-Time Continuous Glucose Monitoring devices (rtCGM) usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the rtCGM usually indicates this with a special value (e.g. "LO" or "HI"). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, a respective indicater ("L" for value below the lower limit and "U" for values above the upper limit) MUST be placed in the data list in `valueSampledData.data`. If `valueSampledData.data` contains "L" or "U" values, the Device Data Recorder SHOULD fill the `valueSampledData.lowerLimit` and `valueSampledData.upperLimit` element with the values of the lower and upper limits for valid measurements.
+Real-Time Continuous Glucose Monitoring devices (rtCGM) usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the rtCGM usually indicates this with a special value (e.g. "LO" or "HI"). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, a respective indicator ("L" for value below the lower limit and "U" for values above the upper limit) MUST be placed in the data list in `valueSampledData.data`. If `valueSampledData.data` contains "L" or "U" values, the Device Data Recorder SHOULD fill the `valueSampledData.lowerLimit` and `valueSampledData.upperLimit` element with the values of the lower and upper limits for valid measurements.
 
 Example for a blood glucose measurement below the measurable range (35 mg/dl) of the rtCGM:
 
 {% include Observation-example-cgm-series-json-html.xhtml %}
 
-**\_Remark**: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used.\_
+**Remark**: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used.
 
 ##### Quality of Data and Missing Values
 
-The manufacturers of the Device Data Recorder MUST handle missing measurements which occured due to interrupted communication to/from the sensor.
+The manufacturers of the Device Data Recorder MUST handle missing measurements which occurred due to interrupted communication to/from the sensor.
 
-If temporarely no data is available for the full period that is requested by the DiGA, a `valueSampledData` MUST NOT be provided. Instead, the `dataAbsentReason` element MUST be provided with the code `temp-unknown`. The `status` MUST be set to be `preliminary` in this case.
+If temporarily no data is available for the full period that is requested by the DiGA, a `valueSampledData` MUST NOT be provided. Instead, the `dataAbsentReason` element MUST be provided with the code `temp-unknown`. The `status` MUST be set to be `preliminary` in this case.
 
-If temporarely no data is available for the full period covered by a chunk, a `valueSampledData` MUST NOT be provided for this chunk. Instead, the `dataAbsentReason` element MUST be provided with the code `temp-unknown` for this chunk. The `status` of this chunk MUST be set to be `preliminary` in this case. Other chunks are filled as usual with a status set to `final`.
+If temporarily no data is available for the full period covered by a chunk, a `valueSampledData` MUST NOT be provided for this chunk. Instead, the `dataAbsentReason` element MUST be provided with the code `temp-unknown` for this chunk. The `status` of this chunk MUST be set to be `preliminary` in this case. Other chunks are filled as usual with a status set to `final`.
 
-If temporarely missing data affects only the last chunk in a response, the available data MUST be provided in `valueSampledData.data` and the `effectivePeriod` MUST cover the full period of the chunk. The `status` MUST be set to be `preliminary`. This signals to the DiGA that the data is incomplete. The `dataAbsentReason` element MUST NOT be used in this case.
+If temporarily missing data affects only the last chunk in a response, the available data MUST be provided in `valueSampledData.data` and the `effectivePeriod` MUST cover the full period of the chunk. The `status` MUST be set to be `preliminary`. This signals to the DiGA that the data is incomplete. The `dataAbsentReason` element MUST NOT be used in this case.
 
 The following example shows a chunk of data where onlythe first 20 minutes of the chunk period are filled with data. The remaining 40 minutes of the chunk period are missing.
 
 {% include Observation-example-cgm-series-incomplete-json-html.xhtml %}
 
-A DiGA that receives such a chunk MAY use the logical `id` with consecutive _read_ interactions to just obtain the temporarely missig data.
+A DiGA that receives such a chunk MAY use the logical `id` with consecutive _read_ interactions to just obtain the temporarily missing data.
 
 A receiving DiGA SHOULD validate, that the unit defined in `valueSampledData.origin.code` matches the UCUM unit of the LOINC code in the `code` element. If the unit does not match, the DiGA MUST NOT use the value for any calculations or display.
 
@@ -116,7 +116,7 @@ This specification makes no assumption, on how the manufacturers of the Personal
 #### Examples
 
 The following object diagram shows the relationships between the FHIR resources involved in representing continuous glucose measurements according to the [HDDT Information Model](information-model.html) and the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile for two chunks of a continuous glucose measurement. The fixed chunk size is 1 hour, and the measurement interval is 5 minutes. Thus, each chunk contains 12 measurements. The later chunk is incomplete because measurements for the last 40 minutes are pending.
-Elements that are not mandatory oder MS for the MIV _Contiuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+Elements that are not mandatory or MS for the MIV _Continuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -139,13 +139,13 @@ Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose 
 
 #### Observation - SEARCH
 
-Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Additionally the `_lastUpdated` search parameter MUST be supported. [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _serach_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. 
+Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Additionally the `_lastUpdated` search parameter MUST be supported. [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _search_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. 
 
 #### Examples - FHIR Search GET
 
 **Request**: GET `/Observation?date=ge2025-09-26`
 
-**Description**: Request all CGM measurements, since the 26st of September. Return a Bundle. This one contains only a single [Observation](https://hl7.org/fhir/R4/observation.html).
+**Description**: Request all CGM measurements, since the 26th of September. Return a Bundle. This one contains only a single [Observation](https://hl7.org/fhir/R4/observation.html).
 
 **Response:**
 
