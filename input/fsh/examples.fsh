@@ -802,19 +802,15 @@ Title: "HDDT Blood Pressure Value Example"
 Description: "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components."
 * id = "example-blood-pressure-value"
 * status = #final
-* category = $oc#vital-signs
+* category[VSCat] = $oc#vital-signs
 * subject = Reference(patientExample)
-// * code = $loinc#35094-2 "Blood pressure panel"
-// * code.coding[0] = $loinc#35094-2 "Blood pressure panel"
-* code.coding[0] = $loinc#85354-9 "Blood pressure panel with all children optional"
+* code.coding[BPCode] = $loinc#85354-9 "Blood pressure panel with all children optional"
 * effectiveDateTime = "2025-10-23T09:15:00+02:00"
 * device = Reference(Example-Device-Blood-Pressure-Cuff)
 * interpretation = $oi#N "Normal"
-* bodySite = $sct#723962009 "Structure of right brachial artery (body structure)"
-* method = $sct#31813000 "Vascular oscillometry (procedure)"
-* component[systolic].code = $loinc#8480-6 "Systolic blood pressure"
-* component[systolic].valueQuantity = 120 'mm[Hg]' "mm[Hg]"
-* component[diastolic].code = $loinc#8462-4 "Diastolic blood pressure"
-* component[diastolic].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
-* component[mean].code = $loinc#8478-0 "Mean blood pressure"
-* component[mean].valueQuantity = 93 'mm[Hg]' "mm[Hg]"
+* component[SystolicBP].code = $loinc#8480-6 "Systolic blood pressure"
+* component[SystolicBP].valueQuantity = 120 'mm[Hg]' "mm[Hg]"
+* component[DiastolicBP].code = $loinc#8462-4 "Diastolic blood pressure"
+* component[DiastolicBP].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
+* component[MeanBP].code = $loinc#8478-0 "Mean blood pressure"
+* component[MeanBP].valueQuantity = 93 'mm[Hg]' "mm[Hg]"
