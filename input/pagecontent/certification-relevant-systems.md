@@ -9,13 +9,13 @@ However, peak flow meters, blood glucose meters, blood pressure cuffs, pulse oxi
 
 ### Building Blocks 
 
-The definition of HDDT building blocks is based on the reference model of the [_Continua Health Alliance_](https://www.slideserve.com/kanoa/continua-health-alliance), which is also adopted by the [HL7 Personal Health Device Implementation Guide](https://hl7.org/fhir/uv/phd/index.html). This model divides the communication chain from a medical aid or implant to a receiving backend system into logical building blocks.
+The definition of HDDT building blocks is based on the reference model of the [_Continua Health Alliance_](https://www.slideserve.com/kanoa/continua-health-alliance), which is also adopted by the [HL7 Personal Health Device Implementation Guide](https://hl7.org/fhir/uv/phd/index.html). This model divides the communication chain from a medical aid or implant to a receiving backend system into logical building blocks. The following figure illustrates the data-flow in the personal health device ecosystem.
 
 <figure>
 <div class="gem-ig-svg-container">
  <img src="HDC Medical Aid Decomposition.png" alt="reference model of the personal health device ecosystem" width="60%">
   </div>
-    <figcaption><em><strong>Figure: </strong>Reference model of the personal health device ecosystem</em></figcaption>
+    <figcaption><em><strong>Figure: </strong>Reference model for the data-flow in the personal health device ecosystem</em></figcaption>
 </figure>
 
 <br clear="all"/>
@@ -26,7 +26,7 @@ The __Personal Health Device__ is the hardware of the medical aid or implant and
 
 The necessary prerequisite for a medical aid or implant to fall under the regulations of § 374a SGB V is the financial viability of the aid or implant through statutory health insurance (GKV). In addition, the aid or implant must have an interface through which the collected data is extracted and forwarded to a Health Record in a backend system via a Personal Health Gateway. These two components - Personal Health Gateway and Health Record - are usually combined into a single product that implements a vendor specific data sharing platform. For manufacturers who have multiple Personal Health Device products, data from these products is often recorded in this unique platform and thus allows for integrating data from different devices to gain additional insight into a patient's health status.
 
-Therefore, the HDDT specification considers the Personal Health Gateway and the Health Record as a single logical component. This component is named __Device Data Recorder__. This logical division of the ecosystem is outlined in the figure below.
+Therefore, the HDDT specification considers the Personal Health Gateway and the Health Record as a single logical component. This component is named __Device Data Recorder__. This logical division of the ecosystem is outlined in the data-flow figure below.
 
 <figure>
 <div class="gem-ig-svg-container">
