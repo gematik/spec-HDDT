@@ -1,18 +1,18 @@
-This document describes the `/metadata` endpoint for retrieving the FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) of the Device Data Recorder. The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) provides information about supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.
+This document describes the `/metadata` endpoint for retrieving the FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) of the Device Data Recorder. The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) provides information about the supported FHIR version, resource types, profiles, interactions, search parameters, and operations. This endpoint is public and does not require authentication.
 
 ---
 
 ### Endpoint
 
-|                      |                                                                                                                                                                                                                                                                                                                                  |
+| | |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Endpoint**         | `/metadata`                                                                                                                                                                                                                                                                                                                      |
-| **HTTP Method**      | GET                                                                                                                                                                                                                                                                                                                              |
-| **Description**      | Provides a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) with information about supported FHIR version, resources, operations, search parameters, and profiles.                                                                                                                                                                                       |
-| **Authentication**   | None (public endpoint)                                                                                                                                                                                                                                                                                                           |
-| **Returned Objects** | FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html)                                                                                                                                                                                                                                                                                                         |
-| **Specifications**   | The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported FHIR version. This MUST be R4. <br>&nbsp;<br>The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported FHIR resources. These MUST at least be [Observation](https://hl7.org/fhir/R4/observation.html), [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html). <br>&nbsp;<br>The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported [MIV-specific](mivs.html) interactions, operations, search parameters, and profiles.  |
-| **Error codes**      | `500` (Internal Server Error)                                                                                                                                                                                                                                                                                                    |
+| **Endpoint** | `/metadata` |
+| **HTTP Method** | GET |
+| **Description** | Provides a FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) with information about the supported FHIR version, resources, operations, search parameters, and profiles. |
+| **Authentication** | None (public endpoint) |
+| **Returned Objects** | FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) |
+| **Specifications** | The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported FHIR version. This MUST be FHIR R4.<br><br>The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported FHIR resources. These MUST at least be [Observation](https://hl7.org/fhir/R4/observation.html), [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html).<br><br>The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported [MIV-specific](mivs.html) interactions, operations, search parameters, and profiles. |
+| **Error codes** | `500` (Internal Server Error) |
 
 ---
 
@@ -55,7 +55,7 @@ This document describes the `/metadata` endpoint for retrieving the FHIR [Capabi
       "supportedProfile": [
         "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
       ],
-       "interaction": [{ "code": "read" }, { "code": "search-type" }],
+      "interaction": [{ "code": "read" }, { "code": "search-type" }],
       "searchParam": [{"name": "type", ...}]
     },
     {
@@ -63,7 +63,7 @@ This document describes the `/metadata` endpoint for retrieving the FHIR [Capabi
       "supportedProfile": [
         "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
       ],
-       "interaction": [{ "code": "read" }, { "code": "search-type" }],
+      "interaction": [{ "code": "read" }, { "code": "search-type" }],
       "searchParam": [{"name": "source", ...}]
     }
   ]
