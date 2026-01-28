@@ -36,6 +36,7 @@ All extensions and changes to the specification are either based on the regular 
 
 
 * `improve` [Pairing](pairing.html): Clarified that the DiGA backend must check on a daily basis whether the consent or prescription period associated with a Pairing ID is still valid.
+* `improve` [Security and Privacy](security-and-privacy.html): Rephrased the authorization requirements in the "Authorization of the DiGA" section for better clarity and consistency. The conditions for granting access are now presented as conjunctive requirements that must all be fulfilled.
 * `improve` [Information Model](information-model.html), [Retrieving Data](retrieving-data.html): Cardinality of _Device.definition_ changed from 1..1 to 0..1 to further align with existing FHIR profiles for medical devices.
 * `improve` [Retrieving Data](retrieving-data.html): Attribute _chunk-time-span_ was changed from an externally visible configuration item to a solely internal value at the Device Data Recorder because the DiGA can derive this value from the sampled _Observation_ data.
 * `improve` [Security and Privacy](security-and-privacy.html): CT validation was skipped for DiGA because only Device Data Recorders need validated CTs for secure mTLS.
