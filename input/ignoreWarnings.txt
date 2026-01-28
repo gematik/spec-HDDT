@@ -47,6 +47,7 @@
 # WARNING: CodeSystem not found. Reason: This CodeSystem is currently not published.
 
 %A definition for CodeSystem 'https://fhir.bfarm.de/CodeSystem/HiisManufacturerType' could not be found%
+%A definition for CodeSystem 'https://fhir.bfarm.de/CodeSystem/HiisEndpointConnectionType' could not be found, so the code cannot be validated%
 
 
 # WARNING: Deprecated extension. Reason: The warning relates to an extension (elementdefinition-maxValueSet|5.2.0) that remains temporarily used for backward compatibility.
