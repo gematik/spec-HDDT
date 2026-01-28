@@ -25,7 +25,7 @@ All extensions and changes to the specification are either based on the regular 
 
 
 * `fix` [Pairing](pairing.html): Consent validity may be longer than the prescription period of the DiGA; therefore, the DiGA must check both. Sequence diagrams for request authorization were corrected accordingly.
-* `fix` [Continuous Glucose Measurement](measurement-tissue-glucose.html): Updated links to the current version (1.0.0 – STU 1) of the HL7 CGM profiles.
+* `fix` [Continuous Glucose Measurement](measurement-cgm.html): Updated links to the current version (1.0.0 – STU 1) of the HL7 CGM profiles.
 * `fix` [Security and Privacy](security-and-privacy.html): Corrected the requirements on log downloads (esp. _TLS_ instead of _mTLS_).
 * `fix` [Use of HL7 FHIR](use_of_hl7_fhir.html): Some examples had been hard coded into the documentation and therefore were not validated by the IG Publisher. All examples are now provided as FSH and are validated during the build process.
 * `fix` [Use of HL7 FHIR](use_of_hl7_fhir.html): _Must Support_ was further relaxed to cover situations where requested data elements are managed by a third-party system and therefore may not be available to a Device Data Recorder.
