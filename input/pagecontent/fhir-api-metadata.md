@@ -12,7 +12,7 @@ This document describes the `/metadata` endpoint for retrieving the FHIR [Capabi
 | **Authentication** | None (public endpoint) |
 | **Returned Objects** | FHIR [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) |
 | **Specifications** | The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported FHIR version. This MUST be FHIR R4.<br><br>The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported FHIR resources. These MUST be at least [Observation](https://hl7.org/fhir/R4/observation.html), [Device](https://hl7.org/fhir/R4/device.html) and [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html).<br><br>The [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) MUST declare the supported [MIV-specific](mivs.html) interactions, operations, search parameters, and profiles. |
-| **Error codes** | `500` (Internal Server Error) |
+| **Error codes** | `500` (Internal Server Error)<br><br>See [Error Codes](error-codes.html#resource-server-errors) for complete error response formats and headers. |
 
 ---
 
