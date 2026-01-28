@@ -1194,6 +1194,8 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * component[MeanBP].valueQuantity.value 1..1
 * component[MeanBP].valueQuantity.unit 1..1
 * component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
+* component[MeanBP].valueQuantity.system 1..1
+* component[MeanBP].valueQuantity.system MS
 * component[MeanBP].valueQuantity.code = #mm[Hg] (exactly)
 
 
