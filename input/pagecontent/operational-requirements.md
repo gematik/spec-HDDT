@@ -35,7 +35,7 @@ A public, machine-readable status feed MUST be provided that contains at least t
 The service SHOULD ensure acceptable response times for its operations.
 
 #### Throughput and Load Requirements
-The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability. The service provider MAY restrict the number of requests for a single client (DiGA) and patient to a reasonable extent. This grace period MUST NOT exeed the MIV-specific limit as defined through the _Grace-Period_ setting in the specific [MIV definition](mivs.html).
+The service MUST be able to handle at least 50 parallel requests per second without violating the availability or response time targets. If the specified load is exceeded, requests MAY be rejected without counting as unavailability. The service provider MAY restrict the number of requests for a single client (DiGA) and patient to a reasonable extent. This grace period MUST NOT exceed the MIV-specific limit as defined through the _Grace-Period_ setting in the specific [MIV definition](mivs.html).
 
 Rejected requests MUST be documented with a clear error:
 * Recommended: HTTP 429 Too Many Requests with Header Retry-After.
@@ -76,7 +76,7 @@ After the retention period has expired, logs MUST be deleted in a timely manner 
 #### Information Obligation and Provision Channel
 The provider MUST offer a dedicated channel to be able to request log information (e.g., email address, ticket portal, or API endpoint). This channel MUST be named in the interface documentation.
 
-An eligable request for the disclosure of log records MUST be acted upon within three business days as follows:
+An eligible request for the disclosure of log records MUST be acted upon within three business days as follows:
 * Confirmation of receipt 
 * Provision of the requested log records or a binding delivery date, with valid justification, if not immediately possible
 

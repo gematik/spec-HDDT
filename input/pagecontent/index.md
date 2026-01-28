@@ -17,7 +17,7 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The version 1.0.0-rc is the release candidate version with results of the commenting process of the former version 0.1.0-ballot. It contains specification of the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging as well as the definition of interoperable values to be provisioned per domain (for information about included domains, see [roadmap](roadmap.html)). For information on changes, see [release notes](release-notes.html).  
+The version 1.0.0-rc is the release candidate version with results of the commenting process on the former version 0.1.0-ballot. It contains specification of the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging as well as the definition of interoperable values to be provisioned per domain (for information about included domains, see [roadmap](roadmap.html)). For information on changes, see [release notes](release-notes.html).  
 
 FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 
@@ -26,12 +26,12 @@ The primary audience for this implementation guide are product managers, develop
 
 For developers and architects the following sections of this specification are of particular interest:
 * The [Logical Viewpoints](logical-viewpoints.html) provide a high-level overview of the system architecture and main components.
-* Section [Security and Privacy](security-and-privacy.html) sketches the security services and mechanisms to be implemented. Further details on specific aspects are give in the sections [Pairing](pairing.html) and [Smart Scopes](smart-scopes.html) while the technical specifications are provided in section [Authorization Server](authorization-server.html).
+* Section [Security and Privacy](security-and-privacy.html) sketches the security services and mechanisms to be implemented. Further details on specific aspects are given in the sections [Pairing](pairing.html) and [Smart Scopes](smart-scopes.html) while the technical specifications are provided in section [Authorization Server](authorization-server.html).
 * The sections [Information Model](information-model.html) and [Retrieving Data](retrieving-data.html) provide logical descriptions of the FHIR-based data model and the RESTful interactions. Technical specifications for these interactions are provided in the section [FHIR Resource Server](himi-diga-api.html). 
 * The implementation of the data model is through dedicated FHIR profiles and value sets per _Mandatory Interoperable Values_. The section [MIVs](mivs.html) lists the Mandatory Interoperable Values defined so far and provides links to the respective FHIR profiles and value sets. An overview of all FHIR profiles and value sets defined in this implementation guide is given in section [FHIR Artifacts Summary](artifacts.html), where you find examples, too.
 
 Readers who are responsible for project management, product management, or regulatory affairs may find the following sections useful:
-* The [Roadmap](roadmap.html) describes how the technical specifications will be extended in the future to cover further domains. In addition this sections gives first hints on the regulatory approval process and procedures for product registration.
+* The [Roadmap](roadmap.html) describes how the technical specifications will be extended in the future to cover further domains. In addition this section gives first hints on the regulatory approval process and procedures for product registration.
 * [Certification Relevant Systems](certification-relevant-systems.html) describes which products and components are affected by § 374a SGB V and MUST implement the services as defined in this specification.
 * Section [Security and Privacy](security-and-privacy.html) defines trust anchors and security objects that MUST be provided by the manufacturers of medical aids, implants, and DiGA.
 * [Operational Requirements](operational-requirements.html) describe the operational procedures and service levels that MUST be provided by manufacturers of certification relevant systems.
