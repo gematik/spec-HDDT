@@ -1,10 +1,10 @@
 
 This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Blood Glucose Measurement_. For an overview of this MIV including typical use cases and key values, see the [Diabetes Self-Management domain](mivs.html#domain-diabetes-self-management) chapter.
 
-This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constraints these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:
 
 - The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
-- The relevant FHIR profile for blood glucose measurement and how it constraints and extends the [HDDT Information Model](information-model.html)
+- The relevant FHIR profile for blood glucose measurement and how it constrains and extends the [HDDT Information Model](information-model.html)
 - Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
 - Example requests and responses to support implementation
 
@@ -26,7 +26,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
 * MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Glucose Measurement_. The full specifications are given below.
 
-The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
+The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory or MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 80%;">
@@ -45,7 +45,7 @@ patient/DeviceMetric.rs
 ```
 
 ### Observation Profile _HDDT Blood Glucose Measurement_
-This section discusses the _HDDT Blood Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing blood glucose measurements. For the full normative specifiction of this profile see the respective [StructureDefinition](StructureDefinition-hddt-blood-glucose-measurement.html).
+This section discusses the _HDDT Blood Glucose Measurement_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing blood glucose measurements. For the full normative specification of this profile see the respective [StructureDefinition](StructureDefinition-hddt-blood-glucose-measurement.html).
 
 #### Snapshot View of the Profile
 
@@ -84,7 +84,7 @@ Example for a blood glucose measurement below the measurable range (30 mg/dl) of
 {% include Observation-example-blood-glucose-json-html.xhtml %}
 
 
-___Remark__: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used._
+**Remark**: All examples provided on this page use the German language designations for UCUM-coded `unit` elements. See [German translations of UCUM codes](https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de) for the full list of German translations. For LOINC codes the original English display text is used._
 
 ##### Quality of Data and Missing Values
 This specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle failed measurements (e.g. too few capillary blood for a measurement). If such attempts are recorded at the Device Data Recorder, a query for device data must not result in an Observation resource with an invalid or misleading value. Instead, the Observation resource must either be omitted or must indicate the absence of a valid value using the `dataAbsentReason` element. In the second case a `value` MUST NOT be present.
@@ -95,7 +95,7 @@ This specification makes no assumption, on how the manufacturers of the Personal
 
 #### Examples
 
-The following object diagram the relationships between the FHIR resources involved in representing blood glucose measurements according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
+The following object diagram shows the relationships between the FHIR resources involved in representing blood glucose measurements according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 75%;">
@@ -116,7 +116,7 @@ The following code example shows the concrete JSON representation of the _HDDT B
 Manufacturers of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile.
 
 #### Observation - SEARCH
-Manufacturers of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. 
+Manufacturers of Device Data Recorders that support the MIV _Blood Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Observations shared through the _search_ interaction MUST comply with the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile. 
 
 
 #### Example: FHIR-READ
