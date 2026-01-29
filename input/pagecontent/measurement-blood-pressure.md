@@ -248,7 +248,7 @@ Blood pressure measurements use a panel code 85354-9 _Blood pressure panel with 
 
 **Request**: GET `/Observation?component-code=8480-6&component-value-quantity=gt130`
 
-**Description**: Search for all blood pressure observations where the systolic blood pressure component (LOINC code 8480-6) has a value greater than 140 mmHg. This type of query is useful for identifying patients with elevated systolic blood pressure.
+**Description**: Search for all blood pressure observations where the systolic blood pressure component (LOINC code 8480-6) has a value greater than 130 mmHg. This type of query is useful for identifying patients with elevated systolic blood pressure.
 OAuth scopes apply, and only Observations are returned that the client is allowed to access.
 
 **Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
