@@ -31,7 +31,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to continuousl
 The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Continuous Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory or MS for the MIV _Continuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 80%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Informationsmodell_MIV_Cont_Glucose.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Continuous Glucose Measurement</em></figcaption>
@@ -120,7 +120,7 @@ The following object diagram shows the relationships between the FHIR resources 
 Elements that are not mandatory or MS for the MIV _Continuous Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 75%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Objektmodell_CGM_Complete.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Continuous Glucose Measurement)</em></figcaption>

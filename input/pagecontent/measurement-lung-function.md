@@ -37,7 +37,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
 The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Lung Function Testing_. Elements denoted as _[1..1]_ or _MS_ are mandatory for the MIV _Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 80%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Informationsmodell_MIV_Lung_Function.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Lung Function Testing</em></figcaption>
@@ -177,7 +177,7 @@ Since the reference value is either a normal value for a population group and is
 The following object diagram shows the relationships between the FHIR resources involved in representing lung function testing according to the [HDDT Information Model](information-model.html). Presented here is an instance of each HDDT [Observation](https://hl7.org/fhir/R4/Observation.html) profile, representing an individual lung function measurement. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 75%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Objektmodell_LF_Complete.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Lung Function Testing)</em></figcaption>
@@ -202,7 +202,7 @@ The following code example shows the concrete JSON representation of the _HDDT C
 The following object diagram shows a minimal representation of a lung function measurement, according to the [HDDT Information Model](information-model.html) taken with a peak flow meter. For readability reasons, the relationship between profiles and resource instances, some connections to the Personal Health Device, and elements that are not mandatory or MS for the _MIV Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 75%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Objektmodell_LF_Minimal.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Minimal Example (Lung Function Testing)</em></figcaption>
