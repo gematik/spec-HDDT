@@ -18,8 +18,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
         status = final
         code : 85354-9 Blood pressure panel with all children optional [1..1]
         effectiveDateTime : date and time of the measurement [1..1]
-        bodySite : measurement location [0..1]
-        method : measurement method [0..1]
     }
 
     class "Systolic Blood Pressure" as SystolicValue <<FHIR Observation Component>>{
@@ -53,7 +51,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 
     BloodPressureValue-->  SystolicValue : component:SystolicBP [1..1]
     BloodPressureValue-->  DiastolicValue : component:DiastolicBP [1..1]
-    BloodPressureValue-->  MeanValue : component:MeanBP [1..1]
+    BloodPressureValue-->  MeanValue : component:MeanBP [0..1]
     BloodPressureValue-down->  PHD : device [1..1]
 } 
 
