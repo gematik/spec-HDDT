@@ -79,5 +79,5 @@ The sequence diagram below sketches the pairing flow between DiGA and Device Dat
 
 <br clear="all"/>
 
-Further information on the OAuth2 Authorization Server and the authorization flow is given in the section [Pairing](pairing.html). The technical specification of the HDDT profile on the OAuth2 standard can be found in the section [Authorization Server](authorization-server.html). The required validation of access tokens for accessing FHIR resources from the Device Data Recorders FHIR Resource Server is specified in the section [Generic FHIR Resource Server API](himi-diga-api.html).
+Further information on the OAuth2 Authorization Server and the authorization flow is given in the section [Pairing](pairing.html). The technical specification of the HDDT profile on the OAuth2 standard can be found in the section [Authorization Server](authorization-server.html). The required validation of access tokens for accessing FHIR resources from the Device Data Recorders FHIR Resource Server is specified in the section [Generic FHIR Resource Server API](ddr-diga-api.html).
 

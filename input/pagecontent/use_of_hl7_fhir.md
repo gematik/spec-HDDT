@@ -46,7 +46,7 @@ For the specifications of the required interactions and operations see the respe
 A Device Data Recorder MUST publish the list of supported search parameters as part of its [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) (see [`/metadata` endpoint](fhir-api-metadata.html)).
 
 #### Authentication
-The DiGA MUST provide an OAuth2 Bearer Token in the HTTP `Authorization` header with each FHIR RESTful interaction or operation request, using the format `Authorization: Bearer <access_token>`. For details on how to obtain an Access Token see [Pairing - Tokens and Token Response](pairing.html#tokens-and-the-token-response). For rules on how to validate the Access Token see [Security Considerations](himi-diga-api.html#security-considerations).
+The DiGA MUST provide an OAuth2 Bearer Token in the HTTP `Authorization` header with each FHIR RESTful interaction or operation request, using the format `Authorization: Bearer <access_token>`. For details on how to obtain an Access Token see [Pairing - Tokens and Token Response](pairing.html#tokens-and-the-token-response). For rules on how to validate the Access Token see [Security Considerations](ddr-diga-api.html#security-considerations).
 
 #### Error Handling
 

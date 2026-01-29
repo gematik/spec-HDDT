@@ -51,7 +51,7 @@ All extensions and changes to the specification are either based on the regular 
 * `documentation` [Pairing](pairing.html): Added clearly defined scenarios and conditions under which the DiGA and a Device Data Recorder must be unpaired.
 * `documentation` [Certification Relevant Systems](certification-relevant-systems.html): Updated Example 5 to clarify that manufacturers must make rtCGM data from their own devices and from third-party vendors available to other DiGA via the HDDT interface.
 * `documentation` [Error Codes](error-codes.html): Added a dedicated page about error handling, including a condensed list of all error codes.
-* `documentation` [HIMI DiGA API](himi-diga-api.html): Added a dedicated section about search parameters that MUST be supported by FHIR Resource Server implementations.
+* `documentation` [HIMI DiGA API](ddr-diga-api.html): Added a dedicated section about search parameters that MUST be supported by FHIR Resource Server implementations.
 * `documentation` [Information Model](information-model.html): The section about Device Data Recorder attributes was moved to the Information Model and rewritten for better clarity.
 * `documentation` [Operational Requirements](operational-requirements.html): Deleted chapter 3.3 (Reference implementation) and added information about test support to chapter 3.2.
 * `documentation` [Pairing](pairing.html): Clarified the building rules for the pairingID (MUST be specific to the user account of the Device Data Recorder).
