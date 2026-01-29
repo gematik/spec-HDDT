@@ -30,7 +30,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
 The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Pressure Monitoring_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)). 
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 80%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Informationsmodell_MIV_Blood_Pressure.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Pressure Monitoring</em></figcaption>
@@ -81,20 +81,12 @@ Blood pressure measurements MUST be represented using the LOINC panel code 85354
 ##### Patient Reference and Privacy
 For privacy and data protection, the `subject` reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted. The patient MUST NOT be identified directly through personally identifiable information such as name, insurance number, or other identifying attributes.
 
-##### Optional Contextual Information
-While not mandatory, manufacturers of Device Data Recorders SHOULD provide additional contextual information when available:
-- `bodySite`: The body location where the measurement was taken (e.g., right brachial artery, left brachial artery, wrist). This information helps physicians assess the quality and comparability of measurements.
-- `method`: The measurement method used (e.g., oscillometric, auscultatory). This is particularly relevant when different measurement principles may yield slightly different results.
-- `interpretation`: A clinical interpretation of the measurement (e.g., normal, higher than normal, lower than normal) based on reference ranges defined by the device manufacturer.
-
-Including these optional elements enhances the clinical utility of the data and supports more informed therapeutic decision-making.
-
 #### Examples
 
 The following object diagram the relationships between the FHIR resources involved in representing Blood Pressure Monitorings according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile instances of a blood pressure measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 75%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Objektmodell_BPM_Complete.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Blood Pressure Monitoring)</em></figcaption>
@@ -112,7 +104,9 @@ The following code example shows the concrete JSON representation of the _HDDT B
 Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile.
 
 #### Observation - SEARCH
-Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the **search parameters** listed on page [FHIR Resource Server - Search Parameters](ddr-diga-api.html#search-parameters). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile. 
+Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile.
+Blood pressure measurements use a panel code 85354-9 _Blood pressure panel with all children optional_ as the main `Observation.code`, while the actual measurement values (8480-6 _Systolic blood pressure_, 8462-4 _Diastolic blood pressure_, 8478-0 _Mean blood pressure_) are captured in `Observation.component` elements. To search for specific component types (e.g., systolic blood pressure with LOINC code 8480-6), use the `component-code` search parameter. See the example below for details. 
+
 
 
 #### Example: FHIR-READ
@@ -128,9 +122,9 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
 
 ### Example: FHIR-Search for specific LOINC code
 
-**Request**: GET `/Observation?code=85354-9`
+**Request**: GET `/Observation?component-code=8480-6`
 
-**Description**: Obtain all of the Observations where `code` is the LOINC code for `Blood pressure panel with all children optional`. OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+**Description**: Obtain all Observations that contain a component with the LOINC code `8480-6` for `Systolic blood pressure`. OAuth scopes apply, and only Observations are returned that the client is allowed to access.
 
 **Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
 
