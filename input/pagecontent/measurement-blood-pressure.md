@@ -122,7 +122,7 @@ Blood pressure measurements use a panel code 85354-9 _Blood pressure panel with 
 
 **Request**: GET `/Observation?component-code=8480-6`
 
-**Description**: Obtain all of the Observations where `code` is the LOINC for the component code for `Systolic blood pressure`. OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+**Description**: Obtain all Observations that contain a component with the LOINC code `8480-6` for `Systolic blood pressure`. OAuth scopes apply, and only Observations are returned that the client is allowed to access.
 
 **Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
 
