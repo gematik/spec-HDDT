@@ -31,7 +31,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
 The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Glucose Measurement_. Elements denoted as _[1..1]_ are mandatory or MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).  
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 80%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Informationsmodell_MIV_Blood_Glucose.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</em></figcaption>
@@ -100,7 +100,7 @@ This specification makes no assumption, on how the manufacturers of the Personal
 The following object diagram shows the relationships between the FHIR resources involved in representing blood glucose measurements according to the [HDDT Information Model](information-model.html) and the [HDDT Blood Glucose Measurement](StructureDefinition-hddt-blood-glucose-measurement.html) profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV _Blood Glucose Measurement_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)) have been omitted.
 
 <figure>
-<div class="gem-ig-svg-container" style="width: 75%;">
+<div class="gem-ig-svg-container" style="width: 100%;">
   {% include HDDT_Objektmodell_BZ_Complete.svg %}
   </div>
     <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Blood Glucose Measurement)</em></figcaption>
