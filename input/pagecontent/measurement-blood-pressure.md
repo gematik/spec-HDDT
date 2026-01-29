@@ -244,6 +244,237 @@ Blood pressure measurements use a panel code 85354-9 _Blood pressure panel with 
 }
 ```
 
+### Example: FHIR-Search for Component Code and Value
+
+**Request**: GET `/Observation?component-code=8480-6&component-value-quantity=gt130`
+
+**Description**: Search for all blood pressure observations where the systolic blood pressure component (LOINC code 8480-6) has a value greater than 140 mmHg. This type of query is useful for identifying patients with elevated systolic blood pressure.
+OAuth scopes apply, and only Observations are returned that the client is allowed to access.
+
+**Response:** Returned object is a Bundle containing all Observation resource instances matching the search criteria.
+
+```json
+{
+    "resourceType": "Bundle",
+    "id": "a8f3c21d-4b9e-5fda-ab2c-98ecc5043487",
+    "type": "searchset",
+    "entry": [
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-pressure-value-1",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-blood-pressure-value-1",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "code": "85354-9",
+                            "system": "http://loinc.org",
+                            "display": "Blood pressure panel with all children optional"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/patientExample"
+                },
+                "effectiveDateTime": "2025-10-24T14:30:00+02:00",
+                "device": {
+                    "reference": "Device/example-device-blood-pressure-cuff"
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "H",
+                                "display": "High"
+                            }
+                        ]
+                    }
+                ],
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 145,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 92,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8478-0",
+                                    "display": "Mean blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 109,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-pressure-value-2",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "example-blood-pressure-value-2",
+                "meta": {
+                    "profile": [
+                        "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "code": "85354-9",
+                            "system": "http://loinc.org",
+                            "display": "Blood pressure panel with all children optional"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/patientExample"
+                },
+                "effectiveDateTime": "2025-10-25T08:45:00+02:00",
+                "device": {
+                    "reference": "Device/example-device-blood-pressure-cuff"
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "H",
+                                "display": "High"
+                            }
+                        ]
+                    }
+                ],
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 138,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 88,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8478-0",
+                                    "display": "Mean blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 105,
+                            "unit": "mm[Hg]",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}
+```
+
 ### Example: FHIR-Search include Device
 
 
