@@ -1156,6 +1156,8 @@ This profile inherits from the FHIR Blood Pressure profile (`http://hl7.org/fhir
 (systolic and diastolic are mandatory; mean is optional) are inherited from the parent profile with the MeanBP component added as an optional slice.
 Each component MUST include a value in mmHg (millimeters of mercury).
 
+Caution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.
+
 **Constraints applied:**  
 - `status` is restricted to _final_
 - `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9
@@ -1172,6 +1174,8 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 * status ^short = "Measurement status"
 * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
 * status MS
+* subject ^short = "Patient reference in anonymized or pseudonymized form only"
+* subject ^definition = "Reference to the patient. The patient MUST NOT be identified directly. Only anonymized or pseudonymized forms are permitted."
 * code 1..1
 * code.coding[BPCode] from HddtMivBloodPressureValue (required) // Override to specify coding slice
 * code ^short = "Type of blood pressure measurement"

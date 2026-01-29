@@ -78,6 +78,9 @@ For information on general constraints and terminology bindings see the full [St
 
 Blood pressure measurements MUST be represented using the LOINC panel code 85354-9 "Blood pressure panel with all children optional" as the main observation code. The actual measurement values (systolic, diastolic, and mean blood pressure) are captured as three mandatory components within the Observation resource. Each component MUST include a value in mmHg (millimeters of mercury) using the UCUM code `mm[Hg]`.
 
+##### Patient Reference and Privacy
+For privacy and data protection, the `subject` reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted. The patient MUST NOT be identified directly through personally identifiable information such as name, insurance number, or other identifying attributes.
+
 ##### Optional Contextual Information
 While not mandatory, manufacturers of Device Data Recorders SHOULD provide additional contextual information when available:
 - `bodySite`: The body location where the measurement was taken (e.g., right brachial artery, left brachial artery, wrist). This information helps physicians assess the quality and comparability of measurements.
@@ -138,10 +141,10 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
     "type": "searchset",
     "entry": [
         {
-            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-pressure-measurement-1",
+            "fullUrl": "https://himi.example.com/fhir/Observation/example-blood-pressure-value",
             "resource": {
                 "resourceType": "Observation",
-                "id": "example-blood-pressure-measurement-1",
+                "id": "example-blood-pressure-value",
                 "meta": {
                     "profile": [
                         "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"
@@ -167,6 +170,9 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
                         }
                     ]
                 },
+                "subject": {
+                    "reference": "Patient/patientExample"
+                },
                 "effectiveDateTime": "2025-10-23T09:15:00+02:00",
                 "device": {
                     "reference": "Device/example-device-blood-pressure-cuff"
@@ -182,24 +188,6 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
                         ]
                     }
                 ],
-                "bodySite": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "723962009",
-                            "display": "Structure of right brachial artery (body structure)"
-                        }
-                    ]
-                },
-                "method": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "31813000",
-                            "display": "Vascular oscillometry (procedure)"
-                        }
-                    ]
-                },
                 "component": [
                     {
                         "code": {
@@ -307,6 +295,9 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
                         }
                     ]
                 },
+                "subject": {
+                    "reference": "Patient/patientExample"
+                },
                 "effectiveDateTime": "2025-10-23T09:15:00+02:00",
                 "device": {
                     "reference": "Device/example-device-blood-pressure-cuff"
@@ -322,24 +313,6 @@ Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Moni
                         ]
                     }
                 ],
-                "bodySite": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "723962009",
-                            "display": "Structure of right brachial artery (body structure)"
-                        }
-                    ]
-                },
-                "method": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "31813000",
-                            "display": "Vascular oscillometry (procedure)"
-                        }
-                    ]
-                },
                 "component": [
                     {
                         "code": {
