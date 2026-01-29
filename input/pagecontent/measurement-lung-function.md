@@ -5,9 +5,9 @@
 
 This chapter provides obligations and guidelines for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Lung Function Testing_. For an overview of this MIV including typical use cases and key values, see the [Lung Function Testing domain](mivs.html#domain-lung-function-testing) chapter.
 
-This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing lung function tests to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](ddr-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing lung function tests to DiGA, including:
 
-- The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
+- The endpoints to implement and how they differ from the [Generic FHIR API model](ddr-diga-api.html)
 - The relevant FHIR profiles for lung function testing and how they constrain and extend the [HDDT Information Model](information-model.html)
 - Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
 - Example requests and responses to support implementation
@@ -222,7 +222,7 @@ Manufacturers of Device Data Recorders that support the MIV _Lung Function Testi
 
 #### Observation - SEARCH
 
-Manufacturers of Device Data Recorders that support the MIV _Lung Function Testing_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _search_ interaction MUST comply with the FHIR profiles listed in section [FHIR Resource Server](#fhir-resource-server) of this chapter.
+Manufacturers of Device Data Recorders that support the MIV _Lung Function Testing_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the **search parameters** listed on page [FHIR Resource Server - Search Parameters](ddr-diga-api.html#search-parameters). [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _search_ interaction MUST comply with the FHIR profiles listed in section [FHIR Resource Server](#fhir-resource-server) of this chapter.
 
 #### Example: FHIR-Search for relative values LOINC code
 

@@ -1,8 +1,8 @@
 This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) _Continuous Glucose Measurement_. For an overview of this MIV including typical use cases and key values, see the [Diabetes Self-Management domain](mivs.html#domain-diabetes-self-management) chapter.
 
-This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](himi-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing continuous glucose measurements to DiGA, including:
+This chapter builds on the [HDDT Information Model](information-model.html), the [HDDT Generic FHIR API](ddr-diga-api.html), and the [HDDT guide for retrieving device data](retrieving-data.html). It constrains these guidelines with respect to the specific requirements for exposing continuous glucose measurements to DiGA, including:
 
-- The endpoints to implement and how they differ from the [Generic FHIR API model](himi-diga-api.html)
+- The endpoints to implement and how they differ from the [Generic FHIR API model](ddr-diga-api.html)
 - The relevant FHIR profile for continuous glucose measurement and how it constrains and extends the [HDDT Information Model](information-model.html)
 - Conventions for sharing FHIR resources to ensure compliance with the [HDDT guide for retrieving device data](retrieving-data.html)
 - Example requests and responses to support implementation
@@ -140,7 +140,7 @@ Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose 
 
 #### Observation - SEARCH
 
-Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the search parameters listed on page [FHIR Resource Server](himi-diga-api.html#search-parameters). Additionally the `_lastUpdated` search parameter MUST be supported. [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _search_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. 
+Manufacturers of Device Data Recorders that support the MIV _Continuous Glucose Measurement_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the **search parameters** listed on page [FHIR Resource Server - Search Parameters](ddr-diga-api.html#search-parameters). Additionally the `_lastUpdated` search parameter MUST be supported. [Observation](https://hl7.org/fhir/R4/observation.html) resources shared through the _search_ interaction MUST comply with the [HDDT Continuous Glucose Measurement](StructureDefinition-hddt-continuous-glucose-measurement.html) profile. 
 
 #### Examples - FHIR Search GET
 

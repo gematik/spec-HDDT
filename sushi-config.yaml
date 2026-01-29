@@ -117,7 +117,7 @@ pages:
     title: BfArM Registries and ZTS
     generation: markdown
 # Generic APIs
-  himi-diga-api.html:
+  ddr-diga-api.html:
     title: FHIR Resource Server
     generation: markdown
   authorization-server.html:
@@ -197,7 +197,7 @@ menu:
     Retrieving Data: retrieving-data.html
     Access to BfArM Registries and ZTS: registries-and-zts.html
   Generic APIs:
-    FHIR Resource Server: himi-diga-api.html
+    FHIR Resource Server: ddr-diga-api.html
     Authorization Server: authorization-server.html
     Error Codes: error-codes.html
   MIV-Specific APIs:
