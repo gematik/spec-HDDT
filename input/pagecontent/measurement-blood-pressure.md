@@ -27,7 +27,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
 * MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Pressure Monitoring_. The full specifications are given below.
 
-The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Pressure Monitoring_. Elements denoted as _[1..1]_ are mandatory oder MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)). 
+The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Blood Pressure Monitoring_. Elements denoted as _[1..1]_ are mandatory or MS for the MIV _Blood Pressure Monitoring_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)). 
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 100%;">
@@ -45,7 +45,7 @@ patient/Device.rs
 ```
 
 ### Observation Profile _HDDT Blood Pressure Monitoring_
-This section discusses the _HDDT Blood Pressure Monitoring_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing blood pressure monitoring. For the full normative specifiction of this profile see the respective [StructureDefinition](StructureDefinition-hddt-blood-pressure-value.html).
+This section discusses the _HDDT Blood Pressure Monitoring_ profile, which constrains the FHIR [Observation](https://hl7.org/fhir/R4/observation.html) resource for representing blood pressure monitoring. For the full normative specification of this profile see the respective [StructureDefinition](StructureDefinition-hddt-blood-pressure-value.html).
 
 #### Snapshot View of the Profile
 
@@ -104,7 +104,7 @@ The following code example shows the concrete JSON representation of the _HDDT B
 Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _read_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html). Observations shared through the _read_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile.
 
 #### Observation - SEARCH
-Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the **search parameters** listed on page [FHIR Resource Server - Search Parameters](ddr-diga-api.html#search-parameters). Observations shared through the _serach_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile.
+Manufacturers of Device Data Recorders that support the MIV _Blood Pressure Monitoring_ MUST implement a _search_ interaction on the `/Observation` endpoint of the FHIR Resource Server. The implementation MUST conform to the [HDDT Generic FHIR API](fhir-api-observation.html), and implement the **search parameters** listed on page [FHIR Resource Server - Search Parameters](ddr-diga-api.html#search-parameters). Observations shared through the _search_ interaction MUST comply with the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile.
 Blood pressure measurements use a panel code 85354-9 _Blood pressure panel with all children optional_ as the main `Observation.code`, while the actual measurement values (8480-6 _Systolic blood pressure_, 8462-4 _Diastolic blood pressure_, 8478-0 _Mean blood pressure_) are captured in `Observation.component` elements. To search for specific component types (e.g., systolic blood pressure with LOINC code 8480-6), use the `component-code` search parameter. See the example below for details. 
 
 
