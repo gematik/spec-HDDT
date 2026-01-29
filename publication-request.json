@@ -1,0 +1,13 @@
+{
+    "package-id": "de.gematik.hddt",
+    "version": "1.0.0-rc",
+    "path": "https://gematik.de/fhir/hddt/1.0.0-rc",
+    "mode": "working",
+    "status" : "release",
+    "releaseLabel": "release",
+    "first": true,
+    "sequence": "HDDT 1.0.0 (current: 'HDDT 1.0.0', others = 'HDDT pre release 0.1.0 ballot')",
+    "desc" : "This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose, Continuous glucose monitoring, lung function testing and blood pressure as an example, according to § 374a SGB V.",
+    "ci-build": "https://gemspec.gematik.de/ig/fhir/hddt/0.1.0"
+}
+   

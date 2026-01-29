@@ -24,6 +24,7 @@ license: CC0-1.0
 fhirVersion: 4.0.1
 copyrightYear: 2025+
 releaseLabel: release
+language: en
 copyright: gematik GmbH
 
 

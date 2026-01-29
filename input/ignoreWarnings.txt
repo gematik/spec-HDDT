@@ -41,11 +41,6 @@
 %Alle Observations sollten einen Performer haben%
 %Alle Observations sollten ein Subject haben%
 
-
-# WARNING: Device.type binding to experimental ValueSet. Reason: The referenced ValueSet 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type' is marked experimental, but is intentionally used in this IG as part of a pilot specification.
-
-%The definition for the element 'Device.type' binds to the value set 'https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type' which is experimental, but this structure is not labeled as experimental%
-
 # WARNING: CodeSystem not found. Reason: This CodeSystem is currently not published.
 
 %A definition for CodeSystem 'https://fhir.bfarm.de/CodeSystem/HiisManufacturerType' could not be found%
