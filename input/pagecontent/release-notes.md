@@ -47,6 +47,7 @@ All extensions and changes to the specification are either based on the regular 
 * `improve` [Security and Privacy](security-and-privacy.html): Clarified that audit logs must be restricted to information necessary for audit and security purposes, and MUST NOT include personal data identifying the patient.
 * `improve` [Information Model](information-model.html): At the end of 2025, BfArM published the _HIIS-VZ_ specification including the _DeviceDefinition_ profiles. References to these profiles were added to the HDDT specification, and statements about the attributes were aligned with the _HIIS-VZ_ information model.
 * `improve` [Operational Requirements](operational-requirements.html): Strict requirements about response times were removed. Vendors should apply a best-effort approach.
+* `improve` [Blood Glucose Measurement](measurement-blood-glucose.html), [Blood Pressure Monitoring](measurement-blood-pressure.html), [Continuous Glucose Measurement](measurement-cgm.html), [Lung Function Testing](measurement-lung-function.html): Added an explicit statement that manufacturers of Device Data Recorders MUST implement requirements expressed by RFC 2119 keywords (MUST, SHOULD, MAY, etc.).
 
 
 * `documentation` [Pairing](pairing.html): Added clearly defined scenarios and conditions under which the DiGA and a Device Data Recorder must be unpaired.
