@@ -10,6 +10,7 @@ Alias: $bp-sd = http://hl7.org/fhir/StructureDefinition/bp
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $mdc = urn:iso:std:iso:11073:10101
+// placeholder does not work for includes, references, bindings, etc., so replace manually !!
 Alias: $term-version = 1.0.0
 
 Profile: HddtCgmSummary
@@ -700,9 +701,9 @@ come from three separate ValueSets:
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* include codes from valueset HddtLungFunctionTestingValues
-* include codes from valueset HddtLungFunctionReferenceValues 
-* include codes from valueset HddtLungFunctionRelativeValues
+* include codes from valueset HddtLungFunctionTestingValues|1.0.0
+* include codes from valueset HddtLungFunctionReferenceValues|1.0.0
+* include codes from valueset HddtLungFunctionRelativeValues|1.0.0
 
 ValueSet: HddtLungFunctionTestingValues
 Id: hddt-lung-function-testing-values
@@ -786,7 +787,7 @@ individual measurement by the reference value, resulting in a percentage value (
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * $LNC#20152-5 "FEV1 measured/predicted"
-* HddtLungFunctionTemporaryCodes#PEF-measured/predicted
+* HddtLungFunctionTemporaryCodes|1.0.0#PEF-measured/predicted
 
 Profile: HddtLungFunctionTesting
 Parent: Observation
@@ -926,7 +927,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
-* group[+].source = Canonical(HddtLungFunctionTemporaryCodes)
+* group[+].source = Canonical(HddtLungFunctionTemporaryCodes|1.0.0)
 * group[=].target = $LNC
 * group[=].element[+].code = #PEF-measured/predicted
 * group[=].element[=].target.comment = "No target LOINC code available yet."
@@ -957,7 +958,7 @@ A ValueSet for codes used to specify the method used to determine lung function 
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
-* include codes from system https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes
+* include codes from system https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes|1.0.0
 
 Profile: HddtLungFunctionReferenceValue
 Parent: Observation
