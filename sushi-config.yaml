@@ -31,6 +31,7 @@ copyright: gematik GmbH
 
 dependencies:
   hl7.fhir.uv.cgm: 1.0.0
+  de.basisprofil.r4: 1.5.4
 
 parameters:
   no-narrative:
