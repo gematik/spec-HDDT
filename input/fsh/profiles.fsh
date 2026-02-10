@@ -1187,23 +1187,16 @@ Caution: For privacy and data protection, the subject reference MUST only use ps
 * device ^short = "Reference to the blood pressure measurement device"
 * device MS
 * component 2..3
+* component[SystolicBP].code = $LNC#8480-6
+* component[DiastolicBP].code = $LNC#8462-4
 * component[SystolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
 * component[DiastolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
 * component contains MeanBP 0..1
-* component[MeanBP].code 1..1
 * component[MeanBP].code.coding 1..1
-* component[MeanBP].code.coding.system = "http://loinc.org" (exactly)
-* component[MeanBP].code.coding.code = #8478-0 (exactly)
-* component[MeanBP].code.coding.display = "Mean blood pressure" (exactly)
-* component[MeanBP].value[x] 1..1
+* component[MeanBP].code.coding.code = $LNC#8478-0 
 * component[MeanBP].value[x] only Quantity
-* component[MeanBP].valueQuantity.value 1..1
-* component[MeanBP].valueQuantity.unit 1..1
-* component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
-* component[MeanBP].valueQuantity.system 1..1
-* component[MeanBP].valueQuantity.system MS
-* component[MeanBP].valueQuantity.code = #mm[Hg] (exactly)
-
+* component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org"
+* component[MeanBP].valueQuantity.code = #mm[Hg]
 
 
 /*
