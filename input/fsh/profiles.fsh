@@ -1187,11 +1187,14 @@ Caution: For privacy and data protection, the subject reference MUST only use ps
 * component 2..3
 * component[SystolicBP].code = $LNC#8480-6
 * component[DiastolicBP].code = $LNC#8462-4
+* component[SystolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
+* component[DiastolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
 * component contains MeanBP 0..1
-* component[MeanBP].code = $LNC#8478-0
+* component[MeanBP].code.coding 1..1
+* component[MeanBP].code.coding.code = $LNC#8478-0 
 * component[MeanBP].value[x] only Quantity
-* component[MeanBP].valueQuantity = http://unitsofmeasure.org#mm[Hg]
-
+* component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org"
+* component[MeanBP].valueQuantity.code = #mm[Hg]
 
 
 /*
