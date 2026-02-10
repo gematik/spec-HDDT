@@ -804,7 +804,7 @@ Description: "Example of a blood pressure measurement with systolic, diastolic, 
 * status = #final
 * category[VSCat] = $oc#vital-signs
 * subject = Reference(patientExample)
-* code.coding[BPCode] = $loinc#85354-9 "Blood pressure panel with all children optional"
+* code.coding[loinc] = $loinc#85354-9 "Blood pressure panel with all children optional"
 * effectiveDateTime = "2025-10-23T09:15:00+02:00"
 * device = Reference(Example-Device-Blood-Pressure-Cuff)
 * interpretation = $oi#N "Normal"
@@ -812,5 +812,5 @@ Description: "Example of a blood pressure measurement with systolic, diastolic, 
 * component[SystolicBP].valueQuantity = 120 'mm[Hg]' "mm[Hg]"
 * component[DiastolicBP].code = $loinc#8462-4 "Diastolic blood pressure"
 * component[DiastolicBP].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
-* component[MeanBP].code = $loinc#8478-0 "Mean blood pressure"
-* component[MeanBP].valueQuantity = 93 'mm[Hg]' "mm[Hg]"
+* component[meanBP].code = $loinc#8478-0 "Mean blood pressure"
+* component[meanBP].valueQuantity = 93 'mm[Hg]' "mm[Hg]"

@@ -6,7 +6,7 @@ Alias: $cgm-summary-gmi = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-sum
 Alias: $cgm-summary-coefficient-of-variation = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation
 Alias: $cgm-summary-days-of-wear = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear
 Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage
-Alias: $bp-sd = http://hl7.org/fhir/StructureDefinition/bp
+Alias: $bp-sd = http://fhir.de/StructureDefinition/observation-de-vitalsign-blutdruck
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $mdc = urn:iso:std:iso:11073:10101
@@ -497,74 +497,74 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. Codes and display texts adapted and reprinted with permission from IEEE for the sole purpose of producing this specification. Copyright IEEE 2020. All rights reserved."
-* $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
-* $mdc#528391 ^designation.language = #en
-* $mdc#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528391 ^designation.value = "Blood Pressure Cuff"
-* $mdc#528404 "MDC_DEV_SPEC_PROFILE_BCA"
-* $mdc#528404 ^designation.language = #en
-* $mdc#528404 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528404 ^designation.value = "Body Composition Analyzer"
-* $mdc#528425 "MDC_DEV_SPEC_PROFILE_HF_CARDIO"
-* $mdc#528425 ^designation.language = #en
-* $mdc#528425 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528425 ^designation.value = "Cardiovascular Device"
-* $mdc#528402 "MDC_DEV_SPEC_PROFILE_COAG"
-* $mdc#528402 ^designation.language = #en
-* $mdc#528402 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528402 ^designation.value = "Coagulation meter"
-* $mdc#528409 "MDC_DEV_SPEC_PROFILE_CGM"
-* $mdc#528409 ^designation.language = #en
-* $mdc#528409 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528409 ^designation.value = "Continuous Glucose Monitor"
-* $mdc#528390 "MDC_DEV_SPEC_PROFILE_ECG"
-* $mdc#528390 ^designation.language = #en
-* $mdc#528390 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528390 ^designation.value = "Electro cardiograph"
-* $mdc#528457 "MDC_DEV_SPEC_PROFILE_GENERIC"
-* $mdc#528457 ^designation.language = #en
-* $mdc#528457 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528457 ^designation.value = "Generic 20601 Device"
-* $mdc#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
-* $mdc#528401 ^designation.language = #en
-* $mdc#528401 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528401 ^designation.value = "Glucose Monitor"
-* $mdc#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
-* $mdc#528455 ^designation.language = #en
-* $mdc#528455 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528455 ^designation.value = "Independent Activity/Living Hub"
-* $mdc#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
-* $mdc#528403 ^designation.language = #en
-* $mdc#528403 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528403 ^designation.value = "Insulin Pump"
-* $mdc#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
-* $mdc#528405 ^designation.language = #en
-* $mdc#528405 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528405 ^designation.value = "Peak Flow meter"
-* $mdc#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
-* $mdc#528388 ^designation.language = #en
-* $mdc#528388 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528388 ^designation.value = "Pulse Oximeter"
-* $mdc#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
-* $mdc#528397 ^designation.language = #en
-* $mdc#528397 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528397 ^designation.value = "Respiration rate"
-* $mdc#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
-* $mdc#528408 ^designation.language = #en
-* $mdc#528408 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528408 ^designation.value = "Sleep Apnea Breathing Equipment"
-* $mdc#528426 "MDC_DEV_SPEC_PROFILE_HF_STRENGTH"
-* $mdc#528426 ^designation.language = #en
-* $mdc#528426 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528426 ^designation.value = "Strength Equipment"
-* $mdc#528392 "MDC_DEV_SPEC_PROFILE_TEMP"
-* $mdc#528392 ^designation.language = #en
-* $mdc#528392 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528392 ^designation.value = "Thermometer"
-* $mdc#528399 "MDC_DEV_SPEC_PROFILE_SCALE"
-* $mdc#528399 ^designation.language = #en
-* $mdc#528399 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc#528399 ^designation.value = "Weight Scale"
+* $mdc|2024-12-05#528391 "MDC_DEV_SPEC_PROFILE_BP"
+* $mdc|2024-12-05#528391 ^designation.language = #en
+* $mdc|2024-12-05#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528391 ^designation.value = "Blood Pressure Cuff"
+// * $mdc|2024-12-05#528404 "MDC_DEV_SPEC_PROFILE_BCA"
+// * $mdc|2024-12-05#528404 ^designation.language = #en
+// * $mdc|2024-12-05#528404 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528404 ^designation.value = "Body Composition Analyzer"
+// * $mdc|2024-12-05#528425 "MDC_DEV_SPEC_PROFILE_HF_CARDIO"
+// * $mdc|2024-12-05#528425 ^designation.language = #en
+// * $mdc|2024-12-05#528425 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528425 ^designation.value = "Cardiovascular Device"
+// * $mdc|2024-12-05#528402 "MDC_DEV_SPEC_PROFILE_COAG"
+// * $mdc|2024-12-05#528402 ^designation.language = #en
+// * $mdc|2024-12-05#528402 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528402 ^designation.value = "Coagulation meter"
+* $mdc|2024-12-05#528409 "MDC_DEV_SPEC_PROFILE_CGM"
+* $mdc|2024-12-05#528409 ^designation.language = #en
+* $mdc|2024-12-05#528409 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528409 ^designation.value = "Continuous Glucose Monitor"
+// * $mdc|2024-12-05#528390 "MDC_DEV_SPEC_PROFILE_ECG"
+// * $mdc|2024-12-05#528390 ^designation.language = #en
+// * $mdc|2024-12-05#528390 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528390 ^designation.value = "Electro cardiograph"
+// * $mdc|2024-12-05#528457 "MDC_DEV_SPEC_PROFILE_GENERIC"
+// * $mdc|2024-12-05#528457 ^designation.language = #en
+// * $mdc|2024-12-05#528457 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528457 ^designation.value = "Generic 20601 Device"
+* $mdc|2024-12-05#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
+* $mdc|2024-12-05#528401 ^designation.language = #en
+* $mdc|2024-12-05#528401 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528401 ^designation.value = "Glucose Monitor"
+// * $mdc|2024-12-05#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
+// * $mdc|2024-12-05#528455 ^designation.language = #en
+// * $mdc|2024-12-05#528455 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528455 ^designation.value = "Independent Activity/Living Hub"
+* $mdc|2024-12-05#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
+* $mdc|2024-12-05#528403 ^designation.language = #en
+* $mdc|2024-12-05#528403 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528403 ^designation.value = "Insulin Pump"
+* $mdc|2024-12-05#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
+* $mdc|2024-12-05#528405 ^designation.language = #en
+* $mdc|2024-12-05#528405 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528405 ^designation.value = "Peak Flow meter"
+* $mdc|2024-12-05#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
+* $mdc|2024-12-05#528388 ^designation.language = #en
+* $mdc|2024-12-05#528388 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528388 ^designation.value = "Pulse Oximeter"
+* $mdc|2024-12-05#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
+* $mdc|2024-12-05#528397 ^designation.language = #en
+* $mdc|2024-12-05#528397 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+* $mdc|2024-12-05#528397 ^designation.value = "Respiration rate"
+// * $mdc|2024-12-05#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
+// * $mdc|2024-12-05#528408 ^designation.language = #en
+// * $mdc|2024-12-05#528408 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528408 ^designation.value = "Sleep Apnea Breathing Equipment"
+// * $mdc|2024-12-05#528426 "MDC_DEV_SPEC_PROFILE_HF_STRENGTH"
+// * $mdc|2024-12-05#528426 ^designation.language = #en
+// * $mdc|2024-12-05#528426 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528426 ^designation.value = "Strength Equipment"
+// * $mdc|2024-12-05#528392 "MDC_DEV_SPEC_PROFILE_TEMP"
+// * $mdc|2024-12-05#528392 ^designation.language = #en
+// * $mdc|2024-12-05#528392 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528392 ^designation.value = "Thermometer"
+// * $mdc|2024-12-05#528399 "MDC_DEV_SPEC_PROFILE_SCALE"
+// * $mdc|2024-12-05#528399 ^designation.language = #en
+// * $mdc|2024-12-05#528399 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528399 ^designation.value = "Weight Scale"
 // * $mdc#528391 "Blood Pressure Cuff"
 // * $mdc#528404 "Body Composition Analyzer"
 // * $mdc#528425 "Cardiovascular Device"
@@ -1135,6 +1135,69 @@ The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * $LNC#85354-9 "Blood pressure panel with all children optional"
 
+// Profile: HddtBloodPressureValue
+// Parent: $bp-sd
+// Id: hddt-blood-pressure-value
+// Title: "Observation - HDDT Blood Pressure Value"
+// Description: """
+// Profile for capturing blood pressure value as FHIR Observation resources.
+
+// This profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\" which is technically defined 
+// by the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to 
+// a Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.
+
+// Blood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and optionally mean blood pressure. 
+// This profile uses the LOINC panel code #85354-9 "Blood pressure panel with all children optional" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.
+
+// **Obligations and Conventions:**
+
+// Each Blood Pressure Measurement MUST hold a reference to a _Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource. 
+// Blood pressure devices typically do not require calibration.
+
+// This profile inherits from the FHIR Blood Pressure profile (`http://hl7.org/fhir/StructureDefinition/bp`) and adds HDDT-specific constraints. The blood pressure components 
+// (systolic and diastolic are mandatory; mean is optional) are inherited from the parent profile with the MeanBP component added as an optional slice.
+// Each component MUST include a value in mmHg (millimeters of mercury).
+
+// Caution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.
+
+// **Constraints applied:**  
+// - `status` is restricted to _final_
+// - `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9
+// - `component` cardinality is set to 2..3 to require systolic and diastolic components (inherited from parent), with mean blood pressure as optional
+// - `component[MeanBP]` is added as an optional slice (0..1) for mean blood pressure with LOINC code 8478-0
+// - Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit
+// - `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
+// """
+// * ^status = #active
+// * ^date = "2026-01-23"
+// * ^publisher = "gematik GmbH"
+// * ^copyright = "Copyright (c) 2025 gematik GmbH"
+// * status = #final (exactly)
+// * status ^short = "Measurement status"
+// * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
+// * status MS
+// * subject ^short = "Patient reference in anonymized or pseudonymized form only"
+// * subject ^definition = "Reference to the patient. The patient MUST NOT be identified directly. Only anonymized or pseudonymized forms are permitted."
+// * code 1..1
+// * code.coding[BPCode] from HddtMivBloodPressureValue (required) // Override to specify coding slice
+// * code ^short = "Type of blood pressure measurement"
+// * code ^binding.description = "Specifies the type of blood pressure measurement using codes from the ValueSet for blood pressure measurements."
+// * device 1..1
+// * device only Reference(HddtPersonalHealthDevice)
+// * device ^short = "Reference to the blood pressure measurement device"
+// * device MS
+// * component 2..3
+// * component[SystolicBP].code = $LNC#8480-6
+// * component[DiastolicBP].code = $LNC#8462-4
+// * component[SystolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
+// * component[DiastolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
+// * component contains MeanBP 0..1
+// * component[MeanBP].code.coding 1..1
+// * component[MeanBP].code.coding.code = $LNC#8478-0 
+// * component[MeanBP].value[x] only Quantity
+// * component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org"
+// * component[MeanBP].valueQuantity.code = #mm[Hg]
+
 Profile: HddtBloodPressureValue
 Parent: $bp-sd
 Id: hddt-blood-pressure-value
@@ -1179,146 +1242,16 @@ Caution: For privacy and data protection, the subject reference MUST only use ps
 * subject ^short = "Patient reference in anonymized or pseudonymized form only"
 * subject ^definition = "Reference to the patient. The patient MUST NOT be identified directly. Only anonymized or pseudonymized forms are permitted."
 * code 1..1
-* code.coding[BPCode] from HddtMivBloodPressureValue (required) // Override to specify coding slice
+// * code.coding[BPCode] from HddtMivBloodPressureValue (required)
+* code.coding[loinc] from HddtMivBloodPressureValue (required)
+* code.coding[snomed] 0..0
 * code ^short = "Type of blood pressure measurement"
 * code ^binding.description = "Specifies the type of blood pressure measurement using codes from the ValueSet for blood pressure measurements."
 * device 1..1
 * device only Reference(HddtPersonalHealthDevice)
 * device ^short = "Reference to the blood pressure measurement device"
 * device MS
-* component 2..3
-* component[SystolicBP].code = $LNC#8480-6
-* component[DiastolicBP].code = $LNC#8462-4
-* component[SystolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
-* component[DiastolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
-* component contains MeanBP 0..1
-* component[MeanBP].code.coding 1..1
-* component[MeanBP].code.coding.code = $LNC#8478-0 
-* component[MeanBP].value[x] only Quantity
-* component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org"
-* component[MeanBP].valueQuantity.code = #mm[Hg]
-
-
-/*
-Ältere Version des Profils, soll hier noch erhalten bleiben, da es in der aktuellen Version unter Umständen Probleme mit dem "subject" Element gibt.
-*/
-
-// Profile: HddtBloodPressureValue
-// Parent: Observation
-// Id: hddt-blood-pressure-value
-// Title: "Observation - HDDT Blood Pressure Value"
-// Description: """
-// Profile for capturing blood pressure value as FHIR Observation resources.
-
-// This profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\" which is technically defined 
-// by the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to 
-// a Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.
-
-// Blood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and mean blood pressure. 
-// This profile uses the LOINC panel code 35094-2 "Blood pressure panel" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.
-
-// **Obligations and Conventions:**
-
-// Each Blood Pressure Measurement MUST hold a reference to a _Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource. 
-// Blood pressure devices typically do not require calibration.
-
-// The three blood pressure components (systolic, diastolic, mean) are captured as sliced components within the Observation resource. 
-// Each component MUST include a value in mmHg (millimeters of mercury).
-
-// **Constraints applied:**  
-// - `status` is restricted to _final_
-// - `code` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 35094-2
-// - `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory
-// - `component` is sliced to require three mandatory components: systolic, diastolic, and mean blood pressure
-// - Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit
-// - `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
-// - Optional elements for `bodySite`, `method`, and `interpretation` are provided with appropriate ValueSet bindings
-// """
-// * ^status = #active
-// * ^date = "2026-01-23"
-// * ^publisher = "gematik GmbH"
-// * ^copyright = "Copyright (c) 2025 gematik GmbH"
-// * status = #final (exactly)
-// * status ^short = "Measurement status"
-// * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
-// * status MS
-// * code 1..1
-// * code from HddtMivBloodPressureValue (required)
-// * code ^short = "Blood pressure panel code"
-// * effective[x] 1..1
-// * effective[x] only dateTime
-// * effectiveDateTime ^short = "Date and time of blood pressure measurement"
-// * interpretation 0..1
-// * interpretation from $bpm-valueset-numeric-in-vs (extensible)
-// * interpretation ^short = "Clinical interpretation of blood pressure measurement (e.g., normal, higher than normal)"
-// * bodySite 0..1
-// * bodySite from $bpm-valueset-bodylocation (extensible)
-// * bodySite ^short = "Body site of measurement (e.g., Structure of right brachial artery (body structure))"
-// * bodySite MS
-// * method 0..1
-// * method from $bpm-valueset-method (extensible)
-// * method ^short = "Measurement method (e.g., vascular oscillometry)"
-// * method MS
-// * device 1..1
-// * device only Reference(HddtPersonalHealthDevice)
-// * device ^short = "Reference to the blood pressure measurement device"
-// * device MS
-// * component ^slicing.discriminator.type = #value
-// * component ^slicing.discriminator.path = "code"
-// * component ^slicing.rules = #open
-// * component ^slicing.ordered = false
-// * component ^slicing.description = "Slicing for blood pressure components"
-// * component contains
-//     systolic 1..1 and
-//     diastolic 1..1 and
-//     mean 1..1
-// * component MS
-// * component[systolic] MS
-// * component[systolic].code = $LNC#8480-6 "Systolic blood pressure"
-// * component[systolic].code MS
-// * component[systolic].code ^short = "Systolic blood pressure code"
-// * component[systolic].value[x] 1..1
-// * component[systolic].value[x] only Quantity
-// * component[systolic].value[x] MS
-// * component[systolic].valueQuantity.value 1..1
-// * component[systolic].valueQuantity.value MS
-// * component[systolic].valueQuantity.unit 1..1
-// * component[systolic].valueQuantity.unit MS
-// * component[systolic].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
-// * component[systolic].valueQuantity.system MS
-// * component[systolic].valueQuantity.code = #mm[Hg] (exactly)
-// * component[systolic].valueQuantity.code MS
-// * component[systolic] ^short = "Systolic blood pressure component"
-// * component[diastolic] MS
-// * component[diastolic].code = $LNC#8462-4 "Diastolic blood pressure"
-// * component[diastolic].code MS
-// * component[diastolic].code ^short = "Diastolic blood pressure code"
-// * component[diastolic].value[x] 1..1
-// * component[diastolic].value[x] only Quantity
-// * component[diastolic].value[x] MS
-// * component[diastolic].valueQuantity.value 1..1
-// * component[diastolic].valueQuantity.value MS
-// * component[diastolic].valueQuantity.unit 1..1
-// * component[diastolic].valueQuantity.unit MS
-// * component[diastolic].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
-// * component[diastolic].valueQuantity.system MS
-// * component[diastolic].valueQuantity.code = #mm[Hg] (exactly)
-// * component[diastolic].valueQuantity.code MS
-// * component[diastolic] ^short = "Diastolic blood pressure component"
-// * component[mean] MS
-// * component[mean].code = $LNC#8478-0 "Mean blood pressure"
-// * component[mean].code MS
-// * component[mean].code ^short = "Mean blood pressure code"
-// * component[mean].value[x] 1..1
-// * component[mean].value[x] only Quantity
-// * component[mean].value[x] MS
-// * component[mean].valueQuantity.value 1..1
-// * component[mean].valueQuantity.value MS
-// * component[mean].valueQuantity.unit 1..1
-// * component[mean].valueQuantity.unit MS
-// * component[mean].valueQuantity.system = "http://unitsofmeasure.org" (exactly)
-// * component[mean].valueQuantity.system MS
-// * component[mean].valueQuantity.code = #mm[Hg] (exactly)
-// * component[mean].valueQuantity.code MS
-// * component[mean] ^short = "Mean blood pressure component"
-
+* component[SystolicBP].value[x] MS
+* component[SystolicBP].valueQuantity MS
+* component[DiastolicBP].value[x] MS
+* component[DiastolicBP].valueQuantity MS
