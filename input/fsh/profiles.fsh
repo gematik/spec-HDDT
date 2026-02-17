@@ -10,6 +10,7 @@ Alias: $bp-sd = http://fhir.de/StructureDefinition/observation-de-vitalsign-blut
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $mdc = urn:iso:std:iso:11073:10101
+Alias: $shareable-vs = http://hl7.org/fhir/StructureDefinition/shareablevalueset
 // placeholder does not work for includes, references, bindings, etc., so replace manually !!
 Alias: $term-version = 1.0.0-rc
 
@@ -715,11 +716,15 @@ It allows clients to request CGM summary data filtered by effective period, and 
 * parameter[=].type = #Reference
 * parameter[=].targetProfile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"
 
-
-ValueSet: HddtMivLungFunctionTesting
-Id: hddt-miv-lung-function-testing
+// this is an instance, because otherwise the versioned include of the ValueSets does not work. 
+// for instances, we can't explicitely set `id`, but it is automaticly generated from the 'Instance' field. We also need to explicitely set the name.
+Instance: hddt-miv-lung-function-testing
+InstanceOf: $shareable-vs
+Usage: #definition
 Title: "MIV Lung Function Testing from LOINC"
-Description: """
+//* id =  hddt-miv-lung-function-testing
+* name = "HddtMivLungFunctionTesting"
+* description = """
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
 Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
@@ -759,23 +764,22 @@ Ebenfalls enthalten sind LOINC-Codes für die entsprechenden Referenzwerte sowie
 - HddtLungFunctionReferenceValues: Codes für Referenzwerte der Lungenfunktion
 - HddtLungFunctionRelativeValues: Codes für relative Lungenfunktionswerte, berechnet in Prozent (%)
 """
-* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
-* ^language = #en
-* ^version = $term-version
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
-* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
-* ^extension[=].valueContactDetail.name = "gematik GmbH"
-* ^status = #active
-* ^experimental = false
-* ^date = "2026-01-26"
-* ^publisher = "gematik GmbH"
-* ^contact.telecom[0].system = #url
-* ^contact.telecom[=].value = "https://www.gematik.de"
-* ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* include codes from valueset HddtLungFunctionTestingValues|1.0.0-rc
-* include codes from valueset HddtLungFunctionReferenceValues|1.0.0-rc
-* include codes from valueset HddtLungFunctionRelativeValues|1.0.0-rc
+* language = #en
+* version = $term-version
+* extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* extension[=].valuePeriod.start = "2026-02-01"
+* extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* extension[=].valueContactDetail.name = "gematik GmbH"
+* status = #active
+* experimental = false
+* date = "2026-01-26"
+* publisher = "gematik GmbH"
+* contact.telecom[0].system = #url
+* contact.telecom[=].value = "https://www.gematik.de"
+* copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* compose.include[0].valueSet = Canonical(HddtLungFunctionTestingValues|1.0.0-rc)
+* compose.include[1].valueSet = Canonical(HddtLungFunctionReferenceValues|1.0.0-rc)
+* compose.include[2].valueSet = Canonical(HddtLungFunctionRelativeValues|1.0.0-rc)
 
 
 ValueSet: HddtLungFunctionTestingValues
