@@ -380,6 +380,23 @@ ValueSet: HddtMivBloodGlucoseMeasurement
 Id: hddt-miv-blood-glucose-measurement
 Title: "Blood Glucose Measurement from LOINC"
 Description: """
+Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
+Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
+MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
+
+Das ValueSet _HddtMivBloodGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\". Die Definition besteht aus
+- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert
+- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren
+
+Der MIV _Blood Glucose Measurement_ umfasst Werte aus „blutigen Messungen“, z. B. mit kapillarem Blut aus der Fingerkuppe. Die Messungen erfolgen gemäß Versorgungsplan
+(z. B. Blutzuckermessung vor jeder Mahlzeit) oder ad hoc (z. B. bei Unwohlsein des Patienten, was auf eine Hypoglykämie hindeuten kann).
+DiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern sehr genaue Glukosewerte, die für therapeutische Entscheidungen geeignet sind.
+
+Das ValueSet für den MIV _Blood Glucose Measurement_ enthält LOINC-Codes für Blutzuckermessungen mit Blut oder Plasma als Referenzmethoden, wobei die Werte als Masse/Volumen und Mol/Volumen angegeben werden.
+Zusätzlich sind granularere LOINC-Codes für „Glukose im Kapillarblut mittels Glukometer“ als Masse/Volumen und Mol/Volumen enthalten, da diese Codes bereits von mehreren Herstellern von Glukometern verwendet werden.
+
+--
+
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
 Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
@@ -398,23 +415,6 @@ blood or plasma as reference methods with the values provided as mass/volume and
 In addition more granular LOINC codes for \"Glucose in Capillary blood by Glucometer\" provided as mass/volume 
 and moles/volume are included with the value set because these codes are already in use by several 
 manufacturers of glucometers.
-
---
-
-Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
-Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
-MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
-
-Das ValueSet _HddtMivBloodGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \"Blood Glucose Measurement\". Die Definition besteht aus
-- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert
-- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren
-
-Der MIV _Blood Glucose Measurement_ umfasst Werte aus „blutigen Messungen“, z. B. mit kapillarem Blut aus der Fingerkuppe. Die Messungen erfolgen gemäß Versorgungsplan
-(z. B. Blutzuckermessung vor jeder Mahlzeit) oder ad hoc (z. B. bei Unwohlsein des Patienten, was auf eine Hypoglykämie hindeuten kann).
-DiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern sehr genaue Glukosewerte, die für therapeutische Entscheidungen geeignet sind.
-
-Das ValueSet für den MIV _Blood Glucose Measurement_ enthält LOINC-Codes für Blutzuckermessungen mit Blut oder Plasma als Referenzmethoden, wobei die Werte als Masse/Volumen und Mol/Volumen angegeben werden.
-Zusätzlich sind granularere LOINC-Codes für „Glukose im Kapillarblut mittels Glukometer“ als Masse/Volumen und Mol/Volumen enthalten, da diese Codes bereits von mehreren Herstellern von Glukometern verwendet werden.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -442,6 +442,26 @@ ValueSet: HddtMivContinuousGlucoseMeasurement
 Id: hddt-miv-continuous-glucose-measurement
 Title: "Continuous Glucose Measurement from LOINC"
 Description: """
+Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
+Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
+MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
+
+Das ValueSet _HddtMivContinuousGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\". Die Definition besteht aus
+- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert
+- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren
+
+Der MIV _Continuous Glucose Measurement_ umfasst Werte aus der kontinuierlichen Überwachung des Glukosespiegels, z. B. 
+durch rtCGM im Interstitialfluid (ISF). Die Messungen werden mit Sensoren durchgeführt, die eine Abtastrate von bis zu 
+einem Wert pro Minute (oder sogar mehr) ermöglichen. Dadurch kann der MIV _Continuous Glucose Measurement_ z. B. genutzt werden, um Zusammenhänge
+zwischen den individuellen Gewohnheiten und dem Glukosespiegel eines Patienten zu beurteilen. Aufgrund der hohen Dichte an Werten über einen langen
+Zeitraum können aus _Continuous Glucose Measurement_ viele Schlüsselmetriken berechnet werden, die dem Patienten und seinem Arzt helfen,
+den Gesundheits- und Therapiezustand des Patienten einfach zu erfassen.
+
+Das ValueSet für den MIV _Continuous Glucose Measurement_ enthält Codes, die für die kontinuierliche Glukoseüberwachung (CGM) im Interstitialfluid (ISF) relevant sind, 
+wobei Masse/Volumen und Mol/Volumen als gebräuchliche Einheiten berücksichtigt werden. In Zukunft können diesem ValueSet Codes für nicht-invasive Glukosemessmethoden hinzugefügt werden.
+
+--
+
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
 Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
@@ -460,26 +480,6 @@ his doctor to easily capture the status of the patient's health and therapy.
 The ValueSet for the MIV _Continuous Glucose Measurement_ includes codes relevant to continuous glucose 
 monitoring (CGM) in interstitial fluid (ISF), considering mass/volume and moles/volume as commonly used units. 
 In the future codes defining non-invasive glucose measuring methods may be added to this value set.
-
---
-
-Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
-Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
-MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
-
-Das ValueSet _HddtMivContinuousGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \"Continuous Glucose Measurement\". Die Definition besteht aus
-- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert
-- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren
-
-Der MIV _Continuous Glucose Measurement_ umfasst Werte aus der kontinuierlichen Überwachung des Glukosespiegels, z. B. 
-durch rtCGM im Interstitialfluid (ISF). Die Messungen werden mit Sensoren durchgeführt, die eine Abtastrate von bis zu 
-einem Wert pro Minute (oder sogar mehr) ermöglichen. Dadurch kann der MIV _Continuous Glucose Measurement_ z. B. genutzt werden, um Zusammenhänge
-zwischen den individuellen Gewohnheiten und dem Glukosespiegel eines Patienten zu beurteilen. Aufgrund der hohen Dichte an Werten über einen langen
-Zeitraum können aus _Continuous Glucose Measurement_ viele Schlüsselmetriken berechnet werden, die dem Patienten und seinem Arzt helfen,
-den Gesundheits- und Therapiezustand des Patienten einfach zu erfassen.
-
-Das ValueSet für den MIV _Continuous Glucose Measurement_ enthält Codes, die für die kontinuierliche Glukoseüberwachung (CGM) im Interstitialfluid (ISF) relevant sind, 
-wobei Masse/Volumen und Mol/Volumen als gebräuchliche Einheiten berücksichtigt werden. In Zukunft können diesem ValueSet Codes für nicht-invasive Glukosemessmethoden hinzugefügt werden.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -503,6 +503,21 @@ ValueSet: HddtDeviceType
 Id: hddt-device-type
 Title: "Device Type of personal health devices"
 Description: """
+Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.
+
+Die Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),
+angepasst für die Verwendung mit den auf FHIR R4 basierenden HDDT-Profilen.
+
+Dieses ValueSet enthält Konzepte aus ISO/IEEE 11073-10101:2020. Codes aus dem Standard _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature_ 
+sind im Rahmen der Lizenzvereinbarung von HL7 International mit der IEEE enthalten. Nutzer dieser Spezifikation dürfen einzelne Codes im Rahmen von HL7 FHIR-basierten 
+Implementierungen referenzieren. Das vollständige ISO/IEEE 11073-Codesystem und dessen Inhalte bleiben jedoch urheberrechtlich bei ISO und IEEE geschützt.
+
+Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch 
+zwischen Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Der Inhalt des ValueSets umfasst immer mindestens alle Gerätetypen,
+für die HDDT _Mandatory Interoperable Values_ (MIVs) definiert. Damit kann dieses ValueSet zukünftig auch Codes enthalten, die nicht Teil des FHIR ValueSet _Device Type_ sind.
+
+--
+
 This ValueSet includes codes used to identify Personal Health Devices and Device Data Recorders.
 
 This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
@@ -519,22 +534,6 @@ CAVE: This ValueSet is part of the Health Device Data Transfer specification (HD
 for sharing data between medical aids and digital health applications (DiGA). The content of the value set will always at latest
 cover all types of device types for whoch HDDT defines _Mandatory Interoperable Values_ (MIVs). By this, this value set MAY
 in the future include codes which are not part of the FHIR ValueSet _Device Type_. 
-
---
-
-Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.
-
-Die Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),
-angepasst für die Verwendung mit den auf FHIR R4 basierenden HDDT-Profilen.
-
-Dieses ValueSet enthält Konzepte aus ISO/IEEE 11073-10101:2020. Codes aus dem Standard _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature_ 
-sind im Rahmen der Lizenzvereinbarung von HL7 International mit der IEEE enthalten. Nutzer dieser Spezifikation dürfen einzelne Codes im Rahmen von HL7 FHIR-basierten 
-Implementierungen referenzieren. Das vollständige ISO/IEEE 11073-Codesystem und dessen Inhalte bleiben jedoch urheberrechtlich bei ISO und IEEE geschützt.
-
-Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch 
-zwischen Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Der Inhalt des ValueSets umfasst immer mindestens alle Gerätetypen,
-für die HDDT _Mandatory Interoperable Values_ (MIVs) definiert. Damit kann dieses ValueSet zukünftig auch Codes enthalten, die nicht Teil des FHIR ValueSet _Device Type_ sind.
-
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -725,6 +724,25 @@ Title: "MIV Lung Function Testing from LOINC"
 //* id =  hddt-miv-lung-function-testing
 * name = "HddtMivLungFunctionTesting"
 * description = """
+Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
+Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
+MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
+
+Das ValueSet _HddtMivLungFunctionTesting_ definiert den Mandatory Interoperable Value (MIV) \"Lung Function Testing\". Die Definition besteht aus
+- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert
+- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren
+
+Der MIV _Lung Function Testing_ umfasst Werte aus Lungenfunktionstests, die durch Ausatmen in ein handgehaltenes Peak-Flow-Meter oder Spirometer durchgeführt werden.
+Die Messungen erfolgen zweimal täglich oder häufiger, wenn dies durch den Versorgungsplan oder den Zustand des Patienten erforderlich ist.
+
+Das ValueSet für den MIV _Lung Function Testing_ enthält LOINC-Codes für die Messung des _Peak Expiratory Flow_ (PEF) und des Forcierten Exspiratorischen Volumens in 1 Sekunde (FEV1).
+Ebenfalls enthalten sind LOINC-Codes für die entsprechenden Referenzwerte sowie relative Werte (z. B. _FEV1 measured/predicted_). Dieses ValueSet enthält die LOINC-Codes nicht direkt, sondern die Codes stammen aus drei separaten ValueSets:
+- HddtLungFunctionTestingValues: Codes für einzelne Lungenfunktionstests
+- HddtLungFunctionReferenceValues: Codes für Referenzwerte der Lungenfunktion
+- HddtLungFunctionRelativeValues: Codes für relative Lungenfunktionswerte, berechnet in Prozent (%)
+
+--
+
 This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
 Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
@@ -744,25 +762,6 @@ come from three separate ValueSets:
 - HddtLungFunctionTestingValues: codes for individual lung function testings
 - HddtLungFunctionReferenceValues: codes for lung function reference values
 - HddtLungFunctionRelativeValues: codes for relative lung function values, calculated in percentages (%)
-
---
-
-Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
-Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
-MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
-
-Das ValueSet _HddtMivLungFunctionTesting_ definiert den Mandatory Interoperable Value (MIV) \"Lung Function Testing\". Die Definition besteht aus
-- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert
-- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren
-
-Der MIV _Lung Function Testing_ umfasst Werte aus Lungenfunktionstests, die durch Ausatmen in ein handgehaltenes Peak-Flow-Meter oder Spirometer durchgeführt werden.
-Die Messungen erfolgen zweimal täglich oder häufiger, wenn dies durch den Versorgungsplan oder den Zustand des Patienten erforderlich ist.
-
-Das ValueSet für den MIV _Lung Function Testing_ enthält LOINC-Codes für die Messung des _Peak Expiratory Flow_ (PEF) und des Forcierten Exspiratorischen Volumens in 1 Sekunde (FEV1).
-Ebenfalls enthalten sind LOINC-Codes für die entsprechenden Referenzwerte sowie relative Werte (z. B. _FEV1 measured/predicted_). Dieses ValueSet enthält die LOINC-Codes nicht direkt, sondern die Codes stammen aus drei separaten ValueSets:
-- HddtLungFunctionTestingValues: Codes für einzelne Lungenfunktionstests
-- HddtLungFunctionReferenceValues: Codes für Referenzwerte der Lungenfunktion
-- HddtLungFunctionRelativeValues: Codes für relative Lungenfunktionswerte, berechnet in Prozent (%)
 """
 * language = #en
 * version = $term-version
@@ -786,19 +785,19 @@ ValueSet: HddtLungFunctionTestingValues
 Id: hddt-lung-function-testing-values
 Title: "Lung Function Testing Values from LOINC"
 Description: """
-This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
-for sharing data between medical aids and digital health applications (DiGA). 
-
-This ValueSet defines the codes used for individual lung function testings, measured by hand-held peak flow meters or spirometers.
-Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume in 1 second (FEV1).
-
---
-
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.
 
 Dieses ValueSet definiert die Codes für einzelne Lungenfunktionstests, die mit handgehaltenen Peak-Flow-Metern oder Spirometern gemessen werden.
 Enthalten sind Codes für den _Peak Expiratory Flow_ (PEF) und das Forcierte Exspiratorische Volumen in 1 Sekunde (FEV1).
+
+--
+
+This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+for sharing data between medical aids and digital health applications (DiGA). 
+
+This ValueSet defines the codes used for individual lung function testings, measured by hand-held peak flow meters or spirometers.
+Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume in 1 second (FEV1).
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -821,14 +820,6 @@ ValueSet: HddtLungFunctionReferenceValues
 Id: hddt-lung-function-reference-values
 Title: "Lung Function Reference Values from LOINC"
 Description: """
-This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
-for sharing data between medical aids and digital health applications (DiGA). 
-
-This ValueSet defines the LOINC codes, used for lung function reference values:
-- The reference value for Peak Expiratory Flow (PEF) is the personal best value achieved by the patient within a certain time frame. 
-- The reference value for Forced Expiratory Volume in 1 second (FEV1) is in most cases a predicted value, calculated based on demographic data of the patient.
-
---
 
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.
@@ -836,6 +827,15 @@ Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.
 Dieses ValueSet definiert die LOINC-Codes, die für Referenzwerte der Lungenfunktion verwendet werden:
 - Der Referenzwert für den _Peak Expiratory Flow_ (PEF) ist der persönliche Bestwert, den der Patient innerhalb eines bestimmten Zeitraums erreicht hat.
 - Der Referenzwert für das Forcierte Exspiratorische Volumen in 1 Sekunde (FEV1) ist in den meisten Fällen ein vorhergesagter Wert, der auf Basis der demografischen Daten des Patienten berechnet wird.
+
+--
+
+This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+for sharing data between medical aids and digital health applications (DiGA). 
+
+This ValueSet defines the LOINC codes, used for lung function reference values:
+- The reference value for Peak Expiratory Flow (PEF) is the personal best value achieved by the patient within a certain time frame. 
+- The reference value for Forced Expiratory Volume in 1 second (FEV1) is in most cases a predicted value, calculated based on demographic data of the patient.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -858,21 +858,22 @@ ValueSet: HddtLungFunctionRelativeValues
 Id: hddt-lung-function-relative-values
 Title: "Lung Function Relative Values from LOINC"
 Description: """
-This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
-for sharing data between medical aids and digital health applications (DiGA). 
-
-This ValueSet defines the LOINC codes, used for relative lung function values. The relative value is calculated by dividing the 
-individual measurement by the reference value, resulting in a percentage value (%). Included codes are for 
-- FEV1 measured/predicted
-- PEF measured/predicted
-
---
 
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.
 
 Dieses ValueSet definiert die LOINC-Codes, die für relative Lungenfunktionswerte verwendet werden. Der relative Wert wird berechnet, indem die 
 individuelle Messung durch den Referenzwert geteilt wird, was zu einem Prozentwert (%) führt. Enthaltene Codes sind für
+- FEV1 measured/predicted
+- PEF measured/predicted
+
+--
+
+This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+for sharing data between medical aids and digital health applications (DiGA). 
+
+This ValueSet defines the LOINC codes, used for relative lung function values. The relative value is calculated by dividing the 
+individual measurement by the reference value, resulting in a percentage value (%). Included codes are for 
 - FEV1 measured/predicted
 - PEF measured/predicted
 """
@@ -956,21 +957,21 @@ CodeSystem: HddtLungFunctionReferenceValueMethodCodes
 Id: hddt-lung-function-reference-value-method-codes
 Title: "Lung Function Reference Value Method Codes"
 Description: """
-This CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
-for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
-Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
-
-The MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference
-values can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.
-
---
-
 Dieses CodeSystem ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
 MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
 
 Der MIV _HddtMivLungFunctionTesting_ erfordert Referenzwerte zur Bewertung gemessener Lungenfunktionswerte. Diese Referenzwerte können mit unterschiedlichen
 Methoden bestimmt werden. Dieses CodeSystem stellt Codes zur Verfügung, um typische Methoden zur Bestimmung von Lungenfunktions-Referenzwerten auszudrücken.
+
+--
+
+This CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
+Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
+
+The MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference
+values can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.
 """
 * ^language = #en
 * ^version = $term-version
@@ -1001,11 +1002,11 @@ CodeSystem: HddtLungFunctionTemporaryCodes
 Id: hddt-lung-function-temporary-codes
 Title: "Lung Function Temporary Codes"
 Description: """
-Temporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable.
+Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.
 
 --
 
-Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.
+Temporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable.
 """
 * ^language = #en
 * ^version = $term-version
@@ -1028,15 +1029,15 @@ InstanceOf: ConceptMap
 Usage: #definition
 Title: "Lung Function Temporary Codes to LOINC"
 Description: """
-A mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.
-In case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.
-Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
-
---
-
 Eine Abbildung von temporären Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, auf LOINC-Codes.
 Falls noch kein LOINC-Code verfügbar ist, wird dies mit einer Äquivalenz von 'unmatched' angezeigt.
 Sobald ein LOINC-Code für einen temporären Code verfügbar ist, wird diese ConceptMap entsprechend aktualisiert.
+
+--
+
+A mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.
+In case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.
+Whenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.
 """
 * experimental = false
 * language = #en
@@ -1063,19 +1064,19 @@ ValueSet: HddtLungFunctionReferenceValueMethod
 Id: hddt-lung-function-reference-value-method
 Title: "Lung Function Reference Value Method"
 Description: """
-A ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:
-- Personal Best
-- Predicted Value according to Global Lung Initiative 2012
-- Predicted Value according to Global Lung Initiative 2022
-- Other
-
---
-
 Ein ValueSet für Codes, die die Methode zur Bestimmung von Referenzwerten der Lungenfunktion angeben. Enthalten sind Codes aus dem CodeSystem _HddtLungFunctionReferenceValueMethodCodes_:
 - Personal Best (persönlicher Bestwert)
 - Vorhergesagter Wert gemäß Global Lung Initiative 2012
 - Vorhergesagter Wert gemäß Global Lung Initiative 2022
 - Sonstige
+
+--
+
+A ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:
+- Personal Best
+- Predicted Value according to Global Lung Initiative 2012
+- Predicted Value according to Global Lung Initiative 2022
+- Other
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
@@ -1237,22 +1238,6 @@ ValueSet: HddtMivBloodPressureValue
 Id: hddt-miv-blood-pressure-value
 Title: "Blood Pressure Value from LOINC"
 Description: """
-This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
-for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
-Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
-
-The ValueSet _HddtMivBloodPressureValue_ defines the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\". The definition is made up from
-- this description which provides the semantics and defining characteristics of the MIV
-- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ 
-
-The MIV _Blood Pressure Monitoring_ covers values from blood pressure measurements performed using oszillometric or auscultatory, automated 
-sphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).
-DiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. 
-
-The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for complete blood pressure panel, but should still have the option to include additional code in future updates.
-
---
-
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).
 MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.
@@ -1266,6 +1251,22 @@ Sphygmomanometern durchgeführt werden. Die Messungen erfolgen gemäß Versorgun
 DiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern genaue Blutdruckwerte, die für therapeutische Entscheidungen geeignet sind.
 
 Das ValueSet für den MIV _Blood Pressure Monitoring_ enthält den LOINC-Code für das vollständige Blutdruck-Panel, sollte aber auch die Möglichkeit bieten, in zukünftigen Updates zusätzliche Codes aufzunehmen.
+
+--
+
+This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
+for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable 
+Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.
+
+The ValueSet _HddtMivBloodPressureValue_ defines the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\". The definition is made up from
+- this description which provides the semantics and defining characteristics of the MIV
+- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ 
+
+The MIV _Blood Pressure Monitoring_ covers values from blood pressure measurements performed using oszillometric or auscultatory, automated 
+sphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).
+DiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. 
+
+The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for complete blood pressure panel, but should still have the option to include additional code in future updates.
 """
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
 * ^language = #en
