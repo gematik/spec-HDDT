@@ -15,6 +15,9 @@
 # INFORMATION: Conformance term check. Reason: The reference to § 374a SGB V is explanatory background text only and not intended as a formal conformance statement. The hit does not indicate an error in the specification and can be safely ignored.
 %No conformance term found in the text%
 
+# INFORMATION: Discriminator type 'pattern' is deprecated in R5. However, we want to establish compatibility with R4.
+%The discriminator type 'pattern' is deprecated in R5+. For future compatibility, you could consider using type=value with a pattern[x] instead%
+
 # INFORMATION: Missing publish box in generated HTML.Reason: This IG is not an official HL7 publication, so the 'publish box' requirement does not apply. The warning appears once per build and can safely be suppressed.
 
 %The html source does not contain the publish box%
