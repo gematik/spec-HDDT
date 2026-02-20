@@ -673,7 +673,6 @@ It allows clients to request CGM summary data filtered by effective period, and 
 - `MSG_PARAM_INVALID`: Returned when a parameter value is invalid (e.g., bad date format).  
 - `MSG_NO_MATCH`: Returned when no matching observations are found. 
 - `MSG_BAD_SYNTAX`: Returned when the request is malformed.  
-
 """
 // * version = "0.1.1"
 * id = "hddt-cgm-summary-operation"
@@ -820,7 +819,6 @@ ValueSet: HddtLungFunctionReferenceValues
 Id: hddt-lung-function-reference-values
 Title: "Lung Function Reference Values from LOINC"
 Description: """
-
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.
 
@@ -858,7 +856,6 @@ ValueSet: HddtLungFunctionRelativeValues
 Id: hddt-lung-function-relative-values
 Title: "Lung Function Relative Values from LOINC"
 Description: """
-
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
 Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.
 
