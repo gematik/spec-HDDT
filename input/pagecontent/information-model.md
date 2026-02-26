@@ -103,7 +103,7 @@ As described in the section on [certification relevant systems](certification-re
   * URL of the Device Data Recorder's [Authorization Server](authorization-server.html) that must be called for obtaining the access token for getting access to the FHIR API
   * Fully Qualified Domain Name (FQDN) as stated in the AuthZ server's X.509 certificate. This allows a DiGA to securely authenticate the authorization endpoint of the Device Data Recorder.
 
-The links between these resources are maintained within the _HIIS-VZ_ as extensions to the FHIR [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) that represents the Device Data Recorder Definition (see _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ and [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for details). 
+The links between these resources are maintained within the _HIIS-VZ_ as extensions to the FHIR [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) that represents the Device Data Recorder Definition (see _[HIIS-VZ API](registries-and-zts.html#hiis-vz)_ and [https://fhir.bfarm.de/guide/hiis-information-model-en.html](https://fhir.bfarm.de/guide/hiis-information-model-en.html) for details). 
 
 #### MIV-Specific Properties of Device Data Recorders
 For each supported MIV, a Device Data Recorder MUST register the following static properties with the _HIIS-VZ_:
@@ -133,7 +133,7 @@ A Personal Health Device may connect to different __Device Data Recorders__. E.g
 While DiGA use the _[HIIS-VZ RESTful API](registries-and-zts.html#hiis-vz)_ for retrieving information about registered __Personal Health Devices__ and __Device Data Recorders__, the manufacturers of Device Data Recorders may use the API of the BfArM _[DiGA Verzeichnis](registries-and-zts.html#diga-verzeichnis)_ (BfArM DiGA Registry) for retrieving information about a DiGA that wants to connect to a devive through the HDDT API. This API gives access to __DiGA Device Definition__ data which was provided by DiGA manufacturers to BfArM during registration with the _[DiGA-Verzeichnis](https://diga.bfarm.de/de/verzeichnis)_. 
 
 #### HDDT Information Model - Devices and Device Definitions
-The orange box in the class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries. Correlations and dependencies between objects which are managed by the BfArM Registries are shown as dotted lines as it is the responsibility of BfArM to define the respective extensions to the standard FHIR resource types (see [https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current](https://simplifier.net/guide/hiis/Home/Informationsmodell.page.md?version=current) for the current version of the _HIIS-VZ_ information model) 
+The orange box in the class diagram below shows the classes of the HDDT information model which are managed with the BfArM Registries. Correlations and dependencies between objects which are managed by the BfArM Registries are shown as dotted lines as it is the responsibility of BfArM to define the respective extensions to the standard FHIR resource types (see [https://fhir.bfarm.de/guide/hiis-information-model-en.html](https://fhir.bfarm.de/guide/hiis-information-model-en.html) for the current version of the _HIIS-VZ_ information model) 
 
 <figure> 
 <div class="gem-ig-svg-container" style="width: 75%;">
