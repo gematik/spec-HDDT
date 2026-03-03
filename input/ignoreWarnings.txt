@@ -68,6 +68,14 @@
 # WARNING:  HTML has duplicate Anchor IDs. Reason: The file `measurement-lung-function.md` embeds three Observation profiles, each with a distinct 'diff' table. IG-publisher generates HTML-anchors with duplicate ids for each table.
 % The html source has duplicate anchor Ids: diff_Observation,%
 
+# WARNING: SNOMED CT German edition validation. Reason: The terminology server of HL7 (tx.fhir.org) currently does not provide the German edition of SNOMED CT. Therefore, validation of German designations may fail. This will be resolved once the German edition is available on the central German terminology server.
+%A definition for CodeSystem 'http://snomed.info/sct' version 'http://snomed.info/sct/11000274103%
+%The concepts in the value set include have not been validated because the code system is not known, and no terminology service supports it%
+%Error from https://tx.fhir.org/r4: Error: A definition for CodeSystem 'http://snomed.info/sct' version 'http://snomed.info/sct/11000274103%
+
+# ERROR: SNOMED CT German edition validation. Reason: The terminology server of HL7 (tx.fhir.org) currently does not provide the German edition of SNOMED CT. Therefore, validation of German designations may fail. This will be resolved once the German edition is available on the central German terminology server.
+%None of the codings provided are in the value set 'Device Type of personal health devices'%
+
 # ------------------------------------------------------------------------------
 
 # NOTE: The following warning about Bundle.language is suppressed because it refers

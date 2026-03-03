@@ -1,6 +1,6 @@
 {
     "package-id": "de.gematik.hddt",
-    "version": "1.0.0-rc",
+    "version": "1.0.0-rc2",
     "path": "https://gematik.de/fhir/hddt/1.0.0-rc",
     "mode": "working",
     "status" : "release",

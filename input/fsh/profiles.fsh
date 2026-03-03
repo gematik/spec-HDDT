@@ -11,10 +11,15 @@ Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
 Alias: $LNC-versioned = http://loinc.org|2.81
 Alias: $mdc = urn:iso:std:iso:11073:10101
+
+// change both 'version' and 'version-suffix'!!!
 Alias: $sct = http://snomed.info/sct
+Alias: $sct-version-suffix = http://snomed.info/sct/11000274103/version/20251115
 Alias: $sct-version = http://snomed.info/sct|http://snomed.info/sct/11000274103/version/20251115 // german Snomed
-//Alias: $sct-version = http://snomed.info/sct|http://snomed.info/sct/900000000000207008/version/20250201 // international SNOMEd, supported by tx.fhir.org
+
 Alias: $shareable-vs = http://hl7.org/fhir/StructureDefinition/shareablevalueset
+// since the VS is an instance, we need to hardcode the URI for bindings, etc.
+Alias: $vs-device-type = https://gematik.de/fhir/hddt/ValueSet/hddt-device-type
 // placeholder does not work for includes, references, bindings, etc., so replace manually !!
 Alias: $term-version = 1.0.0-rc2
 
@@ -115,7 +120,7 @@ Personal Health Device MUST be set to `unknown`.
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Personal Health Device"
 * . ^definition = "A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a medical aid or implant."
-* type from HddtDeviceType (required)
+* type from $vs-device-type (required)
 * type ^short = "The machine-readable type of the Personal health device"
 * status MS
 * status ^requirements = "allow a requesting party to detect missing data (e.g. due to connection issues)"
@@ -503,10 +508,15 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * $LNC-versioned#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
 
-ValueSet: HddtDeviceType
-Id: hddt-device-type
+// this is an instance, because we need to add an extension to the include for copyrights.
+// for instances, we can't explicitely set `id`, but it is automaticly generated from the 'Instance' field. We also need to explicitely set the name.
+Instance: hddt-device-type
+InstanceOf: $shareable-vs
+Usage: #definition
 Title: "Device Type of personal health devices"
-Description: """
+//* id = hddt-device-type
+* name = "HddtDeviceType"
+* description = """
 Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.
 
 Die Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),
@@ -534,28 +544,35 @@ for sharing data between medical aids and digital health applications (DiGA). Th
 cover all types of device types for whoch HDDT defines _Mandatory Interoperable Values_ (MIVs). By this, this value set MAY
 in the future include codes which are not part of the FHIR ValueSet _Device Type_. 
 """
-* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
-* ^language = #en
-* ^version = $term-version
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
-* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
-* ^extension[=].valueContactDetail.name = "gematik GmbH"
-// * ^url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
-* ^status = #active
-* ^experimental = false
-* ^date = "2026-01-26"
-* ^publisher = "gematik GmbH"
-* ^contact.telecom[0].system = #url
-* ^contact.telecom[=].value = "https://www.gematik.de"
-* ^copyright = "The copyright for the compilation of this value set is held by gematik GmbH and by Federal Institute for Drugs and Medical Devices (BfArM)."
-* $sct-version#337414009 "Blood glucose meter (physical object)"
-* $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system (physical object)"
-* $sct-version#70665002 "Blood pressure cuff, device (physical object)"
-* $sct-version#334990001 "Peak flow meter (physical object)"
-* $sct-version#303501006 "Spirometer (physical object)"
-//* ^compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
-//* ^compose.include[0].extension[0].valueString = "his valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* language = #en
+* version = $term-version
+* extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* extension[=].valuePeriod.start = "2026-02-01"
+* extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* extension[=].valueContactDetail.name = "gematik GmbH"
+// * url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
+* status = #active
+* experimental = false
+* date = "2026-01-26"
+* publisher = "gematik GmbH"
+* contact.telecom[0].system = #url
+* contact.telecom[=].value = "https://www.gematik.de"
+* copyright = "The copyright for the compilation of this value set is held by gematik GmbH and by Federal Institute for Drugs and Medical Devices (BfArM)."
+* compose.include[0].system = $sct
+* compose.include[0].version = $sct-version-suffix
+* compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
+* compose.include[0].extension[0].valueString = "his valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* compose.include[0].concept[0].code = #337414009
+* compose.include[0].concept[=].display = "Blood glucose meter (physical object)"
+* compose.include[0].concept[+].code = #700585005
+* compose.include[0].concept[=].display = "Invasive interstitial-fluid glucose monitoring system (physical object)"
+* compose.include[0].concept[+].code = #70665002
+* compose.include[0].concept[=].display = "Blood pressure cuff, device (physical object)"
+* compose.include[0].concept[+].code = #334990001
+* compose.include[0].concept[=].display = "Peak flow meter (physical object)"
+* compose.include[0].concept[+].code = #303501006
+* compose.include[0].concept[=].display = "Spirometer (physical object)"
 // * $mdc|2024-12-05#528391 "MDC_DEV_SPEC_PROFILE_BP"
 // * $mdc|2024-12-05#528391 ^designation.language = #en
 // * $mdc|2024-12-05#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"

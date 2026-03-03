@@ -12,7 +12,7 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: de.gematik.hddt
 canonical: https://gematik.de/fhir/hddt
-version: 1.0.0-rc
+version: 1.0.0-rc2
 name: HealthDeviceDataTransfer
 title: Health Device Data Transfer
 status: active
