@@ -9,10 +9,14 @@ Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/Struct
 Alias: $bp-sd = http://fhir.de/StructureDefinition/observation-de-vitalsign-blutdruck
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
 Alias: $LNC = http://loinc.org
+Alias: $LNC-versioned = http://loinc.org|2.81
 Alias: $mdc = urn:iso:std:iso:11073:10101
+Alias: $sct = http://snomed.info/sct
+Alias: $sct-version = http://snomed.info/sct|http://snomed.info/sct/11000274103/version/20251115 // german Snomed
+//Alias: $sct-version = http://snomed.info/sct|http://snomed.info/sct/900000000000207008/version/20250201 // international SNOMEd, supported by tx.fhir.org
 Alias: $shareable-vs = http://hl7.org/fhir/StructureDefinition/shareablevalueset
 // placeholder does not work for includes, references, bindings, etc., so replace manually !!
-Alias: $term-version = 1.0.0-rc
+Alias: $term-version = 1.0.0-rc2
 
 Profile: HddtCgmSummary
 Parent: Bundle
@@ -430,12 +434,12 @@ manufacturers of glucometers.
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#2339-0 "Glucose [Mass/volume] in Blood"
-* $LNC#15074-8 "Glucose [Moles/volume] in Blood"
-* $LNC#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
-* $LNC#14749-6 "Glucose [Moles/volume] in Serum or Plasma"
-* $LNC#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
-* $LNC#14743-9 "Glucose [Moles/volume] in Capillary blood by Glucometer"
+* $LNC-versioned#2339-0 "Glucose [Mass/volume] in Blood"
+* $LNC-versioned#15074-8 "Glucose [Moles/volume] in Blood"
+* $LNC-versioned#2345-7 "Glucose [Mass/volume] in Serum or Plasma"
+* $LNC-versioned#14749-6 "Glucose [Moles/volume] in Serum or Plasma"
+* $LNC-versioned#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
+* $LNC-versioned#14743-9 "Glucose [Moles/volume] in Capillary blood by Glucometer"
 
 
 ValueSet: HddtMivContinuousGlucoseMeasurement
@@ -495,8 +499,8 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
-* $LNC#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
+* $LNC-versioned#105272-9 "Glucose [Moles/volume] in Interstitial fluid"
+* $LNC-versioned#99504-3 "Glucose [Mass/volume] in Interstitial fluid"
 
 
 ValueSet: HddtDeviceType
@@ -508,9 +512,8 @@ Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ 
 Die Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),
 angepasst für die Verwendung mit den auf FHIR R4 basierenden HDDT-Profilen.
 
-Dieses ValueSet enthält Konzepte aus ISO/IEEE 11073-10101:2020. Codes aus dem Standard _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature_ 
-sind im Rahmen der Lizenzvereinbarung von HL7 International mit der IEEE enthalten. Nutzer dieser Spezifikation dürfen einzelne Codes im Rahmen von HL7 FHIR-basierten 
-Implementierungen referenzieren. Das vollständige ISO/IEEE 11073-Codesystem und dessen Inhalte bleiben jedoch urheberrechtlich bei ISO und IEEE geschützt.
+Dieses Material enthält SNOMED Clinical Terms® (SNOMED CT®), die mit Genehmigung der International Health Terminology Standards Development Organisation (IHTSDO) verwendet werden.
+Alle Rechte vorbehalten. SNOMED CT® wurde ursprünglich vom College of American Pathologists entwickelt. 'SNOMED' und 'SNOMED CT' sind eingetragene Warenzeichen der IHTSDO.
 
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch 
 zwischen Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Der Inhalt des ValueSets umfasst immer mindestens alle Gerätetypen,
@@ -523,12 +526,8 @@ This ValueSet includes codes used to identify Personal Health Devices and Device
 This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet 
 [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. 
 
-This ValueSet includes
-concepts from ISO/IEEE 11073-10101:2020. Codes from the 
-_ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_ are 
-included under the terms of HL7 International’s licensing agreement with the IEEE. Users of this specification 
-may reference individual codes as part of HL7 FHIR-based implementations. However, the full ISO/IEEE 11073 
-code system and its contents remain copyrighted by ISO and IEEE.
+This material includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO).
+All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO.
 
 CAVE: This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets 
 for sharing data between medical aids and digital health applications (DiGA). The content of the value set will always at latest
@@ -549,11 +548,18 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
-* ^copyright = "gematik GmbH. Codes and display texts adapted and reprinted with permission from IEEE for the sole purpose of producing this specification. Copyright IEEE 2020. All rights reserved."
-* $mdc|2024-12-05#528391 "MDC_DEV_SPEC_PROFILE_BP"
-* $mdc|2024-12-05#528391 ^designation.language = #en
-* $mdc|2024-12-05#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528391 ^designation.value = "Blood Pressure Cuff"
+* ^copyright = "The copyright for the compilation of this value set is held by gematik GmbH and by Federal Institute for Drugs and Medical Devices (BfArM)."
+* $sct-version#337414009 "Blood glucose meter (physical object)"
+* $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system (physical object)"
+* $sct-version#70665002 "Blood pressure cuff, device (physical object)"
+* $sct-version#334990001 "Peak flow meter (physical object)"
+* $sct-version#303501006 "Spirometer (physical object)"
+//* ^compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
+//* ^compose.include[0].extension[0].valueString = "his valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+// * $mdc|2024-12-05#528391 "MDC_DEV_SPEC_PROFILE_BP"
+// * $mdc|2024-12-05#528391 ^designation.language = #en
+// * $mdc|2024-12-05#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528391 ^designation.value = "Blood Pressure Cuff"
 // * $mdc|2024-12-05#528404 "MDC_DEV_SPEC_PROFILE_BCA"
 // * $mdc|2024-12-05#528404 ^designation.language = #en
 // * $mdc|2024-12-05#528404 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
@@ -566,10 +572,10 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 // * $mdc|2024-12-05#528402 ^designation.language = #en
 // * $mdc|2024-12-05#528402 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 // * $mdc|2024-12-05#528402 ^designation.value = "Coagulation meter"
-* $mdc|2024-12-05#528409 "MDC_DEV_SPEC_PROFILE_CGM"
-* $mdc|2024-12-05#528409 ^designation.language = #en
-* $mdc|2024-12-05#528409 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528409 ^designation.value = "Continuous Glucose Monitor"
+// * $mdc|2024-12-05#528409 "MDC_DEV_SPEC_PROFILE_CGM"
+// * $mdc|2024-12-05#528409 ^designation.language = #en
+// * $mdc|2024-12-05#528409 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528409 ^designation.value = "Continuous Glucose Monitor"
 // * $mdc|2024-12-05#528390 "MDC_DEV_SPEC_PROFILE_ECG"
 // * $mdc|2024-12-05#528390 ^designation.language = #en
 // * $mdc|2024-12-05#528390 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
@@ -578,30 +584,30 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 // * $mdc|2024-12-05#528457 ^designation.language = #en
 // * $mdc|2024-12-05#528457 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 // * $mdc|2024-12-05#528457 ^designation.value = "Generic 20601 Device"
-* $mdc|2024-12-05#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
-* $mdc|2024-12-05#528401 ^designation.language = #en
-* $mdc|2024-12-05#528401 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528401 ^designation.value = "Glucose Monitor"
+// * $mdc|2024-12-05#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
+// * $mdc|2024-12-05#528401 ^designation.language = #en
+// * $mdc|2024-12-05#528401 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528401 ^designation.value = "Glucose Monitor"
 // * $mdc|2024-12-05#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
 // * $mdc|2024-12-05#528455 ^designation.language = #en
 // * $mdc|2024-12-05#528455 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
 // * $mdc|2024-12-05#528455 ^designation.value = "Independent Activity/Living Hub"
-* $mdc|2024-12-05#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
-* $mdc|2024-12-05#528403 ^designation.language = #en
-* $mdc|2024-12-05#528403 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528403 ^designation.value = "Insulin Pump"
-* $mdc|2024-12-05#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
-* $mdc|2024-12-05#528405 ^designation.language = #en
-* $mdc|2024-12-05#528405 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528405 ^designation.value = "Peak Flow meter"
-* $mdc|2024-12-05#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
-* $mdc|2024-12-05#528388 ^designation.language = #en
-* $mdc|2024-12-05#528388 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528388 ^designation.value = "Pulse Oximeter"
-* $mdc|2024-12-05#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
-* $mdc|2024-12-05#528397 ^designation.language = #en
-* $mdc|2024-12-05#528397 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-* $mdc|2024-12-05#528397 ^designation.value = "Respiration rate"
+//* $mdc|2024-12-05#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
+// * $mdc|2024-12-05#528403 ^designation.language = #en
+// * $mdc|2024-12-05#528403 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528403 ^designation.value = "Insulin Pump"
+// * $mdc|2024-12-05#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
+// * $mdc|2024-12-05#528405 ^designation.language = #en
+// * $mdc|2024-12-05#528405 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528405 ^designation.value = "Peak Flow meter"
+// * $mdc|2024-12-05#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
+// * $mdc|2024-12-05#528388 ^designation.language = #en
+// * $mdc|2024-12-05#528388 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528388 ^designation.value = "Pulse Oximeter"
+// * $mdc|2024-12-05#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
+// * $mdc|2024-12-05#528397 ^designation.language = #en
+// * $mdc|2024-12-05#528397 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
+// * $mdc|2024-12-05#528397 ^designation.value = "Respiration rate"
 // * $mdc|2024-12-05#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
 // * $mdc|2024-12-05#528408 ^designation.language = #en
 // * $mdc|2024-12-05#528408 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
@@ -775,9 +781,9 @@ come from three separate ValueSets:
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* compose.include[0].valueSet = Canonical(HddtLungFunctionTestingValues|1.0.0-rc)
-* compose.include[1].valueSet = Canonical(HddtLungFunctionReferenceValues|1.0.0-rc)
-* compose.include[2].valueSet = Canonical(HddtLungFunctionRelativeValues|1.0.0-rc)
+* compose.include[0].valueSet = Canonical(HddtLungFunctionTestingValues|1.0.0-rc2)
+* compose.include[1].valueSet = Canonical(HddtLungFunctionReferenceValues|1.0.0-rc2)
+* compose.include[2].valueSet = Canonical(HddtLungFunctionRelativeValues|1.0.0-rc2)
 
 
 ValueSet: HddtLungFunctionTestingValues
@@ -812,8 +818,8 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
-* $LNC#20150-9 "FEV1"
+* $LNC-versioned#19935-6 "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+* $LNC-versioned#20150-9 "FEV1"
 
 ValueSet: HddtLungFunctionReferenceValues
 Id: hddt-lung-function-reference-values
@@ -849,8 +855,8 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
-* $LNC#20149-1 "FEV1 predicted"
+* $LNC-versioned#83368-1 "Personal best peak expiratory gas flow Respiratory system airway"
+* $LNC-versioned#20149-1 "FEV1 predicted"
 
 ValueSet: HddtLungFunctionRelativeValues
 Id: hddt-lung-function-relative-values
@@ -888,8 +894,8 @@ individual measurement by the reference value, resulting in a percentage value (
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#20152-5 "FEV1 measured/predicted"
-* HddtLungFunctionTemporaryCodes|1.0.0-rc#PEF-measured/predicted
+* $LNC-versioned#20152-5 "FEV1 measured/predicted"
+* HddtLungFunctionTemporaryCodes|1.0.0-rc2#PEF-measured/predicted
 
 Profile: HddtLungFunctionTesting
 Parent: Observation
@@ -1050,7 +1056,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
-* group[+].source = Canonical(HddtLungFunctionTemporaryCodes|1.0.0-rc)
+* group[+].source = Canonical(HddtLungFunctionTemporaryCodes|1.0.0-rc2)
 * group[=].target = $LNC
 * group[=].element[+].code = #PEF-measured/predicted
 * group[=].element[=].target.comment = "No target LOINC code available yet."
@@ -1089,7 +1095,7 @@ A ValueSet for codes used to specify the method used to determine lung function 
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
-* include codes from system https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes|1.0.0-rc
+* include codes from system https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes|1.0.0-rc2
 
 Profile: HddtLungFunctionReferenceValue
 Parent: Observation
@@ -1279,7 +1285,7 @@ The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* $LNC#85354-9 "Blood pressure panel with all children optional"
+* $LNC-versioned#85354-9 "Blood pressure panel with all children optional"
 
 // Profile: HddtBloodPressureValue
 // Parent: $bp-sd

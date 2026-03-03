@@ -59,7 +59,7 @@ to validate the authenticity of this Personal Health Device resource.
 """
 * id = "example-glucometer"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type =  $mdc#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
+* type =  $sct-version#337414009 "Blood glucose meter"
 * status = #active
 // * statusReason = #online
 * deviceName.name = "GlukkoCheck plus mg/dL"
@@ -82,7 +82,7 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 """
 * id = "example-glucometer-metric"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = $mdc#160184 "MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"
+* type = $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system"
 * unit = $unitsofmeasure#mg/dL "mg/dL"
 * source = Reference(Example-Glucometer)
 * operationalStatus = #on
@@ -102,7 +102,7 @@ Description: "Example for a medical device definition (Glucometer) from the HIIS
 * identifier.value = "12.34.56.7890" 
 * deviceName[0].name = "GlucoCheck Plus mg/dL"
 * deviceName[0].type = #user-friendly-name
-* type = $sct#337414009 "Blood glucose meter (physical object)"
+* type = $sct-version#337414009 "Blood glucose meter (physical object)"
 * manufacturerReference = Reference(Example-Glucometer-Manufacturer)
 * modelNumber = "GCPlus 1"
 * extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
@@ -229,7 +229,7 @@ Description: "Example authentication endpoint for a universal backend system for
 // * deviceName[0].name = "§ 374a SGB V Backend"
 // * deviceName[0].type = #manufacturer-name
 // * manufacturerString = "Acme Health IT GmbH"
-// * type = $sct#706689003 "Health information exchange infrastructure (physical object)"
+// * type = $sct-version#706689003 "Health information exchange infrastructure (physical object)"
 // * url = "https://himi-backend.de/fhir"
 
 Instance: Example-CGM-Series
@@ -253,7 +253,7 @@ Usage: #example
 * valueSampledData.upperLimit = 360
 * valueSampledData.data = "110 111 112 113 114 115 116 117 118 119 120 90 77 66 56 39 36 L L L 40 51 66 81 91 99 101 120 122 121 120 119 118 117 116 115 114 113 112 111 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129"
 * device = Reference(Example-DeviceMetric-CGM)
-* method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* method = $sct-version#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * note.text = "Example CGM data series with 1-minute intervals over 1 hour (60 samples)."
 
 Instance: Example-CGM-Series-1
@@ -275,7 +275,7 @@ Usage: #example
 * valueSampledData.dimensions = 1
 * valueSampledData.data = "123 122 126 134 129 128 130 131 129 127 127 133"
 * device = Reference(Example-DeviceMetric-CGM)
-* method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* method = $sct-version#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * note.text = "Example CGM data series with 5-minute intervals over 1 hour (12 samples)."
 
 Instance: Example-CGM-Series-Incomplete
@@ -297,7 +297,7 @@ Usage: #example
 * valueSampledData.dimensions = 1
 * valueSampledData.data = "110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129"
 * device = Reference(Example-DeviceMetric-CGM)
-* method = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* method = $sct-version#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * note.text = "Example CGM data series with 1-minute intervals over 20 minutes (20 samples), but status incomplete."
 
 
@@ -333,7 +333,7 @@ Usage: #example
 * status = #active
 // * statusReason = #online
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type = $mdc#528409 "MDC_DEV_SPEC_PROFILE_CGM"
+* type = $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "GlukkoCGM 18"
 * deviceName.type = #user-friendly-name
@@ -571,7 +571,7 @@ Usage: #example
 * identifier.value = "30.29.05.2004"
 * deviceName[0].name = "CGM Model mg/dL"
 * deviceName[0].type = #user-friendly-name
-* type = $sct#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
+* type = $sct-version#463729000 "Point-of-care blood glucose continuous monitoring system (physical object)"
 * manufacturerReference = Reference(Example-CGM-Manufacturer)
 * modelNumber = "CGM Model mg/dL"
 * extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
@@ -691,7 +691,7 @@ to validate the authenticity of this Personal Health Device resource.
 Usage: #example
 * id = "example-device-peak-flow-meter"
 * status = #active
-* type = $mdc#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
+* type = $sct-version#334990001 "Peak flow meter"
 * definition = Reference(DeviceDefinition/device-definition-peak-flow-001)
 * deviceName.name = "Peak Flow Pro"
 * deviceName.type = #user-friendly-name
@@ -710,7 +710,7 @@ Usage: #example
 * identifier.value = "21.24.01.2005"
 * deviceName[0].name = "Peak Flow Pro"
 * deviceName[0].type = #user-friendly-name
-* type = $sct#334990001 "Peak flow meter"
+* type = $sct-version#334990001 "Peak flow meter"
 * manufacturerString = "HealthTech GmbH"
 * modelNumber = "Smart 2"
 * extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
@@ -751,7 +751,7 @@ Usage: #example
 * identifier.value = "21.28.01.2020"
 * deviceName[0].name = "BP Cuff Pro"
 * deviceName[0].type = #user-friendly-name
-* type = $sct#70665002 "Blood pressure cuff"
+* type = $sct-version#70665002 "Blood pressure cuff"
 * manufacturerString = "HealthTech GmbH"
 * modelNumber = "Digital BT 2"
 * extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
@@ -785,7 +785,7 @@ to validate the authenticity of this Personal Health Device resource.
 Usage: #example
 * id = "example-device-blood-pressure-cuff"
 * status = #active
-* type = $mdc#528391 "MDC_DEV_SPEC_PROFILE_BP"
+* type = $sct-version#70665002 "Blood pressure cuff, device"
 * definition = Reference(DeviceDefinition/device-definition-blood-pressure-cuff-001)
 * deviceName.name = "BP Cuff Pro"
 * deviceName.type = #user-friendly-name
