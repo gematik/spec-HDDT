@@ -12,7 +12,7 @@ Underlying statutory deadlines can be found in [§ 374a SGB V](https://www.geset
 
 Further domains will be defined as a result of ongoing use cases analysis to derive the potential for use in care processes. 
 
-### Conformity assessment and registration process
+### Certification and registration process
 In order to certify the conformity of the implementation with the specification, it is foreseen to provide an assessment procedure which will enable the manufacturers to easily prove the conformity of their implementation. The assessment procedure leads - if passed successfully - to a _gematik_ certification of the medical aid's implementation. As a support measure for manufacturers and as part of the conformity assessment, gematik will provide a locally executable testsuite that builds on the technical specification.
 Manufacturers of medical aids and implants MUST notify the _BfArM_ about the implementation of the interface, which will result in the listing of the medical aid or implant in the new _Verzeichnis der Hilfsmittel- und Implantat-Schnittstellen_ (_HIIS-VZ_) to be established by the _BfArM_. Requirements for the registration in the _HIIS-VZ_ are announced by the _BfArM_.
 

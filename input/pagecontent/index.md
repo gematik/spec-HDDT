@@ -17,7 +17,8 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The version 1.0.0-rc is the release candidate version with results of the commenting process on the former version 0.1.0-ballot. It contains specification of the pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging as well as the definition of interoperable values to be provisioned per domain (for information about included domains, see [roadmap](roadmap.html)). For information on changes, see [release notes](release-notes.html).  
+The **version 1.0.0-rc2** is the release candidate version with results of the commenting process on the former version 0.1.0-ballot. For information on changes, see [release notes](release-notes.html).
+In addition to the specification of the domain Diabetes Self-Management, which was part of the 0.1.0-ballot version, the current version contains FHIR profiling of the domains Lung Function Testing and Blood Pressure Monitoring (for information about included domains, see also [roadmap](roadmap.html)). The pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging remains steady across domains. Comments with focus on the new domains Lung Function Testing and Blood Pressure Monitoring can be transmitted **until 01.04.2026** via our request portal (see [Contact and feedback](index.html#contact-and-feedback)).
 
 FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 
@@ -49,6 +50,7 @@ It includes IP covered under the following statements:
 * The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved. https://ucum.org/trac/wiki/TermsOfUse
 * Mandatory Interoperable Values are expressed through content from LOINC. LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license provided at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 * The HDDT Implementation Guide derives from HL7 Resource Definitions, Implementation Guides (e.g. [CGM Summary Profile](https://hl7.org/fhir/uv/cgm/)) and the HL7 Terminology (THO). THO is copyright ©1989+ Health Level Seven International and is made available under the CC0 designation. For more licensing information see: https://terminology.hl7.org/license.html
+* This material includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. “SNOMED” and “SNOMED CT” are registered trademarks of the IHTSDO.
 * The HDDT Implementation Guide makes reference to codes from the _ISO/IEEE 11073-10101 Health informatics — Point-of-care medical device communication — Nomenclature standard_. Codes and display texts are adapted and reprinted with permission from IEEE for the sole purpose of producing this specification. Copyright IEEE 2020. All rights reserved.
 
 

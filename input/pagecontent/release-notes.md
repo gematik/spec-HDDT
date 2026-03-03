@@ -12,7 +12,7 @@ The tags are used as follows:
 
 * `fix`: should only be used for fixing **errors** in the (potentially) normative content of the specification (requirements + profiles + examples); typo fixes are not included in the release notes.
 
-### Version 1.0.1-rc
+### Version 1.0.0-rc2
 ---
 Date: 04.03.2026
 
