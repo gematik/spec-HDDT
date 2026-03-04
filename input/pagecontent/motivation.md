@@ -10,7 +10,7 @@ This interface is part of an ecosystem of regulated responsibilities, interopera
 The present specification "Health Device Data Transfer" (HDDT) describes this ecosystem and its functional and technical workflows as well as the requirements that must be implemented by the systems concerned (see [Certification relevant systems](certification-relevant-systems.html)). It is supplemented by 
 - specifications for the interfaces of the BfArM registries for DiGA, medical aids and implants (see [BfArM Registries](registries-and-zts.html) for further information) 
 - FHIR [ValueSets](https://hl7.org/fhir/R4/valueset.html) for defining the semantics of the data to be transferred (see [MIVs](mivs.html)) which will be made available through the [ZTS](registries-and-zts.html#zentraler-terminologieserver) (German Central Terminology Server)
-- processes for the registration of the interfaces and trust anchors of medical aids and implants as well as DiGAs with the BfArM.
+- processes for the registration of the interfaces and trust anchors of medical aids and implants as well as DiGAs with the BfArM (see [BfArM Website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html)).
 
 For further information about responsibilities for these artefacts and processes as well as statutory periods, see [§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html).
 
