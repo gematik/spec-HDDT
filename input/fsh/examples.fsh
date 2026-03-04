@@ -333,7 +333,7 @@ Usage: #example
 * status = #active
 // * statusReason = #online
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type = $sct-version#700585005 " Invasive interstitial-fluid glucose monitoring system (physical object)"
+* type = $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system (physical object)"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "GlukkoCGM 18"
 * deviceName.type = #user-friendly-name
