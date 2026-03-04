@@ -21,7 +21,7 @@ The _HIIS-VZ_ (BfArM Device Registry) is operated by BfArM and provides access t
 
 Extensions on these DeviceDefinitions allow DiGA manufacturers to discover the relationships between Device Data Recorders, Personal Health Devices and MIVS (e.g. to discover Personal Health Devices and Device Data Recorders that support a certain MIV). The full information model of the named DeviceDefinition types together with all extensions can be found at [https://fhir.bfarm.de/guide/hiis-information-model-en.html](https://fhir.bfarm.de/guide/hiis-information-model-en.html).
 
-The _HIIS-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being built up by BfArM. Further information on this will be provided on the [BfArM website](https://www.bfarm.de/EN/Medical-devices/Tasks/DiGA-and-DiPA/Digital-Health-Applications/_node.html) soon. 
+The _HIIS-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being built up by BfArM. Further information on this is provided on the [BfArM website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html). 
 
 ### DiGA Verzeichnis
 The _DiGA Verzeichnis_ (DiGA VZ: BfArM DiGA Registry) is operated by BfArM and provides access to definitions of registered DiGA (Digital Health Applications acc. § 33a SGB V). For HDDT the _DiGA Verzeichnis_ provides the following functions:
@@ -34,7 +34,7 @@ The _DiGA Verzeichnis_ (DiGA VZ: BfArM DiGA Registry) is operated by BfArM and p
 - listing all DiGA that are eligible to process a defined MIV
 - providing feeds for monitoring changes in the _DiGA Verzeichnis_ (e.g. new DiGA registrations, changes in eligible MIVs, changes in certificate status, etc.)
 
-The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), and its API documentation is available at [https://fhir.bfarm.de/guide/diga-overview-en.html](https://fhir.bfarm.de/guide/diga-overview-en.html). The documentation contains information models and query examples for generic use-cases like retrieving different trust attributes (i.e. certificates, clientId, redirectUri). To gain access to the DiGA API, it is necessary to create a user account at [https://antrag-api.bfarm.de/](https://antrag-api.bfarm.de/) and submit an application to use the DiGA API. Further information on this will be provided on the [BfArM website](https://www.bfarm.de/EN/Medical-devices/Tasks/DiGA-and-DiPA/Digital-Health-Applications/_node.html) soon.
+The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), and its API documentation is available at [https://fhir.bfarm.de/guide/diga-overview-en.html](https://fhir.bfarm.de/guide/diga-overview-en.html). The documentation contains information models and query examples for generic use-cases like retrieving different trust attributes (i.e. certificates, clientId, redirectUri). To gain access to the DiGA API, it is necessary to create a user account at [https://antrag-api.bfarm.de/](https://antrag-api.bfarm.de/) and submit an application to use the DiGA API. Further information on this is provided on the [BfArM website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html).
 
 ### Zentraler Terminologieserver
 

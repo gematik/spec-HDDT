@@ -17,7 +17,7 @@ The tags are used as follows:
 Date: 04.03.2026
 
 * `feature` [ValueSet HDDT Device Type](ValueSet-hddt-device-type.html): Replaced IEEE codes for device categories with codes from SNOMED CT® German Edition.
-
+* `documentation` [BfArM Registries and ZTS and further occurences](registries-and-zts.html): Updated links to BfArM Website regarding the new released [information on registration processes](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html) for _HIIS-VZ_ and _DiGA-VZ_ 
 * `documentation` [BfArM Registries and ZTS](registries-and-zts.html): Updated links to BfArM contents about FHIR profiles, HIIS-VZ information model and DiGA VZ API documentation
 * `documentation` [Information model](information-model.html): Updated links to BfArM contents about HIIS-VZ information model
 
