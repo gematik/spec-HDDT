@@ -129,10 +129,10 @@ Remarks:
                 "type": {
                     "coding": [
                         {
-                            "code": "528401",
-                            "system": "urn:iso:std:iso:11073:10101",
-                            "version": "20250520",
-                            "display": "Glucose Monitor"
+                            "code": "337414009",
+                            "system": "http://snomed.info/sct",
+                            "version": "http://snomed.info/sct/11000274103/version/20251115",
+                            "display": "Blood glucose meter (physical object)"
                         }
                     ]
                 },

@@ -42,7 +42,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     }
 
     class PHD as "Personal Health Device" <<FHIR Device>> {
-        type : 528391|iso: 11073:10101
+        type : 70665002|SNOMED CT
         deviceName : BP Cuff Pro 
         manufacturer : HealthTech GmbH 
         serialNumber : BPC0011223345
@@ -59,7 +59,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
 
     object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
-        type : 528391|iso: 11073:10101 
+        type : 70665002|SNOMED CT
         deviceName : BP Cuff Pro 
         manufacturer : HealthTech GmbH 
     }
