@@ -567,6 +567,14 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * compose.include[0].concept[=].display = "Blood glucose meter (physical object)"
 * compose.include[0].concept[+].code = #700585005
 * compose.include[0].concept[=].display = "Invasive interstitial-fluid glucose monitoring system (physical object)"
+* compose.include[0].concept[+].code = #701815004
+* compose.include[0].concept[=].display = "Non-invasive interstitial-fluid glucose monitoring system (physical object)"
+* compose.include[0].concept[+].code = #702203005
+* compose.include[0].concept[=].display = "Invasive interstitial fluid glucose monitoring/insulin infusion system (physical object)"
+* compose.include[0].concept[+].code = #463729000
+* compose.include[0].concept[=].display = "Point-of-care blood glucose continuous monitoring system (physical object)"
+* compose.include[0].concept[+].code = #701750003
+* compose.include[0].concept[=].display = "Subcutaneous glucose sensor (physical object)"
 * compose.include[0].concept[+].code = #70665002
 * compose.include[0].concept[=].display = "Blood pressure cuff, device (physical object)"
 * compose.include[0].concept[+].code = #334990001
