@@ -35,7 +35,7 @@ package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's
 
     object "Glucose Meter" as PHD <<FHIR Device>> {
         status = active
-        type = 528401|iso:11073:10101
+        type = 337414009|SNOMED CT
         deviceName = "GlukkoCheck plus mg/dl"
         manufacturer = "Glukko Inc."
         serialNumber = "SN123456
@@ -69,7 +69,7 @@ package "ZTS (German Central Terminology Server)" as ZTS VIBW {
 package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
 
     object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
-        type = 528401|iso:11073:10101
+        type = 337414009|SNOMED CT
         deviceName = "GlukkoCheck plus mg/dl"
         manufacturer = "Glukko Inc."
     }

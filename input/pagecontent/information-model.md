@@ -125,7 +125,7 @@ ___Note__: The reference from a __Personal Health Device__ to its __Personal Hea
 The __Personal Health Device Definition__ resource for a medical aid or implant is created upon registration of this medical aid or implant with the _HIIS-VZ_. The information bound to this [DeviceDefinition](https://hl7.org/fhir/R4/devicedefinition.html) resource include
 * a human readable `deviceName` 
 * the name of the `manufacturer` of the device
-* the `type` of the device given as a SNOMED CT or ISO/IEEE 11073-10101:2020 code
+* the `type` of the device given as a SNOMED CT code
 
 A Personal Health Device may connect to different __Device Data Recorders__. E.g. a manufacturer of a blood glucose meter may support different diabetes management platforms of different partners that can all import data from the glucose meter. Each of these solutions may have its own Personal Health Gateway and Health Record (e.g. a SmartPen that can be linked to diabetes diary apps from many different vendors). All of these Device Data Recorders must be able to provide imported blood glucose values to DiGA via the HDDT API (see [certification relevant systems](certification-relevant-systems.html)). By this there is a many-to-many relationship between Personal Health Devices and Device Data Recorders. 
 

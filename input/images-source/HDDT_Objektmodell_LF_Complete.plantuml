@@ -38,9 +38,9 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     }
 
     object "Personal Health Device" as PHD <<FHIR Device>> {
-        type : 528405 | iso:11073:10101
-        deviceName : "MIR Smart One"
-        manufacturer : "MIR - Medical International Research"
+        type : 334990001 | SNOMED CT 
+        deviceName : "SUPER Peak Flow"
+        manufacturer : "SUPER - Medical Research"
         serialNumber : "SN1234567890"
     }
 
@@ -81,10 +81,9 @@ package ZTS as "MIV Definitions (ZTS)" VIBW {
 package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
 
     object "Personal Health Device Definition" as PHD_Def <<FHIR DeviceDefinition>> {
-        ' ISO code for GENERIC device
-        type : 528457 | iso:11073:10101
-        deviceName : "MedM Health Diary"
-        manufacturer : "MedM"
+        type : 334990001 | SNOMED CT
+        deviceName : "SUPER Peak Flow"
+        manufacturer : "SUPER - Medical Research"
     }
 }
 

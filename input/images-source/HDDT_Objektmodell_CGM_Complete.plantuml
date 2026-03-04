@@ -48,7 +48,7 @@ package HDDT_Measurements_and_Devices as "FHIR SearchSet in Response to a DiGA's
 
     object "rtCGM" as PHD <<FHIR Device>> {
         status = active
-        type = 528409|iso:11073:10101
+        type = 701815004|SNOMED CT
         deviceName = "GlukkoCGM 18"
         manufacturer = "Glukko Inc."
         serialNumber = "CGM1234567890
