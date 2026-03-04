@@ -74,21 +74,7 @@ Implementations that regularly trigger errors with a resource consuming DiGA MAY
 
 While deriving FHIR profiles from the assessed use cases (see [methodology](methodology.html)), existing profiles from other countries and organizations have been considered in order to be as compliant as possible with existing solutions.
 
-#### Compatibility with HL7 Profiles and ISO/IEEE 11073 Standards
-
-Baseline for many specifications in the area of health device data are the [__ISO/IEEE 11073 family of standards__](https://www.iso.org/standard/84781.html) for medical device communication. These standards define a common framework for the exchange, management and interoperability of medical device data. The standards define device specific domain models on top of a common data model, communication protocols, and standardized attributes for device configurations. For years several organizations, in particular the Continua Health Alliance and the Bluetooth SIG, have worked on the definition of Health Device Profiles based on ISO/IEEE 11073 standards in order to allow interoperability between personal health devices and health IT systems. The focus of specific profiles is on the device side, i.e. communication between a Personal Health Device and a Personal Health Gateway device (e.g. a smartphone). 
-
-The [__HL7 Personal Health Device (PHD) Project__](https://github.com/HL7/phd/) of the [HL7 Devices Workgroup](https://confluence.hl7.org/spaces/HCD/pages/19136699/Devices) builds upon the work of the Continua Health Alliance by defining FHIR profiles for the exchange of health device data based on the Domain Information Model as defined in the IEEE 11073-20601 standard. These profiles cover a wide range of personal health devices including blood pressure monitors, weight scales, glucose meters, pulse oximeters, and thermometers. The profiles are designed to be used in a variety of settings including home health care, remote patient monitoring, and telehealth. The focus of the HL7 PHD profiles is on data exchange between a Continua compliant Personal Health Gateway and a receiving health IT system ("Health Record" in the former Continua notion). Another initiative from HL7 - [__Point of Care Devices (PoCD)__](http://build.fhir.org/ig/HL7/uv-pocd/) - focuses on the exchange of data between point of care devices and health IT systems in clinical settings. In contrast to PHD, PoCD builds upon the Domain Information Model as defined in the ISO/IEEE 11073-10201 standard for Point-of-care medical device communication. 
-
-The figure below shows how the HDDT profiles, the ISO/IEEE 11073 standards, and the HL7 PHD profiles focus on different parts of the overall communication chain from a Personal Health Device to consuming health IT application such as a DiGA.
-
-<figure>
-<div class="gem-ig-svg-container">
- <img src="HDDT conformance.png" alt="conformance with 11073 and HL7 PHD" width="60%">
-  </div>
-    <figcaption><em><strong>Figure: </strong>Conformance with ISO/IEEE 11073 and HL7 PHD</em></figcaption>
-</figure>
-<br clear="all"/>
+#### Compatibility with HL7 Profiles
 
 The existing HL7 initiative which is best comparable with the goals of HDDT is the [__HL7 Vitals Signs Panel__](https://hl7.org/fhir/R4/observation-vitalsigns.html). This profile covers a wide range of vital signs - e.g. from a patient's wearables and personal health devices - including blood pressure, body temperature, heart rate, respiratory rate, oxygen saturation, and body weight. The purpose is to allow a client to request a patient's vital data from a resource server in a simple request and only profiling the defined observations to the minimum needed for interoperability. This is the same strategy as used with the HDDT profiles. Differences between the HL7 Vital Signs Panel and the HDDT Observation profiles are:
 - The HL7 Vital Signs Panel makes the `Observation.category` element mandatory while HDDT does not. The reason for this is that for HL7 the category is the broadest filter for search interactions while HDDT's broadest filter is the _Mandatory Interoperable Value_ (MIV) for the `Observation.code` element.
