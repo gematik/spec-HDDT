@@ -478,9 +478,10 @@ Manufacturers of Device Data Recorders that support the MIV _Lung Function Testi
                 "type": {
                     "coding": [
                         {
-                            "code": "528405",
-                            "system": "urn:iso:std:iso:11073:10101",
-                            "display": "MDC_DEV_SPEC_PROFILE_PEFM"
+                            "code": "334990001",
+                            "system": "http://snomed.info/sct",
+                            "version": "http://snomed.info/sct/11000274103/version/20251115",
+                            "display": "Peak flow meter (physical object)"
                         }
                     ]
                 },

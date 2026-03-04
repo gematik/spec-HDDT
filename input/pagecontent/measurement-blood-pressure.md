@@ -613,9 +613,10 @@ OAuth scopes apply, and only Observations are returned that the client is allowe
                 "type": {
                     "coding": [
                         {
-                            "code": "528391",
-                            "system": "urn:iso:std:iso:11073:10101",
-                            "display": "MDC_DEV_SPEC_PROFILE_BP"
+                            "code": "70665002",
+                            "system": "http://snomed.info/sct",
+                            "version": "http://snomed.info/sct/11000274103/version/20251115",
+                            "display": "Blood pressure cuff, device (physical object)"
                         }
                     ]
                 },
