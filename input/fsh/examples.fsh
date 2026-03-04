@@ -59,7 +59,7 @@ to validate the authenticity of this Personal Health Device resource.
 """
 * id = "example-glucometer"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type =  $sct-version#337414009 "Blood glucose meter"
+* type =  $sct-version#337414009 "Blood glucose meter (physical object)"
 * status = #active
 // * statusReason = #online
 * deviceName.name = "GlukkoCheck plus mg/dL"
@@ -82,7 +82,7 @@ The last calibration was performed in Septemer 2025 and the glucometer is still 
 """
 * id = "example-glucometer-metric"
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
-* type = $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system"
+* type = $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system (physical object)"
 * unit = $unitsofmeasure#mg/dL "mg/dL"
 * source = Reference(Example-Glucometer)
 * operationalStatus = #on
@@ -333,7 +333,7 @@ Usage: #example
 * status = #active
 // * statusReason = #online
 // * meta.profile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
-* type = $sct-version#700585005 "Invasive interstitial-fluid glucose monitoring system"
+* type = $sct-version#700585005 " Invasive interstitial-fluid glucose monitoring system (physical object)"
 * definition = Reference(DeviceDefinition/device-definition-cgm-001)
 * deviceName.name = "GlukkoCGM 18"
 * deviceName.type = #user-friendly-name
@@ -691,7 +691,7 @@ to validate the authenticity of this Personal Health Device resource.
 Usage: #example
 * id = "example-device-peak-flow-meter"
 * status = #active
-* type = $sct-version#334990001 "Peak flow meter"
+* type = $sct-version#334990001 "Peak flow meter (physical object)"
 * definition = Reference(DeviceDefinition/device-definition-peak-flow-001)
 * deviceName.name = "Peak Flow Pro"
 * deviceName.type = #user-friendly-name
@@ -710,7 +710,7 @@ Usage: #example
 * identifier.value = "21.24.01.2005"
 * deviceName[0].name = "Peak Flow Pro"
 * deviceName[0].type = #user-friendly-name
-* type = $sct-version#334990001 "Peak flow meter"
+* type = $sct-version#334990001 "Peak flow meter (physical object)"
 * manufacturerString = "HealthTech GmbH"
 * modelNumber = "Smart 2"
 * extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
@@ -785,7 +785,7 @@ to validate the authenticity of this Personal Health Device resource.
 Usage: #example
 * id = "example-device-blood-pressure-cuff"
 * status = #active
-* type = $sct-version#70665002 "Blood pressure cuff, device"
+* type = $sct-version#70665002 "Blood pressure cuff, device (physical object)"
 * definition = Reference(DeviceDefinition/device-definition-blood-pressure-cuff-001)
 * deviceName.name = "BP Cuff Pro"
 * deviceName.type = #user-friendly-name
