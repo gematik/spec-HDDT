@@ -64,9 +64,10 @@ This supports use cases such as:
 - `Bundle.entry.resource` is restricted to CGM Observation profiles and `HddtPersonalHealthDevice`. No other resource types are allowed in the Bundle.  
 - `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA.
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * type = #collection (exactly)
@@ -113,9 +114,10 @@ Personal Health Device MUST be set to `unknown`.
 - `definition` is optional. If present it MUST refer to a DeviceDefinition resource in the BfARM HIIS VZ. This ensures that DiGA can only receive static product information which was registered by the vendor of the device.
 - `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Personal Health Device"
@@ -196,9 +198,10 @@ information about potentially missing data (e.g. due to temporal problems with t
 - `source` is constrained as a mandatory element in order to enable a DiGA to obtain dynamic and static device attributes through this reference
 - `calibration` is set to _Must Support_. This element and respective status information MUST be provided if the sensor performs automated or requires manual calibration after the device has been put into operation with the patient (`Device.status`is `active`).
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Configuration or setting capability of a personal health device"
@@ -268,9 +271,10 @@ or if the sensor may change its calibration status over time.
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
@@ -333,9 +337,10 @@ current chunk and therefore is the only reason why a chunk may be smaller than t
 - `value[x]` is restricted to _valueSampledData_. The elements `valueSampledData.origin.unit`, `valueSampledData.origin.system`, and `valueSampledData.origin.code` are mandatory. `valueSampledData.origin.system` is restricted to UCUM. `Observation.valueSampledData` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * . ^short = "Chunk of continuous glucose measurements"
@@ -429,12 +434,12 @@ manufacturers of glucometers.
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -494,12 +499,12 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-03-04"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -514,7 +519,6 @@ Instance: hddt-device-type
 InstanceOf: $shareable-vs
 Usage: #definition
 Title: "Device Type of personal health devices"
-//* id = hddt-device-type
 * name = "HddtDeviceType"
 * description = """
 Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.
@@ -548,13 +552,13 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-02-01"
+* extension[=].valuePeriod.start = "2026-04-01"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
-// * url = "https://terminologien.bfarm.de/fhir/ValueSet/hddt-device-type"
+
 * status = #active
 * experimental = false
-* date = "2026-01-26"
+* date = "2026-03-04"
 * publisher = "gematik GmbH"
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"
@@ -581,103 +585,7 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * compose.include[0].concept[=].display = "Peak flow meter (physical object)"
 * compose.include[0].concept[+].code = #303501006
 * compose.include[0].concept[=].display = "Spirometer (physical object)"
-// * $mdc|2024-12-05#528391 "MDC_DEV_SPEC_PROFILE_BP"
-// * $mdc|2024-12-05#528391 ^designation.language = #en
-// * $mdc|2024-12-05#528391 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528391 ^designation.value = "Blood Pressure Cuff"
-// * $mdc|2024-12-05#528404 "MDC_DEV_SPEC_PROFILE_BCA"
-// * $mdc|2024-12-05#528404 ^designation.language = #en
-// * $mdc|2024-12-05#528404 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528404 ^designation.value = "Body Composition Analyzer"
-// * $mdc|2024-12-05#528425 "MDC_DEV_SPEC_PROFILE_HF_CARDIO"
-// * $mdc|2024-12-05#528425 ^designation.language = #en
-// * $mdc|2024-12-05#528425 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528425 ^designation.value = "Cardiovascular Device"
-// * $mdc|2024-12-05#528402 "MDC_DEV_SPEC_PROFILE_COAG"
-// * $mdc|2024-12-05#528402 ^designation.language = #en
-// * $mdc|2024-12-05#528402 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528402 ^designation.value = "Coagulation meter"
-// * $mdc|2024-12-05#528409 "MDC_DEV_SPEC_PROFILE_CGM"
-// * $mdc|2024-12-05#528409 ^designation.language = #en
-// * $mdc|2024-12-05#528409 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528409 ^designation.value = "Continuous Glucose Monitor"
-// * $mdc|2024-12-05#528390 "MDC_DEV_SPEC_PROFILE_ECG"
-// * $mdc|2024-12-05#528390 ^designation.language = #en
-// * $mdc|2024-12-05#528390 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528390 ^designation.value = "Electro cardiograph"
-// * $mdc|2024-12-05#528457 "MDC_DEV_SPEC_PROFILE_GENERIC"
-// * $mdc|2024-12-05#528457 ^designation.language = #en
-// * $mdc|2024-12-05#528457 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528457 ^designation.value = "Generic 20601 Device"
-// * $mdc|2024-12-05#528401 "MDC_DEV_SPEC_PROFILE_GLUCOSE"
-// * $mdc|2024-12-05#528401 ^designation.language = #en
-// * $mdc|2024-12-05#528401 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528401 ^designation.value = "Glucose Monitor"
-// * $mdc|2024-12-05#528455 "MDC_DEV_SPEC_PROFILE_AI_ACTIVITY_HUB"
-// * $mdc|2024-12-05#528455 ^designation.language = #en
-// * $mdc|2024-12-05#528455 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528455 ^designation.value = "Independent Activity/Living Hub"
-//* $mdc|2024-12-05#528403 "MDC_DEV_SPEC_PROFILE_INSULIN_PUMP"
-// * $mdc|2024-12-05#528403 ^designation.language = #en
-// * $mdc|2024-12-05#528403 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528403 ^designation.value = "Insulin Pump"
-// * $mdc|2024-12-05#528405 "MDC_DEV_SPEC_PROFILE_PEFM"
-// * $mdc|2024-12-05#528405 ^designation.language = #en
-// * $mdc|2024-12-05#528405 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528405 ^designation.value = "Peak Flow meter"
-// * $mdc|2024-12-05#528388 "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
-// * $mdc|2024-12-05#528388 ^designation.language = #en
-// * $mdc|2024-12-05#528388 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528388 ^designation.value = "Pulse Oximeter"
-// * $mdc|2024-12-05#528397 "MDC_DEV_SPEC_PROFILE_CALC_PULM"
-// * $mdc|2024-12-05#528397 ^designation.language = #en
-// * $mdc|2024-12-05#528397 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528397 ^designation.value = "Respiration rate"
-// * $mdc|2024-12-05#528408 "MDC_DEV_SPEC_PROFILE_SABTE"
-// * $mdc|2024-12-05#528408 ^designation.language = #en
-// * $mdc|2024-12-05#528408 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528408 ^designation.value = "Sleep Apnea Breathing Equipment"
-// * $mdc|2024-12-05#528426 "MDC_DEV_SPEC_PROFILE_HF_STRENGTH"
-// * $mdc|2024-12-05#528426 ^designation.language = #en
-// * $mdc|2024-12-05#528426 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528426 ^designation.value = "Strength Equipment"
-// * $mdc|2024-12-05#528392 "MDC_DEV_SPEC_PROFILE_TEMP"
-// * $mdc|2024-12-05#528392 ^designation.language = #en
-// * $mdc|2024-12-05#528392 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528392 ^designation.value = "Thermometer"
-// * $mdc|2024-12-05#528399 "MDC_DEV_SPEC_PROFILE_SCALE"
-// * $mdc|2024-12-05#528399 ^designation.language = #en
-// * $mdc|2024-12-05#528399 ^designation.use = http://snomed.info/sct#900000000000003001 "Fully specified name"
-// * $mdc|2024-12-05#528399 ^designation.value = "Weight Scale"
-// * $mdc#528391 "Blood Pressure Cuff"
-// * $mdc#528404 "Body Composition Analyzer"
-// * $mdc#528425 "Cardiovascular Device"
-// * $mdc#528402 "Coagulation meter"
-// * $mdc#528409 "Continuous Glucose Monitor"
-// * $mdc#528390 "Electro cardiograph"
-// * $mdc#528457 "Generic 20601 Device"
-// * $mdc#528401 "Glucose Monitor"
-// * $mdc#528455 "Independent Activity/Living Hub"
-// * $mdc#528403 "Insulin Pump"
-// * $mdc#528405 "Peak Flow meter"
-// * $mdc#528388 "Pulse Oximeter"
-// * $mdc#528397 "Respiration rate"
-// * $mdc#528408 "Sleep Apnea Breathing Equipment"
-// * $mdc#528426 "Strength Equipment"
-// * $mdc#528392 "Thermometer"
-// * $mdc#528399 "Weight Scale"
-// * $gmdn#38017 "Dry salt inhalation therapy device"
-// * $gmdn#38663 "Flexible video nephroscope"
-// * $gmdn#42347 "Dental implant, endosseous, partially-embedded"
-// * $gmdn#46352 "Bare-metal intracranial vascular stent"
-// * $gmdn#47264 "Dual-chamber implantable pacemaker, demand"
-// * $gmdn#62163 "Intrauterine cannula, reusable"
-// * $gmdn#62260 "Air-conduction hearing aid acoustic tube"
-// * $gmdn#62423 "Spinal cord/peripheral nerve implantable analgesic electrical stimulation system lead, wired connection"
-// * $gmdn#62414 "Blue-light phototherapy lamp, home-use"
-// * $gmdn#64587 "Uncoated knee femur prosthesis, ceramic"
-// * $gmdn#64992 "ADAMTS13 activity IVD, kit, chemiluminescent immunoassay"
-// * include codes from system SNOMED_CT where concept is-a #49062001
+
 
 
 Instance: HddtCgmSummaryOperation
@@ -705,15 +613,16 @@ It allows clients to request CGM summary data filtered by effective period, and 
 - `MSG_NO_MATCH`: Returned when no matching observations are found. 
 - `MSG_BAD_SYNTAX`: Returned when the request is malformed.  
 """
-// * version = "0.1.1"
+
 * id = "hddt-cgm-summary-operation"
 * name = "HddtCgmSummaryOperation"
 * title = "Search Operation for summary data measurement"
 * status = #active
+* version = $term-version
 * experimental = false
 * kind = #operation
 * publisher = "gematik GmbH"
-* date = "2025-10-27"
+* date = "2026-03-04"
 * affectsState = false
 * code = #hddt-cgm-summary
 * system = false
@@ -745,13 +654,12 @@ It allows clients to request CGM summary data filtered by effective period, and 
 * parameter[=].type = #Reference
 * parameter[=].targetProfile = "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"
 
-// this is an instance, because otherwise the versioned include of the ValueSets does not work. 
-// for instances, we can't explicitely set `id`, but it is automaticly generated from the 'Instance' field. We also need to explicitely set the name.
+
 Instance: hddt-miv-lung-function-testing
 InstanceOf: $shareable-vs
 Usage: #definition
 Title: "MIV Lung Function Testing from LOINC"
-//* id =  hddt-miv-lung-function-testing
+
 * name = "HddtMivLungFunctionTesting"
 * description = """
 Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen 
@@ -796,12 +704,12 @@ come from three separate ValueSets:
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-02-01"
+* extension[=].valuePeriod.start = "2026-04-01"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
 * status = #active
 * experimental = false
-* date = "2026-01-26"
+* date = "2026-03-04"
 * publisher = "gematik GmbH"
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"
@@ -833,12 +741,12 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -870,12 +778,12 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -909,12 +817,12 @@ individual measurement by the reference value, resulting in a percentage value (
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -947,9 +855,10 @@ resource is provided for compatibility with the overarching HDDT specification.
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -1004,19 +913,18 @@ values can be determined using different methods. This CodeSystem provides codes
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^publisher = "gematik GmbH"
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
 * ^experimental = false
 * ^caseSensitive = false
-// ^url = "https://terminologien.bfarm.de/fhir/CodeSystem/hddt-lung-function-reference-value-method-codes"
-// * ^version = "0.1.1"
+
 * #personal-best "Personal Best"
     "Reference value based on the personal best value achieved by the patient within a certain time frame."
 * #GLI-2012 "Predicted Value according to Global Lung Initiative 2012"
@@ -1039,14 +947,14 @@ Temporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaibl
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^experimental = false
 * ^caseSensitive = false
 * ^status = #active
 * ^publisher = "gematik GmbH"
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
@@ -1071,13 +979,13 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-02-01"
+* extension[=].valuePeriod.start = "2026-04-01"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
 * publisher = "gematik GmbH"
-* date = "2026-01-26"
+* date = "2026-03-04"
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
@@ -1110,12 +1018,12 @@ A ValueSet for codes used to specify the method used to determine lung function 
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-26"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
@@ -1147,9 +1055,10 @@ resource is provided for compatibility with the overarching HDDT specification.
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `method` is considered mandatory in order to provide information about the method used to determine the reference value. It can be either a code from the _HddtLungFunctionReferenceValueMethod_ ValueSet or a text description.
 """
-// * ^version = "0.1.1"
+
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
@@ -1216,9 +1125,9 @@ Each instance of this Observation MUST reference the Observations holding the co
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
 - `derivedFrom` is constrained to require exactly two references: one to the raw lung function testing Observation and one to the lung function reference value Observation.
 """
-// * ^version = "0.1.1"
 * ^status = #active
-* ^date = "2026-01-16"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
 * status = #final (exactly)
@@ -1300,80 +1209,18 @@ The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-02-01"
+* ^extension[=].valuePeriod.start = "2026-04-01"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^experimental = false
-* ^date = "2026-01-23"
+* ^date = "2026-03-04"
 * ^publisher = "gematik GmbH"
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * $LNC-versioned#85354-9 "Blood pressure panel with all children optional"
 
-// Profile: HddtBloodPressureValue
-// Parent: $bp-sd
-// Id: hddt-blood-pressure-value
-// Title: "Observation - HDDT Blood Pressure Value"
-// Description: """
-// Profile for capturing blood pressure value as FHIR Observation resources.
-
-// This profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \"Blood Pressure Monitoring\" which is technically defined 
-// by the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to 
-// a Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.
-
-// Blood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and optionally mean blood pressure. 
-// This profile uses the LOINC panel code #85354-9 "Blood pressure panel with all children optional" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.
-
-// **Obligations and Conventions:**
-
-// Each Blood Pressure Measurement MUST hold a reference to a _Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource. 
-// Blood pressure devices typically do not require calibration.
-
-// This profile inherits from the FHIR Blood Pressure profile (`http://hl7.org/fhir/StructureDefinition/bp`) and adds HDDT-specific constraints. The blood pressure components 
-// (systolic and diastolic are mandatory; mean is optional) are inherited from the parent profile with the MeanBP component added as an optional slice.
-// Each component MUST include a value in mmHg (millimeters of mercury).
-
-// Caution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.
-
-// **Constraints applied:**  
-// - `status` is restricted to _final_
-// - `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9
-// - `component` cardinality is set to 2..3 to require systolic and diastolic components (inherited from parent), with mean blood pressure as optional
-// - `component[MeanBP]` is added as an optional slice (0..1) for mean blood pressure with LOINC code 8478-0
-// - Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit
-// - `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
-// """
-// * ^status = #active
-// * ^date = "2026-01-23"
-// * ^publisher = "gematik GmbH"
-// * ^copyright = "Copyright (c) 2025 gematik GmbH"
-// * status = #final (exactly)
-// * status ^short = "Measurement status"
-// * status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
-// * status MS
-// * subject ^short = "Patient reference in anonymized or pseudonymized form only"
-// * subject ^definition = "Reference to the patient. The patient MUST NOT be identified directly. Only anonymized or pseudonymized forms are permitted."
-// * code 1..1
-// * code.coding[BPCode] from HddtMivBloodPressureValue (required) // Override to specify coding slice
-// * code ^short = "Type of blood pressure measurement"
-// * code ^binding.description = "Specifies the type of blood pressure measurement using codes from the ValueSet for blood pressure measurements."
-// * device 1..1
-// * device only Reference(HddtPersonalHealthDevice)
-// * device ^short = "Reference to the blood pressure measurement device"
-// * device MS
-// * component 2..3
-// * component[SystolicBP].code = $LNC#8480-6
-// * component[DiastolicBP].code = $LNC#8462-4
-// * component[SystolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
-// * component[DiastolicBP].code.coding 1..1 // Must be set to differentiate slices cardinality
-// * component contains MeanBP 0..1
-// * component[MeanBP].code.coding 1..1
-// * component[MeanBP].code.coding.code = $LNC#8478-0 
-// * component[MeanBP].value[x] only Quantity
-// * component[MeanBP].valueQuantity.system = "http://unitsofmeasure.org"
-// * component[MeanBP].valueQuantity.code = #mm[Hg]
 
 Profile: HddtBloodPressureValue
 Parent: $bp-sd
@@ -1409,7 +1256,8 @@ Caution: For privacy and data protection, the subject reference MUST only use ps
 - `device` is mandatory and restricted to reference only HddtPersonalHealthDevice
 """
 * ^status = #active
-* ^date = "2026-01-23"
+* ^date = "2026-03-04"
+* ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
 * status = #final (exactly)
