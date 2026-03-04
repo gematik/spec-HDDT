@@ -34,7 +34,7 @@ The _DiGA Verzeichnis_ (DiGA VZ: BfArM DiGA Registry) is operated by BfArM and p
 - listing all DiGA that are eligible to process a defined MIV
 - providing feeds for monitoring changes in the _DiGA Verzeichnis_ (e.g. new DiGA registrations, changes in eligible MIVs, changes in certificate status, etc.)
 
-The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), and its API documentation is available at [https://fhir.bfarm.de/guide/diga-overview-en.html](https://fhir.bfarm.de/guide/diga-overview-en.html). The documentation contains information models and query examples for generic use-cases like retrieving different trust attributes (i.e. certificates, clientId, redirectUri). To gain access to the DiGA API, it is necessary to create a user account at [https://antrag-api.bfarm.de/](https://antrag-api.bfarm.de/) and submit an application to use the DiGA API. Further information on this is provided on the [BfArM website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html).
+The _DiGA Verzeichnis_ can be reached at the URL [https://diga.bfarm.de/de/verzeichnis](https://diga.bfarm.de/de/verzeichnis), and its API documentation is available at [https://fhir.bfarm.de/guide/diga-overview-en.html](https://fhir.bfarm.de/guide/diga-overview-en.html). The documentation contains information models and query examples for generic use-cases like retrieving different trust attributes (i.e. certificates, clientId, redirectUri). How to gain access for medical aid and implant manufacturers to the DiGA API is described on the [BfArM website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html).
 
 ### Zentraler Terminologieserver
 
