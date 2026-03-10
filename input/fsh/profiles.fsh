@@ -924,6 +924,8 @@ values can be determined using different methods. This CodeSystem provides codes
 * ^copyright = "gematik GmbH."
 * ^experimental = false
 * ^caseSensitive = false
+* ^versionNeeded = true
+* ^valueSet = Canonical(hddt-lung-function-reference-value-method-codes|1.0.0-rc2)
 
 * #personal-best "Personal Best"
     "Reference value based on the personal best value achieved by the patient within a certain time frame."
@@ -953,6 +955,7 @@ Temporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaibl
 * ^experimental = false
 * ^caseSensitive = false
 * ^status = #active
+* ^versionNeeded = true
 * ^publisher = "gematik GmbH"
 * ^date = "2026-03-04"
 * ^contact.telecom[0].system = #url 
@@ -997,7 +1000,7 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 
 
 ValueSet: HddtLungFunctionReferenceValueMethod
-Id: hddt-lung-function-reference-value-method
+Id: hddt-lung-function-reference-value-method-codes
 Title: "Lung Function Reference Value Method"
 Description: """
 Ein ValueSet für Codes, die die Methode zur Bestimmung von Referenzwerten der Lungenfunktion angeben. Enthalten sind Codes aus dem CodeSystem _HddtLungFunctionReferenceValueMethodCodes_:
