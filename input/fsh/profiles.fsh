@@ -452,7 +452,7 @@ manufacturers of glucometers.
 * compose.include[0].system = $LNC
 * compose.include[0].version = "2.81"
 * compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
-* compose.include[0].extension[0].valueString = "This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* compose.include[0].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * compose.include[0].concept[+].code = #2339-0
 * compose.include[0].concept[=].display = "Glucose [Mass/volume] in Blood"
 * compose.include[0].concept[+].code = #15074-8
@@ -530,7 +530,7 @@ In the future codes defining non-invasive glucose measuring methods may be added
 * compose.include[0].system = $LNC
 * compose.include[0].version = "2.81"
 * compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
-* compose.include[0].extension[0].valueString = "This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* compose.include[0].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * compose.include[0].concept[+].code = #105272-9 
 * compose.include[0].concept[=].display = "Glucose [Moles/volume] in Interstitial fluid"
 * compose.include[0].concept[+].code = #99504-3 
@@ -739,8 +739,14 @@ come from three separate ValueSets:
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * compose.include[0].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values|1.0.0-rc2"
-* compose.include[1].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values|1.0.0-rc2"
-* compose.include[2].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values|1.0.0-rc2"
+* compose.include[=].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
+* compose.include[=].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* compose.include[+].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values|1.0.0-rc2"
+* compose.include[=].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
+* compose.include[=].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
+* compose.include[+].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values|1.0.0-rc2"
+* compose.include[=].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
+* compose.include[=].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 
 
 Instance: HddtLungFunctionTestingValues
@@ -781,7 +787,7 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 * compose.include[0].system = $LNC
 * compose.include[0].version = "2.81"
 * compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
-* compose.include[0].extension[0].valueString = "This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* compose.include[0].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * compose.include[0].concept[+].code = #19935-6 
 * compose.include[0].concept[=].display = "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
 * compose.include[0].concept[+].code = #20150-9 
@@ -828,7 +834,7 @@ This ValueSet defines the LOINC codes, used for lung function reference values:
 * compose.include[0].system = $LNC
 * compose.include[0].version = "2.81"
 * compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
-* compose.include[0].extension[0].valueString = "This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* compose.include[0].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * compose.include[0].concept[+].code = #83368-1 
 * compose.include[0].concept[=].display = "Personal best peak expiratory gas flow Respiratory system airway"
 * compose.include[0].concept[+].code = #20149-1 
@@ -877,7 +883,7 @@ individual measurement by the reference value, resulting in a percentage value (
 * compose.include[0].system = $LNC
 * compose.include[0].version = "2.81"
 * compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
-* compose.include[0].extension[0].valueString = "This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
+* compose.include[0].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 * compose.include[0].concept[+].code = #20152-5 
 * compose.include[0].concept[=].display = "FEV1 measured/predicted"
 * compose.include[1].system = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
