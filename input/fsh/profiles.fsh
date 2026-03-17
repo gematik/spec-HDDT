@@ -8,9 +8,11 @@ Alias: $cgm-summary-days-of-wear = http://hl7.org/fhir/uv/cgm/StructureDefinitio
 Alias: $cgm-summary-sensor-active-percentage = http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage
 Alias: $bp-sd = http://fhir.de/StructureDefinition/observation-de-vitalsign-blutdruck
 Alias: $ucum-units = http://hl7.org/fhir/ValueSet/ucum-units
+Alias: $mdc = urn:iso:std:iso:11073:10101
+
+// LOINC version hard-coded in some locations; update manually if version changes
 Alias: $LNC = http://loinc.org
 Alias: $LNC-versioned = http://loinc.org|2.81
-Alias: $mdc = urn:iso:std:iso:11073:10101
 
 // change both 'version' and 'version-suffix'!!!
 Alias: $sct = http://snomed.info/sct
@@ -961,6 +963,7 @@ Temporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaibl
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
+* ^valueSet = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.0-rc2)
 * #PEF-measured/predicted "PEF measured/predicted"
 
 Instance: HddtLungFunctionTemporaryToLoinc
@@ -992,12 +995,41 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
-* group[+].source = Canonical(HddtLungFunctionTemporaryCodes|1.0.0-rc2)
+* sourceCanonical = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.0-rc2) 
+* group[+].source = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
+* group[=].sourceVersion = "1.0.0-rc2"
 * group[=].target = $LNC
+* group[=].targetVersion = "2.81"
 * group[=].element[+].code = #PEF-measured/predicted
 * group[=].element[=].target.comment = "No target LOINC code available yet."
 * group[=].element[=].target.equivalence = #unmatched
 
+ValueSet: HddtLungFunctionTemporaryCodesVS
+Id: hddt-lung-function-temporary-codes
+Title: "Lung Function Temporary Codes"
+Description: """
+ValueSet für temporäre Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, bis LOINC-Codes verfügbar sind.
+
+--
+
+A ValueSet for temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem until LOINC codes are available.
+"""
+* ^name = "HddtLungFunctionTemporaryCodes" // override name. FSH instance name is different to avoid confusion with the CodeSystem of the same name.
+* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+* ^language = #en
+* ^version = $term-version
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
+* ^extension[=].valuePeriod.start = "2026-04-01"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
+* ^extension[=].valueContactDetail.name = "gematik GmbH"
+* ^status = #active
+* ^experimental = false
+* ^date = "2026-03-04"
+* ^publisher = "gematik GmbH"
+* ^contact.telecom[0].system = #url
+* ^contact.telecom[=].value = "https://www.gematik.de"
+* ^copyright = "gematik GmbH"
+* include codes from system HddtLungFunctionTemporaryCodes|1.0.0-rc2
 
 ValueSet: HddtLungFunctionReferenceValueMethod
 Id: hddt-lung-function-reference-value-method-codes
