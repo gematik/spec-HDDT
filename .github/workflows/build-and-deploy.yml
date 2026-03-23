@@ -11,14 +11,23 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write  
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true    
 
 jobs:
-  build_and_deploy_job:
+  build:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
       - name: Checkout GitHub repo
         uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5                
 
       - name: Build IG with Dockerfile
         run: |
@@ -26,6 +35,11 @@ jobs:
             --target export \
             --output type=local,dest=. \
             -f Dockerfile .
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./output            
 
       - name: Build And Deploy
         id: builddeploy
@@ -60,3 +74,15 @@ jobs:
           generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-pages:
+    runs-on: ubuntu-latest
+    name: Deploy to GitHub Pages
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy artifact to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4                
