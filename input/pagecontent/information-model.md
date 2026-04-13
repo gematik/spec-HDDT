@@ -5,8 +5,8 @@ __Caution__: In HL7 FHIR R4 the definitions of the [Device](https://hl7.org/fhir
 
 As depicted in the definition of the [HDDT logical building blocks](logical-viewpoints.html#logical-building-blocks), each medical aid or implant in the sense of § 374a SGB V can be divided into
 * __Personal Health Device__: the hardware part including the __sensors__ that measure vital data of the patient
-* __Device Data Recorder__: components responsible for accepting, storing and further processing the measured data. The Device Data Recorder consists of
-    * __Personal Health Gateway__: an intermediate hardware and/or software that retrieves the sensor data at the patient's or doctor's side and takes care of securely forwarding it to a Health Record
+* __Device Data Recorder (DDR)__: a system or component that collects, stores, and manages health-related data received from one or more personal health devices (agents) for later retrieval, analysis, or transmission. The Device Data Recorder consists of:
+    * A __Personal Health Gateway (PHG)__: a system that acts as an intermediary between Personal Health Devices (agents) and remote healthcare or information systems, facilitating data collection, processing, and transmission.
     * __Health Record__: a backend platform that stores the measured data
 
 This logical model builds the foundation of the HDDT FHIR based information model. Every artefact of the logical model is mapped onto a class in the HDDT information model. Each class again can be implemented by a standard FHIR R4 resource definition.
