@@ -17,6 +17,7 @@ The tags are used as follows:
 Date: 15.04.2026
 
 * `documentation` [Security and Privacy](security-and-privacy.html): Added the _Client Privacy_ section explaining that requests to BfArM directories must not originate directly from the patient's device (e.g. a smartphone) in order to protect the patient's privacy.
+* `documentation` [Glossary](glossary.html): Rephrased description of _Implant_ in accordance to DIN EN ISO 14630 (EU-MDR).
 
 ### Version 1.0.0-rc2
 ---
