@@ -1,5 +1,5 @@
 ### Specification Roadmap
-The standardisation of data to be transmitted from medical aids and implants will be carried out using an incremental approach by domains representing an area of use or a care environment. In an initial specification version 1 (MVP), a first set of data that MUST be made available — referencing the selected domains — will be defined, specified, and published. The selection of domains and use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the frequency of prescriptions and the added value for patient care through DiGAs (see [Methodology](methodology.html)). 
+The standardisation of data to be transmitted from medical aids and implants will be carried out using an incremental approach by domains representing an area of use or a care environment. In an initial specification version 1 (MVP), a first set of data that MUST be made available referencing the selected domains will be defined, specified, and published. The selection of domains and use cases, from which the data to be provided and the affected devices are derived, is guided by various criteria, such as the frequency of prescriptions and the added value for patient care through DiGAs (see [Methodology](methodology.html)). 
 
 Mandatory Interoperable Values (MIVs) will be declared for each domain to be provided by medical aids and implants processing this data. Systems that comply with [certification relevant systems](certification-relevant-systems.html) and process data which is part of the [Mandatory Interoperable Values (MIVs)](mivs.html) MUST therefore implement according to the MVP.
 
@@ -11,6 +11,8 @@ The first specification version 1 (MVP) will specify selected [Mandatory Interop
 Underlying statutory deadlines can be found in [§ 374a SGB V](https://www.gesetze-im-internet.de/sgb_5/__374a.html).
 
 Further domains will be defined as a result of ongoing use cases analysis to derive the potential for use in care processes. 
+
+Throughout the processing of all use cases, alignment with international standards has been a consistent guiding principle. Further details on the applied standards and the resulting compatibility of the HDDT FHIR profiles can be found in the section [Compatibility of the HDDT FHIR Profiles](use_of_hl7_fhir.html#compatibility-of-the-hddt-fhir-profiles).
 
 ### Certification and registration process
 In order to certify the conformity of the implementation with the specification, it is foreseen to provide an assessment procedure which will enable the manufacturers to easily prove the conformity of their implementation. The assessment procedure leads - if passed successfully - to a _gematik_ certification of the medical aid's implementation. As a support measure for manufacturers and as part of the conformity assessment, gematik will provide a locally executable testsuite that builds on the technical specification.
