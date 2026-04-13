@@ -35,7 +35,5 @@ input-cache/
 fsh-generated/
 output/
 resources/
-examples/
-Profiles/
 _genonce.bat
 qa.html
