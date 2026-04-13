@@ -23,15 +23,15 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
 * publisher = "gematik GmbH"
-* date = "2026-03-04"
+* date = "2026-04-01"
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
-* sourceCanonical = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.0-rc2) 
+* sourceCanonical = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.0) 
 * group[+].source = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
-* group[=].sourceVersion = "1.0.0-rc2"
+* group[=].sourceVersion = "1.0.0"
 * group[=].target = $LNC
-* group[=].targetVersion = "2.81"
+* group[=].targetVersion = "2.82"
 * group[=].element[+].code = #PEF-measured/predicted
 * group[=].element[=].target.comment = "No target LOINC code available yet."
 * group[=].element[=].target.equivalence = #unmatched
