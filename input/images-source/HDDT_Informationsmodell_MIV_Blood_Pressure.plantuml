@@ -15,7 +15,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     
 
     class "Blood Pressure Value" as BloodPressureValue <<FHIR Observation>>{
-        status = final
         code : 85354-9 Blood pressure panel with all children optional [1..1]
         effectiveDateTime : date and time of the measurement [1..1]
     }
