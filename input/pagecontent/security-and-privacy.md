@@ -162,6 +162,10 @@ If a source for updating cached information is not reachable, the affected syste
 
 In order to ease bug fixing, caching times in test environments SHOULD be set to lower values, e.g. one hour for the listed sources and information.
 
+### Client Privacy
+
+DiGA manufacturers MUST ensure that all requests to BfArM directories (_DiGA-VZ_, _HIIS-VZ_, _ZTS_) are made exclusively through the DiGA's server infrastructure, and never directly from the patient's device (e.g. a smartphone) on which the DiGA application runs. If such requests originated directly from the patient's device, the patient's IP address would be transmitted to and potentially logged by the directory service, which would constitute a privacy risk for the patient. By routing all directory requests through the DiGA's server infrastructure, the patient's device address is kept concealed from the directory services.
+
 ### Transparency of Operations
 Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy purposes. This audit trail MUST at least log the following events for at least 30 days:
 * pairing of a DiGA with a Device Data Recorder
