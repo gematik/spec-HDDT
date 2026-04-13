@@ -80,6 +80,7 @@ the Health Record on the backend system. The HDDT specification MUST NOT affect 
   interface)
 * how the Personal Health Gateway handles data from uncalibrated devices (e.g. whether this data is sent to the Health
   Record or not)
+* if the _Device Data Recorder_ allows to correct or invalidate measured data in retrospect and if it makes such corrected or invalidated data accessible to connected DiGA 
 * which specific algorithms the _Device Data Recorder_ uses to calculate clinical metrics (e.g. whether an rtCGM includes
   data from its warm-up phase when calculating values such as the Glucose Management Index)
 * whether and how the Personal Health Gateway pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
