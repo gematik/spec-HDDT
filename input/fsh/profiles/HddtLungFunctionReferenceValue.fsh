@@ -29,9 +29,6 @@ resource is provided for compatibility with the overarching HDDT specification.
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
-* status = #final (exactly)
-* status ^short = "Measurement status"
-* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
 * code from https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values (required)
 * code ^short = "Reference measurement type for lung function"
 * code ^binding.description = "Specifies for which measurement type the reference value is, using codes from the ValueSet for lung function testings. Constrained via invariant to either PEF or FEV1."

@@ -36,10 +36,6 @@ Caution: For privacy and data protection, the subject reference MUST only use ps
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"
-* status = #final (exactly)
-* status ^short = "Measurement status"
-* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
-* status MS
 * subject ^short = "Patient reference in anonymized or pseudonymized form only"
 * subject ^definition = "Reference to the patient. The patient MUST NOT be identified directly. Only anonymized or pseudonymized forms are permitted."
 * code 1..1

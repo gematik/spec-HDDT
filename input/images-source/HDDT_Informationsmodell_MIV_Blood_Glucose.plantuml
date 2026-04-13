@@ -14,7 +14,6 @@ skinparam packageStyle rectangle
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
-        status = final
         code : classification of the measured value [1..1]
         effectiveDateTime : date and time of the measurement [1..1]
         valueQuantity.value : quantity value of the measurement [1..1]

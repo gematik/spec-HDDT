@@ -14,7 +14,6 @@ skinparam packageStyle rectangle
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
     
     class IV as "Interoperable Value" <<FHIR Observation>> {
-        status = final | preliminary
         code : classification of the measured value [1..1]
         effectivePeriod : period of the measurement [1..1]
         valueSampledData.origin.system = UCUM

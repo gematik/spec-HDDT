@@ -13,7 +13,6 @@ skinparam packageStyle rectangle
 
 package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MANUFACTURER {
     class IV_messung as "Lung Function Testing " <<FHIR Observation>> {
-        status [1..1]: final 
         code [1..1]: classification of the measured value
         effectiveDateTime [1..1]: date and time of the measurement
         valueQuantity.value [1..1]: quantity value of the measurement
@@ -22,7 +21,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     }
 
     class IV_referenz as "Lung Function Reference Value" <<FHIR Observation>> {
-        status [1..1]: final 
         code [1..1]: classification of the reference value
         effectivePeriod [0..1]: date and time of the measurement
         valueQuantity.value [1..1]: quantity value of the measurement
@@ -34,7 +32,6 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
     }
 
     class IV_prozent as "Lung Function Testing Complete" <<FHIR Observation>> {
-        status [1..1]: final 
         code [1..1]: classification of the calculated value - measured/predicted
         effectiveDateTime [1..1]: date and time of the measurement
         valueQuantity.value [1..1]: quantity value of the measurement

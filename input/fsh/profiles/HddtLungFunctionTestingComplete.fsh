@@ -31,9 +31,6 @@ Each instance of this Observation MUST reference the Observations holding the co
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
-* status = #final (exactly)
-* status ^short = "Measurement status"
-* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
 * code from https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values (required)
 * code ^short = "Percentage measurement type for lung function"
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for lung function testing as percentage of the reference value. Constrained via invariant to either PEF or FEV1."
