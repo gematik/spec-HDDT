@@ -29,9 +29,6 @@ or if the sensor may change its calibration status over time.
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
-* status = #final (exactly)
-* status ^short = "Measurement status"
-* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
 * code from https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement (required)
 * code ^short = "Measurement type of blood glucose"
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for blood glucose measurements."

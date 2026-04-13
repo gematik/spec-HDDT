@@ -31,9 +31,6 @@ resource is provided for compatibility with the overarching HDDT specification.
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
-* status = #final (exactly)
-* status ^short = "Measurement status"
-* status ^definition = "The status of the measurements is fixed to 'final'. Only verified and complete measurements with a valid value are represented."
 * code from https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values (required)
 * code ^short = "Raw measurement type for lung function"
 * code ^binding.description = "Specifies the type of measurement using codes from the ValueSet for lung function testings. Constrained via invariant to either PEF or FEV1."
