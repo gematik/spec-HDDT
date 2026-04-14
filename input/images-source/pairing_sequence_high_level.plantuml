@@ -25,7 +25,7 @@ P -> D: Initiate pairing request with a health device
 activate D
 D -> A: Authorization request via frontend/user-agent redirect
 activate A
-A -> P: Initiate login via system browser and possibly app link/deep link
+A -> P: Present login page in system browser
 activate P
 ref over P, A : Device Data Recorder specific login (out-of-scope)
 A -> P: Present a consent dialog for requested scopes (fine grained access)

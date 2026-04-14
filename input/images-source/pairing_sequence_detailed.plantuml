@@ -33,7 +33,7 @@ activate V
 activate D
 D -> V: Present list of compatible Device Data Recorders via DiGA frontend
 V -> D: Select Device Data Recorder via DiGA frontend
-D -> V: Present required permissions (based on Device Date Recorder scopes) via DiGA frontend
+D -> V: Present required permissions (based on Device Data Recorder scopes) via DiGA frontend
 V -> D: Confirm permissions via DiGA frontend
 ||0||
 deactivate V
@@ -54,14 +54,14 @@ H -> D: PAR response (request_uri, expires_in)
 deactivate H
 
 == 3. Authorization Confirmation by patient ==
-D -> H: Authorization request for client_id, request_uri via frontend/user-agent redirect
+D -> H: Authorization request via external user-agent redirect (client_id, request_uri)
 activate H
 H -> H: Validate authorization request and load PAR data
-H -> V: Initiate login via system browser and possibly app link/deep link
+H -> V: Present login page in system browser
 activate V
 ref over V, H : Login specific to Device Data Recorder (out-of-scope)
-H -> V: Present DiGA request with permissions via Device Data Recorder frontend
-V -> H: Confirm permissions for DiGA via Device Data Recorder frontend
+H -> V: Present DiGA consent request with permissions in system browser
+V -> H: Confirm permissions
 deactivate V
 alt Pairing ID was previously generated and linked to user account
 	H -> H: Locate pairing ID

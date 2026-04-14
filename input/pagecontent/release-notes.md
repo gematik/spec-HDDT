@@ -22,6 +22,7 @@ Date: 15.04.2026
 * `documentation` [Specification Roadmap](roadmap.html): Added a general note that the processing of all use cases has been consistently aligned with international standards, with a reference to the [Compatibility of the HDDT FHIR Profiles](use_of_hl7_fhir.html#compatibility-of-the-hddt-fhir-profiles) section.
 * `documentation` [Information Model](information-model.html): Updated the definitions of _Device Data Recorder (DDR)_ and _Personal Health Gateway (PHG)_ to align with IEEE 11073 terminology.
 * `documentation` [Blood Glucose Measurement](measurement-blood-glucose.html), [Lung Function Testing](measurement-lung-function.html), [Blood Pressure Monitoring](measurement-blood-pressure.html): Removed fixed `Observation.status` in diagrams for information models.
+* `documentation` [Pairing](pairing.html): Rephrased pairing descriptions for the process step _3. Authorization Confirmation by patient_ to clear up confusing statements about deep-links.  
 
 ### Version 1.0.0-rc2
 ---
