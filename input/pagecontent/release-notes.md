@@ -20,15 +20,16 @@ Date: 15.04.2026
 * `documentation` [Security and Privacy](security-and-privacy.html): Added the _Client Privacy_ section explaining that requests to BfArM directories must not originate directly from the patient's device (e.g. a smartphone) in order to protect the patient's privacy.
 * `documentation` [Glossary](glossary.html): Rephrased description of _Implant_ in accordance to DIN EN ISO 14630 (EU-MDR).
 * `documentation` [Specification Roadmap](roadmap.html): Added a general note that the processing of all use cases has been consistently aligned with international standards, with a reference to the [Compatibility of the HDDT FHIR Profiles](use_of_hl7_fhir.html#compatibility-of-the-hddt-fhir-profiles) section.
-* `documentation` [Information Model](information-model.html): Updated the definitions of _Device Data Recorder (DDR)_ and _Personal Health Gateway (PHG)_ to align with IEEE 11073 terminology.
+* `documentation` [Information Model](information-model.html): Updated the definitions of _Device Data Recorder (DDR)_ and _Personal Health Gateway (PHG)_ to align with DIN EN ISO/IEEE 11073 terminology.
 * `documentation` [Blood Glucose Measurement](measurement-blood-glucose.html), [Lung Function Testing](measurement-lung-function.html), [Blood Pressure Monitoring](measurement-blood-pressure.html): Removed fixed `Observation.status` in diagrams for information models.
 * `documentation` [Pairing](pairing.html): Rephrased pairing descriptions for the process step _3. Authorization Confirmation by patient_ to clear up confusing statements about deep-links.  
+* `documentation` General: Corrected usage of DIN standards throughout the specification (DIN EN ISO 11073).
 
 ### Version 1.0.0-rc2
 ---
 Date: 04.03.2026
 
-* `feature` [ValueSet HDDT Device Type](ValueSet-hddt-device-type.html): Replaced IEEE codes for device categories with codes from SNOMED CT® German Edition.
+* `feature` [ValueSet HDDT Device Type](ValueSet-hddt-device-type.html): Replaced DIN EN ISO/IEEE 11073 codes for device categories with codes from SNOMED CT® German Edition.
 * `documentation` [BfArM Registries and ZTS and further occurences](registries-and-zts.html): Updated links to BfArM Website regarding the new released [information on registration processes](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html) for _HIIS-VZ_ and _DiGA-VZ_ 
 * `documentation` [BfArM Registries and ZTS](registries-and-zts.html): Updated links to BfArM contents about FHIR profiles, HIIS-VZ information model and DiGA VZ API documentation
 * `documentation` [Information model](information-model.html): Updated links to BfArM contents about HIIS-VZ information model
