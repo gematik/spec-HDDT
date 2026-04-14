@@ -17,7 +17,6 @@ to a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to r
 resource is provided for compatibility with the overarching HDDT specification.
 
 **Constraints applied:**  
-- `status` is restricted to _final_
 - `code` is constrained to a subset of the _MIV Lung Function Reference Values_ ValueSet, defined by the _HddtLungFunctionReferenceValues_ ValueSet.
 - `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory.
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.

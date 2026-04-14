@@ -28,6 +28,7 @@ Further obligations MAY be defined by gematik and BfArM as part of the upcoming 
 The Device Data Recorder's FHIR Resource Server gives DiGA access to measured data and related information about devices. A Device Data Recorder's FHIR Resource Server that serves the MIV _Lung Function Testing_ MUST implement the following endpoints and profiles:
 
 * retrieval of the Resource Servers's [Capability Statement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](fhir-api-metadata.html).
+* HDDT common RESTful interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-devicemetric.html).
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
 * MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/observation.html) endpoint that implements all observation profiles relevant for the MIV _Lung Function Testing_. These interactions and underlying profiles are specific for implementing the MIV. The full specifications are given below.
     - [HDDT Lung Function Testing](StructureDefinition-hddt-lung-function-testing.html)
@@ -169,6 +170,11 @@ The FHIR specification for the _MIV Lung Function Testing_ consists of three sep
 In order to properly model this information in the _HDDT Complete Lung Function Testing_ FHIR profile, and provide it to the DiGA, the manufacturer of the Device Data Recorder MUST use the `derivedFrom` element to reference one of each _HDDT Lung Function Testing_ and _HDDT Lung Function Reference Value_ resource instances.
 
 Since the reference value is either a normal value for a population group and is calculated only once, or if it is a "personal best" it changes once every few weeks, multiple complete lung function tests SHOULD reference the same instance of the _HDDT Lung Function Reference Value_ resource.
+
+##### Device Reference
+
+Peak flow meters and spirometers typically do not require calibration, in which case the device element MUST point to a [Personal Health Device](StructureDefinition-hddt-personal-health-device.html) resource.
+For other cases, the specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle data from uncalibrated devices. If such data is provided by the Device Data Recorder, the `device` element MUST reference a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that indicates the calibration status of the sensor. If the `device` element does not reference a DeviceMetric resource, the DiGA MUST assume that the provided data originates from a calibrated sensor.  
 
 ###  Examples
 

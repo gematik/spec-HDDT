@@ -85,7 +85,7 @@ For privacy and data protection, the `subject` reference MUST only use pseudonym
 
 ##### Device Reference
 
-Blood pressure devices typically do not require calibration, in which case the device element MUST point to a Personal Health Device resource.
+Blood pressure devices typically do not require calibration, in which case the device element MUST point to a [Personal Health Device](StructureDefinition-hddt-personal-health-device.html) resource.
 For other cases, the specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle data from uncalibrated devices. If such data is provided by the Device Data Recorder, the `device` element MUST reference a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that indicates the calibration status of the sensor. If the `device` element does not reference a DeviceMetric resource, the DiGA MUST assume that the provided data originates from a calibrated sensor.  
 
 #### Examples
