@@ -26,7 +26,6 @@ Each component MUST include a value in mmHg (millimeters of mercury).
 Caution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.
 
 **Constraints applied:**  
-- `status` is restricted to _final_
 - `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9
 - `component` cardinality is set to 2..3 to require systolic and diastolic components (inherited from parent), with mean blood pressure as optional
 - `component[MeanBP]` is added as an optional slice (0..1) for mean blood pressure with LOINC code 8478-0
