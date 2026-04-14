@@ -801,8 +801,7 @@ Usage: #example
 Title: "HDDT Blood Pressure DeviceMetric Example"
 Description: """
 Example of a __DeviceMetric for blood pressure measurements__ from a blood pressure cuff:
-The device measures the blood pressure from the patient using an oscillometric method. 
-The patient's preferred unit is mmHg which is used by the device for displaying measured values. 
+The device measures the blood pressure in mmHg from the patient using an oscillometric method.
 The device is calibrated by the manufacturer and does not require user calibration.
 """
 * id = "example-blood-pressure-metric"
