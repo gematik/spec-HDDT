@@ -35,7 +35,7 @@ The Device Data Recorder's FHIR Resource Server gives DiGA access to measured da
     - [HDDT Lung Function Reference Value](StructureDefinition-hddt-lung-reference-value.html)
     - [HDDT Complete Lung Function Testing](StructureDefinition-hddt-lung-function-testing-complete.html)
 
-The figure below shows the adaption of the [HDDT Information Model](information-model.html) for the MIV _Lung Function Testing_. Elements denoted as _[1..1]_ or _MS_ are mandatory for the MIV _Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).
+The figure below shows the adaptation of the [HDDT Information Model](information-model.html) for the MIV _Lung Function Testing_. Elements denoted as _[1..1]_ or _MS_ are mandatory for the MIV _Lung Function Testing_ (see [Use of HL7 FHIR](use_of_hl7_fhir.html)).
 
 <figure>
 <div class="gem-ig-svg-container" style="width: 100%;">

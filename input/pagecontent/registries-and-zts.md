@@ -21,7 +21,7 @@ The _HIIS-VZ_ (BfArM Device Registry) is operated by BfArM and provides access t
 
 Extensions on these DeviceDefinitions allow DiGA manufacturers to discover the relationships between Device Data Recorders, Personal Health Devices and MIVS (e.g. to discover Personal Health Devices and Device Data Recorders that support a certain MIV). The full information model of the named DeviceDefinition types together with all extensions can be found at [https://fhir.bfarm.de/guide/hiis-information-model-en.html](https://fhir.bfarm.de/guide/hiis-information-model-en.html).
 
-The _HIIS-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are recently being built up by BfArM. Further information on this is provided on the [BfArM website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html). 
+The _HIIS-VZ_ and the processes for registering Personal Health Devices and Device Data Recorders are currently being built up by BfArM. Further information on this is provided on the [BfArM website](https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html). 
 
 ### DiGA Verzeichnis
 The _DiGA Verzeichnis_ (DiGA VZ: BfArM DiGA Registry) is operated by BfArM and provides access to definitions of registered DiGA (Digital Health Applications acc. § 33a SGB V). For HDDT the _DiGA Verzeichnis_ provides the following functions:

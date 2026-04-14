@@ -19,4 +19,4 @@ The HDDT specification aims to achieve the following overall benefits on the hea
 * to enable DiGAs to innovate care offerings by tapping into new data sources and facilitating the simpler, standardized integration of medical aids and implants
 * to lay a foundation for the creation of new structured care programs such as digital disease management programs (dDMPs)
 * to enable patients to get effective digital care services that are tailored as closely as possible to their current state of health by automatically and privacy‑compliantly transferring data from medical aids and implants into DiGAs
-* to empower healthcare professionals, via new DiGA solutions, e.g. to assess therapy outcomes by objective patient's measurements and intervene at an earlier stage when necessary
+* to empower healthcare professionals, via new DiGA solutions, e.g. to assess therapy outcomes by objective patient measurements and intervene at an earlier stage when necessary

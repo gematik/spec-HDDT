@@ -56,7 +56,7 @@ The following table lists the trust attributes that MUST be registered in the _H
 | Base URL FHIR-API of the FHIR Resource Server       | Device Data Recorder manufacturers/operators transmit the base URL of the Resource Server so that a DiGA can initiate endpoint discovery for the RESTful FHIR API of an aid/implant using {Base URL FHIR-API}/metadata. | url: {FQDN (Resource-Server)} / {manufacturer-specific path} <br><br>Example:<br> http://example.com/api/v1/fhir/r4 <br>http://fhir.example.com/r4 |
 | Base URL OAuth-API of the Authorization Server     | Device Data Recorder manufacturers/operators transmit the base URL of the Authorization Server so that a DiGA can initiate endpoint discovery for the OAuth ACG API of an aid/implant using {Base URL OAuth-API}//.well-known/oauth-authorization-server. | url: {FQDN (Authorization-Server)} / {manufacturer-specific path} <br><br>Examples: http://example.com/api/v1/oauth<br> http://oauth.example.com/v1 |
 
-Procedures for registering endpoint URLs and FQDNs with the _HIIS-VZ_ at BfARM will be published by BfArM as part of the _HIIS-VZ_ specification or corresponding guidelines.
+Procedures for registering endpoint URLs and FQDNs with the _HIIS-VZ_ at BfArM will be published by BfArM as part of the _HIIS-VZ_ specification or corresponding guidelines.
 
 
 ### Authorization of the DiGA
@@ -139,14 +139,14 @@ DiGA and Device Data Recorder operators MUST implement CA Authorization (CAA) an
 
 Device Data Recorder operators, as operators of publicly trusted TLS server certificates, MUST continuously monitor the CT logs of the known CT log operators ([https://certificate.transparency.dev/google/](https://certificate.transparency.dev/google/)) for unauthorized certificates issued for their own domain. The purpose of this measure is to ensure that unauthorized certificates are detected and can be reported to the issuing CA so that appropriate action (e.g. certificate revocation) can be taken. The obligation to monitor CT logs MAY be fulfilled using automated tools or services. Continuous monitoring does not imply manual inspection but requires that appropriate technical measures are in place to reliably detect unauthorized certificate issuance.
 
-DiGAs do not operate publicly trusted TLS server certificates (in context of HDDT) and therefore are not required to perform CT log monitoring.
+DiGAs do not operate publicly trusted TLS server certificates (in the context of HDDT) and therefore are not required to perform CT log monitoring.
 
 The measure is fully effective if, in addition to the above-mentioned verification steps, the verifying entity also checks the revocation status of the presented certificate against the revocation lists (CRL) provided by the issuing CA. Due to the not inconsiderable size of the CRLs, this can lead to performance problems.
 
 ___Additional Notes___: 
 * (a) The list of signature verification keys is published by the browser manufacturers, for example. The measure ensures that no certificates are accepted that are not contained in at least two CT logs.
 * (b)	It shall be pointed out that CRLs of the CAs from the CAB Forum can be of significant size.
-* (c) During the TLS connection, only the certificate of the client is initially determined. The certificate MUST then be passed on to the application layer. There, a comparison MUST take place with the information from the _DiGA-VZ_ of the BfArM in order to identify the DiGA. Further the identification data from the DiGA at the application layer (`client_id`) MUST be checked. This data has to match the identity of the DiGA meaning both certificate and `client_id` have to be in the same _DiGA-VZ_ entry. It can be useful for the Device Data Recorder to extract all DiGA certificates from the _DiGA-VZ_ (or at least those from registered DiGAs) to establish an DiGA trust space. This can be passed to the TLS library which verifies the certificate against that trust space during TLS handshake. Most of unauthorized connection attempts will be repelled by that measure. In any case this verification is not enough as additionally the DiGA has to be identified at application layer as described above.
+* (c) During the TLS connection, only the certificate of the client is initially determined. The certificate MUST then be passed on to the application layer. There, a comparison MUST take place with the information from the _DiGA-VZ_ of the BfArM in order to identify the DiGA. Further, the identification data from the DiGA at the application layer (`client_id`) MUST be checked. This data has to match the identity of the DiGA, meaning both certificate and `client_id` have to be in the same _DiGA-VZ_ entry. It can be useful for the Device Data Recorder to extract all DiGA certificates from the _DiGA-VZ_ (or at least those from registered DiGAs) to establish a DiGA trust space. This can be passed to the TLS library, which verifies the certificate against that trust space during the TLS handshake. Most unauthorized connection attempts will be repelled by that measure. In any case, this verification is not enough as additionally the DiGA has to be identified at the application layer as described above.
 
 ### Caching of Trust-Related Information
 Device Data Recorders and DiGA MAY cache trust related information in order to optimize performance. The following table lists the maximum time spans for which trust-related information MAY be cached in the production environment:
@@ -158,7 +158,7 @@ Device Data Recorders and DiGA MAY cache trust related information in order to o
 | _ZTS_ (German Central Terminology Server)         | MIV ValueSets                                   | 24 hours                |  
 | Certificate Authorities | Certificate status information and Certificate Revocation Lists (CRLs) | 2 hours |
 
-If a source for updating cached information is not reachable, the affected system MUST deny/reject incoming request that rely on the cached information.
+If a source for updating cached information is not reachable, the affected system MUST deny/reject incoming requests that rely on the cached information.
 
 In order to ease bug fixing, caching times in test environments SHOULD be set to lower values, e.g. one hour for the listed sources and information.
 

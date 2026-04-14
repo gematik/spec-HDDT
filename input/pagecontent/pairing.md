@@ -53,7 +53,7 @@ specification. For further information, please refer to the respective RFC docum
 #### Client Registration
 
 The provider of the Device Data Recorder is responsible for configuring OAuth 2.0 clients that represent authorized DiGA in the
-Device Data Recorder's OAuth2 Authorization Server. Other than properly registered DiGAs MUST NOT obtain access tokens and MUST NOT access any data through the APIs of the Device Data Recorder's FHIR Resource Server.
+Device Data Recorder's OAuth2 Authorization Server. DiGA that are not properly registered MUST NOT obtain access tokens and MUST NOT access any data through the APIs of the Device Data Recorder's FHIR Resource Server.
 
 For a DiGA to be registered as a client with the Device Data Recorder's OAuth2 Authorization Server, it MUST be listed in the BfArM [_DiGA-VZ_](registries-and-zts.html#diga-verzeichnis)  (DiGA Registry) according to § 139e SGB V. The registration data and [trust attributes](security-and-privacy.html#identification-and-authentication-of-the-diga) kept by the Device Data Recorder MUST originate from verified information in the [_DiGA-VZ_](registries-and-zts.html#diga-verzeichnis) as provided by BfArM.
 
