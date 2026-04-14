@@ -4,7 +4,7 @@ __Caution__: In HL7 FHIR R4 the definitions of the [Device](https://hl7.org/fhir
 <hr>
 
 As depicted in the definition of the [HDDT logical building blocks](logical-viewpoints.html#logical-building-blocks), each medical aid or implant in the sense of § 374a SGB V can be divided into
-* __Personal Health Device__: the hardware part including the __sensors__ that measure vital data of the patient
+* __Personal Health Device__: a medical hardware device designed to be used by people without medical background (e.g. consumers). These devices are often used at home and on the patient's body, serving as key elements in remote patient monitoring programs. Communicating Personal Health Devices use communication protocols to transmit personal health data. In most cases, a Personal Health Gateway handles the communications, translating the device data into the appropriate form and uploading it to the receiving systems.
 * __Device Data Recorder (DDR)__: a system or component that collects, stores, and manages health-related data received from one or more personal health devices (agents) for later retrieval, analysis, or transmission. The Device Data Recorder consists of:
     * A __Personal Health Gateway (PHG)__: a system that acts as an intermediary between Personal Health Devices (agents) and remote healthcare or information systems, facilitating data collection, processing, and transmission.
     * __Health Record__: a backend platform that stores the measured data
