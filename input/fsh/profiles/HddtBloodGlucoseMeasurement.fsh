@@ -17,7 +17,6 @@ from the Observation resource if the sensor for measuring blood glucose needs to
 or if the sensor may change its calibration status over time. 
 
 **Constraints applied:**  
-- `status` is restricted to _final_
 - `code` is constrained to the ValueSet that represents the MIV _Blood Glucose Measurement_
 - `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.
 - `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.
