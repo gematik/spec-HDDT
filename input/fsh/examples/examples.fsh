@@ -795,6 +795,26 @@ Usage: #example
 * expirationDate = "2027-12-15"
 
 
+Instance: Example-Blood-Pressure-Metric
+InstanceOf: HddtSensorTypeAndCalibrationStatus
+Usage: #example
+Title: "HDDT Blood Pressure DeviceMetric Example"
+Description: """
+Example of a __DeviceMetric for blood pressure measurements__ from a blood pressure cuff:
+The device measures the blood pressure in mmHg from the patient using an oscillometric method.
+The device is calibrated by the manufacturer and does not require user calibration.
+"""
+* id = "example-blood-pressure-metric"
+* type = $sct-version#70665002 "Blood pressure cuff"
+* unit = $unitsofmeasure#mm[Hg] "mm[Hg]"
+* source = Reference(Example-Device-Blood-Pressure-Cuff)
+* operationalStatus = #on
+* category = #measurement
+* calibration.type = #unspecified
+* calibration.state = #calibrated
+* calibration.time = "2025-09-01T09:08:04+02:00"
+
+
 Instance: Example-Blood-Pressure-Value
 InstanceOf: HddtBloodPressureValue
 Usage: #example
@@ -807,6 +827,27 @@ Description: "Example of a blood pressure measurement with systolic, diastolic, 
 * code.coding[loinc] = $loinc#85354-9 "Blood pressure panel with all children optional"
 * effectiveDateTime = "2025-10-23T09:15:00+02:00"
 * device = Reference(Example-Device-Blood-Pressure-Cuff)
+* interpretation = $oi#N "Normal"
+* component[SystolicBP].code = $loinc#8480-6 "Systolic blood pressure"
+* component[SystolicBP].valueQuantity = 124 'mm[Hg]' "mm[Hg]"
+* component[DiastolicBP].code = $loinc#8462-4 "Diastolic blood pressure"
+* component[DiastolicBP].valueQuantity = 82 'mm[Hg]' "mm[Hg]"
+* component[meanBP].code = $loinc#8478-0 "Mean blood pressure"
+* component[meanBP].valueQuantity = 94 'mm[Hg]' "mm[Hg]"
+
+
+Instance: Example-Blood-Pressure-Value-With-Device-Metric
+InstanceOf: HddtBloodPressureValue
+Usage: #example
+Title: "HDDT Blood Pressure Value Example With DeviceMetric"
+Description: "Example of a blood pressure measurement (referencing DeviceMetric) with systolic, diastolic, and mean blood pressure components."
+* id = "example-blood-pressure-value-with-device-metric"
+* status = #final
+* category[VSCat] = $oc#vital-signs
+* subject = Reference(patientExample)
+* code.coding[loinc] = $loinc#85354-9 "Blood pressure panel with all children optional"
+* effectiveDateTime = "2025-10-23T09:15:00+02:00"
+* device = Reference(Example-Blood-Pressure-Metric)
 * interpretation = $oi#N "Normal"
 * component[SystolicBP].code = $loinc#8480-6 "Systolic blood pressure"
 * component[SystolicBP].valueQuantity = 120 'mm[Hg]' "mm[Hg]"

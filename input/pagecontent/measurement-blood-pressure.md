@@ -24,6 +24,7 @@ Further obligations MAY be defined by gematik and BfArM as part of the upcoming 
 The Device Data Recorder's FHIR Resource Server gives DiGA access to measured data and related information about devices and device metrics. A Device Data Recorder's FHIR Resource Server that serves the MIV _Blood Pressure Monitoring_ MUST implement the following endpoints and profiles:
 
 * retrieval of the Resource Server's [CapabilityStatement](https://hl7.org/fhir/R4/capabilitystatement.html) through a [`/metadata` endpoint](fhir-api-metadata.html).
+* HDDT common RESTful interactions on a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) endpoint that implements the [HDDT Sensor Type and Calibration Status](StructureDefinition-hddt-sensor-type-and-calibration-status.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-devicemetric.html).
 * HDDT common RESTful interactions on a [Device](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Personal Health Device](StructureDefinition-hddt-personal-health-device.html) profile. These interactions are common for all MIVs. The full specification of the interactions can be found [here](fhir-api-device.html).
 * MIV-specific interactions on an [Observation](https://hl7.org/fhir/R4/device.html) endpoint that implements the [HDDT Blood Pressure Value](StructureDefinition-hddt-blood-pressure-value.html) profile. These interactions and the underlying profile are specific for implementing the MIV _Blood Pressure Monitoring_. The full specifications are given below.
 
@@ -42,6 +43,7 @@ All interactions on HDDT-specific endpoints require that the requestor presents 
 ```
 patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value
 patient/Device.rs
+patient/DeviceMetric.rs
 ```
 
 ### Observation Profile _HDDT Blood Pressure Monitoring_
@@ -80,6 +82,11 @@ Blood pressure measurements MUST be represented using the LOINC panel code 85354
 
 ##### Patient Reference and Privacy
 For privacy and data protection, the `subject` reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted. The patient MUST NOT be identified directly through personally identifiable information such as name, insurance number, or other identifying attributes.
+
+##### Device Reference
+
+Blood pressure devices typically do not require calibration, in which case the device element MUST point to a Personal Health Device resource.
+For other cases, the specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle data from uncalibrated devices. If such data is provided by the Device Data Recorder, the `device` element MUST reference a [DeviceMetric](StructureDefinition-hddt-sensor-type-and-calibration-status.html) resource that indicates the calibration status of the sensor. If the `device` element does not reference a DeviceMetric resource, the DiGA MUST assume that the provided data originates from a calibrated sensor.  
 
 #### Examples
 
