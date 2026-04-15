@@ -17,8 +17,7 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The **version 1.0.0-rc2** is the release candidate version with results of the commenting process on the former version 0.1.0-ballot. For information on changes, see [release notes](release-notes.html).
-In addition to the specification of the domain Diabetes Self-Management, which was part of the 0.1.0-ballot version, the current version contains FHIR profiling of the domains Lung Function Testing and Blood Pressure Monitoring (for information about included domains, see also [roadmap](roadmap.html)). The pairing mechanism between _DiGA_ and _medical aid_ or _implant_ for authorization and logging remains steady across domains. Comments with focus on the new domains Lung Function Testing and Blood Pressure Monitoring can be transmitted **until 01.04.2026** via our request portal (see [Contact and feedback](index.html#contact-and-feedback)).
+The **version 1.0.0** is the release version with results of the commenting process on the former version 1.0.0-rc2. For information on changes, see [release notes](release-notes.html).
 
 FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 
@@ -38,7 +37,7 @@ Readers who are responsible for project management, product management, or regul
 * [Operational Requirements](operational-requirements.html) describe the operational procedures and service levels that MUST be provided by manufacturers of certification relevant systems.
 
 ### Contact and feedback
-Please submit questions and comments about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16).
+Please submit questions about this implementation guide via our [request portal](https://service.gematik.de/servicedesk/customer/portal/16).
 
 If you do not have access to the request portal and would like to use it, please send us a message to hddt [at] gematik.de with the subject “Portal access”.
 
