@@ -24,7 +24,7 @@ RUN set -eux; \
     jekyll build --destination "/home/publisher/ig/output"; \
     cp /home/publisher/ig/qa.html /home/publisher/ig/output/qa.html; \
     mkdir -p /home/publisher/ig/output/fhir-profiles; \
-    cp -r /home/publisher/ig/fsh-generated/. /home/publisher/ig/output/fhir-profiles/
+    cp -r /home/publisher/ig/fsh-generated/resources/. /home/publisher/ig/output/fhir-profiles/
 
 # ---------- Export-only stage ----------
 FROM scratch AS export
