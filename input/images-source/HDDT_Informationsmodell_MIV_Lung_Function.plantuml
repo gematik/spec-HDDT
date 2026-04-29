@@ -52,7 +52,7 @@ package HDDT_Measurements_and_Devices as "Device Data Recorder Manufacturer" MAN
 package ZTS as "MIV Definitions (ZTS)" VIBW {
     enum VS_MIV as "VS MIV Lung Function Testing" <<FHIR ValueSet>> {
         url: https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing
-        version: 1.0.0
+        version: 1.0.1
         title: ValueSet MIV Lung Function Testing
         name: HddtMivLungFunctionTesting
         description: therapy mgmt and clinical decisions

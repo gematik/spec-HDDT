@@ -33,7 +33,7 @@ values can be determined using different methods. This CodeSystem provides codes
 * ^experimental = false
 * ^caseSensitive = false
 * ^versionNeeded = true
-* ^valueSet = Canonical(hddt-lung-function-reference-value-method-codes|1.0.0)
+* ^valueSet = Canonical(hddt-lung-function-reference-value-method-codes|1.0.1)
 
 * #personal-best "Personal Best"
     "Reference value based on the personal best value achieved by the patient within a certain time frame."

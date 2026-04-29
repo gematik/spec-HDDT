@@ -23,7 +23,7 @@ Alias: $shareable-vs = http://hl7.org/fhir/StructureDefinition/shareablevalueset
 // since the VS is an instance, we need to hardcode the URI for bindings, etc.
 Alias: $vs-device-type = https://gematik.de/fhir/hddt/ValueSet/hddt-device-type
 // placeholder does not work for includes, references, bindings, etc., so replace manually !!
-Alias: $term-version = 1.0.0
+Alias: $term-version = 1.0.1
 
 Alias: $loinc = http://loinc.org
 Alias: $unitsofmeasure = http://unitsofmeasure.org

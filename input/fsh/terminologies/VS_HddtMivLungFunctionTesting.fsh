@@ -57,13 +57,13 @@ come from three separate ValueSets:
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* compose.include[0].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values|1.0.0"
+* compose.include[0].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values|1.0.1"
 * compose.include[=].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
 * compose.include[=].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* compose.include[+].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values|1.0.0"
+* compose.include[+].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values|1.0.1"
 * compose.include[=].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
 * compose.include[=].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
-* compose.include[+].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values|1.0.0"
+* compose.include[+].valueSet = "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values|1.0.1"
 * compose.include[=].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
 * compose.include[=].extension[0].valueString = "This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."
 

@@ -58,7 +58,7 @@ package "Repository for gematik FHIR IGs" as gematik SPEC {
 package "ZTS (German Central Terminology Server)" as ZTS VIBW {
     enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
         url = " https://gematik.de/fhir/hddt/\n           ValueSet/hddt-miv-blood-glucose-measurement"
-        version = "1.0.0"
+        version = "1"
         title = "ValueSet - Blood Glucose Measurement from LOINC"
         name = "HddtMivBloodGlucoseMeasurement"
         description = "therapy mgmt and clinical decisions"

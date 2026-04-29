@@ -24,4 +24,4 @@ A ValueSet for temporary codes defined in the _HddtLungFunctionTemporaryCodes_ C
 * ^contact.telecom[0].system = #url
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH"
-* include codes from system HddtLungFunctionTemporaryCodes|1.0.0
+* include codes from system HddtLungFunctionTemporaryCodes|1.0.1

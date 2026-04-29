@@ -27,9 +27,9 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."
-* sourceCanonical = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.0) 
+* sourceCanonical = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.1) 
 * group[+].source = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
-* group[=].sourceVersion = "1.0.0"
+* group[=].sourceVersion = "1.0.1"
 * group[=].target = $LNC
 * group[=].targetVersion = "2.82"
 * group[=].element[+].code = #PEF-measured/predicted

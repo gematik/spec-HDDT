@@ -23,5 +23,5 @@ Temporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaibl
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
-* ^valueSet = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.0)
+* ^valueSet = Canonical(HddtLungFunctionTemporaryCodesVS|1.0.1)
 * #PEF-measured/predicted "PEF measured/predicted"

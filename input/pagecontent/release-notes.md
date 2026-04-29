@@ -12,6 +12,10 @@ The tags are used as follows:
 
 * `fix`: should only be used for fixing **errors** in the (potentially) normative content of the specification (requirements + profiles + examples); typo fixes are not included in the release notes.
 
+### Version 1.0.1
+* `documentation` General: In order to ensure a consistent usage of keywords, throughout the document the keyword 'SHALL' was replaced by 'MUST'. The semantics of the word remains the same, as per RFC 2119.
+* `documentation` [ValueSet HDDT Device Type](ValueSet-hddt-device-type.html) Include the SNOMED Copyright notice in `ValueSet.copyright` in order for it to be rendered.
+
 ### Version 1.0.0
 ---
 Date: 15.04.2026

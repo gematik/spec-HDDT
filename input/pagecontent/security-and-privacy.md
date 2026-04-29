@@ -17,7 +17,7 @@ To enable user-based data transmission, DiGA and Device Data Recorder MUST agree
 person. This identifier is specific to the combination of DiGA and Device Data Recorder. It MUST be a pseudonym,
 meaning that third parties MUST NOT be able to infer the identity of the data subject solely from the identifier itself.
 
-Neither Device Data Recorders nor DiGA SHALL obtain knowledge of the patient's health insurance number (KVNR). In
+Neither Device Data Recorders nor DiGA MUST obtain knowledge of the patient's health insurance number (KVNR). In
 addition, medical data transmitted via FHIR MUST NOT contain information that reveals or enables inference of the
 patient’s identity.
 
