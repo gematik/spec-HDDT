@@ -21,19 +21,19 @@ values can be determined using different methods. This CodeSystem provides codes
 * ^language = #en
 * ^version = $term-version
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* ^extension[=].valuePeriod.start = "2026-04-01"
+* ^extension[=].valuePeriod.start = "2026-04-29"
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * ^extension[=].valueContactDetail.name = "gematik GmbH"
 * ^status = #active
 * ^publisher = "gematik GmbH"
-* ^date = "2026-04-01"
+* ^date = "2026-04-29"
 * ^contact.telecom[0].system = #url 
 * ^contact.telecom[=].value = "https://www.gematik.de"
 * ^copyright = "gematik GmbH."
 * ^experimental = false
 * ^caseSensitive = false
 * ^versionNeeded = true
-* ^valueSet = Canonical(hddt-lung-function-reference-value-method-codes|1.0.0)
+* ^valueSet = Canonical(hddt-lung-function-reference-value-method-codes|1.0.1)
 
 * #personal-best "Personal Best"
     "Reference value based on the personal best value achieved by the patient within a certain time frame."

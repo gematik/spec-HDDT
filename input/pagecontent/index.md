@@ -17,7 +17,7 @@ Out-of-Scope for the HDDT implementation guide are:
 * Protection of health data storage or health data processing within a _DiGA_ or a _medical device/implant_ (manufacturer-specific)
 
 ### About the current version
-The **version 1.0.0** is the release version with results of the commenting process on the former version 1.0.0-rc2. For information on changes, see [release notes](release-notes.html).
+The **version 1.0.1** is the release version with fixes from the former version 1.0.0, and results of the commenting process on the version 1.0.0-rc2. For information on changes, see [release notes](release-notes.html).
 
 FHIR packages that hold the current versions of all HDDT resource definitions are available at [https://simplifier.net/hddt-workflow](https://simplifier.net/hddt-workflow).
 

@@ -75,7 +75,7 @@ package "HIIS-VZ (Device Registry at BfArM)" as HDDT_Registries BFARM {
 package ZTS as "MIV Definitions (ZTS)" VIBW {
     enum "VS MIV Blood Glucose Measurement" as MIV  <<FHIR ValueSet>> {
         url = " https://gematik.de/fhir/hddt/\n           ValueSet/hddt-miv-blood-pressure-value"
-        version = "1.0.0"
+        version = "1.0.1"
         title = "ValueSet - Blood Pressure Value from LOINC"
         name = "HddtMivBloodPressureValue"
         description = "LOINC codes for blood pressure measurements"

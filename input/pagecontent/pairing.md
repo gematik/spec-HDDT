@@ -144,7 +144,7 @@ signing, and revoking these tokens.
   JWT, [RFC 7519](https://www.rfc-editor.org/info/rfc7519)).
 * Access and refresh tokens MUST be cryptographically signed by the OAuth2 Authorization Server and MUST be verified for
   authenticity and integrity at each endpoint that is exposed to external parties by the Device Data Recorder.
-* The lifetime of an access token is defined by the provider of the Device Data Recorder. The provider SHALL balance availability (
+* The lifetime of an access token is defined by the provider of the Device Data Recorder. The provider MUST balance availability (
   e.g., load on the token endpoint) and security considerations when choosing the expiration period.
 * If the access token is represented as a JWT and includes the `sub` claim, it MUST contain the Pairing-ID and MUST NOT
   contain any internal user identifiers or personal identifiers.

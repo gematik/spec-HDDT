@@ -27,12 +27,12 @@ individual measurement by the reference value, resulting in a percentage value (
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-04-01"
+* extension[=].valuePeriod.start = "2026-04-29"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
 * status = #active
 * experimental = false
-* date = "2026-04-01"
+* date = "2026-04-29"
 * publisher = "gematik GmbH"
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"
@@ -44,6 +44,6 @@ individual measurement by the reference value, resulting in a percentage value (
 * compose.include[0].concept[+].code = #20152-5 
 * compose.include[0].concept[=].display = "FEV1 measured/predicted"
 * compose.include[1].system = "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"
-* compose.include[1].version = "1.0.0"
+* compose.include[1].version = "1.0.1"
 * compose.include[1].concept[+].code = #PEF-measured/predicted
 * compose.include[1].concept[=].display = "PEF measured/predicted"

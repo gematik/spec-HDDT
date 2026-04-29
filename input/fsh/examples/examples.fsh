@@ -158,7 +158,7 @@ Description: "Example for a universal backend system for processing HiMi data ac
 * manufacturerString = "Health IT Solutions AG"
 * deviceName[0].name = "§ 374a SGB V Universal Backend"
 * deviceName[0].type = #user-friendly-name
-* version = "1.0.0"
+* version = "1.0.1"
 * extension[0].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink"
 * extension[=].valueReference[+] = Reference(Example-Universal-Endpoint-fhir)
 * extension[+].url = "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink"

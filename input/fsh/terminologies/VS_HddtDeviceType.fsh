@@ -37,17 +37,17 @@ in the future include codes which are not part of the FHIR ValueSet _Device Type
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-04-01"
+* extension[=].valuePeriod.start = "2026-04-29"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
 
 * status = #active
 * experimental = false
-* date = "2026-04-01"
+* date = "2026-04-29"
 * publisher = "gematik GmbH"
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"
-* copyright = "The copyright for the compilation of this value set is held by gematik GmbH and by Federal Institute for Drugs and Medical Devices (BfArM)."
+* copyright = "The copyright for the compilation of this value set is held by gematik GmbH and by Federal Institute for Drugs and Medical Devices (BfArM). This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."
 * compose.include[0].system = $sct
 * compose.include[0].version = $sct-version-suffix
 * compose.include[0].extension[0].url = "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright"
