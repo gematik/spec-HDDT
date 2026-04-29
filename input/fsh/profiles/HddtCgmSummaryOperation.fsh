@@ -32,7 +32,7 @@ It allows clients to request CGM summary data filtered by effective period, and 
 * experimental = false
 * kind = #operation
 * publisher = "gematik GmbH"
-* date = "2026-03-04"
+* date = "2026-04-29"
 * affectsState = false
 * code = #hddt-cgm-summary
 * system = false

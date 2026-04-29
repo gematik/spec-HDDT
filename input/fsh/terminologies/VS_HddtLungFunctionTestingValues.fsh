@@ -23,12 +23,12 @@ Included are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume i
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-04-01"
+* extension[=].valuePeriod.start = "2026-04-29"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
 * status = #active
 * experimental = false
-* date = "2026-04-01"
+* date = "2026-04-29"
 * publisher = "gematik GmbH"
 * contact.telecom[0].system = #url
 * contact.telecom[=].value = "https://www.gematik.de"

@@ -32,7 +32,7 @@ Caution: For privacy and data protection, the subject reference MUST only use ps
 - Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit
 - `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device."""
 * ^status = #active
-* ^date = "2026-03-04"
+* ^date = "2026-04-29"
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2025 gematik GmbH"

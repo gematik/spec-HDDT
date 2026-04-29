@@ -26,7 +26,7 @@ Each instance of this Observation MUST reference the Observations holding the co
 - `derivedFrom` is constrained to require exactly two references: one to the raw lung function testing Observation and one to the lung function reference value Observation.
 """
 * ^status = #active
-* ^date = "2026-03-04"
+* ^date = "2026-04-29"
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"

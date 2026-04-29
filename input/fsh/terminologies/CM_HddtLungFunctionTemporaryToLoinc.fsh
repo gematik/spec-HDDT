@@ -17,13 +17,13 @@ Whenever a LOINC code becomes available for a temporary code, this ConceptMap wi
 * language = #en
 * version = $term-version
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"
-* extension[=].valuePeriod.start = "2026-04-01"
+* extension[=].valuePeriod.start = "2026-04-29"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-author"
 * extension[=].valueContactDetail.name = "gematik GmbH"
 * name = "HddtLungFunctionTemporaryToLoinc"
 * status = #active
 * publisher = "gematik GmbH"
-* date = "2026-04-01"
+* date = "2026-04-29"
 * contact.telecom[0].system = #url 
 * contact.telecom[=].value = "https://www.gematik.de"
 * copyright = "gematik GmbH."

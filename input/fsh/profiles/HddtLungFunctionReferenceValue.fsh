@@ -24,7 +24,7 @@ resource is provided for compatibility with the overarching HDDT specification.
 """
 
 * ^status = #active
-* ^date = "2026-03-04"
+* ^date = "2026-04-29"
 * ^version = $term-version
 * ^publisher = "gematik GmbH"
 * ^copyright = "Copyright (c) 2026 gematik GmbH"
