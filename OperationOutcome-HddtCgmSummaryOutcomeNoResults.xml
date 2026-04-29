@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationOutcome xmlns="http://hl7.org/fhir">
+  <id value="HddtCgmSummaryOutcomeNoResults"/>
+  <issue>
+    <severity value="information"/>
+    <code value="not-found"/>
+    <details>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/operation-outcome"/>
+        <code value="MSG_NO_MATCH"/>
+      </coding>
+      <text value="No CGM summary observations found for the given effective period."/>
+    </details>
+  </issue>
+</OperationOutcome>

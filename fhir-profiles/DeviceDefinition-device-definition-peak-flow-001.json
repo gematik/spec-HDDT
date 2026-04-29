@@ -1,0 +1,120 @@
+{
+  "resourceType": "DeviceDefinition",
+  "id": "device-definition-peak-flow-001",
+  "identifier": [
+    {
+      "system": "http://fhir.de/sid/gkv/hmnr",
+      "value": "21.24.01.2005"
+    }
+  ],
+  "deviceName": [
+    {
+      "name": "Peak Flow Pro",
+      "type": "user-friendly-name"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "code": "334990001",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Peak flow meter (physical object)"
+      }
+    ]
+  },
+  "manufacturerString": "HealthTech GmbH",
+  "modelNumber": "Smart 2",
+  "extension": [
+    {
+      "url": "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet",
+      "extension": [
+        {
+          "url": "mivSet",
+          "valueReference": {
+            "reference": "DeviceDefinition/example-universal-backend"
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier",
+      "extension": [
+        {
+          "url": "deviceIdentifier",
+          "valueString": "9912345PEAKFLOW001"
+        }
+      ]
+    }
+  ],
+  "parentDevice": {
+    "reference": "DeviceDefinition/example-universal-backend"
+  },
+  "capability": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "19935-6",
+            "display": "Maximum expiratory gas flow Respiratory system airway by Peak flow meter"
+          }
+        ]
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "20150-9",
+            "display": "FEV1"
+          }
+        ]
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "83368-1",
+            "display": "Personal best peak expiratory gas flow Respiratory system airway"
+          }
+        ]
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "20149-1",
+            "display": "FEV1 predicted"
+          }
+        ]
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "20152-5",
+            "display": "FEV1 measured/predicted"
+          }
+        ]
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+            "code": "PEF-measured/predicted"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Organization xmlns="http://hl7.org/fhir">
+  <id value="example-glucometer-manufacturer"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Organization example-glucometer-manufacturer</b></p><a name="example-glucometer-manufacturer"> </a><a name="hcexample-glucometer-manufacturer"> </a><p><b>type</b>: <span title="Codes:{https://fhir.bfarm.de/CodeSystem/HiisManufacturerType legal}">Legal Entity</span></p><p><b>name</b>: Glukko Inc.</p><p><b>telecom</b>: <a href="mailto:info@glukko.com">info@glukko.com</a></p><p><b>address</b>: Glukko Street 1 Berlin 10115 DE </p><h3>Contacts</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Name</b></td><td><b>Telecom</b></td></tr><tr><td style="display: none">*</td><td>John Glucose </td><td><a href="tel:+49-30-1234567">+49-30-1234567</a></td></tr></table></div>
+  </text>
+  <type>
+    <coding>
+      <system value="https://fhir.bfarm.de/CodeSystem/HiisManufacturerType"/>
+      <code value="legal"/>
+      <display value="Legal Entity"/>
+    </coding>
+  </type>
+  <name value="Glukko Inc."/>
+  <telecom>
+    <system value="email"/>
+    <value value="info@glukko.com"/>
+  </telecom>
+  <address>
+    <line value="Glukko Street 1"/>
+    <city value="Berlin"/>
+    <postalCode value="10115"/>
+    <country value="DE"/>
+  </address>
+  <contact>
+    <name>
+      <family value="Glucose"/>
+      <given value="John"/>
+    </name>
+    <telecom>
+      <system value="phone"/>
+      <value value="+49-30-1234567"/>
+    </telecom>
+  </contact>
+</Organization>

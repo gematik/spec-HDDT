@@ -1,0 +1,36 @@
+{
+  "resourceType" : "Organization",
+  "id" : "example-cgm-manufacturer",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Organization example-cgm-manufacturer</b></p><a name=\"example-cgm-manufacturer\"> </a><a name=\"hcexample-cgm-manufacturer\"> </a><p><b>type</b>: <span title=\"Codes:{https://fhir.bfarm.de/CodeSystem/HiisManufacturerType legal}\">Legal Entity</span></p><p><b>name</b>: rtCGM Manufacturer Inc.</p><p><b>telecom</b>: <a href=\"mailto:info@rtcgm-manufacturer.com\">info@rtcgm-manufacturer.com</a></p><p><b>address</b>: CGM Technology Park 15 Munich 80331 DE </p><h3>Contacts</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Name</b></td><td><b>Telecom</b></td></tr><tr><td style=\"display: none\">*</td><td>Maria Sensor </td><td><a href=\"tel:+49-89-9876543\">+49-89-9876543</a></td></tr></table></div>"
+  },
+  "type" : [{
+    "coding" : [{
+      "system" : "https://fhir.bfarm.de/CodeSystem/HiisManufacturerType",
+      "code" : "legal",
+      "display" : "Legal Entity"
+    }]
+  }],
+  "name" : "rtCGM Manufacturer Inc.",
+  "telecom" : [{
+    "system" : "email",
+    "value" : "info@rtcgm-manufacturer.com"
+  }],
+  "address" : [{
+    "line" : ["CGM Technology Park 15"],
+    "city" : "Munich",
+    "postalCode" : "80331",
+    "country" : "DE"
+  }],
+  "contact" : [{
+    "name" : {
+      "family" : "Sensor",
+      "given" : ["Maria"]
+    },
+    "telecom" : [{
+      "system" : "phone",
+      "value" : "+49-89-9876543"
+    }]
+  }]
+}

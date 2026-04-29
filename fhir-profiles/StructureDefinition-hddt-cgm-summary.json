@@ -1,0 +1,60 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hddt-cgm-summary",
+  "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary",
+  "version": "1.0.1",
+  "name": "HddtCgmSummary",
+  "title": "Bundle – HDDT CGM Summary Report",
+  "status": "active",
+  "date": "2026-04-29",
+  "publisher": "gematik GmbH",
+  "description": "This profile defines the exchange of aggregated measurement data for the Mandatory Interoperable Value (MIV) \\\"Continuous \nGlucose Measurement\\\". By this it provides a patient's glucose profile for a defined period. The MIV \\\"Continuous \nGlucose Measurement\\\" is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control \nan insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing aggregated glucose profile data with DiGA, too.\n\nThis profile constrains the FHIR Bundle resource for use as the result container of the `$hddt-cgm-summary` operation.  \nThe operation requests a patient's glucose profile. The glucose profile is calculated form continuous glucose measurement data\nand consists of the machine-readable parts of the [_HL7 CGM summary profile_](https://hl7.org/fhir/uv/cgm/). \n\nThe Bundle is of type *collection* and MUST contain only resources of the following types:  \n- Observations conforming to [HL7 CGM profiles](https://hl7.org/fhir/uv/cgm/): \n    - [CGM Summary Observation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary.html)\n    - [Mean Glucose (Mass)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)\n    - [Mean Glucose (Moles)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)\n    - [Times in Ranges](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-times-in-ranges.html)\n    - [Glycemic Variability Index (GMI)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-gmi.html)\n    - [Coefficient of Variation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-coefficient-of-variation.html)\n    - [Days of Wear](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-days-of-wear.html)\n    - [Sensor Active Percentage](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)\n\n- Device resources conforming to `HddtPersonalHealthDevice` to provide context about the actual Personal Health Device device used.  \n\nThe purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  \nIt ensures interoperability across different implementations by defining a predictable response format.  \nThis supports use cases such as:  \n- Retrieval of CGM summary metrics over a given time interval in support for the upcoming digital disease management program (dDMP) on Diabetes, e.g. for \n    - continuous therapy monitoring and adjustment\n    - forwarding key data to treating physicians, e.g. for clinical decision support\n    - supporting asynchonous telemonitoring by ad hoc provisioning of condensed status information\n- Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring\n\n**Constraints applied:**  \n- `Bundle.type` is fixed to `collection`.  \n- `Bundle.entry.resource` is restricted to CGM Observation profiles and `HddtPersonalHealthDevice`. No other resource types are allowed in the Bundle.  \n- `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA.",
+  "copyright": "Copyright (c) 2026 gematik GmbH",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle.type",
+        "path": "Bundle.type",
+        "short": "The bundle is always a collection of CGM summary Observations and optionally related Device and DeviceMetric resources returned by the $hddt-cgm-summary operation.",
+        "fixedCode": "collection"
+      },
+      {
+        "id": "Bundle.entry",
+        "path": "Bundle.entry",
+        "min": 1
+      },
+      {
+        "id": "Bundle.entry.resource",
+        "path": "Bundle.entry.resource",
+        "short": "Observations with their related Device and DeviceMetric information",
+        "type": [
+          {
+            "code": "Observation",
+            "profile": [
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-mass-per-volume",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-times-in-ranges",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-gmi",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear",
+              "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage"
+            ]
+          },
+          {
+            "code": "Device",
+            "profile": [
+              "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

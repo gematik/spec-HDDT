@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationOutcome xmlns="http://hl7.org/fhir">
+  <id value="HddtCgmSummaryOutcomeBadSyntax"/>
+  <issue>
+    <severity value="error"/>
+    <code value="invalid"/>
+    <details>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/operation-outcome"/>
+        <code value="MSG_BAD_SYNTAX"/>
+      </coding>
+      <text value="The request is malformed."/>
+    </details>
+  </issue>
+</OperationOutcome>

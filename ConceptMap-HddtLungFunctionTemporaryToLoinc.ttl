@@ -1,0 +1,82 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc> a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "HddtLungFunctionTemporaryToLoinc"] ; # 
+  fhir:language [ fhir:v "en"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap HddtLungFunctionTemporaryToLoinc</b></p><a name=\"HddtLungFunctionTemporaryToLoinc\"> </a><a name=\"hcHddtLungFunctionTemporaryToLoinc\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p></div><p>Mapping from <a href=\"ValueSet-hddt-lung-function-temporary-codes.html\">Lung Function Temporary Codes</a> to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <a href=\"CodeSystem-hddt-lung-function-temporary-codes.html\">Lung Function Temporary Codesversion: 1.0.1)</a> to <code>http://loinc.org|2.82</code></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Comment</b></td></tr><tr><td>PEF-measured/predicted</td><td colspan=\"2\" style=\"background-color: #efefef\">(not mapped)</td><td style=\"background-color: #efefef\">No target LOINC code available yet.</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod>
+     ] ;
+     fhir:value [
+       a fhir:Period ;
+       fhir:start [ fhir:v "2026-04-29"^^xsd:date ]
+     ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/artifact-author"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/artifact-author>
+     ] ;
+     fhir:value [
+       a fhir:ContactDetail ;
+       fhir:name [ fhir:v "gematik GmbH" ]
+     ]
+  ] ) ; # 
+  fhir:url [
+     fhir:v "https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc"^^xsd:anyURI ;
+     fhir:l <https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc>
+  ] ; # 
+  fhir:version [ fhir:v "1.0.1"] ; # 
+  fhir:name [ fhir:v "HddtLungFunctionTemporaryToLoinc"] ; # 
+  fhir:title [ fhir:v "Lung Function Temporary Codes to LOINC"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v false] ; # 
+  fhir:date [ fhir:v "2026-04-29"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "gematik GmbH"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "gematik GmbH" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.gematik.de" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Eine Abbildung von temporären Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, auf LOINC-Codes.\nFalls noch kein LOINC-Code verfügbar ist, wird dies mit einer Äquivalenz von 'unmatched' angezeigt.\nSobald ein LOINC-Code für einen temporären Code verfügbar ist, wird diese ConceptMap entsprechend aktualisiert.\n\n--\n\nA mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.\nIn case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.\nWhenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly."] ; # 
+  fhir:copyright [ fhir:v "gematik GmbH."] ; # 
+  fhir:source [
+     a fhir:Canonical ;
+     fhir:v "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes|1.0.1"^^xsd:anyURI ;
+     fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes?version=1.0.1>
+  ] ; # 
+  fhir:group ( [
+     fhir:source [
+       fhir:v "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes>
+     ] ;
+     fhir:sourceVersion [ fhir:v "1.0.1" ] ;
+     fhir:target [
+       fhir:v "http://loinc.org"^^xsd:anyURI ;
+       fhir:l <http://loinc.org>
+     ] ;
+     fhir:targetVersion [ fhir:v "2.82" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "PEF-measured/predicted" ] ;
+       fhir:target ( [
+         fhir:equivalence [ fhir:v "unmatched" ] ;
+         fhir:comment [ fhir:v "No target LOINC code available yet." ]
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

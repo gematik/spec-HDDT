@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DeviceDefinition xmlns="http://hl7.org/fhir">
+  <id value="device-definition-blood-pressure-cuff-001"/>
+  <extension url="https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet">
+    <extension url="mivSet">
+      <valueReference>
+        <reference value="DeviceDefinition/example-universal-backend"/>
+      </valueReference>
+    </extension>
+  </extension>
+  <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier">
+    <extension url="deviceIdentifier">
+      <valueString value="9912345BPCUFF001"/>
+    </extension>
+  </extension>
+  <identifier>
+    <system value="http://fhir.de/sid/gkv/hmnr"/>
+    <value value="21.28.01.2020"/>
+  </identifier>
+  <manufacturerString value="HealthTech GmbH"/>
+  <deviceName>
+    <name value="BP Cuff Pro"/>
+    <type value="user-friendly-name"/>
+  </deviceName>
+  <modelNumber value="Digital BT 2"/>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="70665002"/>
+      <display value="Blood pressure cuff"/>
+    </coding>
+  </type>
+  <capability>
+    <type>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="8480-6"/>
+        <display value="Systolic blood pressure"/>
+      </coding>
+    </type>
+  </capability>
+  <capability>
+    <type>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="8462-4"/>
+        <display value="Diastolic blood pressure"/>
+      </coding>
+    </type>
+  </capability>
+  <capability>
+    <type>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="8478-0"/>
+        <display value="Mean blood pressure"/>
+      </coding>
+    </type>
+  </capability>
+  <parentDevice>
+    <reference value="DeviceDefinition/example-universal-backend"/>
+  </parentDevice>
+</DeviceDefinition>

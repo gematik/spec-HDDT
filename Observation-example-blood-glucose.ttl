@@ -1,0 +1,52 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Observation/example-blood-glucose> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-blood-glucose"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2339-0 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "2339-0" ] ;
+       fhir:display [ fhir:v "Glucose [Mass/volume] in Blood" ]
+     ] )
+  ] ; # 
+  fhir:effective [
+     a fhir:DateTime ;
+     fhir:v "2025-10-23T08:30:00Z"^^xsd:dateTime
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "mg/dl" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "mg/dL" ]
+  ] ; # 
+  fhir:device [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceMetric/example-glucometer-metric> ;
+     fhir:reference [ fhir:v "DeviceMetric/example-glucometer-metric" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

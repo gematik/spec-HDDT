@@ -1,0 +1,21 @@
+{
+  "resourceType": "Endpoint",
+  "id": "example-universal-endpoint-auth",
+  "status": "active",
+  "connectionType": {
+    "system": "https://fhir.bfarm.de/CodeSystem/HiisEndpointConnectionType",
+    "code": "oauth-authz-server"
+  },
+  "name": "cloud.health-it.de",
+  "address": "https://cloud.health-it.de/.well-known/openid-configuration",
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+          "code": "any"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="cgmSummaryMeanGlucoseMolesPerVolumeExample"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume"/>
+  </meta>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="laboratory"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="105273-7"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/patientExample"/>
+  </subject>
+  <effectivePeriod>
+    <start value="2025-09-01"/>
+    <end value="2025-09-30"/>
+  </effectivePeriod>
+  <valueQuantity>
+    <value value="8.1"/>
+    <unit value="mmol/l"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="mmol/L"/>
+  </valueQuantity>
+</Observation>

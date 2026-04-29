@@ -1,0 +1,168 @@
+[{
+  "id" : "hddt-lung-function-reference-value-method-codes",
+  "type" : "CodeSystem",
+  "url" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionReferenceValueMethodCodes"
+},
+{
+  "id" : "hddt-lung-function-temporary-codes",
+  "type" : "CodeSystem",
+  "url" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTemporaryCodes"
+},
+{
+  "id" : "HddtLungFunctionTemporaryToLoinc",
+  "type" : "ConceptMap",
+  "url" : "https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTemporaryToLoinc"
+},
+{
+  "id" : "de.gematik.hddt",
+  "type" : "ImplementationGuide",
+  "url" : "https://gematik.de/fhir/hddt/ImplementationGuide/de.gematik.hddt",
+  "version" : "1.0.1",
+  "name" : "HealthDeviceDataTransfer"
+},
+{
+  "id" : "hddt-cgm-summary-operation",
+  "type" : "OperationDefinition",
+  "url" : "https://gematik.de/fhir/hddt/OperationDefinition/hddt-cgm-summary-operation",
+  "version" : "1.0.1",
+  "name" : "HddtCgmSummaryOperation"
+},
+{
+  "id" : "hddt-blood-glucose-measurement",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement",
+  "version" : "1.0.1",
+  "name" : "HddtBloodGlucoseMeasurement"
+},
+{
+  "id" : "hddt-blood-pressure-value",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value",
+  "version" : "1.0.1",
+  "name" : "HddtBloodPressureValue"
+},
+{
+  "id" : "hddt-cgm-summary",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary",
+  "version" : "1.0.1",
+  "name" : "HddtCgmSummary"
+},
+{
+  "id" : "hddt-continuous-glucose-measurement",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement",
+  "version" : "1.0.1",
+  "name" : "HddtContinuousGlucoseMeasurement"
+},
+{
+  "id" : "hddt-lung-function-testing",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTesting"
+},
+{
+  "id" : "hddt-lung-function-testing-complete",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTestingComplete"
+},
+{
+  "id" : "hddt-lung-reference-value",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionReferenceValue"
+},
+{
+  "id" : "hddt-personal-health-device",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device",
+  "version" : "1.0.1",
+  "name" : "HddtPersonalHealthDevice"
+},
+{
+  "id" : "hddt-sensor-type-and-calibration-status",
+  "type" : "StructureDefinition",
+  "url" : "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status",
+  "version" : "1.0.1",
+  "name" : "HddtSensorTypeAndCalibrationStatus"
+},
+{
+  "id" : "hddt-device-type",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-device-type",
+  "version" : "1.0.1",
+  "name" : "HddtDeviceType"
+},
+{
+  "id" : "hddt-lung-function-reference-value-method-codes",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-value-method-codes",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionReferenceValueMethod"
+},
+{
+  "id" : "hddt-lung-function-reference-values",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionReferenceValues"
+},
+{
+  "id" : "hddt-lung-function-relative-values",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionRelativeValues"
+},
+{
+  "id" : "hddt-lung-function-temporary-codes",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTemporaryCodes"
+},
+{
+  "id" : "hddt-lung-function-testing-values",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTestingValues"
+},
+{
+  "id" : "hddt-miv-blood-glucose-measurement",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement",
+  "version" : "1.0.1",
+  "name" : "HddtMivBloodGlucoseMeasurement"
+},
+{
+  "id" : "hddt-miv-blood-pressure-value",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value",
+  "version" : "1.0.1",
+  "name" : "HddtMivBloodPressureValue"
+},
+{
+  "id" : "hddt-miv-continuous-glucose-measurement",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement",
+  "version" : "1.0.1",
+  "name" : "HddtMivContinuousGlucoseMeasurement"
+},
+{
+  "id" : "hddt-miv-lung-function-testing",
+  "type" : "ValueSet",
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing",
+  "version" : "1.0.1",
+  "name" : "HddtMivLungFunctionTesting"
+}]

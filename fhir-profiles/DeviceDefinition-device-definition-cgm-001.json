@@ -1,0 +1,110 @@
+{
+  "resourceType": "DeviceDefinition",
+  "id": "device-definition-cgm-001",
+  "identifier": [
+    {
+      "system": "http://fhir.de/sid/gkv/hmnr",
+      "value": "30.29.05.2004"
+    }
+  ],
+  "deviceName": [
+    {
+      "name": "CGM Model mg/dL",
+      "type": "user-friendly-name"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "code": "463729000",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Point-of-care blood glucose continuous monitoring system (physical object)"
+      }
+    ]
+  },
+  "manufacturerReference": {
+    "reference": "Organization/example-cgm-manufacturer"
+  },
+  "modelNumber": "CGM Model mg/dL",
+  "extension": [
+    {
+      "url": "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet",
+      "extension": [
+        {
+          "url": "mivSet",
+          "valueReference": {
+            "reference": "DeviceDefinition/example-universal-backend"
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier",
+      "extension": [
+        {
+          "url": "deviceIdentifier",
+          "valueString": "9912345CGM001A"
+        }
+      ]
+    }
+  ],
+  "parentDevice": {
+    "reference": "DeviceDefinition/example-universal-backend"
+  },
+  "property": [
+    {
+      "type": {
+        "text": "Supported unit"
+      },
+      "valueCode": [
+        {
+          "coding": [
+            {
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "display": "mg/dL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": {
+        "text": "Reference range low"
+      },
+      "valueQuantity": [
+        {
+          "value": 70,
+          "unit": "mg/dl",
+          "system": "http://unitsofmeasure.org"
+        }
+      ]
+    },
+    {
+      "type": {
+        "text": "Reference range high"
+      },
+      "valueQuantity": [
+        {
+          "value": 180,
+          "unit": "mg/dl",
+          "system": "http://unitsofmeasure.org"
+        }
+      ]
+    }
+  ],
+  "capability": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "105272-9",
+            "display": "Glucose [Moles/volume] in Interstitial fluid"
+          }
+        ]
+      }
+    }
+  ]
+}

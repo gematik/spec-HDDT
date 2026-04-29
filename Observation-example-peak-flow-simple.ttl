@@ -1,0 +1,51 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Observation/example-peak-flow-simple> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-peak-flow-simple"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:19935-6 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "19935-6" ] ;
+       fhir:display [ fhir:v "Maximum expiratory gas flow Respiratory system airway by Peak flow meter" ]
+     ] )
+  ] ; # 
+  fhir:effective [
+     a fhir:DateTime ;
+     fhir:v "2025-12-28T08:00:00Z"^^xsd:dateTime
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "612"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "L/min" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "L/min" ]
+  ] ; # 
+  fhir:device [
+     fhir:l <https://gematik.de/fhir/hddt/Device/example-device-peak-flow-meter> ;
+     fhir:reference [ fhir:v "Device/example-device-peak-flow-meter" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

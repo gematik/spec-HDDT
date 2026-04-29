@@ -1,0 +1,73 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Observation/example-cgm-series-incomplete> a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-cgm-series-incomplete"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "preliminary"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:99504-3 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "99504-3" ] ;
+       fhir:display [ fhir:v "Glucose [Mass/volume] in Interstitial fluid" ]
+     ] )
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-08-28T08:00:00Z"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2025-08-28T09:00:00Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:value [
+     a fhir:SampledData ;
+     fhir:origin [
+       fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mg/dl" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "mg/dL" ]
+     ] ;
+     fhir:period [ fhir:v "60000"^^xsd:decimal ] ;
+     fhir:dimensions [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:data [ fhir:v "110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129" ]
+  ] ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Example CGM data series with 1-minute intervals over 20 minutes (20 samples), but status incomplete." ]
+  ] ) ; # 
+  fhir:method [
+     fhir:coding ( [
+       a sct:463729000 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "463729000" ] ;
+       fhir:display [ fhir:v "Point-of-care blood glucose continuous monitoring system (physical object)" ]
+     ] )
+  ] ; # 
+  fhir:device [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceMetric/example-devicemetric-cgm> ;
+     fhir:reference [ fhir:v "DeviceMetric/example-devicemetric-cgm" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

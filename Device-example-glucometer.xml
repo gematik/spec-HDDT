@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Device xmlns="http://hl7.org/fhir">
+  <id value="example-glucometer"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"/>
+  </meta>
+  <definition>
+    <reference value="DeviceDefinition/example-glucometer-def"/>
+  </definition>
+  <status value="active"/>
+  <manufacturer value="Glukko Inc."/>
+  <serialNumber value="SN123456"/>
+  <deviceName>
+    <name value="GlukkoCheck plus mg/dL"/>
+    <type value="user-friendly-name"/>
+  </deviceName>
+  <modelNumber value="CGPA987654"/>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="337414009"/>
+      <display value="Blood glucose meter (physical object)"/>
+    </coding>
+  </type>
+</Device>

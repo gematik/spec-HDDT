@@ -1,0 +1,57 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/DeviceMetric/example-devicemetric-cgm> a fhir:DeviceMetric ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-devicemetric-cgm"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status>
+     ] )
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ;
+         fhir:l <urn:iso:std:iso:11073:10101>
+       ] ;
+       fhir:code [ fhir:v "160212" ] ;
+       fhir:display [ fhir:v "MDC_CONC_GLU_ISF" ]
+     ] )
+  ] ; # 
+  fhir:unit [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "mg/dL" ] ;
+       fhir:display [ fhir:v "mg/dL" ]
+     ] )
+  ] ; # 
+  fhir:source [
+     fhir:l <https://gematik.de/fhir/hddt/Device/example-device-cgm> ;
+     fhir:reference [ fhir:v "Device/example-device-cgm" ]
+  ] ; # 
+  fhir:operationalStatus [ fhir:v "on"] ; # 
+  fhir:category [ fhir:v "measurement"] ; # 
+  fhir:measurementPeriod [
+     fhir:repeat [
+       fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:periodUnit [ fhir:v "min" ]
+     ]
+  ] ; # 
+  fhir:calibration ( [
+     fhir:type [ fhir:v "unspecified" ] ;
+     fhir:state [ fhir:v "calibrated" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

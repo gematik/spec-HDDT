@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="cgmSummaryExample"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary"/>
+  </meta>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="laboratory"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="107931-8"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/patientExample"/>
+  </subject>
+  <effectivePeriod>
+    <start value="2025-09-01"/>
+    <end value="2025-09-30"/>
+  </effectivePeriod>
+  <hasMember>
+    <reference value="Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/cgmSummaryTimesInRangesExample"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/cgmSummaryGMIExample"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/cgmSummaryCoefficientOfVariationExample"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/cgmSummaryDaysOfWearExample"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/cgmSummarySensorActivePercentageExample"/>
+  </hasMember>
+</Observation>

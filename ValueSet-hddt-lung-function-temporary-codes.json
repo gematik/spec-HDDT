@@ -1,0 +1,47 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "hddt-lung-function-temporary-codes",
+  "meta" : {
+    "profile" : ["http://hl7.org/fhir/StructureDefinition/shareablevalueset"]
+  },
+  "language" : "en",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet hddt-lung-function-temporary-codes</b></p><a name=\"hddt-lung-function-temporary-codes\"> </a><a name=\"hchddt-lung-function-temporary-codes\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p><p style=\"margin-bottom: 0px\">Profile: <a href=\"http://hl7.org/fhir/R4/shareablevalueset.html\">Shareable ValueSet</a></p></div><ul><li>Include all codes defined in <a href=\"CodeSystem-hddt-lung-function-temporary-codes.html\"><code>https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes</code></a><span title=\"Version is explicitly stated to be 1.0.1\"> version &#x1F4CD;1.0.1</span></li></ul></div>"
+  },
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod",
+    "valuePeriod" : {
+      "start" : "2026-04-29"
+    }
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/artifact-author",
+    "valueContactDetail" : {
+      "name" : "gematik GmbH"
+    }
+  }],
+  "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTemporaryCodes",
+  "title" : "Lung Function Temporary Codes",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2026-04-29",
+  "publisher" : "gematik GmbH",
+  "contact" : [{
+    "name" : "gematik GmbH",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.gematik.de"
+    }]
+  }],
+  "description" : "ValueSet für temporäre Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, bis LOINC-Codes verfügbar sind.\n\n--\n\nA ValueSet for temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem until LOINC codes are available.",
+  "copyright" : "gematik GmbH",
+  "compose" : {
+    "include" : [{
+      "system" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+      "version" : "1.0.1"
+    }]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "resourceType" : "Observation",
+  "id" : "example-blood-glucose",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"]
+  },
+  "status" : "final",
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "2339-0",
+      "display" : "Glucose [Mass/volume] in Blood"
+    }]
+  },
+  "effectiveDateTime" : "2025-10-23T08:30:00Z",
+  "valueQuantity" : {
+    "value" : 30,
+    "comparator" : "<",
+    "unit" : "mg/dl",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "mg/dL"
+  },
+  "device" : {
+    "reference" : "DeviceMetric/example-glucometer-metric"
+  }
+}

@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Pairing - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"15"}
+    h3,h4,h5,h6{--heading-prefix:"15"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Pairing</b></li>
+
+          <span style="float:right;">
+
+            <a href="information-model.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="smart-scopes.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>Pairing</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#oauth2-authorization-server-prerequisites" id="markdown-toc-oauth2-authorization-server-prerequisites">OAuth2 Authorization Server Prerequisites</a></li>
+  <li><a href="#pairing-id" id="markdown-toc-pairing-id">Pairing ID</a></li>
+  <li><a href="#tokens-and-the-token-response" id="markdown-toc-tokens-and-the-token-response">Tokens and the Token Response</a></li>
+  <li><a href="#pairing-sequence" id="markdown-toc-pairing-sequence">Pairing Sequence</a></li>
+  <li><a href="#unpairing" id="markdown-toc-unpairing">Unpairing</a></li>
+</ul>
+
+</div>
+<p>The pairing procedure is the central mechanism for securely connecting <em>DiGA</em> (digital health application acc. § 33a SGB V) with Device Data Recorders that provide access to data from medical aids and implants. The goal is to enable patients to use health data collected by their medical aid or implant in a DiGA in accordance with their consent and within the legal framework of § 374a SGB V.</p>
+
+<p>The key requirements for the pairing procedure are:</p>
+
+<ul>
+  <li><strong>Consent-based</strong> – Pairing MUST require the patient’s explicit and informed consent.</li>
+  <li><strong>Fine-grained</strong> – Consent MUST only apply to <a href="methodology.html#from-use-cases-to-mivs">Mandatory Interoperable Values</a> (MIVs), not to the entire set of data gathered by a medical aid or implant.</li>
+  <li><strong>Revocable</strong> – The patient MUST be able to terminate pairing at any time.</li>
+  <li><strong>Pseudonymous</strong> – To comply with <a href="security-and-privacy.html#identification-and-authentication-of-the-patient">data protection requirements</a>, personal identifiers MUST NOT be exchanged between
+DiGA and Device Data Recorders.</li>
+  <li><strong>Standardized</strong> – The procedure MUST be implemented uniformly across all DiGA and Device Data Recorder manufacturers participating in the § 374a SGB V ecosystem.</li>
+</ul>
+
+<p>From a technical perspective, the pairing process relies on OAuth 2.0 as the authorization framework, extended by SMART
+scopes. Since data retrieval is performed via a RESTful FHIR API, <a href="smart-scopes.html">SMART scopes</a> are used to align
+access control directly with FHIR resource types and search parameters. This enables fine-grained access restrictions,
+such as limiting a DiGA’s access to specific vital signs (e.g. blood glucose or blood pressure) or to particular device
+information. By binding consent to concrete FHIR query constraints, patients gain precise and enforceable control
+over which data elements are shared with a DiGA.</p>
+
+<p>A further key element of the pairing process is the <a href="#pairing-id"><strong>Pairing ID</strong></a>. This pseudonymous identifier links the patient’s
+consent with the subsequent data transfer. It ensures that data flows can be traced back to a specific pairing of two identified actors without revealing the patient’s identity.</p>
+
+<p>To perform the pairing process, each Device Data Recorder MUST implement an OAuth2 Authorization Server. This document describes the role of the OAuth2 Authorization Server, the use of OAuth 2.0 and <a href="smart-scopes.html">SMART scopes</a>, the purpose of the Pairing ID, and a deep dive into the pairing process itself.</p>
+
+<h3 id="oauth2-authorization-server-prerequisites">OAuth2 Authorization Server Prerequisites</h3>
+
+<p>The OAuth2 Authorization Server of the Device Data Recorder plays a pivotal role in the pairing process. It is responsible for:</p>
+<ul>
+  <li>triggering and deciding the existence of a valid consent of the affected patient.</li>
+  <li>Verifying whether a DiGA is authorized to access specific data (is a registered client).</li>
+  <li>Issuing OAuth 2.0 access tokens that enable secure communication between the DiGA and the Device Data Recorder’s FHIR Resource Server.</li>
+</ul>
+
+<p>In practice, the OAuth2 Authorization Server is the technical anchor for the entire pairing mechanism. It ensures that OAuth 2.0 is applied correctly and that <a href="smart-scopes.html">SMART scopes</a> are enforced, while also binding consent and
+subsequent data flows to the Pairing ID.</p>
+
+<p>The OAuth2 Authorization Server follows the <strong>OAuth 2.0 Authorization Code Flow with PKCE</strong> and <strong>Pushed Authorization
+Requests (PAR)</strong> over <strong>mutual TLS (mTLS)</strong>. Certificate-bound access tokens MUST NOT be used as mTLS already provides sufficient binding between client and server. A discovery document MUST be provided under the well-known path
+<code class="language-plaintext highlighter-rouge">/.well-known/oauth-authorization-server</code> in accordance with <a href="https://www.rfc-editor.org/rfc/rfc8414">RFC 8414</a>. Certificates, keys, and protocol configurations for all mTLS secured transport MUST comply with <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&amp;v=11">BSI TR-02102-2</a>.</p>
+
+<p>The authorization server MUST implement the following key RFCs and associated mechanisms:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>RFC</th>
+      <th>Title</th>
+      <th>Purpose / Scope in the § 374a SGB V Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc6749">RFC 6749</a></td>
+      <td><em>The OAuth 2.0 Authorization Framework</em></td>
+      <td>Forms the foundation of the pairing process using the <strong>Authorization Code Flow</strong>. Other flow types MUST NOT be used.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc7009">RFC 7009</a></td>
+      <td><em>OAuth 2.0 Token Revocation</em></td>
+      <td>Defines the revocation endpoint used by the DiGA to signal that user consent is no longer valid on the DiGA side. The revocation request triggers the withdrawal of consent in the Device Data Recorder for the patient associated with the pseudonymous Pairing ID. The OAuth2 Authorization Server MUST support this endpoint, perform Mutual-TLS client authentication and accept the following parameters:<br /> • <code class="language-plaintext highlighter-rouge">client_id</code> <br /> • <code class="language-plaintext highlighter-rouge">token</code> <br /> • <code class="language-plaintext highlighter-rouge">token_type_hint=refresh_token</code> <br /> Upon receiving a valid revocation request, the Authorization Server MUST invalidate the specified <code class="language-plaintext highlighter-rouge">refresh_token</code>, all <code class="language-plaintext highlighter-rouge">access_token</code> values issued under the same authorization grant, the authorization grant itself, and the stored user consent linked to the affected Pairing ID.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc7636">RFC 7636</a></td>
+      <td><em>Proof Key for Code Exchange (PKCE)</em></td>
+      <td>Protects the authorization code flow from interception. The OAuth2 Authorization Server MUST enforce PKCE with the <code class="language-plaintext highlighter-rouge">S256</code> code challenge method for all public clients.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc8414">RFC 8414</a></td>
+      <td><em>OAuth 2.0 Authorization Server Metadata</em></td>
+      <td>Defines the discovery document exposed at <code class="language-plaintext highlighter-rouge">/.well-known/oauth-authorization-server</code>. The metadata document MUST include at least the following attributes:<br /> • <code class="language-plaintext highlighter-rouge">scopes_supported</code> (according to SMART Scope definitions)<br /> • <code class="language-plaintext highlighter-rouge">grant_types_supported</code> = <code class="language-plaintext highlighter-rouge">authorization_code</code><br /> • <code class="language-plaintext highlighter-rouge">pushed_authorization_request_endpoint</code><br /> • <code class="language-plaintext highlighter-rouge">require_pushed_authorization_requests</code> = <code class="language-plaintext highlighter-rouge">true</code><br /> • <code class="language-plaintext highlighter-rouge">token_endpoint</code><br /> • <code class="language-plaintext highlighter-rouge">token_endpoint_auth_methods_supported</code> = <code class="language-plaintext highlighter-rouge">tls_client_auth</code><br /> • <code class="language-plaintext highlighter-rouge">revocation_endpoint</code><br /> • <code class="language-plaintext highlighter-rouge">revocation_endpoint_auth_methods_supported</code> = <code class="language-plaintext highlighter-rouge">tls_client_auth</code><br /> • <code class="language-plaintext highlighter-rouge">code_challenge_methods_supported</code> = <code class="language-plaintext highlighter-rouge">S256</code><br /> • <code class="language-plaintext highlighter-rouge">tls_client_certificate_bound_access_tokens</code> = <code class="language-plaintext highlighter-rouge">false</code><br /> • <code class="language-plaintext highlighter-rouge">service_documentation</code> (client registration info). <br />Signed metadata documents are NOT REQUIRED.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc8705">RFC 8705</a></td>
+      <td><em>OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Tokens</em></td>
+      <td>The mechanism for authenticating DiGA clients using mutual TLS (<code class="language-plaintext highlighter-rouge">tls_client_auth</code>) MUST be used. Certificate-bound access tokens from RFC 8705 MUST NOT be used.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc9126">RFC 9126</a></td>
+      <td><em>OAuth 2.0 Pushed Authorization Requests (PAR)</em></td>
+      <td>Ensures secure backend-to-backend transmission of authorization requests before user consent. The following attributes MUST be used: <br /> •<code class="language-plaintext highlighter-rouge">client_id</code> <br /> •<code class="language-plaintext highlighter-rouge">scope</code> <br /> •<code class="language-plaintext highlighter-rouge">code_challenge</code> <br /> •<code class="language-plaintext highlighter-rouge">code_challenge_method=S256</code> <br /> •<code class="language-plaintext highlighter-rouge">redirect_uri</code> <br /> •<code class="language-plaintext highlighter-rouge">state</code> <br /> •<code class="language-plaintext highlighter-rouge">response_type=code</code> <br /><br />Both the <code class="language-plaintext highlighter-rouge">request</code> attribute and <a href="https://datatracker.ietf.org/doc/rfc9101/">RFC 9101 (JWT-Secured Authorization Request)</a> MUST NOT be used.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.rfc-editor.org/rfc/rfc9700">RFC 9700</a></td>
+      <td><em>Best Current Practice for OAuth 2.0 Security</em></td>
+      <td>Consolidates and extends security best practices for OAuth 2.0 and adds further important recommendations (e.g., strict redirect URI validation, PKCE enforcement, refresh token protection/rotation) that MUST be applied by the OAuth2 Authorization Server.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The listed requirements are based on open, established standards and will not be explained in detail in this
+specification. For further information, please refer to the respective RFC documents.</p>
+
+<h4 id="client-registration">Client Registration</h4>
+
+<p>The provider of the Device Data Recorder is responsible for configuring OAuth 2.0 clients that represent authorized DiGA in the
+Device Data Recorder’s OAuth2 Authorization Server. DiGA that are not properly registered MUST NOT obtain access tokens and MUST NOT access any data through the APIs of the Device Data Recorder’s FHIR Resource Server.</p>
+
+<p>For a DiGA to be registered as a client with the Device Data Recorder’s OAuth2 Authorization Server, it MUST be listed in the BfArM <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a>  (DiGA Registry) according to § 139e SGB V. The registration data and <a href="security-and-privacy.html#identification-and-authentication-of-the-diga">trust attributes</a> kept by the Device Data Recorder MUST originate from verified information in the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a> as provided by BfArM.</p>
+
+<p>Each registered DiGA’s client configuration MUST include the attributes listed below. These attributes establish the trust
+relationship between the DiGA and the OAuth2 Authorization Server and determine which FHIR resources may be accessed from the Device Data Recorder’s FHIR Resource Server.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>client_id</strong></td>
+      <td>Unique identifier of the DiGA on application level used in OAuth 2.0 flows.</td>
+      <td>MUST correspond to the value stored in the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a> and follow the structure <code class="language-plaintext highlighter-rouge">urn:diga:bfarm:{DiGA-ID}</code> where <code class="language-plaintext highlighter-rouge">{DiGA-ID}</code> is the unique five-digit identifier of the DiGA as published in the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a>.</td>
+    </tr>
+    <tr>
+      <td><strong>scopes</strong></td>
+      <td>SMART scopes defining the DiGA’s authorized access to medical device data.</td>
+      <td>MUST contain the SMART scopes for each <a href="mivs.html">supported MIV</a>. Each scope represents permission to access specific FHIR <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources and the related <a href="https://hl7.org/fhir/R4/device.html">Device</a> and <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resources.</td>
+    </tr>
+    <tr>
+      <td><strong>redirect_uri</strong></td>
+      <td>Redirect target for the OAuth 2.0 Authorization Code Flow.</td>
+      <td>Serves as a security anchor ensuring that authorization codes are returned only to registered and verified DiGA endpoints. MUST exactly match the URI registered in the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a> (strict comparison MUST be performed).</td>
+    </tr>
+    <tr>
+      <td><strong>tls_client_certificate</strong></td>
+      <td>TLS client certificate identifying the DiGA backend for mTLS authentication.</td>
+      <td>MUST uniquely identify the DiGA backend. The certificate typically renews annually or earlier if revoked. The OAuth2 Authorization Server MUST validate that the presented certificate matches the one registered in the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a> at connection time. A certificate MAY be cached (see <a href="security-and-privacy.html#caching-of-trust-related-information">Caching of Trust-Related Information</a>).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The provider of the Device Data Recorder MUST ensure that all client registrations remain synchronized with the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a>. If a DiGA is
+removed, retired, or its authorization attributes change, the corresponding client configuration MUST be updated or
+revoked without undue delay (see also <a href="security-and-privacy.html#obligations-for-regular-inspections">Obligations for Regular Inspections</a>).</p>
+
+<p>The set of supported <a href="smart-scopes.html">SMART scopes</a> MUST also be published in the OAuth2 Authorization Server’s metadata
+document as defined in <a href="https://www.rfc-editor.org/rfc/rfc8414">RFC 8414</a>. Only scopes corresponding to the Device Data Recorder’s supported MIVs may be exposed. Any change in supported scopes, endpoints, or client configurations MUST be reflected in the discovery metadata without undue delay.</p>
+
+<h4 id="consent-for-fine-grained-access">Consent for Fine-Grained Access</h4>
+
+<p>The Device Data Recorder’s OAuth2 Authorization Server is responsible for displaying and managing the patient’s consent. During the pairing process, the server MUST present a consent dialogue to the patient that clearly lists all requested data
+categories represented by SMART scopes.</p>
+
+<p>The consent dialogue MUST display the requested access rights in a human-readable and comprehensible form. Each SMART
+scope represents a distinct category of data — typically corresponding to one MIV — and MUST be shown as an individual,
+selectable consent option. The patient MUST be able to grant or deny access for each category separately.</p>
+
+<p>The consent granted by the patient MUST be explicit, informed, and bound to the individual SMART scopes selected
+during pairing. Consent MUST be linked to the corresponding <a href="#pairing-id">Pairing ID</a>. The OAuth2 Authorization Server MUST ensure that
+consent is collected and recorded before issuing any access or refresh tokens to the DiGA, and that token issuance and
+subsequent data access remain limited to the consented scopes and the patient associated with the specific Pairing ID.</p>
+
+<p>The Authorization Server MUST validate requested scopes against the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a> entry for the client and strictly verify
+that each referenced ValueSet URL used within SMART scopes matches the DiGA’s registered permissions. If scopes or
+parameter syntax deviate from the defined SMART scope format the authorization MUST be rejected.</p>
+
+<p>The patient MUST be able to withdraw consent at any time, which immediately invalidates the associated authorization
+grant, refresh token, and any active access tokens.</p>
+
+<p>The technical enforcement of scopes on the resource server is described separately in the chapter
+on <a href="smart-scopes.html">SMART scopes</a>.</p>
+
+<h3 id="pairing-id">Pairing ID</h3>
+
+<p>The Pairing ID is a pseudonymous identifier that defines the coupling context between a DiGA and a Device Data Recorder. It ensures that consent, authorization, and subsequent data flows can be securely linked without
+exposing any real-world identifiers of the patient. By design, it prevents disclosure of internal user IDs or
+personal information (such as email addresses) while still allowing precise assignment of consent and the creation of
+audit trails.</p>
+
+<p>The Pairing ID MUST adhere to the following properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Property</strong></th>
+      <th><strong>Requirement</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Authoritative</strong></td>
+      <td>The Pairing ID MUST always be generated by the OAuth2 Authorization Server when a new pairing is established. <br />The DiGA and the patient MUST NOT participate in generating the identifier.</td>
+    </tr>
+    <tr>
+      <td><strong>Unique</strong></td>
+      <td>The Pairing ID MUST be unique for each patient at least within each Device Data Recorder. <br />If the same patient pairs with multiple DiGAs, each pairing MUST result in a distinct Pairing ID.</td>
+    </tr>
+    <tr>
+      <td><strong>Unpredictable</strong></td>
+      <td>The Pairing ID MUST NOT be guessable; it must be sufficiently long and unpredictable.</td>
+    </tr>
+    <tr>
+      <td><strong>Anonymous</strong></td>
+      <td>The Pairing ID MUST NOT allow any conclusions about the real-world identity of the patient.</td>
+    </tr>
+    <tr>
+      <td><strong>Stable and Retained</strong></td>
+      <td>The Pairing ID MUST be created once during the pairing sequence after the patient has authenticated and given consent. <br />It MUST remain stable for the entire lifetime of the pairing and MUST be retained by the Device Data Recorder. If a DiGA processes multiple MIVs and obtains consent for additional MIVs at different points in time, the same Pairing ID MUST continue to be used and MUST NOT be re-created or changed on a per-MIV basis.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To meet these requirements, the Pairing ID SHOULD be derived from a combination of internal attributes and a secret
+random value (salt) that is known only to the Device Data Recorder. This approach ensures that the Pairing ID is both
+unique and stable, while also being resistant to brute-force or guessing attacks. A sample construction is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PairingID = Hash(DiGA-ID, internal User-ID at the Device Data Recorder, Salt)
+</code></pre></div></div>
+
+<p>where</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Salt</code> is a secret random value of sufficient length (e.g., 128 bits) that is securely stored with the Device Data
+Recorder and</li>
+  <li><code class="language-plaintext highlighter-rouge">Hash</code> is a secure hash function like SHA-256.</li>
+</ul>
+
+<h3 id="tokens-and-the-token-response">Tokens and the Token Response</h3>
+
+<p>OAuth 2.0 access and refresh tokens are the core security artifacts enabling a DiGA to retrieve data from the Device Data Recorder’s FHIR Resource Server in
+accordance with the patient’s consent. The OAuth2 Authorization Server is responsible for issuing, validating,
+signing, and revoking these tokens.</p>
+
+<h4 id="access-tokens">Access Tokens</h4>
+
+<ul>
+  <li>The OAuth2 Authorization Server MUST issue an access token upon successful completion of the OAuth 2.0 Authorization Code
+Flow with PKCE (<a href="https://www.rfc-editor.org/info/rfc6749">RFC 6749</a>, 
+<a href="https://www.rfc-editor.org/info/rfc7636">RFC 7636</a>).</li>
+  <li>The access token MAY be represented either as an opaque token or as a self-encoded JSON Web Token (
+JWT, <a href="https://www.rfc-editor.org/info/rfc7519">RFC 7519</a>).</li>
+  <li>Access and refresh tokens MUST be cryptographically signed by the OAuth2 Authorization Server and MUST be verified for
+authenticity and integrity at each endpoint that is exposed to external parties by the Device Data Recorder.</li>
+  <li>The lifetime of an access token is defined by the provider of the Device Data Recorder. The provider MUST balance availability (
+e.g., load on the token endpoint) and security considerations when choosing the expiration period.</li>
+  <li>If the access token is represented as a JWT and includes the <code class="language-plaintext highlighter-rouge">sub</code> claim, it MUST contain the Pairing-ID and MUST NOT
+contain any internal user identifiers or personal identifiers.</li>
+  <li>Token use MUST be secured via mutual TLS (mTLS, <a href="https://www.rfc-editor.org/info/rfc8705">RFC 8705</a>) between the DiGA
+and the Device Data Recorder. Certificate-bound and session-bound tokens MUST NOT be used, as mTLS already provides sufficient binding
+between client and server.</li>
+</ul>
+
+<h4 id="refresh-tokens">Refresh Tokens</h4>
+
+<ul>
+  <li>The OAuth2 Authorization Server MUST issue a refresh token together with the access token.</li>
+  <li>The refresh token MUST have a lifetime of 30 days to allow continued access without further user interaction
+while maintaining revocation capability in line with patient consent.</li>
+  <li>Refresh tokens MUST be revocable by the DiGA via the revocation
+endpoint (<a href="https://www.rfc-editor.org/info/rfc7009">RFC 7009</a>).</li>
+  <li>If the patient withdraws consent (regardless if via the DiGA or directly at the Device Data Recorder), all tokens
+associated with the Pairing ID MUST be invalidated immediately.</li>
+</ul>
+
+<h4 id="token-response">Token Response</h4>
+
+<ul>
+  <li>The token endpoint response MUST include the claims listed below in a JSON body:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">access_token</code></li>
+      <li><code class="language-plaintext highlighter-rouge">refresh_token</code></li>
+      <li><code class="language-plaintext highlighter-rouge">token_type</code></li>
+      <li><code class="language-plaintext highlighter-rouge">expires_in</code></li>
+      <li><code class="language-plaintext highlighter-rouge">scope</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sub</code></li>
+    </ul>
+  </li>
+  <li>The claim <code class="language-plaintext highlighter-rouge">sub</code> MUST be carrying the Pairing ID</li>
+  <li>The access token format (JWT vs. opaque) and claim structure MAY vary between Device Data Recorders, provided all normative
+requirements above are met.</li>
+  <li>All token exchanges MUST take place over a mutually authenticated TLS channel, ensuring confidentiality and integrity
+of the authorization process.</li>
+</ul>
+
+<p>An example token response (with a JWT access token) is shown below:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e35d65d-ec12-4b8d-a8b1-dff2f7cf6a5e"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement patient/Device.rs patient/DeviceMetric.rs"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8c9a85fe78f6ccd91a62aff2bf7cf3ea4929a8f1ccbd24f2874ab853fe4815fc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="pairing-sequence">Pairing Sequence</h3>
+
+<p>The following diagram illustrates the detailed sequence of interactions during the pairing process between the patient,
+the DiGA, and the Device Data Recorder. Each step is explained in detail below.</p>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  <?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="2565.625px" preserveAspectRatio="none" style="width:2707px;height:2565px;background:#DFEBF0;" version="1.1" viewBox="0 0 2707 2565" width="2707.8125px" zoomAndPan="magnify"><defs /><g><rect fill="#DFEBF0" height="2565.625" style="stroke:none;stroke-width:1.5625;" width="2707.8125" x="0" y="0" /><rect fill="#C85670" height="48.3643" id="_title" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:0.0;" width="946.875" x="878.125" y="15.625" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="931.25" x="885.9375" y="49.5438">Pairing between DiGA and Device Data Recorder (detailed)</text><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="50" x2="50" y1="192.5781" y2="2555.4688" /><rect fill="#DFEBF0" height="202.3926" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="42.1875" y="374.4019" /><rect fill="#DFEBF0" height="159.9487" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="42.1875" y="1425.2197" /><rect fill="#DFEBF0" height="20.3125" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="42.1875" y="2527.3438" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="990.625" x2="990.625" y1="192.5781" y2="2555.4688" /><rect fill="#DFEBF0" height="2160.7544" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="982.8125" y="386.9019" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="1907.8125" x2="1907.8125" y1="192.5781" y2="2555.4688" /><rect fill="#DFEBF0" height="531.5552" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="1900" y="669.397" /><rect fill="#DFEBF0" height="1233.7891" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="1900" y="1313.8672" /><text fill="#0F2A33" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="75" x="7.8125" y="187.4191">Patient</text><ellipse cx="50" cy="86.6455" fill="#A0C5CF" rx="12.5" ry="12.5" style="stroke:#5E9BB1;stroke-width:0.78125;" /><path d="M50,99.1455 L50,141.333 M29.6875,111.6455 L70.3125,111.6455 M50,141.333 L29.6875,164.7705 M50,141.333 L70.3125,164.7705 " fill="none" style="stroke:#5E9BB1;stroke-width:0.78125;" /><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="246.875" x="867.1875" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="951.5625" y="132.3563">DiGA</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="867.1875" x2="1114.0625" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="225" x="878.125" y="174.9191">Frontend&#160;|&#160;Backend</text><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="434.375" x="1690.625" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="343.75" x="1735.9375" y="132.3563">Device Data Recorder</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="1690.625" x2="2125" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="412.5" x="1701.5625" y="174.9191">Frontend&#160;|&#160;Backend&#160;|&#160;AuthZ&#160;Server</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2689.0625" x="7.8125" y="237.2131" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="237.2131" y2="237.2131" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="241.9006" y2="241.9006" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="668.75" x="1017.9688" y="220.7031" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="639.0625" x="1027.3438" y="245.8076">1. Patient initiates Pairing with a Device Data Recorder</text><rect fill="#A0C5CF" height="61.0962" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="1100" x="10.9375" y="272.4731" /><path d="M25,272.4731 L114.0625,272.4731 L114.0625,283.4106 L98.4375,299.0356 L10.9375,299.0356 L10.9375,286.5356 A14.0625,14.0625 0 0 1 25,272.4731 " fill="#EEEEEE" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#0F2A33" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="32.8125" x="31.25" y="294.4527">ref</text><text fill="#0F2A33" font-family="sans-serif" font-size="18.75" lengthAdjust="spacing" textLength="323.4375" x="399.2188" y="322.6898">DiGA-specific login (out-of-scope)</text><polygon fill="#5E9BB1" points="971.875,368.1519,987.5,374.4019,971.875,380.6519,978.125,374.4019" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="57.8125" x2="981.25" y1="374.4019" y2="374.4019" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="590.625" x="68.75" y="366.4864">Initiate pairing with Device Data Recorder via DiGA frontend</text><polygon fill="#5E9BB1" points="75,413.6719,59.375,419.9219,75,426.1719,68.75,419.9219" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="981.25" y1="419.9219" y2="419.9219" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="668.75" x="84.375" y="412.0064">Present list of compatible Device Data Recorders via DiGA frontend</text><polygon fill="#5E9BB1" points="964.0625,459.1919,979.6875,465.4419,964.0625,471.6919,970.3125,465.4419" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="57.8125" x2="973.4375" y1="465.4419" y2="465.4419" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="467.1875" x="68.75" y="457.5264">Select Device Data Recorder via DiGA frontend</text><polygon fill="#5E9BB1" points="75,504.7119,59.375,510.9619,75,517.2119,68.75,510.9619" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="981.25" y1="510.9619" y2="510.9619" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="887.5" x="84.375" y="503.0464">Present required permissions (based on Device Data Recorder scopes) via DiGA frontend</text><polygon fill="#5E9BB1" points="964.0625,550.2319,979.6875,556.4819,964.0625,562.7319,970.3125,556.4819" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="57.8125" x2="973.4375" y1="556.4819" y2="556.4819" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="385.9375" x="68.75" y="548.5664">Confirm permissions via DiGA frontend</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2689.0625" x="7.8125" y="601.1169" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="601.1169" y2="601.1169" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="605.8044" y2="605.8044" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="671.875" x="1016.4063" y="584.6069" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="642.1875" x="1025.7813" y="609.7115">2. Send Authorization Request to Device Data Recorder</text><polygon fill="#5E9BB1" points="1881.25,663.147,1896.875,669.397,1881.25,675.647,1887.5,669.397" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1890.625" y1="669.397" y2="669.397" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="504.6875" x="1009.375" y="661.4815">Retrieve Authorization Server Metadata Document</text><polygon fill="#5E9BB1" points="1015.625,708.667,1000,714.917,1015.625,721.167,1009.375,714.917" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1006.25" x2="1898.4375" y1="714.917" y2="714.917" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="278.125" x="1025" y="707.0015">Server Metadata Document</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1064.0625" y1="760.437" y2="760.437" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1064.0625" x2="1064.0625" y1="760.437" y2="780.7495" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1000" x2="1064.0625" y1="780.7495" y2="780.7495" /><polygon fill="#5E9BB1" points="1015.625,774.4995,1000,780.7495,1015.625,786.9995,1009.375,780.7495" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="387.5" x="1009.375" y="752.5215">Identify endpoints and scope (consent)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1064.0625" y1="826.2695" y2="826.2695" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1064.0625" x2="1064.0625" y1="826.2695" y2="846.582" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1000" x2="1064.0625" y1="846.582" y2="846.582" /><polygon fill="#5E9BB1" points="1015.625,840.332,1000,846.582,1015.625,852.832,1009.375,846.582" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="239.0625" x="1009.375" y="818.354">Generate PKCE artifacts</text><polygon fill="#5E9BB1" points="1881.25,885.8521,1896.875,892.1021,1881.25,898.3521,1887.5,892.1021" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1890.625" y1="892.1021" y2="892.1021" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="600" x="1009.375" y="884.1866">PAR with PKCE, client_id, tls_client_auth, scopes, redirect_uri</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1064.0625" y1="937.6221" y2="937.6221" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1064.0625" x2="1064.0625" y1="937.6221" y2="957.9346" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1000" x2="1064.0625" y1="957.9346" y2="957.9346" /><polygon fill="#5E9BB1" points="1015.625,951.6846,1000,957.9346,1015.625,964.1846,1009.375,957.9346" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="1009.375" y="929.7066">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1003.4546" y2="1003.4546" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1003.4546" y2="1023.7671" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1023.7671" y2="1023.7671" /><polygon fill="#5E9BB1" points="1932.8125,1017.5171,1917.1875,1023.7671,1932.8125,1030.0171,1926.5625,1023.7671" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1926.5625" y="995.5391">Authenticate DiGA (client_id, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1069.2871" y2="1069.2871" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1069.2871" y2="1089.5996" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1089.5996" y2="1089.5996" /><polygon fill="#5E9BB1" points="1932.8125,1083.3496,1917.1875,1089.5996,1932.8125,1095.8496,1926.5625,1089.5996" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="375" x="1926.5625" y="1061.3716">Validate PAR (redirect_uri, scopes, ...)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1135.1196" y2="1135.1196" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1135.1196" y2="1155.4321" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1155.4321" y2="1155.4321" /><polygon fill="#5E9BB1" points="1932.8125,1149.1821,1917.1875,1155.4321,1932.8125,1161.6821,1926.5625,1155.4321" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="359.375" x="1926.5625" y="1127.2041">Store PAR and generate request_uri</text><polygon fill="#5E9BB1" points="1015.625,1194.7021,1000,1200.9521,1015.625,1207.2021,1009.375,1200.9521" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1006.25" x2="1898.4375" y1="1200.9521" y2="1200.9521" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="384.375" x="1025" y="1193.0367">PAR response (request_uri, expires_in)</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2689.0625" x="7.8125" y="1245.5872" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="1245.5872" y2="1245.5872" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="1250.2747" y2="1250.2747" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="495.3125" x="1104.6875" y="1229.0771" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="465.625" x="1114.0625" y="1254.1817">3. Authorization Confirmation by patient</text><polygon fill="#5E9BB1" points="1881.25,1307.6172,1896.875,1313.8672,1881.25,1320.1172,1887.5,1313.8672" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1890.625" y1="1313.8672" y2="1313.8672" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="764.0625" x="1009.375" y="1305.9517">Authorization request via external user-agent redirect (client_id, request_uri)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1359.3872" y2="1359.3872" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1359.3872" y2="1379.6997" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1379.6997" y2="1379.6997" /><polygon fill="#5E9BB1" points="1932.8125,1373.4497,1917.1875,1379.6997,1932.8125,1385.9497,1926.5625,1379.6997" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="490.625" x="1926.5625" y="1351.4717">Validate authorization request and load PAR data</text><polygon fill="#5E9BB1" points="75,1418.9697,59.375,1425.2197,75,1431.4697,68.75,1425.2197" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="1898.4375" y1="1425.2197" y2="1425.2197" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="84.375" y="1417.3042">Present login page in system browser</text><rect fill="#A0C5CF" height="61.0962" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="2110.9375" x="10.9375" y="1437.7197" /><path d="M25,1437.7197 L114.0625,1437.7197 L114.0625,1448.6572 L98.4375,1464.2822 L10.9375,1464.2822 L10.9375,1451.7822 A14.0625,14.0625 0 0 1 25,1437.7197 " fill="#EEEEEE" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#0F2A33" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="32.8125" x="31.25" y="1459.6992">ref</text><text fill="#0F2A33" font-family="sans-serif" font-size="18.75" lengthAdjust="spacing" textLength="521.875" x="805.4688" y="1487.9364">Login specific to Device Data Recorder (out-of-scope)</text><polygon fill="#5E9BB1" points="75,1533.3984,59.375,1539.6484,75,1545.8984,68.75,1539.6484" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="1898.4375" y1="1539.6484" y2="1539.6484" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="660.9375" x="84.375" y="1531.7329">Present DiGA consent request with permissions in system browser</text><polygon fill="#5E9BB1" points="1881.25,1578.9185,1896.875,1585.1685,1881.25,1591.4185,1887.5,1585.1685" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="57.8125" x2="1890.625" y1="1585.1685" y2="1585.1685" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="204.6875" x="68.75" y="1577.253">Confirm permissions</text><path d="M1896.875,1603.9185 L1982.8125,1603.9185 L1982.8125,1615.0635 L1967.1875,1630.6885 L1882.8125,1630.6885 L1882.8125,1617.981 A14.0625,14.0625 0 0 1 1896.875,1603.9185 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="202.1851" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="800" x="1882.8125" y="1603.9185" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="1906.25" y="1624.3355">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="651.5625" x="2006.25" y="1622.9973">[Pairing ID was previously generated and linked to user account]</text><line style="stroke:#5E9BB1;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="1882.8125" x2="2682.8125" y1="1729.3335" y2="1729.3335" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1679.3335" y2="1679.3335" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1679.3335" y2="1699.646" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1699.646" y2="1699.646" /><polygon fill="#5E9BB1" points="1932.8125,1693.396,1917.1875,1699.646,1932.8125,1705.896,1926.5625,1699.646" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="167.1875" x="1926.5625" y="1671.418">Locate pairing ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1773.291" y2="1773.291" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1773.291" y2="1793.6035" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1793.6035" y2="1793.6035" /><polygon fill="#5E9BB1" points="1932.8125,1787.3535,1917.1875,1793.6035,1932.8125,1799.8535,1926.5625,1793.6035" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="439.0625" x="1926.5625" y="1765.3755">Generate pairing ID and link to user account</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="1860.9985" y2="1860.9985" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="1860.9985" y2="1881.311" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="1881.311" y2="1881.311" /><polygon fill="#5E9BB1" points="1932.8125,1875.061,1917.1875,1881.311,1932.8125,1887.561,1926.5625,1881.311" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="650" x="1926.5625" y="1853.083">Generate consent linked to the Pairing-ID and the patient identity</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2689.0625" x="7.8125" y="1925.946" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="1925.946" y2="1925.946" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="1930.6335" y2="1930.6335" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="314.0625" x="1195.3125" y="1909.436" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="284.375" x="1204.6875" y="1934.5406">4. Perform Authorization</text><polygon fill="#5E9BB1" points="1015.625,1987.9761,1000,1994.2261,1015.625,2000.4761,1009.375,1994.2261" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1006.25" x2="1898.4375" y1="1994.2261" y2="1994.2261" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="721.875" x="1025" y="1986.3106">Authorization response with authz_code via frontend/user-agent redirect</text><polygon fill="#5E9BB1" points="1881.25,2033.4961,1896.875,2039.7461,1881.25,2045.9961,1887.5,2039.7461" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1890.625" y1="2039.7461" y2="2039.7461" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="573.4375" x="1009.375" y="2031.8306">Token request with PKCE, tls_client_auth, and authz_code</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1064.0625" y1="2085.2661" y2="2085.2661" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1064.0625" x2="1064.0625" y1="2085.2661" y2="2105.5786" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1000" x2="1064.0625" y1="2105.5786" y2="2105.5786" /><polygon fill="#5E9BB1" points="1015.625,2099.3286,1000,2105.5786,1015.625,2111.8286,1009.375,2105.5786" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="1009.375" y="2077.3506">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="2151.0986" y2="2151.0986" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="2151.0986" y2="2171.4111" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="2171.4111" y2="2171.4111" /><polygon fill="#5E9BB1" points="1932.8125,2165.1611,1917.1875,2171.4111,1932.8125,2177.6611,1926.5625,2171.4111" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1926.5625" y="2143.1831">Authenticate DiGA (client_id, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1915.625" x2="1981.25" y1="2216.9312" y2="2216.9312" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1981.25" x2="1981.25" y1="2216.9312" y2="2237.2437" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1917.1875" x2="1981.25" y1="2237.2437" y2="2237.2437" /><polygon fill="#5E9BB1" points="1932.8125,2230.9937,1917.1875,2237.2437,1932.8125,2243.4937,1926.5625,2237.2437" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="304.6875" x="1926.5625" y="2209.0157">Validate PKCE and authz_code</text><polygon fill="#5E9BB1" points="1015.625,2276.5137,1000,2282.7637,1015.625,2289.0137,1009.375,2282.7637" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1006.25" x2="1898.4375" y1="2282.7637" y2="2282.7637" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="864.0625" x="1025" y="2274.8482">Token response (scope, pairing ID, access and refresh token with scope and pairing ID)</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2689.0625" x="7.8125" y="2327.3987" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="2327.3987" y2="2327.3987" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2696.875" y1="2332.0862" y2="2332.0862" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="259.375" x="1222.6563" y="2310.8887" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="229.6875" x="1232.0313" y="2335.9932">5. Complete Pairing</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1064.0625" y1="2395.6787" y2="2395.6787" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1064.0625" x2="1064.0625" y1="2395.6787" y2="2415.9912" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1000" x2="1064.0625" y1="2415.9912" y2="2415.9912" /><polygon fill="#5E9BB1" points="1015.625,2409.7412,1000,2415.9912,1015.625,2422.2412,1009.375,2415.9912" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="579.6875" x="1009.375" y="2387.7632">Add DiGA prescription expiration date (patient) to consent</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="998.4375" x2="1064.0625" y1="2461.5112" y2="2461.5112" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1064.0625" x2="1064.0625" y1="2461.5112" y2="2481.8237" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1000" x2="1064.0625" y1="2481.8237" y2="2481.8237" /><polygon fill="#5E9BB1" points="1015.625,2475.5737,1000,2481.8237,1015.625,2488.0737,1009.375,2481.8237" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="665.625" x="1009.375" y="2453.5957">Generate consent for pairing ID and link to patient's identity (DiGA)</text><polygon fill="#5E9BB1" points="75,2521.0938,59.375,2527.3438,75,2533.5938,68.75,2527.3438" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="981.25" y1="2527.3438" y2="2527.3438" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="332.8125" x="84.375" y="2519.4283">Confirm pairing via DiGA frontend</text></g></svg>
+  </div>
+    <figcaption><em><strong>Figure: </strong>Pairing between DiGA and Device Data Recorder (detailed)</em></figcaption>
+</figure>
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Process Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Patient initiates Pairing with a Device Data Recorder</td>
+      <td>After logging into the <strong>DiGA</strong> (login is out of scope), the <strong>patient</strong> starts pairing in the DiGA frontend. The <strong>DiGA</strong> shows a list of compatible Device Data Recorders and the permissions it will request (based on the Device Data Recorder’s published scopes). The patient selects a Device Data Recorder and <strong>confirms the requested permissions</strong>. <br /><br /> <strong>Failure case:</strong> If the patient cancels, no pairing request is initiated.</td>
+    </tr>
+    <tr>
+      <td>2. Send Authorization Request to Device Data Recorder</td>
+      <td>The <strong>DiGA</strong> fetches the OAuth2 Authorization Server Metadata from <code class="language-plaintext highlighter-rouge">/.well-known/oauth-authorization-server</code> and identifies endpoints and required scopes (e.g., MIV ValueSets). It generates PKCE artifacts and sends a <strong>Pushed Authorization Request (PAR)</strong> containing <code class="language-plaintext highlighter-rouge">client_id</code>, <code class="language-plaintext highlighter-rouge">redirect_uri</code>, scopes, and PKCE via <strong>mutual TLS (<code class="language-plaintext highlighter-rouge">tls_client_auth</code>)</strong>. The <strong>DiGA</strong> validates the Device Data Recorder’s FQDN and certificate; the <strong>Authorization Server</strong> authenticates the DiGA via <code class="language-plaintext highlighter-rouge">client_id</code> and certificate, validates the PAR (including <code class="language-plaintext highlighter-rouge">redirect_uri</code> and scopes), stores it, and returns a <strong><code class="language-plaintext highlighter-rouge">request_uri</code></strong> with <strong><code class="language-plaintext highlighter-rouge">expires_in</code></strong>. <br /><br /> <strong>Failure case:</strong> On validation failure, an error (e.g., <code class="language-plaintext highlighter-rouge">400</code> or <code class="language-plaintext highlighter-rouge">401</code>) is returned.</td>
+    </tr>
+    <tr>
+      <td>3. Authorization Confirmation by patient</td>
+      <td>The <strong>DiGA</strong> redirects the user’s external user-agent to the Device Data Recorder’s <strong><code class="language-plaintext highlighter-rouge">/authorize</code></strong> endpoint with the <strong><code class="language-plaintext highlighter-rouge">request_uri</code></strong>. The <strong>Authorization Server</strong> loads the stored PAR data and presents the login page in the system browser. After login (out of scope), the <strong>Device Data Recorder frontend</strong> presents the DiGA’s requested permissions; the <strong>patient approves or denies</strong>. If approved, the server <strong>locates or generates a Pairing ID</strong> and <strong>creates a consent</strong> linked to the Pairing ID and the patient’s identity on the Device Data Recorder side. <br /><br /> <strong>Failure case:</strong> If consent is denied, no tokens are issued and the flow ends.</td>
+    </tr>
+    <tr>
+      <td>4. Perform Authorization</td>
+      <td>The <strong>Authorization Server</strong> redirects the user agent to the registered <code class="language-plaintext highlighter-rouge">redirect_uri</code> with an <strong>authorization code</strong>. The <strong>DiGA</strong> exchanges the code at <strong><code class="language-plaintext highlighter-rouge">/token</code></strong> over <strong>mTLS</strong> with PKCE verifier and <code class="language-plaintext highlighter-rouge">client_id</code>. The <strong>DiGA</strong> again validates the Device Data Recorder’s FQDN and certificate; the <strong>Authorization Server</strong> authenticates the DiGA (certificate + <code class="language-plaintext highlighter-rouge">client_id</code>), verifies PKCE and code, and returns a <strong>token response</strong> containing: <strong>access token</strong>, <strong>refresh token</strong>, <strong>granted <code class="language-plaintext highlighter-rouge">scope</code></strong>, and the <strong>Pairing ID</strong> in the JSON body (and, if JWT access tokens are used, also as the <code class="language-plaintext highlighter-rouge">sub</code> claim). <br /><br /> <strong>Failure case:</strong> If the code is invalid/expired, the Authorization Server returns <code class="language-plaintext highlighter-rouge">400</code> or <code class="language-plaintext highlighter-rouge">403</code>.</td>
+    </tr>
+    <tr>
+      <td>5. Complete Pairing</td>
+      <td>The <strong>DiGA backend</strong> records its <strong>local consent</strong> for the Pairing ID, including the <strong>prescription/entitlement expiration date</strong>, and links it to the patient’s identity in the DiGA context. The <strong>DiGA frontend</strong> confirms successful pairing to the patient. <br /><br /> <strong>Failure case:</strong> If local persistence fails, pairing may need to be re-initiated.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="unpairing">Unpairing</h3>
+
+<p>The unpairing process allows for the termination of the connection between a DiGA and a Device Data Recorder. This can be initiated either by the patient or automatically by the system under certain conditions. The table below gives examples for such conditions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Condition</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Prescription expiration</strong></td>
+      <td>If the prescription period expires, the DiGA MUST automatically initiate an unpairing sequence with the Device Data Recorder. This prescription period includes a grace period acc. DMN_4.2 of the upcoming <a href="https://www.bfarm.de/SharedDocs/Downloads/DE/Medizinprodukte/diga-dipa-datenschutzkriterien.pdf?__blob=publicationFile">DiGA privacy criteria</a>. If a patient provides a follow-up prescription during the prescription period, the DiGA SHOULD ask the patient, if the pairing with a connected medical aid or implant should be kept active.</td>
+    </tr>
+    <tr>
+      <td><strong>DiGA authorization status changes</strong></td>
+      <td>If the DiGA is removed or retired from the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a>, the DiGA MUST automatically initiate an unpairing sequence with the Device Data Recorder when the current prescription period ends. A grace period does not extend the prescription period in this case.</td>
+    </tr>
+    <tr>
+      <td><strong>Device Data Recorder no longer offers interface</strong></td>
+      <td>If the Device Data Recorder is removed or retired from the <a href="registries-and-zts.html#hiis-vz"><em>HIIS-VZ</em></a>, the Device Data Recorder SHOULD initiate an unpairing sequence with the DiGA. It MUST provide an error message in response to subsequent requests from DiGA that signal the DiGA, that the Device Data Recorder is no longer supporting the HDDT APIs.</td>
+    </tr>
+    <tr>
+      <td><strong>Patient withdraws consent</strong></td>
+      <td>The patient MAY initiate unpairing at any time via the DiGA or directly at the Device Data Recorder. This action MUST immediately invalidate all authorization artifacts (authorization grant, refresh token, access tokens, and stored consent) associated with the Pairing ID on both sides.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="unpairing-by-the-patient">Unpairing by the patient</h4>
+
+<p>The unpairing process allows the patient to terminate the connection between their DiGA and their Device Data Recorder.
+The patient can initiate unpairing directly from the DiGA or from the Device Data Recorder. Each scenario is explained
+in detail below.</p>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  <?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1831.25px" preserveAspectRatio="none" style="width:1925px;height:1831px;background:#DFEBF0;" version="1.1" viewBox="0 0 1925 1831" width="1925px" zoomAndPan="magnify"><defs /><g><rect fill="#DFEBF0" height="1831.25" style="stroke:none;stroke-width:1.5625;" width="1925" x="0" y="0" /><rect fill="#C85670" height="48.3643" id="_title" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:0.0;" width="603.125" x="658.5938" y="15.625" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="587.5" x="666.4063" y="49.5438">Patient-Initiated Consent Revocation</text><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="50" x2="50" y1="192.5781" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="50" x2="50" y1="1337.146" y2="1400.9033" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="50" x2="50" y1="1400.9033" y2="1821.106" /><rect fill="#DFEBF0" height="617.7002" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="42.1875" y="305.4932" /><rect fill="#DFEBF0" height="321.3501" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="42.1875" y="1015.7959" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="42.1875" x2="42.1875" y1="1015.7959" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="57.8125" x2="57.8125" y1="1015.7959" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="42.1875" x2="57.8125" y1="1015.7959" y2="1015.7959" /><rect fill="#DFEBF0" height="412.3901" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="42.1875" y="1400.9033" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="42.1875" x2="42.1875" y1="1400.9033" y2="1813.2935" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="57.8125" x2="57.8125" y1="1400.9033" y2="1813.2935" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="42.1875" x2="57.8125" y1="1813.2935" y2="1813.2935" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="587.5" x2="587.5" y1="192.5781" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="587.5" x2="587.5" y1="1337.146" y2="1400.9033" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="587.5" x2="587.5" y1="1400.9033" y2="1821.106" /><rect fill="#DFEBF0" height="605.2002" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="579.6875" y="317.9932" /><rect fill="#DFEBF0" height="202.1851" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="579.6875" y="1611.1084" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="1400" x2="1400" y1="192.5781" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="1400" x2="1400" y1="1337.146" y2="1400.9033" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="1400" x2="1400" y1="1400.9033" y2="1821.106" /><rect fill="#DFEBF0" height="428.0151" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="1392.1875" y="495.1782" /><rect fill="#DFEBF0" height="308.8501" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="1392.1875" y="1028.2959" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1392.1875" x2="1392.1875" y1="1028.2959" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1407.8125" x2="1407.8125" y1="1028.2959" y2="1337.146" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1392.1875" x2="1407.8125" y1="1028.2959" y2="1028.2959" /><rect fill="#DFEBF0" height="412.3901" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="1392.1875" y="1400.9033" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1392.1875" x2="1392.1875" y1="1400.9033" y2="1813.2935" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1407.8125" x2="1407.8125" y1="1400.9033" y2="1813.2935" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1392.1875" x2="1407.8125" y1="1813.2935" y2="1813.2935" /><text fill="#0F2A33" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="75" x="7.8125" y="187.4191">Patient</text><ellipse cx="50" cy="86.6455" fill="#A0C5CF" rx="12.5" ry="12.5" style="stroke:#5E9BB1;stroke-width:0.78125;" /><path d="M50,99.1455 L50,141.333 M29.6875,111.6455 L70.3125,111.6455 M50,141.333 L29.6875,164.7705 M50,141.333 L70.3125,164.7705 " fill="none" style="stroke:#5E9BB1;stroke-width:0.78125;" /><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="246.875" x="464.0625" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="548.4375" y="132.3563">DiGA</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="464.0625" x2="710.9375" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="225" x="475" y="174.9191">Frontend&#160;|&#160;Backend</text><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="684.375" x="1057.8125" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="343.75" x="1228.125" y="132.3563">Device Data Recorder</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="1057.8125" x2="1742.1875" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="662.5" x="1068.75" y="174.9191">Frontend&#160;|&#160;OAuth2&#160;AuthZ&#160;Server&#160;|&#160;FHIR&#160;Resource&#160;Server</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="1906.25" x="7.8125" y="237.2131" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="1914.0625" y1="237.2131" y2="237.2131" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="1914.0625" y1="241.9006" y2="241.9006" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="296.875" x="812.5" y="220.7031" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="267.1875" x="821.875" y="245.8076">Revocation at the DiGA</text><polygon fill="#5E9BB1" points="568.75,299.2432,584.375,305.4932,568.75,311.7432,575,305.4932" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="57.8125" x2="578.125" y1="305.4932" y2="305.4932" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="339.0625" x="68.75" y="297.5777">Revoke consent via DiGA frontend</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="595.3125" x2="660.9375" y1="351.0132" y2="351.0132" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="660.9375" x2="660.9375" y1="351.0132" y2="371.3257" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="596.875" x2="660.9375" y1="371.3257" y2="371.3257" /><polygon fill="#5E9BB1" points="612.5,365.0757,596.875,371.3257,612.5,377.5757,606.25,371.3257" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="606.25" y="343.0977">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1381.25,410.5957,1396.875,416.8457,1381.25,423.0957,1387.5,416.8457" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="595.3125" x2="1390.625" y1="416.8457" y2="416.8457" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="775" x="606.25" y="408.9302">Request revocation at /revoke endpoint with tls_client_auth and refresh_token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="595.3125" x2="660.9375" y1="462.3657" y2="462.3657" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="660.9375" x2="660.9375" y1="462.3657" y2="482.6782" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="596.875" x2="660.9375" y1="482.6782" y2="482.6782" /><polygon fill="#5E9BB1" points="612.5,476.4282,596.875,482.6782,612.5,488.9282,606.25,482.6782" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="606.25" y="454.4502">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="528.1982" y2="528.1982" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="528.1982" y2="548.5107" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="548.5107" y2="548.5107" /><polygon fill="#5E9BB1" points="1425,542.2607,1409.375,548.5107,1425,554.7607,1418.75,548.5107" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1418.75" y="520.2827">Authenticate DiGA (client_id, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="594.0308" y2="594.0308" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="594.0308" y2="614.3433" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="614.3433" y2="614.3433" /><polygon fill="#5E9BB1" points="1425,608.0933,1409.375,614.3433,1425,620.5933,1418.75,614.3433" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="1418.75" y="586.1153">Invalidate authorization grant linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="659.8633" y2="659.8633" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="659.8633" y2="680.1758" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="680.1758" y2="680.1758" /><polygon fill="#5E9BB1" points="1425,673.9258,1409.375,680.1758,1425,686.4258,1418.75,680.1758" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="426.5625" x="1418.75" y="651.9478">Invalidate refresh token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="725.6958" y2="725.6958" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="725.6958" y2="746.0083" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="746.0083" y2="746.0083" /><polygon fill="#5E9BB1" points="1425,739.7583,1409.375,746.0083,1425,752.2583,1418.75,746.0083" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="425" x="1418.75" y="717.7803">Invalidate access token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="791.5283" y2="791.5283" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="791.5283" y2="811.8408" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="811.8408" y2="811.8408" /><polygon fill="#5E9BB1" points="1425,805.5908,1409.375,811.8408,1425,818.0908,1418.75,811.8408" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="1418.75" y="783.6128">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="612.5,851.1108,596.875,857.3608,612.5,863.6108,606.25,857.3608" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="603.125" x2="1390.625" y1="857.3608" y2="857.3608" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="128.125" x="621.875" y="849.4453">HTTP 200 OK</text><polygon fill="#5E9BB1" points="75,896.6309,59.375,902.8809,75,909.1309,68.75,902.8809" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="578.125" y1="902.8809" y2="902.8809" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="84.375" y="894.9654">Signal revocation confirmation via DiGA frontend</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="1906.25" x="7.8125" y="947.5159" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="1914.0625" y1="947.5159" y2="947.5159" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="1914.0625" y1="952.2034" y2="952.2034" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="492.1875" x="714.8438" y="931.0059" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="462.5" x="724.2188" y="956.1104">Revocation at the Device Data Recorder</text><polygon fill="#5E9BB1" points="1381.25,1009.5459,1396.875,1015.7959,1381.25,1022.0459,1387.5,1015.7959" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="57.8125" x2="1390.625" y1="1015.7959" y2="1015.7959" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="570.3125" x="68.75" y="1007.8804">Revoke consent via frontend of the Device Data Recorder</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="1061.3159" y2="1061.3159" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="1061.3159" y2="1081.6284" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="1081.6284" y2="1081.6284" /><polygon fill="#5E9BB1" points="1425,1075.3784,1409.375,1081.6284,1425,1087.8784,1418.75,1081.6284" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="1418.75" y="1053.4004">Invalidate authorization grant linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="1127.1484" y2="1127.1484" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="1127.1484" y2="1147.4609" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="1147.4609" y2="1147.4609" /><polygon fill="#5E9BB1" points="1425,1141.2109,1409.375,1147.4609,1425,1153.7109,1418.75,1147.4609" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="426.5625" x="1418.75" y="1119.2329">Invalidate refresh token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="1192.981" y2="1192.981" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="1192.981" y2="1213.2935" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="1213.2935" y2="1213.2935" /><polygon fill="#5E9BB1" points="1425,1207.0435,1409.375,1213.2935,1425,1219.5435,1418.75,1213.2935" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="425" x="1418.75" y="1185.0655">Invalidate access token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="1258.8135" y2="1258.8135" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="1258.8135" y2="1279.126" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="1279.126" y2="1279.126" /><polygon fill="#5E9BB1" points="1425,1272.876,1409.375,1279.126,1425,1285.376,1418.75,1279.126" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="1418.75" y="1250.898">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="75,1318.396,59.375,1324.646,75,1330.896,68.75,1324.646" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="1390.625" y1="1324.646" y2="1324.646" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="715.625" x="84.375" y="1316.7305">Signal revocation confirmation via frontend of the Device Data Recorder</text><text fill="#111111" font-family="sans-serif" font-size="17.1875" lengthAdjust="spacing" textLength="1160.9375" x="144.5313" y="1374.9748">Data request of the DiGA at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response</text><polygon fill="#5E9BB1" points="1373.4375,1427.6733,1389.0625,1433.9233,1373.4375,1440.1733,1379.6875,1433.9233" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="587.5" x2="1382.8125" y1="1433.9233" y2="1433.9233" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="629.6875" x="598.4375" y="1426.0078">Request re-authorization with tls_client_auth and refresh_token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="587.5" x2="653.125" y1="1479.4434" y2="1479.4434" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="653.125" x2="653.125" y1="1479.4434" y2="1499.7559" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="589.0625" x2="653.125" y1="1499.7559" y2="1499.7559" /><polygon fill="#5E9BB1" points="604.6875,1493.5059,589.0625,1499.7559,604.6875,1506.0059,598.4375,1499.7559" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="598.4375" y="1471.5279">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1407.8125" x2="1473.4375" y1="1545.2759" y2="1545.2759" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1473.4375" x2="1473.4375" y1="1545.2759" y2="1565.5884" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1409.375" x2="1473.4375" y1="1565.5884" y2="1565.5884" /><polygon fill="#5E9BB1" points="1425,1559.3384,1409.375,1565.5884,1425,1571.8384,1418.75,1565.5884" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1418.75" y="1537.3604">Authenticate DiGA (client_id, X.509 cert)</text><polygon fill="#5E9BB1" points="612.5,1604.8584,596.875,1611.1084,612.5,1617.3584,606.25,1611.1084" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="603.125" x2="1390.625" y1="1611.1084" y2="1611.1084" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="375" x="621.875" y="1603.1929">HTTP 400 Bad Request "invalid_grant"</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="595.3125" x2="660.9375" y1="1656.6284" y2="1656.6284" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="660.9375" x2="660.9375" y1="1656.6284" y2="1676.9409" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="596.875" x2="660.9375" y1="1676.9409" y2="1676.9409" /><polygon fill="#5E9BB1" points="612.5,1670.6909,596.875,1676.9409,612.5,1683.1909,606.25,1676.9409" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="181.25" x="606.25" y="1648.7129">Invalidate consent</text><path d="M39.0625,1695.6909 L125,1695.6909 L125,1706.8359 L109.375,1722.4609 L25,1722.4609 L25,1709.7534 A14.0625,14.0625 0 0 1 39.0625,1695.6909 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="87.915" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="587.5" x="25" y="1695.6909" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="48.4375" y="1716.1079">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="98.4375" x="148.4375" y="1714.7697">[optional]</text><polygon fill="#5E9BB1" points="75,1764.856,59.375,1771.106,75,1777.356,68.75,1771.106" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="65.625" x2="578.125" y1="1771.106" y2="1771.106" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="471.875" x="84.375" y="1763.1905">Signal invalidation of consent via DiGA frontend</text></g></svg>
+  </div>
+    <figcaption><em><strong>Figure: </strong>Patient-Initiated Consent Revocation</em></figcaption>
+</figure>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Process Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Revocation at the DiGA</td>
+      <td>The <strong>patient</strong> initiates revocation of consent for a specific Pairing ID in the <strong>DiGA frontend</strong>. The <strong>DiGA backend</strong> invalidates the associated consent and sends a revocation request to the <strong>OAuth2 Authorization Server</strong> of the <strong>Device Data Recorder</strong> at the <code class="language-plaintext highlighter-rouge">/revoke</code> endpoint. Client authentication is performed via <strong>mutual TLS (<code class="language-plaintext highlighter-rouge">tls_client_auth</code>)</strong>, where both parties verify each other’s X.509 certificates (the DiGA validates the Device Data Recorder’s FQDN and certificate; the Authorization Server authenticates the DiGA by its <code class="language-plaintext highlighter-rouge">client_id</code> and certificate). The Authorization Server invalidates all authorization artifacts linked to the Pairing ID — including the authorization grant, refresh token, access tokens, and stored consent — and responds with <code class="language-plaintext highlighter-rouge">HTTP 200 OK</code>. The <strong>DiGA frontend</strong> then displays a confirmation that the pairing has been successfully revoked. <br /><br /> <strong>Failure case:</strong> If the refresh token is already invalid, the Authorization Server may still return <code class="language-plaintext highlighter-rouge">HTTP 200 OK</code> in accordance with <a href="https://www.rfc-editor.org/rfc/rfc7009">RFC 7009</a>.</td>
+    </tr>
+    <tr>
+      <td>Revocation at the Device Data Recorder</td>
+      <td>The <strong>patient</strong> may alternatively initiate revocation in the <strong>frontend of the Device Data Recorder</strong>. The <strong>OAuth2 Authorization Server</strong> invalidates all authorization artifacts (authorization grant, refresh token, access tokens, and stored consent) linked to the Pairing ID and confirms the revocation to the patient. <br /><br /> After revocation, any data request from the <strong>DiGA</strong> to the Device Data Recorder’s <strong>FHIR Resource Server</strong> fails with <code class="language-plaintext highlighter-rouge">HTTP 401 Unauthorized</code> and an <code class="language-plaintext highlighter-rouge">invalid_token</code> error. If the <strong>DiGA</strong> subsequently attempts to refresh its tokens at the <code class="language-plaintext highlighter-rouge">/token</code> endpoint using the revoked refresh token, the Authorization Server authenticates the client via <strong>mTLS</strong>, rejects the request with <code class="language-plaintext highlighter-rouge">HTTP 400 Bad Request</code> and <code class="language-plaintext highlighter-rouge">invalid_grant</code>, and the <strong>DiGA backend</strong> invalidates its local consent record. Optionally, the <strong>DiGA frontend</strong> may inform the patient that consent and pairing have been revoked. <br /><br /> <strong>Failure case:</strong> If the DiGA does not properly handle <code class="language-plaintext highlighter-rouge">401</code> or <code class="language-plaintext highlighter-rouge">400</code> errors, it may continue attempting to use invalid tokens until corrected.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="unpairing-by-the-system">Unpairing by the System</h4>
+
+<p>The unpairing process initiated by the system allows for the automatic termination of the connection between a DiGA and
+a Device Data Recorder if certain conditions are met, such as prescription expiration or changes in authorization
+status. The following scenarios are described in detail below.</p>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  <?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="3642.1875px" preserveAspectRatio="none" style="width:2676px;height:3642px;background:#DFEBF0;" version="1.1" viewBox="0 0 2676 3642" width="2676.5625px" zoomAndPan="magnify"><defs /><g><rect fill="#DFEBF0" height="3642.1875" style="stroke:none;stroke-width:1.5625;" width="2676.5625" x="0" y="0" /><rect fill="#C85670" height="48.3643" id="_title" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:0.0;" width="748.4375" x="991.7969" y="15.625" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="732.8125" x="999.6094" y="49.5438">System-Initiated Revocation of Authorizations</text><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="79.6875" x2="79.6875" y1="192.5781" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="79.6875" x2="79.6875" y1="1719.2383" y2="1782.9956" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="79.6875" x2="79.6875" y1="1782.9956" y2="3631.7993" /><rect fill="#DFEBF0" height="687.7075" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="71.875" y="443.6157" /><rect fill="#DFEBF0" height="12.5" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="71.875" y="1706.7383" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="71.875" x2="71.875" y1="1706.7383" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="87.5" x2="87.5" y1="1706.7383" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="71.875" x2="87.5" y1="1706.7383" y2="1706.7383" /><rect fill="#DFEBF0" height="576.5625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="71.875" y="1782.9956" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="71.875" x2="71.875" y1="1782.9956" y2="2359.5581" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="87.5" x2="87.5" y1="1782.9956" y2="2359.5581" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="71.875" x2="87.5" y1="2359.5581" y2="2359.5581" /><rect fill="#DFEBF0" height="20.3125" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="71.875" y="3603.6743" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="372.6563" x2="372.6563" y1="192.5781" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="372.6563" x2="372.6563" y1="1719.2383" y2="1782.9956" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="372.6563" x2="372.6563" y1="1782.9956" y2="3631.7993" /><rect fill="#DFEBF0" height="437.2925" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="364.8438" y="1223.9258" /><rect fill="#DFEBF0" height="1037.085" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="364.8438" y="2521.0693" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="902.3438" x2="902.3438" y1="192.5781" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="902.3438" x2="902.3438" y1="1719.2383" y2="1782.9956" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="902.3438" x2="902.3438" y1="1782.9956" y2="3631.7993" /><rect fill="#DFEBF0" height="858.8501" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="894.5313" y="272.4731" /><rect fill="#DFEBF0" height="543.5425" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="894.5313" y="1816.0156" /><rect fill="#DFEBF0" height="827.3926" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="894.5313" y="2796.5942" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="1722.6563" x2="1722.6563" y1="192.5781" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="1722.6563" x2="1722.6563" y1="1719.2383" y2="1782.9956" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="1722.6563" x2="1722.6563" y1="1782.9956" y2="3631.7993" /><rect fill="#DFEBF0" height="449.8901" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="1714.8438" y="681.4331" /><rect fill="#DFEBF0" height="240.1001" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="1714.8438" y="1479.1382" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1714.8438" x2="1714.8438" y1="1479.1382" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1730.4688" x2="1730.4688" y1="1479.1382" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1714.8438" x2="1730.4688" y1="1479.1382" y2="1479.1382" /><rect fill="#DFEBF0" height="576.5625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="15.625" x="1714.8438" y="1782.9956" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1714.8438" x2="1714.8438" y1="1782.9956" y2="2359.5581" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1730.4688" x2="1730.4688" y1="1782.9956" y2="2359.5581" /><line style="stroke:#95A4A8;stroke-width:1.5625;" x1="1714.8438" x2="1730.4688" y1="2359.5581" y2="2359.5581" /><rect fill="#DFEBF0" height="781.8726" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="1714.8438" y="2842.1143" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="2236.7188" x2="2236.7188" y1="192.5781" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="2236.7188" x2="2236.7188" y1="1719.2383" y2="1782.9956" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="2236.7188" x2="2236.7188" y1="1782.9956" y2="3631.7993" /><rect fill="#DFEBF0" height="217.5049" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="2228.9063" y="1236.4258" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="2524.2188" x2="2524.2188" y1="192.5781" y2="1719.2383" /><line style="stroke:#95A4A8;stroke-width:1.5625;stroke-dasharray:1.0,4.0;" x1="2524.2188" x2="2524.2188" y1="1719.2383" y2="1782.9956" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="2524.2188" x2="2524.2188" y1="1782.9956" y2="3631.7993" /><rect fill="#DFEBF0" height="999.3774" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="2516.4063" y="2533.5693" /><text fill="#0F2A33" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="75" x="37.5" y="187.4191">Patient</text><ellipse cx="79.6875" cy="86.6455" fill="#A0C5CF" rx="12.5" ry="12.5" style="stroke:#5E9BB1;stroke-width:0.78125;" /><path d="M79.6875,99.1455 L79.6875,141.333 M59.375,111.6455 L100,111.6455 M79.6875,141.333 L59.375,164.7705 M79.6875,141.333 L100,164.7705 " fill="none" style="stroke:#5E9BB1;stroke-width:0.78125;" /><text fill="#0F2A33" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="460.9375" x="137.5" y="187.4191">Manufacturer (DiGA/Device Data Recorder)</text><ellipse cx="372.6563" cy="86.6455" fill="#A0C5CF" rx="12.5" ry="12.5" style="stroke:#5E9BB1;stroke-width:0.78125;" /><path d="M372.6563,99.1455 L372.6563,141.333 M352.3438,111.6455 L392.9688,111.6455 M372.6563,141.333 L352.3438,164.7705 M372.6563,141.333 L392.9688,164.7705 " fill="none" style="stroke:#5E9BB1;stroke-width:0.78125;" /><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="246.875" x="778.9063" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="863.2813" y="132.3563">DiGA</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="778.9063" x2="1025.7813" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="225" x="789.8438" y="174.9191">Frontend&#160;|&#160;Backend</text><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="396.875" x="1524.2188" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="343.75" x="1550.7813" y="132.3563">Device Data Recorder</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="1524.2188" x2="1921.0938" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="375" x="1535.1563" y="174.9191">Frontend&#160;|&#160;OAuth2&#160;AUthZ&#160;Server</text><rect fill="#5E9BB1" height="95.7031" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="259.375" x="2107.0313" y="95.3125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="131.25" x="2171.0938" y="132.3563">DiGA-VZ</text><line style="stroke:#5E9BB1;stroke-width:1.5625;" x1="2107.0313" x2="2366.4063" y1="146.8018" y2="146.8018" /><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="237.5" x="2117.9688" y="174.9191">BfArM&#160;DiGA&#160;Registry</text><rect fill="#5E9BB1" height="105.542" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="284.375" x="2382.0313" y="85.4736" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="120.3125" x="2464.0625" y="122.5174">HIIS-VZ</text><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="31.25" x="2517.9688" y="149.4553">----</text><text fill="#FFFFFF" font-family="monospace" font-size="21.875" lengthAdjust="spacing" textLength="262.5" x="2392.9688" y="174.9191">BfArM&#160;Device&#160;Registry</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2658.5938" x="7.8125" y="237.2131" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2666.4063" y1="237.2131" y2="237.2131" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2666.4063" y1="241.9006" y2="241.9006" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="625" x="1024.6094" y="220.7031" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="595.3125" x="1033.9844" y="245.8076">Prescription duration of DiGA for Pairing-ID expired</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="329.1382" y2="329.1382" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="329.1382" y2="349.4507" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="349.4507" y2="349.4507" /><polygon fill="#5E9BB1" points="927.3438,343.2007,911.7188,349.4507,927.3438,355.7007,921.0938,349.4507" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="370.3125" x="921.0938" y="297.5777">Check for expired or expiring consent</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="600" x="921.0938" y="321.2227">Check for expired or expiring  prescription period (Pairing-ID)</text><path d="M26.5625,368.2007 L112.5,368.2007 L112.5,379.3457 L96.875,394.9707 L12.5,394.9707 L12.5,382.2632 A14.0625,14.0625 0 0 1 26.5625,368.2007 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="733.4351" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="2249.2188" x="12.5" y="368.2007" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="35.9375" y="388.6177">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="410.9375" x="135.9375" y="387.2795">[Prescription or Consent about to expire]</text><line style="stroke:#5E9BB1;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="12.5" x2="2261.7188" y1="473.3032" y2="473.3032" /><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="332.8125" x="20.3125" y="492.382">[Prescription or Consent expired]</text><polygon fill="#5E9BB1" points="104.6875,437.3657,89.0625,443.6157,104.6875,449.8657,98.4375,443.6157" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="95.3125" x2="892.9688" y1="443.6157" y2="443.6157" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="595.3125" x="114.0625" y="435.7002">Preferably inform patient about upcoming expiry in advance</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="537.2681" y2="537.2681" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="537.2681" y2="557.5806" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="557.5806" y2="557.5806" /><polygon fill="#5E9BB1" points="927.3438,551.3306,911.7188,557.5806,927.3438,563.8306,921.0938,557.5806" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="921.0938" y="529.3526">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1703.9063,596.8506,1719.5313,603.1006,1703.9063,609.3506,1710.1563,603.1006" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="1713.2813" y1="603.1006" y2="603.1006" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="775" x="921.0938" y="595.1851">Request revocation at /revoke endpoint with tls_client_auth and refresh_token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="648.6206" y2="648.6206" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="648.6206" y2="668.9331" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="668.9331" y2="668.9331" /><polygon fill="#5E9BB1" points="927.3438,662.6831,911.7188,668.9331,927.3438,675.1831,921.0938,668.9331" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="921.0938" y="640.7051">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="714.4531" y2="714.4531" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="714.4531" y2="734.7656" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="734.7656" y2="734.7656" /><polygon fill="#5E9BB1" points="1747.6563,728.5156,1732.0313,734.7656,1747.6563,741.0156,1741.4063,734.7656" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1741.4063" y="706.5376">Authenticate DiGA (client_id, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="780.2856" y2="780.2856" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="780.2856" y2="800.5981" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="800.5981" y2="800.5981" /><polygon fill="#5E9BB1" points="1747.6563,794.3481,1732.0313,800.5981,1747.6563,806.8481,1741.4063,800.5981" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="1741.4063" y="772.3701">Invalidate authorization grant linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="846.1182" y2="846.1182" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="846.1182" y2="866.4307" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="866.4307" y2="866.4307" /><polygon fill="#5E9BB1" points="1747.6563,860.1807,1732.0313,866.4307,1747.6563,872.6807,1741.4063,866.4307" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="426.5625" x="1741.4063" y="838.2027">Invalidate refresh token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="911.9507" y2="911.9507" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="911.9507" y2="932.2632" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="932.2632" y2="932.2632" /><polygon fill="#5E9BB1" points="1747.6563,926.0132,1732.0313,932.2632,1747.6563,938.5132,1741.4063,932.2632" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="425" x="1741.4063" y="904.0352">Invalidate access token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="977.7832" y2="977.7832" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="977.7832" y2="998.0957" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="998.0957" y2="998.0957" /><polygon fill="#5E9BB1" points="1747.6563,991.8457,1732.0313,998.0957,1747.6563,1004.3457,1741.4063,998.0957" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="1741.4063" y="969.8677">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="927.3438,1037.3657,911.7188,1043.6157,927.3438,1049.8657,921.0938,1043.6157" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="917.9688" x2="1713.2813" y1="1043.6157" y2="1043.6157" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="128.125" x="936.7188" y="1035.7002">HTTP 200 OK</text><polygon fill="#5E9BB1" points="104.6875,1082.8857,89.0625,1089.1357,104.6875,1095.3857,98.4375,1089.1357" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="95.3125" x2="892.9688" y1="1089.1357" y2="1089.1357" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="114.0625" y="1081.2202">Signal revocation confirmation via DiGA frontend</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2658.5938" x="7.8125" y="1155.6458" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2666.4063" y1="1155.6458" y2="1155.6458" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2666.4063" y1="1160.3333" y2="1160.3333" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="679.6875" x="997.2656" y="1139.1357" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="650" x="1006.6406" y="1164.2403">DiGA loses authorization for interface acc. &#167; 374a SGB V</text><polygon fill="#5E9BB1" points="2217.9688,1217.6758,2233.5938,1223.9258,2217.9688,1230.1758,2224.2188,1223.9258" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="2227.3438" y1="1223.9258" y2="1223.9258" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="418.75" x="391.4063" y="1216.0103">Retrieve status of DiGA (DiGA-ID/client_id)</text><path d="M361.7188,1242.6758 L447.6563,1242.6758 L447.6563,1253.8208 L432.0313,1269.4458 L347.6563,1269.4458 L347.6563,1256.7383 A14.0625,14.0625 0 0 1 361.7188,1242.6758 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="181.5674" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="1914.0625" x="347.6563" y="1242.6758" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="371.0938" y="1263.0928">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="135.9375" x="471.0938" y="1261.7546">[DiGA retired]</text><line style="stroke:#5E9BB1;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="347.6563" x2="2261.7188" y1="1347.7783" y2="1347.7783" /><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="221.875" x="355.4688" y="1366.8571">[DiGA not in directory]</text><polygon fill="#5E9BB1" points="397.6563,1311.8408,382.0313,1318.0908,397.6563,1324.3408,391.4063,1318.0908" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="388.2813" x2="2227.3438" y1="1318.0908" y2="1318.0908" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="153.125" x="407.0313" y="1310.1753">Status "retired"</text><polygon fill="#5E9BB1" points="397.6563,1405.4932,382.0313,1411.7432,397.6563,1417.9932,391.4063,1411.7432" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="388.2813" x2="2227.3438" y1="1411.7432" y2="1411.7432" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="221.875" x="407.0313" y="1403.8277">HTTP 404 NOT FOUND</text><polygon fill="#5E9BB1" points="1696.0938,1472.8882,1711.7188,1479.1382,1696.0938,1485.3882,1702.3438,1479.1382" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="1705.4688" y1="1479.1382" y2="1479.1382" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="391.4063" y="1471.2227">Invalidate authorization grant linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1696.0938,1518.4082,1711.7188,1524.6582,1696.0938,1530.9082,1702.3438,1524.6582" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="1705.4688" y1="1524.6582" y2="1524.6582" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="426.5625" x="391.4063" y="1516.7427">Invalidate refresh token linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1696.0938,1563.9282,1711.7188,1570.1782,1696.0938,1576.4282,1702.3438,1570.1782" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="1705.4688" y1="1570.1782" y2="1570.1782" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="425" x="391.4063" y="1562.2627">Invalidate access token linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1696.0938,1609.4482,1711.7188,1615.6982,1696.0938,1621.9482,1702.3438,1615.6982" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="1705.4688" y1="1615.6982" y2="1615.6982" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="391.4063" y="1607.7827">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1696.0938,1654.9683,1711.7188,1661.2183,1696.0938,1667.4683,1702.3438,1661.2183" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="1705.4688" y1="1661.2183" y2="1661.2183" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="160.9375" x="391.4063" y="1653.3028">Deregister DiGA</text><polygon fill="#5E9BB1" points="104.6875,1700.4883,89.0625,1706.7383,104.6875,1712.9883,98.4375,1706.7383" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="95.3125" x2="1713.2813" y1="1706.7383" y2="1706.7383" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="703.125" x="114.0625" y="1698.8228">Signal invalidation of consent via frontend of the Device Data Recorder</text><text fill="#111111" font-family="sans-serif" font-size="17.1875" lengthAdjust="spacing" textLength="1101.5625" x="751.1719" y="1757.0671">DiGA data request at Device Data Recorder's FHIR Resource Server with HTTP 401 UNAUTHORIZED "invalid_token" response</text><polygon fill="#5E9BB1" points="1696.0938,1809.7656,1711.7188,1816.0156,1696.0938,1822.2656,1702.3438,1816.0156" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="1705.4688" y1="1816.0156" y2="1816.0156" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="629.6875" x="921.0938" y="1808.1001">Request re-authorization with tls_client_auth and refresh_token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="1861.5356" y2="1861.5356" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="1861.5356" y2="1881.8481" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="1881.8481" y2="1881.8481" /><polygon fill="#5E9BB1" points="927.3438,1875.5981,911.7188,1881.8481,927.3438,1888.0981,921.0938,1881.8481" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="921.0938" y="1853.6201">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="1927.3682" y2="1927.3682" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="1927.3682" y2="1947.6807" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="1947.6807" y2="1947.6807" /><polygon fill="#5E9BB1" points="1747.6563,1941.4307,1732.0313,1947.6807,1747.6563,1953.9307,1741.4063,1947.6807" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1741.4063" y="1919.4527">Authenticate DiGA (client_id, X.509 cert)</text><path d="M891.4063,1966.4307 L977.3438,1966.4307 L977.3438,1977.5757 L961.7188,1993.2007 L877.3438,1993.2007 L877.3438,1980.4932 A14.0625,14.0625 0 0 1 891.4063,1966.4307 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="181.5674" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="870.3125" x="877.3438" y="1966.4307" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="900.7813" y="1986.8477">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="273.4375" x="1000.7813" y="1985.5095">[DiGA not yet deregistered]</text><line style="stroke:#5E9BB1;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="877.3438" x2="1747.6563" y1="2071.5332" y2="2071.5332" /><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="196.875" x="885.1563" y="2090.612">[DiGA deregistered]</text><polygon fill="#5E9BB1" points="927.3438,2035.5957,911.7188,2041.8457,927.3438,2048.0957,921.0938,2041.8457" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="917.9688" x2="1713.2813" y1="2041.8457" y2="2041.8457" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="375" x="936.7188" y="2033.9302">HTTP 400 Bad Request "invalid_grant"</text><polygon fill="#5E9BB1" points="927.3438,2129.248,911.7188,2135.498,927.3438,2141.748,921.0938,2135.498" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="917.9688" x2="1713.2813" y1="2135.498" y2="2135.498" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="489.0625" x="936.7188" y="2127.5826">HTTP 401 UNAUTHORIZED "authentication failed"</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="2202.8931" y2="2202.8931" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="2202.8931" y2="2223.2056" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="2223.2056" y2="2223.2056" /><polygon fill="#5E9BB1" points="927.3438,2216.9556,911.7188,2223.2056,927.3438,2229.4556,921.0938,2223.2056" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="181.25" x="921.0938" y="2194.9776">Invalidate consent</text><path d="M68.75,2241.9556 L154.6875,2241.9556 L154.6875,2253.1006 L139.0625,2268.7256 L54.6875,2268.7256 L54.6875,2256.0181 A14.0625,14.0625 0 0 1 68.75,2241.9556 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="87.915" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="872.6563" x="54.6875" y="2241.9556" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="78.125" y="2262.3726">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="98.4375" x="178.125" y="2261.0344">[optional]</text><polygon fill="#5E9BB1" points="104.6875,2311.1206,89.0625,2317.3706,104.6875,2323.6206,98.4375,2317.3706" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="95.3125" x2="892.9688" y1="2317.3706" y2="2317.3706" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="471.875" x="114.0625" y="2309.4551">Signal invalidation of consent via DiGA frontend</text><rect fill="#DFEBF0" height="4.6875" rx="14.0625" ry="14.0625" style="stroke:#DFEBF0;stroke-width:1.5625;" width="2658.5938" x="7.8125" y="2383.8806" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2666.4063" y1="2383.8806" y2="2383.8806" /><line style="stroke:#C85670;stroke-width:1.5625;" x1="7.8125" x2="2666.4063" y1="2388.5681" y2="2388.5681" /><rect fill="#DFEBF0" height="36.145" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:3.125;" width="801.5625" x="936.3281" y="2367.3706" /><text fill="#C85670" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="771.875" x="945.7031" y="2392.4751">Device Data Recorder no longer offers interface acc. &#167; 374a SGB V</text><rect fill="#A0C5CF" height="61.0962" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="1777.3438" x="140.625" y="2419.1406" /><path d="M154.6875,2419.1406 L243.75,2419.1406 L243.75,2430.0781 L228.125,2445.7031 L140.625,2445.7031 L140.625,2433.2031 A14.0625,14.0625 0 0 1 154.6875,2419.1406 " fill="#EEEEEE" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#0F2A33" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="32.8125" x="160.9375" y="2441.1201">ref</text><text fill="#0F2A33" font-family="sans-serif" font-size="18.75" lengthAdjust="spacing" textLength="406.25" x="826.1719" y="2469.3573">Device Data Recorder informs the patient</text><polygon fill="#5E9BB1" points="2505.4688,2514.8193,2521.0938,2521.0693,2505.4688,2527.3193,2511.7188,2521.0693" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="2514.8438" y1="2521.0693" y2="2521.0693" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="664.0625" x="391.4063" y="2513.1538">Retrieve status of Device Data Recorder (Device Data Recorder ID)</text><path d="M361.7188,2539.8193 L447.6563,2539.8193 L447.6563,2550.9644 L432.0313,2566.5894 L347.6563,2566.5894 L347.6563,2553.8818 A14.0625,14.0625 0 0 1 361.7188,2539.8193 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="181.5674" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="2201.5625" x="347.6563" y="2539.8193" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="371.0938" y="2560.2364">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="304.6875" x="471.0938" y="2558.8982">[Device Data Recorder retired]</text><line style="stroke:#5E9BB1;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="347.6563" x2="2549.2188" y1="2644.9219" y2="2644.9219" /><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="390.625" x="355.4688" y="2664.0007">[Device Data Recorder not in directory]</text><polygon fill="#5E9BB1" points="397.6563,2608.9844,382.0313,2615.2344,397.6563,2621.4844,391.4063,2615.2344" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="388.2813" x2="2514.8438" y1="2615.2344" y2="2615.2344" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="153.125" x="407.0313" y="2607.3189">Status "retired"</text><polygon fill="#5E9BB1" points="397.6563,2702.6367,382.0313,2708.8867,397.6563,2715.1367,391.4063,2708.8867" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="388.2813" x2="2514.8438" y1="2708.8867" y2="2708.8867" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="221.875" x="407.0313" y="2700.9712">HTTP 404 NOT FOUND</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="902.3438" x2="975.7813" y1="2776.2817" y2="2776.2817" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="2776.2817" y2="2796.5942" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="2796.5942" y2="2796.5942" /><polygon fill="#5E9BB1" points="927.3438,2790.3442,911.7188,2796.5942,927.3438,2802.8442,921.0938,2796.5942" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="921.0938" y="2768.3662">Invalidate consent linked to Pairing-ID</text><polygon fill="#5E9BB1" points="1696.0938,2835.8643,1711.7188,2842.1143,1696.0938,2848.3643,1702.3438,2842.1143" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="1705.4688" y1="2842.1143" y2="2842.1143" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="775" x="921.0938" y="2834.1988">Request revocation at /revoke endpoint with tls_client_auth and refresh_token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="2887.6343" y2="2887.6343" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="2887.6343" y2="2907.9468" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="2907.9468" y2="2907.9468" /><polygon fill="#5E9BB1" points="927.3438,2901.6968,911.7188,2907.9468,927.3438,2914.1968,921.0938,2907.9468" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="545.3125" x="921.0938" y="2879.7188">Authenticate Device Data Recorder (FQDN, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="2953.4668" y2="2953.4668" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="2953.4668" y2="2973.7793" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="2973.7793" y2="2973.7793" /><polygon fill="#5E9BB1" points="1747.6563,2967.5293,1732.0313,2973.7793,1747.6563,2980.0293,1741.4063,2973.7793" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="401.5625" x="1741.4063" y="2945.5513">Authenticate DiGA (client_id, X.509 cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="3019.2993" y2="3019.2993" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="3019.2993" y2="3039.6118" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="3039.6118" y2="3039.6118" /><polygon fill="#5E9BB1" points="1747.6563,3033.3618,1732.0313,3039.6118,1747.6563,3045.8618,1741.4063,3039.6118" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="1741.4063" y="3011.3838">Invalidate authorization grant linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="3085.1318" y2="3085.1318" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="3085.1318" y2="3105.4443" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="3105.4443" y2="3105.4443" /><polygon fill="#5E9BB1" points="1747.6563,3099.1943,1732.0313,3105.4443,1747.6563,3111.6943,1741.4063,3105.4443" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="426.5625" x="1741.4063" y="3077.2163">Invalidate refresh token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="3150.9644" y2="3150.9644" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="3150.9644" y2="3171.2769" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="3171.2769" y2="3171.2769" /><polygon fill="#5E9BB1" points="1747.6563,3165.0269,1732.0313,3171.2769,1747.6563,3177.5269,1741.4063,3171.2769" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="425" x="1741.4063" y="3143.0489">Invalidate access token linked to Pairing-ID</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1730.4688" x2="1796.0938" y1="3216.7969" y2="3216.7969" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1796.0938" x2="1796.0938" y1="3216.7969" y2="3237.1094" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1732.0313" x2="1796.0938" y1="3237.1094" y2="3237.1094" /><polygon fill="#5E9BB1" points="1747.6563,3230.8594,1732.0313,3237.1094,1747.6563,3243.3594,1741.4063,3237.1094" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="373.4375" x="1741.4063" y="3208.8814">Invalidate consent linked to Pairing-ID</text><path d="M361.7188,3255.8594 L447.6563,3255.8594 L447.6563,3267.0044 L432.0313,3282.6294 L347.6563,3282.6294 L347.6563,3269.9219 A14.0625,14.0625 0 0 1 361.7188,3255.8594 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="247.3999" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="1400" x="347.6563" y="3255.8594" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="371.0938" y="3276.2764">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="582.8125" x="471.0938" y="3274.9382">[Device Data Recorder's Authentication Server still online]</text><line style="stroke:#5E9BB1;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="347.6563" x2="1747.6563" y1="3360.9619" y2="3360.9619" /><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="196.875" x="355.4688" y="3380.0407">[DiGA deregistered]</text><polygon fill="#5E9BB1" points="927.3438,3325.0244,911.7188,3331.2744,927.3438,3337.5244,921.0938,3331.2744" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="917.9688" x2="1713.2813" y1="3331.2744" y2="3331.2744" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="128.125" x="936.7188" y="3323.3589">HTTP 200 OK</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="910.1563" x2="975.7813" y1="3424.9268" y2="3424.9268" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="975.7813" x2="975.7813" y1="3424.9268" y2="3445.2393" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="911.7188" x2="975.7813" y1="3445.2393" y2="3445.2393" /><polygon fill="#5E9BB1" points="927.3438,3438.9893,911.7188,3445.2393,927.3438,3451.4893,921.0938,3445.2393" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="81.25" x="921.0938" y="3417.0113">Timeout</text><polygon fill="#5E9BB1" points="875.7813,3484.5093,891.4063,3490.7593,875.7813,3497.0093,882.0313,3490.7593" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="885.1563" y1="3490.7593" y2="3490.7593" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="181.25" x="391.4063" y="3482.8438">Invalidate consent</text><polygon fill="#5E9BB1" points="875.7813,3551.9043,891.4063,3558.1543,875.7813,3564.4043,882.0313,3558.1543" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="380.4688" x2="885.1563" y1="3558.1543" y2="3558.1543" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="484.375" x="391.4063" y="3550.2388">Remove configurations for Device Data Recorder</text><polygon fill="#5E9BB1" points="104.6875,3597.4243,89.0625,3603.6743,104.6875,3609.9243,98.4375,3603.6743" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="95.3125" x2="892.9688" y1="3603.6743" y2="3603.6743" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="471.875" x="114.0625" y="3595.7588">Signal invalidation of consent via DiGA frontend</text></g></svg>
+  </div>
+    <figcaption><em><strong>Figure: </strong>System-Initiated Revocation of Authorizations</em></figcaption>
+</figure>
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Process Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Prescription duration for Pairing ID expired</td>
+      <td>The <strong>DiGA backend</strong> checks on a daily basis whether the consent or the prescription period associated with a Pairing ID is still valid by comparing to the current system time. If the consent or the prescription is about to expire, the DiGA should preferably inform the patient in advance that the pairing will be revoked upon expiration. Once expired, the <strong>DiGA backend</strong> invalidates the local consent and sends a revocation request to the <strong>OAuth2 Authorization Server</strong> of the <strong>Device Data Recorder</strong> at the <code class="language-plaintext highlighter-rouge">/revoke</code> endpoint. Authentication is performed via <strong>mutual TLS (<code class="language-plaintext highlighter-rouge">tls_client_auth</code>)</strong>, where both systems validate each other’s X.509 certificates (the DiGA verifies the Device Data Recorder’s FQDN and certificate; the Authorization Server authenticates the DiGA by its <code class="language-plaintext highlighter-rouge">client_id</code> and certificate). The Authorization Server invalidates all authorization artifacts linked to the Pairing ID—authorization grant, refresh token, access tokens, and stored consent—and responds with <code class="language-plaintext highlighter-rouge">HTTP 200 OK</code>. The <strong>DiGA frontend</strong> then confirms to the patient that the pairing has been successfully revoked. <br /><br /> <strong>Failure case:</strong> If the DiGA fails to trigger revocation, tokens may remain apparently valid until they expire naturally.</td>
+    </tr>
+    <tr>
+      <td>DiGA loses authorization for interface acc. § 374a SGB V</td>
+      <td>The <strong>manufacturer</strong> of the <strong>Device Data Recorder</strong> queries the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA-VZ</em></a> (BfArM DiGA Registry) to verify the DiGA’s status (<code class="language-plaintext highlighter-rouge">client_id</code>). If the registry indicates that the DiGA is <strong>retired</strong> or not found (HTTP <code class="language-plaintext highlighter-rouge">404 Not Found</code>), the <strong>Device Data Recorder’s manufacturer</strong> instructs its <strong>OAuth2 Authorization Server</strong> to revoke all authorizations linked to the affected Pairing IDs. The server invalidates the authorization grant, refresh token, access tokens, stored consent, and deregisters the DiGA. The <strong>Device Data Recorder frontend</strong> then notifies the patient about the revoked consent. <br /><br /> Subsequent DiGA data requests to the Device Data Recorder’s <strong>FHIR Resource Server</strong> fail with <code class="language-plaintext highlighter-rouge">HTTP 401 Unauthorized</code> and an <code class="language-plaintext highlighter-rouge">invalid_token</code> error. If the DiGA attempts to refresh tokens at the <code class="language-plaintext highlighter-rouge">/token</code> endpoint, the Authorization Server—after mutual TLS authentication—returns either <code class="language-plaintext highlighter-rouge">HTTP 400 Bad Request</code> (<code class="language-plaintext highlighter-rouge">invalid_grant</code>) or <code class="language-plaintext highlighter-rouge">HTTP 401 Unauthorized</code> (if the DiGA has already been deregistered). The <strong>DiGA backend</strong> invalidates the local consent record and MAY inform the patient. <br /><br /> <strong>Failure case:</strong> If the DiGA ignores registry updates or continues to use stale credentials, it may repeatedly attempt to use invalid tokens until corrected.</td>
+    </tr>
+    <tr>
+      <td>Device Data Recorder no longer offers interface acc. § 374a SGB V</td>
+      <td>The <strong>manufacturer</strong> of the <strong>DiGA</strong> queries the <a href="registries-and-zts.html#hiis-vz"><em>HIIS-VZ</em></a> (BfArM Device Registry) to verify the Device Data Recorder’s status. If the registry indicates that the Device Data Recorder is <strong>retired</strong> or not found (HTTP <code class="language-plaintext highlighter-rouge">404 Not Found</code>), the <strong>DiGA backend</strong> invalidates the consent for the affected Pairing IDs and initiates a revocation request to the Device Data Recorder’s <strong>OAuth2 Authorization Server</strong> at the <code class="language-plaintext highlighter-rouge">/revoke</code> endpoint. Mutual TLS authentication is used, and both endpoints validate their X.509 certificates. The Authorization Server invalidates the authorization grant, refresh token, access tokens, and stored consent. If the Device Data Recorder’s Authorization Server is still reachable, it responds with <code class="language-plaintext highlighter-rouge">HTTP 200 OK</code>; if it is offline or the DiGA has been deregistered, a timeout occurs, and the <strong>manufacturer</strong> instructs the <strong>DiGA</strong> to locally invalidate consent. The <strong>manufacturer</strong> also ensures that configurations specific to the retired Device Data Recorder are removed. Finally, the <strong>DiGA frontend</strong> notifies the patient that the pairing and consent have been revoked. <br /><br /> <strong>Failure case:</strong> If the DiGA backend fails to remove old configurations, the patient may continue to see outdated device options.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="information-model.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="smart-scopes.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

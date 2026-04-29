@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="hddt-lung-function-relative-values"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
+  </meta>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><p class="res-header-id"><b>Generated Narrative: ValueSet hddt-lung-function-relative-values</b></p><a name="hddt-lung-function-relative-values"> </a><a name="hchddt-lung-function-relative-values"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p><p style="margin-bottom: 0px">Profile: <a href="http://hl7.org/fhir/R4/shareablevalueset.html">Shareable ValueSet</a></p></div><p>This value set includes codes based on the following rules:</p><ul><li>Include these codes as defined in <a href="http://loinc.org"><code>http://loinc.org</code></a><span title="Version is explicitly stated to be 2.82"> version &#x1F4CD;2.82</span><table class="none"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href="https://loinc.org/20152-5/">20152-5</a></td><td>FEV1 measured/predicted</td></tr></table></li><li>Include these codes as defined in <a href="CodeSystem-hddt-lung-function-temporary-codes.html"><code>https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes</code></a><span title="Version is explicitly stated to be 1.0.1"> version &#x1F4CD;1.0.1</span><table class="none"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href="CodeSystem-hddt-lung-function-temporary-codes.html#hddt-lung-function-temporary-codes-PEF-measured.47predicted">PEF-measured/predicted</a></td><td>PEF measured/predicted</td></tr></table></li></ul></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+    <valuePeriod>
+      <start value="2026-04-29"/>
+    </valuePeriod>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/artifact-author">
+    <valueContactDetail>
+      <name value="gematik GmbH"/>
+    </valueContactDetail>
+  </extension>
+  <url value="https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values"/>
+  <version value="1.0.1"/>
+  <name value="HddtLungFunctionRelativeValues"/>
+  <title value="Lung Function Relative Values from LOINC"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2026-04-29"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de"/>
+    </telecom>
+  </contact>
+  <description value="Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen &#xA;Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.&#xA;&#xA;Dieses ValueSet definiert die LOINC-Codes, die für relative Lungenfunktionswerte verwendet werden. Der relative Wert wird berechnet, indem die &#xA;individuelle Messung durch den Referenzwert geteilt wird, was zu einem Prozentwert (%) führt. Enthaltene Codes sind für&#xA;- FEV1 measured/predicted&#xA;- PEF measured/predicted&#xA;&#xA;--&#xA;&#xA;This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets &#xA;for sharing data between medical aids and digital health applications (DiGA). &#xA;&#xA;This ValueSet defines the LOINC codes, used for relative lung function values. The relative value is calculated by dividing the &#xA;individual measurement by the reference value, resulting in a percentage value (%). Included codes are for &#xA;- FEV1 measured/predicted&#xA;- PEF measured/predicted"/>
+  <copyright value="gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."/>
+  <compose>
+    <include>
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright">
+        <valueString value="This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."/>
+      </extension>
+      <system value="http://loinc.org"/>
+      <version value="2.82"/>
+      <concept>
+        <code value="20152-5"/>
+        <display value="FEV1 measured/predicted"/>
+      </concept>
+    </include>
+    <include>
+      <system value="https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"/>
+      <version value="1.0.1"/>
+      <concept>
+        <code value="PEF-measured/predicted"/>
+        <display value="PEF measured/predicted"/>
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

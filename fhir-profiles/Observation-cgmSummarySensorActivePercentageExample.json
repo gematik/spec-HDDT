@@ -1,0 +1,41 @@
+{
+  "resourceType": "Observation",
+  "id": "cgmSummarySensorActivePercentageExample",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage"
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "104637-4"
+      }
+    ]
+  },
+  "valueQuantity": {
+    "unit": "%",
+    "system": "http://unitsofmeasure.org",
+    "code": "%",
+    "value": 95
+  },
+  "status": "final",
+  "subject": {
+    "reference": "Patient/patientExample"
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "laboratory",
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category"
+        }
+      ]
+    }
+  ],
+  "effectivePeriod": {
+    "start": "2025-09-01",
+    "end": "2025-09-30"
+  }
+}

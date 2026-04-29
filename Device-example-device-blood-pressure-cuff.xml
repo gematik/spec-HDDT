@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Device xmlns="http://hl7.org/fhir">
+  <id value="example-device-blood-pressure-cuff"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"/>
+  </meta>
+  <definition>
+    <reference value="DeviceDefinition/device-definition-blood-pressure-cuff-001"/>
+  </definition>
+  <status value="active"/>
+  <manufacturer value="HealthTech GmbH"/>
+  <expirationDate value="2027-12-15"/>
+  <serialNumber value="BPC0011223345"/>
+  <deviceName>
+    <name value="BP Cuff Pro"/>
+    <type value="user-friendly-name"/>
+  </deviceName>
+  <modelNumber value="Digital BT 2"/>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="70665002"/>
+      <display value="Blood pressure cuff, device (physical object)"/>
+    </coding>
+  </type>
+</Device>

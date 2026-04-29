@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="example-blood-glucose-measurement-2"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"/>
+  </meta>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="2339-0"/>
+      <display value="Glucose [Mass/volume] in Blood"/>
+    </coding>
+  </code>
+  <effectiveDateTime value="2025-09-26T16:30:00+02:00"/>
+  <valueQuantity>
+    <value value="129"/>
+    <unit value="mg/dl"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="mg/dL"/>
+  </valueQuantity>
+  <device>
+    <reference value="DeviceMetric/example-glucometer-metric"/>
+  </device>
+</Observation>

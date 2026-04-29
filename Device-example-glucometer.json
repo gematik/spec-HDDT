@@ -1,0 +1,26 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-glucometer",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"]
+  },
+  "definition" : {
+    "reference" : "DeviceDefinition/example-glucometer-def"
+  },
+  "status" : "active",
+  "manufacturer" : "Glukko Inc.",
+  "serialNumber" : "SN123456",
+  "deviceName" : [{
+    "name" : "GlukkoCheck plus mg/dL",
+    "type" : "user-friendly-name"
+  }],
+  "modelNumber" : "CGPA987654",
+  "type" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "version" : "http://snomed.info/sct/11000274103/version/20251115",
+      "code" : "337414009",
+      "display" : "Blood glucose meter (physical object)"
+    }]
+  }
+}

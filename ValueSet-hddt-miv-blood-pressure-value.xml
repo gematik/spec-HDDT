@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="hddt-miv-blood-pressure-value"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
+  </meta>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><p class="res-header-id"><b>Generated Narrative: ValueSet hddt-miv-blood-pressure-value</b></p><a name="hddt-miv-blood-pressure-value"> </a><a name="hchddt-miv-blood-pressure-value"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p><p style="margin-bottom: 0px">Profile: <a href="http://hl7.org/fhir/R4/shareablevalueset.html">Shareable ValueSet</a></p></div><ul><li>Include these codes as defined in <a href="http://loinc.org"><code>http://loinc.org</code></a><span title="Version is explicitly stated to be 2.82"> version &#x1F4CD;2.82</span><table class="none"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href="https://loinc.org/85354-9/">85354-9</a></td><td>Blood pressure panel with all children optional</td></tr></table></li></ul></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+    <valuePeriod>
+      <start value="2026-04-29"/>
+    </valuePeriod>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/artifact-author">
+    <valueContactDetail>
+      <name value="gematik GmbH"/>
+    </valueContactDetail>
+  </extension>
+  <url value="https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value"/>
+  <version value="1.0.1"/>
+  <name value="HddtMivBloodPressureValue"/>
+  <title value="Blood Pressure Value from LOINC"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2026-04-29"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de"/>
+    </telecom>
+  </contact>
+  <description value="Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen &#xA;Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).&#xA;MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.&#xA;&#xA;Das ValueSet _HddtMivBloodPressureValue_ definiert den Mandatory Interoperable Value (MIV) \&quot;Blood Pressure Monitoring\&quot;. Die Definition besteht aus&#xA;- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert&#xA;- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren&#xA;&#xA;Der MIV _Blood Pressure Monitoring_ umfasst Werte aus Blutdruckmessungen, die mit oszillometrischen oder auskultatorischen, automatisierten &#xA;Sphygmomanometern durchgeführt werden. Die Messungen erfolgen gemäß Versorgungsplan (z. B. täglich oder einmal pro Woche).&#xA;DiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern genaue Blutdruckwerte, die für therapeutische Entscheidungen geeignet sind.&#xA;&#xA;Das ValueSet für den MIV _Blood Pressure Monitoring_ enthält den LOINC-Code für das vollständige Blutdruck-Panel, sollte aber auch die Möglichkeit bieten, in zukünftigen Updates zusätzliche Codes aufzunehmen.&#xA;&#xA;--&#xA;&#xA;This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets &#xA;for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable &#xA;Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.&#xA;&#xA;The ValueSet _HddtMivBloodPressureValue_ defines the Mandatory Interoperable Value (MIV) \&quot;Blood Pressure Monitoring\&quot;. The definition is made up from&#xA;- this description which provides the semantics and defining characteristics of the MIV&#xA;- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ &#xA;&#xA;The MIV _Blood Pressure Monitoring_ covers values from blood pressure measurements performed using oszillometric or auscultatory, automated &#xA;sphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).&#xA;DiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. &#xA;&#xA;The ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for complete blood pressure panel, but should still have the option to include additional code in future updates."/>
+  <copyright value="gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."/>
+  <compose>
+    <include>
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright">
+        <valueString value="This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."/>
+      </extension>
+      <system value="http://loinc.org"/>
+      <version value="2.82"/>
+      <concept>
+        <code value="85354-9"/>
+        <display value="Blood pressure panel with all children optional"/>
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

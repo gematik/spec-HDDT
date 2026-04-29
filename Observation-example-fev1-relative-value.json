@@ -1,0 +1,31 @@
+{
+  "resourceType" : "Observation",
+  "id" : "example-fev1-relative-value",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete"]
+  },
+  "status" : "final",
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "20152-5",
+      "display" : "FEV1 measured/predicted"
+    }]
+  },
+  "effectiveDateTime" : "2025-12-28T08:00:00Z",
+  "valueQuantity" : {
+    "value" : 75.5,
+    "unit" : "%",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "%"
+  },
+  "device" : {
+    "reference" : "Device/example-device-peak-flow-meter"
+  },
+  "derivedFrom" : [{
+    "reference" : "Observation/example-fev1-single-measurement"
+  },
+  {
+    "reference" : "Observation/example-fev1-reference-value"
+  }]
+}

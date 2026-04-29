@@ -1,0 +1,84 @@
+{
+  "resourceType" : "DeviceDefinition",
+  "id" : "device-definition-cgm-001",
+  "extension" : [{
+    "extension" : [{
+      "url" : "mivSet",
+      "valueReference" : {
+        "reference" : "DeviceDefinition/example-universal-backend"
+      }
+    }],
+    "url" : "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+  },
+  {
+    "extension" : [{
+      "url" : "deviceIdentifier",
+      "valueString" : "9912345CGM001A"
+    }],
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"
+  }],
+  "identifier" : [{
+    "system" : "http://fhir.de/sid/gkv/hmnr",
+    "value" : "30.29.05.2004"
+  }],
+  "manufacturerReference" : {
+    "reference" : "Organization/example-cgm-manufacturer"
+  },
+  "deviceName" : [{
+    "name" : "CGM Model mg/dL",
+    "type" : "user-friendly-name"
+  }],
+  "modelNumber" : "CGM Model mg/dL",
+  "type" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "version" : "http://snomed.info/sct/11000274103/version/20251115",
+      "code" : "463729000",
+      "display" : "Point-of-care blood glucose continuous monitoring system (physical object)"
+    }]
+  },
+  "capability" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "105272-9",
+        "display" : "Glucose [Moles/volume] in Interstitial fluid"
+      }]
+    }
+  }],
+  "property" : [{
+    "type" : {
+      "text" : "Supported unit"
+    },
+    "valueCode" : [{
+      "coding" : [{
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mg/dL",
+        "display" : "mg/dL"
+      }]
+    }]
+  },
+  {
+    "type" : {
+      "text" : "Reference range low"
+    },
+    "valueQuantity" : [{
+      "value" : 70,
+      "unit" : "mg/dl",
+      "system" : "http://unitsofmeasure.org"
+    }]
+  },
+  {
+    "type" : {
+      "text" : "Reference range high"
+    },
+    "valueQuantity" : [{
+      "value" : 180,
+      "unit" : "mg/dl",
+      "system" : "http://unitsofmeasure.org"
+    }]
+  }],
+  "parentDevice" : {
+    "reference" : "DeviceDefinition/example-universal-backend"
+  }
+}

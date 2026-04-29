@@ -1,0 +1,117 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-blood-pressure-cuff-001> a fhir:DeviceDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "device-definition-blood-pressure-cuff-001"] ; # 
+  fhir:extension ( [
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "mivSet"^^xsd:anyURI ;
+         fhir:l fhir:mivSet
+       ] ;
+       fhir:value [
+         a fhir:Reference ;
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+         fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+       ]
+     ] ) ;
+     fhir:url [
+       fhir:v "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"^^xsd:anyURI ;
+       fhir:l <https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet>
+     ]
+  ] [
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "deviceIdentifier"^^xsd:anyURI ;
+         fhir:l fhir:deviceIdentifier
+       ] ;
+       fhir:value [
+         a fhir:String ;
+         fhir:v "9912345BPCUFF001"
+       ]
+     ] ) ;
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier>
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "http://fhir.de/sid/gkv/hmnr"^^xsd:anyURI ;
+       fhir:l <http://fhir.de/sid/gkv/hmnr>
+     ] ;
+     fhir:value [ fhir:v "21.28.01.2020" ]
+  ] ) ; # 
+  fhir:manufacturer [
+     a fhir:String ;
+     fhir:v "HealthTech GmbH"
+  ] ; # 
+  fhir:deviceName ( [
+     fhir:name [ fhir:v "BP Cuff Pro" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "Digital BT 2"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:70665002 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "70665002" ] ;
+       fhir:display [ fhir:v "Blood pressure cuff" ]
+     ] )
+  ] ; # 
+  fhir:capability ( [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:8480-6 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "8480-6" ] ;
+         fhir:display [ fhir:v "Systolic blood pressure" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:8462-4 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "8462-4" ] ;
+         fhir:display [ fhir:v "Diastolic blood pressure" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:8478-0 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "8478-0" ] ;
+         fhir:display [ fhir:v "Mean blood pressure" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:parentDevice [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+     fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

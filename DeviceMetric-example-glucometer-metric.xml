@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DeviceMetric xmlns="http://hl7.org/fhir">
+  <id value="example-glucometer-metric"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"/>
+  </meta>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="700585005"/>
+      <display value="Invasive interstitial-fluid glucose monitoring system (physical object)"/>
+    </coding>
+  </type>
+  <unit>
+    <coding>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mg/dL"/>
+      <display value="mg/dL"/>
+    </coding>
+  </unit>
+  <source>
+    <reference value="Device/example-glucometer"/>
+  </source>
+  <operationalStatus value="on"/>
+  <category value="measurement"/>
+  <calibration>
+    <type value="gain"/>
+    <state value="calibrated"/>
+    <time value="2025-09-01T09:08:04+02:00"/>
+  </calibration>
+</DeviceMetric>

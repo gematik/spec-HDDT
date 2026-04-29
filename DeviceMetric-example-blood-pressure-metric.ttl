@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/DeviceMetric/example-blood-pressure-metric> a fhir:DeviceMetric ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-blood-pressure-metric"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status>
+     ] )
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:70665002 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "70665002" ] ;
+       fhir:display [ fhir:v "Blood pressure cuff" ]
+     ] )
+  ] ; # 
+  fhir:unit [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "mm[Hg]" ] ;
+       fhir:display [ fhir:v "mm[Hg]" ]
+     ] )
+  ] ; # 
+  fhir:source [
+     fhir:l <https://gematik.de/fhir/hddt/Device/example-device-blood-pressure-cuff> ;
+     fhir:reference [ fhir:v "Device/example-device-blood-pressure-cuff" ]
+  ] ; # 
+  fhir:operationalStatus [ fhir:v "on"] ; # 
+  fhir:category [ fhir:v "measurement"] ; # 
+  fhir:calibration ( [
+     fhir:type [ fhir:v "unspecified" ] ;
+     fhir:state [ fhir:v "calibrated" ] ;
+     fhir:time [ fhir:v "2025-09-01T09:08:04+02:00"^^xsd:dateTime ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

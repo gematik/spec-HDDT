@@ -1,0 +1,109 @@
+{
+  "package": "de.gematik.hddt",
+  "version": "1.0.1",
+  "fhirVersion": "4.0.1",
+  "extensions": [],
+  "profiles": {
+    "Observation": [
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement",
+        "title": "Observation – Continuous Glucose Measurement"
+      },
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing",
+        "title": "Observation – Lung Function Testing"
+      },
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete",
+        "title": "Observation – Complete Lung Function Testing"
+      },
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value",
+        "title": "Observation – Lung Function Reference Value"
+      }
+    ],
+    "Bundle": [
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary",
+        "title": "Bundle – HDDT CGM Summary Report"
+      }
+    ],
+    "Device": [
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device",
+        "title": "Device – Personal Health Device"
+      }
+    ],
+    "DeviceMetric": [
+      {
+        "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status",
+        "title": "DeviceMetric – Sensor Type and Calibration Status"
+      }
+    ]
+  },
+  "usage": {
+    "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier": [
+      "DeviceDefinition"
+    ],
+    "http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright": [
+      "ValueSet.compose.include"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/artifact-author": [
+      "CodeSystem",
+      "ConceptMap",
+      "ValueSet"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice": [
+      "StructureDefinition.snapshot.element.constraint"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice-explanation": [
+      "StructureDefinition.snapshot.element.constraint"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName": [
+      "StructureDefinition.differential.element.binding",
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet": [
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable": [
+      "StructureDefinition.snapshot.element"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod": [
+      "CodeSystem",
+      "ConceptMap",
+      "ValueSet"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint": [
+      "StructureDefinition.snapshot.element"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type": [
+      "StructureDefinition.snapshot.element.type"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name": [
+      "ImplementationGuide.definition.page",
+      "ImplementationGuide.definition.page.page"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment": [
+      "ImplementationGuide.dependsOn"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/resource-information": [
+      "ImplementationGuide.definition.resource"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/snapshot-base-version": [
+      "StructureDefinition.snapshot"
+    ],
+    "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink": [
+      "DeviceDefinition"
+    ],
+    "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet": [
+      "DeviceDefinition"
+    ]
+  }
+}

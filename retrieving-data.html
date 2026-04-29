@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Retrieving Data - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"17"}
+    h3,h4,h5,h6{--heading-prefix:"17"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Retrieving Data</b></li>
+
+          <span style="float:right;">
+
+            <a href="smart-scopes.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="registries-and-zts.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>Retrieving Data</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#querying-for-device-data" id="markdown-toc-querying-for-device-data">Querying for Device Data</a></li>
+  <li><a href="#querying-for-aggregated-data" id="markdown-toc-querying-for-aggregated-data">Querying for Aggregated Data</a></li>
+</ul>
+
+</div>
+
+<p>The legal requirements specify that a medical aid or implant must be able to provide the following types of data to DiGA:</p>
+
+<ul>
+  <li>measurement data collected by the personal health device,</li>
+  <li>aggregated data,</li>
+  <li>therapy plans and configurations stored in the device.</li>
+</ul>
+
+<p>For the first implementation stage of HDDT, only</p>
+<ul>
+  <li>measurement data collected by medical aids and</li>
+  <li>aggregated data in the form of calculated clinical metrics 
+will be considered.</li>
+</ul>
+
+<p>This section describes the fundamental mechanisms for exchanging measurement data and clinical metrics. For measurement data, both single measurements and continuously collected time series are considered.</p>
+
+<h3 id="querying-for-device-data">Querying for Device Data</h3>
+
+<p>In general, data can be measured in two different scenarios by personal health devices:</p>
+<ul>
+  <li>dedicated measurements: scheduled by a defined care plan or triggered by an unscheduled event (e.g. a patient feeling symptoms of hypoglycemia). A dedicated measurement occurs at a dedicated point in time and records single values for one or more data items (e.g. systolic and diastolic blood pressure). Typical examples of devices which are used ad hoc or based on a care plan are blood glucose meters, smart insulin pens, blood pressure cuffs and peak flow meters.</li>
+  <li>continuous measurements: The patient is connected to a sensor (almost) all the time and the sensor continuously measures and records data. Typical examples of devices that perform continuous measurements are rtCGM, insulin pumps and pacemakers.</li>
+</ul>
+
+<p>In addition, there are also devices and scenarios, which combine both paradigms, e.g.</p>
+<ul>
+  <li>personal ECG recorders for recording short, single-channel ECGs based on a plan (e.g. patient is asked to perform a measurement after physical activity)</li>
+  <li>pulse oximeters which are used ad hoc, but record data continuously for a certain period of time (e.g. monitoring SPO2 during sleep time of a person suffering from sleep apnea)</li>
+</ul>
+
+<p>The HDDT FHIR API handles dedicated and continuous measurements in different ways. Which flavor of the API is to be used, is part of the FHIR implementation guide of a <a href="methodology.html">MIV</a>. For combined scenarios usually the API flavor for continuous measurements is used, because it is much more efficient in transferring sampled data.</p>
+
+<h4 id="general-requirements">General Requirements</h4>
+<p>The specification of the technical interfaces for retrieving device data considers the following determinations and requirements:</p>
+<ul>
+  <li>A DiGA pulls data from the Device Data Recorder by stating a request for data. This may either be a FHIR RESTful interaction or a FHIR operation (for details see below). The Device Data Recorder MUST validate the request and upon acceptance MUST respond with a set of FHIR resources that match the request.</li>
+  <li>For all data transmitted to a DiGA by a Device Data Recorder it MUST be clear to the DiGA, if the device that collected the data was in a calibrated state or not.</li>
+  <li>Usually, a set of device data provided by a Device Data Recorder covers a period of time that was given with the request (e.g. all measurements for the last 4 hours). For each response of a Device Data Recorder it MUST be clear to the DiGA if the provided set of data is complete or not. E.g. a set of data may be incomplete, if the connection between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the health record after the connection is re-established.</li>
+  <li>A Device Data Recorder MUST NOT disclose information to a DiGA that allows the DiGA to identify the patient as a natural person. Guidance on the use of the <code class="language-plaintext highlighter-rouge">Device.patient</code> and the <code class="language-plaintext highlighter-rouge">Observation.subject</code> elements is given in the <a href="security-and-privacy.html#identification-and-authentication-of-the-patient">Security and Privacy</a> chapter of this specification.</li>
+</ul>
+
+<h4 id="searching-observations-using-fhir-search-interactions">Searching Observations Using FHIR <em>search</em> Interactions</h4>
+
+<p>A DiGA requests device data from a Device Data Recorder using a standard FHIR <a href="https://hl7.org/fhir/R4/http.html#search">search interaction</a> on the <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource type.
+The Device Data Recorder MUST respond to a <a href="https://hl7.org/fhir/R4/http.html#search">search</a> request with a collection of <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources in the form of a standard FHIR <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a>, or with an appropriate error. In case a search interaction finds no matches, an empty <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a> MUST be returned.</p>
+
+<p>Certain endpoints or certain MIVs may specify additional situations, where an empty Bundle is returned. In such cases, an <a href="https://hl7.org/fhir/R4/operationoutcome.html">OperationOutcome</a> MAY be included in the <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a>, in order to explain the reason why no matches were found.</p>
+
+<p>The search request MUST include an OAuth 2.0 access token in the <code class="language-plaintext highlighter-rouge">Authorization</code> header (as defined in the HDDT <a href="pairing.html#access-tokens">OAuth2 profile</a>). This access token is issued by the <a href="authorization-server.html">Authorization Server</a> of the Device Data Recorder.</p>
+
+<p>The Device Data Recorder MUST be able to derive the internal patient identifier corresponding to the Pairing ID contained in the access token. This identifier MUST implicitly be used as the <code class="language-plaintext highlighter-rouge">subject</code> parameter in every query to the Device Data Recorder’s FHIR API. If a DiGA explicitly provides a <code class="language-plaintext highlighter-rouge">subject</code> parameter, the Device Data Recorder MUST ignore it and SHOULD return a <code class="language-plaintext highlighter-rouge">400 Bad Request</code> error.</p>
+
+<p>The Device Data Recorder MUST be able to retrieve the <a href="smart-scopes.html">SMART scopes</a> from the access token, which were consented to during pairing with the requesting DiGA (see <a href="pairing.html">Pairing</a>). The SMART scope (with the resource type <a href="https://hl7.org/fhir/R4/observation.html">Observation</a>) and it’s query parameters MUST implicitly be applied as a <code class="language-plaintext highlighter-rouge">code</code> search parameter in every FHIR search query. ValueSets used in scopes MUST be expanded since they MAY consist of multiple LOINC codes. All of these codes MUST be considered in the search (logical OR semantics). A DiGA MAY further narrow the result by explicitly providing a <code class="language-plaintext highlighter-rouge">code</code> parameter.</p>
+
+<p>With every FHIR search interaction, the DiGA SHOULD provide a <code class="language-plaintext highlighter-rouge">date</code> parameter to limit the time period of data retrieval. If no <code class="language-plaintext highlighter-rouge">date</code> is specified, the Device Data Recorder MUST return all matching data according to the implicit and explicit query parameters.</p>
+
+<hr />
+
+<p><strong>Example</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET [base]/Observation?date=gt20250912
+</code></pre></div></div>
+<p>The HTTP header holds an Access Token, from which the Device Data Recorder can obtain its internal patient identifier <em>123</em> and a SMART scope that resolves to the <a href="https://hl7.org/fhir/R4/valueset.html">ValueSet</a> <em>https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement</em> which contains the LOINC codes <a href="https://loinc.org/105272-9/">105272-9</a> and <a href="https://loinc.org/99504-3">99504-3</a>. The “real” query processed by the Device Data Recorder’s FHIR Resource Server in this example is</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET [base]/Observation?date=gt20250912&amp;subject=Patient/123&amp;code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement
+</code></pre></div></div>
+<hr />
+
+<p><em><strong>Remark</strong>: The MIV ValueSets will be published on the ZTS (https://terminologien.bfarm.de) after the final approval of this specification. By now the ValueSets can only be found in the <a href="artifacts.html#terminology-value-sets">ValueSet section</a> of this specifications’s artifact summary.</em></p>
+
+<p>A DiGA MAY further constrain the kind of requested values by providing one or more <code class="language-plaintext highlighter-rouge">code</code> arguments with the search request. In this case only <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources are returned, where the contained data exactly matches the given codes.</p>
+
+<p>Example 1: If no <code class="language-plaintext highlighter-rouge">code</code> argument is given, the data recorder of a blood glucose meter will respond to a query for blood glucose data with all glucose values it supports, potentially including measurements with different LOINC codes representing different units (e.g. LOINC code <code class="language-plaintext highlighter-rouge">2339-0</code> for <em>Glucose [Mass/volume] in Blood</em> measured in <em>mg/dl</em> and LOINC code <code class="language-plaintext highlighter-rouge">15074-8</code> for <em>Glucose [Moles/volume] in Blood</em> measured in <em>mmol/l</em>). If a specific LOINC code such as <code class="language-plaintext highlighter-rouge">2339-0</code> is given as a <code class="language-plaintext highlighter-rouge">code</code> argument, the device recorder will only respond with observations that match that specific code, limiting results to measurements in the corresponding unit (<em>mg/dl</em> in this case).</p>
+
+<p>Example 2: If no <code class="language-plaintext highlighter-rouge">code</code> argument is given, the data recorder of a peak flow meter will respond to a query with all lung function values that the data recorder supports (e.g raw measurement, reference value, and ratio of measured value to predicted value, each for <em>Peak Expiratory Flow (PEF)</em> and <em>Forced Expiratory Volume in One Second (FEV1)</em>). However, if a <code class="language-plaintext highlighter-rouge">code</code> argument is provided (e.g. <code class="language-plaintext highlighter-rouge">20150-9</code> <em>FEV1</em>), the device data recorder will respond only with observations that match that specific code. (Example queries and responses can be seen in <a href="measurement-lung-function.html#example-fhir-search-minimal">MIV Lung Function Testing</a>.)</p>
+
+<p>All <code class="language-plaintext highlighter-rouge">code</code> values provided as explicit query arguments MUST be part of the <a href="https://hl7.org/fhir/R4/valueset.html">ValueSet</a> that is referenced in the SMART scope that is linked with the Access Token. If a DiGA requests for a code which is not contained with this value set, the Device Data Recorder MUST return an empty <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a>, as if no matches are found. An <a href="https://hl7.org/fhir/R4/operationoutcome.html">OperationOutcome</a> MAY be included in the <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a>, in order to explain why no search results were returned.</p>
+
+<p><code class="language-plaintext highlighter-rouge">date</code> and <code class="language-plaintext highlighter-rouge">code</code> are the only search parameters that each DiGA and Device Data Recorder MUST support for all MIVs. A MIV-specific implementation guide MAY request for supporting further search arguments and MAY constrain the use and semantics of these arguments. A Device Data Recorder MAY support even more search parameters in accordance to the FHIR <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource definition. In this case these arguments MUST be published through the Device Data Recorders <a href="https://hl7.org/fhir/R4/capabilitystatement.html">CapabilityStatement</a>.</p>
+
+<h4 id="fetching-single-observations-using-fhir-read-interactions">Fetching Single Observations using FHIR <em>read</em> Interactions</h4>
+<p>Per HL7 FHIR a <em>resource</em> is a a definable, identifiable, addressable collection of data elements that represents a concept or entity in health care. By this each <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource a Device Data Recorder transmits to a DiGA MUST be identifiable and addressable through an <code class="language-plaintext highlighter-rouge">id</code>. Device Data Recorder MUST allow a DiGA to request a known Observation by using a FHIR <a href="https://hl7.org/fhir/R4/http.html#read"><em>read</em> interaction</a>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET [base]/Observation/[id]
+</code></pre></div></div>
+
+<p>Device Data Recorders MAY limit access to historical data to a MIV-specific <code class="language-plaintext highlighter-rouge">Historic Data Period</code>, e.g. 30 days (see <a href="information-model.html#miv-specific-properties-of-device-data-recorders">Properties of Device Data Recorders</a> for details). If a DiGA requests data that is older than the declared <code class="language-plaintext highlighter-rouge">Historic Data Period</code>, the Device Data Recorder MUST respond with a <em>404 Not Found</em> error and an appropriate <a href="https://hl7.org/fhir/R4/operationoutcome.html">OperationOutcome</a> indicating that the requested data lies outside the supported historic data period. Error handling follows the rules defined in <a href="error-codes.html#resource-server-errors">Resource Server Errors</a>.</p>
+
+<h4 id="paging">Paging</h4>
+
+<p>In accordance with the <a href="https://hl7.org/fhir/R4/http.html#paging">HL7 FHIR specification</a>, supporting <em>paging</em> is recommended but optional for Device Data Recorders (SHOULD). DiGA manufacturers MUST consider, that a specific Device Data Recorder may only be able to respond with a limited number of <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources in response to a query.</p>
+
+<h4 id="device-status-and-device-definition">Device Status and Device Definition</h4>
+
+<p>Each <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource returned by a Device Data Recorder MUST contain a <code class="language-plaintext highlighter-rouge">device</code> element that either refers to a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> or a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource.</p>
+
+<p>A Device Data Recorder MUST provide a <code class="language-plaintext highlighter-rouge">device</code> reference to a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> with the <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources, if the sensor needs to be calibrated before or during use or if the calibration status of the sensor may change over time. The <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource MUST reflect the status of the sensor that was used to measure the observation. It MUST at least</p>
+<ul>
+  <li>provide the <code class="language-plaintext highlighter-rouge">calibration.state</code> of the sensor and</li>
+  <li>a <code class="language-plaintext highlighter-rouge">source</code> reference to the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource that represents the configuration of the personal health device at the time the measurement was performed.</li>
+</ul>
+
+<p>If the Device Data Recorder does not provide a <code class="language-plaintext highlighter-rouge">device</code> reference to a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource, it MUST provide a <code class="language-plaintext highlighter-rouge">device</code> reference to a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource.</p>
+
+<p>A DiGA MAY store the <code class="language-plaintext highlighter-rouge">id</code> of a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource, it received through a <code class="language-plaintext highlighter-rouge">Observation.device</code> or <code class="language-plaintext highlighter-rouge">DeviceMetric.source</code> reference or from a <em>search</em> interaction. The DiGA MAY use this <code class="language-plaintext highlighter-rouge">id</code> to request the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource - and by this the device’s current status - through a FHIR <em>read</em> interaction. This information can be helpful for detecting missing data (see section <em>Missing Data</em> below).</p>
+
+<p>The <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource MAY contain a <code class="language-plaintext highlighter-rouge">definition</code> reference to the device’s product definition as registered with the BfArM <em>HIIS-VZ</em> (Device Registry). If present, the reference MUST point to the matching <a href="https://hl7.org/fhir/R4/devicedefinition.html">DeviceDefinition</a> resource in the BfArM <em>HIIS-VZ</em>.</p>
+
+<p>Every Device Data Recorder holds information about its static attributes as part of its definition, which are in particular useful for DiGA to optimize the continuous retrieval of sampled data (see <a href="information-model.html#miv-specific-properties-of-device-data-recorders">Properties of Device Data Recorders</a> for details).</p>
+
+<h4 id="versioning-of-device-and-devicemetric-resources">Versioning of Device and DeviceMetric Resources</h4>
+<p>The HDDT specification does not mandate a specific versioning strategy for <a href="https://hl7.org/fhir/R4/device.html">Device</a> and <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resources. A Device Data Recorder MAY use the FHIR <em>versionId</em> mechanism or MAY use its own versioning strategy (e.g. by creating new resources whenever a relevant element changes).</p>
+
+<h5 id="versioning-of-device-resources">Versioning of Device Resources</h5>
+<p>A Device Data Recorder MUST track the Medical Health Devices used by a patient. If a patient exchanges a Personal Health Device (e.g. gets a new insulin pump), the Device Data Recorder MUST create a new <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource with a new <code class="language-plaintext highlighter-rouge">id</code> that reflects the new Personal Health Device. The Device Data Recorder MUST follow the definitions for <a href="https://hl7.org/fhir/R4/resource.html#id">FHIR LogicalIDs</a> when creating a new <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<p>Unless stated otherwise in the MIV-specific implementation guide, a Device Data Recorder MAY not perform any versioning on any of the elements of the Device resource or MAY not expose such changes to the DiGA (see <a href="https://hl7.org/fhir/R4/resource.html#versions">https://hl7.org/fhir/R4/resource.html#versions</a>). In this case the Device Data Recorder MUST NOT change the <code class="language-plaintext highlighter-rouge">id</code> and the ‘meta.versionID’ of the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource as long as the Personal Health Device does not change. Nevertheless, a <em>read</em> interaction on the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource MUST always return the current status of the Personal Health Device (e.g. <em>active</em>, <em>inactive</em>, <em>unknown</em>), but it is up to the manufacturer, if this leads to a new, persistent, addressable version of the resource.</p>
+
+<p>If a manufacturer implements versioning by creating a new record version of a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource whenever a relevant element changes, the manufacturer MUST implement the FHIR <em>vread</em> interaction to allow a DiGA to request a specific record version of a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource. See <a href="fhir-api-device.html#device---vread"><em>vread</em> interaction for Personal Health Device resources</a> for details.</p>
+
+<h5 id="overlapping-device-resources">Overlapping Device Resources</h5>
+<p>Device resources MAY overlap in time. This is e.g. the case if a patient exchanges a Personal Health Device with a new one of the same type but keeps the old device for some time (e.g. when changing a rtCGM sensor the patient may take on the new sensor while still wearing the old one until the new sensor is fully calibrated). In this case it is up to the Device Data Recorder on how to handle the overlapping devices. Depending on the concrete kind of device and its typical usage patterns, the Device Data Recorder MAY either</p>
+<ul>
+  <li>keep both devices as active (status = <em>active</em>) until the old device is no longer used and then set the status of the old device to <em>inactive</em>. During the overlapping period the Device Data Recorder provides Observation resources from both devices. E.g. if a DiGA requests for today’s continuous glucose values, the Device Data Recorder provides Observation resources (chunks, see below) from both devices. These Observation resources mix or overlap in <code class="language-plaintext highlighter-rouge">effectiveDateTime</code> or <code class="language-plaintext highlighter-rouge">effectivePeriod</code>, but the DiGA can distinguish the source of the data by the <code class="language-plaintext highlighter-rouge">device</code> reference of the Observation resources.</li>
+  <li>set the status of the currently active device to <em>inactive</em> as soon as the new device is paired and activated. In this case the Device Data Recorder only provides Observation resources from the new device. The Personal Health Device MAY be in an uncalibrated state at this time. For Personal Health Devices that require calibration, the DiGA SHOULD check the <code class="language-plaintext highlighter-rouge">calibration.state</code> of the <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource that is referenced by the <code class="language-plaintext highlighter-rouge">device</code> element of the Observation resources to determine if the device was calibrated at the time of measurement.</li>
+  <li>for Personal Health Devices that require calibration, the Device Data Recorder MAY set the status of the old device to <em>inactive</em> only after the new device is paired, activated, and calibrated. Until the new Device is calibrated, only data from the old device is provided to DiGA. The DiGA can distinguish the source of the data by the <code class="language-plaintext highlighter-rouge">device</code> reference of the Observation resources.</li>
+</ul>
+
+<h5 id="versioning-of-devicemetric-resources">Versioning of DeviceMetric Resources</h5>
+<p>A change of the Personal Health Device MUST always lead to a new DeviceMetric resource with a new <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<p>For sensors that need to be calibrated or change their calibration status over time, the Device Data Recorder MUST at least track the changes in <code class="language-plaintext highlighter-rouge">calibration.state</code> of the <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource. If the <code class="language-plaintext highlighter-rouge">calibration.state</code> changes, the Device Data Recorder MUST either create a new DeviceMetric resource with a new <code class="language-plaintext highlighter-rouge">id</code> or MUST create a new record version of the existing DeviceMetric resource by using the FHIR <em>versionId</em> mechanism.</p>
+
+<p>Unless stated otherwise in the MIV-specific implementation guide, a Device Data Recorder MAY not perform any versioning on any elements of the Device resource other than <code class="language-plaintext highlighter-rouge">calibration.state</code> or MAY not expose such changes to the DiGA (see <a href="https://hl7.org/fhir/R4/resource.html#versions">https://hl7.org/fhir/R4/resource.html#versions</a>). In this case the Device Data Recorder MUST NOT change the <code class="language-plaintext highlighter-rouge">id</code> and the ‘meta.versionID’ of the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource as long as the <code class="language-plaintext highlighter-rouge">calibration.state</code> does not change.</p>
+
+<p>If a manufacturer implements versioning by creating a new record version of a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource whenever <code class="language-plaintext highlighter-rouge">calibration.state</code> or any other relevant element changes, the manufacturer MUST implement the FHIR <em>vread</em> interaction to allow a DiGA to request a specific version of a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource. See <a href="fhir-api-devicemetric.html#devicemetric---vread"><em>vread</em> interaction for Device Configuration and Calibration Status resources</a> for details.</p>
+
+<h4 id="use-of-_include">Use of _include</h4>
+<p>The Device Data Recorder must respond a <em>search</em> request with a Bundle of type <em>searchset</em> that contains all <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources that match the request. A DiGA MAY add the search parameter <code class="language-plaintext highlighter-rouge">_include=Observation:device</code> with the request. In this case the Device Data Recorder MUST include the <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> or <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource that is referenced by the <code class="language-plaintext highlighter-rouge">device</code> element of the <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> in the same Bundle (see https://hl7.org/fhir/R4/search.html#revinclude for details).</p>
+
+<p>Example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET [base]/Observation?date=gt20250912&amp;_include=Observation:device 
+</code></pre></div></div>
+<p>will return a Bundle of type <em>searchset</em> that contains all <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources that match the request and for each <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> the referenced <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> or <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource.</p>
+
+<p>Example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET [base]/Observation?date=gt20250912&amp;_include=Observation:device&amp;_include:iterate=DeviceMetric:source
+</code></pre></div></div>
+<p>will return a Bundle of type <em>searchset</em> that contains all <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources that match the request and for each <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> the referenced <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> or <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource. If a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource is referenced, the Bundle will also contain the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource that is referenced by the <code class="language-plaintext highlighter-rouge">source</code> element of the <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a>.</p>
+
+<h4 id="dedicated-measurements">Dedicated Measurements</h4>
+
+<p>In general, HDDT only requests a minimum of data elements to be mandatory with an <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource that reflects a single measurement. The example below is based on the HDDT FHIR implementation guideline for the MIV <em>Blood Glucose Measurement</em>.</p>
+
+<pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation">resourceType</a>" : "Observation",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.id">id</a>" : "example-blood-glucose-measurement-1",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.meta">meta</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Meta#Meta.profile">profile</a>" : [
+      <a href="StructureDefinition-hddt-blood-glucose-measurement.html" style="color: Maroon">&#x1F517;</a> "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.status">status</a>" : "final",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.code">code</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+      {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "2339-0",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Glucose [Mass/volume] in Blood"
+      }
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.effective_x_">effectiveDateTime</a>" : "2025-09-26T12:00:00+02:00",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.value_x_">valueQuantity</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.value">value</a>" : 120,
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.unit">unit</a>" : "mg/dl",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.system">system</a>" : "http://unitsofmeasure.org",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.code">code</a>" : "mg/dL"
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.device">device</a>" : {
+    <a href="DeviceMetric-example-glucometer-metric.html" style="color: Maroon">&#x1F517;</a> "<a href="http://hl7.org/fhir/R4/references.html#Reference#Reference.reference">reference</a>" : "DeviceMetric/example-glucometer-metric"
+  }
+}</code></pre>
+
+<p>As the information on the time and result of the measurement is a rather straight-forward adoption of the FHIR standard, some HDDT-specific conventions have to be considered with the <code class="language-plaintext highlighter-rouge">device</code> reference (see above). The figure below shows a simple interplay of measured data (<a href="https://hl7.org/fhir/R4/observation.html">Observation</a>), sensor status (<a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a>), and device configuration (<a href="https://hl7.org/fhir/R4/device.html">Device</a>), e.g. in response for a query for all blood glucose data that was measured for a given patient on May 7th.</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT measurement ad hoc example 1.png" alt="Blood glucose values for a day" width="50%" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Blood glucose values for a day</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p>This gets more complex if the status of the sensor changes. The figure below is based on the previous example, but now data is requested for a longer period (May 7th and 8th) with the patient calibrating the device within this period.</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT measurement ad hoc example 2.png" alt="Blood glucose values including sensor calibration" width="65%" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Blood glucose values including sensor calibration</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p>As shown with the example, a calibration of a sensor leads to an update to the sensor’s <code class="language-plaintext highlighter-rouge">DeviceMetric</code> resource. The Device Data Recorder MUST make changes to the calibration status of a sensor make visible to the device data consumer.</p>
+
+<h5 id="missing-values-with-dedicated-measurements">Missing Values with Dedicated Measurements</h5>
+<p>A response of the Device Data Recorder to a query for dedicated measurements MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The Device Data Recorder MUST respond with all data that is available at the time of the request, but there MAY be more data available that was measured a short time before the request, but not yet transmitted to the Device Data Recorder. Therefore a DiGA SHOULD always obtain the static property <code class="language-plaintext highlighter-rouge">Delay-From-Real-Time</code> from the Device Data Recorder’s <a href="https://hl7.org/fhir/R4/devicedefinition.html">DeviceDefinition</a> (see <a href="information-model.html#miv-specific-properties-of-device-data-recorders">Properties of Device Data Recorders</a> for details) and use this value to overlap two consecutive requests for data.</p>
+
+<p>Missing data MAY even occur if the connection between the Personal Health Device and the Personal Health Gateway or between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A DiGA can detect this situation by reading the Device resource and checking the <code class="language-plaintext highlighter-rouge">status</code> element. <strong>Note</strong>: In the context of HDDT, a <code class="language-plaintext highlighter-rouge">status</code> with a value of <em>unknown</em> is conventionally interpreted to indicate that the Device Data Recorder currently has no active connection to the Personal Health Device, and thus the completeness of data for recent time periods cannot be guaranteed. This is a specific interpretation beyond the base FHIR definition. If the <code class="language-plaintext highlighter-rouge">status</code> of the device is <em>unknown</em>, the DiGA SHOULD assume that data is missing and may be available later.</p>
+
+<p><strong>Remark</strong>: FHIR R4 does provide information about a Personal Health Device being offline through the <code class="language-plaintext highlighter-rouge">statusReason</code> element of the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource. This element is missing in FHIR R5 and therefore not used in the HDDT specification. Due to this incompatibility across FHIR versions, a <code class="language-plaintext highlighter-rouge">status</code> value of <em>unknown</em> MUST be used by the Device Data Recorder to indicate that the connection to the Personal Health Device is temporarily broken (which is semantically correct as the status of the device is unknown to the Health Record if it does not receive any information from the device).</p>
+
+<p>The easiest way for a DiGA to deal with these kinds of missing data is to set the <code class="language-plaintext highlighter-rouge">date</code> argument of a new request to one second after the <code class="language-plaintext highlighter-rouge">effectiveDateTime</code> of the last <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> it received with the previous request.</p>
+
+<h4 id="continuous-measurements">Continuous Measurements</h4>
+
+<p>Values from continuous measurements MUST be provided as chunks of <a href="https://hl7.org/fhir/R4/datatypes.html#SampledData">sampledData</a>, where each chunk of data is represented as an <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource. As with single data points, the <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> holding the sampled Data MUST contain a <code class="language-plaintext highlighter-rouge">device</code> element that either refers to a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> or a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource.</p>
+
+<p>The owner of the Device Data Recorder MUST internally define a <em>chunk time span</em> of measurements that can be covered by a single chunk. E.g. if the owner of the Device Data Recorder defines a <em>chunk time span</em> of 24 hours for a Personal Health Device that measures data every minute, each chunk can hold up to 1440 data points. A chunk MAY cover a shorter period of time than the <em>chunk time span</em> in exceptional situations (e.g. when the calibration status of the device changed during measurements), but it MUST NOT exceed that value.</p>
+
+<p>If a query for continuously measured data results in multiple chunks (<a href="https://hl7.org/fhir/R4/observation.html">Observation</a>s), each chunk’s <code class="language-plaintext highlighter-rouge">Observation.effectivePeriod</code> MUST have the length of the <em>chunk time span</em>. The only exceptions are changes to the <code class="language-plaintext highlighter-rouge">calibration.state</code> or a change of the personal health device (see below). In these cases a chunk’s <code class="language-plaintext highlighter-rouge">Observation.effectivePeriod</code> can be shorter than the <em>chunk time span</em>.</p>
+
+<p>A chunk MUST be set to a <em>preliminary</em> <code class="language-plaintext highlighter-rouge">state</code> if the chunk is not filled with values up to the <em>chunk time span</em> and the Device Data Recorder expects more data to come until the end of the time period covered by the chunk. The figure below shows an example of a <em>preliminary</em> chunk for a Device Data Recorder with a <em>chunk time span</em> of 24 hours and a Personal Health Device with a sample rate of one data point per minute. The <code class="language-plaintext highlighter-rouge">search</code> query stated by an authorized DiGA requests for all data from May 4th until now. The newest data available to the Device Data Recorder is from May, 6th 10:00 am.</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 1.png" alt="searching for values from a continuous measurement" width="60%" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Searching for values from a continuous measurement</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p>If the DiGA states the same <code class="language-plaintext highlighter-rouge">search</code> query again one hour later, the newest data being available at the Device Data Recorder is now from May, 6th 11:00 am. Therefore now the <em>preliminary</em> chunk contains 60 additional values.</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 1b.png" alt="searching for values from a continuous measurement" width="60%" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Continuously searching for values from a continuous measurement</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p><strong>Remark</strong>: In the given example the DiGA could as well have used a <code class="language-plaintext highlighter-rouge">read</code> interaction to just obtain an updated version of the <em>preliminary</em> chunk:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET [base]/Observation/3
+</code></pre></div></div>
+
+<h5 id="change-of-calibrationstatus">Change of calibration.status</h5>
+<p>Some sensors for continuous measurements require initial or regular calibration. If this leads to a changed value for <code class="language-plaintext highlighter-rouge">calibration.state</code> in the <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> observation that is bound to a chunk, the Device Data Recorder MUST finish the current chunk and start a new chunk. The same holds for any other change in <code class="language-plaintext highlighter-rouge">calibration.state</code>, e.g. a sensor that switches from a calibrated to an unknown state after a certain time (see figure below.)</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 2.png" alt="searching for values from a continuous measurement" width="60%" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Continuous measurement: Calibrating the sensor</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p>As can be seen with the example, the last chunk before calibration is set to a <em>final</em> status and the <code class="language-plaintext highlighter-rouge">effectivePeriod</code> is adapted to the end time the calibration state changed. The new chunk is initialized with a <em>preliminary</em> status and the fixed <em>chunk time span</em> as defined by the vendor.</p>
+
+<p>It is up to the Device Data Recorder if a change of <code class="language-plaintext highlighter-rouge">calibration.state</code> leads to a new <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resource or if a new version of the existing resource is created. See <a href="#versioning-of-device-and-devicemetric-resources">Versioning of Device and DeviceMetric Resources</a> above for possible options related to the manufacturer’s overall versioning strategy.</p>
+
+<p>Personal Health Devices MAY require a Personal Health Device of another type to perform the calibration (e.g. a blood glucose meter for calibrating a rtCGM). Values measured with another Personal Health Device for calibration purposes MUST NOT be part of a chunk of continuously measured data.</p>
+
+<h5 id="changing-devices">Changing Devices</h5>
+<p><a href="pairing.html">Pairing</a> a DiGA with a Device Data Recorder is always done for a specific patient and a specific type of Personal Health Device. If the patient exchanges the Personal Health Device (e.g. gets a new insulin pump or changes the rtCGM sensor) for a new one of the same type, the DiGA does not need to re-pair with the Device Data Recorder. In this case the Device Data Recorder MUST handle the change of the instance of the Personal Health Device internally. Nevertheless, the DiGA MUST be able to detect that a change of the Personal Health Device took place. This is done by the Device Data Recorder by finishing the current chunk and starting a new chunk with a new <code class="language-plaintext highlighter-rouge">device</code> reference to a <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource that reflects the new Personal Health Device (see figure below).</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+  <img src="HDDT measurement sampled data example 3.png" alt="searching for values from a continuous measurement" width="60%" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>Continuous measurement: Changing the sensor/device</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p>In contrast to a change of <code class="language-plaintext highlighter-rouge">calibration.state</code>, a change of the Personal Health Device MUST always result in a new Device resource with a new <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<h5 id="missing-values-with-continuous-measurements">Missing Values with Continuous Measurements</h5>
+<p>A response of the Device Data Recorder to a query for continuously measured data MAY be incomplete in a way that there MAY be more data measured for the requested period, but the Device Data Recorder does not provide this data to the DiGA. The most common case is that a DiGA requests for data that was measured very recently (e.g. within the last hour). The Device Data Recorder MAY respond with all data that is available at the time of the request, but there MAY be more data being in transmission from the Personal Health Device to the Health Record. Therefore a DiGA SHOULD always obtain the static property <code class="language-plaintext highlighter-rouge">Delay-From-Real-Time</code> from the Device Data Recorder’s <a href="https://hl7.org/fhir/R4/devicedefinition.html">DeviceDefinition</a> (see <a href="information-model.html#miv-specific-properties-of-device-data-recorders">Properties of Device Data Recorders</a> for details) and use this value to overlap two consecutive requests for data.</p>
+
+<p>Missing data MAY even occur if the connection between the Personal Health Device and the Personal Health Gateway or between the Personal Health Gateway and the Health Record was broken during the requested period and the missing data may be transmitted to the Health Record after the connection is re-established. A Device Data Recorder MUST signal this kind of missing data by setting the <code class="language-plaintext highlighter-rouge">status</code> of the <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource that holds the chunk to <em>preliminary</em> with the <code class="language-plaintext highlighter-rouge">effectivePeriod</code> covering the full <em>chunk time span</em>.</p>
+
+<p>Another reason for missing data is a change of the Personal Health Device (e.g. a rtCGM is replaced by a new sensor). A DiGA MAY detect missing data due to device changes by analyzing the sequence of (<a href="https://hl7.org/fhir/R4/observation.html">Observation</a>s) it received from a Device Data Recorder. If the <code class="language-plaintext highlighter-rouge">effectivePeriod.end</code> of a chunk is before the <code class="language-plaintext highlighter-rouge">effectivePeriod.start</code> of the next chunk, there is a gap in the data. The DiGA MAY use the <code class="language-plaintext highlighter-rouge">id</code> of the <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource that is referenced in the <code class="language-plaintext highlighter-rouge">device</code> element of the chunks to check if the Personal Health Device changed (see above).</p>
+
+<h5 id="continuously-polling-for-new-data">Continuously Polling for New Data</h5>
+<p>A DiGA MAY poll a Device Data Recorder in regular intervals for new data. For the current chunk data updates can be polled by <em>read</em> interactions. A <code class="language-plaintext highlighter-rouge">status</code> switch from <em>preliminary</em> to <em>final</em> signals that the chunk is full or that the status of the Personal Health Device changed (e.g. the sensor changed its calibration status or the patient put on a new sensor). In this case the DiGA MUST use the <code class="language-plaintext highlighter-rouge">effectivePeriod.end</code> of the last chunk as a starting point for a new <em>search</em> interaction to obtain the next chunk.</p>
+
+<p>The pseudo code below shows an example of a DiGA polling for new data in regular intervals.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chunk = read [base]/Observation?date= [now]
+
+loop
+  while chunk.status == preliminary 
+    wait some time
+    chunk = read [base]/Observation/[chunk.id] 
+  end
+  wait some time
+  chunk = read [base]/Observation?date=gt[chunk.effectivePeriod.end + 1 second]
+end
+
+</code></pre></div></div>
+
+<h3 id="querying-for-aggregated-data">Querying for Aggregated Data</h3>
+
+<p>The legal requirements of § 374a SGB V specify that a medical aid or implant must be able to provide aggregated data to DiGA. In the present specification, this is limited to data calculated from the MIVs provided by the medical aid or implant. For example, for a connected rtCGM a Device Data Recorder must only be able to provide clinical metrics that can be calculated exclusively on the continuously collected glucose values which represent the MIV “Continuous Glucose Measurement”. In order to minimise computational efforts at the manufacturer of the Device Data Recorder, DiGA can only request for aggregated or summarised data in the form of standardised reports. A DiGA cannot, for example, query the number of hypoglycemias within a given period of time as a single value from the Device Data Recorder of an rtCGM, but only the complete set of relevant clinical metrics, e.g. such as those contained in the <em>ambulatory glucose profile (AGP)</em>.</p>
+
+<p>As far as available and usable, these reports represent existing specifications. For rtCGM data, for example, the specification of a <a href="https://github.com/HL7/cgm">CGM Summary Observation from HL7 International</a> is adopted unchanged. In order to be as flexible as possible for future MIVs, the specification does not limit the reports to a certain FHIR resource definition. This allows for adopting standard FHIR IGs for standardized reports regardless if they are provided as FHIR Observations, DiagnosticReports or any other kind of DomainResource.</p>
+
+<p>As a dynamically derived artefact a report only becomes a “true” FHIR resource if it is persisted by a DiGA. The Device Data Recorder MAY decide to NOT persist dynamically assembled reports as addressable FHIR resources. In order to reflect this behaviour and to preserve maximum flexibility with respect to the type of FHIR resource used for a report, the HDDT specification defines dedicated <a href="https://hl7.org/fhir/R4/operations.html">FHIR operations</a> for querying reports from a Device Data Recorder.</p>
+
+<p>Each report is bound to the MIV that is used to calculate the report. A Device Data Recorder MUST provide a list of available reports for each MIV it supports. This list MUST be published by listing the respective FHIR operations in the Device Data Recorder’s <a href="https://hl7.org/fhir/R4/capabilitystatement.html">CapabilityStatement</a> which MUST be obtainable by a DiGA through the <code class="language-plaintext highlighter-rouge">/metadata</code> endpoint of the Device Data Recorder’s FHIR resource server.</p>
+
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="smart-scopes.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="registries-and-zts.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

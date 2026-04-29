@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Security and Privacy - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"11"}
+    h3,h4,h5,h6{--heading-prefix:"11"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Security and Privacy</b></li>
+
+          <span style="float:right;">
+
+            <a href="use_of_hl7_fhir.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="operational-requirements.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>Security and Privacy</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#identification-and-authentication" id="markdown-toc-identification-and-authentication">Identification and Authentication</a></li>
+  <li><a href="#authorization-of-the-diga" id="markdown-toc-authorization-of-the-diga">Authorization of the DiGA</a></li>
+  <li><a href="#secure-communication-via-mtls" id="markdown-toc-secure-communication-via-mtls">Secure Communication via mTLS</a></li>
+  <li><a href="#caching-of-trust-related-information" id="markdown-toc-caching-of-trust-related-information">Caching of Trust-Related Information</a></li>
+  <li><a href="#client-privacy" id="markdown-toc-client-privacy">Client Privacy</a></li>
+  <li><a href="#transparency-of-operations" id="markdown-toc-transparency-of-operations">Transparency of Operations</a></li>
+  <li><a href="#obligations-for-regular-inspections" id="markdown-toc-obligations-for-regular-inspections">Obligations for Regular Inspections</a></li>
+  <li><a href="#limits-of-security-performance" id="markdown-toc-limits-of-security-performance">Limits of security performance</a></li>
+</ul>
+
+</div>
+
+<h3 id="identification-and-authentication">Identification and Authentication</h3>
+
+<h4 id="identification-and-authentication-of-the-patient">Identification and Authentication of the Patient</h4>
+<p>Every DiGA maintains a patient account for each patient. Patients authenticate with this account using credentials that have been initialized during the patient’s registration with the DiGA. By regulation, DiGA MUST NOT identify the patient as a natural person unless this is required for fulfilling regulatory requirements (e.g. exporting data to the electronic patient record). Therefore, the patient identifier used internally by a DiGA is considered as a pseudonym that allows for authenticating the owner of a patient account without identifying this person.</p>
+
+<p>With respect to Device Data Recorders, HDDT makes no assumptions about if and how a patient is identified. Again, the only assumption is that the Device Data Recorder is able to authenticate a user as the owner of a patient account that links to that user’s device data.</p>
+
+<p>A Device Data Recorder MUST NOT transmit any data to a DiGA that allows the DiGA to identify the patient as a natural person – neither during the authorization &amp; pairing process nor during the actual subsequent health data transfer. In particular, the Device Data Recorder</p>
+<ul>
+  <li>MUST NOT implement a <code class="language-plaintext highlighter-rouge">/patient</code> endpoint that is accessible to DiGA</li>
+  <li>SHOULD NOT include a <code class="language-plaintext highlighter-rouge">subject</code> reference with any resources that are transmitted to a DiGA</li>
+  <li>MUST NOT use identifying data within a <code class="language-plaintext highlighter-rouge">subject</code> reference (if such a reference is included with a resource).</li>
+</ul>
+
+<h4 id="pseudonymous-identifier">Pseudonymous Identifier</h4>
+
+<p>To enable user-based data transmission, DiGA and Device Data Recorder MUST agree on a common identifier for the insured
+person. This identifier is specific to the combination of DiGA and Device Data Recorder. It MUST be a pseudonym,
+meaning that third parties MUST NOT be able to infer the identity of the data subject solely from the identifier itself.</p>
+
+<p>Neither Device Data Recorders nor DiGA MUST obtain knowledge of the patient’s health insurance number (KVNR). In
+addition, medical data transmitted via FHIR MUST NOT contain information that reveals or enables inference of the
+patient’s identity.</p>
+
+<p>Further normative requirements and technical details regarding the identifier are specified in the
+dedicated <a href="pairing.html#pairing-id">Pairing ID</a> section.</p>
+
+<h4 id="identification-and-authentication-of-the-diga">Identification and Authentication of the DiGA</h4>
+<p>A DiGA authenticates with a Device Data Recorder during connection establishment (mutual TLS, see below) as a client. DiGA’s X.509 client certificate MUST be registered with the <em>DiGA-VZ</em>. Self-signed certificates MAY be used by the DiGA. Certificates, keys, and protocol configurations MUST comply with <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&amp;v=11">BSI TR-02102-2</a>. DiGA authorization is based on OAuth2 and requires a <code class="language-plaintext highlighter-rouge">client_id</code> and a <code class="language-plaintext highlighter-rouge">redirect_url</code> to be registered as trust anchors with the <em>DiGA-VZ</em> of the BfArM.</p>
+
+<p>The following table summarizes the trust attributes for identification and authentication of a DiGA that MUST be registered with the <em>DiGA-VZ</em> of the BfArM for each DiGA:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Object</th>
+      <th>Description</th>
+      <th>Specifications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>client_id</td>
+      <td>The client_id is determined by BfArM and provided in the DiGA directory. The client_id represents a DiGA-specific, but aid/implant-wide OAuth client identifier.</td>
+      <td>urn:diga:bfarm:{DiGA-ID} DiGA-ID: a 5-digit number assigned by BfArM that uniquely identifies a specific DiGA.</td>
+    </tr>
+    <tr>
+      <td>TLS_Client_Cert_DiGA</td>
+      <td>A TLS client certificate generated by the DiGA provider itself. The public key can be confirmed either by a CA of the DiGA provider or directly by the associated private key (self-signed). No verifiable certificate chain is required, as the Device Data Recorder backend directly validates against the specific certificate registered in the directory (allow list). Apart from the required key usages <code class="language-plaintext highlighter-rouge">digitalSignature</code> and <code class="language-plaintext highlighter-rouge">clientAuth</code>, the certificate’s contents are not subject to further restrictions and MUST be acceptable as a TLS client certificate by standard TLS libraries.</td>
+      <td>The TLS client certificate MUST be an X.509 certificate issued and signed independently by the DiGA provider. The validity period MUST be at least 365 days and MUST NOT exceed 398 days. Certificate revocation MUST be enforced by registering a new certificate and removing the old certificate from the directory. In the case of a planned certificate renewal, the new client certificate MUST be registered before the current certificate expires. For a limited transitional period, both certificates MAY be active simultaneously until the change has been completed on the DiGA side.</td>
+    </tr>
+    <tr>
+      <td>redirect_uri</td>
+      <td>URI to which an aid redirects the DiGA frontend after the authentication code has been issued.</td>
+      <td>DiGA manufacturer/operator transmits this URI to BfArM, which adds the information to the respective directory entry. redirect_uri as an absolute URI according to [RFC 3986] section 4.3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Procedures for registering certificates and for exchanging expiring certificates will be published by BfArM as part of the <em>HIIS-VZ</em> specification or corresponding guidelines.</p>
+
+<h4 id="identification-and-authentication-of-the-device-data-recorder">Identification and Authentication of the Device Data Recorder</h4>
+
+<p>A Device Data Recorder identifies and authenticates itself to a DiGA during every connection establishment using <strong>mutual TLS (mTLS)</strong>. This applies to all endpoints of the Device Data Recorder, including
+the <a href="authorization-server.html">Authorization Server</a> and the <a href="retrieving-data.html">FHIR Resource Server</a>. The endpoint
+addresses and the <em>Fully Qualified Domain Names (FQDNs)</em> used for the X.509 certificates of these endpoints MUST be
+registered with the <em>HIIS-VZ</em>. During the TLS handshake, the DiGA MUST verify that the FQDN in the certificate matches the
+one registered in the <em>HIIS-VZ</em>.</p>
+
+<p>The Device Data Recorder MUST NOT use self-signed certificates. Certificates, keys, and protocol configurations MUST comply with <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&amp;v=11">BSI TR-02102-2</a>.</p>
+
+<p>The following table lists the trust attributes that MUST be registered in the <em>HIIS-VZ</em> for the identification and authentication of a Device Data Recorder:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Device Data Recorder Data Object</th>
+      <th>Description</th>
+      <th>Specifications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FQDN (Authorization Server)</td>
+      <td>The Fully Qualified Domain Name (FQDN) of the Authorization Server uniquely identifies the Device Data Recorder’s authorization endpoint and enables a DiGA to verify its authenticity through the TLS certificate. The FQDN MUST be registered and published in the <em>HIIS-VZ</em> so that DiGAs can validate the Authorization Server’s certificate and establish a trusted connection.</td>
+      <td>FQDN as specified in the Internet TLS certificate in the Common Name (CN) or in the Subject Alternative Name (SAN)</td>
+    </tr>
+    <tr>
+      <td>FQDN (FHIR Resource Server)</td>
+      <td>The Fully Qualified Domain Name (FQDN) of the FHIR Resource Server serves the same purpose as for the Authorization Server. It enables a DiGA to verify the server’s authenticity via the TLS certificate and MUST likewise be registered and published in the <em>HIIS-VZ</em>.</td>
+      <td>FQDN as specified in the Internet TLS certificate in the Common Name (CN) or in the Subject Alternative Name (SAN)</td>
+    </tr>
+    <tr>
+      <td>Base URL FHIR-API of the FHIR Resource Server</td>
+      <td>Device Data Recorder manufacturers/operators transmit the base URL of the Resource Server so that a DiGA can initiate endpoint discovery for the RESTful FHIR API of an aid/implant using {Base URL FHIR-API}/metadata.</td>
+      <td>url: {FQDN (Resource-Server)} / {manufacturer-specific path} <br /><br />Example:<br /> http://example.com/api/v1/fhir/r4 <br />http://fhir.example.com/r4</td>
+    </tr>
+    <tr>
+      <td>Base URL OAuth-API of the Authorization Server</td>
+      <td>Device Data Recorder manufacturers/operators transmit the base URL of the Authorization Server so that a DiGA can initiate endpoint discovery for the OAuth ACG API of an aid/implant using {Base URL OAuth-API}//.well-known/oauth-authorization-server.</td>
+      <td>url: {FQDN (Authorization-Server)} / {manufacturer-specific path} <br /><br />Examples: http://example.com/api/v1/oauth<br /> http://oauth.example.com/v1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Procedures for registering endpoint URLs and FQDNs with the <em>HIIS-VZ</em> at BfArM will be published by BfArM as part of the <em>HIIS-VZ</em> specification or corresponding guidelines.</p>
+
+<h3 id="authorization-of-the-diga">Authorization of the DiGA</h3>
+
+<p>The Device Data Recorder takes the role of the Data Controller acc. Art. 4 Sentence 1 No. 7 GDPR. The Device Data
+Recorder MUST implement suitable technical and organizational measures to ensure and be able to prove that the
+processing is carried out in accordance with the GDPR (Art. 42 GDPR). This especially includes the Device Data
+Recorder’s responsibility to ensure that device data is only disclosed to authorized DiGA.</p>
+
+<p>Based on the consent of a specific user and the <a href="mivs.html">MIV-specific authorizations</a> listed for a DiGA in the
+<em>DiGA-VZ</em>, the Device Data Recorder MUST grant access to a DiGA only for FHIR resources for which all the following
+conditions are fulfilled:</p>
+
+<ul>
+  <li>resources belonging to a specific user (see lane <strong>a.</strong> in figure below), <strong>AND</strong></li>
+  <li>resources for which this user has granted consent to the DiGA, <strong>AND</strong></li>
+  <li>read-only and search-only access to resources, <strong>AND</strong>
+    <ul>
+      <li>resources bound to MIVs for which the DiGA has been authorized by the BfArM (see lane <strong>b.</strong> in figure below), <strong>OR</strong></li>
+      <li>resources containing device data from devices that have collected the MIV data for which a DiGA is authorized by BfArM (see lane <strong>c.</strong> in figure below).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The MIV-specific authorizations are technically represented using <a href="smart-scopes.html">SMART scopes</a>, which define access
+rights for specific FHIR resources and search parameters. SMART scopes MUST be used consistently across the OAuth 2.0
+interface between the DiGA and the Authorization Server including the Authorization-Request and
+the <a href="pairing.html#token-response">Token Response</a>.</p>
+
+<p>The Authorization Server issues OAuth 2.0 Access Tokens to a DiGA that reflect these authorization conditions. The DiGA
+MUST provide this Access Token as a Bearer Token with every request to the Resource Server. The Resource Server MUST
+verify the authenticity and integrity of the Access Token against its signature and enforce the access restrictions
+defined above (see <a href="smart-scopes.html#enforcement-of-smart-scopes-on-observations-devicemetric-and-device">Enforcement of SMART Scopes on Observations, DeviceMetric, and Device</a>).</p>
+
+<p>While SMART scopes define the intended access externally, the internal representation of these scopes within the Access
+Token is implementation-specific. The Authorization Server MAY embed the SMART scopes directly into the token (e.g., as
+scope-claim in a JWT) or issue an opaque token that references the corresponding authorization data managed internally.
+In either case, the Resource Server MUST apply the permissions derived from the SMART scopes associated with the issued
+token.</p>
+
+<p>The requirements defined in “Identification and Authentication of the Patient” MUST be met, meaning that data enabling
+patient identification MUST NOT appear in the token.</p>
+
+<p>The figure below summarizes the HDDT authorization model and shows how preconditions and context information map onto the access token issued to a DiGA.</p>
+
+<figure>
+<div class="gem-ig-svg-container">
+ <img src="HDDT DiGA access control.svg" style="width: 100%;" />
+  </div>
+    <figcaption><em><strong>Figure: </strong>HDDT DiGA access control</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<h4 id="intended-use">Intended Use</h4>
+<p>Upon registration with the <em>DiGA-VZ</em>, a DiGA registers the values it processes for its “intended use” (see <a href="https://www.bfarm.de/DE/Medizinprodukte/Aufgaben/DiGA-und-DiPA/DiGA/HIIS/_node.html">Process information of BfArM</a>). For any of these values that match a defined MIV, BfArM links the DiGA with the respective MIV (see <a href="information-model.html">Information Model</a>). For each request for measured or aggregated data the Device Data Recorder MUST verify that the requesting DiGA requires the requested data for its intended use. As MIVs are defined through FHIR <a href="https://hl7.org/fhir/R4/valueset.html">ValueSets</a> this means:</p>
+<ul>
+  <li>if a DiGA requests for measured data that is assigned to a certain MIV, the Device Data Recorder MUST verify that the DiGA was authorized for this MIV</li>
+  <li>if a DiGA requests for aggregated data (device data report), the Device Data Recorder MUST verify that the respective FHIR Operation is linked with the MIV that the DiGA was authorized for (see <a href="mivs.html">MIVs</a> for the currently defined MIVs and their associated FHIR Operations).</li>
+  <li>if a DiGA requests for a specific LOINC code, the Device Data Recorder MUST verify that this code is included with the ValueSet of the MIV that the DiGA was authorized for. This information can be obtained from the <a href="registries-and-zts.html#zentraler-terminologieserver">ZTS</a> (German Central Terminology Server).</li>
+</ul>
+
+<p>In addition to measured and aggregated data, a DiGA can as well request information about the patient’s Personal Health Device from the Device Data Recorder. See <a href="smart-scopes.html">SMART Scopes</a> for the enforcement of authorization upon such requests.</p>
+
+<h4 id="consent">Consent</h4>
+<p>Data transfer from a Device Data Recorder to a DiGA MUST only be carried out on the basis of the affected patient’s informed consent (§ 374a (1) SGB V). Both the DiGA and the Device Data Recorder MUST provide means to the patient to revoke the consent from within the DiGA and from all patient GUIs of the Device Data Recorder. Once a consent is revoked, the Access Token MUST be invalidated and the DiGA MUST NOT be able to obtain device data from the Device Data Recorder any more (see <a href="pairing.html#unpairing-by-the-patient">unpairing of a DiGA</a>).</p>
+
+<p>The period of validity of the consent MUST NOT be longer than the prescription period of the DiGA. If a DiGA has an unlimited prescription period or a prescription period of more than one year, the consent SHOULD NOT exceed one year. The manufacturer of the Device Data Recorder is generally responsible for properly obtaining and renewing consent and monitoring any revocations as well as the follow-up obligations.</p>
+
+<h3 id="secure-communication-via-mtls">Secure Communication via mTLS</h3>
+<p>Connections between the DiGA and the backend of a Device Data Recorder are secured via a mutually authenticated TLS channel (mTLS). Since the connection takes place over the Internet, the trust space of the Internet PKI is used for server certificates. Specifically, the CAs that are members of the CA/Browser Forum form the trust space and CA Authorization (CAA, <a href="https://datatracker.ietf.org/doc/html/rfc8659">https://datatracker.ietf.org/doc/html/rfc8659</a>) and Certificate Transparency (CT, <a href="https://datatracker.ietf.org/doc/html/rfc6962">https://datatracker.ietf.org/doc/html/rfc6962</a>) are implemented.</p>
+
+<p>TLS client certificates are not issued by those CAs. Hence the client certificates can be from any PKI or be self-signed and will be directly registered in the <em>DiGA-VZ</em> (BfArM DiGA directory). Certificates, cryptographic keys, TLS protocol versions, cipher suites, elliptic curves and key lengths used for all mTLS-secured transport MUST comply with <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&amp;v=11">BSI TR-02102-2</a>.</p>
+
+<p>For all connections, the DiGA acts as a client and the Device Data Recorder as a server. In the course of establishing a TLS connection, the following steps MUST be completed as part of the certificate check:</p>
+<ol>
+  <li>Verification of the Device Data Recorder’s server certificate by the DiGA:
+    <ul>
+      <li>Precondition: The DiGA backend knows which Device Data Recorder it wants to communicate with and has determined the FQDN from the <em>BfArM HIIS-VZ</em> in advance for the connection establishment.</li>
+      <li>Check for the trust space CA/Browser Forum</li>
+      <li>Check that the FQDN of the called URI matches the domain listed in the server certificate - either in the Subject Alternative Name (SAN) or, if absent, in the Common Name (CN) field.</li>
+      <li>Checking for temporal validity</li>
+      <li>Check that at least two Signed Certificate Timestamps (SCT) are included in the certificate and that they are signed by known CT-Log operators (see (a) below)</li>
+      <li>Check the revocation status of the certificate (see (b) below)</li>
+    </ul>
+  </li>
+  <li>Verification of the client certificate of the DiGA by the Device Data Recorder:
+    <ul>
+      <li>Check that the presented certificate is exactly the same certificate as registered in the <em>DiGA-VZ</em> for the corresponding DiGA that is claimed afterwards on application layer via <code class="language-plaintext highlighter-rouge">client_id</code> (see (c) below)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>DiGA and Device Data Recorder operators MUST implement CA Authorization (CAA) and publish a corresponding DNS record for their domain.</p>
+
+<p>Device Data Recorder operators, as operators of publicly trusted TLS server certificates, MUST continuously monitor the CT logs of the known CT log operators (<a href="https://certificate.transparency.dev/google/">https://certificate.transparency.dev/google/</a>) for unauthorized certificates issued for their own domain. The purpose of this measure is to ensure that unauthorized certificates are detected and can be reported to the issuing CA so that appropriate action (e.g. certificate revocation) can be taken. The obligation to monitor CT logs MAY be fulfilled using automated tools or services. Continuous monitoring does not imply manual inspection but requires that appropriate technical measures are in place to reliably detect unauthorized certificate issuance.</p>
+
+<p>DiGAs do not operate publicly trusted TLS server certificates (in the context of HDDT) and therefore are not required to perform CT log monitoring.</p>
+
+<p>The measure is fully effective if, in addition to the above-mentioned verification steps, the verifying entity also checks the revocation status of the presented certificate against the revocation lists (CRL) provided by the issuing CA. Due to the not inconsiderable size of the CRLs, this can lead to performance problems.</p>
+
+<p><strong><em>Additional Notes</em></strong>:</p>
+<ul>
+  <li>(a) The list of signature verification keys is published by the browser manufacturers, for example. The measure ensures that no certificates are accepted that are not contained in at least two CT logs.</li>
+  <li>(b)	It shall be pointed out that CRLs of the CAs from the CAB Forum can be of significant size.</li>
+  <li>(c) During the TLS connection, only the certificate of the client is initially determined. The certificate MUST then be passed on to the application layer. There, a comparison MUST take place with the information from the <em>DiGA-VZ</em> of the BfArM in order to identify the DiGA. Further, the identification data from the DiGA at the application layer (<code class="language-plaintext highlighter-rouge">client_id</code>) MUST be checked. This data has to match the identity of the DiGA, meaning both certificate and <code class="language-plaintext highlighter-rouge">client_id</code> have to be in the same <em>DiGA-VZ</em> entry. It can be useful for the Device Data Recorder to extract all DiGA certificates from the <em>DiGA-VZ</em> (or at least those from registered DiGAs) to establish a DiGA trust space. This can be passed to the TLS library, which verifies the certificate against that trust space during the TLS handshake. Most unauthorized connection attempts will be repelled by that measure. In any case, this verification is not enough as additionally the DiGA has to be identified at the application layer as described above.</li>
+</ul>
+
+<h3 id="caching-of-trust-related-information">Caching of Trust-Related Information</h3>
+<p>Device Data Recorders and DiGA MAY cache trust related information in order to optimize performance. The following table lists the maximum time spans for which trust-related information MAY be cached in the production environment:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Information Source</th>
+      <th>Information to be Cached</th>
+      <th>Maximum Caching Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>DiGA-VZ</em> (BfArM DiGA Registry)</td>
+      <td>DiGA client certificate</td>
+      <td>4 hours</td>
+    </tr>
+    <tr>
+      <td><em>HIIS-VZ</em> (BfArM Device Registry)</td>
+      <td>Device Data Recorder FQDN and endpoint URLs</td>
+      <td>4 hours</td>
+    </tr>
+    <tr>
+      <td><em>ZTS</em> (German Central Terminology Server)</td>
+      <td>MIV ValueSets</td>
+      <td>24 hours</td>
+    </tr>
+    <tr>
+      <td>Certificate Authorities</td>
+      <td>Certificate status information and Certificate Revocation Lists (CRLs)</td>
+      <td>2 hours</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If a source for updating cached information is not reachable, the affected system MUST deny/reject incoming requests that rely on the cached information.</p>
+
+<p>In order to ease bug fixing, caching times in test environments SHOULD be set to lower values, e.g. one hour for the listed sources and information.</p>
+
+<h3 id="client-privacy">Client Privacy</h3>
+
+<p>DiGA manufacturers MUST ensure that all requests to BfArM directories (<em>DiGA-VZ</em>, <em>HIIS-VZ</em>, <em>ZTS</em>) are made exclusively through the DiGA’s server infrastructure, and never directly from the patient’s device (e.g. a smartphone) on which the DiGA application runs. If such requests originated directly from the patient’s device, the patient’s IP address would be transmitted to and potentially logged by the directory service, which would constitute a privacy risk for the patient. By routing all directory requests through the DiGA’s server infrastructure, the patient’s device address is kept concealed from the directory services.</p>
+
+<h3 id="transparency-of-operations">Transparency of Operations</h3>
+<p>Both the DiGA and the Device Data Recorder MUST write an audit trail for privacy purposes. This audit trail MUST at least log the following events for at least 30 days:</p>
+<ul>
+  <li>pairing of a DiGA with a Device Data Recorder</li>
+  <li>unpairing of a DiGA with a Device Data Recorder</li>
+  <li>unsuccessful pairing and unpairing attempts</li>
+  <li>unauthorized access attempts to device data (Device Data Recorder)</li>
+</ul>
+
+<p>While the audit trail MUST capture the events listed above, its contents MUST be restricted to information necessary for audit and security purposes. Audit logs MUST NOT include personal data that identifies the patient.</p>
+
+<p>Both the DiGA and the Device Data Recorder MUST provide the patient with the ability to inspect the audit trail. Both the DiGA and the Device Data Recorder MUST upon request give responsible data privacy commissioners access to the audit trails.</p>
+
+<h3 id="obligations-for-regular-inspections">Obligations for Regular Inspections</h3>
+
+<p>In order to implement and operate § 374a SGB V in accordance with the law, manufacturers of DiGA and Device Data Recorders MUST regularly inform themselves about changes in the systems relevant to them:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manufacturer</th>
+      <th>System</th>
+      <th>Change to be tracked</th>
+      <th>Possible Impact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DiGA</td>
+      <td><em>ZTS</em></td>
+      <td>MIV Definitions (ValueSets)</td>
+      <td>• Adjustments to the interpretation of values to be provided interoperably <br /> • Requesting renewed consent due to changes in permissions</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><em>HIIS-VZ</em></td>
+      <td>Device Data Recorder Status <br /> <br />Supported MIVs <br /> <br /> FQDN (FHIR, Authorization) <br /> <br /> Base URL (FHIR, OAuth)</td>
+      <td>• Termination of coupling to an aid/implant <br /> • Invalidating consent <br /> • Configuration adjustments of the DiGA</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Device Data Recorder</td>
+      <td>FHIR Capability Statement <br /> <br /> OAuth Server Data Document</td>
+      <td>• Adjustments to RESTful FHIR API calls <br /> • Adjustments to the used scopes and endpoints</td>
+    </tr>
+    <tr>
+      <td>Aid/Implant</td>
+      <td><em>ZTS</em></td>
+      <td>MIV Definitions (ValueSets)</td>
+      <td>• Migration to ValueSet versions <br /> • Adjustments to the values to be provided interoperably</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><em>DiGA-VZ</em></td>
+      <td>DiGA-Status <br /> <br /> Permissions of a DiGA <br /> <br /> TLS_Client_Cert_DiGA <br /> <br /> redirect_uri</td>
+      <td>• Configuration changes of the Authorization Server <br /> • Termination of pairing with a DiGA <br /> • Invalidating consent</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="limits-of-security-performance">Limits of security performance</h3>
+<p>The transfer of data between Device Data Recorder and DiGA and the necessary pairing between the two is considered here. The processing of the data before or after it is transmitted is not considered. This includes internal processes at the backend operators, protection of data during storage, protection of the existing and new interfaces against hacking attacks, the authentication of the patient in order to access DiGA, Personal Health Devices and Device Data Recorder, as well as the secure implementation of the respective front-end to back-end communication.</p>
+
+<p>The threats and vulnerabilities affecting these parties, components, and services MUST be considered by those responsible. This is outside the scope for which gematik has a mandate.</p>
+
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="use_of_hl7_fhir.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="operational-requirements.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

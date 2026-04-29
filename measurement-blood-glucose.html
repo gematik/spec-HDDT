@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>MIV - Blood Glucose Measurement - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"22"}
+    h3,h4,h5,h6{--heading-prefix:"22"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>MIV - Blood Glucose Measurement</b></li>
+
+          <span style="float:right;">
+
+            <a href="mivs.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="measurement-cgm.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>MIV - Blood Glucose Measurement</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#implementation-duties-for-manufacturers-of-device-data-recorders" id="markdown-toc-implementation-duties-for-manufacturers-of-device-data-recorders">Implementation Duties for Manufacturers of Device Data Recorders</a></li>
+  <li><a href="#fhir-resource-server" id="markdown-toc-fhir-resource-server">FHIR Resource Server</a></li>
+  <li><a href="#observation-profile-hddt-blood-glucose-measurement" id="markdown-toc-observation-profile-hddt-blood-glucose-measurement">Observation Profile <em>HDDT Blood Glucose Measurement</em></a></li>
+  <li><a href="#miv-specific-endpoints-and-interactions" id="markdown-toc-miv-specific-endpoints-and-interactions">MIV-specific Endpoints and Interactions</a></li>
+  <li><a href="#example-fhir-search-for-specific-loinc-code" id="markdown-toc-example-fhir-search-for-specific-loinc-code">Example: FHIR-Search for specific LOINC code</a></li>
+  <li><a href="#example-fhir-search-include-devicemetric" id="markdown-toc-example-fhir-search-include-devicemetric">Example: FHIR-Search include DeviceMetric</a></li>
+</ul>
+
+</div>
+
+<p>This chapter provides obligations and hints for manufacturers of Device Data Recorders for implementing a FHIR Resource Server for the Mandatory Interoperable Value (MIV) <em>Blood Glucose Measurement</em>. For an overview of this MIV including typical use cases and key values, see the <a href="mivs.html#domain-diabetes-self-management">Diabetes Self-Management domain</a> chapter.</p>
+
+<p>This chapter builds on the <a href="information-model.html">HDDT Information Model</a>, the <a href="ddr-diga-api.html">HDDT Generic FHIR API</a>, and the <a href="retrieving-data.html">HDDT guide for retrieving device data</a>. It constrains these guidelines with respect to the specific requirements for exposing blood glucose measurements to DiGA, including:</p>
+
+<ul>
+  <li>The endpoints to implement and how they differ from the <a href="ddr-diga-api.html">Generic FHIR API model</a></li>
+  <li>The relevant FHIR profile for blood glucose measurement and how it constrains and extends the <a href="information-model.html">HDDT Information Model</a></li>
+  <li>Conventions for sharing FHIR resources to ensure compliance with the <a href="retrieving-data.html">HDDT guide for retrieving device data</a></li>
+  <li>Example requests and responses to support implementation</li>
+</ul>
+
+<h3 id="implementation-duties-for-manufacturers-of-device-data-recorders">Implementation Duties for Manufacturers of Device Data Recorders</h3>
+
+<p>Manufacturers of Device Data Recorders that support the MIV <em>Blood Glucose Measurement</em></p>
+
+<ul>
+  <li>MUST implement all requirements expressed through the RFC 2119 keywords defined in <a href="conventions.html#use-of-keywords">Conventions - Use of Keywords</a>. These keywords (MUST, SHOULD, MAY, etc.) are used throughout the entire specification to indicate normative requirements.</li>
+  <li>MUST implement and operate a FHIR Resource Server as defined in this chapter,</li>
+  <li>MUST implement and operate an <a href="authorization-server.html">OAuth2 Authorization Server</a>,</li>
+  <li>MUST register the Device Data Recorder with its FHIR Resource Server and OAuth2 Authorization Server at the <em>BfARM HIIS-VZ</em> (BfArM Device Registry),</li>
+  <li>MUST consider the HDDT requirements on <a href="security-and-privacy.html">security, privacy</a> and <a href="operational-requirements.html">operational service levels</a>.</li>
+</ul>
+
+<p>Further obligations MAY be defined by gematik and BfArM as part of the upcoming processes for conformance validation and registration.</p>
+
+<h3 id="fhir-resource-server">FHIR Resource Server</h3>
+<p>The Device Data Recorder’s FHIR Resource Server gives DiGA access to measured data and related information about devices and device metrics. A Device Data Recorder’s FHIR Resource Server that serves the MIV <em>Blood Glucose Measurement</em> MUST implement the following endpoints and profiles:</p>
+
+<ul>
+  <li>retrieval of the Resource Server’s <a href="https://hl7.org/fhir/R4/capabilitystatement.html">CapabilityStatement</a> through a <a href="fhir-api-metadata.html"><code class="language-plaintext highlighter-rouge">/metadata</code> endpoint</a>.</li>
+  <li>HDDT common RESTful interactions on a <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> endpoint that implements the <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">HDDT Sensor Type and Calibration Status</a> profile. These interactions are common for all MIVs. The full specification of the interactions can be found <a href="fhir-api-devicemetric.html">here</a>.</li>
+  <li>HDDT common RESTful interactions on a <a href="https://hl7.org/fhir/R4/device.html">Device</a> endpoint that implements the <a href="StructureDefinition-hddt-personal-health-device.html">HDDT Personal Health Device</a> profile. These interactions are common for all MIVs. The full specification of the interactions can be found <a href="fhir-api-device.html">here</a>.</li>
+  <li>MIV-specific interactions on an <a href="https://hl7.org/fhir/R4/device.html">Observation</a> endpoint that implements the <a href="StructureDefinition-hddt-blood-glucose-measurement.html">HDDT Blood Glucose Measurement</a> profile. These interactions and the underlying profile are specific for implementing the MIV <em>Blood Glucose Measurement</em>. The full specifications are given below.</li>
+</ul>
+
+<p>The figure below shows the adaption of the <a href="information-model.html">HDDT Information Model</a> for the MIV <em>Blood Glucose Measurement</em>. Elements denoted as <em>[1..1]</em> are mandatory or MS for the MIV <em>Blood Glucose Measurement</em> (see <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>).</p>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  <?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1107.8125px" preserveAspectRatio="none" style="width:2440px;height:1107px;background:#DFEBF0;" version="1.1" viewBox="0 0 2440 1107" width="2440.625px" zoomAndPan="magnify"><defs /><g><rect fill="#DFEBF0" height="1107.8125" style="stroke:none;stroke-width:1.5625;" width="2440.625" x="0" y="0" /><rect fill="#C85670" height="48.3643" id="_title" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:0.0;" width="1300" x="559.375" y="7.8125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="1284.375" x="567.1875" y="41.7313">Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</text><!--cluster HDDT_Measurements_and_Devices--><g id="cluster_HDDT_Measurements_and_Devices"><rect fill="#A0C5CF" height="700" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:1.5625;" width="1673.4375" x="10.9375" y="76.4893" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="440.625" x="627.3438" y="99.9191">Device Data Recorder Manufacturer</text></g><!--cluster gematik--><g id="cluster_gematik"><rect fill="#FAF3C0" height="246.875" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:1.5625;" width="537.5" x="1784.375" y="106.1768" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="389.0625" x="1858.5938" y="129.6066">Repository for gematik FHIR IGs</text></g><!--cluster HDDT_Registries--><g id="cluster_HDDT_Registries"><rect fill="#F6D7B6" height="221.875" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="575" x="203.125" y="878.0518" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="420.3125" x="280.4688" y="901.4816">HIIS-VZ (Device Registry at BfArM)</text></g><!--cluster ZTS--><g id="cluster_ZTS"><rect fill="#C9E6CA" height="345.3125" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:1.5625;" width="709.375" x="1721.875" y="456.1768" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="257.8125" x="1947.6563" y="479.6066">MIV Definitions (ZTS)</text></g><!--class IV--><g id="elem_IV"><rect codeLine="15" fill="#F1F1F1" height="215.2344" id="IV" rx="14.0625" ry="14.0625" style="stroke:#181818;stroke-width:0.78125;" width="684.375" x="962.5" y="137.4268" /><ellipse cx="1193.3594" cy="168.8843" fill="#ADD1B2" rx="17.1875" ry="17.1875" style="stroke:#181818;stroke-width:1.5625;" /><path d="M1197.998,177.6978 Q1197.0947,178.1616 1196.0938,178.3813 Q1195.0928,178.6255 1193.9941,178.6255 Q1190.0879,178.6255 1188.0127,176.062 Q1185.9619,173.4741 1185.9619,168.5913 Q1185.9619,163.7085 1188.0127,161.1206 Q1190.0879,158.5327 1193.9941,158.5327 Q1195.0928,158.5327 1196.0938,158.7769 Q1197.1191,159.021 1197.998,159.4849 L1197.998,163.7329 Q1197.0215,162.8296 1196.0938,162.4146 Q1195.166,161.9751 1194.1895,161.9751 Q1192.0898,161.9751 1191.0156,163.6597 Q1189.9414,165.3198 1189.9414,168.5913 Q1189.9414,171.8628 1191.0156,173.5474 Q1192.0898,175.2075 1194.1895,175.2075 Q1195.166,175.2075 1196.0938,174.7925 Q1197.0215,174.353 1197.998,173.4497 L1197.998,177.6978 Z " fill="#111111" /><text fill="#111111" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="187.5" x="1236.3281" y="162.6434">&#171;FHIR Observation&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="209.375" x="1225.3906" y="187.3703">Interoperable Value</text><line style="stroke:#181818;stroke-width:0.78125;" x1="964.0625" x2="1645.3125" y1="200.3418" y2="200.3418" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="520.3125" x="971.875" y="226.8967">code : classification of the measured value [1..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="653.125" x="971.875" y="252.3605">effectiveDateTime : date and time of the measurement [1..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="665.625" x="971.875" y="277.8244">valueQuantity.value : quantity value of the measurement [1..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="326.5625" x="971.875" y="303.2883">valueQuantity.system = UCUM</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="390.625" x="971.875" y="328.7521">valueQuantity.code = mg/dL|mmol/L</text><line style="stroke:#181818;stroke-width:0.78125;" x1="964.0625" x2="1645.3125" y1="340.1611" y2="340.1611" /></g><!--class Metric--><g id="elem_Metric"><rect codeLine="23" fill="#F1F1F1" height="164.3066" id="Metric" rx="14.0625" ry="14.0625" style="stroke:#181818;stroke-width:0.78125;" width="643.75" x="35.9375" y="162.4268" /><ellipse cx="162.8906" cy="193.8843" fill="#ADD1B2" rx="17.1875" ry="17.1875" style="stroke:#181818;stroke-width:1.5625;" /><path d="M167.5293,202.6978 Q166.626,203.1616 165.625,203.3813 Q164.624,203.6255 163.5254,203.6255 Q159.6191,203.6255 157.5439,201.062 Q155.4932,198.4741 155.4932,193.5913 Q155.4932,188.7085 157.5439,186.1206 Q159.6191,183.5327 163.5254,183.5327 Q164.624,183.5327 165.625,183.7769 Q166.6504,184.021 167.5293,184.4849 L167.5293,188.7329 Q166.5527,187.8296 165.625,187.4146 Q164.6973,186.9751 163.7207,186.9751 Q161.6211,186.9751 160.5469,188.6597 Q159.4727,190.3198 159.4727,193.5913 Q159.4727,196.8628 160.5469,198.5474 Q161.6211,200.2075 163.7207,200.2075 Q164.6973,200.2075 165.625,199.7925 Q166.5527,199.353 167.5293,198.4497 L167.5293,202.6978 Z " fill="#111111" /><text fill="#111111" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="193.75" x="286.3281" y="187.6434">&#171;FHIR DeviceMetric&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="376.5625" x="194.9219" y="212.3703">Sensor Type and Calibration Status</text><line style="stroke:#181818;stroke-width:0.78125;" x1="37.5" x2="678.125" y1="225.3418" y2="225.3418" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="534.375" x="45.3125" y="251.8967">type : kind of value measured by the sensor [0..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="625" x="45.3125" y="277.3605">calibration.state : quality indicator for measurements [1..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="453.125" x="45.3125" y="302.8244">calibration.time : last calibration date [1..1]</text><line style="stroke:#181818;stroke-width:0.78125;" x1="37.5" x2="678.125" y1="314.2334" y2="314.2334" /></g><!--class PHD--><g id="elem_PHD"><rect codeLine="29" fill="#F1F1F1" height="215.2344" id="PHD" rx="14.0625" ry="14.0625" style="stroke:#181818;stroke-width:0.78125;" width="525" x="228.125" y="535.8643" /><ellipse cx="359.7656" cy="567.3218" fill="#ADD1B2" rx="17.1875" ry="17.1875" style="stroke:#181818;stroke-width:1.5625;" /><path d="M364.4043,576.1353 Q363.501,576.5991 362.5,576.8188 Q361.499,577.063 360.4004,577.063 Q356.4941,577.063 354.4189,574.4995 Q352.3682,571.9116 352.3682,567.0288 Q352.3682,562.146 354.4189,559.5581 Q356.4941,556.9702 360.4004,556.9702 Q361.499,556.9702 362.5,557.2144 Q363.5254,557.4585 364.4043,557.9224 L364.4043,562.1704 Q363.4277,561.2671 362.5,560.8521 Q361.5723,560.4126 360.5957,560.4126 Q358.4961,560.4126 357.4219,562.0972 Q356.3477,563.7573 356.3477,567.0288 Q356.3477,570.3003 357.4219,571.9849 Q358.4961,573.645 360.5957,573.645 Q361.5723,573.645 362.5,573.23 Q363.4277,572.7905 364.4043,571.8872 L364.4043,576.1353 Z " fill="#111111" /><text fill="#111111" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="134.375" x="448.8281" y="561.0809">&#171;FHIR Device&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="248.4375" x="391.7969" y="585.8078">Personal Health Device</text><line style="stroke:#181818;stroke-width:0.78125;" x1="229.6875" x2="751.5625" y1="598.7793" y2="598.7793" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="453.125" x="237.5" y="625.3342">type : machine-readable device type [0..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="367.1875" x="237.5" y="650.798">deviceName : product name [0..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="506.25" x="237.5" y="676.2619">manufacturer : name of the manufacturer [0..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="371.875" x="237.5" y="701.7258">serialNumber : serial number [0..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="398.4375" x="237.5" y="727.1896">expirationDate : end of life date [0..1]</text><line style="stroke:#181818;stroke-width:0.78125;" x1="229.6875" x2="751.5625" y1="738.5986" y2="738.5986" /></g><!--entity xor--><g id="elem_xor"><ellipse cx="748.4375" cy="244.458" fill="#C85670" rx="12.5" ry="12.5" style="stroke:#C85670;stroke-width:0.0;" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="60.9375" x="717.9688" y="291.3254">{xor}</text></g><g id="elem_OP"><rect fill="#FFFFFF" height="167.8955" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="485.9375" x="1810.1563" y="160.8643" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="254.6875" x="1925.7813" y="178.2684">&#171;FHIR StructureDefinition&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="464.0625" x="1821.0938" y="206.1203">Observation - Blood Glucose Measurement</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="1811.7188" x2="2294.5313" y1="214.4043" y2="214.4043" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="460.9375" x="1819.5313" y="240.9592">name = "HddtBloodGlucoseMeasurement"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="207.8125" x="1819.5313" y="266.423">type = Observation</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="398.4375" x="1819.5313" y="291.8869">baseDefinition = &#171;FHIR Observation&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="243.75" x="1819.5313" y="317.3508">derivation = constraint</text></g><g id="elem_PHD_Def"><rect fill="#FFFFFF" height="142.4316" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="525" x="228.125" y="932.7393" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="226.5625" x="377.3438" y="950.1434">&#171;FHIR DeviceDefinition&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="356.25" x="312.5" y="977.9953">Personal Health Device Definition</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="229.6875" x2="751.5625" y1="986.2793" y2="986.2793" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="417.1875" x="237.5" y="1012.8342">type : kind of device &#171;SCT code&#187; [1..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="367.1875" x="237.5" y="1038.298">deviceName : product name [1..1]</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="506.25" x="237.5" y="1063.7619">manufacturer : name of the manufacturer [0..1]</text></g><!--class MIV--><g id="elem_MIV"><rect codeLine="64" fill="#F1F1F1" height="266.1621" id="MIV" rx="14.0625" ry="14.0625" style="stroke:#181818;stroke-width:0.78125;" width="659.375" x="1746.875" y="510.8643" /><ellipse cx="1873.8281" cy="542.3218" fill="#EB937F" rx="17.1875" ry="17.1875" style="stroke:#181818;stroke-width:1.5625;" /><path d="M1880.249,551.6968 L1868.1885,551.6968 L1868.1885,532.3364 L1880.249,532.3364 L1880.249,535.7056 L1872.0215,535.7056 L1872.0215,539.8804 L1879.4678,539.8804 L1879.4678,543.2495 L1872.0215,543.2495 L1872.0215,548.3276 L1880.249,548.3276 L1880.249,551.6968 Z " fill="#111111" /><text fill="#111111" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="157.8125" x="2023.0469" y="536.0809">&#171;FHIR ValueSet&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="392.1875" x="1905.8594" y="560.8078">VS MIV Blood Glucose Measurement</text><line style="stroke:#181818;stroke-width:0.78125;" x1="1748.4375" x2="2404.6875" y1="573.7793" y2="573.7793" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="378.125" x="1756.25" y="600.3342">url = " https://gematik.de/fhir/hddt/</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="526.5625" x="1825" y="625.798">ValueSet/hddt-miv-blood-glucose-measurement"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="179.6875" x="1756.25" y="651.2619">version = "1.0.1"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="640.625" x="1756.25" y="676.7258">title = "ValueSet - Blood Glucose Measurement from LOINC"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="495.3125" x="1756.25" y="702.1896">name = "HddtMivBloodGlucoseMeasurement"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="550" x="1756.25" y="727.6535">description = "therapy mgmt and clinical decisions"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="575" x="1756.25" y="753.1174">compose.include = 2339-0|LOINC, 15074-8|LOINC, ...</text><line style="stroke:#181818;stroke-width:0.78125;" x1="1748.4375" x2="2404.6875" y1="764.5264" y2="764.5264" /></g><!--reverse link xor to IV--><g id="link_xor_IV"><path codeLine="39" d="M770.9688,244.458 C804.7812,244.458 872.9063,244.458 949.5,244.458 " fill="none" id="xor-backto-IV" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="762.75,244.458,776.8125,250.708,770.5625,244.458,776.8125,238.208,762.75,244.458" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="123.4375" x="791.4063" y="233.625">device [1..1]</text></g><!--reverse link Metric to xor--><g id="link_Metric_xor"><path codeLine="40" d="M687.8125,244.458 C703.1875,244.458 718.5781,244.458 733.9531,244.458 " fill="none" id="Metric-backto-xor" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="679.7656,244.458,693.8281,250.708,687.5781,244.458,693.8281,238.208,679.7656,244.458" style="stroke:#5E9BB1;stroke-width:3.125;" /></g><!--link xor to PHD--><g id="link_xor_PHD"><path codeLine="41" d="M745.2969,259.1611 C739.5469,281.8018 726.1094,329.2549 706.25,365.5518 C674.7813,423.0518 631.6406,481.1143 592.2188,529.083 " fill="none" id="xor-to-PHD" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="586.9219,535.4736,600.6959,528.6112,591.8969,529.45,591.0581,520.6511,586.9219,535.4736" style="stroke:#5E9BB1;stroke-width:3.125;" /></g><!--link Metric to PHD--><g id="link_Metric_PHD"><path codeLine="42" d="M384.8438,326.6611 C404.2344,384.4736 430.625,463.1768 452.2031,527.5205 " fill="none" id="Metric-to-PHD" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="454.8125,535.2861,456.281,519.9675,452.3353,527.8768,444.426,523.9311,454.8125,535.2861" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="126.5625" x="418.75" y="425.0313">source [1..1]</text></g><!--link PHD to PHD_Def--><g id="link_PHD_PHD_Def"><path codeLine="77" d="M490.625,751.8799 C490.625,807.2705 490.625,873.7393 490.625,924.2861 " fill="none" id="PHD-to-PHD_Def" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="490.625,932.2549,496.875,918.1924,490.625,924.4424,484.375,918.1924,490.625,932.2549" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="150" x="492.1875" y="846.9063">definition [0..1]</text></g><!--link OP to MIV--><g id="link_OP_MIV"><path codeLine="78" d="M2057.9844,328.0986 C2060.9531,378.3955 2064.8438,444.1299 2068.2969,502.4424 " fill="none" id="OP-to-MIV" style="stroke:#5E9BB1;stroke-width:3.125;stroke-dasharray:7.0,7.0;" /><polygon fill="#5E9BB1" points="2068.7656,510.2549,2074.2032,495.8587,2068.3199,502.4551,2061.7235,496.5718,2068.7656,510.2549" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="118.75" x="2064.0625" y="425.0313">implements</text></g><!--reverse link IV to OP--><g id="link_IV_OP"><path codeLine="79" d="M1668.0625,244.458 C1716.0938,244.458 1764.375,244.458 1809.7188,244.458 " fill="none" id="IV-backto-OP" style="stroke:#5E9BB1;stroke-width:3.125;stroke-dasharray:7.0,7.0;" /><polygon fill="#5E9BB1" points="1659.7344,244.458,1673.7969,250.708,1667.5469,244.458,1673.7969,238.208,1659.7344,244.458" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="71.875" x="1698.8281" y="269.5625">defines</text></g><!--link IV to MIV--><g id="link_IV_MIV"><path codeLine="80" d="M1648.4375,219.458 C1737.125,219.458 1721.9219,302.5674 1784.375,365.5518 C1830.0313,411.5986 1881,460.6143 1927.4219,504.3955 " fill="none" id="IV-to-MIV" style="stroke:#5E9BB1;stroke-width:3.125;stroke-dasharray:7.0,7.0;" /><polygon fill="#5E9BB1" points="1933.6406,510.2549,1927.6838,496.0657,1927.9516,504.9005,1919.1168,505.1682,1933.6406,510.2549" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="128.125" x="1850" y="425.0313">included with</text></g></g></svg>
+  </div>
+    <figcaption><em><strong>Figure: </strong>Profiling of the HDDT Information Model for the MIV Blood Glucose Measurement</em></figcaption>
+</figure>
+
+<p><br clear="all" /></p>
+
+<p>All interactions on HDDT-specific endpoints require that the requestor presents a valid Access Token that was issued by the Device Data Recorder’s OAuth2 Authorization Server (see <a href="pairing.html">Pairing</a> for details). The authorization of the request follows the principles defined for <a href="smart-scopes.html">HDDT Smart Scopes</a>. For the MIV <em>Blood Glucose Measurement</em> only the following scopes MUST be set:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>patient/Observation.rs?code:in=https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement
+patient/Device.rs
+patient/DeviceMetric.rs
+</code></pre></div></div>
+
+<h3 id="observation-profile-hddt-blood-glucose-measurement">Observation Profile <em>HDDT Blood Glucose Measurement</em></h3>
+<p>This section discusses the <em>HDDT Blood Glucose Measurement</em> profile, which constrains the FHIR <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resource for representing blood glucose measurements. For the full normative specification of this profile see the respective <a href="StructureDefinition-hddt-blood-glucose-measurement.html">StructureDefinition</a>.</p>
+
+<h4 id="snapshot-view-of-the-profile">Snapshot View of the Profile</h4>
+
+<div id="tabs-key">
+  <div id="tbl-key">
+    <p><strong>Profile: </strong> Observation – Blood Glucose Measurement</p>
+    <p>
+      This structure is derived from
+      <a href="http://hl7.org/fhir/R4/observation.html">
+        Observation
+      </a>
+    </p>
+    <div id="tbl-key-inner">
+      <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="hddt-blood-glucose-measurementKA" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="The logical name of the element" data-no-external="true">Name</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Information about the use of the element" data-no-external="true">Flags</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Minimum and Maximum # of times the element can appear in the instance" data-no-external="true">Card.</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px; width: 100px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Reference to the type of the element" data-no-external="true">Type</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Additional information about the element" data-no-external="true">Description &amp; Constraints</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal">Filter: <input size="10" name="filter" style="border: 1px #F0F0F0 solid; background-color: rgb(254, 254, 231);" oninput="filterTree(document.getElementById('hddt-blood-glucose-measurementKA'), event.target.value)" type="text" /> <img onclick="showPanel(event.target, document.getElementById('hddt-blood-glucose-measurementKA'), document.getElementById('pphddt-blood-glucose-measurementKA'))" src="tree-filter.png" alt="Filters" /><div style="display: none; position: fixed; opacity : 1.0; background-color: rgb(254, 254, 231); border: 1px solid #ccc; padding: 10px; boxShadow: 0 2px 5px rgba(0,0,0,0.2); zIndex: 1000; borderRadius: 4px" id="pphddt-blood-glucose-measurementKA">Bindings <input onclick="filterDesc(document.getElementById('hddt-blood-glucose-measurementKA'), 'binding',event.target.checked, document.getElementById('pphddt-blood-glucose-measurementKA'))" size="1" name="binding" checked="true" id="cbhddt-blood-glucose-measurementKA-binding" type="checkbox" /><br />Constraints <input onclick="filterDesc(document.getElementById('hddt-blood-glucose-measurementKA'), 'constraint',event.target.checked, document.getElementById('pphddt-blood-glucose-measurementKA'))" size="1" name="constraint" checked="true" id="cbhddt-blood-glucose-measurementKA-constraint" type="checkbox" /><br />Obligations <input onclick="filterDesc(document.getElementById('hddt-blood-glucose-measurementKA'), 'obligation',event.target.checked, document.getElementById('pphddt-blood-glucose-measurementKA'))" size="1" name="obligation" checked="true" id="cbhddt-blood-glucose-measurementKA-obligation" type="checkbox" /><br /></div></span><span style="float: right"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format" data-no-external="true"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" onload="fhirTableInit(this)" style="background-color: inherit" /></a></span></th></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="a" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_resource.png" alt="." style="background-color: white; background-color: inherit" title="Resource" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation" title="Measurements and simple assertions made about a patient, device or other subject." data-no-external="true">Observation</a><a name="ka-Observation"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a style="padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;; padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;" href="http://hl7.org/fhir/R4/conformance-rules.html#constraints" title="This element has or is affected by constraints ( obs-6, obs-7 )">C</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/observation.html">Observation</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Measurements and simple assertions<br class="constraint" /><span title="null" class="constraint">Constraints: </span><span style="font-weight:bold" title="dataAbsentReason SHALL only be present if Observation.value[x] is not present" class="constraint">obs-6</span><span title="null" class="constraint">, </span><span style="font-weight:bold" title="If Observation.code is the same as an Observation.component.code then the value element associated with the code SHALL NOT be present" class="constraint">obs-7</span><br /></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="aa" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.implicitRules" title="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc." data-no-external="true">implicitRules</a><a name="ka-Observation.implicitRules"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#uri">uri</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A set of rules under which this content was created</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="ab" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_modifier_extension_simple.png" alt="." style="background-color: white; background-color: inherit" title="Simple Extension" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.modifierExtension" title="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." data-no-external="true">modifierExtension</a><a name="ka-Observation.modifierExtension"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension">Extension</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Extensions that cannot be ignored<br /></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ac" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.status" title="The status of the result value." data-no-external="true">status</a><a name="ka-Observation.status"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">registered | preliminary | final | amended +<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-observation-status.html" title="http://hl7.org/fhir/ValueSet/observation-status" class="binding">ObservationStatus</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span><span title="null" class="binding">: </span><span title="null" class="binding">Codes providing the status of an observation.</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="ad" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_datatype.gif" alt="." style="background-color: white; background-color: inherit" title="Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.code" title="Describes what was observed. Sometimes this is called the observation &quot;name&quot;." data-no-external="true">code</a><a name="ka-Observation.code"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Measurement type of blood glucose<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="ValueSet-hddt-miv-blood-glucose-measurement.html" title="https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement" class="binding">Blood Glucose Measurement from LOINC</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span><span title="null" class="binding">: </span><span title="null" class="binding">Specifies the type of measurement using codes from the ValueSet for blood glucose measurements.</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ae" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.effective[x]" title="The time or period when the blood glucose measurement was taken." data-no-external="true">effective[x]</a><a name="ka-Observation.effective_x_"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Time of measurement</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="af" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck11.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img onclick="tableRowAction(this)" src="tbl_vjoin-open.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_datatype.gif" alt="." style="background-color: white; background-color: inherit" title="Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.value[x]" title="The quantitative blood glucose value, measured either in mass/volume (mg/dL) or moles/volume (mmol/L), represented as a UCUM Quantity." data-no-external="true">value[x]</a><a name="ka-Observation.value_x_"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: white; background-color: #D50000" title="This element must be supported">S</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span><a style="padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;; padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;" href="http://hl7.org/fhir/R4/conformance-rules.html#constraints" title="This element has or is affected by constraints ( obs-7 )">C</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity">Quantity</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Measured blood glucose value</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="afa" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.value[x].value" title="The value of the measured amount. The value includes an implicit precision in the presentation of the value." data-no-external="true">value</a><a name="ka-Observation.value_x_.value"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#decimal">decimal</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Numerical value (with implicit precision)</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="afb" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.value[x].comparator" title="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value." data-no-external="true">comparator</a><a name="ka-Observation.value_x_.comparator"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">&lt; | &lt;= | &gt;= | &gt; - how to understand the value<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-quantity-comparator.html" title="http://hl7.org/fhir/ValueSet/quantity-comparator" class="binding">QuantityComparator</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span><span title="null" class="binding">: </span><span title="null" class="binding">How the Quantity should be understood and represented.</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="afc" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.value[x].system" title="The identification of the system that provides the coded form of the unit." data-no-external="true">system</a><a name="ka-Observation.value_x_.system"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span><a style="padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;; padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;" href="http://hl7.org/fhir/R4/conformance-rules.html#constraints" title="This element has or is affected by constraints ( qty-3 )">C</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#uri">uri</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">System that defines coded unit form<br /><span style="font-weight:bold">Fixed Value: </span><span style="color: darkgreen">http://unitsofmeasure.org</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="afd" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck100.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin_end.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.value[x].code" title="The UCUM code representing the unit of the blood glucose measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`." data-no-external="true">code</a><a name="ka-Observation.value_x_.code"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Coded form of the unit<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-ucum-units.html" title="http://hl7.org/fhir/ValueSet/ucum-units" class="binding">UCUMCodes</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span><span title="null" class="binding">: </span><span title="null" class="binding">Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as </span><span style="padding: 2px 4px; color: #005c00; background-color: #f9f2f4; white-space: nowrap; border-radius: 4px" title="null" class="binding">Observation.code</span><span title="null" class="binding">.</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ag" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck00.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin_end.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_reference.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Reference to another Resource" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-blood-glucose-measurement-definitions.html#Observation.device" title="References a DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference to the Device resource that describes the personal health device itself." data-no-external="true">device</a><a name="ka-Observation.device"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/references.html">Reference</a>(<a href="StructureDefinition-hddt-personal-health-device.html">Device – Personal Health Device</a> | <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">DeviceMetric – Sensor Type and Calibration Status</a>)</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Reference to personal health device or its sensor type and calibration status</td></tr>
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br /><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit" /> Documentation for this format</a></td></tr><script type="text/javascript">  // 2945a930-577f-4437-b12b-5231e6f56965
+document.getElementById('cbhddt-blood-glucose-measurementKA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
+filterDesc(document.getElementById('hddt-blood-glucose-measurementKA'), 'binding', document.getElementById('cbhddt-blood-glucose-measurementKA-binding').checked, document.getElementById('pphddt-blood-glucose-measurementKA'));
+document.getElementById('cbhddt-blood-glucose-measurementKA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
+filterDesc(document.getElementById('hddt-blood-glucose-measurementKA'), 'constraint', document.getElementById('cbhddt-blood-glucose-measurementKA-constraint').checked, document.getElementById('pphddt-blood-glucose-measurementKA'));
+document.getElementById('cbhddt-blood-glucose-measurementKA-obligation').checked = 'false' != localStorage.getItem('ht-table-states-obligation');
+filterDesc(document.getElementById('hddt-blood-glucose-measurementKA'), 'obligation', document.getElementById('cbhddt-blood-glucose-measurementKA-obligation').checked, document.getElementById('pphddt-blood-glucose-measurementKA'));
+</script></table>
+    </div>
+  </div>
+</div>
+
+<div>
+    <p><strong>Detailed description of differential elements</strong></p>
+    <a name="tabs-diff"> </a>
+    <div id="tabs-diff">
+      <p>Guidance on how to interpret the contents of this table can be found<a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#data-dictionaries">here</a></p><table class="dict" data-fhir="generated"><tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation">  </a><span style="color: grey">0</span><b>. Observation</b><a href="#diff_Observation" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.code">  </a><span style="color: grey">2</span><b>. Observation.code</b><a href="#diff_Observation.code" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Short</td><td>Measurement type of blood glucose</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/terminologies.html">Binding</a></td><td><span>The codes SHALL be taken from  <a href="ValueSet-hddt-miv-blood-glucose-measurement.html">Blood Glucose Measurement from LOINC</a><br />(<a href="http://hl7.org/fhir/R4/terminologies.html#required">required</a> to <span class="copy-text-inline"><code>https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement</code><button data-clipboard-text="https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement" title="Click to Copy URL" class="btn-copy"></button></span>)</span><br /><p style="font-size: 11px">Specifies the type of measurement using codes from the ValueSet for blood glucose measurements.</p>
+</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.effective[x]">  </a><a name="diff_Observation.effectiveDateTime">  </a><a name="diff_Observation.effective[x]:effectiveDateTime">  </a><a name="diff_Observation.effectiveDateTime:effectiveDateTime">  </a><span style="color: grey">4</span><b>. Observation.effective[x]</b><a href="#diff_Observation.effective[x]" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">The time or period when the blood glucose measurement was taken.</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Time of measurement</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>1..?</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#Period">Period</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#Timing">Timing</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#instant">instant</a></span></td></tr><tr><td style="white-space: nowrap">[x] Note</td><td>See<a href="http://hl7.org/fhir/R4/formats.html#choice">Choice of Data Types</a>for further information about how to use [x]</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/elementdefinition.html#primitives">Primitive Value</a></td><td>This primitive element may be present, or absent, or replaced by an extension</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.value[x]">  </a><a name="diff_Observation.valueQuantity">  </a><a name="diff_Observation.value[x]:valueQuantity">  </a><a name="diff_Observation.valueQuantity:valueQuantity">  </a><span style="color: grey">6</span><b>. Observation.value[x]</b><a href="#diff_Observation.value[x]" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">The quantitative blood glucose value, measured either in mass/volume (mg/dL) or moles/volume (mmol/L), represented as a UCUM Quantity.</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Measured blood glucose value</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#Quantity">Quantity</a>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#SampledData">SampledData</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#Period">Period</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#Ratio">Ratio</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#integer">integer</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#time">time</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#Range">Range</a></span>, <span style="color:DarkGray;text-decoration:line-through"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></span></td></tr><tr><td style="white-space: nowrap">[x] Note</td><td>See<a href="http://hl7.org/fhir/R4/formats.html#choice">Choice of Data Types</a>for further information about how to use [x]</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.value[x].value">  </a><a name="diff_Observation.valueQuantity.value">  </a><a name="diff_Observation.value[x]:valueQuantity.value">  </a><a name="diff_Observation.valueQuantity:valueQuantity.value">  </a><span style="color: grey">8</span><b>. Observation.value[x].value</b><a href="#diff_Observation.value[x].value" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>1..?</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.value[x].system">  </a><a name="diff_Observation.valueQuantity.system">  </a><a name="diff_Observation.value[x]:valueQuantity.system">  </a><a name="diff_Observation.valueQuantity:valueQuantity.system">  </a><span style="color: grey">10</span><b>. Observation.value[x].system</b><a href="#diff_Observation.value[x].system" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>1..?</td></tr><tr><td style="white-space: nowrap">Fixed Value</td><td><code>http://unitsofmeasure.org</code></td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.value[x].code">  </a><a name="diff_Observation.valueQuantity.code">  </a><a name="diff_Observation.value[x]:valueQuantity.code">  </a><a name="diff_Observation.valueQuantity:valueQuantity.code">  </a><span style="color: grey">12</span><b>. Observation.value[x].code</b><a href="#diff_Observation.value[x].code" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">The UCUM code representing the unit of the blood glucose measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as <code>Observation.code</code>.</p>
+</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>1..?</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/terminologies.html">Binding</a></td><td><span>The codes SHALL be taken from  <a href="http://hl7.org/fhir/R4/valueset-ucum-units.html">UCUMCodes</a><br />(<a href="http://hl7.org/fhir/R4/terminologies.html#required">required</a> to <span class="copy-text-inline"><code>http://hl7.org/fhir/ValueSet/ucum-units</code><button data-clipboard-text="http://hl7.org/fhir/ValueSet/ucum-units" title="Click to Copy URL" class="btn-copy"></button></span>)</span><br /><p style="font-size: 11px">Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as <code>Observation.code</code>.</p>
+</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Observation.device">  </a><span style="color: grey">14</span><b>. Observation.device</b><a href="#diff_Observation.device" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">References a DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference to the Device resource that describes the personal health device itself.</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Reference to personal health device or its sensor type and calibration status</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>1..?</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a>(<a href="StructureDefinition-hddt-personal-health-device.html">Device – Personal Health Device</a>, <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">DeviceMetric – Sensor Type and Calibration Status</a>)</td></tr>
+
+</table>
+    </div>
+</div>
+
+<p>For information on general constraints and terminology bindings see the full <a href="StructureDefinition-hddt-blood-glucose-measurement.html">StructureDefinition</a> for this profile.</p>
+
+<h4 id="conventions-and-best-practice">Conventions and Best Practice</h4>
+
+<h5 id="lo-and-hi-values">Lo and Hi Values</h5>
+<p>Glucometers usually have lower and upper limits for valid measurements. If a measurement is below or above these limits, the glucometer usually indicates this with a special value (e.g. “LO” or “HI”). These values MUST be recorded at the Device Data Recorder, and a query for device data MUST return such values as valid Observations. To indicate that the actual value is below or above the measurable range, the <code class="language-plaintext highlighter-rouge">valueQuantity.value</code> element MUST be set to the respective limit value and a <code class="language-plaintext highlighter-rouge">valueQuantity.comparator</code> element MUST be added with the value <code class="language-plaintext highlighter-rouge">"&lt;"</code> for “LO” and <code class="language-plaintext highlighter-rouge">"&gt;"</code> for “HI”.</p>
+
+<p>Example for a blood glucose measurement below the measurable range (30 mg/dl) of the glucometer:</p>
+
+<pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation">resourceType</a>" : "Observation",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.id">id</a>" : "example-blood-glucose",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.meta">meta</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Meta#Meta.profile">profile</a>" : [
+      <a href="StructureDefinition-hddt-blood-glucose-measurement.html" style="color: Maroon">&#x1F517;</a> "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.status">status</a>" : "final",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.code">code</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+      {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "2339-0",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Glucose [Mass/volume] in Blood"
+      }
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.effective_x_">effectiveDateTime</a>" : "2025-10-23T08:30:00Z",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.value_x_">valueQuantity</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.value">value</a>" : 30,
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.comparator">comparator</a>" : "&lt;",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.unit">unit</a>" : "mg/dl",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.system">system</a>" : "http://unitsofmeasure.org",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.code">code</a>" : "mg/dL"
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.device">device</a>" : {
+    <a href="DeviceMetric-example-glucometer-metric.html" style="color: Maroon">&#x1F517;</a> "<a href="http://hl7.org/fhir/R4/references.html#Reference#Reference.reference">reference</a>" : "DeviceMetric/example-glucometer-metric"
+  }
+}</code></pre>
+
+<p><strong>Remark</strong>: All examples provided on this page use the German language designations for UCUM-coded <code class="language-plaintext highlighter-rouge">unit</code> elements. See <a href="https://terminologien.bfarm.de/fhir/CodeSystem/ucum-common-units-translation-de-de">German translations of UCUM codes</a> for the full list of German translations. For LOINC codes the original English display text is used._</p>
+
+<h5 id="quality-of-data-and-missing-values">Quality of Data and Missing Values</h5>
+<p>This specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle failed measurements (e.g. too few capillary blood for a measurement). If such attempts are recorded at the Device Data Recorder, a query for device data must not result in an Observation resource with an invalid or misleading value. Instead, the Observation resource must either be omitted or must indicate the absence of a valid value using the <code class="language-plaintext highlighter-rouge">dataAbsentReason</code> element. In the second case a <code class="language-plaintext highlighter-rouge">value</code> MUST NOT be present.</p>
+
+<p>A receiving DiGA SHOULD validate, that the unit defined in <code class="language-plaintext highlighter-rouge">valueQuantity.code</code> matches the UCUM unit of the LOINC code in the <code class="language-plaintext highlighter-rouge">code</code> element. If the unit does not match, the DiGA MUST NOT use the value for any calculations or display.</p>
+
+<p>This specification makes no assumption, on how the manufacturers of the Personal Health Device and the Device Data Recorder handle data from uncalibrated devices. If such data is provided by the Device Data Recorder, the <code class="language-plaintext highlighter-rouge">device</code> element MUST reference a <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">DeviceMetric</a> resource that indicates the calibration status of the sensor. If the <code class="language-plaintext highlighter-rouge">device</code> element does not reference a DeviceMetric resource, the DiGA MUST assume that the provided data originates from a calibrated sensor.</p>
+
+<h4 id="examples">Examples</h4>
+
+<p>The following object diagram shows the relationships between the FHIR resources involved in representing blood glucose measurements according to the <a href="information-model.html">HDDT Information Model</a> and the <a href="StructureDefinition-hddt-blood-glucose-measurement.html">HDDT Blood Glucose Measurement</a> profile for two concrete instances of a blood glucose measurement. For readability reasons, some external references are only shown for the first measurement. Elements that are not mandatory or MS for the MIV <em>Blood Glucose Measurement</em> (see <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>) have been omitted.</p>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 100%;">
+  <?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1060.9375px" preserveAspectRatio="none" style="width:1896px;height:1060px;background:#DFEBF0;" version="1.1" viewBox="0 0 1896 1060" width="1896.875px" zoomAndPan="magnify"><defs /><g><rect fill="#DFEBF0" height="1060.9375" style="stroke:none;stroke-width:1.5625;" width="1896.875" x="0" y="0" /><rect fill="#C85670" height="48.3643" id="_title" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:0.0;" width="950" x="462.5" y="7.8125" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="934.375" x="470.3125" y="41.7313">HDDT Object Model Example (Blood Glucose Measurement)</text><!--cluster HDDT_Measurements_and_Devices--><g id="cluster_HDDT_Measurements_and_Devices"><rect fill="#A0C5CF" height="642.1875" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:1.5625;" width="1129.6875" x="10.9375" y="76.4893" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="795.3125" x="178.125" y="99.9191">FHIR SearchSet in Response to a DiGA's Request for Device Data</text></g><!--cluster gematik--><g id="cluster_gematik"><rect fill="#FAF3C0" height="246.875" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="537.5" x="1240.625" y="82.7393" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="389.0625" x="1314.8438" y="106.1691">Repository for gematik FHIR IGs</text></g><!--cluster ZTS--><g id="cluster_ZTS"><rect fill="#C9E6CA" height="345.3125" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="709.375" x="1178.125" y="409.3018" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="520.3125" x="1272.6563" y="432.7316">ZTS (German Central Terminology Server)</text></g><!--cluster HDDT_Registries--><g id="cluster_HDDT_Registries"><rect fill="#F6D7B6" height="221.875" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="512.5" x="628.125" y="831.1768" /><text fill="#111111" font-family="sans-serif" font-size="21.875" font-weight="bold" lengthAdjust="spacing" textLength="420.3125" x="674.2188" y="854.6066">HIIS-VZ (Device Registry at BfArM)</text></g><g id="elem_IV2"><rect fill="#FFFFFF" height="167.8955" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="434.375" x="65.625" y="137.4268" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="284.375" x="140.625" y="154.8309">&#171;Observation Blood Glucose&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="334.375" x="115.625" y="182.6828">Blood Glucose Measurement 2</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="67.1875" x2="498.4375" y1="190.9668" y2="190.9668" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="140.625" x="75" y="217.5217">status = final</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="415.625" x="75" y="242.9855">code = 2339-0|LOINC "Blood Glucose"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="331.25" x="75" y="268.4494">date = 20250926:1630+0200</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="203.125" x="75" y="293.9133">value = 129 mg/dL</text></g><g id="elem_IV1"><rect fill="#FFFFFF" height="167.8955" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="434.375" x="668.75" y="137.4268" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="284.375" x="743.75" y="154.8309">&#171;Observation Blood Glucose&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="334.375" x="718.75" y="182.6828">Blood Glucose Measurement 1</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="670.3125" x2="1101.5625" y1="190.9668" y2="190.9668" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="140.625" x="678.125" y="217.5217">status = final</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="415.625" x="678.125" y="242.9855">code = 2339-0|LOINC "Blood Glucose"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="331.25" x="678.125" y="268.4494">date = 20250926:1200+0200</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="203.125" x="678.125" y="293.9133">value = 120 mg/dL</text></g><g id="elem_Metric"><rect fill="#FFFFFF" height="142.4316" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="493.75" x="35.9375" y="525.708" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="193.75" x="185.9375" y="543.1122">&#171;FHIR DeviceMetric&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="471.875" x="46.875" y="570.9641">Glucose Sensor Type and Calibration Status</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="37.5" x2="528.125" y1="579.248" y2="579.248" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="343.75" x="45.3125" y="605.8029">type = 29112|iso:11073:10101</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="212.5" x="45.3125" y="631.2668">unit = mg/dL|UCUM</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="306.25" x="45.3125" y="656.7307">calibration.state = calibrated</text></g><g id="elem_PHD"><rect fill="#FFFFFF" height="193.3594" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="460.9375" x="653.9063" y="499.9268" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="134.375" x="817.1875" y="517.3309">&#171;FHIR Device&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="157.8125" x="805.4688" y="545.1828">Glucose Meter</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="655.4688" x2="1113.2813" y1="553.4668" y2="553.4668" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="160.9375" x="663.2813" y="580.0217">status = active</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="345.3125" x="663.2813" y="605.4855">type = 337414009|SNOMED CT</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="442.1875" x="663.2813" y="630.9494">deviceName = "GlukkoCheck plus mg/dl"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="309.375" x="663.2813" y="656.4133">manufacturer = "Glukko Inc."</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="295.3125" x="663.2813" y="681.8771">serialNumber = "SN123456</text></g><g id="elem_OP"><rect fill="#FFFFFF" height="167.8955" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="485.9375" x="1266.4063" y="137.4268" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="254.6875" x="1382.0313" y="154.8309">&#171;FHIR StructureDefinition&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="464.0625" x="1277.3438" y="182.6828">Observation - Blood Glucose Measurement</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="1267.9688" x2="1750.7813" y1="190.9668" y2="190.9668" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="460.9375" x="1275.7813" y="217.5217">name = "HddtBloodGlucoseMeasurement"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="207.8125" x="1275.7813" y="242.9855">type = Observation</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="398.4375" x="1275.7813" y="268.4494">baseDefinition = &#171;FHIR Observation&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="243.75" x="1275.7813" y="293.9133">derivation = constraint</text></g><!--class MIV--><g id="elem_MIV"><rect codeLine="58" fill="#F1F1F1" height="266.1621" id="MIV" rx="14.0625" ry="14.0625" style="stroke:#181818;stroke-width:0.78125;" width="659.375" x="1203.125" y="463.9893" /><ellipse cx="1330.0781" cy="495.4468" fill="#EB937F" rx="17.1875" ry="17.1875" style="stroke:#181818;stroke-width:1.5625;" /><path d="M1336.499,504.8218 L1324.4385,504.8218 L1324.4385,485.4614 L1336.499,485.4614 L1336.499,488.8306 L1328.2715,488.8306 L1328.2715,493.0054 L1335.7178,493.0054 L1335.7178,496.3745 L1328.2715,496.3745 L1328.2715,501.4526 L1336.499,501.4526 L1336.499,504.8218 Z " fill="#111111" /><text fill="#111111" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="157.8125" x="1479.2969" y="489.2059">&#171;FHIR ValueSet&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="392.1875" x="1362.1094" y="513.9328">VS MIV Blood Glucose Measurement</text><line style="stroke:#181818;stroke-width:0.78125;" x1="1204.6875" x2="1860.9375" y1="526.9043" y2="526.9043" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="378.125" x="1212.5" y="553.4592">url = " https://gematik.de/fhir/hddt/</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="526.5625" x="1281.25" y="578.923">ValueSet/hddt-miv-blood-glucose-measurement"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="139.0625" x="1212.5" y="604.3869">version = "1"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="640.625" x="1212.5" y="629.8508">title = "ValueSet - Blood Glucose Measurement from LOINC"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="495.3125" x="1212.5" y="655.3146">name = "HddtMivBloodGlucoseMeasurement"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="550" x="1212.5" y="680.7785">description = "therapy mgmt and clinical decisions"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="575" x="1212.5" y="706.2424">compose.include = 2339-0|LOINC, 15074-8|LOINC, ...</text><line style="stroke:#181818;stroke-width:0.78125;" x1="1204.6875" x2="1860.9375" y1="717.6514" y2="717.6514" /></g><g id="elem_PHD_Def"><rect fill="#FFFFFF" height="142.4316" rx="14.0625" ry="14.0625" style="stroke:#95A4A8;stroke-width:0.78125;" width="460.9375" x="653.9063" y="885.8643" /><text fill="#95A4A8" font-family="sans-serif" font-size="18.75" font-style="italic" lengthAdjust="spacing" textLength="226.5625" x="771.0938" y="903.2684">&#171;FHIR DeviceDefinition&#187;</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="356.25" x="706.25" y="931.1203">Personal Health Device Definition</text><line style="stroke:#95A4A8;stroke-width:0.78125;" x1="655.4688" x2="1113.2813" y1="939.4043" y2="939.4043" /><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="345.3125" x="663.2813" y="965.9592">type = 337414009|SNOMED CT</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="442.1875" x="663.2813" y="991.423">deviceName = "GlukkoCheck plus mg/dl"</text><text fill="#111111" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="309.375" x="663.2813" y="1016.8869">manufacturer = "Glukko Inc."</text></g><!--link IV2 to Metric--><g id="link_IV2_Metric"><path codeLine="43" d="M282.8125,304.833 C282.8125,368.0049 282.8125,454.6924 282.8125,516.8799 " fill="none" id="IV2-to-Metric" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="282.8125,525.1143,289.0625,511.0518,282.8125,517.3018,276.5625,511.0518,282.8125,525.1143" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="64.0625" x="284.375" y="378.1563">device</text></g><!--link IV1 to Metric--><g id="link_IV1_Metric"><path codeLine="44" d="M743,310.8955 C639.25,375.0049 500.4688,460.7549 402.5313,521.2705 " fill="none" id="IV1-to-Metric" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="395.5469,525.583,410.7958,523.5129,402.1943,521.4785,404.2287,512.877,395.5469,525.583" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="64.0625" x="657.8125" y="378.1563">device</text></g><!--link Metric to PHD--><g id="link_Metric_PHD"><path codeLine="45" d="M530.0938,596.8018 C568.2188,596.8018 607.5156,596.8018 645.4531,596.8018 " fill="none" id="Metric-to-PHD" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="653.5313,596.8018,639.4688,590.5518,645.7188,596.8018,639.4688,603.0518,653.5313,596.8018" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="67.1875" x="558.2031" y="585.9688">source</text></g><!--link PHD to PHD_Def--><g id="link_PHD_PHD_Def"><path codeLine="77" d="M884.375,694.0361 C884.375,751.5361 884.375,823.7393 884.375,877.6924 " fill="none" id="PHD-to-PHD_Def" style="stroke:#5E9BB1;stroke-width:3.125;" /><polygon fill="#5E9BB1" points="884.375,885.5049,890.625,871.4424,884.375,877.6924,878.125,871.4424,884.375,885.5049" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="150" x="885.9375" y="800.0313">definition [0..1]</text></g><!--link OP to MIV--><g id="link_OP_MIV"><path codeLine="78" d="M1514.5469,304.833 C1517.3281,348.9736 1520.8281,404.5986 1524.0156,455.333 " fill="none" id="OP-to-MIV" style="stroke:#5E9BB1;stroke-width:3.125;stroke-dasharray:7.0,7.0;" /><polygon fill="#5E9BB1" points="1524.5156,463.4268,1529.8711,448.9999,1524.0255,455.6296,1517.3957,449.784,1524.5156,463.4268" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="118.75" x="1520.3125" y="378.1563">implements</text></g><!--reverse link IV1 to OP--><g id="link_IV1_OP"><path codeLine="79" d="M1123.9219,221.0205 C1170.4531,221.0205 1219.3281,221.0205 1266.0313,221.0205 " fill="none" id="IV1-backto-OP" style="stroke:#5E9BB1;stroke-width:3.125;stroke-dasharray:7.0,7.0;" /><polygon fill="#5E9BB1" points="1115.875,221.0205,1129.9375,227.2705,1123.6875,221.0205,1129.9375,214.7705,1115.875,221.0205" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="71.875" x="1155.0781" y="246.125">defines</text></g><!--link IV1 to MIV--><g id="link_IV1_MIV"><path codeLine="80" d="M1104.6875,235.083 C1113.7031,235.083 1256.5,356.4268 1374.7188,458.2393 " fill="none" id="IV1-to-MIV" style="stroke:#5E9BB1;stroke-width:3.125;stroke-dasharray:7.0,7.0;" /><polygon fill="#5E9BB1" points="1381.0469,463.6924,1374.4632,449.783,1375.1247,458.597,1366.3106,459.2585,1381.0469,463.6924" style="stroke:#5E9BB1;stroke-width:3.125;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="128.125" x="1282.8125" y="378.1563">included with</text></g></g></svg>
+  </div>
+    <figcaption><em><strong>Figure: </strong>HDDT Object Model Example (Blood Glucose Measurement)</em></figcaption>
+</figure>
+
+<p><br clear="all" /></p>
+
+<p>The following code example shows the concrete JSON representation of the <em>HDDT Blood Glucose Measurement 1</em> resource shown in the object diagram.</p>
+
+<pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation">resourceType</a>" : "Observation",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.id">id</a>" : "example-blood-glucose-measurement-1",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.meta">meta</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Meta#Meta.profile">profile</a>" : [
+      <a href="StructureDefinition-hddt-blood-glucose-measurement.html" style="color: Maroon">&#x1F517;</a> "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.status">status</a>" : "final",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.code">code</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+      {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "2339-0",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Glucose [Mass/volume] in Blood"
+      }
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.effective_x_">effectiveDateTime</a>" : "2025-09-26T12:00:00+02:00",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.value_x_">valueQuantity</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.value">value</a>" : 120,
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.unit">unit</a>" : "mg/dl",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.system">system</a>" : "http://unitsofmeasure.org",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.code">code</a>" : "mg/dL"
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.device">device</a>" : {
+    <a href="DeviceMetric-example-glucometer-metric.html" style="color: Maroon">&#x1F517;</a> "<a href="http://hl7.org/fhir/R4/references.html#Reference#Reference.reference">reference</a>" : "DeviceMetric/example-glucometer-metric"
+  }
+}</code></pre>
+
+<h3 id="miv-specific-endpoints-and-interactions">MIV-specific Endpoints and Interactions</h3>
+<h4 id="observation---read">Observation - READ</h4>
+<p>Manufacturers of Device Data Recorders that support the MIV <em>Blood Glucose Measurement</em> MUST implement a <em>read</em> interaction on the <code class="language-plaintext highlighter-rouge">/Observation</code> endpoint of the FHIR Resource Server. The implementation MUST conform to the <a href="fhir-api-observation.html">HDDT Generic FHIR API</a>. Observations shared through the <em>read</em> interaction MUST comply with the <a href="StructureDefinition-hddt-blood-glucose-measurement.html">HDDT Blood Glucose Measurement</a> profile.</p>
+
+<h4 id="observation---search">Observation - SEARCH</h4>
+<p>Manufacturers of Device Data Recorders that support the MIV <em>Blood Glucose Measurement</em> MUST implement a <em>search</em> interaction on the <code class="language-plaintext highlighter-rouge">/Observation</code> endpoint of the FHIR Resource Server. The implementation MUST conform to the <a href="fhir-api-observation.html">HDDT Generic FHIR API</a>, and implement the <strong>search parameters</strong> listed on page <a href="ddr-diga-api.html#search-parameters">FHIR Resource Server - Search Parameters</a>. Observations shared through the <em>search</em> interaction MUST comply with the <a href="StructureDefinition-hddt-blood-glucose-measurement.html">HDDT Blood Glucose Measurement</a> profile.</p>
+
+<h4 id="example-fhir-read">Example: FHIR-READ</h4>
+
+<p><strong>Request:</strong> GET <code class="language-plaintext highlighter-rouge">/Observation/example-blood-glucose-measurement-2</code></p>
+
+<p><strong>Description:</strong> With FHIR-read interactions, a client can access a single resource instance by querying its internal ID. Restrictions by the OAuth scopes apply—if the client is not allowed to read this resource, a 404 error will be returned.</p>
+
+<p><strong>Response</strong>: Returned object is a single Observation resource.</p>
+
+<pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation">resourceType</a>" : "Observation",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.id">id</a>" : "example-blood-glucose-measurement-2",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Observation.meta">meta</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Meta#Meta.profile">profile</a>" : [
+      <a href="StructureDefinition-hddt-blood-glucose-measurement.html" style="color: Maroon">&#x1F517;</a> "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.status">status</a>" : "final",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.code">code</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+      {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://loinc.org",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "2339-0",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Glucose [Mass/volume] in Blood"
+      }
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.effective_x_">effectiveDateTime</a>" : "2025-09-26T16:30:00+02:00",
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.value_x_">valueQuantity</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.value">value</a>" : 129,
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.unit">unit</a>" : "mg/dl",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.system">system</a>" : "http://unitsofmeasure.org",
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Quantity#Quantity.code">code</a>" : "mg/dL"
+  },
+  "<a href="http://hl7.org/fhir/R4/observation.html#Observation.device">device</a>" : {
+    <a href="DeviceMetric-example-glucometer-metric.html" style="color: Maroon">&#x1F517;</a> "<a href="http://hl7.org/fhir/R4/references.html#Reference#Reference.reference">reference</a>" : "DeviceMetric/example-glucometer-metric"
+  }
+}</code></pre>
+
+<h3 id="example-fhir-search-for-specific-loinc-code">Example: FHIR-Search for specific LOINC code</h3>
+
+<p><strong>Request</strong>: GET <code class="language-plaintext highlighter-rouge">/Observation?code=2339-0</code></p>
+
+<p><strong>Description</strong>: Obtain all of the Observations where <code class="language-plaintext highlighter-rouge">code</code> is the LOINC code for blood sugar measurements (in mass/volume). OAuth scopes apply, and only Observations are returned that the client is allowed to access.</p>
+
+<p><strong>Response:</strong> Returned object is a Bundle containing all Observation resource instances matching the search criteria.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bundle"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6372cdfc-8d5b-49a2-af6b-65dcc3831192"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"searchset"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"entry"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"fullUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://himi.example.com/fhir/Observation/example-blood-glucose-measurement-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-blood-glucose-measurement-1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"final"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"valueQuantity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://unitsofmeasure.org"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dl"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2339-0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://loinc.org"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glucose [Mass/volume] in Blood"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"effectiveDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-09-26T12:00:00+02:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"device"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeviceMetric/example-glucometer-metric"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"match"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"fullUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://himi.example.com/fhir/Observation/example-blood-glucose-measurement-2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-blood-glucose-measurement-2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"final"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"valueQuantity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://unitsofmeasure.org"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">129</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dl"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2339-0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://loinc.org"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glucose [Mass/volume] in Blood"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"effectiveDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-09-26T16:30:00+02:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"device"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeviceMetric/example-glucometer-metric"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"match"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="example-fhir-search-include-devicemetric">Example: FHIR-Search include DeviceMetric</h3>
+
+<p><strong>Request</strong>: GET <code class="language-plaintext highlighter-rouge">/Observation?date=ge2025-09-25&amp;_include=Observation:device</code></p>
+
+<p><strong>Description</strong>: This query asks the server for all Observations since <code class="language-plaintext highlighter-rouge">2025-09-25</code>, and also requests that the server include resource instances referenced by <code class="language-plaintext highlighter-rouge">Observation.device</code>.</p>
+
+<p><strong>Response:</strong> Returned object is a Bundle containing all Observation resource instances matching the search criteria, and all referenced DeviceMetric resources.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bundle"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76cfc68b-ea70-486a-aaa5-4411964ab78d"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"searchset"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"entry"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"fullUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://himi.example.com/fhir/Observation/example-blood-glucose-measurement-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-blood-glucose-measurement-1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"final"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"valueQuantity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://unitsofmeasure.org"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dl"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2339-0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://loinc.org"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glucose [Mass/volume] in Blood"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"effectiveDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-09-26T12:00:00+02:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"device"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeviceMetric/example-glucometer-metric"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"match"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"fullUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://himi.example.com/fhir/DeviceMetric/example-glucometer-metric"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeviceMetric"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-glucometer-metric"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160184"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:iso:std:iso:11073:10101"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MDC_CONC_GLU_CAPILLARY_WHOLEBLOOD"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dL"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://unitsofmeasure.org"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mg/dL"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device/example-glucometer"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"operationalStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"measurement"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"calibration"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gain"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calibrated"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-09-01T09:08:04+02:00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="mivs.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="measurement-cgm.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

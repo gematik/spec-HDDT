@@ -1,0 +1,110 @@
+{
+  "resourceType": "DeviceDefinition",
+  "id": "example-glucometer-def",
+  "identifier": [
+    {
+      "system": "http://fhir.de/sid/gkv/hmnr",
+      "value": "12.34.56.7890"
+    }
+  ],
+  "deviceName": [
+    {
+      "name": "GlucoCheck Plus mg/dL",
+      "type": "user-friendly-name"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "code": "337414009",
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/11000274103/version/20251115",
+        "display": "Blood glucose meter (physical object)"
+      }
+    ]
+  },
+  "manufacturerReference": {
+    "reference": "Organization/example-glucometer-manufacturer"
+  },
+  "modelNumber": "GCPlus 1",
+  "extension": [
+    {
+      "url": "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet",
+      "extension": [
+        {
+          "url": "mivSet",
+          "valueReference": {
+            "reference": "DeviceDefinition/example-universal-backend"
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier",
+      "extension": [
+        {
+          "url": "deviceIdentifier",
+          "valueString": "9912345GLUCOMETER7A"
+        }
+      ]
+    }
+  ],
+  "parentDevice": {
+    "reference": "DeviceDefinition/example-universal-backend"
+  },
+  "property": [
+    {
+      "type": {
+        "text": "Supported unit"
+      },
+      "valueCode": [
+        {
+          "coding": [
+            {
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "display": "mg/dL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": {
+        "text": "Reference range low"
+      },
+      "valueQuantity": [
+        {
+          "value": 70,
+          "unit": "mg/dl",
+          "system": "http://unitsofmeasure.org"
+        }
+      ]
+    },
+    {
+      "type": {
+        "text": "Reference range high"
+      },
+      "valueQuantity": [
+        {
+          "value": 180,
+          "unit": "mg/dl",
+          "system": "http://unitsofmeasure.org"
+        }
+      ]
+    }
+  ],
+  "capability": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "2339-0",
+            "display": "Glucose [Mass/volume] in Blood"
+          }
+        ]
+      }
+    }
+  ]
+}

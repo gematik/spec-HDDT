@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Device xmlns="http://hl7.org/fhir">
+  <id value="example-device-cgm"/>
+  <definition>
+    <reference value="DeviceDefinition/device-definition-cgm-001"/>
+  </definition>
+  <status value="active"/>
+  <manufacturer value="Glukko Inc."/>
+  <expirationDate value="2025-09-10"/>
+  <serialNumber value="CGM1234567890"/>
+  <deviceName>
+    <name value="GlukkoCGM 18"/>
+    <type value="user-friendly-name"/>
+  </deviceName>
+  <modelNumber value="GCGMA98765"/>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="700585005"/>
+      <display value="Invasive interstitial-fluid glucose monitoring system (physical object)"/>
+    </coding>
+  </type>
+</Device>

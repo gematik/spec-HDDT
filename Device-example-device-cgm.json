@@ -1,0 +1,24 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-device-cgm",
+  "definition" : {
+    "reference" : "DeviceDefinition/device-definition-cgm-001"
+  },
+  "status" : "active",
+  "manufacturer" : "Glukko Inc.",
+  "expirationDate" : "2025-09-10",
+  "serialNumber" : "CGM1234567890",
+  "deviceName" : [{
+    "name" : "GlukkoCGM 18",
+    "type" : "user-friendly-name"
+  }],
+  "modelNumber" : "GCGMA98765",
+  "type" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "version" : "http://snomed.info/sct/11000274103/version/20251115",
+      "code" : "700585005",
+      "display" : "Invasive interstitial-fluid glucose monitoring system (physical object)"
+    }]
+  }
+}

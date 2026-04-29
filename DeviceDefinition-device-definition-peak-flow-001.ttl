@@ -1,0 +1,151 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-peak-flow-001> a fhir:DeviceDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "device-definition-peak-flow-001"] ; # 
+  fhir:extension ( [
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "mivSet"^^xsd:anyURI ;
+         fhir:l fhir:mivSet
+       ] ;
+       fhir:value [
+         a fhir:Reference ;
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+         fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+       ]
+     ] ) ;
+     fhir:url [
+       fhir:v "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"^^xsd:anyURI ;
+       fhir:l <https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet>
+     ]
+  ] [
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "deviceIdentifier"^^xsd:anyURI ;
+         fhir:l fhir:deviceIdentifier
+       ] ;
+       fhir:value [
+         a fhir:String ;
+         fhir:v "9912345PEAKFLOW001"
+       ]
+     ] ) ;
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier>
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "http://fhir.de/sid/gkv/hmnr"^^xsd:anyURI ;
+       fhir:l <http://fhir.de/sid/gkv/hmnr>
+     ] ;
+     fhir:value [ fhir:v "21.24.01.2005" ]
+  ] ) ; # 
+  fhir:manufacturer [
+     a fhir:String ;
+     fhir:v "HealthTech GmbH"
+  ] ; # 
+  fhir:deviceName ( [
+     fhir:name [ fhir:v "Peak Flow Pro" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "Smart 2"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:334990001 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "334990001" ] ;
+       fhir:display [ fhir:v "Peak flow meter (physical object)" ]
+     ] )
+  ] ; # 
+  fhir:capability ( [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:19935-6 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "19935-6" ] ;
+         fhir:display [ fhir:v "Maximum expiratory gas flow Respiratory system airway by Peak flow meter" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:20150-9 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "20150-9" ] ;
+         fhir:display [ fhir:v "FEV1" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:83368-1 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "83368-1" ] ;
+         fhir:display [ fhir:v "Personal best peak expiratory gas flow Respiratory system airway" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:20149-1 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "20149-1" ] ;
+         fhir:display [ fhir:v "FEV1 predicted" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:20152-5 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "20152-5" ] ;
+         fhir:display [ fhir:v "FEV1 measured/predicted" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes"^^xsd:anyURI ;
+           fhir:l <https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes>
+         ] ;
+         fhir:code [ fhir:v "PEF-measured/predicted" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:parentDevice [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+     fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

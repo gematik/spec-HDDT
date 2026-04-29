@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="hddt-miv-blood-glucose-measurement"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
+  </meta>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><p class="res-header-id"><b>Generated Narrative: ValueSet hddt-miv-blood-glucose-measurement</b></p><a name="hddt-miv-blood-glucose-measurement"> </a><a name="hchddt-miv-blood-glucose-measurement"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p><p style="margin-bottom: 0px">Profile: <a href="http://hl7.org/fhir/R4/shareablevalueset.html">Shareable ValueSet</a></p></div><ul><li>Include these codes as defined in <a href="http://loinc.org"><code>http://loinc.org</code></a><span title="Version is explicitly stated to be 2.82"> version &#x1F4CD;2.82</span><table class="none"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href="https://loinc.org/2339-0/">2339-0</a></td><td>Glucose [Mass/volume] in Blood</td></tr><tr><td><a href="https://loinc.org/15074-8/">15074-8</a></td><td>Glucose [Moles/volume] in Blood</td></tr><tr><td><a href="https://loinc.org/2345-7/">2345-7</a></td><td>Glucose [Mass/volume] in Serum or Plasma</td></tr><tr><td><a href="https://loinc.org/14749-6/">14749-6</a></td><td>Glucose [Moles/volume] in Serum or Plasma</td></tr><tr><td><a href="https://loinc.org/41653-7/">41653-7</a></td><td>Glucose [Mass/volume] in Capillary blood by Glucometer</td></tr><tr><td><a href="https://loinc.org/14743-9/">14743-9</a></td><td>Glucose [Moles/volume] in Capillary blood by Glucometer</td></tr></table></li></ul></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+    <valuePeriod>
+      <start value="2026-04-29"/>
+    </valuePeriod>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/artifact-author">
+    <valueContactDetail>
+      <name value="gematik GmbH"/>
+    </valueContactDetail>
+  </extension>
+  <url value="https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement"/>
+  <version value="1.0.1"/>
+  <name value="HddtMivBloodGlucoseMeasurement"/>
+  <title value="Blood Glucose Measurement from LOINC"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2026-04-29"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de"/>
+    </telecom>
+  </contact>
+  <description value="Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen &#xA;Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).&#xA;MIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.&#xA;&#xA;Das ValueSet _HddtMivBloodGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \&quot;Blood Glucose Measurement\&quot;. Die Definition besteht aus&#xA;- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert&#xA;- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren&#xA;&#xA;Der MIV _Blood Glucose Measurement_ umfasst Werte aus „blutigen Messungen“, z. B. mit kapillarem Blut aus der Fingerkuppe. Die Messungen erfolgen gemäß Versorgungsplan&#xA;(z. B. Blutzuckermessung vor jeder Mahlzeit) oder ad hoc (z. B. bei Unwohlsein des Patienten, was auf eine Hypoglykämie hindeuten kann).&#xA;DiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern sehr genaue Glukosewerte, die für therapeutische Entscheidungen geeignet sind.&#xA;&#xA;Das ValueSet für den MIV _Blood Glucose Measurement_ enthält LOINC-Codes für Blutzuckermessungen mit Blut oder Plasma als Referenzmethoden, wobei die Werte als Masse/Volumen und Mol/Volumen angegeben werden.&#xA;Zusätzlich sind granularere LOINC-Codes für „Glukose im Kapillarblut mittels Glukometer“ als Masse/Volumen und Mol/Volumen enthalten, da diese Codes bereits von mehreren Herstellern von Glukometern verwendet werden.&#xA;&#xA;--&#xA;&#xA;This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets &#xA;for sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable &#xA;Values_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.&#xA;&#xA;The ValueSet _HddtMivBloodGlucoseMeasurement_ defines the Mandatory Interoperable Value (MIV) \&quot;Blood Glucose Measurement\&quot;. The definition is made up from&#xA;- this description which provides the semantics and defining characteristics of the MIV&#xA;- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ &#xA;&#xA;The MIV _Blood Glucose Measurement_ covers values from \&quot;bloody measurements\&quot; e.g. using capillary blood from the &#xA;finger tip. Measurements are performed based on a care plan (e.g. measuring blood sugar before each meal) or ad hoc &#xA;(e.g. a patient feeling dim what may be an indicator for a hypoglycamia). &#xA;DiGA use cases served by this MIV require glucose values that are very acurate and therefore suited for therapeutical decision making. &#xA;&#xA;The ValueSet for the MIV _Blood Glucose Measurement_ contains LOINC codes for blood glucose measurements using &#xA;blood or plasma as reference methods with the values provided as mass/volume and moles/volume. &#xA;In addition more granular LOINC codes for \&quot;Glucose in Capillary blood by Glucometer\&quot; provided as mass/volume &#xA;and moles/volume are included with the value set because these codes are already in use by several &#xA;manufacturers of glucometers."/>
+  <copyright value="gematik GmbH. This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."/>
+  <compose>
+    <include>
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright">
+        <valueString value="This material contains content from [LOINC](http://loinc.org). LOINC is copyright ©1995, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at [http://loinc.org/license](http://loinc.org/license). LOINC® is a registered United States trademark of Regenstrief Institute, Inc."/>
+      </extension>
+      <system value="http://loinc.org"/>
+      <version value="2.82"/>
+      <concept>
+        <code value="2339-0"/>
+        <display value="Glucose [Mass/volume] in Blood"/>
+      </concept>
+      <concept>
+        <code value="15074-8"/>
+        <display value="Glucose [Moles/volume] in Blood"/>
+      </concept>
+      <concept>
+        <code value="2345-7"/>
+        <display value="Glucose [Mass/volume] in Serum or Plasma"/>
+      </concept>
+      <concept>
+        <code value="14749-6"/>
+        <display value="Glucose [Moles/volume] in Serum or Plasma"/>
+      </concept>
+      <concept>
+        <code value="41653-7"/>
+        <display value="Glucose [Mass/volume] in Capillary blood by Glucometer"/>
+      </concept>
+      <concept>
+        <code value="14743-9"/>
+        <display value="Glucose [Moles/volume] in Capillary blood by Glucometer"/>
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

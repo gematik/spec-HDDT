@@ -1,0 +1,50 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "HddtLungFunctionTemporaryCodes",
+  "id": "hddt-lung-function-temporary-codes",
+  "title": "Lung Function Temporary Codes",
+  "description": "Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.\n\n--\n\nTemporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable.",
+  "url": "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+  "concept": [
+    {
+      "code": "PEF-measured/predicted",
+      "display": "PEF measured/predicted"
+    }
+  ],
+  "language": "en",
+  "version": "1.0.1",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod",
+      "valuePeriod": {
+        "start": "2026-04-29"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/artifact-author",
+      "valueContactDetail": {
+        "name": "gematik GmbH"
+      }
+    }
+  ],
+  "experimental": false,
+  "caseSensitive": false,
+  "versionNeeded": true,
+  "publisher": "gematik GmbH",
+  "date": "2026-04-29",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de"
+        }
+      ]
+    }
+  ],
+  "copyright": "gematik GmbH.",
+  "valueSet": "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes|1.0.1",
+  "count": 1
+}

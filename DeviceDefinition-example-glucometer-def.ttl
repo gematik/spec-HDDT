@@ -1,0 +1,133 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/DeviceDefinition/example-glucometer-def> a fhir:DeviceDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-glucometer-def"] ; # 
+  fhir:extension ( [
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "mivSet"^^xsd:anyURI ;
+         fhir:l fhir:mivSet
+       ] ;
+       fhir:value [
+         a fhir:Reference ;
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+         fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+       ]
+     ] ) ;
+     fhir:url [
+       fhir:v "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"^^xsd:anyURI ;
+       fhir:l <https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet>
+     ]
+  ] [
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "deviceIdentifier"^^xsd:anyURI ;
+         fhir:l fhir:deviceIdentifier
+       ] ;
+       fhir:value [
+         a fhir:String ;
+         fhir:v "9912345GLUCOMETER7A"
+       ]
+     ] ) ;
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier>
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [
+       fhir:v "http://fhir.de/sid/gkv/hmnr"^^xsd:anyURI ;
+       fhir:l <http://fhir.de/sid/gkv/hmnr>
+     ] ;
+     fhir:value [ fhir:v "12.34.56.7890" ]
+  ] ) ; # 
+  fhir:manufacturer [
+     a fhir:Reference ;
+     fhir:l <https://gematik.de/fhir/hddt/Organization/example-glucometer-manufacturer> ;
+     fhir:reference [ fhir:v "Organization/example-glucometer-manufacturer" ]
+  ] ; # 
+  fhir:deviceName ( [
+     fhir:name [ fhir:v "GlucoCheck Plus mg/dL" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "GCPlus 1"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:337414009 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "337414009" ] ;
+       fhir:display [ fhir:v "Blood glucose meter (physical object)" ]
+     ] )
+  ] ; # 
+  fhir:capability ( [
+     fhir:type [
+       fhir:coding ( [
+         a loinc:2339-0 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "2339-0" ] ;
+         fhir:display [ fhir:v "Glucose [Mass/volume] in Blood" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:property ( [
+     fhir:type [
+       fhir:text [ fhir:v "Supported unit" ]
+     ] ;
+     fhir:valueCode ( [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+           fhir:l <http://unitsofmeasure.org>
+         ] ;
+         fhir:code [ fhir:v "mg/dL" ] ;
+         fhir:display [ fhir:v "mg/dL" ]
+       ] )
+     ] )
+  ] [
+     fhir:type [
+       fhir:text [ fhir:v "Reference range low" ]
+     ] ;
+     fhir:valueQuantity ( [
+       fhir:value [ fhir:v "70"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mg/dl" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ]
+     ] )
+  ] [
+     fhir:type [
+       fhir:text [ fhir:v "Reference range high" ]
+     ] ;
+     fhir:valueQuantity ( [
+       fhir:value [ fhir:v "180"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mg/dl" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ]
+     ] )
+  ] ) ; # 
+  fhir:parentDevice [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+     fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

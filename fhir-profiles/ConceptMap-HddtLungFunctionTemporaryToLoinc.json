@@ -1,0 +1,59 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "HddtLungFunctionTemporaryToLoinc",
+  "url": "https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc",
+  "title": "Lung Function Temporary Codes to LOINC",
+  "description": "Eine Abbildung von temporären Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, auf LOINC-Codes.\nFalls noch kein LOINC-Code verfügbar ist, wird dies mit einer Äquivalenz von 'unmatched' angezeigt.\nSobald ein LOINC-Code für einen temporären Code verfügbar ist, wird diese ConceptMap entsprechend aktualisiert.\n\n--\n\nA mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.\nIn case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.\nWhenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.",
+  "experimental": false,
+  "language": "en",
+  "version": "1.0.1",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod",
+      "valuePeriod": {
+        "start": "2026-04-29"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/artifact-author",
+      "valueContactDetail": {
+        "name": "gematik GmbH"
+      }
+    }
+  ],
+  "name": "HddtLungFunctionTemporaryToLoinc",
+  "status": "active",
+  "publisher": "gematik GmbH",
+  "date": "2026-04-29",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de"
+        }
+      ]
+    }
+  ],
+  "copyright": "gematik GmbH.",
+  "sourceCanonical": "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes|1.0.1",
+  "group": [
+    {
+      "source": "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+      "sourceVersion": "1.0.1",
+      "target": "http://loinc.org",
+      "targetVersion": "2.82",
+      "element": [
+        {
+          "code": "PEF-measured/predicted",
+          "target": [
+            {
+              "comment": "No target LOINC code available yet.",
+              "equivalence": "unmatched"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,596 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Bundle/example-cgm-summary-bundle> a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-cgm-summary-bundle"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary>
+     ] )
+  ] ; # 
+  fhir:type [ fhir:v "collection"] ; # 
+  fhir:timestamp [ fhir:v "2025-10-01T09:15:00Z"^^xsd:dateTime] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample> )
+  ] [
+     fhir:fullUrl [
+       fhir:v "https://gematik.de/fhir/hddt/Device/example-device-cgm"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/Device/example-device-cgm>
+     ] ;
+     fhir:resource ( <https://gematik.de/fhir/hddt/Device/example-device-cgm> )
+  ] ) . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:107931-8 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "107931-8" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample> ;
+     fhir:reference [ fhir:v "Observation/cgmSummaryMeanGlucoseMassPerVolumeExample" ]
+  ] [
+     fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample> ;
+     fhir:reference [ fhir:v "Observation/cgmSummaryTimesInRangesExample" ]
+  ] [
+     fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample> ;
+     fhir:reference [ fhir:v "Observation/cgmSummaryGMIExample" ]
+  ] [
+     fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample> ;
+     fhir:reference [ fhir:v "Observation/cgmSummaryCoefficientOfVariationExample" ]
+  ] [
+     fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample> ;
+     fhir:reference [ fhir:v "Observation/cgmSummaryDaysOfWearExample" ]
+  ] [
+     fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample> ;
+     fhir:reference [ fhir:v "Observation/cgmSummarySensorActivePercentageExample" ]
+  ] ) . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryMeanGlucoseMassPerVolumeExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-mass-per-volume"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-mass-per-volume>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:97507-8 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "97507-8" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "145"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mg/dl" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "mg/dL" ]
+  ] . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryMeanGlucoseMolesPerVolumeExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:105273-7 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "105273-7" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v 8.1 ] ;
+     fhir:unit [ fhir:v "mmol/l" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "mmol/L" ]
+  ] . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryTimesInRangesExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-times-in-ranges"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-times-in-ranges>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:106793-3 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "106793-3" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:104642-4 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "104642-4" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "3"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:104641-6 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "104641-6" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:97510-2 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "97510-2" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "65"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:104640-8 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "104640-8" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:104639-0 ;
+         fhir:system [
+           fhir:v "http://loinc.org"^^xsd:anyURI ;
+           fhir:l <http://loinc.org>
+         ] ;
+         fhir:code [ fhir:v "104639-0" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "4"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ] ;
+       fhir:system [
+         fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+         fhir:l <http://unitsofmeasure.org>
+       ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] ) . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryGMIExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-gmi"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-gmi>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:97506-0 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "97506-0" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v 6.8 ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryCoefficientOfVariationExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:104638-2 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "104638-2" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "34"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummaryDaysOfWearExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:104636-6 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "104636-6" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "28"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "days" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "d" ]
+  ] . # 
+
+<https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample> a fhir:Observation ;
+  fhir:id [ fhir:v "cgmSummarySensorActivePercentageExample"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage>
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ;
+         fhir:l <http://terminology.hl7.org/CodeSystem/observation-category>
+       ] ;
+       fhir:code [ fhir:v "laboratory" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:104637-4 ;
+       fhir:system [
+         fhir:v "http://loinc.org"^^xsd:anyURI ;
+         fhir:l <http://loinc.org>
+       ] ;
+       fhir:code [ fhir:v "104637-4" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+     fhir:reference [ fhir:v "Patient/patientExample" ]
+  ] ; # 
+  fhir:effective [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2025-09-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2025-09-30"^^xsd:date ]
+  ] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "95"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [
+       fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ;
+       fhir:l <http://unitsofmeasure.org>
+     ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://gematik.de/fhir/hddt/Device/example-device-cgm> a fhir:Device ;
+  fhir:id [ fhir:v "example-device-cgm"] ; # 
+  fhir:definition [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-cgm-001> ;
+     fhir:reference [ fhir:v "DeviceDefinition/device-definition-cgm-001" ]
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:manufacturer [ fhir:v "Glukko Inc."] ; # 
+  fhir:expirationDate [ fhir:v "2025-09-10"^^xsd:date] ; # 
+  fhir:serialNumber [ fhir:v "CGM1234567890"] ; # 
+  fhir:deviceName ( [
+     fhir:name [ fhir:v "GlukkoCGM 18" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "GCGMA98765"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:700585005 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "700585005" ] ;
+       fhir:display [ fhir:v "Invasive interstitial-fluid glucose monitoring system (physical object)" ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

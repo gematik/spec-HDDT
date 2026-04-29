@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>FHIR Resource Server - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"19"}
+    h3,h4,h5,h6{--heading-prefix:"19"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>FHIR Resource Server</b></li>
+
+          <span style="float:right;">
+
+            <a href="registries-and-zts.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="authorization-server.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>FHIR Resource Server</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#fhir-endpoints" id="markdown-toc-fhir-endpoints">FHIR Endpoints</a></li>
+  <li><a href="#search-parameters" id="markdown-toc-search-parameters">Search Parameters</a></li>
+  <li><a href="#security-considerations" id="markdown-toc-security-considerations">Security Considerations</a></li>
+</ul>
+
+</div>
+<h3 id="introduction">Introduction</h3>
+<p>Authorized DiGA can access data from medical devices and implants through standard FHIR RESTful APIs and dedicated FHIR operations. These endpoints MUST be implemented by Device Data Recorders as <a href="certification-relevant-systems.html">certification relevant systems</a></p>
+
+<p>This chapter defines the FHIR endpoints which are common to all Mandatory Interoperable Values (MIVs). MIV-specific specifications for <em>HDDT Observation Profiles</em> and HDDT-specific FHIR operations can be found under the menu <strong>MIV-Specific APIs</strong>.</p>
+
+<h3 id="fhir-endpoints">FHIR Endpoints</h3>
+<p>The manufacturer of a certification relevant Device Data Recorder MUST implement the following endpoints, for the purpose of allowing DiGAs to access data from medical aids and implants according to § 374a SGB V:</p>
+
+<ul>
+  <li><a href="fhir-api-metadata.html">API: CapabilityStatement (Metadata)</a></li>
+  <li><a href="fhir-api-observation.html">API: Observation (Measurement data)</a></li>
+  <li><a href="fhir-api-devicemetric.html">API: DeviceMetric (Device calibration)</a></li>
+  <li><a href="fhir-api-device.html">API: Device (Device instance and configuration)</a></li>
+</ul>
+
+<h3 id="search-parameters">Search Parameters</h3>
+
+<p>Search parameters are an integral part of this FHIR API, as they allow the client to request only resources matching certain criteria. For example, by requesting measurement data for a specific date range, or only for a specific LOINC code, as well as including additional FHIR resources in the search result, sorting of search results, etc.</p>
+
+<p>The table below lists what search parameters MUST, SHOULD, or MAY be supported. Each entry links to the search parameters section of the relevant FHIR resource specification. Implementation details for each search parameter (such as syntax and behavior) are defined by their data type on the linked page. For example, <code class="language-plaintext highlighter-rouge">code</code> uses the <a href="https://hl7.org/fhir/R4/search.html#token">token</a> data type, while <code class="language-plaintext highlighter-rouge">device-name</code> uses the <a href="https://hl7.org/fhir/R4/search.html#string">string</a> data type.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Search parameter</th>
+      <th>Support</th>
+      <th>Applies to</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">code</code></td>
+      <td>MUST</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>Constraining the search to a specific LOINC code, or code from a MIV <a href="https://hl7.org/fhir/R4/valueset.htm">ValueSet</a>.<br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">date</code></td>
+      <td>MUST</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>Constrain search results based on a date or date range.<br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subject</code></td>
+      <td>MUST*</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>* Special considerations apply for the <code class="language-plaintext highlighter-rouge">subject</code> search parameter. See <a href="retrieving-data.html#searching-observations-using-fhir-search-interactions">Retrieving Data</a> for more details.  <br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">valueQuantity</code></td>
+      <td>MUST*</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>* Only applies to MIV <a href="measurement-lung-function.html"><em>Lung Function Testing</em></a> and MIV <a href="measurement-blood-glucose.html"><em>Blood Glucose Measurement</em></a>.<br />Search for observations based on their value.<br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">component-code</code></td>
+      <td>MUST*</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>* Only applies to MIV <a href="measurement-blood-pressure.html"><em>Blood Pressure Monitoring</em></a>.<br />Search for observations based on component codes.<br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">component-value-quantity</code></td>
+      <td>MUST*</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>* Only applies to MIV <a href="measurement-blood-pressure.html"><em>Blood Pressure Monitoring</em></a>.<br />Search for observations based on component values.<br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">component-code-value-quantity</code></td>
+      <td>SHOULD*</td>
+      <td><a href="https://hl7.org/fhir/R4/observation.html">Observation</a></td>
+      <td>* Only applies to MIV <a href="measurement-blood-pressure.html"><em>Blood Pressure Monitoring</em></a>.<br />Search for observations based on both component code and value.<br /><a href="https://hl7.org/fhir/R4/observation.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">device-name</code></td>
+      <td>MUST</td>
+      <td><a href="https://hl7.org/fhir/R4/device.html">Device</a></td>
+      <td>Search for devices by their name.<br /><a href="https://hl7.org/fhir/R4/device.html#search">Link to search parameter list</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">type</code></td>
+      <td>MUST</td>
+      <td><a href="https://hl7.org/fhir/R4/device.html">Device</a></td>
+      <td>Search for devices by their coded type.<br /><a href="https://hl7.org/fhir/R4/device.html#search">Link to search parameter list</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">manufacturer</code></td>
+      <td>MUST</td>
+      <td><a href="https://hl7.org/fhir/R4/device.html">Device</a></td>
+      <td>Search for devices by their manufacturer.<br /><a href="https://hl7.org/fhir/R4/device.html#search">Link to search parameter list</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">patient</code></td>
+      <td>MUST*</td>
+      <td><a href="https://hl7.org/fhir/R4/device.html">Device</a></td>
+      <td>* The same special considerations as for the <code class="language-plaintext highlighter-rouge">Observation.subject</code> search parameter apply. See <a href="retrieving-data.html#searching-observations-using-fhir-search-interactions">Retrieving Data</a> for more details.  <br /><a href="https://hl7.org/fhir/R4/device.html#search">Link to search parameter list</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_id</code></td>
+      <td>MUST</td>
+      <td>all</td>
+      <td>Search for resources by their logical id.<br /><a href="https://hl7.org/fhir/R4/search.html#id">Link</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_include</code></td>
+      <td>MUST</td>
+      <td>all</td>
+      <td>Request an additional FHIR resource to be included in the search results, e.g. search for <a href="https://hl7.org/fhir/R4/observation.html">Observation</a> resources and include the referenced <a href="https://hl7.org/fhir/R4/device.html">Device</a> and <a href="https://hl7.org/fhir/R4/devicemetric.html">DeviceMetric</a> resources in the resulting <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a>.<br /><a href="https://hl7.org/fhir/R4/search.html#include">Link</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_sort</code></td>
+      <td>MUST</td>
+      <td>all</td>
+      <td>Specifies the order to return search results, with optional descending order using a ‘-‘ prefix.<br /><a href="https://hl7.org/fhir/R4/search.html#sort">Link</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_count</code></td>
+      <td>MUST</td>
+      <td>all</td>
+      <td>Specifies the maximum number of resources to return in a single page of search results.<br /><a href="https://hl7.org/fhir/R4/search.html#count">Link</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_lastUpdated</code></td>
+      <td>SHOULD</td>
+      <td>all</td>
+      <td>Search for resources based on the last time they were changed.<br /><a href="https://hl7.org/fhir/R4/search.html#lastUpdated">Link</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_has</code></td>
+      <td>MAY</td>
+      <td>all</td>
+      <td>Allows selecting resources based on the properties of resources that refer to them (reverse chaining).<br /><a href="https://hl7.org/fhir/R4/search.html#has">Link</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_revinclude</code></td>
+      <td>MAY</td>
+      <td>all</td>
+      <td>Requests that resources which refer to the matched search results also be included in the resulting <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a>.<br /><a href="https://hl7.org/fhir/R4/search.html#revinclude">Link</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="security-considerations">Security Considerations</h3>
+
+<p>Access to a Device Data Recorder’s FHIR Resource Server MUST be secured according to <a href="https://datatracker.ietf.org/doc/html/rfc8705">RFC 8705: OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>. Details on concrete procedures and requirements for OAuth 2.0 Mutual-TLS Client Authentication are specified in the <a href="security-and-privacy.html">Security and Privacy</a> chapter.</p>
+
+<p>With each request the DiGA MUST present a valid access token issued by the OAuth2 Authorization Server of the Device Data Recorder. The Device Data Recorder MUST validate the access token and MUST consider the data associated with the token (patientID, eligible MIVs) with the access control decision. Details about issuance and renewal of Access Token are specified in the <a href="authorization-server.html">OAuth2 Authorization Server</a> chapter. Details about the application of the SMART scopes encoded with the Access Token are given in the <a href="smart-scopes.html">Smart Scopes</a> chapter.</p>
+
+<p>Both DiGA and Device Data Recorder MUST write access and usage logs according to the <a href="security-and-privacy.html">Security and Privacy</a> chapter.</p>
+
+<p>The sequence diagram below illustrates the access control flow between a DiGA and the Device Data Recorder’s FHIR Resource Server and OAuth2 Authorization Server.</p>
+
+<figure>
+<div class="gem-ig-svg-container" style="width: 75%;">
+  <?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1640.625px" preserveAspectRatio="none" style="width:1614px;height:1640px;background:#DFEBF0;" version="1.1" viewBox="0 0 1614 1640" width="1614.0625px" zoomAndPan="magnify"><defs /><g><rect fill="#DFEBF0" height="1640.625" style="stroke:none;stroke-width:1.5625;" width="1614.0625" x="0" y="0" /><rect fill="#C85670" height="48.3643" id="_title" rx="14.0625" ry="14.0625" style="stroke:#C85670;stroke-width:0.0;" width="628.125" x="496.4844" y="15.625" /><text fill="#FFFFFF" font-family="sans-serif" font-size="28.125" font-weight="bold" lengthAdjust="spacing" textLength="612.5" x="504.2969" y="49.5438">RESTFul FHIR API Access Control Logic</text><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="66.4063" x2="66.4063" y1="147.7295" y2="1630.3101" /><rect fill="#DFEBF0" height="1421.6431" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="58.5938" y="160.2295" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="678.9063" x2="678.9063" y1="147.7295" y2="1630.3101" /><rect fill="#DFEBF0" height="356.1401" style="stroke:#95A4A8;stroke-width:1.5625;" width="15.625" x="671.0938" y="332.9346" /><line style="stroke:#95A4A8;stroke-width:0.78125;stroke-dasharray:5.0,5.0;" x1="1210.1563" x2="1210.1563" y1="147.7295" y2="1630.3101" /><rect fill="#5E9BB1" height="72.8027" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="117.1875" x="7.8125" y="73.3643" /><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="53.125" x="39.8438" y="104.6066">DiGA</text><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="95.3125" x="18.75" y="130.0705">Backend</text><rect fill="#5E9BB1" height="72.8027" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="257.8125" x="550" y="73.3643" /><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="235.9375" x="560.9375" y="104.6066">Device Data Recorder</text><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="217.1875" x="570.3125" y="130.0705">Authorization Server</text><rect fill="#5E9BB1" height="72.8027" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:0.78125;" width="257.8125" x="1081.25" y="73.3643" /><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="235.9375" x="1092.1875" y="104.6066">Device Data Recorder</text><text fill="#FFFFFF" font-family="sans-serif" font-size="21.875" lengthAdjust="spacing" textLength="179.6875" x="1120.3125" y="130.0705">Resource Server</text><polygon fill="#5E9BB1" points="1191.4063,186.9995,1207.0313,193.2495,1191.4063,199.4995,1197.6563,193.2495" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="1200.7813" y1="193.2495" y2="193.2495" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="385.9375" x="85.1563" y="185.334">FHIR-Resource Request (access-token)</text><path d="M55.4688,211.9995 L141.4063,211.9995 L141.4063,223.1445 L125.7813,238.7695 L41.4063,238.7695 L41.4063,226.062 A14.0625,14.0625 0 0 1 55.4688,211.9995 " fill="#A0C5CF" style="stroke:#5E9BB1;stroke-width:2.34375;" /><rect fill="none" height="535.0952" rx="14.0625" ry="14.0625" style="stroke:#5E9BB1;stroke-width:2.34375;" width="1193.75" x="41.4063" y="211.9995" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" font-weight="bold" lengthAdjust="spacing" textLength="29.6875" x="64.8438" y="232.4165">alt</text><text fill="#0F2A33" font-family="sans-serif" font-size="17.1875" font-weight="bold" lengthAdjust="spacing" textLength="232.8125" x="164.8438" y="231.0783">[Access Token expired]</text><polygon fill="#5E9BB1" points="91.4063,281.1646,75.7813,287.4146,91.4063,293.6646,85.1563,287.4146" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="82.0313" x2="1208.5938" y1="287.4146" y2="287.4146" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="426.5625" x="100.7813" y="279.4991">HTTP 401 UNAUTHORIZED "token_expired"</text><polygon fill="#5E9BB1" points="652.3438,326.6846,667.9688,332.9346,652.3438,339.1846,658.5938,332.9346" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="661.7188" y1="332.9346" y2="332.9346" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="567.1875" x="85.1563" y="325.0191">token request including tls_client_auth and refresh-token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="139.8438" y1="402.0996" y2="402.0996" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="139.8438" x2="139.8438" y1="402.0996" y2="422.4121" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="75.7813" x2="139.8438" y1="422.4121" y2="422.4121" /><polygon fill="#5E9BB1" points="91.4063,416.1621,75.7813,422.4121,91.4063,428.6621,85.1563,422.4121" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="209.375" x="85.1563" y="370.5391">Authentication of the</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="414.0625" x="85.1563" y="394.1841">Device Data Recorder (FQDN, X.509 Cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="686.7188" x2="752.3438" y1="491.5771" y2="491.5771" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="752.3438" x2="752.3438" y1="491.5771" y2="511.8896" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="688.2813" x2="752.3438" y1="511.8896" y2="511.8896" /><polygon fill="#5E9BB1" points="703.9063,505.6396,688.2813,511.8896,703.9063,518.1396,697.6563,511.8896" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="265.625" x="697.6563" y="460.0166">Authentication of the DiGA</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="214.0625" x="697.6563" y="483.6617">(client_id, X.509 Cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="686.7188" x2="752.3438" y1="557.4097" y2="557.4097" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="752.3438" x2="752.3438" y1="557.4097" y2="577.7222" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="688.2813" x2="752.3438" y1="577.7222" y2="577.7222" /><polygon fill="#5E9BB1" points="703.9063,571.4722,688.2813,577.7222,703.9063,583.9722,697.6563,577.7222" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="501.5625" x="697.6563" y="549.4942">Validate status of DiGA(client_id) against DiGA-VZ</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="686.7188" x2="752.3438" y1="623.2422" y2="623.2422" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="752.3438" x2="752.3438" y1="623.2422" y2="643.5547" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="688.2813" x2="752.3438" y1="643.5547" y2="643.5547" /><polygon fill="#5E9BB1" points="703.9063,637.3047,688.2813,643.5547,703.9063,649.8047,697.6563,643.5547" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="221.875" x="697.6563" y="615.3267">Validate refresh-token</text><polygon fill="#5E9BB1" points="91.4063,682.8247,75.7813,689.0747,91.4063,695.3247,85.1563,689.0747" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="82.0313" x2="669.5313" y1="689.0747" y2="689.0747" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="456.25" x="100.7813" y="681.1592">token response (access-token, refresh-token)</text><polygon fill="#5E9BB1" points="1191.4063,728.3447,1207.0313,734.5947,1191.4063,740.8447,1197.6563,734.5947" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="1200.7813" y1="734.5947" y2="734.5947" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="375" x="85.1563" y="726.6792">FHIR resource request (access-token)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="139.8438" y1="825.6348" y2="825.6348" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="139.8438" x2="139.8438" y1="825.6348" y2="845.9473" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="75.7813" x2="139.8438" y1="845.9473" y2="845.9473" /><polygon fill="#5E9BB1" points="91.4063,839.6973,75.7813,845.9473,91.4063,852.1973,85.1563,845.9473" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="209.375" x="85.1563" y="794.0742">Authentication of the</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="414.0625" x="85.1563" y="817.7193">Device Data Recorder (FQDN, X.509 Cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="915.1123" y2="915.1123" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="915.1123" y2="935.4248" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="935.4248" y2="935.4248" /><polygon fill="#5E9BB1" points="1227.3438,929.1748,1211.7188,935.4248,1227.3438,941.6748,1221.0938,935.4248" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="265.625" x="1221.0938" y="883.5518">Authentication of the DiGA</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="214.0625" x="1221.0938" y="907.1968">(client_id, X.509 Cert)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="980.9448" y2="980.9448" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="980.9448" y2="1001.2573" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="1001.2573" y2="1001.2573" /><polygon fill="#5E9BB1" points="1227.3438,995.0073,1211.7188,1001.2573,1227.3438,1007.5073,1221.0938,1001.2573" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="220.3125" x="1221.0938" y="973.0293">Validate access-token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="1070.4224" y2="1070.4224" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="1070.4224" y2="1090.7349" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="1090.7349" y2="1090.7349" /><polygon fill="#5E9BB1" points="1227.3438,1084.4849,1211.7188,1090.7349,1227.3438,1096.9849,1221.0938,1090.7349" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="243.75" x="1221.0938" y="1038.8618">Validate request against</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="296.875" x="1227.3438" y="1062.5069">FHIR API access specifications</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="1159.8999" y2="1159.8999" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="1159.8999" y2="1180.2124" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="1180.2124" y2="1180.2124" /><polygon fill="#5E9BB1" points="1227.3438,1173.9624,1211.7188,1180.2124,1227.3438,1186.4624,1221.0938,1180.2124" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="290.625" x="1221.0938" y="1128.3394">Derive Pairing-ID and internal</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="281.25" x="1227.3438" y="1151.9844">patientID from access token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="1249.3774" y2="1249.3774" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="1249.3774" y2="1269.6899" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="1269.6899" y2="1269.6899" /><polygon fill="#5E9BB1" points="1227.3438,1263.4399,1211.7188,1269.6899,1227.3438,1275.9399,1221.0938,1269.6899" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="376.5625" x="1221.0938" y="1217.8169">Validate request against MIVs/Scopes</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="331.25" x="1227.3438" y="1241.4619">associated with the access-token</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="1338.855" y2="1338.855" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="1338.855" y2="1359.1675" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="1359.1675" y2="1359.1675" /><polygon fill="#5E9BB1" points="1227.3438,1352.9175,1211.7188,1359.1675,1227.3438,1365.4175,1221.0938,1359.1675" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="356.25" x="1221.0938" y="1307.2945">discover requested FHIR ressources</text><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="359.375" x="1221.0938" y="1330.9395">(patientID, MIV, request arguments)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1210.1563" x2="1275.7813" y1="1404.6875" y2="1404.6875" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1275.7813" x2="1275.7813" y1="1404.6875" y2="1425" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="1211.7188" x2="1275.7813" y1="1425" y2="1425" /><polygon fill="#5E9BB1" points="1227.3438,1418.75,1211.7188,1425,1227.3438,1431.25,1221.0938,1425" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="306.25" x="1221.0938" y="1396.772">write log entries (Pairing-ID, ...)</text><polygon fill="#5E9BB1" points="91.4063,1464.27,75.7813,1470.52,91.4063,1476.77,85.1563,1470.52" style="stroke:#5E9BB1;stroke-width:1.5625;" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="82.0313" x2="1208.5938" y1="1470.52" y2="1470.52" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="159.375" x="100.7813" y="1462.6045">FHIR ressources</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="139.8438" y1="1516.04" y2="1516.04" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="139.8438" x2="139.8438" y1="1516.04" y2="1536.3525" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="75.7813" x2="139.8438" y1="1536.3525" y2="1536.3525" /><polygon fill="#5E9BB1" points="91.4063,1530.1025,75.7813,1536.3525,91.4063,1542.6025,85.1563,1536.3525" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="306.25" x="85.1563" y="1508.1245">write log entries (Pairing-ID, ...)</text><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="74.2188" x2="139.8438" y1="1581.8726" y2="1581.8726" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="139.8438" x2="139.8438" y1="1581.8726" y2="1602.1851" /><line style="stroke:#5E9BB1;stroke-width:3.125;" x1="66.4063" x2="139.8438" y1="1602.1851" y2="1602.1851" /><polygon fill="#5E9BB1" points="82.0313,1595.9351,66.4063,1602.1851,82.0313,1608.4351,75.7813,1602.1851" style="stroke:#5E9BB1;stroke-width:1.5625;" /><text fill="#111111" font-family="sans-serif" font-size="20.3125" lengthAdjust="spacing" textLength="439.0625" x="85.1563" y="1573.9571">Process FHIR resources for eligible purposes</text></g></svg>
+  </div>
+    <figcaption><em><strong>Figure: </strong>RESTFul FHIR API Access Control Logic</em></figcaption>
+</figure>
+<p><br clear="all" /></p>
+
+<p>Remark: The FHIR Resource Server MAY cache registry information (e.g. certificate of a DiGA) and certificate status information (e.g. revocation status of a DiGA certificate). See the <a href="security-and-privacy.html">Security and Privacy</a> chapter for details and maximum caching durations.</p>
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="registries-and-zts.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="authorization-server.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationDefinition xmlns="http://hl7.org/fhir">
+  <id value="hddt-cgm-summary-operation"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: OperationDefinition hddt-cgm-summary-operation</b></p><a name="hddt-cgm-summary-operation"> </a><a name="hchddt-cgm-summary-operation"> </a><h3>Parameters</h3><table class="grid"><tr><td><b>Use</b></td><td><b>Name</b></td><td><b>Scope</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Documentation</b></td></tr><tr><td>IN</td><td>effectivePeriodStart</td><td/><td>0..1</td><td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td><td/><td><div><p>Start of effective period</p>
+</div></td></tr><tr><td>IN</td><td>effectivePeriodEnd</td><td/><td>0..1</td><td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td><td/><td><div><p>End of effective period</p>
+</div></td></tr><tr><td>IN</td><td>related</td><td/><td>0..1</td><td><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></td><td/><td><div><p>If true, include related Device and DeviceMetric in the result bundle</p>
+</div></td></tr><tr><td>OUT</td><td>result</td><td/><td>1..1</td><td><a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a> (<a href="StructureDefinition-hddt-cgm-summary.html" title="https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary">Bundle – HDDT CGM Summary Report</a>)</td><td/><td><div><p>Result bundle (HTTP 200 OK) containing summary data of measurements and optionally related resources</p>
+</div></td></tr></table></div>
+  </text>
+  <url value="https://gematik.de/fhir/hddt/OperationDefinition/hddt-cgm-summary-operation"/>
+  <version value="1.0.1"/>
+  <name value="HddtCgmSummaryOperation"/>
+  <title value="Search Operation for summary data measurement"/>
+  <status value="active"/>
+  <kind value="operation"/>
+  <experimental value="false"/>
+  <date value="2026-04-29"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de"/>
+    </telecom>
+  </contact>
+  <description value="The `$hddt-cgm-summary` operation is defined on the *Observation* resource type.  &#xA;It allows clients to request CGM summary data filtered by effective period, and optionally include related device context (Device, DeviceMetric).  &#xA;&#xA;**Use cases supported by this operation include:**  &#xA;- Retrieving CGM summary statistics (mean glucose, time-in-range, GMI, etc.) for a patient over a specified interval  &#xA;&#xA;**Input Parameters:**  &#xA;- `effectivePeriodStart` *(dateTime, optional)*: Lower bound of the observation effective period.  &#xA;- `effectivePeriodEnd` *(dateTime, optional)*: Upper bound of the observation effective period.  &#xA;- `related` *(boolean, optional)*: If true, the response bundle also contains related Device and DeviceMetric resources.  &#xA;&#xA;**Output Parameter:**  &#xA;- `result` *(Reference, required)*: A Bundle conforming to profile `HddtCgmSummary` profile containing all matching CGM Observations and, if requested, their related devices.  &#xA;&#xA;**Error handling (OperationOutcome):**  &#xA;- `MSG_PARAM_UNKNOWN`: Returned when an unsupported input parameter is used.  &#xA;- `MSG_PARAM_INVALID`: Returned when a parameter value is invalid (e.g., bad date format).  &#xA;- `MSG_NO_MATCH`: Returned when no matching observations are found. &#xA;- `MSG_BAD_SYNTAX`: Returned when the request is malformed.  "/>
+  <affectsState value="false"/>
+  <code value="hddt-cgm-summary"/>
+  <system value="false"/>
+  <type value="true"/>
+  <instance value="false"/>
+  <parameter>
+    <name value="effectivePeriodStart"/>
+    <use value="in"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="Start of effective period"/>
+    <type value="dateTime"/>
+  </parameter>
+  <parameter>
+    <name value="effectivePeriodEnd"/>
+    <use value="in"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="End of effective period"/>
+    <type value="dateTime"/>
+  </parameter>
+  <parameter>
+    <name value="related"/>
+    <use value="in"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="If true, include related Device and DeviceMetric in the result bundle"/>
+    <type value="boolean"/>
+  </parameter>
+  <parameter>
+    <name value="result"/>
+    <use value="out"/>
+    <min value="1"/>
+    <max value="1"/>
+    <documentation value="Result bundle (HTTP 200 OK) containing summary data of measurements and optionally related resources"/>
+    <type value="Reference"/>
+    <targetProfile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"/>
+  </parameter>
+</OperationDefinition>

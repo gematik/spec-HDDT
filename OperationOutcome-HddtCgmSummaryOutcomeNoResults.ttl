@@ -1,0 +1,28 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/OperationOutcome/HddtCgmSummaryOutcomeNoResults> a fhir:OperationOutcome ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "HddtCgmSummaryOutcomeNoResults"] ; # 
+  fhir:issue ( [
+     fhir:severity [ fhir:v "information" ] ;
+     fhir:code [ fhir:v "not-found" ] ;
+     fhir:details [
+       fhir:coding ( [
+         fhir:system [
+           fhir:v "http://terminology.hl7.org/CodeSystem/operation-outcome"^^xsd:anyURI ;
+           fhir:l <http://terminology.hl7.org/CodeSystem/operation-outcome>
+         ] ;
+         fhir:code [ fhir:v "MSG_NO_MATCH" ]
+       ] ) ;
+       fhir:text [ fhir:v "No CGM summary observations found for the given effective period." ]
+     ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

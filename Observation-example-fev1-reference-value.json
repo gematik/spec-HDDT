@@ -1,0 +1,33 @@
+{
+  "resourceType" : "Observation",
+  "id" : "example-fev1-reference-value",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value"]
+  },
+  "status" : "final",
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "20149-1",
+      "display" : "FEV1 predicted"
+    }]
+  },
+  "effectivePeriod" : {
+    "start" : "2025-05-01"
+  },
+  "valueQuantity" : {
+    "value" : 4.5,
+    "unit" : "L",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "L"
+  },
+  "method" : {
+    "coding" : [{
+      "system" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes",
+      "code" : "GLI-2022"
+    }]
+  },
+  "device" : {
+    "reference" : "Device/example-device-peak-flow-meter"
+  }
+}

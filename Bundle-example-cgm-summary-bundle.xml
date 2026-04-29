@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="example-cgm-summary-bundle"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"/>
+  </meta>
+  <type value="collection"/>
+  <timestamp value="2025-10-01T09:15:00Z"/>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="107931-8"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <hasMember>
+          <reference value="Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"/>
+        </hasMember>
+        <hasMember>
+          <reference value="Observation/cgmSummaryTimesInRangesExample"/>
+        </hasMember>
+        <hasMember>
+          <reference value="Observation/cgmSummaryGMIExample"/>
+        </hasMember>
+        <hasMember>
+          <reference value="Observation/cgmSummaryCoefficientOfVariationExample"/>
+        </hasMember>
+        <hasMember>
+          <reference value="Observation/cgmSummaryDaysOfWearExample"/>
+        </hasMember>
+        <hasMember>
+          <reference value="Observation/cgmSummarySensorActivePercentageExample"/>
+        </hasMember>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryMeanGlucoseMassPerVolumeExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-mass-per-volume"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="97507-8"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <valueQuantity>
+          <value value="145"/>
+          <unit value="mg/dl"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="mg/dL"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryMeanGlucoseMolesPerVolumeExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-mean-glucose-moles-per-volume"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="105273-7"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <valueQuantity>
+          <value value="8.1"/>
+          <unit value="mmol/l"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="mmol/L"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryTimesInRangesExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-times-in-ranges"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="106793-3"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <component>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="104642-4"/>
+            </coding>
+          </code>
+          <valueQuantity>
+            <value value="3"/>
+            <unit value="%"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="%"/>
+          </valueQuantity>
+        </component>
+        <component>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="104641-6"/>
+            </coding>
+          </code>
+          <valueQuantity>
+            <value value="8"/>
+            <unit value="%"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="%"/>
+          </valueQuantity>
+        </component>
+        <component>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="97510-2"/>
+            </coding>
+          </code>
+          <valueQuantity>
+            <value value="65"/>
+            <unit value="%"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="%"/>
+          </valueQuantity>
+        </component>
+        <component>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="104640-8"/>
+            </coding>
+          </code>
+          <valueQuantity>
+            <value value="20"/>
+            <unit value="%"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="%"/>
+          </valueQuantity>
+        </component>
+        <component>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="104639-0"/>
+            </coding>
+          </code>
+          <valueQuantity>
+            <value value="4"/>
+            <unit value="%"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="%"/>
+          </valueQuantity>
+        </component>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryGMIExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-gmi"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="97506-0"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <valueQuantity>
+          <value value="6.8"/>
+          <unit value="%"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="%"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryCoefficientOfVariationExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-coefficient-of-variation"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="104638-2"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <valueQuantity>
+          <value value="34"/>
+          <unit value="%"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="%"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummaryDaysOfWearExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-days-of-wear"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="104636-6"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <valueQuantity>
+          <value value="28"/>
+          <unit value="days"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="d"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample"/>
+    <resource>
+      <Observation>
+        <id value="cgmSummarySensorActivePercentageExample"/>
+        <meta>
+          <profile value="http://hl7.org/fhir/uv/cgm/StructureDefinition/cgm-summary-sensor-active-percentage"/>
+        </meta>
+        <status value="final"/>
+        <category>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+            <code value="laboratory"/>
+          </coding>
+        </category>
+        <code>
+          <coding>
+            <system value="http://loinc.org"/>
+            <code value="104637-4"/>
+          </coding>
+        </code>
+        <subject>
+          <reference value="Patient/patientExample"/>
+        </subject>
+        <effectivePeriod>
+          <start value="2025-09-01"/>
+          <end value="2025-09-30"/>
+        </effectivePeriod>
+        <valueQuantity>
+          <value value="95"/>
+          <unit value="%"/>
+          <system value="http://unitsofmeasure.org"/>
+          <code value="%"/>
+        </valueQuantity>
+      </Observation>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/hddt/Device/example-device-cgm"/>
+    <resource>
+      <Device>
+        <id value="example-device-cgm"/>
+        <definition>
+          <reference value="DeviceDefinition/device-definition-cgm-001"/>
+        </definition>
+        <status value="active"/>
+        <manufacturer value="Glukko Inc."/>
+        <expirationDate value="2025-09-10"/>
+        <serialNumber value="CGM1234567890"/>
+        <deviceName>
+          <name value="GlukkoCGM 18"/>
+          <type value="user-friendly-name"/>
+        </deviceName>
+        <modelNumber value="GCGMA98765"/>
+        <type>
+          <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+            <code value="700585005"/>
+            <display value="Invasive interstitial-fluid glucose monitoring system (physical object)"/>
+          </coding>
+        </type>
+      </Device>
+    </resource>
+  </entry>
+</Bundle>

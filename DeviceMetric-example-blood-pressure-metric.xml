@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DeviceMetric xmlns="http://hl7.org/fhir">
+  <id value="example-blood-pressure-metric"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"/>
+  </meta>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="70665002"/>
+      <display value="Blood pressure cuff"/>
+    </coding>
+  </type>
+  <unit>
+    <coding>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mm[Hg]"/>
+      <display value="mm[Hg]"/>
+    </coding>
+  </unit>
+  <source>
+    <reference value="Device/example-device-blood-pressure-cuff"/>
+  </source>
+  <operationalStatus value="on"/>
+  <category value="measurement"/>
+  <calibration>
+    <type value="unspecified"/>
+    <state value="calibrated"/>
+    <time value="2025-09-01T09:08:04+02:00"/>
+  </calibration>
+</DeviceMetric>

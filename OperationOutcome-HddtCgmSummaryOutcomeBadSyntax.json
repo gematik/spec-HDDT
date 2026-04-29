@@ -1,0 +1,15 @@
+{
+  "resourceType" : "OperationOutcome",
+  "id" : "HddtCgmSummaryOutcomeBadSyntax",
+  "issue" : [{
+    "severity" : "error",
+    "code" : "invalid",
+    "details" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/operation-outcome",
+        "code" : "MSG_BAD_SYNTAX"
+      }],
+      "text" : "The request is malformed."
+    }
+  }]
+}

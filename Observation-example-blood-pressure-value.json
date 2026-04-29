@@ -1,0 +1,80 @@
+{
+  "resourceType" : "Observation",
+  "id" : "example-blood-pressure-value",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"]
+  },
+  "status" : "final",
+  "category" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code" : "vital-signs"
+    }]
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "85354-9",
+      "display" : "Blood pressure panel with all children optional"
+    }]
+  },
+  "subject" : {
+    "reference" : "Patient/patientExample"
+  },
+  "effectiveDateTime" : "2025-10-23T09:15:00+02:00",
+  "interpretation" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code" : "N",
+      "display" : "Normal"
+    }]
+  }],
+  "device" : {
+    "reference" : "Device/example-device-blood-pressure-cuff"
+  },
+  "component" : [{
+    "code" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "8480-6",
+        "display" : "Systolic blood pressure"
+      }]
+    },
+    "valueQuantity" : {
+      "value" : 124,
+      "unit" : "mm[Hg]",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mm[Hg]"
+    }
+  },
+  {
+    "code" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "8462-4",
+        "display" : "Diastolic blood pressure"
+      }]
+    },
+    "valueQuantity" : {
+      "value" : 82,
+      "unit" : "mm[Hg]",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mm[Hg]"
+    }
+  },
+  {
+    "code" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "8478-0",
+        "display" : "Mean blood pressure"
+      }]
+    },
+    "valueQuantity" : {
+      "value" : 94,
+      "unit" : "mm[Hg]",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mm[Hg]"
+    }
+  }]
+}

@@ -1,0 +1,50 @@
+{
+  "resourceType" : "DeviceDefinition",
+  "id" : "example-universal-backend",
+  "extension" : [{
+    "url" : "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink",
+    "valueReference" : {
+      "reference" : "Endpoint/example-universal-endpoint-fhir"
+    }
+  },
+  {
+    "url" : "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink",
+    "valueReference" : {
+      "reference" : "Endpoint/example-universal-endpoint-auth"
+    }
+  },
+  {
+    "extension" : [{
+      "url" : "delayFromRealTime",
+      "valueDuration" : {
+        "value" : 60,
+        "unit" : "s"
+      }
+    },
+    {
+      "url" : "gracePeriod",
+      "valueDuration" : {
+        "value" : 15,
+        "unit" : "min"
+      }
+    },
+    {
+      "url" : "historicDataPeriod",
+      "valueDuration" : {
+        "value" : 30,
+        "unit" : "d"
+      }
+    }],
+    "url" : "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+  }],
+  "identifier" : [{
+    "system" : "https://fhir.bfarm.de/Identifier/HiisId",
+    "value" : "DE-1234567890"
+  }],
+  "manufacturerString" : "Health IT Solutions AG",
+  "deviceName" : [{
+    "name" : "§ 374a SGB V Universal Backend",
+    "type" : "user-friendly-name"
+  }],
+  "version" : ["1.0.1"]
+}

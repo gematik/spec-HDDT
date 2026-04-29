@@ -1,0 +1,19 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "HddtCgmSummaryOutcomeUnknownParam",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "invalid",
+      "details": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/operation-outcome",
+            "code": "MSG_PARAM_UNKNOWN"
+          }
+        ],
+        "text": "Unknown input parameter 'foo'."
+      }
+    }
+  ]
+}

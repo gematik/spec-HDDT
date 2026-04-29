@@ -1,0 +1,129 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hddt-continuous-glucose-measurement",
+  "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement",
+  "version": "1.0.1",
+  "name": "HddtContinuousGlucoseMeasurement",
+  "title": "Observation – Continuous Glucose Measurement",
+  "status": "active",
+  "date": "2026-04-29",
+  "publisher": "gematik GmbH",
+  "description": "Profile for capturing continuous glucose measurements from real-time monitoring devices (esp. rtCGM). \n\nThis profile defines the exchange of raw measurement data for the Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\" which is technically defined \nby the ValueSet _hddt-miv-continuous-glucose-measurement_. This MIV is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control \nan insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing data with DiGA, too.\n\n**Obligations and Conventions:**\n\nDevices for continuously measuring glucose values may produce data with a sample rate of more than 1000 values per day (e.g. current\nrtCGM provide measures for glucose in interstitial fluid with up to one value per minute). For sharing such data efficently, this profile\nmakes use of the FHIR [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData) data type. Sampled data is portioned into\nchunks of a fixed size (for an exception see below), with the chunk size being set by the resource server (e.g. such that 24 h of measurements fit into a single chunk). If a DiGA\nrequests data for a period where the end time is earlier that the expected end time of the current chunk, the resource server only fills up the chunk \nup to the requested end time and sets the `Observation.status` to _incomplete_ while `Observation.effectivePeriod` captures the \nfull period of the chunk (see section \\\"Retrieving Data\\\" in the HDDT specification for details on chunks and missing data). \n\nEach Continuous Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided \nfrom the Observation resource if the sensor for continuous measuring needs to be calibrated (either automatically or by the user) \nor if the sensor may change its calibration status over time. A change in `DeviceMetric.calibration.state` or a change of `Device.status` to _inactive_ finalizes the\ncurrent chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. \n\n**Constraints applied:**  \n- `code` is constrained to the ValueSet that represents the MIV _Continuous Glucose Measurement_\n- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory. Both a starting time and an end tme MUST be given.\n- `value[x]` is restricted to _valueSampledData_. The elements `valueSampledData.origin.unit`, `valueSampledData.origin.system`, and `valueSampledData.origin.code` are mandatory. `valueSampledData.origin.system` is restricted to UCUM. `Observation.valueSampledData` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.",
+  "copyright": "Copyright (c) 2026 gematik GmbH",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation",
+        "short": "Chunk of continuous glucose measurements",
+        "definition": "An Observation representing a continuous glucose measurement (CGM) series over a defined effective period, captured as SampledData from a personal health device."
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "short": "Status of the continuous glucose measurements chunk",
+        "definition": "The status of the continuous glucose measurements chunk. The status 'final' means the measurement is complete and verified; 'preliminary' means the data MAY be still being collected and not complete. It SHOULD be called at a later time for collecting complete data."
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Type of continuous glucose measurement",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement",
+          "description": "Specifies the type of continuous glucose measurement using codes from the ValueSet for CGM measurements."
+        }
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "short": "Time interval covered by the CGM measurement chunk",
+        "definition": "The time span covered by this chunk of continuous glucose measurements. The length of every time span is a fixed value defined \ninternaly by the data recorder per personal health device.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Period"
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x].start",
+        "path": "Observation.effective[x].start",
+        "min": 1
+      },
+      {
+        "id": "Observation.effective[x].end",
+        "path": "Observation.effective[x].end",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "short": "Series of glucose measurements",
+        "type": [
+          {
+            "code": "SampledData"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.value[x].origin.unit",
+        "path": "Observation.value[x].origin.unit",
+        "short": "Unit of continuous glucose measurement",
+        "definition": "The unit of measurement used for all data in `valueSampledData.data`."
+      },
+      {
+        "id": "Observation.value[x].origin.system",
+        "path": "Observation.value[x].origin.system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.value[x].origin.code",
+        "path": "Observation.value[x].origin.code",
+        "short": "UCUM code for unit of measurements",
+        "definition": "The UCUM code representing the unit of the continuous glucose measurement. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`.",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/ucum-units",
+          "description": "Defines the measurement unit for continuous glucose values using UCUM codes."
+        }
+      },
+      {
+        "id": "Observation.value[x].data",
+        "path": "Observation.value[x].data",
+        "min": 1
+      },
+      {
+        "id": "Observation.dataAbsentReason",
+        "path": "Observation.dataAbsentReason",
+        "definition": "Indicates why the measurement data is missing. A value of 'temp-unknown' MUST only be used if no data is available at all\nfor the requested period but may be available later (e.g. because the Device Data Recorder could temporarely not \nconnect with the Personal Health Device). ",
+        "comment": "If some data is available for the requested period with more data expected to come, an incomplete chunk MUST \nbe provided with with the avialable vaues and `Observation.status` MUST set to _incomplete_. See section \n\\\"Retrieving Data\\\" in the HDDT specification for more details on how to deal with incomplete or missing data."
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Reference to personal health device or its sensor type and calibration status",
+        "definition": "Reference to the DeviceMetric resource that describes the sensor type and calibration status of the personal health device or reference to the Device resource that describes the personal health device itself.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device",
+              "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

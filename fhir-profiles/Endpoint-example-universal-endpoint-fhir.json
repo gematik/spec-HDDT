@@ -1,0 +1,21 @@
+{
+  "resourceType": "Endpoint",
+  "id": "example-universal-endpoint-fhir",
+  "status": "active",
+  "connectionType": {
+    "system": "https://fhir.bfarm.de/CodeSystem/HiisEndpointConnectionType",
+    "code": "hl7-fhir-rest"
+  },
+  "name": "cloud.health-it.de",
+  "address": "https://cloud.health-it.de/fhir",
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+          "code": "any"
+        }
+      ]
+    }
+  ]
+}

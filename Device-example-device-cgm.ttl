@@ -1,0 +1,40 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Device/example-device-cgm> a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-device-cgm"] ; # 
+  fhir:definition [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-cgm-001> ;
+     fhir:reference [ fhir:v "DeviceDefinition/device-definition-cgm-001" ]
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:manufacturer [ fhir:v "Glukko Inc."] ; # 
+  fhir:expirationDate [ fhir:v "2025-09-10"^^xsd:date] ; # 
+  fhir:serialNumber [ fhir:v "CGM1234567890"] ; # 
+  fhir:deviceName ( [
+     fhir:name [ fhir:v "GlukkoCGM 18" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "GCGMA98765"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:700585005 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "700585005" ] ;
+       fhir:display [ fhir:v "Invasive interstitial-fluid glucose monitoring system (physical object)" ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

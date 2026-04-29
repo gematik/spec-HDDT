@@ -1,0 +1,18 @@
+{
+  "codeSystems" : [{
+    "url" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes",
+    "version" : "1.0.1",
+    "status" : "active",
+    "name" : "HddtLungFunctionReferenceValueMethodCodes",
+    "title" : "Lung Function Reference Value Method Codes",
+    "description" : "Dieses CodeSystem ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDer MIV _HddtMivLungFunctionTesting_ erfordert Referenzwerte zur Bewertung gemessener Lungenfunktionswerte. Diese Referenzwerte können mit unterschiedlichen\nMethoden bestimmt werden. Dieses CodeSystem stellt Codes zur Verfügung, um typische Methoden zur Bestimmung von Lungenfunktions-Referenzwerten auszudrücken.\n\n--\n\nThis CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference\nvalues can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values."
+  },
+  {
+    "url" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+    "version" : "1.0.1",
+    "status" : "active",
+    "name" : "HddtLungFunctionTemporaryCodes",
+    "title" : "Lung Function Temporary Codes",
+    "description" : "Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.\n\n--\n\nTemporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable."
+  }]
+}

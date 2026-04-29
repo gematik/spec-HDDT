@@ -1,0 +1,835 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "de.gematik.hddt",
+  "language": "en",
+  "url": "https://gematik.de/fhir/hddt/ImplementationGuide/de.gematik.hddt",
+  "version": "1.0.1",
+  "name": "HealthDeviceDataTransfer",
+  "title": "Health Device Data Transfer",
+  "status": "active",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de"
+        }
+      ]
+    }
+  ],
+  "description": "This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose, Continuous glucose monitoring, lung function testing and blood pressure as an example, according to § 374a SGB V.",
+  "copyright": "gematik GmbH",
+  "packageId": "de.gematik.hddt",
+  "license": "CC0-1.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "packageId": "hl7.fhir.uv.cgm",
+      "version": "1.0.0",
+      "uri": "http://hl7.org/fhir/uv/cgm/ImplementationGuide/hl7.fhir.uv.cgm",
+      "id": "hl7_fhir_uv_cgm"
+    },
+    {
+      "packageId": "de.basisprofil.r4",
+      "version": "1.5.4",
+      "uri": "http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4",
+      "id": "de_basisprofil_r4"
+    }
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-miv-blood-glucose-measurement"
+        },
+        "name": "Blood Glucose Measurement from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivBloodGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \\\"Blood Glucose Measurement\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Blood Glucose Measurement_ umfasst Werte aus „blutigen Messungen“, z. B. mit kapillarem Blut aus der Fingerkuppe. Die Messungen erfolgen gemäß Versorgungsplan\n(z. B. Blutzuckermessung vor jeder Mahlzeit) oder ad hoc (z. B. bei Unwohlsein des Patienten, was auf eine Hypoglykämie hindeuten kann).\nDiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern sehr genaue Glukosewerte, die für therapeutische Entscheidungen geeignet sind.\n\nDas ValueSet für den MIV _Blood Glucose Measurement_ enthält LOINC-Codes für Blutzuckermessungen mit Blut oder Plasma als Referenzmethoden, wobei die Werte als Masse/Volumen und Mol/Volumen angegeben werden.\nZusätzlich sind granularere LOINC-Codes für „Glukose im Kapillarblut mittels Glukometer“ als Masse/Volumen und Mol/Volumen enthalten, da diese Codes bereits von mehreren Herstellern von Glukometern verwendet werden.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe ValueSet _HddtMivBloodGlucoseMeasurement_ defines the Mandatory Interoperable Value (MIV) \\\"Blood Glucose Measurement\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ \n\nThe MIV _Blood Glucose Measurement_ covers values from \\\"bloody measurements\\\" e.g. using capillary blood from the \nfinger tip. Measurements are performed based on a care plan (e.g. measuring blood sugar before each meal) or ad hoc \n(e.g. a patient feeling dim what may be an indicator for a hypoglycamia). \nDiGA use cases served by this MIV require glucose values that are very acurate and therefore suited for therapeutical decision making. \n\nThe ValueSet for the MIV _Blood Glucose Measurement_ contains LOINC codes for blood glucose measurements using \nblood or plasma as reference methods with the values provided as mass/volume and moles/volume. \nIn addition more granular LOINC codes for \\\"Glucose in Capillary blood by Glucometer\\\" provided as mass/volume \nand moles/volume are included with the value set because these codes are already in use by several \nmanufacturers of glucometers.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-miv-blood-pressure-value"
+        },
+        "name": "Blood Pressure Value from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivBloodPressureValue_ definiert den Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Blood Pressure Monitoring_ umfasst Werte aus Blutdruckmessungen, die mit oszillometrischen oder auskultatorischen, automatisierten \nSphygmomanometern durchgeführt werden. Die Messungen erfolgen gemäß Versorgungsplan (z. B. täglich oder einmal pro Woche).\nDiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern genaue Blutdruckwerte, die für therapeutische Entscheidungen geeignet sind.\n\nDas ValueSet für den MIV _Blood Pressure Monitoring_ enthält den LOINC-Code für das vollständige Blutdruck-Panel, sollte aber auch die Möglichkeit bieten, in zukünftigen Updates zusätzliche Codes aufzunehmen.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe ValueSet _HddtMivBloodPressureValue_ defines the Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ \n\nThe MIV _Blood Pressure Monitoring_ covers values from blood pressure measurements performed using oszillometric or auscultatory, automated \nsphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).\nDiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. \n\nThe ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for complete blood pressure panel, but should still have the option to include additional code in future updates.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-cgm-summary"
+        },
+        "name": "Bundle – HDDT CGM Summary Report",
+        "description": "This profile defines the exchange of aggregated measurement data for the Mandatory Interoperable Value (MIV) \\\"Continuous \nGlucose Measurement\\\". By this it provides a patient's glucose profile for a defined period. The MIV \\\"Continuous \nGlucose Measurement\\\" is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control \nan insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing aggregated glucose profile data with DiGA, too.\n\nThis profile constrains the FHIR Bundle resource for use as the result container of the `$hddt-cgm-summary` operation.  \nThe operation requests a patient's glucose profile. The glucose profile is calculated form continuous glucose measurement data\nand consists of the machine-readable parts of the [_HL7 CGM summary profile_](https://hl7.org/fhir/uv/cgm/). \n\nThe Bundle is of type *collection* and MUST contain only resources of the following types:  \n- Observations conforming to [HL7 CGM profiles](https://hl7.org/fhir/uv/cgm/): \n    - [CGM Summary Observation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary.html)\n    - [Mean Glucose (Mass)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)\n    - [Mean Glucose (Moles)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)\n    - [Times in Ranges](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-times-in-ranges.html)\n    - [Glycemic Variability Index (GMI)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-gmi.html)\n    - [Coefficient of Variation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-coefficient-of-variation.html)\n    - [Days of Wear](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-days-of-wear.html)\n    - [Sensor Active Percentage](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)\n\n- Device resources conforming to `HddtPersonalHealthDevice` to provide context about the actual Personal Health Device device used.  \n\nThe purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  \nIt ensures interoperability across different implementations by defining a predictable response format.  \nThis supports use cases such as:  \n- Retrieval of CGM summary metrics over a given time interval in support for the upcoming digital disease management program (dDMP) on Diabetes, e.g. for \n    - continuous therapy monitoring and adjustment\n    - forwarding key data to treating physicians, e.g. for clinical decision support\n    - supporting asynchonous telemonitoring by ad hoc provisioning of condensed status information\n- Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring\n\n**Constraints applied:**  \n- `Bundle.type` is fixed to `collection`.  \n- `Bundle.entry.resource` is restricted to CGM Observation profiles and `HddtPersonalHealthDevice`. No other resource types are allowed in the Bundle.  \n- `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-miv-continuous-glucose-measurement"
+        },
+        "name": "Continuous Glucose Measurement from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivContinuousGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Continuous Glucose Measurement_ umfasst Werte aus der kontinuierlichen Überwachung des Glukosespiegels, z. B. \ndurch rtCGM im Interstitialfluid (ISF). Die Messungen werden mit Sensoren durchgeführt, die eine Abtastrate von bis zu \neinem Wert pro Minute (oder sogar mehr) ermöglichen. Dadurch kann der MIV _Continuous Glucose Measurement_ z. B. genutzt werden, um Zusammenhänge\nzwischen den individuellen Gewohnheiten und dem Glukosespiegel eines Patienten zu beurteilen. Aufgrund der hohen Dichte an Werten über einen langen\nZeitraum können aus _Continuous Glucose Measurement_ viele Schlüsselmetriken berechnet werden, die dem Patienten und seinem Arzt helfen,\nden Gesundheits- und Therapiezustand des Patienten einfach zu erfassen.\n\nDas ValueSet für den MIV _Continuous Glucose Measurement_ enthält Codes, die für die kontinuierliche Glukoseüberwachung (CGM) im Interstitialfluid (ISF) relevant sind, \nwobei Masse/Volumen und Mol/Volumen als gebräuchliche Einheiten berücksichtigt werden. In Zukunft können diesem ValueSet Codes für nicht-invasive Glukosemessmethoden hinzugefügt werden.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThis ValueSet defines the Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ \n\nThe MIV _Continuous Glucose Measurement_ covers values from continuous monitoring of the glucose level, e.g. \nby rtCGM in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to \none value per minute (or even more). By this, the MIV _Continuous Glucose Measurement_ can e.g. be used to assess dependencies between a \npatient's individual habits and behavious and his glucose level. Due to the high density of values over a long period \nof time, many key metrics can be calculated from _Continuous Glucose Measurement_ which help the patient and \nhis doctor to easily capture the status of the patient's health and therapy.\n\nThe ValueSet for the MIV _Continuous Glucose Measurement_ includes codes relevant to continuous glucose \nmonitoring (CGM) in interstitial fluid (ISF), considering mass/volume and moles/volume as commonly used units. \nIn the future codes defining non-invasive glucose measuring methods may be added to this value set.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-device-type"
+        },
+        "name": "Device Type of personal health devices",
+        "description": "Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.\n\nDie Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),\nangepasst für die Verwendung mit den auf FHIR R4 basierenden HDDT-Profilen.\n\nDieses Material enthält SNOMED Clinical Terms® (SNOMED CT®), die mit Genehmigung der International Health Terminology Standards Development Organisation (IHTSDO) verwendet werden.\nAlle Rechte vorbehalten. SNOMED CT® wurde ursprünglich vom College of American Pathologists entwickelt. 'SNOMED' und 'SNOMED CT' sind eingetragene Warenzeichen der IHTSDO.\n\nDieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch \nzwischen Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Der Inhalt des ValueSets umfasst immer mindestens alle Gerätetypen,\nfür die HDDT _Mandatory Interoperable Values_ (MIVs) definiert. Damit kann dieses ValueSet zukünftig auch Codes enthalten, die nicht Teil des FHIR ValueSet _Device Type_ sind.\n\n--\n\nThis ValueSet includes codes used to identify Personal Health Devices and Device Data Recorders.\n\nThis ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet \n[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. \n\nThis material includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO).\nAll rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO.\n\nCAVE: This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). The content of the value set will always at latest\ncover all types of device types for whoch HDDT defines _Mandatory Interoperable Values_ (MIVs). By this, this value set MAY\nin the future include codes which are not part of the FHIR ValueSet _Device Type_. ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-personal-health-device"
+        },
+        "name": "Device – Personal Health Device",
+        "description": "This profile defines a Personal Health Device within the context of § 374a SGB V. A Personal Health Device acc. to this profile is any\nmedical aid or implant that \n- is distributed to patients at the expense of the statutory health insurance and \n- transmits the data about the patient electronically to the device manufacturer or third parties, which make the data available to patients and/or physicians via publicly accessible networks. \n\nPersonal Health Devices that fulfill the criteria of this regulation MUST be able to pass on data to authorized Digital Health Applications (DiGA acc. § 374a SGB V) using the protocols \nand interfaces as defined in the HDDT specification.\n\nThis profile helps a device data consuming DiGA to\n- increase patient safety by comparing the serial number of a Personal Health Device as presented with this profile with the serial number the patient may have provided to the DiGA\n- increase data quality by getting information about the current status of the end-to-end communication flow from the Personal Health Device to the device backend and thus being able to detect if there may be more data available for the requested period\n- optimize its interactions with the device data providing resource server by getting access to the DeviceDefinition resource that holds static attributes about the device and its connected backend (e.g. minimum delay between data measurement and data availability)\n\n**Obligations and Conventions:**\n\nThe Personal Health Device's backend regularely synchronizes with the device hardware through a gateway (_Personal Health Gateway_). \nThe maximum delay that the concrete end-to-end synchronization from the Personal Health Device to the FHIR resource server imposes is provided by the BfArM _HIIS-VZ_ (Device Registry) per MIV\nthrough the static attribute `Delay-From-Real-Time`. If a resource server has not synchronized with the connected Personal Health Device for a time span \nlonger than `Delay-From-Real-Time`(e.g. due to temporarely lost Bluetooth or internet connectivity), the `status` of the Device resource that represents the \nPersonal Health Device MUST be set to `unknown`.\n\n**Constraints applied:**  \n- `status` is set to _Must Support_ in order to allow a DiGA to detect missing data (e.g. due to connection issues)\n- `deviceName` and `serialNumber` are set to _Must Support_ to allow a validation of the source of device data by comparing this information with information printed on the Personal Health Device\n- `definition` is optional. If present it MUST refer to a DeviceDefinition resource in the BfARM HIIS VZ. This ensures that DiGA can only receive static product information which was registered by the vendor of the device.\n- `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-sensor-type-and-calibration-status"
+        },
+        "name": "DeviceMetric – Sensor Type and Calibration Status",
+        "description": "The HddtSensorTypeAndCalibrationStatus profile captures the calibration status of a sensor which is part of a Personal Health Device. \n\nPersonal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the \nmanufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. \nIf a Personal Health Device transmits data from a non calibrated sensor to the resource server at all depends on the concrete product. \nFor a DiGA as a device data consumer to process device data in a safe manner, it must be transparent if the data it received was \nmeasured by a calibrated sensor or not. \n\nFor devices where the sensor that measured a value requires automated or manual calibration, the Observation capturing this value \nMUST refer to a HddtSensorTypeAndCalibrationStatus resource through its `Observation.device` element. \nThe HddtSensorTypeAndCalibrationStatus implements a FHIR [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource which \nholds calibration information in a `calibration.type`, a `calibration.state` and a `calibration.date` element. In addition \nthe HddtSensorTypeAndCalibrationStatus can provide a definition of the `unit` that is preferrably to be used for presenting \nmeasured values to the patient. \n\nThe HddtSensorTypeAndCalibrationStatus of a measurement MUST always refer to a HddTPersonalHealthDevice [Device](https://hl7.org/fhir/R4/device.html) resource that represents the \nPersonal Health Device that contains the sensor. This is a many-to-one relationship which allows for a Personal Health Device to \ncontain multiple sensors for different measured values. E.g. by this a pulse oximeter as a HDDT Personal Health Device can \nprovide _pulse_ and _SPO2_ as two different interoperable values with each of this values being linked with a \ndedicated HddtSensorTypeAndCalibrationStatus resource. \n\n**Obligations and Conventions:**\n\nDiGA as device data consumers SHOULD NOT rely on the `DeviceMetric.operationalStatus` of a sensor as this status does only reflect the status of the sensor \nand does not provide information about the end-to-end status of the flow of device data from the sensor within the Personal Health Device \nto the resource server in the device backend. Instead DiGA SHOULD process the `Device.status` information that can be obtained through the \n`DeviceMetric.source` reference. This element considers the end-to-end availability of data and therefore is the only source for \ninformation about potentially missing data (e.g. due to temporal problems with the bluetooth or internet connection).\n\n**Constraints applied:**  \n- `unit` is restricted to UCUM. \n- `source` is constrained as a mandatory element in order to enable a DiGA to obtain dynamic and static device attributes through this reference\n- `calibration` is set to _Must Support_. This element and respective status information MUST be provided if the sensor performs automated or requires manual calibration after the device has been put into operation with the patient (`Device.status`is `active`).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-blood-glucose-measurement-1"
+        },
+        "name": "HDDT Blood Glucose Measurement 1 (from Example Object Diagram)",
+        "description": "Example of a blood glucose measurement taken with a glucometer.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-blood-glucose-measurement-2"
+        },
+        "name": "HDDT Blood Glucose Measurement 2 (from Example Object Diagram)",
+        "description": "Example of a blood glucose measurement taken with a glucometer.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-blood-glucose"
+        },
+        "name": "HDDT Blood Glucose Obervation Example (general)",
+        "description": "Example of a blood glucose measurement taken with a glucometer.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "DeviceDefinition/device-definition-blood-pressure-cuff-001"
+        },
+        "name": "HDDT Blood Pressure Cuff DeviceDefinition Example",
+        "description": "This example represents a Blood Pressure Cuff device definition from the HIIS-VZ.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Device/example-device-blood-pressure-cuff"
+        },
+        "name": "HDDT Blood Pressure Cuff Example",
+        "description": "Example of a __blood pressure cuff as a personal health device__: \nThe device _BP Cuff Pro_ from _HealthTech GmbH_ performs blood pressure measurements. \nThe device does not have an expiration date as it is a durable medical device.\nThe vendor-defined model number of this type of device is _Digital BT 2_ and the serial number of the patient's \nindividual device is _BPC0011223345_. Both identifiers are printed on the device and allow the patient \nto validate the authenticity of this Personal Health Device resource.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+      },
+      {
+        "reference": {
+          "reference": "DeviceMetric/example-blood-pressure-metric"
+        },
+        "name": "HDDT Blood Pressure DeviceMetric Example",
+        "description": "Example of a __DeviceMetric for blood pressure measurements__ from a blood pressure cuff:\nThe device measures the blood pressure in mmHg from the patient using an oscillometric method.\nThe device is calibrated by the manufacturer and does not require user calibration.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-blood-pressure-value"
+        },
+        "name": "HDDT Blood Pressure Value Example",
+        "description": "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-blood-pressure-value-with-device-metric"
+        },
+        "name": "HDDT Blood Pressure Value Example With DeviceMetric",
+        "description": "Example of a blood pressure measurement (referencing DeviceMetric) with systolic, diastolic, and mean blood pressure components.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"
+      },
+      {
+        "reference": {
+          "reference": "Organization/example-cgm-manufacturer"
+        },
+        "name": "HDDT CGM Manufacturer Example",
+        "description": "Example organization representing the manufacturer of the CGM device.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Device/example-glucometer"
+        },
+        "name": "HDDT Glucometer Device Example",
+        "description": "Example of a __glucometer as a personal health device__:\nThe device _GlukkCheck plus mg/dl_ from _Glukko Inc._ performs \"bloody\" measurements from capillary blood. \nAs glucometers do not expire (that is just the case for the test stripes), the expiration date is not set.\nThe vendor-defined model number of this typeof devices is _CGPA987654_ and the serial number of the patient's \nindividual device is _SN123456_. Both identifiers are printed on the back of the device and allow the patient \nto validate the authenticity of this Personal Health Device resource.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+      },
+      {
+        "reference": {
+          "reference": "DeviceDefinition/example-glucometer-def"
+        },
+        "name": "HDDT Glucometer DeviceDefinition Example",
+        "description": "Example for a medical device definition (Glucometer) from the HIIS-VZ.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "DeviceMetric/example-glucometer-metric"
+        },
+        "name": "HDDT Glucometer DeviceMetric Example",
+        "description": "Example of a __DeviceMetric for blood glucose measurements__ from a glucometer:\nThe device measures the glucose concentration from capillary blood by using test strips. \nThe patient's preferred unit is mg/dl which is used by the device for displaying measured values. \nThe glucometer needs to be calibrated by the patient using control strips. \nThe last calibration was performed in Septemer 2025 and the glucometer is still calibrated.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+      },
+      {
+        "reference": {
+          "reference": "Organization/example-glucometer-manufacturer"
+        },
+        "name": "HDDT Glucometer Manufacturer Example",
+        "description": "Example organization representing the manufacturer of the glucometer device.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-fev1-single-measurement"
+        },
+        "name": "HDDT Lung Function Obervation Example (FEV1 single measurement)",
+        "description": "Example of a forced expiratory volume in 1 second (FEV1) measurement taken with a digital peak flow meter.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-peak-flow-simple"
+        },
+        "name": "HDDT Lung Function Obervation Example (simple)",
+        "description": "Example of a peak expiratory flow measurement (PEF) taken with a peak flow meter. \nSimple version without a reference value or relative value.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-fev1-reference-value"
+        },
+        "name": "HDDT Lung Function Reference Value Obervation Example (FEV1 predicted)",
+        "description": "Example of a forced expiratory volume in 1 second (FEV1) reference value (predicted) for a patient.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-fev1-relative-value"
+        },
+        "name": "HDDT Lung Function Relative Value Obervation Example (FEV1 measured/predicted)",
+        "description": "Example of a forced expiratory volume in 1 second (FEV1) relative value (measured/predicted) for a patient.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete"
+      },
+      {
+        "reference": {
+          "reference": "DeviceDefinition/device-definition-peak-flow-001"
+        },
+        "name": "HDDT Peak Flow Meter DeviceDefinition Example",
+        "description": "This example represents a Peak Flow Meter device definition from the HIIS-VZ.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Device/example-device-peak-flow-meter"
+        },
+        "name": "HDDT Peak Flow Meter Example",
+        "description": "Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: \nThe device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. \nThe sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.\nThe vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's \nindividual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient \nto validate the authenticity of this Personal Health Device resource.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-cgm-series-data-unavailable"
+        },
+        "name": "HDDT rtCGM Data Unavailable Observation Example",
+        "description": "Example of a CGM time series with status preliminary and dataAbsentReason",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "Device/example-device-cgm"
+        },
+        "name": "HDDT rtCGM Device Example",
+        "description": "Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: \nThe device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. \nThe sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.\nThe vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's \nindividual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient \nto validate the authenticity of this Personal Health Device resource.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "DeviceDefinition/device-definition-cgm-001"
+        },
+        "name": "HDDT rtCGM DeviceDefinition Example",
+        "description": "This example represents a Continuous Glucose Monitoring (CGM) device definition from the HIIS-VZ.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "DeviceMetric/example-devicemetric-cgm"
+        },
+        "name": "HDDT rtCGM DeviceMetric Example",
+        "description": "Example __configuration for measurements from a real-time Continuous Glucose Monitoring (rtCGM)__:\nThe device measures the glucose concentration from interstitial fluid with a frequency of one measurement every minute. \nThe the unit set by the patient for displaying measured values is mg/dl.\nThe device is calibrated by the manufacturer and does not require user calibration.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-cgm-series"
+        },
+        "name": "HDDT rtCGM Full Chunk Observation Example",
+        "description": "Example of a CGM time series with 1-minute intervals over 1 hour (60 samples).",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-cgm-series-1"
+        },
+        "name": "HDDT rtCGM Full Chunk Observation Example",
+        "description": "Example of a CGM time series with 5-minute intervals over 1 hour (12 samples).",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "Observation/example-cgm-series-incomplete"
+        },
+        "name": "HDDT rtCGM Incomplete Chunk Observation Example",
+        "description": "Example of a CGM time series with 1-minute intervals over 20 minutes (20 samples), but incomplete.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/example-universal-endpoint-auth"
+        },
+        "name": "HDDT Universal Backend Auth Endpoint Example",
+        "description": "Example authentication endpoint for a universal backend system for processing HiMi data according to § 374a SGB V.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/example-universal-endpoint-fhir"
+        },
+        "name": "HDDT Universal Backend FHIR Endpoint Example",
+        "description": "Example FHIR endpoint for a universal backend system for processing HiMi data according to § 374a SGB V.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "DeviceDefinition/example-universal-backend"
+        },
+        "name": "HDDT Universal Device Backend Example",
+        "description": "Example for a universal backend system for processing HiMi data according to § 374a SGB V. Supports multiple device types. Values in the 'mivSet' extensions are just exemplary, and do not reflect the specification.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "OperationOutcome/HddtCgmSummaryOutcomeBadSyntax"
+        },
+        "name": "HL7 CGM Summary OperationOutcome Example: Bad syntax error",
+        "description": "Returned when the request is malformed.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "OperationOutcome/HddtCgmSummaryOutcomeInvalid"
+        },
+        "name": "HL7 CGM Summary OperationOutcome Example: Invalid parameter error",
+        "description": "Returned when a parameter value is invalid.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "OperationOutcome/HddtCgmSummaryOutcomeNoResults"
+        },
+        "name": "HL7 CGM Summary OperationOutcome Example: No results information",
+        "description": "Returned when no CGM observations are found.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "OperationOutcome/HddtCgmSummaryOutcomeUnknownParam"
+        },
+        "name": "HL7 CGM Summary OperationOutcome Example: Unknown parameter error",
+        "description": "Returned when an unsupported input parameter is provided.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Patient/patientExample"
+        },
+        "name": "HL7 CGM Summary Patient Example: no content",
+        "description": "This example represents a patient without content.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryExample"
+        },
+        "name": "HL7 CGM Summary: CGM Summary Example",
+        "description": "This example is an instance of the CGM Summary profile. It provides a consolidated summary of a patient's CGM data over one month, linking to more detailed observations for specific metrics.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryCoefficientOfVariationExample"
+        },
+        "name": "HL7 CGM Summary: Coefficient of Variation Example",
+        "description": "This example is an instance of the Coefficient of Variation (CV) profile. It represents a summary observation of the glucose variability for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded coefficient of variation value of 34%.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryDaysOfWearExample"
+        },
+        "name": "HL7 CGM Summary: Days of Wear Example",
+        "description": "This example is an instance of the Days of Wear profile. It represents a summary observation of the number of days a Continuous Glucose Monitoring (CGM) device was worn by the patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 28 days.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Bundle/example-cgm-summary-bundle"
+        },
+        "name": "HL7 CGM Summary: Example Bundle",
+        "description": "Bundle containing CGM summary observations for a patient together with associated Device and DeviceMetric resources.",
+        "exampleCanonical": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryGMIExample"
+        },
+        "name": "HL7 CGM Summary: GMI Example",
+        "description": "This example is an instance of the Glucose Management Indicator (GMI) profile. It represents a summary observation of the estimated A1C-like value (GMI) for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 6.8%.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryMeanGlucoseMassPerVolumeExample"
+        },
+        "name": "HL7 CGM Summary: Mean Glucose (Mass) Example",
+        "description": "This example is an instance of the Mean Glucose (Mass) profile. It represents a summary observation of the mean glucose level for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 145 mg/dL (mass per volume).",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample"
+        },
+        "name": "HL7 CGM Summary: Mean Glucose (Molar) Example",
+        "description": "This example is an instance of the Mean Glucose (Molar) profile. It represents a summary observation of the mean glucose level for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 8.1 mmol/L (moles per volume).",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummarySensorActivePercentageExample"
+        },
+        "name": "HL7 CGM Summary: Sensor Active Percentage Example",
+        "description": "This example is an instance of the Sensor Active Percentage profile. It represents a summary observation of the percentage of time a Continuous Glucose Monitoring (CGM) sensor was active for the patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 95%.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/cgmSummaryTimesInRangesExample"
+        },
+        "name": "HL7 CGM Summary: Times in Ranges Example",
+        "description": "This example is an instance of the CGM Summary Times in Ranges profile. It represents a summary observation of the time a patient spent in different glucose ranges over the period from May 1, 2024, to May 31, 2024. The recorded values are 3% in the very low range, 8% in the low range, 65% in the target range, 20% in the high range, and 4% in the very high range.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-lung-function-reference-value-method-codes"
+        },
+        "name": "Lung Function Reference Value Method",
+        "description": "Ein ValueSet für Codes, die die Methode zur Bestimmung von Referenzwerten der Lungenfunktion angeben. Enthalten sind Codes aus dem CodeSystem _HddtLungFunctionReferenceValueMethodCodes_:\n- Personal Best (persönlicher Bestwert)\n- Vorhergesagter Wert gemäß Global Lung Initiative 2012\n- Vorhergesagter Wert gemäß Global Lung Initiative 2022\n- Sonstige\n\n--\n\nA ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:\n- Personal Best\n- Predicted Value according to Global Lung Initiative 2012\n- Predicted Value according to Global Lung Initiative 2022\n- Other",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/hddt-lung-function-reference-value-method-codes"
+        },
+        "name": "Lung Function Reference Value Method Codes",
+        "description": "Dieses CodeSystem ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDer MIV _HddtMivLungFunctionTesting_ erfordert Referenzwerte zur Bewertung gemessener Lungenfunktionswerte. Diese Referenzwerte können mit unterschiedlichen\nMethoden bestimmt werden. Dieses CodeSystem stellt Codes zur Verfügung, um typische Methoden zur Bestimmung von Lungenfunktions-Referenzwerten auszudrücken.\n\n--\n\nThis CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference\nvalues can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-lung-function-reference-values"
+        },
+        "name": "Lung Function Reference Values from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.\n\nDieses ValueSet definiert die LOINC-Codes, die für Referenzwerte der Lungenfunktion verwendet werden:\n- Der Referenzwert für den _Peak Expiratory Flow_ (PEF) ist der persönliche Bestwert, den der Patient innerhalb eines bestimmten Zeitraums erreicht hat.\n- Der Referenzwert für das Forcierte Exspiratorische Volumen in 1 Sekunde (FEV1) ist in den meisten Fällen ein vorhergesagter Wert, der auf Basis der demografischen Daten des Patienten berechnet wird.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). \n\nThis ValueSet defines the LOINC codes, used for lung function reference values:\n- The reference value for Peak Expiratory Flow (PEF) is the personal best value achieved by the patient within a certain time frame. \n- The reference value for Forced Expiratory Volume in 1 second (FEV1) is in most cases a predicted value, calculated based on demographic data of the patient.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-lung-function-relative-values"
+        },
+        "name": "Lung Function Relative Values from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.\n\nDieses ValueSet definiert die LOINC-Codes, die für relative Lungenfunktionswerte verwendet werden. Der relative Wert wird berechnet, indem die \nindividuelle Messung durch den Referenzwert geteilt wird, was zu einem Prozentwert (%) führt. Enthaltene Codes sind für\n- FEV1 measured/predicted\n- PEF measured/predicted\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). \n\nThis ValueSet defines the LOINC codes, used for relative lung function values. The relative value is calculated by dividing the \nindividual measurement by the reference value, resulting in a percentage value (%). Included codes are for \n- FEV1 measured/predicted\n- PEF measured/predicted",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-lung-function-temporary-codes"
+        },
+        "name": "Lung Function Temporary Codes",
+        "description": "ValueSet für temporäre Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, bis LOINC-Codes verfügbar sind.\n\n--\n\nA ValueSet for temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem until LOINC codes are available.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/hddt-lung-function-temporary-codes"
+        },
+        "name": "Lung Function Temporary Codes",
+        "description": "Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.\n\n--\n\nTemporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ConceptMap/HddtLungFunctionTemporaryToLoinc"
+        },
+        "name": "Lung Function Temporary Codes to LOINC",
+        "description": "Eine Abbildung von temporären Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, auf LOINC-Codes.\nFalls noch kein LOINC-Code verfügbar ist, wird dies mit einer Äquivalenz von 'unmatched' angezeigt.\nSobald ein LOINC-Code für einen temporären Code verfügbar ist, wird diese ConceptMap entsprechend aktualisiert.\n\n--\n\nA mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.\nIn case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.\nWhenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-lung-function-testing-values"
+        },
+        "name": "Lung Function Testing Values from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.\n\nDieses ValueSet definiert die Codes für einzelne Lungenfunktionstests, die mit handgehaltenen Peak-Flow-Metern oder Spirometern gemessen werden.\nEnthalten sind Codes für den _Peak Expiratory Flow_ (PEF) und das Forcierte Exspiratorische Volumen in 1 Sekunde (FEV1).\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). \n\nThis ValueSet defines the codes used for individual lung function testings, measured by hand-held peak flow meters or spirometers.\nIncluded are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume in 1 second (FEV1).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/hddt-miv-lung-function-testing"
+        },
+        "name": "MIV Lung Function Testing from LOINC",
+        "description": "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivLungFunctionTesting_ definiert den Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Lung Function Testing_ umfasst Werte aus Lungenfunktionstests, die durch Ausatmen in ein handgehaltenes Peak-Flow-Meter oder Spirometer durchgeführt werden.\nDie Messungen erfolgen zweimal täglich oder häufiger, wenn dies durch den Versorgungsplan oder den Zustand des Patienten erforderlich ist.\n\nDas ValueSet für den MIV _Lung Function Testing_ enthält LOINC-Codes für die Messung des _Peak Expiratory Flow_ (PEF) und des Forcierten Exspiratorischen Volumens in 1 Sekunde (FEV1).\nEbenfalls enthalten sind LOINC-Codes für die entsprechenden Referenzwerte sowie relative Werte (z. B. _FEV1 measured/predicted_). Dieses ValueSet enthält die LOINC-Codes nicht direkt, sondern die Codes stammen aus drei separaten ValueSets:\n- HddtLungFunctionTestingValues: Codes für einzelne Lungenfunktionstests\n- HddtLungFunctionReferenceValues: Codes für Referenzwerte der Lungenfunktion\n- HddtLungFunctionRelativeValues: Codes für relative Lungenfunktionswerte, berechnet in Prozent (%)\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThis ValueSet defines the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_.\n\nThe MIV _Lung Function Testing_ covers values from lung function testings that are performed by exhaling air\ninto a hand-held peak flow meter or spirometer. Measurements are performed twice a day, or more frequently if required\nby the care plan or the patient's condition.\n\nThe ValueSet for the MIV _Lung Function Testing_ includes LOINC codes for measuring the Peak Expiratory Flow (PEF) and\nForced Expiratory Volume in 1 second (FEV1). Also included are LOINC codes for the corresponding reference values, and \nrelative values (e.g. FEV1 measured/predicted). This ValueSet does not include LOIC codes directly, instead the codes \ncome from three separate ValueSets:\n- HddtLungFunctionTestingValues: codes for individual lung function testings\n- HddtLungFunctionReferenceValues: codes for lung function reference values\n- HddtLungFunctionRelativeValues: codes for relative lung function values, calculated in percentages (%)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-blood-pressure-value"
+        },
+        "name": "Observation - HDDT Blood Pressure Value",
+        "description": "Profile for capturing blood pressure value as FHIR Observation resources.\n\nThis profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\" which is technically defined \nby the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.\n\nBlood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and optionally mean blood pressure. \nThis profile uses the LOINC panel code #85354-9 \"Blood pressure panel with all children optional\" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.\n\n**Obligations and Conventions:**\n\nEach Blood Pressure Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\nThis profile inherits from the FHIR Blood Pressure profile (`http://hl7.org/fhir/StructureDefinition/bp`) and adds HDDT-specific constraints. The blood pressure components \n(systolic and diastolic are mandatory; mean is optional) are inherited from the parent profile with the MeanBP component added as an optional slice.\nEach component MUST include a value in mmHg (millimeters of mercury).\n\nCaution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.\n\n**Constraints applied:**  \n- `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9\n- `component` cardinality is set to 2..3 to require systolic and diastolic components (inherited from parent), with mean blood pressure as optional\n- `component[MeanBP]` is added as an optional slice (0..1) for mean blood pressure with LOINC code 8478-0\n- Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-blood-glucose-measurement"
+        },
+        "name": "Observation – Blood Glucose Measurement",
+        "description": "Profile for capturing blood glucose measurements as FHIR Observation resources.\n\nThis profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \\\"Blood Glucose Measurement\\\" which is technically defined \nby the ValueSet _hddt-miv-blood-glucose-measurement_. This MIV is e.g. implemented by blood glucose meter (glucometer) that can connect to \na Personal Health Gateway (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Blood Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided \nfrom the Observation resource if the sensor for measuring blood glucose needs to be calibrated (either automatically or by the user) \nor if the sensor may change its calibration status over time. \n\n**Constraints applied:**  \n- `code` is constrained to the ValueSet that represents the MIV _Blood Glucose Measurement_\n- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-lung-function-testing-complete"
+        },
+        "name": "Observation – Complete Lung Function Testing",
+        "description": "Profile for capturing the relative lung function testings (i.e. an individual measurement divided by the corresponding reference value) \nas FHIR Observation resources.\n\nThis profile defines the exchange of a single relative value for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\nEach instance of this Observation MUST reference the Observations holding the corresponding raw measurement and reference value via the `derivedFrom` element.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Relative Values_ ValueSet, defined by the _HddtLungFunctionRelativeValues_ ValueSet.\n- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `derivedFrom` is constrained to require exactly two references: one to the raw lung function testing Observation and one to the lung function reference value Observation.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-continuous-glucose-measurement"
+        },
+        "name": "Observation – Continuous Glucose Measurement",
+        "description": "Profile for capturing continuous glucose measurements from real-time monitoring devices (esp. rtCGM). \n\nThis profile defines the exchange of raw measurement data for the Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\" which is technically defined \nby the ValueSet _hddt-miv-continuous-glucose-measurement_. This MIV is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control \nan insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing data with DiGA, too.\n\n**Obligations and Conventions:**\n\nDevices for continuously measuring glucose values may produce data with a sample rate of more than 1000 values per day (e.g. current\nrtCGM provide measures for glucose in interstitial fluid with up to one value per minute). For sharing such data efficently, this profile\nmakes use of the FHIR [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData) data type. Sampled data is portioned into\nchunks of a fixed size (for an exception see below), with the chunk size being set by the resource server (e.g. such that 24 h of measurements fit into a single chunk). If a DiGA\nrequests data for a period where the end time is earlier that the expected end time of the current chunk, the resource server only fills up the chunk \nup to the requested end time and sets the `Observation.status` to _incomplete_ while `Observation.effectivePeriod` captures the \nfull period of the chunk (see section \\\"Retrieving Data\\\" in the HDDT specification for details on chunks and missing data). \n\nEach Continuous Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided \nfrom the Observation resource if the sensor for continuous measuring needs to be calibrated (either automatically or by the user) \nor if the sensor may change its calibration status over time. A change in `DeviceMetric.calibration.state` or a change of `Device.status` to _inactive_ finalizes the\ncurrent chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. \n\n**Constraints applied:**  \n- `code` is constrained to the ValueSet that represents the MIV _Continuous Glucose Measurement_\n- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory. Both a starting time and an end tme MUST be given.\n- `value[x]` is restricted to _valueSampledData_. The elements `valueSampledData.origin.unit`, `valueSampledData.origin.system`, and `valueSampledData.origin.code` are mandatory. `valueSampledData.origin.system` is restricted to UCUM. `Observation.valueSampledData` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-lung-reference-value"
+        },
+        "name": "Observation – Lung Function Reference Value",
+        "description": "Profile for capturing the refence values as a FHIR Observation resource when evaluating lung function testings.\n\nThis profile defines the exchange of a single reference value for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Reference Values_ ValueSet, defined by the _HddtLungFunctionReferenceValues_ ValueSet.\n- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `method` is considered mandatory in order to provide information about the method used to determine the reference value. It can be either a code from the _HddtLungFunctionReferenceValueMethod_ ValueSet or a text description.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/hddt-lung-function-testing"
+        },
+        "name": "Observation – Lung Function Testing",
+        "description": "Profile for capturing lung function testings as FHIR Observation resources.\n\nThis profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Testing_ ValueSet, defined by the _HddtLungFunctionTestingValues_ ValueSet.\n- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "OperationDefinition/hddt-cgm-summary-operation"
+        },
+        "name": "Search Operation for summary data measurement",
+        "description": "The `$hddt-cgm-summary` operation is defined on the *Observation* resource type.  \nIt allows clients to request CGM summary data filtered by effective period, and optionally include related device context (Device, DeviceMetric).  \n\n**Use cases supported by this operation include:**  \n- Retrieving CGM summary statistics (mean glucose, time-in-range, GMI, etc.) for a patient over a specified interval  \n\n**Input Parameters:**  \n- `effectivePeriodStart` *(dateTime, optional)*: Lower bound of the observation effective period.  \n- `effectivePeriodEnd` *(dateTime, optional)*: Upper bound of the observation effective period.  \n- `related` *(boolean, optional)*: If true, the response bundle also contains related Device and DeviceMetric resources.  \n\n**Output Parameter:**  \n- `result` *(Reference, required)*: A Bundle conforming to profile `HddtCgmSummary` profile containing all matching CGM Observations and, if requested, their related devices.  \n\n**Error handling (OperationOutcome):**  \n- `MSG_PARAM_UNKNOWN`: Returned when an unsupported input parameter is used.  \n- `MSG_PARAM_INVALID`: Returned when a parameter value is invalid (e.g., bad date format).  \n- `MSG_NO_MATCH`: Returned when no matching observations are found. \n- `MSG_BAD_SYNTAX`: Returned when the request is malformed.  ",
+        "exampleBoolean": false
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Overview",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "motivation.html",
+          "title": "Motivation",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "roadmap.html",
+          "title": "Roadmap",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "methodology.html",
+          "title": "Methodology",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "certification-relevant-systems.html",
+          "title": "Certification relevant systems",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "conventions.html",
+          "title": "Keywords and Conventions",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "glossary.html",
+          "title": "Glossary",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "release-notes.html",
+          "title": "Release Notes",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "general-considerations.html",
+          "title": "General Considerations",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "use_of_hl7_fhir.html",
+          "title": "Use of HL7 FHIR",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "security-and-privacy.html",
+          "title": "Security and Privacy",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "operational-requirements.html",
+          "title": "Operational Requirements",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "logical-viewpoints.html",
+          "title": "Logical Viewpoints",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "information-model.html",
+          "title": "Information Model",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "pairing.html",
+          "title": "Pairing",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "smart-scopes.html",
+          "title": "SMART Scopes",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "retrieving-data.html",
+          "title": "Retrieving Data",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "registries-and-zts.html",
+          "title": "BfArM Registries and ZTS",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "ddr-diga-api.html",
+          "title": "FHIR Resource Server",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "authorization-server.html",
+          "title": "Authorization Server",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "mivs.html",
+          "title": "Mandatory Interoperable Values (MIVs)",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "measurement-blood-glucose.html",
+          "title": "MIV - Blood Glucose Measurement",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "measurement-cgm.html",
+          "title": "MIV - Continuous Glucose Measurement",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "measurement-lung-function.html",
+          "title": "MIV - Lung Function Testing",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "measurement-blood-pressure.html",
+          "title": "MIV - Blood Pressure Measurement",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "fhir-api-observation.html",
+          "title": "Endpoint Observation",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "fhir-api-device.html",
+          "title": "Endpoint Device",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "fhir-api-devicemetric.html",
+          "title": "Endpoint DeviceMetric",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "fhir-api-metadata.html",
+          "title": "Endpoint Metadata",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "authorization-server-metadata-endpoint.html",
+          "title": "Authorization Server Metadata Endpoint",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "authorization-server-par-endpoint.html",
+          "title": "Pushed Authorization Request Endpoint",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "authorization-server-authorization-endpoint.html",
+          "title": "Authorization Endpoint",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "authorization-server-token-endpoint.html",
+          "title": "Token Endpoint",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "authorization-server-revocation-endpoint.html",
+          "title": "Revocation Endpoint",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "error-codes.html",
+          "title": "Error Codes",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2025+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "release"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Bundle/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Observation/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Device/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "DeviceMetric/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "DeviceDefinition/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Patient/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "OperationOutcome/*"
+      },
+      {
+        "code": "no-validate",
+        "value": "DeviceDefinition/*"
+      },
+      {
+        "code": "show-inherited-invariants",
+        "value": "true"
+      },
+      {
+        "code": "apply-version",
+        "value": "true"
+      },
+      {
+        "code": "shownav",
+        "value": "true"
+      },
+      {
+        "code": "apply-contact",
+        "value": "true"
+      },
+      {
+        "code": "default-contact",
+        "value": "true"
+      },
+      {
+        "code": "apply-publisher",
+        "value": "true"
+      },
+      {
+        "code": "default-publisher",
+        "value": "true"
+      },
+      {
+        "code": "propagate-status",
+        "value": "false"
+      },
+      {
+        "code": "special-url-base",
+        "value": "https://terminologien.bfarm.de/fhir"
+      }
+    ]
+  }
+}

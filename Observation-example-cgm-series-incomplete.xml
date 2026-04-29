@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="example-cgm-series-incomplete"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"/>
+  </meta>
+  <status value="preliminary"/>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="99504-3"/>
+      <display value="Glucose [Mass/volume] in Interstitial fluid"/>
+    </coding>
+  </code>
+  <effectivePeriod>
+    <start value="2025-08-28T08:00:00Z"/>
+    <end value="2025-08-28T09:00:00Z"/>
+  </effectivePeriod>
+  <valueSampledData>
+    <origin>
+      <value value="0"/>
+      <unit value="mg/dl"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mg/dL"/>
+    </origin>
+    <period value="60000"/>
+    <dimensions value="1"/>
+    <data value="110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129"/>
+  </valueSampledData>
+  <note>
+    <text value="Example CGM data series with 1-minute intervals over 20 minutes (20 samples), but status incomplete."/>
+  </note>
+  <method>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <code value="463729000"/>
+      <display value="Point-of-care blood glucose continuous monitoring system (physical object)"/>
+    </coding>
+  </method>
+  <device>
+    <reference value="DeviceMetric/example-devicemetric-cgm"/>
+  </device>
+</Observation>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DeviceDefinition xmlns="http://hl7.org/fhir">
+  <id value="example-universal-backend"/>
+  <extension url="https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink">
+    <valueReference>
+      <reference value="Endpoint/example-universal-endpoint-fhir"/>
+    </valueReference>
+  </extension>
+  <extension url="https://fhir.bfarm.de/StructureDefinition/HiisDeviceDataRecorderEndpointLink">
+    <valueReference>
+      <reference value="Endpoint/example-universal-endpoint-auth"/>
+    </valueReference>
+  </extension>
+  <extension url="https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet">
+    <extension url="delayFromRealTime">
+      <valueDuration>
+        <value value="60"/>
+        <unit value="s"/>
+      </valueDuration>
+    </extension>
+    <extension url="gracePeriod">
+      <valueDuration>
+        <value value="15"/>
+        <unit value="min"/>
+      </valueDuration>
+    </extension>
+    <extension url="historicDataPeriod">
+      <valueDuration>
+        <value value="30"/>
+        <unit value="d"/>
+      </valueDuration>
+    </extension>
+  </extension>
+  <identifier>
+    <system value="https://fhir.bfarm.de/Identifier/HiisId"/>
+    <value value="DE-1234567890"/>
+  </identifier>
+  <manufacturerString value="Health IT Solutions AG"/>
+  <deviceName>
+    <name value="§ 374a SGB V Universal Backend"/>
+    <type value="user-friendly-name"/>
+  </deviceName>
+  <version value="1.0.1"/>
+</DeviceDefinition>

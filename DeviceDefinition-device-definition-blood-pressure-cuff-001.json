@@ -1,0 +1,68 @@
+{
+  "resourceType" : "DeviceDefinition",
+  "id" : "device-definition-blood-pressure-cuff-001",
+  "extension" : [{
+    "extension" : [{
+      "url" : "mivSet",
+      "valueReference" : {
+        "reference" : "DeviceDefinition/example-universal-backend"
+      }
+    }],
+    "url" : "https://fhir.bfarm.de/StructureDefinition/HiisDeviceDefinitionMivSet"
+  },
+  {
+    "extension" : [{
+      "url" : "deviceIdentifier",
+      "valueString" : "9912345BPCUFF001"
+    }],
+    "url" : "http://hl7.org/fhir/5.0/StructureDefinition/extension-DeviceDefinition.regulatoryIdentifier"
+  }],
+  "identifier" : [{
+    "system" : "http://fhir.de/sid/gkv/hmnr",
+    "value" : "21.28.01.2020"
+  }],
+  "manufacturerString" : "HealthTech GmbH",
+  "deviceName" : [{
+    "name" : "BP Cuff Pro",
+    "type" : "user-friendly-name"
+  }],
+  "modelNumber" : "Digital BT 2",
+  "type" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "version" : "http://snomed.info/sct/11000274103/version/20251115",
+      "code" : "70665002",
+      "display" : "Blood pressure cuff"
+    }]
+  },
+  "capability" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "8480-6",
+        "display" : "Systolic blood pressure"
+      }]
+    }
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "8462-4",
+        "display" : "Diastolic blood pressure"
+      }]
+    }
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "8478-0",
+        "display" : "Mean blood pressure"
+      }]
+    }
+  }],
+  "parentDevice" : {
+    "reference" : "DeviceDefinition/example-universal-backend"
+  }
+}

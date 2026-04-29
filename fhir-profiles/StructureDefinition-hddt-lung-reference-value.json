@@ -1,0 +1,115 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hddt-lung-reference-value",
+  "url": "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value",
+  "version": "1.0.1",
+  "name": "HddtLungFunctionReferenceValue",
+  "title": "Observation – Lung Function Reference Value",
+  "status": "active",
+  "date": "2026-04-29",
+  "publisher": "gematik GmbH",
+  "description": "Profile for capturing the refence values as a FHIR Observation resource when evaluating lung function testings.\n\nThis profile defines the exchange of a single reference value for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Reference Values_ ValueSet, defined by the _HddtLungFunctionReferenceValues_ ValueSet.\n- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `method` is considered mandatory in order to provide information about the method used to determine the reference value. It can be either a code from the _HddtLungFunctionReferenceValueMethod_ ValueSet or a text description.",
+  "copyright": "Copyright (c) 2026 gematik GmbH",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Reference measurement type for lung function",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values",
+          "description": "Specifies for which measurement type the reference value is, using codes from the ValueSet for lung function testings. Constrained via invariant to either PEF or FEV1."
+        }
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "short": "Time period for which reference value is valid",
+        "definition": "The time period for which the lung function reference value is valid. If the reference value is still active, then only the start of the period is provided.",
+        "type": [
+          {
+            "code": "Period"
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "short": "Reference lung function value",
+        "definition": "The quantitative reference value, measured either in liters (L) for FEV1 or liters per minute (L/min) for PEF, represented as a UCUM Quantity.",
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.value[x].value",
+        "path": "Observation.value[x].value",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x].system",
+        "path": "Observation.value[x].system",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Observation.value[x].code",
+        "path": "Observation.value[x].code",
+        "definition": "The UCUM code representing the unit of the lung function testing. The UCUM code MUST be compliant with the example unit that is linked with the LOINC code given as `Observation.code`.",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/ucum-units",
+          "description": "Defines the unit of measurement using codes from the UCUM units ValueSet. The UCUM code MUST be compliant with the unit that is linked with the LOINC code given as `Observation.code`."
+        }
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "short": "Method for determining the reference value",
+        "definition": "The method used to determine the lung function reference value. Preferred is the usage of a code from the Lung Function Reference Value Method ValueSet, but as an alternative a text description of the used formula for calculating the reference value can be provided.",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.method.coding",
+        "path": "Observation.method.coding",
+        "max": "1",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-value-method-codes",
+          "description": "Specifies the method used to determine the lung function reference value using codes from the Lung Function Reference Value Method ValueSet."
+        }
+      },
+      {
+        "id": "Observation.method.text",
+        "path": "Observation.method.text",
+        "definition": "In case no code is provided, specify whether the value is a personal best or predicted or calculated based on some formula."
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Reference to personal health device",
+        "definition": "References a Device resource that describes the personal health device.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device",
+              "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

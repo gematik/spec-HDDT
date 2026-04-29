@@ -1,0 +1,48 @@
+{
+  "resourceType": "Organization",
+  "id": "example-glucometer-manufacturer",
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.bfarm.de/CodeSystem/HiisManufacturerType",
+          "code": "legal",
+          "display": "Legal Entity"
+        }
+      ]
+    }
+  ],
+  "name": "Glukko Inc.",
+  "telecom": [
+    {
+      "system": "email",
+      "value": "info@glukko.com"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "Glukko Street 1"
+      ],
+      "city": "Berlin",
+      "postalCode": "10115",
+      "country": "DE"
+    }
+  ],
+  "contact": [
+    {
+      "name": {
+        "given": [
+          "John"
+        ],
+        "family": "Glucose"
+      },
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "+49-30-1234567"
+        }
+      ]
+    }
+  ]
+}

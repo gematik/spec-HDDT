@@ -1,0 +1,52 @@
+{
+  "resourceType" : "ConceptMap",
+  "id" : "HddtLungFunctionTemporaryToLoinc",
+  "language" : "en",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><p class=\"res-header-id\"><b>Generated Narrative: ConceptMap HddtLungFunctionTemporaryToLoinc</b></p><a name=\"HddtLungFunctionTemporaryToLoinc\"> </a><a name=\"hcHddtLungFunctionTemporaryToLoinc\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p></div><p>Mapping from <a href=\"ValueSet-hddt-lung-function-temporary-codes.html\">Lung Function Temporary Codes</a> to (not specified)</p><br/><p><b>Group 1 </b>Mapping from <a href=\"CodeSystem-hddt-lung-function-temporary-codes.html\">Lung Function Temporary Codesversion: 1.0.1)</a> to <code>http://loinc.org|2.82</code></p><table class=\"grid\"><tr><td><b>Source Code</b></td><td><b>Relationship</b></td><td><b>Target Code</b></td><td><b>Comment</b></td></tr><tr><td>PEF-measured/predicted</td><td colspan=\"2\" style=\"background-color: #efefef\">(not mapped)</td><td style=\"background-color: #efefef\">No target LOINC code available yet.</td></tr></table></div>"
+  },
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod",
+    "valuePeriod" : {
+      "start" : "2026-04-29"
+    }
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/artifact-author",
+    "valueContactDetail" : {
+      "name" : "gematik GmbH"
+    }
+  }],
+  "url" : "https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionTemporaryToLoinc",
+  "title" : "Lung Function Temporary Codes to LOINC",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2026-04-29",
+  "publisher" : "gematik GmbH",
+  "contact" : [{
+    "name" : "gematik GmbH",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.gematik.de"
+    }]
+  }],
+  "description" : "Eine Abbildung von temporären Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, auf LOINC-Codes.\nFalls noch kein LOINC-Code verfügbar ist, wird dies mit einer Äquivalenz von 'unmatched' angezeigt.\nSobald ein LOINC-Code für einen temporären Code verfügbar ist, wird diese ConceptMap entsprechend aktualisiert.\n\n--\n\nA mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.\nIn case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.\nWhenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly.",
+  "copyright" : "gematik GmbH.",
+  "sourceCanonical" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes|1.0.1",
+  "group" : [{
+    "source" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes",
+    "sourceVersion" : "1.0.1",
+    "target" : "http://loinc.org",
+    "targetVersion" : "2.82",
+    "element" : [{
+      "code" : "PEF-measured/predicted",
+      "target" : [{
+        "equivalence" : "unmatched",
+        "comment" : "No target LOINC code available yet."
+      }]
+    }]
+  }]
+}

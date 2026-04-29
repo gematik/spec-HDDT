@@ -1,0 +1,4069 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/ImplementationGuide/de.gematik.hddt> a fhir:ImplementationGuide ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "de.gematik.hddt"] ; # 
+  fhir:language [ fhir:v "en"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide de.gematik.hddt</b></p><a name=\"de.gematik.hddt\"> </a><a name=\"hcde.gematik.hddt\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p></div><h2>HealthDeviceDataTransfer</h2><p>The official URL for this implementation guide is: </p><pre>https://gematik.de/fhir/hddt/ImplementationGuide/de.gematik.hddt</pre><div><p>This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose, Continuous glucose monitoring, lung function testing and blood pressure as an example, according to § 374a SGB V.</p>\n</div></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:url [
+     fhir:v "https://gematik.de/fhir/hddt/ImplementationGuide/de.gematik.hddt"^^xsd:anyURI ;
+     fhir:l <https://gematik.de/fhir/hddt/ImplementationGuide/de.gematik.hddt>
+  ] ; # 
+  fhir:version [ fhir:v "1.0.1"] ; # 
+  fhir:name [ fhir:v "HealthDeviceDataTransfer"] ; # 
+  fhir:title [ fhir:v "Health Device Data Transfer"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date [ fhir:v "2026-04-29T09:18:51+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "gematik GmbH"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "gematik GmbH" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.gematik.de" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "This specification describes the technical  semantic approach for providing vital signs (vibW) using blood glucose, Continuous glucose monitoring, lung function testing and blood pressure as an example, according to § 374a SGB V."] ; # 
+  fhir:copyright [ fhir:v "gematik GmbH"] ; # 
+  fhir:packageId [ fhir:v "de.gematik.hddt"] ; # 
+  fhir:license [ fhir:v "CC0-1.0"] ; # 
+  fhir:fhirVersion ( [ fhir:v "4.0.1"] ) ; # 
+  fhir:dependsOn ( [
+     fhir:id [ fhir:v "hl7tx" ] ;
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment>
+       ] ;
+       fhir:value [
+         a fhir:Markdown ;
+         fhir:v "Automatically added as a dependency - all IGs depend on HL7 Terminology"
+       ]
+     ] ) ;
+     fhir:uri [
+       fhir:v "http://terminology.hl7.org/ImplementationGuide/hl7.terminology"^^xsd:anyURI ;
+       fhir:l <http://terminology.hl7.org/ImplementationGuide/hl7.terminology>
+     ] ;
+     fhir:packageId [ fhir:v "hl7.terminology.r4" ] ;
+     fhir:version [ fhir:v "7.1.0" ]
+  ] [
+     fhir:id [ fhir:v "hl7ext" ] ;
+     fhir:extension ( [
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment>
+       ] ;
+       fhir:value [
+         a fhir:Markdown ;
+         fhir:v "Automatically added as a dependency - all IGs depend on the HL7 Extension Pack"
+       ]
+     ] ) ;
+     fhir:uri [
+       fhir:v "http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions>
+     ] ;
+     fhir:packageId [ fhir:v "hl7.fhir.uv.extensions.r4" ] ;
+     fhir:version [ fhir:v "5.2.0" ]
+  ] [
+     fhir:id [ fhir:v "hl7_fhir_uv_cgm" ] ;
+     fhir:uri [
+       fhir:v "http://hl7.org/fhir/uv/cgm/ImplementationGuide/hl7.fhir.uv.cgm"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/uv/cgm/ImplementationGuide/hl7.fhir.uv.cgm>
+     ] ;
+     fhir:packageId [ fhir:v "hl7.fhir.uv.cgm" ] ;
+     fhir:version [ fhir:v "1.0.0" ]
+  ] [
+     fhir:id [ fhir:v "de_basisprofil_r4" ] ;
+     fhir:uri [
+       fhir:v "http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4"^^xsd:anyURI ;
+       fhir:l <http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4>
+     ] ;
+     fhir:packageId [ fhir:v "de.basisprofil.r4" ] ;
+     fhir:version [ fhir:v "1.5.4" ]
+  ] ) ; # 
+  fhir:definition [
+     fhir:extension ( [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "copyrightyear"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "2025+"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "releaselabel"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "release"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Bundle/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Device/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceMetric/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Patient/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationOutcome/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "no-validate"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "show-inherited-invariants"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-version"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "shownav"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-contact"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "default-contact"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-publisher"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "default-publisher"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "propagate-status"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "false"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "special-url-base"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "https://terminologien.bfarm.de/fhir"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "autoload-resources"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-liquid"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template/liquid"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-liquid"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "input/liquid"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-qa"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "temp/qa"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-temp"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "temp/pages"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-output"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "output"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-suppressed-warnings"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "input/ignoreWarnings.txt"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "path-history"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "https://gematik.de/fhir/hddt/history.html"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template-html"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template-page.html"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template-md"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template-page-md.html"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-context"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-copyright"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-jurisdiction"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-license"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "apply-wg"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "active-tables"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "fmm-definition"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "http://hl7.org/fhir/versions.html#maturity"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "excludelogbinaryformat"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "tabbed-snapshots"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency>
+       ] ;
+       fhir:value [
+         a fhir:Code ;
+         fhir:v "hl7.fhir.uv.tools.r4#1.1.2"
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "copyrightyear"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "2025+"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "releaselabel"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "release"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Bundle/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Device/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceMetric/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Patient/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-narrative"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationOutcome/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "no-validate"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition/*"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "show-inherited-invariants"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-version"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "shownav"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-contact"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "default-contact"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-publisher"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "default-publisher"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "propagate-status"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "false"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "special-url-base"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "https://terminologien.bfarm.de/fhir"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "autoload-resources"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-liquid"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template/liquid"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-liquid"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "input/liquid"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-qa"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "temp/qa"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-temp"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "temp/pages"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-output"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "output"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-suppressed-warnings"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "input/ignoreWarnings.txt"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "path-history"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "https://gematik.de/fhir/hddt/history.html"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "template-html"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template-page.html"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "template-md"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "template-page-md.html"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-context"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-copyright"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-jurisdiction"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-license"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "apply-wg"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "active-tables"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "fmm-definition"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "http://hl7.org/fhir/versions.html#maturity"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "excludelogbinaryformat"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "code"^^xsd:anyURI ;
+           fhir:l fhir:code
+         ] ;
+         fhir:value [
+           a fhir:Code ;
+           fhir:v "tabbed-snapshots"
+         ]
+       ] [
+         fhir:url [
+           fhir:v "value"^^xsd:anyURI ;
+           fhir:l fhir:value
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "true"
+         ]
+       ] ) ;
+       fhir:url [
+         fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ;
+         fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-parameter>
+       ]
+     ] ) ;
+     fhir:resource ( [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-miv-blood-glucose-measurement" ]
+       ] ;
+       fhir:name [ fhir:v "Blood Glucose Measurement from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivBloodGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \\\"Blood Glucose Measurement\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Blood Glucose Measurement_ umfasst Werte aus „blutigen Messungen“, z. B. mit kapillarem Blut aus der Fingerkuppe. Die Messungen erfolgen gemäß Versorgungsplan\n(z. B. Blutzuckermessung vor jeder Mahlzeit) oder ad hoc (z. B. bei Unwohlsein des Patienten, was auf eine Hypoglykämie hindeuten kann).\nDiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern sehr genaue Glukosewerte, die für therapeutische Entscheidungen geeignet sind.\n\nDas ValueSet für den MIV _Blood Glucose Measurement_ enthält LOINC-Codes für Blutzuckermessungen mit Blut oder Plasma als Referenzmethoden, wobei die Werte als Masse/Volumen und Mol/Volumen angegeben werden.\nZusätzlich sind granularere LOINC-Codes für „Glukose im Kapillarblut mittels Glukometer“ als Masse/Volumen und Mol/Volumen enthalten, da diese Codes bereits von mehreren Herstellern von Glukometern verwendet werden.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe ValueSet _HddtMivBloodGlucoseMeasurement_ defines the Mandatory Interoperable Value (MIV) \\\"Blood Glucose Measurement\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ \n\nThe MIV _Blood Glucose Measurement_ covers values from \\\"bloody measurements\\\" e.g. using capillary blood from the \nfinger tip. Measurements are performed based on a care plan (e.g. measuring blood sugar before each meal) or ad hoc \n(e.g. a patient feeling dim what may be an indicator for a hypoglycamia). \nDiGA use cases served by this MIV require glucose values that are very acurate and therefore suited for therapeutical decision making. \n\nThe ValueSet for the MIV _Blood Glucose Measurement_ contains LOINC codes for blood glucose measurements using \nblood or plasma as reference methods with the values provided as mass/volume and moles/volume. \nIn addition more granular LOINC codes for \\\"Glucose in Capillary blood by Glucometer\\\" provided as mass/volume \nand moles/volume are included with the value set because these codes are already in use by several \nmanufacturers of glucometers." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-pressure-value> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-miv-blood-pressure-value" ]
+       ] ;
+       fhir:name [ fhir:v "Blood Pressure Value from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivBloodPressureValue_ definiert den Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Blood Pressure Monitoring_ umfasst Werte aus Blutdruckmessungen, die mit oszillometrischen oder auskultatorischen, automatisierten \nSphygmomanometern durchgeführt werden. Die Messungen erfolgen gemäß Versorgungsplan (z. B. täglich oder einmal pro Woche).\nDiGA-Anwendungsfälle, die durch diesen MIV abgedeckt werden, erfordern genaue Blutdruckwerte, die für therapeutische Entscheidungen geeignet sind.\n\nDas ValueSet für den MIV _Blood Pressure Monitoring_ enthält den LOINC-Code für das vollständige Blutdruck-Panel, sollte aber auch die Möglichkeit bieten, in zukünftigen Updates zusätzliche Codes aufzunehmen.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe ValueSet _HddtMivBloodPressureValue_ defines the Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ \n\nThe MIV _Blood Pressure Monitoring_ covers values from blood pressure measurements performed using oszillometric or auscultatory, automated \nsphygmomanometers. Measurements are performed based on a care plan (e.g., daily or once per week).\nDiGA use cases served by this MIV require blood pressure values that are accurate and therefore suited for therapeutic decision making. \n\nThe ValueSet for the MIV _Blood Pressure Monitoring_ contains the LOINC code for complete blood pressure panel, but should still have the option to include additional code in future updates." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-cgm-summary" ]
+       ] ;
+       fhir:name [ fhir:v "Bundle – HDDT CGM Summary Report" ] ;
+       fhir:description [ fhir:v "This profile defines the exchange of aggregated measurement data for the Mandatory Interoperable Value (MIV) \\\"Continuous \nGlucose Measurement\\\". By this it provides a patient's glucose profile for a defined period. The MIV \\\"Continuous \nGlucose Measurement\\\" is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control \nan insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing aggregated glucose profile data with DiGA, too.\n\nThis profile constrains the FHIR Bundle resource for use as the result container of the `$hddt-cgm-summary` operation.  \nThe operation requests a patient's glucose profile. The glucose profile is calculated form continuous glucose measurement data\nand consists of the machine-readable parts of the [_HL7 CGM summary profile_](https://hl7.org/fhir/uv/cgm/). \n\nThe Bundle is of type *collection* and MUST contain only resources of the following types:  \n- Observations conforming to [HL7 CGM profiles](https://hl7.org/fhir/uv/cgm/): \n    - [CGM Summary Observation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary.html)\n    - [Mean Glucose (Mass)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-mass-per-volume.html)\n    - [Mean Glucose (Moles)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-mean-glucose-moles-per-volume.html)\n    - [Times in Ranges](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-times-in-ranges.html)\n    - [Glycemic Variability Index (GMI)](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-gmi.html)\n    - [Coefficient of Variation](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-coefficient-of-variation.html)\n    - [Days of Wear](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-days-of-wear.html)\n    - [Sensor Active Percentage](https://hl7.org/fhir/uv/cgm/StructureDefinition-cgm-summary-sensor-active-percentage.html)\n\n- Device resources conforming to `HddtPersonalHealthDevice` to provide context about the actual Personal Health Device device used.  \n\nThe purpose of this Bundle profile is to provide a consistent structure for server responses when clients query for CGM data with aggregation logic.  \nIt ensures interoperability across different implementations by defining a predictable response format.  \nThis supports use cases such as:  \n- Retrieval of CGM summary metrics over a given time interval in support for the upcoming digital disease management program (dDMP) on Diabetes, e.g. for \n    - continuous therapy monitoring and adjustment\n    - forwarding key data to treating physicians, e.g. for clinical decision support\n    - supporting asynchonous telemonitoring by ad hoc provisioning of condensed status information\n- Combining aggregated measurement data and device metadata for downstream applications such as visualization or compliance monitoring\n\n**Constraints applied:**  \n- `Bundle.type` is fixed to `collection`.  \n- `Bundle.entry.resource` is restricted to CGM Observation profiles and `HddtPersonalHealthDevice`. No other resource types are allowed in the Bundle.  \n- `Bundle.entry` is set as mandatory. A requests for a CGM summary that would result in an empty bundle, MUST give an _OperationOutcome_ with an error or warning message as its response. Therefore there is no scenario where an empty bundle would be shared with a DiGA." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-miv-continuous-glucose-measurement> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-miv-continuous-glucose-measurement" ]
+       ] ;
+       fhir:name [ fhir:v "Continuous Glucose Measurement from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivContinuousGlucoseMeasurement_ definiert den Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Continuous Glucose Measurement_ umfasst Werte aus der kontinuierlichen Überwachung des Glukosespiegels, z. B. \ndurch rtCGM im Interstitialfluid (ISF). Die Messungen werden mit Sensoren durchgeführt, die eine Abtastrate von bis zu \neinem Wert pro Minute (oder sogar mehr) ermöglichen. Dadurch kann der MIV _Continuous Glucose Measurement_ z. B. genutzt werden, um Zusammenhänge\nzwischen den individuellen Gewohnheiten und dem Glukosespiegel eines Patienten zu beurteilen. Aufgrund der hohen Dichte an Werten über einen langen\nZeitraum können aus _Continuous Glucose Measurement_ viele Schlüsselmetriken berechnet werden, die dem Patienten und seinem Arzt helfen,\nden Gesundheits- und Therapiezustand des Patienten einfach zu erfassen.\n\nDas ValueSet für den MIV _Continuous Glucose Measurement_ enthält Codes, die für die kontinuierliche Glukoseüberwachung (CGM) im Interstitialfluid (ISF) relevant sind, \nwobei Masse/Volumen und Mol/Volumen als gebräuchliche Einheiten berücksichtigt werden. In Zukunft können diesem ValueSet Codes für nicht-invasive Glukosemessmethoden hinzugefügt werden.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThis ValueSet defines the Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_ \n\nThe MIV _Continuous Glucose Measurement_ covers values from continuous monitoring of the glucose level, e.g. \nby rtCGM in interstitial fluid (ISF). Measurements are performed through sensors with a sample rate of up to \none value per minute (or even more). By this, the MIV _Continuous Glucose Measurement_ can e.g. be used to assess dependencies between a \npatient's individual habits and behavious and his glucose level. Due to the high density of values over a long period \nof time, many key metrics can be calculated from _Continuous Glucose Measurement_ which help the patient and \nhis doctor to easily capture the status of the patient's health and therapy.\n\nThe ValueSet for the MIV _Continuous Glucose Measurement_ includes codes relevant to continuous glucose \nmonitoring (CGM) in interstitial fluid (ISF), considering mass/volume and moles/volume as commonly used units. \nIn the future codes defining non-invasive glucose measuring methods may be added to this value set." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-device-type> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-device-type" ]
+       ] ;
+       fhir:name [ fhir:v "Device Type of personal health devices" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.\n\nDie Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),\nangepasst für die Verwendung mit den auf FHIR R4 basierenden HDDT-Profilen.\n\nDieses Material enthält SNOMED Clinical Terms® (SNOMED CT®), die mit Genehmigung der International Health Terminology Standards Development Organisation (IHTSDO) verwendet werden.\nAlle Rechte vorbehalten. SNOMED CT® wurde ursprünglich vom College of American Pathologists entwickelt. 'SNOMED' und 'SNOMED CT' sind eingetragene Warenzeichen der IHTSDO.\n\nDieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch \nzwischen Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Der Inhalt des ValueSets umfasst immer mindestens alle Gerätetypen,\nfür die HDDT _Mandatory Interoperable Values_ (MIVs) definiert. Damit kann dieses ValueSet zukünftig auch Codes enthalten, die nicht Teil des FHIR ValueSet _Device Type_ sind.\n\n--\n\nThis ValueSet includes codes used to identify Personal Health Devices and Device Data Recorders.\n\nThis ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet \n[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. \n\nThis material includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO).\nAll rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO.\n\nCAVE: This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). The content of the value set will always at latest\ncover all types of device types for whoch HDDT defines _Mandatory Interoperable Values_ (MIVs). By this, this value set MAY\nin the future include codes which are not part of the FHIR ValueSet _Device Type_." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-personal-health-device" ]
+       ] ;
+       fhir:name [ fhir:v "Device – Personal Health Device" ] ;
+       fhir:description [ fhir:v "This profile defines a Personal Health Device within the context of § 374a SGB V. A Personal Health Device acc. to this profile is any\nmedical aid or implant that \n- is distributed to patients at the expense of the statutory health insurance and \n- transmits the data about the patient electronically to the device manufacturer or third parties, which make the data available to patients and/or physicians via publicly accessible networks. \n\nPersonal Health Devices that fulfill the criteria of this regulation MUST be able to pass on data to authorized Digital Health Applications (DiGA acc. § 374a SGB V) using the protocols \nand interfaces as defined in the HDDT specification.\n\nThis profile helps a device data consuming DiGA to\n- increase patient safety by comparing the serial number of a Personal Health Device as presented with this profile with the serial number the patient may have provided to the DiGA\n- increase data quality by getting information about the current status of the end-to-end communication flow from the Personal Health Device to the device backend and thus being able to detect if there may be more data available for the requested period\n- optimize its interactions with the device data providing resource server by getting access to the DeviceDefinition resource that holds static attributes about the device and its connected backend (e.g. minimum delay between data measurement and data availability)\n\n**Obligations and Conventions:**\n\nThe Personal Health Device's backend regularely synchronizes with the device hardware through a gateway (_Personal Health Gateway_). \nThe maximum delay that the concrete end-to-end synchronization from the Personal Health Device to the FHIR resource server imposes is provided by the BfArM _HIIS-VZ_ (Device Registry) per MIV\nthrough the static attribute `Delay-From-Real-Time`. If a resource server has not synchronized with the connected Personal Health Device for a time span \nlonger than `Delay-From-Real-Time`(e.g. due to temporarely lost Bluetooth or internet connectivity), the `status` of the Device resource that represents the \nPersonal Health Device MUST be set to `unknown`.\n\n**Constraints applied:**  \n- `status` is set to _Must Support_ in order to allow a DiGA to detect missing data (e.g. due to connection issues)\n- `deviceName` and `serialNumber` are set to _Must Support_ to allow a validation of the source of device data by comparing this information with information printed on the Personal Health Device\n- `definition` is optional. If present it MUST refer to a DeviceDefinition resource in the BfARM HIIS VZ. This ensures that DiGA can only receive static product information which was registered by the vendor of the device.\n- `expirationDate` is set to _Must Support_ to allow a DiGA to be aware of regular sensor changes (e.g. for patient wearing a rtCGM)" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-sensor-type-and-calibration-status" ]
+       ] ;
+       fhir:name [ fhir:v "DeviceMetric – Sensor Type and Calibration Status" ] ;
+       fhir:description [ fhir:v "The HddtSensorTypeAndCalibrationStatus profile captures the calibration status of a sensor which is part of a Personal Health Device. \n\nPersonal Health Devices need to be calibrated in order to provide safe measurements. Some devices are already calibrated by the \nmanufacturer while others calibrate themselves after activation and others need to be calibrated by the patient. \nIf a Personal Health Device transmits data from a non calibrated sensor to the resource server at all depends on the concrete product. \nFor a DiGA as a device data consumer to process device data in a safe manner, it must be transparent if the data it received was \nmeasured by a calibrated sensor or not. \n\nFor devices where the sensor that measured a value requires automated or manual calibration, the Observation capturing this value \nMUST refer to a HddtSensorTypeAndCalibrationStatus resource through its `Observation.device` element. \nThe HddtSensorTypeAndCalibrationStatus implements a FHIR [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource which \nholds calibration information in a `calibration.type`, a `calibration.state` and a `calibration.date` element. In addition \nthe HddtSensorTypeAndCalibrationStatus can provide a definition of the `unit` that is preferrably to be used for presenting \nmeasured values to the patient. \n\nThe HddtSensorTypeAndCalibrationStatus of a measurement MUST always refer to a HddTPersonalHealthDevice [Device](https://hl7.org/fhir/R4/device.html) resource that represents the \nPersonal Health Device that contains the sensor. This is a many-to-one relationship which allows for a Personal Health Device to \ncontain multiple sensors for different measured values. E.g. by this a pulse oximeter as a HDDT Personal Health Device can \nprovide _pulse_ and _SPO2_ as two different interoperable values with each of this values being linked with a \ndedicated HddtSensorTypeAndCalibrationStatus resource. \n\n**Obligations and Conventions:**\n\nDiGA as device data consumers SHOULD NOT rely on the `DeviceMetric.operationalStatus` of a sensor as this status does only reflect the status of the sensor \nand does not provide information about the end-to-end status of the flow of device data from the sensor within the Personal Health Device \nto the resource server in the device backend. Instead DiGA SHOULD process the `Device.status` information that can be obtained through the \n`DeviceMetric.source` reference. This element considers the end-to-end availability of data and therefore is the only source for \ninformation about potentially missing data (e.g. due to temporal problems with the bluetooth or internet connection).\n\n**Constraints applied:**  \n- `unit` is restricted to UCUM. \n- `source` is constrained as a mandatory element in order to enable a DiGA to obtain dynamic and static device attributes through this reference\n- `calibration` is set to _Must Support_. This element and respective status information MUST be provided if the sensor performs automated or requires manual calibration after the device has been put into operation with the patient (`Device.status`is `active`)." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-blood-glucose-measurement-1> ;
+         fhir:reference [ fhir:v "Observation/example-blood-glucose-measurement-1" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Glucose Measurement 1 (from Example Object Diagram)" ] ;
+       fhir:description [ fhir:v "Example of a blood glucose measurement taken with a glucometer." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-blood-glucose-measurement-2> ;
+         fhir:reference [ fhir:v "Observation/example-blood-glucose-measurement-2" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Glucose Measurement 2 (from Example Object Diagram)" ] ;
+       fhir:description [ fhir:v "Example of a blood glucose measurement taken with a glucometer." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-blood-glucose> ;
+         fhir:reference [ fhir:v "Observation/example-blood-glucose" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Glucose Obervation Example (general)" ] ;
+       fhir:description [ fhir:v "Example of a blood glucose measurement taken with a glucometer." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-blood-pressure-cuff-001> ;
+         fhir:reference [ fhir:v "DeviceDefinition/device-definition-blood-pressure-cuff-001" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Pressure Cuff DeviceDefinition Example" ] ;
+       fhir:description [ fhir:v "This example represents a Blood Pressure Cuff device definition from the HIIS-VZ." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Device"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Device/example-device-blood-pressure-cuff> ;
+         fhir:reference [ fhir:v "Device/example-device-blood-pressure-cuff" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Pressure Cuff Example" ] ;
+       fhir:description [ fhir:v "Example of a __blood pressure cuff as a personal health device__: \nThe device _BP Cuff Pro_ from _HealthTech GmbH_ performs blood pressure measurements. \nThe device does not have an expiration date as it is a durable medical device.\nThe vendor-defined model number of this type of device is _Digital BT 2_ and the serial number of the patient's \nindividual device is _BPC0011223345_. Both identifiers are printed on the device and allow the patient \nto validate the authenticity of this Personal Health Device resource." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceMetric"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceMetric/example-blood-pressure-metric> ;
+         fhir:reference [ fhir:v "DeviceMetric/example-blood-pressure-metric" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Pressure DeviceMetric Example" ] ;
+       fhir:description [ fhir:v "Example of a __DeviceMetric for blood pressure measurements__ from a blood pressure cuff:\nThe device measures the blood pressure in mmHg from the patient using an oscillometric method.\nThe device is calibrated by the manufacturer and does not require user calibration." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-blood-pressure-value> ;
+         fhir:reference [ fhir:v "Observation/example-blood-pressure-value" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Pressure Value Example" ] ;
+       fhir:description [ fhir:v "Example of a blood pressure measurement with systolic, diastolic, and mean blood pressure components." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-blood-pressure-value-with-device-metric> ;
+         fhir:reference [ fhir:v "Observation/example-blood-pressure-value-with-device-metric" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Blood Pressure Value Example With DeviceMetric" ] ;
+       fhir:description [ fhir:v "Example of a blood pressure measurement (referencing DeviceMetric) with systolic, diastolic, and mean blood pressure components." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Organization"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Organization/example-cgm-manufacturer> ;
+         fhir:reference [ fhir:v "Organization/example-cgm-manufacturer" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT CGM Manufacturer Example" ] ;
+       fhir:description [ fhir:v "Example organization representing the manufacturer of the CGM device." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Device"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Device/example-glucometer> ;
+         fhir:reference [ fhir:v "Device/example-glucometer" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Glucometer Device Example" ] ;
+       fhir:description [ fhir:v "Example of a __glucometer as a personal health device__:\nThe device _GlukkCheck plus mg/dl_ from _Glukko Inc._ performs \"bloody\" measurements from capillary blood. \nAs glucometers do not expire (that is just the case for the test stripes), the expiration date is not set.\nThe vendor-defined model number of this typeof devices is _CGPA987654_ and the serial number of the patient's \nindividual device is _SN123456_. Both identifiers are printed on the back of the device and allow the patient \nto validate the authenticity of this Personal Health Device resource." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-glucometer-def> ;
+         fhir:reference [ fhir:v "DeviceDefinition/example-glucometer-def" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Glucometer DeviceDefinition Example" ] ;
+       fhir:description [ fhir:v "Example for a medical device definition (Glucometer) from the HIIS-VZ." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceMetric"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceMetric/example-glucometer-metric> ;
+         fhir:reference [ fhir:v "DeviceMetric/example-glucometer-metric" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Glucometer DeviceMetric Example" ] ;
+       fhir:description [ fhir:v "Example of a __DeviceMetric for blood glucose measurements__ from a glucometer:\nThe device measures the glucose concentration from capillary blood by using test strips. \nThe patient's preferred unit is mg/dl which is used by the device for displaying measured values. \nThe glucometer needs to be calibrated by the patient using control strips. \nThe last calibration was performed in Septemer 2025 and the glucometer is still calibrated." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Organization"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Organization/example-glucometer-manufacturer> ;
+         fhir:reference [ fhir:v "Organization/example-glucometer-manufacturer" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Glucometer Manufacturer Example" ] ;
+       fhir:description [ fhir:v "Example organization representing the manufacturer of the glucometer device." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-fev1-single-measurement> ;
+         fhir:reference [ fhir:v "Observation/example-fev1-single-measurement" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Lung Function Obervation Example (FEV1 single measurement)" ] ;
+       fhir:description [ fhir:v "Example of a forced expiratory volume in 1 second (FEV1) measurement taken with a digital peak flow meter." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-peak-flow-simple> ;
+         fhir:reference [ fhir:v "Observation/example-peak-flow-simple" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Lung Function Obervation Example (simple)" ] ;
+       fhir:description [ fhir:v "Example of a peak expiratory flow measurement (PEF) taken with a peak flow meter. \nSimple version without a reference value or relative value." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-fev1-reference-value> ;
+         fhir:reference [ fhir:v "Observation/example-fev1-reference-value" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Lung Function Reference Value Obervation Example (FEV1 predicted)" ] ;
+       fhir:description [ fhir:v "Example of a forced expiratory volume in 1 second (FEV1) reference value (predicted) for a patient." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-fev1-relative-value> ;
+         fhir:reference [ fhir:v "Observation/example-fev1-relative-value" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Lung Function Relative Value Obervation Example (FEV1 measured/predicted)" ] ;
+       fhir:description [ fhir:v "Example of a forced expiratory volume in 1 second (FEV1) relative value (measured/predicted) for a patient." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-peak-flow-001> ;
+         fhir:reference [ fhir:v "DeviceDefinition/device-definition-peak-flow-001" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Peak Flow Meter DeviceDefinition Example" ] ;
+       fhir:description [ fhir:v "This example represents a Peak Flow Meter device definition from the HIIS-VZ." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Device"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Device/example-device-peak-flow-meter> ;
+         fhir:reference [ fhir:v "Device/example-device-peak-flow-meter" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Peak Flow Meter Example" ] ;
+       fhir:description [ fhir:v "Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: \nThe device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. \nThe sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.\nThe vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's \nindividual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient \nto validate the authenticity of this Personal Health Device resource." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-cgm-series-data-unavailable> ;
+         fhir:reference [ fhir:v "Observation/example-cgm-series-data-unavailable" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM Data Unavailable Observation Example" ] ;
+       fhir:description [ fhir:v "Example of a CGM time series with status preliminary and dataAbsentReason" ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Device"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Device/example-device-cgm> ;
+         fhir:reference [ fhir:v "Device/example-device-cgm" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM Device Example" ] ;
+       fhir:description [ fhir:v "Example of a __real-time Continuous Glucose Monitoring device (rtCGM) as a personal health device__: \nThe device _GlukkoCGM 18_ from _Glukko Inc._ performs continuous glucose measurements from interstitial fluid. \nThe sensor stops transmitting data on September 10, 2025, and must be replaced by the patient at that date.\nThe vendor-defined model number of this typeof devices is _GCGMA98765_ and the serial number of the patient's \nindividual device is _CGM1234567890_. Both identifiers are printed on the package of the device and allow the patient \nto validate the authenticity of this Personal Health Device resource." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-cgm-001> ;
+         fhir:reference [ fhir:v "DeviceDefinition/device-definition-cgm-001" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM DeviceDefinition Example" ] ;
+       fhir:description [ fhir:v "This example represents a Continuous Glucose Monitoring (CGM) device definition from the HIIS-VZ." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceMetric"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceMetric/example-devicemetric-cgm> ;
+         fhir:reference [ fhir:v "DeviceMetric/example-devicemetric-cgm" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM DeviceMetric Example" ] ;
+       fhir:description [ fhir:v "Example __configuration for measurements from a real-time Continuous Glucose Monitoring (rtCGM)__:\nThe device measures the glucose concentration from interstitial fluid with a frequency of one measurement every minute. \nThe the unit set by the patient for displaying measured values is mg/dl.\nThe device is calibrated by the manufacturer and does not require user calibration." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-cgm-series> ;
+         fhir:reference [ fhir:v "Observation/example-cgm-series" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM Full Chunk Observation Example" ] ;
+       fhir:description [ fhir:v "Example of a CGM time series with 1-minute intervals over 1 hour (60 samples)." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-cgm-series-1> ;
+         fhir:reference [ fhir:v "Observation/example-cgm-series-1" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM Full Chunk Observation Example" ] ;
+       fhir:description [ fhir:v "Example of a CGM time series with 5-minute intervals over 1 hour (12 samples)." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/example-cgm-series-incomplete> ;
+         fhir:reference [ fhir:v "Observation/example-cgm-series-incomplete" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT rtCGM Incomplete Chunk Observation Example" ] ;
+       fhir:description [ fhir:v "Example of a CGM time series with 1-minute intervals over 20 minutes (20 samples), but incomplete." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Endpoint"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Endpoint/example-universal-endpoint-auth> ;
+         fhir:reference [ fhir:v "Endpoint/example-universal-endpoint-auth" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Universal Backend Auth Endpoint Example" ] ;
+       fhir:description [ fhir:v "Example authentication endpoint for a universal backend system for processing HiMi data according to § 374a SGB V." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Endpoint"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Endpoint/example-universal-endpoint-fhir> ;
+         fhir:reference [ fhir:v "Endpoint/example-universal-endpoint-fhir" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Universal Backend FHIR Endpoint Example" ] ;
+       fhir:description [ fhir:v "Example FHIR endpoint for a universal backend system for processing HiMi data according to § 374a SGB V." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "DeviceDefinition"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/example-universal-backend> ;
+         fhir:reference [ fhir:v "DeviceDefinition/example-universal-backend" ]
+       ] ;
+       fhir:name [ fhir:v "HDDT Universal Device Backend Example" ] ;
+       fhir:description [ fhir:v "Example for a universal backend system for processing HiMi data according to § 374a SGB V. Supports multiple device types. Values in the 'mivSet' extensions are just exemplary, and do not reflect the specification." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationOutcome"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/OperationOutcome/HddtCgmSummaryOutcomeBadSyntax> ;
+         fhir:reference [ fhir:v "OperationOutcome/HddtCgmSummaryOutcomeBadSyntax" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary OperationOutcome Example: Bad syntax error" ] ;
+       fhir:description [ fhir:v "Returned when the request is malformed." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationOutcome"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/OperationOutcome/HddtCgmSummaryOutcomeInvalid> ;
+         fhir:reference [ fhir:v "OperationOutcome/HddtCgmSummaryOutcomeInvalid" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary OperationOutcome Example: Invalid parameter error" ] ;
+       fhir:description [ fhir:v "Returned when a parameter value is invalid." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationOutcome"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/OperationOutcome/HddtCgmSummaryOutcomeNoResults> ;
+         fhir:reference [ fhir:v "OperationOutcome/HddtCgmSummaryOutcomeNoResults" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary OperationOutcome Example: No results information" ] ;
+       fhir:description [ fhir:v "Returned when no CGM observations are found." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationOutcome"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/OperationOutcome/HddtCgmSummaryOutcomeUnknownParam> ;
+         fhir:reference [ fhir:v "OperationOutcome/HddtCgmSummaryOutcomeUnknownParam" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary OperationOutcome Example: Unknown parameter error" ] ;
+       fhir:description [ fhir:v "Returned when an unsupported input parameter is provided." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Patient"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Patient/patientExample> ;
+         fhir:reference [ fhir:v "Patient/patientExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary Patient Example: no content" ] ;
+       fhir:description [ fhir:v "This example represents a patient without content." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: CGM Summary Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the CGM Summary profile. It provides a consolidated summary of a patient's CGM data over one month, linking to more detailed observations for specific metrics." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryCoefficientOfVariationExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryCoefficientOfVariationExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Coefficient of Variation Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the Coefficient of Variation (CV) profile. It represents a summary observation of the glucose variability for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded coefficient of variation value of 34%." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryDaysOfWearExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryDaysOfWearExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Days of Wear Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the Days of Wear profile. It represents a summary observation of the number of days a Continuous Glucose Monitoring (CGM) device was worn by the patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 28 days." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Bundle"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Bundle/example-cgm-summary-bundle> ;
+         fhir:reference [ fhir:v "Bundle/example-cgm-summary-bundle" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Example Bundle" ] ;
+       fhir:description [ fhir:v "Bundle containing CGM summary observations for a patient together with associated Device and DeviceMetric resources." ] ;
+       fhir:example [
+         a fhir:Canonical ;
+         fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary"^^xsd:anyURI ;
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-cgm-summary>
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryGMIExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryGMIExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: GMI Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the Glucose Management Indicator (GMI) profile. It represents a summary observation of the estimated A1C-like value (GMI) for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 6.8%." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMassPerVolumeExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryMeanGlucoseMassPerVolumeExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Mean Glucose (Mass) Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the Mean Glucose (Mass) profile. It represents a summary observation of the mean glucose level for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 145 mg/dL (mass per volume)." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryMeanGlucoseMolesPerVolumeExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Mean Glucose (Molar) Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the Mean Glucose (Molar) profile. It represents a summary observation of the mean glucose level for a patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 8.1 mmol/L (moles per volume)." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummarySensorActivePercentageExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummarySensorActivePercentageExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Sensor Active Percentage Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the Sensor Active Percentage profile. It represents a summary observation of the percentage of time a Continuous Glucose Monitoring (CGM) sensor was active for the patient over the period from May 1, 2024, to May 31, 2024, with a final recorded value of 95%." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "Observation"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/Observation/cgmSummaryTimesInRangesExample> ;
+         fhir:reference [ fhir:v "Observation/cgmSummaryTimesInRangesExample" ]
+       ] ;
+       fhir:name [ fhir:v "HL7 CGM Summary: Times in Ranges Example" ] ;
+       fhir:description [ fhir:v "This example is an instance of the CGM Summary Times in Ranges profile. It represents a summary observation of the time a patient spent in different glucose ranges over the period from May 1, 2024, to May 31, 2024. The recorded values are 3% in the very low range, 8% in the low range, 65% in the target range, 20% in the high range, and 4% in the very high range." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v true
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-value-method-codes> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-lung-function-reference-value-method-codes" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Reference Value Method" ] ;
+       fhir:description [ fhir:v "Ein ValueSet für Codes, die die Methode zur Bestimmung von Referenzwerten der Lungenfunktion angeben. Enthalten sind Codes aus dem CodeSystem _HddtLungFunctionReferenceValueMethodCodes_:\n- Personal Best (persönlicher Bestwert)\n- Vorhergesagter Wert gemäß Global Lung Initiative 2012\n- Vorhergesagter Wert gemäß Global Lung Initiative 2022\n- Sonstige\n\n--\n\nA ValueSet for codes used to specify the method used to determine lung function reference values. Included are codes from the _HddtLungFunctionReferenceValueMethodCodes_ CodeSystem:\n- Personal Best\n- Predicted Value according to Global Lung Initiative 2012\n- Predicted Value according to Global Lung Initiative 2022\n- Other" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "CodeSystem"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes> ;
+         fhir:reference [ fhir:v "CodeSystem/hddt-lung-function-reference-value-method-codes" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Reference Value Method Codes" ] ;
+       fhir:description [ fhir:v "Dieses CodeSystem ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDer MIV _HddtMivLungFunctionTesting_ erfordert Referenzwerte zur Bewertung gemessener Lungenfunktionswerte. Diese Referenzwerte können mit unterschiedlichen\nMethoden bestimmt werden. Dieses CodeSystem stellt Codes zur Verfügung, um typische Methoden zur Bestimmung von Lungenfunktions-Referenzwerten auszudrücken.\n\n--\n\nThis CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference\nvalues can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-values> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-lung-function-reference-values" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Reference Values from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.\n\nDieses ValueSet definiert die LOINC-Codes, die für Referenzwerte der Lungenfunktion verwendet werden:\n- Der Referenzwert für den _Peak Expiratory Flow_ (PEF) ist der persönliche Bestwert, den der Patient innerhalb eines bestimmten Zeitraums erreicht hat.\n- Der Referenzwert für das Forcierte Exspiratorische Volumen in 1 Sekunde (FEV1) ist in den meisten Fällen ein vorhergesagter Wert, der auf Basis der demografischen Daten des Patienten berechnet wird.\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). \n\nThis ValueSet defines the LOINC codes, used for lung function reference values:\n- The reference value for Peak Expiratory Flow (PEF) is the personal best value achieved by the patient within a certain time frame. \n- The reference value for Forced Expiratory Volume in 1 second (FEV1) is in most cases a predicted value, calculated based on demographic data of the patient." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-lung-function-relative-values" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Relative Values from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.\n\nDieses ValueSet definiert die LOINC-Codes, die für relative Lungenfunktionswerte verwendet werden. Der relative Wert wird berechnet, indem die \nindividuelle Messung durch den Referenzwert geteilt wird, was zu einem Prozentwert (%) führt. Enthaltene Codes sind für\n- FEV1 measured/predicted\n- PEF measured/predicted\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). \n\nThis ValueSet defines the LOINC codes, used for relative lung function values. The relative value is calculated by dividing the \nindividual measurement by the reference value, resulting in a percentage value (%). Included codes are for \n- FEV1 measured/predicted\n- PEF measured/predicted" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-lung-function-temporary-codes" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Temporary Codes" ] ;
+       fhir:description [ fhir:v "ValueSet für temporäre Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, bis LOINC-Codes verfügbar sind.\n\n--\n\nA ValueSet for temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem until LOINC codes are available." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "CodeSystem"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-temporary-codes> ;
+         fhir:reference [ fhir:v "CodeSystem/hddt-lung-function-temporary-codes" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Temporary Codes" ] ;
+       fhir:description [ fhir:v "Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.\n\n--\n\nTemporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ConceptMap"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ConceptMap/HddtLungFunctionTemporaryToLoinc> ;
+         fhir:reference [ fhir:v "ConceptMap/HddtLungFunctionTemporaryToLoinc" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Temporary Codes to LOINC" ] ;
+       fhir:description [ fhir:v "Eine Abbildung von temporären Codes, die im CodeSystem _HddtLungFunctionTemporaryCodes_ definiert sind, auf LOINC-Codes.\nFalls noch kein LOINC-Code verfügbar ist, wird dies mit einer Äquivalenz von 'unmatched' angezeigt.\nSobald ein LOINC-Code für einen temporären Code verfügbar ist, wird diese ConceptMap entsprechend aktualisiert.\n\n--\n\nA mapping from temporary codes defined in the _HddtLungFunctionTemporaryCodes_ CodeSystem to LOINC codes.\nIn case no LOINC code is available yet, the mapping indicates that with an equivalence of 'unmatched'.\nWhenever a LOINC code becomes available for a temporary code, this ConceptMap will be updated accordingly." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-testing-values> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-lung-function-testing-values" ]
+       ] ;
+       fhir:name [ fhir:v "Lung Function Testing Values from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert.\n\nDieses ValueSet definiert die Codes für einzelne Lungenfunktionstests, die mit handgehaltenen Peak-Flow-Metern oder Spirometern gemessen werden.\nEnthalten sind Codes für den _Peak Expiratory Flow_ (PEF) und das Forcierte Exspiratorische Volumen in 1 Sekunde (FEV1).\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). \n\nThis ValueSet defines the codes used for individual lung function testings, measured by hand-held peak flow meters or spirometers.\nIncluded are codes for Peak Expiratory Flow (PEF) and Forced Expiratory Volume in 1 second (FEV1)." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "ValueSet"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-miv-lung-function-testing> ;
+         fhir:reference [ fhir:v "ValueSet/hddt-miv-lung-function-testing" ]
+       ] ;
+       fhir:name [ fhir:v "MIV Lung Function Testing from LOINC" ] ;
+       fhir:description [ fhir:v "Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDas ValueSet _HddtMivLungFunctionTesting_ definiert den Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\". Die Definition besteht aus\n- dieser Beschreibung, die die Semantik und die bestimmenden Merkmale des MIV liefert\n- einer Menge von LOINC-Codes, die MIV-konforme Messklassifikationen entlang der LOINC-Achsen _Komponente_, _System_, _Skala_ und _Methode_ definieren\n\nDer MIV _Lung Function Testing_ umfasst Werte aus Lungenfunktionstests, die durch Ausatmen in ein handgehaltenes Peak-Flow-Meter oder Spirometer durchgeführt werden.\nDie Messungen erfolgen zweimal täglich oder häufiger, wenn dies durch den Versorgungsplan oder den Zustand des Patienten erforderlich ist.\n\nDas ValueSet für den MIV _Lung Function Testing_ enthält LOINC-Codes für die Messung des _Peak Expiratory Flow_ (PEF) und des Forcierten Exspiratorischen Volumens in 1 Sekunde (FEV1).\nEbenfalls enthalten sind LOINC-Codes für die entsprechenden Referenzwerte sowie relative Werte (z. B. _FEV1 measured/predicted_). Dieses ValueSet enthält die LOINC-Codes nicht direkt, sondern die Codes stammen aus drei separaten ValueSets:\n- HddtLungFunctionTestingValues: Codes für einzelne Lungenfunktionstests\n- HddtLungFunctionReferenceValues: Codes für Referenzwerte der Lungenfunktion\n- HddtLungFunctionRelativeValues: Codes für relative Lungenfunktionswerte, berechnet in Prozent (%)\n\n--\n\nThis ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThis ValueSet defines the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\". The definition is made up from\n- this description which provides the semantics and defining characteristics of the MIV\n- a set of LOINC codes that define MIV-compliant measurement classifications along the LOINC axes _component_, _system_, _scale_ and _method_.\n\nThe MIV _Lung Function Testing_ covers values from lung function testings that are performed by exhaling air\ninto a hand-held peak flow meter or spirometer. Measurements are performed twice a day, or more frequently if required\nby the care plan or the patient's condition.\n\nThe ValueSet for the MIV _Lung Function Testing_ includes LOINC codes for measuring the Peak Expiratory Flow (PEF) and\nForced Expiratory Volume in 1 second (FEV1). Also included are LOINC codes for the corresponding reference values, and \nrelative values (e.g. FEV1 measured/predicted). This ValueSet does not include LOIC codes directly, instead the codes \ncome from three separate ValueSets:\n- HddtLungFunctionTestingValues: codes for individual lung function testings\n- HddtLungFunctionReferenceValues: codes for lung function reference values\n- HddtLungFunctionRelativeValues: codes for relative lung function values, calculated in percentages (%)" ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-pressure-value> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-blood-pressure-value" ]
+       ] ;
+       fhir:name [ fhir:v "Observation - HDDT Blood Pressure Value" ] ;
+       fhir:description [ fhir:v "Profile for capturing blood pressure value as FHIR Observation resources.\n\nThis profile defines the exchange of blood pressure value data for the Mandatory Interoperable Value (MIV) \\\"Blood Pressure Monitoring\\\" which is technically defined \nby the ValueSet _hddt-miv-blood-pressure-value_. This MIV is e.g. implemented by automated sphygmomanometers (oszillometric, auscultatory) that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking blood pressure values) through wireless communication.\n\nBlood pressure measurements consist of multiple components: systolic blood pressure, diastolic blood pressure, and optionally mean blood pressure. \nThis profile uses the LOINC panel code #85354-9 \"Blood pressure panel with all children optional\" defined in the MIV _hddt-miv-blood-pressure-value_ to represent the complete measurement.\n\n**Obligations and Conventions:**\n\nEach Blood Pressure Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\nThis profile inherits from the FHIR Blood Pressure profile (`http://hl7.org/fhir/StructureDefinition/bp`) and adds HDDT-specific constraints. The blood pressure components \n(systolic and diastolic are mandatory; mean is optional) are inherited from the parent profile with the MeanBP component added as an optional slice.\nEach component MUST include a value in mmHg (millimeters of mercury).\n\nCaution: For privacy and data protection, the subject reference MUST only use pseudonymized or anonymized identifiers. Direct patient identification is not permitted.\n\n**Constraints applied:**  \n- `code.coding[BPCode]` is constrained to ValueSet HddtMivBloodPressureValue containing LOINC panel code 85354-9\n- `component` cardinality is set to 2..3 to require systolic and diastolic components (inherited from parent), with mean blood pressure as optional\n- `component[MeanBP]` is added as an optional slice (0..1) for mean blood pressure with LOINC code 8478-0\n- Each component's `valueQuantity` MUST use UCUM code mm[Hg] for the unit\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-blood-glucose-measurement> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-blood-glucose-measurement" ]
+       ] ;
+       fhir:name [ fhir:v "Observation – Blood Glucose Measurement" ] ;
+       fhir:description [ fhir:v "Profile for capturing blood glucose measurements as FHIR Observation resources.\n\nThis profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \\\"Blood Glucose Measurement\\\" which is technically defined \nby the ValueSet _hddt-miv-blood-glucose-measurement_. This MIV is e.g. implemented by blood glucose meter (glucometer) that can connect to \na Personal Health Gateway (e.g. a mobile app for keeping diabetes diary) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Blood Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided \nfrom the Observation resource if the sensor for measuring blood glucose needs to be calibrated (either automatically or by the user) \nor if the sensor may change its calibration status over time. \n\n**Constraints applied:**  \n- `code` is constrained to the ValueSet that represents the MIV _Blood Glucose Measurement_\n- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing-complete> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-lung-function-testing-complete" ]
+       ] ;
+       fhir:name [ fhir:v "Observation – Complete Lung Function Testing" ] ;
+       fhir:description [ fhir:v "Profile for capturing the relative lung function testings (i.e. an individual measurement divided by the corresponding reference value) \nas FHIR Observation resources.\n\nThis profile defines the exchange of a single relative value for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\nEach instance of this Observation MUST reference the Observations holding the corresponding raw measurement and reference value via the `derivedFrom` element.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Relative Values_ ValueSet, defined by the _HddtLungFunctionRelativeValues_ ValueSet.\n- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `derivedFrom` is constrained to require exactly two references: one to the raw lung function testing Observation and one to the lung function reference value Observation." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-continuous-glucose-measurement" ]
+       ] ;
+       fhir:name [ fhir:v "Observation – Continuous Glucose Measurement" ] ;
+       fhir:description [ fhir:v "Profile for capturing continuous glucose measurements from real-time monitoring devices (esp. rtCGM). \n\nThis profile defines the exchange of raw measurement data for the Mandatory Interoperable Value (MIV) \\\"Continuous Glucose Measurement\\\" which is technically defined \nby the ValueSet _hddt-miv-continuous-glucose-measurement_. This MIV is e.g. implemented by real-time Continuous Glocose Monitoring devices (rtCGM) and Automated Insulin Delivery systems (AID) that control \nan insulin pump from rtCGM data. Future non-invasive measuring methods will expectedly be linked with this MIV and therefore use this profile for sharing data with DiGA, too.\n\n**Obligations and Conventions:**\n\nDevices for continuously measuring glucose values may produce data with a sample rate of more than 1000 values per day (e.g. current\nrtCGM provide measures for glucose in interstitial fluid with up to one value per minute). For sharing such data efficently, this profile\nmakes use of the FHIR [sampledData](https://hl7.org/fhir/R4/datatypes.html#SampledData) data type. Sampled data is portioned into\nchunks of a fixed size (for an exception see below), with the chunk size being set by the resource server (e.g. such that 24 h of measurements fit into a single chunk). If a DiGA\nrequests data for a period where the end time is earlier that the expected end time of the current chunk, the resource server only fills up the chunk \nup to the requested end time and sets the `Observation.status` to _incomplete_ while `Observation.effectivePeriod` captures the \nfull period of the chunk (see section \\\"Retrieving Data\\\" in the HDDT specification for details on chunks and missing data). \n\nEach Continuous Glucose Measurement MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). A reference to _Sensor Type And Calibration Status_ MUST be provided \nfrom the Observation resource if the sensor for continuous measuring needs to be calibrated (either automatically or by the user) \nor if the sensor may change its calibration status over time. A change in `DeviceMetric.calibration.state` or a change of `Device.status` to _inactive_ finalizes the\ncurrent chunk and therefore is the only reason why a chunk may be smaller than the defined fixed size. \n\n**Constraints applied:**  \n- `code` is constrained to the ValueSet that represents the MIV _Continuous Glucose Measurement_\n- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory. Both a starting time and an end tme MUST be given.\n- `value[x]` is restricted to _valueSampledData_. The elements `valueSampledData.origin.unit`, `valueSampledData.origin.system`, and `valueSampledData.origin.code` are mandatory. `valueSampledData.origin.system` is restricted to UCUM. `Observation.valueSampledData` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-reference-value> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-lung-reference-value" ]
+       ] ;
+       fhir:name [ fhir:v "Observation – Lung Function Reference Value" ] ;
+       fhir:description [ fhir:v "Profile for capturing the refence values as a FHIR Observation resource when evaluating lung function testings.\n\nThis profile defines the exchange of a single reference value for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MAY either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Reference Values_ ValueSet, defined by the _HddtLungFunctionReferenceValues_ ValueSet.\n- `effective[x]` is restricted to `effectivePeriod` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `method` is considered mandatory in order to provide information about the method used to determine the reference value. It can be either a code from the _HddtLungFunctionReferenceValueMethod_ ValueSet or a text description." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "StructureDefinition:resource"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-lung-function-testing> ;
+         fhir:reference [ fhir:v "StructureDefinition/hddt-lung-function-testing" ]
+       ] ;
+       fhir:name [ fhir:v "Observation – Lung Function Testing" ] ;
+       fhir:description [ fhir:v "Profile for capturing lung function testings as FHIR Observation resources.\n\nThis profile defines the exchange of a single measurement data for the Mandatory Interoperable Value (MIV) \\\"Lung Function Testing\\\" which is technically defined \nby the ValueSet _hddt-miv-lung-function-testing_. This MIV is e.g. implemented by peak flow meter that can connect to \na Personal Health Gateway (e.g. a mobile app for tracking lung function values) through wireless or wired communication.\n\n**Obligations and Conventions:**\n\nEach Lung Function Testing MUST either hold a reference to a _Sensor Type And Calibration Status_ [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) resource or to a \n_Personal Health Device_ [Device](https://hl7.org/fhir/R4/device.html) resource (eXclusive OR). Typically the reference will be \nto a [Device](https://hl7.org/fhir/R4/device.html) resource, but the option to reference a [DeviceMetric](https://hl7.org/fhir/R4/devicemetric.html) \nresource is provided for compatibility with the overarching HDDT specification.\n\n**Constraints applied:**  \n- `code` is constrained to a subset of the _MIV Lung Function Testing_ ValueSet, defined by the _HddtLungFunctionTestingValues_ ValueSet.\n- `effective[x]` is restricted to `effectiveDateTime` and constrained as mandatory.\n- `value[x]` is restricted to `valueQuantity`. The elements `valueQuantity.value`, `valueQuantity.system`, and `valueQuantity.code` are constrained in a way that a value MUST be provided and that UCUM MUST be used for encoding the unit of measurement. `Observation.valueQuantity` MAY only be omitted in case of an error that accured with the measurement. In this case, `Observation.dataAbsentReason` MUST be provided.\n- `device` is set to be mandatory in order to provide the DiGA with information about the sensor's calibration status and with information about the static and dynamic attributes of the Personal Health Device." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/resource-information"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/resource-information>
+         ] ;
+         fhir:value [
+           a fhir:String ;
+           fhir:v "OperationDefinition"
+         ]
+       ] ) ;
+       fhir:reference [
+         fhir:l <https://gematik.de/fhir/hddt/OperationDefinition/hddt-cgm-summary-operation> ;
+         fhir:reference [ fhir:v "OperationDefinition/hddt-cgm-summary-operation" ]
+       ] ;
+       fhir:name [ fhir:v "Search Operation for summary data measurement" ] ;
+       fhir:description [ fhir:v "The `$hddt-cgm-summary` operation is defined on the *Observation* resource type.  \nIt allows clients to request CGM summary data filtered by effective period, and optionally include related device context (Device, DeviceMetric).  \n\n**Use cases supported by this operation include:**  \n- Retrieving CGM summary statistics (mean glucose, time-in-range, GMI, etc.) for a patient over a specified interval  \n\n**Input Parameters:**  \n- `effectivePeriodStart` *(dateTime, optional)*: Lower bound of the observation effective period.  \n- `effectivePeriodEnd` *(dateTime, optional)*: Upper bound of the observation effective period.  \n- `related` *(boolean, optional)*: If true, the response bundle also contains related Device and DeviceMetric resources.  \n\n**Output Parameter:**  \n- `result` *(Reference, required)*: A Bundle conforming to profile `HddtCgmSummary` profile containing all matching CGM Observations and, if requested, their related devices.  \n\n**Error handling (OperationOutcome):**  \n- `MSG_PARAM_UNKNOWN`: Returned when an unsupported input parameter is used.  \n- `MSG_PARAM_INVALID`: Returned when a parameter value is invalid (e.g., bad date format).  \n- `MSG_NO_MATCH`: Returned when no matching observations are found. \n- `MSG_BAD_SYNTAX`: Returned when the request is malformed." ] ;
+       fhir:example [
+         a fhir:Boolean ;
+         fhir:v false
+       ]
+     ] ) ;
+     fhir:page [
+       fhir:extension ( [
+         fhir:url [
+           fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+           fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+         ] ;
+         fhir:value [
+           a fhir:Url ;
+           fhir:v "toc.html"^^xsd:anyURI ;
+           fhir:l fhir:toc.html
+         ]
+       ] ) ;
+       fhir:name [
+         a fhir:Url ;
+         fhir:v "toc.html"^^xsd:anyURI ;
+         fhir:l fhir:toc.html
+       ] ;
+       fhir:title [ fhir:v "Table of Contents" ] ;
+       fhir:generation [ fhir:v "html" ] ;
+       fhir:page ( [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "index.html"^^xsd:anyURI ;
+             fhir:l fhir:index.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "index.html"^^xsd:anyURI ;
+           fhir:l fhir:index.html
+         ] ;
+         fhir:title [ fhir:v "Overview" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "motivation.html"^^xsd:anyURI ;
+             fhir:l fhir:motivation.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "motivation.html"^^xsd:anyURI ;
+           fhir:l fhir:motivation.html
+         ] ;
+         fhir:title [ fhir:v "Motivation" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "roadmap.html"^^xsd:anyURI ;
+             fhir:l fhir:roadmap.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "roadmap.html"^^xsd:anyURI ;
+           fhir:l fhir:roadmap.html
+         ] ;
+         fhir:title [ fhir:v "Roadmap" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "methodology.html"^^xsd:anyURI ;
+             fhir:l fhir:methodology.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "methodology.html"^^xsd:anyURI ;
+           fhir:l fhir:methodology.html
+         ] ;
+         fhir:title [ fhir:v "Methodology" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "certification-relevant-systems.html"^^xsd:anyURI ;
+             fhir:l fhir:certification-relevant-systems.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "certification-relevant-systems.html"^^xsd:anyURI ;
+           fhir:l fhir:certification-relevant-systems.html
+         ] ;
+         fhir:title [ fhir:v "Certification relevant systems" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "conventions.html"^^xsd:anyURI ;
+             fhir:l fhir:conventions.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "conventions.html"^^xsd:anyURI ;
+           fhir:l fhir:conventions.html
+         ] ;
+         fhir:title [ fhir:v "Keywords and Conventions" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "glossary.html"^^xsd:anyURI ;
+             fhir:l fhir:glossary.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "glossary.html"^^xsd:anyURI ;
+           fhir:l fhir:glossary.html
+         ] ;
+         fhir:title [ fhir:v "Glossary" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "release-notes.html"^^xsd:anyURI ;
+             fhir:l fhir:release-notes.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "release-notes.html"^^xsd:anyURI ;
+           fhir:l fhir:release-notes.html
+         ] ;
+         fhir:title [ fhir:v "Release Notes" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "general-considerations.html"^^xsd:anyURI ;
+             fhir:l fhir:general-considerations.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "general-considerations.html"^^xsd:anyURI ;
+           fhir:l fhir:general-considerations.html
+         ] ;
+         fhir:title [ fhir:v "General Considerations" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "use_of_hl7_fhir.html"^^xsd:anyURI ;
+             fhir:l fhir:use_of_hl7_fhir.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "use_of_hl7_fhir.html"^^xsd:anyURI ;
+           fhir:l fhir:use_of_hl7_fhir.html
+         ] ;
+         fhir:title [ fhir:v "Use of HL7 FHIR" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "security-and-privacy.html"^^xsd:anyURI ;
+             fhir:l fhir:security-and-privacy.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "security-and-privacy.html"^^xsd:anyURI ;
+           fhir:l fhir:security-and-privacy.html
+         ] ;
+         fhir:title [ fhir:v "Security and Privacy" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "operational-requirements.html"^^xsd:anyURI ;
+             fhir:l fhir:operational-requirements.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "operational-requirements.html"^^xsd:anyURI ;
+           fhir:l fhir:operational-requirements.html
+         ] ;
+         fhir:title [ fhir:v "Operational Requirements" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "logical-viewpoints.html"^^xsd:anyURI ;
+             fhir:l fhir:logical-viewpoints.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "logical-viewpoints.html"^^xsd:anyURI ;
+           fhir:l fhir:logical-viewpoints.html
+         ] ;
+         fhir:title [ fhir:v "Logical Viewpoints" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "information-model.html"^^xsd:anyURI ;
+             fhir:l fhir:information-model.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "information-model.html"^^xsd:anyURI ;
+           fhir:l fhir:information-model.html
+         ] ;
+         fhir:title [ fhir:v "Information Model" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "pairing.html"^^xsd:anyURI ;
+             fhir:l fhir:pairing.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "pairing.html"^^xsd:anyURI ;
+           fhir:l fhir:pairing.html
+         ] ;
+         fhir:title [ fhir:v "Pairing" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "smart-scopes.html"^^xsd:anyURI ;
+             fhir:l fhir:smart-scopes.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "smart-scopes.html"^^xsd:anyURI ;
+           fhir:l fhir:smart-scopes.html
+         ] ;
+         fhir:title [ fhir:v "SMART Scopes" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "retrieving-data.html"^^xsd:anyURI ;
+             fhir:l fhir:retrieving-data.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "retrieving-data.html"^^xsd:anyURI ;
+           fhir:l fhir:retrieving-data.html
+         ] ;
+         fhir:title [ fhir:v "Retrieving Data" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "registries-and-zts.html"^^xsd:anyURI ;
+             fhir:l fhir:registries-and-zts.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "registries-and-zts.html"^^xsd:anyURI ;
+           fhir:l fhir:registries-and-zts.html
+         ] ;
+         fhir:title [ fhir:v "BfArM Registries and ZTS" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "ddr-diga-api.html"^^xsd:anyURI ;
+             fhir:l fhir:ddr-diga-api.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "ddr-diga-api.html"^^xsd:anyURI ;
+           fhir:l fhir:ddr-diga-api.html
+         ] ;
+         fhir:title [ fhir:v "FHIR Resource Server" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "authorization-server.html"^^xsd:anyURI ;
+             fhir:l fhir:authorization-server.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "authorization-server.html"^^xsd:anyURI ;
+           fhir:l fhir:authorization-server.html
+         ] ;
+         fhir:title [ fhir:v "Authorization Server" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "mivs.html"^^xsd:anyURI ;
+             fhir:l fhir:mivs.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "mivs.html"^^xsd:anyURI ;
+           fhir:l fhir:mivs.html
+         ] ;
+         fhir:title [ fhir:v "Mandatory Interoperable Values (MIVs)" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "measurement-blood-glucose.html"^^xsd:anyURI ;
+             fhir:l fhir:measurement-blood-glucose.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "measurement-blood-glucose.html"^^xsd:anyURI ;
+           fhir:l fhir:measurement-blood-glucose.html
+         ] ;
+         fhir:title [ fhir:v "MIV - Blood Glucose Measurement" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "measurement-cgm.html"^^xsd:anyURI ;
+             fhir:l fhir:measurement-cgm.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "measurement-cgm.html"^^xsd:anyURI ;
+           fhir:l fhir:measurement-cgm.html
+         ] ;
+         fhir:title [ fhir:v "MIV - Continuous Glucose Measurement" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "measurement-lung-function.html"^^xsd:anyURI ;
+             fhir:l fhir:measurement-lung-function.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "measurement-lung-function.html"^^xsd:anyURI ;
+           fhir:l fhir:measurement-lung-function.html
+         ] ;
+         fhir:title [ fhir:v "MIV - Lung Function Testing" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "measurement-blood-pressure.html"^^xsd:anyURI ;
+             fhir:l fhir:measurement-blood-pressure.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "measurement-blood-pressure.html"^^xsd:anyURI ;
+           fhir:l fhir:measurement-blood-pressure.html
+         ] ;
+         fhir:title [ fhir:v "MIV - Blood Pressure Measurement" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "fhir-api-observation.html"^^xsd:anyURI ;
+             fhir:l fhir:fhir-api-observation.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "fhir-api-observation.html"^^xsd:anyURI ;
+           fhir:l fhir:fhir-api-observation.html
+         ] ;
+         fhir:title [ fhir:v "Endpoint Observation" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "fhir-api-device.html"^^xsd:anyURI ;
+             fhir:l fhir:fhir-api-device.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "fhir-api-device.html"^^xsd:anyURI ;
+           fhir:l fhir:fhir-api-device.html
+         ] ;
+         fhir:title [ fhir:v "Endpoint Device" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "fhir-api-devicemetric.html"^^xsd:anyURI ;
+             fhir:l fhir:fhir-api-devicemetric.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "fhir-api-devicemetric.html"^^xsd:anyURI ;
+           fhir:l fhir:fhir-api-devicemetric.html
+         ] ;
+         fhir:title [ fhir:v "Endpoint DeviceMetric" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "fhir-api-metadata.html"^^xsd:anyURI ;
+             fhir:l fhir:fhir-api-metadata.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "fhir-api-metadata.html"^^xsd:anyURI ;
+           fhir:l fhir:fhir-api-metadata.html
+         ] ;
+         fhir:title [ fhir:v "Endpoint Metadata" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "authorization-server-metadata-endpoint.html"^^xsd:anyURI ;
+             fhir:l fhir:authorization-server-metadata-endpoint.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "authorization-server-metadata-endpoint.html"^^xsd:anyURI ;
+           fhir:l fhir:authorization-server-metadata-endpoint.html
+         ] ;
+         fhir:title [ fhir:v "Authorization Server Metadata Endpoint" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "authorization-server-par-endpoint.html"^^xsd:anyURI ;
+             fhir:l fhir:authorization-server-par-endpoint.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "authorization-server-par-endpoint.html"^^xsd:anyURI ;
+           fhir:l fhir:authorization-server-par-endpoint.html
+         ] ;
+         fhir:title [ fhir:v "Pushed Authorization Request Endpoint" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "authorization-server-authorization-endpoint.html"^^xsd:anyURI ;
+             fhir:l fhir:authorization-server-authorization-endpoint.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "authorization-server-authorization-endpoint.html"^^xsd:anyURI ;
+           fhir:l fhir:authorization-server-authorization-endpoint.html
+         ] ;
+         fhir:title [ fhir:v "Authorization Endpoint" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "authorization-server-token-endpoint.html"^^xsd:anyURI ;
+             fhir:l fhir:authorization-server-token-endpoint.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "authorization-server-token-endpoint.html"^^xsd:anyURI ;
+           fhir:l fhir:authorization-server-token-endpoint.html
+         ] ;
+         fhir:title [ fhir:v "Token Endpoint" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "authorization-server-revocation-endpoint.html"^^xsd:anyURI ;
+             fhir:l fhir:authorization-server-revocation-endpoint.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "authorization-server-revocation-endpoint.html"^^xsd:anyURI ;
+           fhir:l fhir:authorization-server-revocation-endpoint.html
+         ] ;
+         fhir:title [ fhir:v "Revocation Endpoint" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [
+             fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name"^^xsd:anyURI ;
+             fhir:l <http://hl7.org/fhir/tools/StructureDefinition/ig-page-name>
+           ] ;
+           fhir:value [
+             a fhir:Url ;
+             fhir:v "error-codes.html"^^xsd:anyURI ;
+             fhir:l fhir:error-codes.html
+           ]
+         ] ) ;
+         fhir:name [
+           a fhir:Url ;
+           fhir:v "error-codes.html"^^xsd:anyURI ;
+           fhir:l fhir:error-codes.html
+         ] ;
+         fhir:title [ fhir:v "Error Codes" ] ;
+         fhir:generation [ fhir:v "markdown" ]
+       ] )
+     ] ;
+     fhir:parameter ( [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/capabilities" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/examples" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/extensions" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/models" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/operations" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/profiles" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/resources" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/vocabulary" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/maps" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/testing" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "input/history" ]
+     ] [
+       fhir:code [ fhir:v "path-resource" ] ;
+       fhir:value [ fhir:v "fsh-generated/resources" ]
+     ] [
+       fhir:code [ fhir:v "path-pages" ] ;
+       fhir:value [ fhir:v "template/config" ]
+     ] [
+       fhir:code [ fhir:v "path-pages" ] ;
+       fhir:value [ fhir:v "input/images" ]
+     ] [
+       fhir:code [ fhir:v "path-tx-cache" ] ;
+       fhir:value [ fhir:v "input-cache/txcache" ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

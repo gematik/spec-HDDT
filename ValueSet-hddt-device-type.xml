@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="hddt-device-type"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
+  </meta>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><p class="res-header-id"><b>Generated Narrative: ValueSet hddt-device-type</b></p><a name="hddt-device-type"> </a><a name="hchddt-device-type"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p><p style="margin-bottom: 0px">Profile: <a href="http://hl7.org/fhir/R4/shareablevalueset.html">Shareable ValueSet</a></p></div><ul><li>Include these codes as defined in <a href="http://www.snomed.org/"><code>http://snomed.info/sct</code></a><span title="Version is explicitly stated to be http://snomed.info/sct/11000274103/version/20251115"> version &#x1F4CD;http://snomed.info/sct/11000274103/version/20251115</span><table class="none"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/337414009">337414009</a></td><td>Blood glucose meter (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/700585005">700585005</a></td><td>Invasive interstitial-fluid glucose monitoring system (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/701815004">701815004</a></td><td>Non-invasive interstitial-fluid glucose monitoring system (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/702203005">702203005</a></td><td>Invasive interstitial fluid glucose monitoring/insulin infusion system (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/463729000">463729000</a></td><td>Point-of-care blood glucose continuous monitoring system (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/701750003">701750003</a></td><td>Subcutaneous glucose sensor (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/70665002">70665002</a></td><td>Blood pressure cuff, device (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/334990001">334990001</a></td><td>Peak flow meter (physical object)</td></tr><tr><td><a href="http://snomed.info/sct/11000274103/id/303501006">303501006</a></td><td>Spirometer (physical object)</td></tr></table></li></ul></div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+    <valuePeriod>
+      <start value="2026-04-29"/>
+    </valuePeriod>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/artifact-author">
+    <valueContactDetail>
+      <name value="gematik GmbH"/>
+    </valueContactDetail>
+  </extension>
+  <url value="https://gematik.de/fhir/hddt/ValueSet/hddt-device-type"/>
+  <version value="1.0.1"/>
+  <name value="HddtDeviceType"/>
+  <title value="Device Type of personal health devices"/>
+  <status value="active"/>
+  <experimental value="false"/>
+  <date value="2026-04-29"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de"/>
+    </telecom>
+  </contact>
+  <description value="Dieses ValueSet enthält Codes zur Identifikation von _Personal Health Devices_ und _Device Data Recordern_.&#xA;&#xA;Die Definition dieses ValueSets ist eine Teilmenge der Definition des FHIR R5 ValueSet [Device Type](https://hl7.org/fhir/R5/valueset-device-type.html),&#xA;angepasst für die Verwendung mit den auf FHIR R4 basierenden HDDT-Profilen.&#xA;&#xA;Dieses Material enthält SNOMED Clinical Terms® (SNOMED CT®), die mit Genehmigung der International Health Terminology Standards Development Organisation (IHTSDO) verwendet werden.&#xA;Alle Rechte vorbehalten. SNOMED CT® wurde ursprünglich vom College of American Pathologists entwickelt. 'SNOMED' und 'SNOMED CT' sind eingetragene Warenzeichen der IHTSDO.&#xA;&#xA;Dieses ValueSet ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch &#xA;zwischen Hilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Der Inhalt des ValueSets umfasst immer mindestens alle Gerätetypen,&#xA;für die HDDT _Mandatory Interoperable Values_ (MIVs) definiert. Damit kann dieses ValueSet zukünftig auch Codes enthalten, die nicht Teil des FHIR ValueSet _Device Type_ sind.&#xA;&#xA;--&#xA;&#xA;This ValueSet includes codes used to identify Personal Health Devices and Device Data Recorders.&#xA;&#xA;This ValueSet's definition is a subset of the definition of the FHIR R5 ValueSet &#xA;[Device Type](https://hl7.org/fhir/R5/valueset-device-type.html), adapted for use with the FHIR R4 based HDDT profiles. &#xA;&#xA;This material includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO).&#xA;All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO.&#xA;&#xA;CAVE: This ValueSet is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets &#xA;for sharing data between medical aids and digital health applications (DiGA). The content of the value set will always at latest&#xA;cover all types of device types for whoch HDDT defines _Mandatory Interoperable Values_ (MIVs). By this, this value set MAY&#xA;in the future include codes which are not part of the FHIR ValueSet _Device Type_. "/>
+  <copyright value="The copyright for the compilation of this value set is held by gematik GmbH and by Federal Institute for Drugs and Medical Devices (BfArM). This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."/>
+  <compose>
+    <include>
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-ValueSet.compose.include.copyright">
+        <valueString value="This valueset includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. 'SNOMED' and 'SNOMED CT' are registered trademarks of the IHTSDO."/>
+      </extension>
+      <system value="http://snomed.info/sct"/>
+      <version value="http://snomed.info/sct/11000274103/version/20251115"/>
+      <concept>
+        <code value="337414009"/>
+        <display value="Blood glucose meter (physical object)"/>
+      </concept>
+      <concept>
+        <code value="700585005"/>
+        <display value="Invasive interstitial-fluid glucose monitoring system (physical object)"/>
+      </concept>
+      <concept>
+        <code value="701815004"/>
+        <display value="Non-invasive interstitial-fluid glucose monitoring system (physical object)"/>
+      </concept>
+      <concept>
+        <code value="702203005"/>
+        <display value="Invasive interstitial fluid glucose monitoring/insulin infusion system (physical object)"/>
+      </concept>
+      <concept>
+        <code value="463729000"/>
+        <display value="Point-of-care blood glucose continuous monitoring system (physical object)"/>
+      </concept>
+      <concept>
+        <code value="701750003"/>
+        <display value="Subcutaneous glucose sensor (physical object)"/>
+      </concept>
+      <concept>
+        <code value="70665002"/>
+        <display value="Blood pressure cuff, device (physical object)"/>
+      </concept>
+      <concept>
+        <code value="334990001"/>
+        <display value="Peak flow meter (physical object)"/>
+      </concept>
+      <concept>
+        <code value="303501006"/>
+        <display value="Spirometer (physical object)"/>
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

@@ -1,0 +1,46 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Device/example-device-blood-pressure-cuff> a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-device-blood-pressure-cuff"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"^^xsd:anyURI ;
+       fhir:l <https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device>
+     ] )
+  ] ; # 
+  fhir:definition [
+     fhir:l <https://gematik.de/fhir/hddt/DeviceDefinition/device-definition-blood-pressure-cuff-001> ;
+     fhir:reference [ fhir:v "DeviceDefinition/device-definition-blood-pressure-cuff-001" ]
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:manufacturer [ fhir:v "HealthTech GmbH"] ; # 
+  fhir:expirationDate [ fhir:v "2027-12-15"^^xsd:date] ; # 
+  fhir:serialNumber [ fhir:v "BPC0011223345"] ; # 
+  fhir:deviceName ( [
+     fhir:name [ fhir:v "BP Cuff Pro" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "Digital BT 2"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:70665002 ;
+       fhir:system [
+         fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+         fhir:l <http://snomed.info/sct>
+       ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/11000274103/version/20251115" ] ;
+       fhir:code [ fhir:v "70665002" ] ;
+       fhir:display [ fhir:v "Blood pressure cuff, device (physical object)" ]
+     ] )
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

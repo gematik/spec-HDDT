@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>General Considerations - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"9"}
+    h3,h4,h5,h6{--heading-prefix:"9"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>General Considerations</b></li>
+
+          <span style="float:right;">
+
+            <a href="release-notes.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="use_of_hl7_fhir.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>General Considerations</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#holistic-approach" id="markdown-toc-holistic-approach">Holistic Approach</a></li>
+  <li><a href="#use-of-international-standards" id="markdown-toc-use-of-international-standards">Use of International Standards</a></li>
+  <li><a href="#trust-model" id="markdown-toc-trust-model">Trust Model</a></li>
+  <li><a href="#minimization-of-hddt-specific-implementation-efforts" id="markdown-toc-minimization-of-hddt-specific-implementation-efforts">Minimization of HDDT-specific Implementation Efforts</a></li>
+  <li><a href="#role-of-the-controller" id="markdown-toc-role-of-the-controller">Role of the Controller</a></li>
+  <li><a href="#easy-maintenance-and-economical-operations" id="markdown-toc-easy-maintenance-and-economical-operations">Easy Maintenance and Economical Operations</a></li>
+</ul>
+
+</div>
+<p>The HDDT specification is based on several fundamental decisions intended to reduce complexity and ensure that its
+interfaces remain economically viable for manufacturers.</p>
+
+<h3 id="holistic-approach">Holistic Approach</h3>
+
+<p>The HDDT solution enables a DiGA to retrieve standardised health data of the same patient from medical aids and implants - after explicit consent of the patient - without establishing bilateral contractual relationships between the manufacturers. The system is based on a holistic 4-pillar architectural approach:</p>
+<ul>
+  <li>Model: The FHIR-based transmission of health data in the form of <a href="https://hl7.org/fhir/R4/observation.html">FHIR Observation resources</a> for vital signs (blood sugar, blood pressure, body temperature) builds upon a comprehensive <a href="information-model.html">information model</a> which can be tailored for specific <a href="methodology.html#from-use-cases-to-mivs">Mandatory Interoperable Values (MIVs)</a>.</li>
+  <li>Components: Five main systems orchestrate the legally compliant data exchange:  <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA Verzeichnis</em></a> (BfArM DiGA Registry), <a href="registries-and-zts.html#hiis-vz"><em>HIIS-VZ</em></a> (BfArM Device Registry), <a href="registries-and-zts.html#zentraler-terminologieserver"><em>ZTS</em></a> (Central Terminology Server), backend/front-end systems of DiGA, and backend/front-end systems of Device Data Recorders as responsible controllers of the data (see <a href="logical-viewpoints.html#logical-building-blocks">Logical Building Blocks</a> for details).</li>
+  <li>Interfaces: OAuth 2.0 for <a href="authorization-server.html">secure authorization</a> combined with <a href="ddr-diga-api.html">RESTful FHIR APIs</a> allow for an interoperable data transfer based on international standards.</li>
+  <li>Processes: Three clearly defined main processes - <a href="pairing.html">pairing of the systems</a> with user consent, <a href="retrieving-data.html">continuous data transmission</a>, and <a href="security-and-privacy.html#obligations-for-regular-inspections">regular review of authorizations</a> to use the HDDT FHIR APIs - ensure a legally compliant data exchange.</li>
+</ul>
+
+<h3 id="use-of-international-standards">Use of International Standards</h3>
+
+<p>The key requirement for the Health Device Data Transfer (HDDT) specification is to build on existing international
+standards wherever possible. This applies not only to data formats and interfaces, but also to how medical aids and
+implants are broken down into abstract components, to the information model behind the exchanged data, to security
+services, and to the technical representation of meaningful artifacts.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Standard</th>
+      <th>Use with HDDT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HL7 FHIR</td>
+      <td>The HDDT logical model is fully aligned with a FHIR-compliant <a href="information-model.html">information model</a>. Device data is accessed through FHIR’s <a href="https://hl7.org/fhir/R4/http.html#read">read</a> and <a href="https://hl7.org/fhir/R4/http.html#search">search</a> interactions. All data exchanged through this API MUST conform to HL7 FHIR R4. HDDT places strong emphasis on compliance with the FHIR base specification and, where possible, with existing FHIR profiles for device data (see <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>).</td>
+    </tr>
+    <tr>
+      <td>DIN EN ISO/IEEE 11073</td>
+      <td>Configuration settings of Personal Health Devices SHOULD be encoded using DIN EN ISO/IEEE 11073 nomenclature. The HDDT information model considers the DIN EN ISO/IEEE 11073 domain models of the devices evaluated during the HDDT MVP phase.</td>
+    </tr>
+    <tr>
+      <td>OAuth2</td>
+      <td>The <a href="pairing.html">pairing flow</a> for authorizing a DiGA to access device data is an implementation of the OAuth2 Code flow with PKCE.</td>
+    </tr>
+    <tr>
+      <td>SMART on FHIR</td>
+      <td>HDDT makes use of SMART 2.0 “Finer-grained resource constraints” and SMART 2.0 “patient-specific-scopes” for access permissions to FHIR resources (see <a href="smart-scopes.html">SMART Scopes</a>).</td>
+    </tr>
+    <tr>
+      <td>LOINC</td>
+      <td>HDDT <a href="methodology.html">Mandatory Interoperable Values</a> (MIVs) are mapped onto sets of LOINC codes.</td>
+    </tr>
+    <tr>
+      <td>UCUM</td>
+      <td>Units of measures are consistently encoded in UCUM.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="trust-model">Trust Model</h3>
+
+<p>The HDDT solution design imposes trust as well on the transport layer of communicating IT-systems as on the application level of a medical aid sharing data with a DiGA. The following principles apply:</p>
+<ul>
+  <li>Trust attributes of the technical communication partners are provided by the BfArM via the <a href="registries-and-zts.html#diga-verzeichnis"><em>DiGA Verzeichnis</em></a> (BfArM DiGA Directory) and the <a href="registries-and-zts.html#hiis-vz"><em>HIIS-VZ</em></a> (BfArM Device Registry). Existing directory processes are reused.</li>
+  <li>§ 374a SGB V requires DiGA and controllers of medical device data to obtain the patient’s explicit consent for data sharing. The HDDT specification mandates that the consent is granted during the <a href="pairing.html">pairing process</a> but leaves the details on how consent is presented and acknowledged in a GDPR-compliant manner to the manufacturers.</li>
+  <li>Access permissions are granted through <a href="smart-scopes.html">SMART Scopes</a>. These scopes directly map onto FHIR resources but can as well be assessed by the underlying value sets of consented LOINC codes. This way, manufacturers can either efficiently use native FHIR stores for their resource servers or enforce the access restrictions using their existing policy decision points.</li>
+</ul>
+
+<p>All flows and interfaces for authorized access to HDDT FHIR resources have been validated for easy implementability using established open-source libraries and tools (HAPI FHIR as <a href="ddr-diga-api.html">FHIR Resource Server</a> and Keycloak for the <a href="authorization-server.html">OAuth2 Authorization Server</a>).</p>
+
+<h3 id="minimization-of-hddt-specific-implementation-efforts">Minimization of HDDT-specific Implementation Efforts</h3>
+
+<p>Personal Health Devices store their collected data in a Health Record in the device backend. The Health Record collects
+measurement data for each patient and acts as a resource server for external parties. It provides interfaces that allow
+patients and their physicians to access data through mobile apps or other interactive front-end systems.</p>
+
+<p>The HDDT specification is intended to allow manufacturers of backend systems for Personal Health Devices to extend their existing resource servers’ interfaces with
+HDDT-specific processes and data models in a straightforward way. Ideally, any required adjustments should be limited to
+the syntax of data exchange, without changes to the core architecture that connects the Personal Health Device, the
+Personal Health Gateway (e.g. the mobile app that controls the device), and the Health Record. To support this, the specification and its non-functional requirements are
+based on the following principles:</p>
+
+<ul>
+  <li>HDDT
+follows <a href="https://simplifier.net/guide/Best-Practice-bei-der-Implementierung-und-Spezifizierung-mit-HL7/%C3%9Cbersicht/Spezifikation/Profilierung?version=current">HL7-D best practices for profiling</a>
+FHIR resource definitions. The standard itself serves as the basis for all documentation, and profiling or restricting
+standard elements is done only when necessary to ensure interoperability. For cardinalities, <a href="use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements"><em>Must
+Support</em></a> semantics are preferred over hard
+constraints to give Health Record providers maximum flexibility. Any elements that modify data are either restricted
+or marked as <a href="use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements"><em>Must Support</em></a>.</li>
+  <li>The resource server SHOULD remain free to
+provide <a href="use_of_hl7_fhir.html#mandatory-must-support-and-optional-elements"><em>optional</em> elements</a> for a HDDT FHIR resource, even if a
+DiGA MAY ignore them. This approach allows a resource server to reuse FHIR profiles that are already implemented in
+other contexts.</li>
+  <li>Only data that is managed in the Health Record is affected by the HDDT interface. Manufacturers SHOULD NOT forward
+data that is processed exclusively on the device or in the Personal Health Gateway to the Health Record solely to comply
+with the HDDT specification.</li>
+</ul>
+
+<h3 id="role-of-the-controller">Role of the Controller</h3>
+
+<p>The HDDT specification follows the reference model of
+the <a href="https://www.slideserve.com/kanoa/continua-health-alliance">Continua Health Alliance</a>, which is also adopted by the <a href="https://hl7.org/fhir/uv/phd/index.html">HL7 Personal Health Device WG</a>. This model defines that a Personal
+Health Device connects to a Personal Health Gateway (e.g. a mobile app) that serves as a gateway to the Health Record. In
+HDDT, the Personal Health Gateway and Health Record together are referred to as the <em>Device Data Recorder</em> (see <a href="logical-viewpoints.html#logical-building-blocks">Logical Building Blocks</a> for details). The <em>Device Data Recorder</em>
+provides the FHIR resource server. A DiGA connects to this server to request and obtain data measured by a connected
+Personal Health Device.</p>
+
+<p>The <em>Device Data Recorder</em> controls all data and communication flows between the patient’s Personal Health Device and
+the Health Record on the backend system. The HDDT specification MUST NOT affect this role. The specification also MUST NOT set requirements for:</p>
+
+<ul>
+  <li>the frequency of data collection on the Personal Health Device</li>
+  <li>the method and frequency of synchronization between the Personal Health Device and the Personal Health Gateway</li>
+  <li>the frequency of data transmission from the Personal Health Gateway to the Health Record (e.g. if the Personal Health Gateway
+transmits data only once per day, then a DiGA will only be able to access data at that frequency through the HDDT
+interface)</li>
+  <li>how the Personal Health Gateway handles data from uncalibrated devices (e.g. whether this data is sent to the Health
+Record or not)</li>
+  <li>whether the <em>Device Data Recorder</em> allows the retroactive correction or invalidation of measured data, and whether it makes such corrected or invalidated data accessible to DiGA</li>
+  <li>which specific algorithms the <em>Device Data Recorder</em> uses to calculate clinical metrics (e.g. whether an rtCGM includes
+data from its warm-up phase when calculating values such as the Glucose Management Index)</li>
+  <li>whether and how the Personal Health Gateway pre-processes raw data (e.g. whether outliers are smoothed to produce cleaner
+curves)</li>
+</ul>
+
+<h3 id="easy-maintenance-and-economical-operations">Easy Maintenance and Economical Operations</h3>
+
+<p>The HDDT specifications apply to all types of Personal Health Devices and Device Data Recorders. Rules for pairing,
+authentication, authorization, and logging are the same for all devices and are therefore provided as one common
+technical specification.</p>
+
+<p>The <a href="methodology.html#from-use-cases-to-mivs">Mandatory Interoperable Values (MIVs)</a> that a resource server exposes to a
+DiGA depend on the types of Personal Health Devices connected to it. Each MIV has its own defined data set and rules for
+exchange. To help manufacturers identify the relevant requirements, the data set for each MIV is defined individually
+and documented in dedicated sections of the HDDT specification. An overview of the defined MIVs by domain, along with their
+MIV-specific specification parts, can be found <a href="mivs.html">here</a>.</p>
+
+<p>In HDDT, <a href="https://hl7.org/fhir/R4/profiling.html#slicing">slicing</a> of FHIR attributes is only applied when all slices
+belong to the same type of data. Domain-specific types of data, such as blood glucose and peak expiratory flow, each
+always have their own definitions of the <a href="https://hl7.org/fhir/R4/observation.html">FHIR Observation resource</a> type — even if they differ only by LOINC codes and units. This separation
+ensures that future changes affecting one data type do not impact manufacturers of devices for other domains.</p>
+
+<p>§ 374a SGB V requires that aggregated data from Personal Health Devices MUST also be made available through the HDDT interface. For example, a Device Data Recorder for a real-time Continuous Glucose Monitoring device (rtCGM) MUST provide values that can be computed from the continuously measured glucose values. Which values are to be provided is normatively defined on a per-MIV basis in the respective MIV-specific specification parts (see <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>). To reduce the workload for manufacturers of Device Data Recorders, the HDDT allows for aggregated data to be provided as standardized reports. This way, Device Data Recorders can calculate all requested clinical metrics at once instead of parsing through the same data series multiple times for serving requests for single clinical metrics. Consequently HDDT does not provide APIs to DiGAs for requesting single clinical metrics which are computed from sampled data, such as the number of hypoglycemic episodes or the average glucose value. Such values MUST only be provided as part of structured reports consisting of multiple clinical metrics. Where possible, HDDT adopts existing specifications for such reports — e.g. for rtCGM data, the <a href="StructureDefinition-hddt-cgm-summary.html">HDDT CGM summary report</a> is a subset of the <a href="https://github.com/HL7/cgm">HL7 CGM Summary Profile</a>.</p>
+
+<p>The HDDT specification requires that data be exchanged primarily as FHIR resources. Because FHIR clinical resources are
+designed for storage and versioning, each resource SHOULD be permanently retrievable under its identifier. In practice,
+most Health Records linked to Personal Health Devices store data only for a limited time. HDDT therefore states that
+manufacturers MUST NOT extend existing storage periods solely to comply with the specification. However, every
+Health Record is assumed to be able to store data for a defined number of days and keep it accessible under a fixed
+identifier during that period. This period, called the <em>Historic-Data-Period</em>, is defined per MIV based on typical DiGA
+use cases and is listed in the MIV-specific specification tables in the chapter <a href="mivs.html"><em>Mandatory Interoperable Values (MIVS)</em></a>.</p>
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="release-notes.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="use_of_hl7_fhir.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

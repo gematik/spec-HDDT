@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="example-cgm-series-data-unavailable"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/hddt/StructureDefinition/hddt-continuous-glucose-measurement"/>
+  </meta>
+  <status value="preliminary"/>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="99504-3"/>
+      <display value="Glucose [Mass/volume] in Interstitial fluid"/>
+    </coding>
+  </code>
+  <effectivePeriod>
+    <start value="2025-09-01T08:00:00+02:00"/>
+    <end value="2025-09-01T10:00:00+02:00"/>
+  </effectivePeriod>
+  <dataAbsentReason>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+      <code value="temp-unknown"/>
+      <display value="Temporarily Unknown"/>
+    </coding>
+  </dataAbsentReason>
+  <note>
+    <text value="Sensor warm-up phase, values not yet validated."/>
+  </note>
+  <device>
+    <reference value="DeviceMetric/example-devicemetric-cgm"/>
+  </device>
+</Observation>

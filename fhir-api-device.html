@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Endpoint Device - Health Device Data Transfer v1.0.1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+  	<link href="assets/css/prism.css" rel="stylesheet" />
+  	<link href="assets/css/cqf.css" rel="stylesheet" />
+    <!-- Placeholder for child template CSS declarations -->
+<link href="assets/css/ig.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.gematik.min.js"> </script>
+<link href="assets/css/edge-dark.min.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.api.doc.gematik.min.js"> </script>
+<link href="assets/css/ig.req.gematik.css" rel="stylesheet" />
+<script type="text/javascript" src="assets/js/ig.req.gematik.min.js"> </script>
+
+<script type="text/javascript" src="assets/js/ig.bibliography.gematik.js"> </script>
+
+<style>
+    .gem-ig-headline-container {
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        -o-background-size: 100% auto;
+        background-size: 100% auto;
+        background: url('assets/images/gem-headline.png') no-repeat;
+        background-position: 90% -136px;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        /* This background color was intended by the author of this theme. */
+        background: transparent !important;
+    }
+
+    .s2 {
+        color: #690 !important;
+    }
+
+    .mi {
+        color: #905 !important;
+    }
+    .nl {
+    color: darkgreen !important;
+}
+</style>
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="fhir-logo" sizes="144x144" href="assets/ico/icon-fhir-144.png"/>
+    <link rel="fhir-logo" sizes="114x114" href="assets/ico/icon-fhir-114.png"/>
+    <link rel="fhir-logo" sizes="72x72" href="assets/ico/icon-fhir-72.png"/>
+    <link rel="fhir-logo" href="assets/ico/icon-fhir-57.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body onload="document.body.style.opacity='1'">
+
+	  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid.js"></script>
+    <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
+    <style type="text/css">h2{--heading-prefix:"27"}
+    h3,h4,h5,h6{--heading-prefix:"27"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+
+        <!-- Placeholder for child template header declarations -->
+
+<div id="hl7-nav">
+    <a id="gem-ig-logo" no-external="true" href="./index.html">
+        <img height="50" alt="Home" src="assets/images/gem-logo.png"/>
+    </a>
+</div>
+
+
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <!-- menu.xml  -->
+
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">General
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="motivation.html">Motivation</a>
+      </li>
+      <li>
+        <a href="roadmap.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="methodology.html">Methodology</a>
+      </li>
+      <li>
+        <a href="certification-relevant-systems.html">Certification relevant systems</a>
+      </li>
+      <li>
+        <a href="conventions.html">Keywords and Conventions</a>
+      </li>
+      <li>
+        <a href="glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Definitions and Rules
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="general-considerations.html">General Considerations</a>
+      </li>
+      <li>
+        <a href="use_of_hl7_fhir.html">Use of HL7 FHIR</a>
+      </li>
+      <li>
+        <a href="security-and-privacy.html">Security and Privacy</a>
+      </li>
+      <li>
+        <a href="operational-requirements.html">Operational Requirements</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">System Overview
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="logical-viewpoints.html">Logical Viewpoints</a>
+      </li>
+      <li>
+        <a href="information-model.html">Information Model</a>
+      </li>
+      <li>
+        <a href="pairing.html">Pairing</a>
+      </li>
+      <li>
+        <a href="smart-scopes.html">SMART Scopes</a>
+      </li>
+      <li>
+        <a href="retrieving-data.html">Retrieving Data</a>
+      </li>
+      <li>
+        <a href="registries-and-zts.html">Access to BfArM Registries and ZTS</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Generic APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="ddr-diga-api.html">FHIR Resource Server</a>
+      </li>
+      <li>
+        <a href="authorization-server.html">Authorization Server</a>
+      </li>
+      <li>
+        <a href="error-codes.html">Error Codes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MIV-Specific APIs
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="mivs.html">Mandatory Interoperable Values (MIVs)</a>
+      </li>
+      <li>
+        <a href="measurement-blood-glucose.html">MIV - Blood Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-cgm.html">MIV - Continuous Glucose Measurement</a>
+      </li>
+      <li>
+        <a href="measurement-lung-function.html">MIV - Lung Function Testing</a>
+      </li>
+      <li>
+        <a href="measurement-blood-pressure.html">MIV - Blood Pressure Measurement</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts Summary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+
+    <div class="segment"> 
+      <div class="container">
+        
+
+<div class="gem-ig-headline-container"> 
+    <div id="gem-ig-headline" class="col-lg-10 col-md-12">
+        <div class="gem-ig-headline-title">
+            
+Health Device Data Transfer
+        </div>
+        <div id="ig-status" class="gem-ig-headline-subtitle">
+            <span style="display:inline-block;">Version 1.0.1 - release
+                
+                
+            </span>
+            <p>Specification of health data transfer from devices to DiGA (§ 374a SGB V)</p>
+
+        </div>
+    </div>
+</div>
+      </div>
+    </div>
+
+    <!--status-bar-->
+
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Endpoint Device</b></li>
+
+          <span style="float:right;">
+
+            <a href="fhir-api-observation.html">&lt;vorherige</a> | 
+
+            <a href="#bottom">unten</a>
+
+          | <a href="fhir-api-devicemetric.html">nächste&gt;</a>
+
+          </span>
+
+        </ul>
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+
+    <a name="top"> </a>
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  
+  <h2>Endpoint Device</h2>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><!-- white space is critical inside of capture --></p>
+<div class="markdown-toc">
+  <p>Seiteninhalt:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#endpoints" id="markdown-toc-endpoints">Endpoints</a></li>
+  <li><a href="#profile---hddt-personal-health-device" id="markdown-toc-profile---hddt-personal-health-device">Profile - HDDT Personal Health Device</a></li>
+  <li><a href="#example-glucometer" id="markdown-toc-example-glucometer">Example: Glucometer</a></li>
+  <li><a href="#example-rtcgm-sensor" id="markdown-toc-example-rtcgm-sensor">Example: rtCGM Sensor</a></li>
+</ul>
+
+</div>
+<p>This document describes the syntax and semantics of querying FHIR <a href="https://hl7.org/fhir/R4/device.html">Device</a> resources via the standard FHIR RESTful API. A <a href="https://hl7.org/fhir/R4/device.html">Device</a> resource represents individual Personal Health Devices (medical aids and implants) of a patient, such as glucometers, CGM sensors, and pacemakers.</p>
+
+<p>To be compliant with § 374a SGB V, a Device Data Recorder MUST implement interactions for reading and searching Device resources:</p>
+<ul>
+  <li><a href="#device---read">reading</a> individual <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources that are referenced by <a href="mivs.html">Observation</a> or <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">DeviceMetric</a> resources,</li>
+  <li><a href="#device---vread">version specific reading</a> individual Device resources that are referenced by <a href="mivs.html">Observation</a> or <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">DeviceMetric</a> resources. This interaction MAY be omitted by a Device Data Recorder if it does not support versioning of <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources (see <a href="retrieving-data.html#versioning-of-device-and-devicemetric-resources">Retrieving Data</a> for a discussion on how to implement versioning of <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources).</li>
+  <li><a href="#device---search">searching</a> for <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources linked with the current patient and an authorised MIV</li>
+</ul>
+
+<p>Returned resources MUST conform to the <a href="#profile---hddt-personal-health-device"><em>HDDT Personal Health Device</em></a> Device profile.</p>
+
+<h3 id="endpoints">Endpoints</h3>
+
+<h4 id="device---read">Device - READ</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Endpoint</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">[base]/Device/&lt;id&gt;</code></td>
+    </tr>
+    <tr>
+      <td><strong>HTTP Method</strong></td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td><strong>Interaction</strong></td>
+      <td>READ</td>
+    </tr>
+    <tr>
+      <td><strong>Description</strong></td>
+      <td>Retrieve a single <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resource by its <a href="https://hl7.org/fhir/R4/resource.html#id">logical id</a>. The returned Device MUST conform to the <a href="StructureDefinition-hddt-personal-health-device.html"><em>HDDT Personal Health Device</em></a> profile. All constraints and obligations of the standard <a href="https://hl7.org/fhir/R4/resource.html#id">FHIR <code class="language-plaintext highlighter-rouge">read</code> interaction</a> apply.</td>
+    </tr>
+    <tr>
+      <td><strong>Request Parameters</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">id</code> - logical ID of the <a href="StructureDefinition-hddt-personal-health-device.html">Device</a>.</td>
+    </tr>
+    <tr>
+      <td><strong>Authorization</strong></td>
+      <td>OAuth2 Bearer token REQUIRED. The resource server MUST only return a <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resource that is linked to the patient who is associated with the token. Provided <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources MUST match the requestor’s granted scopes (see <a href="smart-scopes.html">Smart Scopes</a> for the compartment semantics that MUST be used for validating the authorization of the requestor).</td>
+    </tr>
+    <tr>
+      <td><strong>Returned Objects</strong></td>
+      <td>HDDT Personal Health Device resource. If no matching resource exists or if the matching resource cannot be returned, an error response MUST be sent (see below).</td>
+    </tr>
+    <tr>
+      <td><strong>Specifications</strong></td>
+      <td>The only ways for a DiGA to obtain the logical <code class="language-plaintext highlighter-rouge">id</code> of a Device resource are an <code class="language-plaintext highlighter-rouge">Observation.device</code> reference, a <code class="language-plaintext highlighter-rouge">DeviceMetric.source</code> reference or a <em>search</em> interaction for Personal Health Devices of the given patient. <br />A DiGA MAY read a Device resource in order to validate the <code class="language-plaintext highlighter-rouge">status</code> of a Personal Health Device. E.g. a <code class="language-plaintext highlighter-rouge">status</code> value <em>unknown</em>  is interpreted within HDDT to indicate that the Device Data Recorder currently has no connection to the device hardware, e.g. due to interrupted communication. <br />A Device Data Recorder MUST NOT disclose information to a DiGA that allows the DiGA to identify the patient as a natural person. Respective guidance on the use of the <code class="language-plaintext highlighter-rouge">Device.patient</code> element is given in the <a href="security-and-privacy.html#identification-and-authentication-of-the-patient">Security and Privacy</a> chapter of this specification.</td>
+    </tr>
+    <tr>
+      <td><strong>Error codes</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">400</code> (Bad Request), <code class="language-plaintext highlighter-rouge">401</code> (Unauthorized), <code class="language-plaintext highlighter-rouge">404</code> (Not Found), <code class="language-plaintext highlighter-rouge">500</code> (Internal Server Error)<br /><br />See <a href="error-codes.html#resource-server-errors">Error Codes</a> for complete error response formats, headers, and detailed scenarios.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="device---vread">Device - VREAD</h4>
+
+<p><strong>Remark:</strong> A Device Data Recorder MAY omit the version specific read interaction if it does not support versioning of Device resources (see <a href="retrieving-data.html#versioning-of-device-and-devicemetric-resources">Retrieving Data</a> for a discussion on how to express changes of device properties).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Endpoint</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">[base]/Device/&lt;id&gt;/_history/&lt;versionId&gt;</code></td>
+    </tr>
+    <tr>
+      <td><strong>HTTP Method</strong></td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td><strong>Interaction</strong></td>
+      <td>VREAD</td>
+    </tr>
+    <tr>
+      <td><strong>Description</strong></td>
+      <td>Retrieve a single Device resource by its <a href="https://hl7.org/fhir/R4/resource.html#id">logical id</a> and <a href="https://hl7.org/fhir/R4/resource.html#metadata">versionId</a>. The returned Device resource MUST conform to the <em>HDDT Personal Health Device</em> profile. All constraints and obligations of the standard <a href="https://hl7.org/fhir/R4/http.html#vread">FHIR <code class="language-plaintext highlighter-rouge">vread</code> interaction</a> apply.</td>
+    </tr>
+    <tr>
+      <td><strong>Request Parameters</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">id</code> - logical ID of the <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resource <br /><code class="language-plaintext highlighter-rouge">versionId</code> - version identifier of the <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resource</td>
+    </tr>
+    <tr>
+      <td><strong>Authorization</strong></td>
+      <td>OAuth2 Bearer token REQUIRED. The resource server MUST only return versions of <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources that can be linked to the patient who is associated with the token. Provided <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources MUST match the requestor’s granted scopes (see <a href="smart-scopes.html">Smart Scopes</a> for the compartment semantics that MUST be used for validating the authorization of the requestor).</td>
+    </tr>
+    <tr>
+      <td><strong>Returned Objects</strong></td>
+      <td><em>HDDT Personal Health Device</em> resource. If no matching resource or version exists or if the matching resource or version cannot be returned, an error response MUST be sent (see below).</td>
+    </tr>
+    <tr>
+      <td><strong>Specifications</strong></td>
+      <td>The only ways for a DiGA to obtain the logical id and the versionId of a <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resource are an <code class="language-plaintext highlighter-rouge">Observation.device</code> reference, a <code class="language-plaintext highlighter-rouge">DeviceMetric.source</code> reference, or a ‘search’ interaction for <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources of the given patient.</td>
+    </tr>
+    <tr>
+      <td><strong>Error codes</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">400</code> (Bad Request), <code class="language-plaintext highlighter-rouge">401</code> (Unauthorized), <code class="language-plaintext highlighter-rouge">404</code> (Not Found), <code class="language-plaintext highlighter-rouge">500</code> (Internal Server Error)<br /><br />See <a href="error-codes.html#resource-server-errors">Error Codes</a> for complete error response formats, headers, and detailed scenarios.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="device---search">Device - SEARCH</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Endpoint</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">/Device</code></td>
+    </tr>
+    <tr>
+      <td><strong>HTTP Method</strong></td>
+      <td>GET / POST</td>
+    </tr>
+    <tr>
+      <td><strong>Interaction</strong></td>
+      <td>SEARCH</td>
+    </tr>
+    <tr>
+      <td><strong>Description</strong></td>
+      <td>Search for <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources.</td>
+    </tr>
+    <tr>
+      <td><strong>Authorization</strong></td>
+      <td>OAuth2 Bearer token REQUIRED. The resource server MUST only return <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources that are linked to the patient who is associated with the token. Provided <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources MUST match the requestor’s granted scopes (see <a href="smart-scopes.html">Smart Scopes</a> for the compartment semantics that MUST be used for validating the authorization of the requestor).<br /></td>
+    </tr>
+    <tr>
+      <td><strong>Search Parameters</strong></td>
+      <td>A full list of the <strong>search parameters</strong> that this endpoint MUST support, can be found on page <a href="ddr-diga-api.html#search-parameters">FHIR Resource Server - Search Parameters</a>.<br /><br />•  The resource server MUST be able to discover the patient identifier from the Access Token. This identifier MUST implicitly be considered as the <code class="language-plaintext highlighter-rouge">patient</code> argument with every <em>search</em> request for <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources. If a DiGA explicitly provides a <code class="language-plaintext highlighter-rouge">patient</code> argument with a query, the resource server MUST ignore this argument and SHOULD respond with a <code class="language-plaintext highlighter-rouge">400 Bad Request</code> error.<br />•  The resource server MAY support any standard FHIR Device search parameters.</td>
+    </tr>
+    <tr>
+      <td><strong>Returned Objects</strong></td>
+      <td><a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a> containing <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> entries that match the query. <br />If no matching <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resources are found, an empty <a href="https://hl7.org/fhir/R4/bundle.html">Bundle</a> MUST be returned.</td>
+    </tr>
+    <tr>
+      <td><strong>Specifications</strong></td>
+      <td>After successful <a href="pairing.html">pairing</a> with a Device Data Recorder a DiGA SHOULD discover the Personal Health Devices of the patient by searching for Device resources. The DiGA MAY use search parameters to filter the results, e.g. by <code class="language-plaintext highlighter-rouge">device-name</code> or <code class="language-plaintext highlighter-rouge">type</code>. The DiGA SHOULD present the discovered <code class="language-plaintext highlighter-rouge">Device.serialNumber</code> to the patient to allow him to verify the result of the pairing process.<br />The resource server MAY support the <code class="language-plaintext highlighter-rouge">_include:definition</code> parameter to allow including referenced DeviceDefinition resources in the response bundle. <br /> All constraints and obligations of the standard <a href="https://hl7.org/fhir/R4/http.html#search">FHIR <code class="language-plaintext highlighter-rouge">search</code> interaction</a> apply.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>Error codes</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">400</code> (Bad Request), <code class="language-plaintext highlighter-rouge">401</code> (Unauthorized), <code class="language-plaintext highlighter-rouge">500</code> (Internal Server Error)<br /><br />See <a href="error-codes.html#resource-server-errors">Error Codes</a> for complete error response formats, headers, and detailed scenarios.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="profile---hddt-personal-health-device">Profile - HDDT Personal Health Device</h3>
+
+<div id="tabs-key">
+  <div id="tbl-key">
+    <p><strong>Profile: </strong> Device – Personal Health Device</p>
+    <p>
+      This structure is derived from
+      <a href="http://hl7.org/fhir/R4/device.html">
+        Device
+      </a>
+    </p>
+    <div id="tbl-key-inner">
+      <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="hddt-personal-health-deviceKA" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="The logical name of the element" data-no-external="true">Name</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Information about the use of the element" data-no-external="true">Flags</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Minimum and Maximum # of times the element can appear in the instance" data-no-external="true">Card.</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px; width: 100px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Reference to the type of the element" data-no-external="true">Type</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Additional information about the element" data-no-external="true">Description &amp; Constraints</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal">Filter: <input size="10" name="filter" style="border: 1px #F0F0F0 solid; background-color: rgb(254, 254, 231);" oninput="filterTree(document.getElementById('hddt-personal-health-deviceKA'), event.target.value)" type="text" /> <img onclick="showPanel(event.target, document.getElementById('hddt-personal-health-deviceKA'), document.getElementById('pphddt-personal-health-deviceKA'))" src="tree-filter.png" alt="Filters" /><div style="display: none; position: fixed; opacity : 1.0; background-color: rgb(254, 254, 231); border: 1px solid #ccc; padding: 10px; boxShadow: 0 2px 5px rgba(0,0,0,0.2); zIndex: 1000; borderRadius: 4px" id="pphddt-personal-health-deviceKA">Bindings <input onclick="filterDesc(document.getElementById('hddt-personal-health-deviceKA'), 'binding',event.target.checked, document.getElementById('pphddt-personal-health-deviceKA'))" size="1" name="binding" checked="true" id="cbhddt-personal-health-deviceKA-binding" type="checkbox" /><br />Constraints <input onclick="filterDesc(document.getElementById('hddt-personal-health-deviceKA'), 'constraint',event.target.checked, document.getElementById('pphddt-personal-health-deviceKA'))" size="1" name="constraint" checked="true" id="cbhddt-personal-health-deviceKA-constraint" type="checkbox" /><br />Obligations <input onclick="filterDesc(document.getElementById('hddt-personal-health-deviceKA'), 'obligation',event.target.checked, document.getElementById('pphddt-personal-health-deviceKA'))" size="1" name="obligation" checked="true" id="cbhddt-personal-health-deviceKA-obligation" type="checkbox" /><br /></div></span><span style="float: right"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format" data-no-external="true"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" onload="fhirTableInit(this)" style="background-color: inherit" /></a></span></th></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="a" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_resource.png" alt="." style="background-color: white; background-color: inherit" title="Resource" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device" title="A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a medical aid or implant." data-no-external="true">Device</a><a name="ka-Device"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a style="padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;; padding-left: 3px; padding-right: 3px; border: 1px maroon solid; font-weight: bold; color: #301212; background-color: #fdf4f4;" href="http://hl7.org/fhir/R4/conformance-rules.html#constraints" title="This element has or is affected by constraints ( device-definition-reference-check-1 )">C</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/device.html">Device</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Personal Health Device<br class="constraint" /><span title="null" class="constraint">Constraints: </span><span style="font-weight:bold" title="Ensures that any device definition reference points to the HIIS domain." class="constraint">device-definition-reference-check-1</span><br /></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="aa" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.implicitRules" title="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc." data-no-external="true">implicitRules</a><a name="ka-Device.implicitRules"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#uri">uri</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A set of rules under which this content was created</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="ab" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_modifier_extension_simple.png" alt="." style="background-color: white; background-color: inherit" title="Simple Extension" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.modifierExtension" title="May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." data-no-external="true">modifierExtension</a><a name="ka-Device.modifierExtension"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension">Extension</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Extensions that cannot be ignored<br /></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ac" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_reference.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Reference to another Resource" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.definition" title="Reference to a DeviceDefinition resource of the HIIS that describes the technical and functional details of the Personal health device." data-no-external="true">definition</a><a name="ka-Device.definition"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/references.html">Reference</a>(<a href="http://hl7.org/fhir/R4/devicedefinition.html">DeviceDefinition</a>)</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Definition of the Personal health device</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="ad" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.status" title="Status of the Device availability." data-no-external="true">status</a><a name="ka-Device.status"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span><span style="padding-left: 3px; padding-right: 3px; color: white; background-color: #D50000" title="This element must be supported">S</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">active | inactive | entered-in-error | unknown<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-device-status.html" title="http://hl7.org/fhir/ValueSet/device-status" class="binding">FHIRDeviceStatus</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span><span title="null" class="binding">: </span><span title="null" class="binding">The availability status of the device.</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ae" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.expirationDate" title="The date and time beyond which this Personal Health Device is no longer valid or should not be used (if applicable)." data-no-external="true">expirationDate</a><a name="ka-Device.expirationDate"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: white; background-color: #D50000" title="This element must be supported">S</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Date and time of expiry of this Personal health device (if applicable)</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="af" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.serialNumber" title="The serial number that uniquely identifies the Personal Health Device instance." data-no-external="true">serialNumber</a><a name="ka-Device.serialNumber"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: white; background-color: #D50000" title="This element must be supported">S</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Serial number of the Personal health device</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ag" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck11.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img onclick="tableRowAction(this)" src="tbl_vjoin-open.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_datatype.gif" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.deviceName" title="The name of the Personal health device as given by the manufacturer and listed in the _HIIS-VZ_ (BfARM Device Registry)." data-no-external="true">deviceName</a><a name="ka-Device.deviceName"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: white; background-color: #D50000" title="This element must be supported">S</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#BackboneElement">BackboneElement</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Name of the Personal health device<br /></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="aga" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_modifier_extension_simple.png" alt="." style="background-color: white; background-color: inherit" title="Simple Extension" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.deviceName.modifierExtension" title="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." data-no-external="true">modifierExtension</a><a name="ka-Device.deviceName.modifierExtension"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is a modifier element">?!</span><span style="padding-left: 3px; padding-right: 3px; color: black; null" title="This element is included in summaries">Σ</span></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension">Extension</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Extensions that cannot be ignored even if unrecognized<br /></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="agb" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck110.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.deviceName.name" title="The name of the device." data-no-external="true">name</a><a name="ka-Device.deviceName.name"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">The name of the device</td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="agc" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck100.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vline.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin_end.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_primitive.png" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.deviceName.type" title="The type of deviceName.
+UDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName." data-no-external="true">type</a><a name="ka-Device.deviceName.type"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#code">code</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">udi-label-name | user-friendly-name | patient-reported-name | manufacturer-name | model-name | other<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-device-nametype.html" title="http://hl7.org/fhir/ValueSet/device-nametype" class="binding">DeviceNameType</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span><span title="null" class="binding">: </span><span title="null" class="binding">The type of name the device is referred by.</span></td></tr>
+<tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7" id="ah" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck00.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="tbl_vjoin_end.png" alt="." style="background-color: inherit" class="hierarchy" /><img src="icon_datatype.gif" alt="." style="background-color: #F7F7F7; background-color: inherit" title="Data Type" class="hierarchy" /> <a no-external="true" href="StructureDefinition-hddt-personal-health-device-definitions.html#Device.type" title="The kind or type of device." data-no-external="true">type</a><a name="ka-Device.type"> </a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">The machine-readable type of the Personal health device<br class="binding" /><span style="font-weight:bold" title="null" class="binding">Binding: </span><a href="ValueSet-hddt-device-type.html" title="https://gematik.de/fhir/hddt/ValueSet/hddt-device-type" class="binding">Device Type of personal health devices</a><span title="null" class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span title="null" class="binding">)</span></td></tr>
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br /><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit" /> Documentation for this format</a></td></tr><script type="text/javascript">  // 2945a930-577f-4437-b12b-5231e6f56965
+document.getElementById('cbhddt-personal-health-deviceKA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
+filterDesc(document.getElementById('hddt-personal-health-deviceKA'), 'binding', document.getElementById('cbhddt-personal-health-deviceKA-binding').checked, document.getElementById('pphddt-personal-health-deviceKA'));
+document.getElementById('cbhddt-personal-health-deviceKA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
+filterDesc(document.getElementById('hddt-personal-health-deviceKA'), 'constraint', document.getElementById('cbhddt-personal-health-deviceKA-constraint').checked, document.getElementById('pphddt-personal-health-deviceKA'));
+document.getElementById('cbhddt-personal-health-deviceKA-obligation').checked = 'false' != localStorage.getItem('ht-table-states-obligation');
+filterDesc(document.getElementById('hddt-personal-health-deviceKA'), 'obligation', document.getElementById('cbhddt-personal-health-deviceKA-obligation').checked, document.getElementById('pphddt-personal-health-deviceKA'));
+</script></table>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div>
+    <p><strong>Detailed description of differential elements</strong></p>
+    <a name="tabs-diff"> </a>
+    <div id="tabs-diff">
+      <p>Guidance on how to interpret the contents of this table can be found<a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#data-dictionaries">here</a></p><table class="dict" data-fhir="generated"><tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device">  </a><span style="color: grey">0</span><b>. Device</b><a href="#diff_Device" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">A type of a manufactured device that is used in the provision of healthcare without being substantially changed through that activity. The device MUST be a medical aid or implant.</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Personal Health Device</td></tr><tr><td style="white-space: nowrap">Invariants</td><td><b title="Formal Invariant Identifier">device-definition-reference-check-1</b>: Ensures that any device definition reference points to the HIIS domain. (<code>definition.exists() implies definition.reference.contains('hiis.bfarm.de') or definition.resolve().identifier.where(system ='http://fhir.de/sid/gkv/hmnr').exists()</code>)</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device.definition">  </a><span style="color: grey">2</span><b>. Device.definition</b><a href="#diff_Device.definition" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">Reference to a DeviceDefinition resource of the HIIS that describes the technical and functional details of the Personal health device.</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Definition of the Personal health device</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device.status">  </a><span style="color: grey">4</span><b>. Device.status</b><a href="#diff_Device.status" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Comments</td><td><p style="font-size: 11px">The <code>status</code> values <em>active</em> and <em>inactive</em> refer to the ability of the Personal Health Device to record and share measured data. E.g. a real-time
+Continuous Glucose Monitoring device usually stops recording and sharing glucose values after 14 days of wear,
+even though the sensor is still alive for a longer time. After these 14 days, the <code>status</code> switches from <em>active</em> to <em>inactive</em>.</p>
+<p style="font-size: 11px">If a resource server has not synchronized with the connected Personal Health Device for a time span longer
+than stated in the static attribute <code>Delay-From-Real-Time</code>(e.g. due to temporarely lost Bluetooth or internet connectivity),
+the <code>status</code> of the Device resource that represents the Personal Health Device MUST be set to <code>unknown</code>. The device
+specific value of the static attribute <code>Delay-From-Real-Time</code> can be obtained through the device's DeviceDefinition resource.</p>
+</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr><tr><td style="white-space: nowrap">Requirements</td><td><p style="font-size: 11px">allow a requesting party to detect missing data (e.g. due to connection issues)</p>
+</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device.expirationDate">  </a><span style="color: grey">6</span><b>. Device.expirationDate</b><a href="#diff_Device.expirationDate" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">The date and time beyond which this Personal Health Device is no longer valid or should not be used (if applicable).</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Date and time of expiry of this Personal health device (if applicable)</td></tr><tr><td style="white-space: nowrap">Comments</td><td><p style="font-size: 11px">The expiration date signals the <em>end of communication</em> (which is latest the devices <em>end of life</em>). E.g. a real-time
+Continuous Glucose Monitoring device usually stops recording and sharing glucose values after 14 days of wear,
+even though the sensor is still alive for a longer time. The <code>expirationDate</code> in this case is 14 days after the
+patient started the sensor.</p>
+</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device.serialNumber">  </a><span style="color: grey">8</span><b>. Device.serialNumber</b><a href="#diff_Device.serialNumber" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">The serial number that uniquely identifies the Personal Health Device instance.</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Serial number of the Personal health device</td></tr><tr><td style="white-space: nowrap">Comments</td><td><p style="font-size: 11px">The serial number MAY only be omitted if neither the Personal Health Device nor its manual and packaging hold the printed serial number and if the Personal Health Device does not provide an API for reading a unique number from the device hardware.</p>
+</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device.deviceName">  </a><span style="color: grey">10</span><b>. Device.deviceName</b><a href="#diff_Device.deviceName" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p style="font-size: 11px">The name of the Personal health device as given by the manufacturer and listed in the <em>HIIS-VZ</em> (BfARM Device Registry).</p>
+</td></tr><tr><td style="white-space: nowrap">Short</td><td>Name of the Personal health device</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
+
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="diff_Device.type">  </a><span style="color: grey">12</span><b>. Device.type</b><a href="#diff_Device.type" title="link to here" class="self-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path></svg></a></span></td></tr><tr><td style="white-space: nowrap">Short</td><td>The machine-readable type of the Personal health device</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/terminologies.html">Binding</a></td><td><span>The codes SHALL be taken from  <a href="ValueSet-hddt-device-type.html">Device Type of personal health devices</a><br />(<a href="http://hl7.org/fhir/R4/terminologies.html#required">required</a> to <span class="copy-text-inline"><code>https://gematik.de/fhir/hddt/ValueSet/hddt-device-type</code><button data-clipboard-text="https://gematik.de/fhir/hddt/ValueSet/hddt-device-type" title="Click to Copy URL" class="btn-copy"></button></span>)</span></td></tr>
+
+</table>
+    </div>
+</div>
+
+<h3 id="example-glucometer">Example: Glucometer</h3>
+
+<p>In this example the patient uses a glucometer that is connected to the Device Data Recorder via Bluetooth. The glucometer is used to perform blood glucose measurements that are stored as <a href="mivs.html">Observation</a> resources in the Device Data Recorder. Each Observation references the <a href="StructureDefinition-hddt-personal-health-device.html">Device</a> resource that represents the glucometer (either directly or through a <a href="StructureDefinition-hddt-sensor-type-and-calibration-status.html">DeviceMetric</a> resource).</p>
+
+<p>The glucometer used in this example is the product <em>GlukkCheck plus mg/dl</em> from <em>Glukko Inc.</em>. The glucometer performs measurements from capillary blood. The vendor-defined model number of this type of devices is CGPA987654 and the serial number of the patient’s individual device is SN123456. Both identifiers are printed on the back of the device and allow the patient to validate the authenticity of this Personal Health Device resource.</p>
+
+<p>Remarks:</p>
+<ul>
+  <li>As glucometers do not expire (that is just the case for the test strips), the <code class="language-plaintext highlighter-rouge">expirationDate</code> is not set, even though this element is set to <em>Must Support</em> in the profile.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">text</code> element is omitted in this example to keep the example small. Nevertheless, as all HDDT resources are intended for sole machine processing, the <code class="language-plaintext highlighter-rouge">text</code> element MAY be omitted.</li>
+</ul>
+
+<h4 id="device---read-1">Device - READ</h4>
+
+<p><strong>Request:</strong> GET <code class="language-plaintext highlighter-rouge">/Device/example-glucometer</code></p>
+
+<p><strong>Response:</strong></p>
+
+<pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/device.html#Device">resourceType</a>" : "Device",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Device.id">id</a>" : "example-glucometer",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Device.meta">meta</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#Meta#Meta.profile">profile</a>" : [
+      <a href="StructureDefinition-hddt-personal-health-device.html" style="color: Maroon">&#x1F517;</a> "https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"
+    ]
+  },
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.definition">definition</a>" : {
+    <a href="DeviceDefinition-example-glucometer-def.html" style="color: Maroon">&#x1F517;</a> "<a href="http://hl7.org/fhir/R4/references.html#Reference#Reference.reference">reference</a>" : "DeviceDefinition/example-glucometer-def"
+  },
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.status">status</a>" : "active",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.manufacturer">manufacturer</a>" : "Glukko Inc.",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.serialNumber">serialNumber</a>" : "SN123456",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.deviceName">deviceName</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/device.html#Device.deviceName.name">name</a>" : "GlukkoCheck plus mg/dL",
+      "<a href="http://hl7.org/fhir/R4/device.html#Device.deviceName.type">type</a>" : "user-friendly-name"
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.modelNumber">modelNumber</a>" : "CGPA987654",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.type">type</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+      {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://snomed.info/sct",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.version">version</a>" : "http://snomed.info/sct/11000274103/version/20251115",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "337414009",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Blood glucose meter (physical object)"
+      }
+    ]
+  }
+}</code></pre>
+
+<h4 id="device---search-1">Device - SEARCH</h4>
+
+<p><strong>Request:</strong> GET <code class="language-plaintext highlighter-rouge">/Device</code></p>
+
+<p><strong>Response:</strong></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bundle"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"searchset"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"entry"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"fullUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/fhir/Device/example-glucometer"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-glucometer"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"https://gematik.de/fhir/hddt/StructureDefinition/hddt-personal-health-device"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"337414009"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://snomed.info/sct"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://snomed.info/sct/11000274103/version/20251115"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blood glucose meter (physical object)"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"deviceName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GlukkoCheck plus mg/dL"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-friendly-name"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glukko Inc."</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"serialNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SN123456"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"modelNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CGPA987654"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"definition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeviceDefinition/example-glucometer-def"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"match"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="example-rtcgm-sensor">Example: rtCGM Sensor</h3>
+
+<p>This example describes a real-time Continuous Glucose Monitoring sensor (rtCGM) as a personal health device.</p>
+
+<p>The example sensor is the product <em>GlukkoCGM 18</em> from <em>Glukko Inc.</em> that performs continuous glucose measurements from interstitial fluid. The sensor in the example will stop transmitting data on September 10, 2025, and MUST be replaced by the patient at that date. The vendor-defined model number of this type of devices is <em>GCGMA98765</em> and the serial number of the patient’s  individual device is <em>CGM1234567890</em>. Both identifiers are printed on the package of the device and allow the patient to validate the authenticity of this Personal Health Device resource.</p>
+
+<p>Remarks:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">text</code> element is omitted in this example to keep the example small. Nevertheless, as all HDDT resources are intended for sole machine processing, the <code class="language-plaintext highlighter-rouge">text</code> element MAY be omitted.</li>
+</ul>
+
+<h4 id="instance-of-the-hddt-personal-health-device-profile">Instance of the HDDT Personal Health Device profile</h4>
+
+<pre class="json" data-fhir="generated" style="white-space: pre; text-wrap: nowrap; width: auto;"><code class="language-json" style="white-space: pre; text-wrap: nowrap;">{
+  "<a href="http://hl7.org/fhir/R4/device.html#Device">resourceType</a>" : "Device",
+  "<a href="http://hl7.org/fhir/R4/resource.html#Device.id">id</a>" : "example-device-cgm",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.definition">definition</a>" : {
+    <a href="DeviceDefinition-device-definition-cgm-001.html" style="color: Maroon">&#x1F517;</a> "<a href="http://hl7.org/fhir/R4/references.html#Reference#Reference.reference">reference</a>" : "DeviceDefinition/device-definition-cgm-001"
+  },
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.status">status</a>" : "active",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.manufacturer">manufacturer</a>" : "Glukko Inc.",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.expirationDate">expirationDate</a>" : "2025-09-10",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.serialNumber">serialNumber</a>" : "CGM1234567890",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.deviceName">deviceName</a>" : [
+    {
+      "<a href="http://hl7.org/fhir/R4/device.html#Device.deviceName.name">name</a>" : "GlukkoCGM 18",
+      "<a href="http://hl7.org/fhir/R4/device.html#Device.deviceName.type">type</a>" : "user-friendly-name"
+    }
+  ],
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.modelNumber">modelNumber</a>" : "GCGMA98765",
+  "<a href="http://hl7.org/fhir/R4/device.html#Device.type">type</a>" : {
+    "<a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept#CodeableConcept.coding">coding</a>" : [
+      {
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.system">system</a>" : "http://snomed.info/sct",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.version">version</a>" : "http://snomed.info/sct/11000274103/version/20251115",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.code">code</a>" : "700585005",
+        "<a href="http://hl7.org/fhir/R4/datatypes.html#Coding#Coding.display">display</a>" : "Invasive interstitial-fluid glucose monitoring system (physical object)"
+      }
+    ]
+  }
+}</code></pre>
+
+
+
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript" src="assets/js/window-hash.js"> </script>
+  <a name="bottom"> </a>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+
+      <div style="background-color:var(--footer-nav-bg-color)">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td style="text-align:left">&#xA0;
+
+                <a href="fhir-api-observation.html">&lt;vorherige</a>
+
+              </td>
+              <td style="text-align:center">
+                <a href="#top">oben</a>
+              </td>
+              <td style="text-align:right">&#xA0;
+
+                <a href="fhir-api-devicemetric.html">nächste&gt;</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2025+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.gematik.de">gematik GmbH</a>.  Paket de.gematik.hddt#1.0.1 basierend auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generiert <span title="Wed, Apr 29, 2026 09:18+0000">2026-04-29</span>
+          <br/>
+          <span style="color: var(--footer-highlight-text-color)">
+                      Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
+                 <a style="color: var(--footer-hyperlink-text-color)" href="qa.html">QA Report</a>
+                 
+                
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+  <script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor-hover.js"> </script>
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>
+

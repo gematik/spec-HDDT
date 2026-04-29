@@ -1,0 +1,48 @@
+{
+  "resourceType": "Organization",
+  "id": "example-cgm-manufacturer",
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.bfarm.de/CodeSystem/HiisManufacturerType",
+          "code": "legal",
+          "display": "Legal Entity"
+        }
+      ]
+    }
+  ],
+  "name": "rtCGM Manufacturer Inc.",
+  "telecom": [
+    {
+      "system": "email",
+      "value": "info@rtcgm-manufacturer.com"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "CGM Technology Park 15"
+      ],
+      "city": "Munich",
+      "postalCode": "80331",
+      "country": "DE"
+    }
+  ],
+  "contact": [
+    {
+      "name": {
+        "given": [
+          "Maria"
+        ],
+        "family": "Sensor"
+      },
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "+49-89-9876543"
+        }
+      ]
+    }
+  ]
+}

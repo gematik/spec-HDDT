@@ -1,0 +1,83 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes> a fhir:CodeSystem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "hddt-lung-function-reference-value-method-codes"] ; # 
+  fhir:language [ fhir:v "en"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem hddt-lung-function-reference-value-method-codes</b></p><a name=\"hddt-lung-function-reference-value-method-codes\"> </a><a name=\"hchddt-lung-function-reference-value-method-codes\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p></div><p>This case-insensitive code system <code>https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">personal-best<a name=\"hddt-lung-function-reference-value-method-codes-personal-best\"> </a></td><td>Personal Best</td><td>Reference value based on the personal best value achieved by the patient within a certain time frame.</td></tr><tr><td style=\"white-space:nowrap\">GLI-2012<a name=\"hddt-lung-function-reference-value-method-codes-GLI-2012\"> </a></td><td>Predicted Value according to Global Lung Initiative 2012</td><td>Reference value calculated based on the Global Lung Initiative 2012 equations. I.e the patient's 'race' is considered.</td></tr><tr><td style=\"white-space:nowrap\">GLI-2022<a name=\"hddt-lung-function-reference-value-method-codes-GLI-2022\"> </a></td><td>Predicted Value according to Global Lung Initiative 2022</td><td>Reference value calculated based on the Global Lung Initiative 2022 equations. I.e. a 'race'-neutral approach is used.</td></tr><tr><td style=\"white-space:nowrap\">other<a name=\"hddt-lung-function-reference-value-method-codes-other\"> </a></td><td>Other</td><td>Other method used to determine the lung function reference value. Specify details via text input.</td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod>
+     ] ;
+     fhir:value [
+       a fhir:Period ;
+       fhir:start [ fhir:v "2026-04-29"^^xsd:date ]
+     ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/artifact-author"^^xsd:anyURI ;
+       fhir:l <http://hl7.org/fhir/StructureDefinition/artifact-author>
+     ] ;
+     fhir:value [
+       a fhir:ContactDetail ;
+       fhir:name [ fhir:v "gematik GmbH" ]
+     ]
+  ] ) ; # 
+  fhir:url [
+     fhir:v "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes"^^xsd:anyURI ;
+     fhir:l <https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes>
+  ] ; # 
+  fhir:version [ fhir:v "1.0.1"] ; # 
+  fhir:name [ fhir:v "HddtLungFunctionReferenceValueMethodCodes"] ; # 
+  fhir:title [ fhir:v "Lung Function Reference Value Method Codes"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v false] ; # 
+  fhir:date [ fhir:v "2026-04-29"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "gematik GmbH"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "gematik GmbH" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.gematik.de" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Dieses CodeSystem ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDer MIV _HddtMivLungFunctionTesting_ erfordert Referenzwerte zur Bewertung gemessener Lungenfunktionswerte. Diese Referenzwerte können mit unterschiedlichen\nMethoden bestimmt werden. Dieses CodeSystem stellt Codes zur Verfügung, um typische Methoden zur Bestimmung von Lungenfunktions-Referenzwerten auszudrücken.\n\n--\n\nThis CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference\nvalues can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values."] ; # 
+  fhir:copyright [ fhir:v "gematik GmbH."] ; # 
+  fhir:caseSensitive [ fhir:v false] ; # 
+  fhir:valueSet [
+     fhir:v "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-value-method-codes|1.0.1"^^xsd:anyURI ;
+     fhir:l <https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-value-method-codes?version=1.0.1>
+  ] ; # 
+  fhir:versionNeeded [ fhir:v true] ; # 
+  fhir:content [ fhir:v "complete"] ; # 
+  fhir:count [ fhir:v "4"^^xsd:nonNegativeInteger] ; # 
+  fhir:concept ( [
+     fhir:code [ fhir:v "personal-best" ] ;
+     fhir:display [ fhir:v "Personal Best" ] ;
+     fhir:definition [ fhir:v "Reference value based on the personal best value achieved by the patient within a certain time frame." ]
+  ] [
+     fhir:code [ fhir:v "GLI-2012" ] ;
+     fhir:display [ fhir:v "Predicted Value according to Global Lung Initiative 2012" ] ;
+     fhir:definition [ fhir:v "Reference value calculated based on the Global Lung Initiative 2012 equations. I.e the patient's 'race' is considered." ]
+  ] [
+     fhir:code [ fhir:v "GLI-2022" ] ;
+     fhir:display [ fhir:v "Predicted Value according to Global Lung Initiative 2022" ] ;
+     fhir:definition [ fhir:v "Reference value calculated based on the Global Lung Initiative 2022 equations. I.e. a 'race'-neutral approach is used." ]
+  ] [
+     fhir:code [ fhir:v "other" ] ;
+     fhir:display [ fhir:v "Other" ] ;
+     fhir:definition [ fhir:v "Other method used to determine the lung function reference value. Specify details via text input." ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

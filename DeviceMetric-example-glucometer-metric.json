@@ -1,0 +1,32 @@
+{
+  "resourceType" : "DeviceMetric",
+  "id" : "example-glucometer-metric",
+  "meta" : {
+    "profile" : ["https://gematik.de/fhir/hddt/StructureDefinition/hddt-sensor-type-and-calibration-status"]
+  },
+  "type" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "version" : "http://snomed.info/sct/11000274103/version/20251115",
+      "code" : "700585005",
+      "display" : "Invasive interstitial-fluid glucose monitoring system (physical object)"
+    }]
+  },
+  "unit" : {
+    "coding" : [{
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mg/dL",
+      "display" : "mg/dL"
+    }]
+  },
+  "source" : {
+    "reference" : "Device/example-glucometer"
+  },
+  "operationalStatus" : "on",
+  "category" : "measurement",
+  "calibration" : [{
+    "type" : "gain",
+    "state" : "calibrated",
+    "time" : "2025-09-01T09:08:04+02:00"
+  }]
+}

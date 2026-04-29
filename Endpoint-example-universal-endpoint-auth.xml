@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Endpoint xmlns="http://hl7.org/fhir">
+  <id value="example-universal-endpoint-auth"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Endpoint example-universal-endpoint-auth</b></p><a name="example-universal-endpoint-auth"> </a><a name="hcexample-universal-endpoint-auth"> </a><p><b>status</b>: Active</p><p><b>connectionType</b>: HiisEndpointConnectionType: oauth-authz-server (oauth-authz-server)</p><p><b>name</b>: cloud.health-it.de</p><p><b>payloadType</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/endpoint-payload-type any}">Any</span></p><p><b>address</b>: <a href="https://simplifier.net/resolve?scope=de.basisprofil.r4@1.5.4&amp;canonical=https://cloud.health-it.de/.well-known/openid-configuration">https://cloud.health-it.de/.well-known/openid-configuration</a></p></div>
+  </text>
+  <status value="active"/>
+  <connectionType>
+    <system value="https://fhir.bfarm.de/CodeSystem/HiisEndpointConnectionType"/>
+    <code value="oauth-authz-server"/>
+  </connectionType>
+  <name value="cloud.health-it.de"/>
+  <payloadType>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/endpoint-payload-type"/>
+      <code value="any"/>
+    </coding>
+  </payloadType>
+  <address value="https://cloud.health-it.de/.well-known/openid-configuration"/>
+</Endpoint>

@@ -1,0 +1,49 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/hddt/Organization/example-glucometer-manufacturer> a fhir:Organization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-glucometer-manufacturer"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div [ fhir:v "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Organization example-glucometer-manufacturer</b></p><a name=\"example-glucometer-manufacturer\"> </a><a name=\"hcexample-glucometer-manufacturer\"> </a><p><b>type</b>: <span title=\"Codes:{https://fhir.bfarm.de/CodeSystem/HiisManufacturerType legal}\">Legal Entity</span></p><p><b>name</b>: Glukko Inc.</p><p><b>telecom</b>: <a href=\"mailto:info@glukko.com\">info@glukko.com</a></p><p><b>address</b>: Glukko Street 1 Berlin 10115 DE </p><h3>Contacts</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Name</b></td><td><b>Telecom</b></td></tr><tr><td style=\"display: none\">*</td><td>John Glucose </td><td><a href=\"tel:+49-30-1234567\">+49-30-1234567</a></td></tr></table></div>"^^rdf:XMLLiteral ]
+  ] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [
+         fhir:v "https://fhir.bfarm.de/CodeSystem/HiisManufacturerType"^^xsd:anyURI ;
+         fhir:l <https://fhir.bfarm.de/CodeSystem/HiisManufacturerType>
+       ] ;
+       fhir:code [ fhir:v "legal" ] ;
+       fhir:display [ fhir:v "Legal Entity" ]
+     ] )
+  ] ) ; # 
+  fhir:name [ fhir:v "Glukko Inc."] ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "email" ] ;
+     fhir:value [ fhir:v "info@glukko.com" ]
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "Glukko Street 1" ] ) ;
+     fhir:city [ fhir:v "Berlin" ] ;
+     fhir:postalCode [ fhir:v "10115" ] ;
+     fhir:country [ fhir:v "DE" ]
+  ] ) ; # 
+  fhir:contact ( [
+     fhir:name [
+       fhir:family [ fhir:v "Glucose" ] ;
+       fhir:given ( [ fhir:v "John" ] )
+     ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ;
+       fhir:value [ fhir:v "+49-30-1234567" ]
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

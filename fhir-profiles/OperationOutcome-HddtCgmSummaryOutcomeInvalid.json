@@ -1,0 +1,19 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "HddtCgmSummaryOutcomeInvalid",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "invalid",
+      "details": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/operation-outcome",
+            "code": "MSG_PARAM_INVALID"
+          }
+        ],
+        "text": "Invalid date format in effectivePeriodStart."
+      }
+    }
+  ]
+}

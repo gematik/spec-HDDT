@@ -1,0 +1,63 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "hddt-lung-function-reference-value-method-codes",
+  "language" : "en",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem hddt-lung-function-reference-value-method-codes</b></p><a name=\"hddt-lung-function-reference-value-method-codes\"> </a><a name=\"hchddt-lung-function-reference-value-method-codes\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p></div><p>This case-insensitive code system <code>https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">personal-best<a name=\"hddt-lung-function-reference-value-method-codes-personal-best\"> </a></td><td>Personal Best</td><td>Reference value based on the personal best value achieved by the patient within a certain time frame.</td></tr><tr><td style=\"white-space:nowrap\">GLI-2012<a name=\"hddt-lung-function-reference-value-method-codes-GLI-2012\"> </a></td><td>Predicted Value according to Global Lung Initiative 2012</td><td>Reference value calculated based on the Global Lung Initiative 2012 equations. I.e the patient's 'race' is considered.</td></tr><tr><td style=\"white-space:nowrap\">GLI-2022<a name=\"hddt-lung-function-reference-value-method-codes-GLI-2022\"> </a></td><td>Predicted Value according to Global Lung Initiative 2022</td><td>Reference value calculated based on the Global Lung Initiative 2022 equations. I.e. a 'race'-neutral approach is used.</td></tr><tr><td style=\"white-space:nowrap\">other<a name=\"hddt-lung-function-reference-value-method-codes-other\"> </a></td><td>Other</td><td>Other method used to determine the lung function reference value. Specify details via text input.</td></tr></table></div>"
+  },
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod",
+    "valuePeriod" : {
+      "start" : "2026-04-29"
+    }
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/artifact-author",
+    "valueContactDetail" : {
+      "name" : "gematik GmbH"
+    }
+  }],
+  "url" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes",
+  "version" : "1.0.1",
+  "name" : "HddtLungFunctionReferenceValueMethodCodes",
+  "title" : "Lung Function Reference Value Method Codes",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2026-04-29",
+  "publisher" : "gematik GmbH",
+  "contact" : [{
+    "name" : "gematik GmbH",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.gematik.de"
+    }]
+  }],
+  "description" : "Dieses CodeSystem ist Teil der Health Device Data Transfer Spezifikation (HDDT), die Profile, Operationen und ValueSets für den Datenaustausch zwischen \nHilfsmitteln und digitalen Gesundheitsanwendungen (DiGA) definiert. Zentrales Element der HDDT-Spezifikation sind _Mandatory Interoperable Values_ (MIVs).\nMIVs sind Klassen von Messwerten, die zu definierten Anwendungsfällen und Zwecken von DiGA beitragen.\n\nDer MIV _HddtMivLungFunctionTesting_ erfordert Referenzwerte zur Bewertung gemessener Lungenfunktionswerte. Diese Referenzwerte können mit unterschiedlichen\nMethoden bestimmt werden. Dieses CodeSystem stellt Codes zur Verfügung, um typische Methoden zur Bestimmung von Lungenfunktions-Referenzwerten auszudrücken.\n\n--\n\nThis CodeSystem is part of the Health Device Data Transfer specification (HDDT) which defines profiles, operations, and value sets \nfor sharing data between medical aids and digital health applications (DiGA). Core of the HDDT specification are _Mandatory Interoperable \nValues_ (MIVs). MIVs are classes of measurements that contribute to defined use cases and purposes of DiGA.\n\nThe MIV _HddtMivLungFunctionTesting_ requires reference values for evaluating measured lung function values. These reference\nvalues can be determined using different methods. This CodeSystem provides codes to express typical methods for determining lung function reference values.",
+  "copyright" : "gematik GmbH.",
+  "caseSensitive" : false,
+  "valueSet" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-reference-value-method-codes|1.0.1",
+  "versionNeeded" : true,
+  "content" : "complete",
+  "count" : 4,
+  "concept" : [{
+    "code" : "personal-best",
+    "display" : "Personal Best",
+    "definition" : "Reference value based on the personal best value achieved by the patient within a certain time frame."
+  },
+  {
+    "code" : "GLI-2012",
+    "display" : "Predicted Value according to Global Lung Initiative 2012",
+    "definition" : "Reference value calculated based on the Global Lung Initiative 2012 equations. I.e the patient's 'race' is considered."
+  },
+  {
+    "code" : "GLI-2022",
+    "display" : "Predicted Value according to Global Lung Initiative 2022",
+    "definition" : "Reference value calculated based on the Global Lung Initiative 2022 equations. I.e. a 'race'-neutral approach is used."
+  },
+  {
+    "code" : "other",
+    "display" : "Other",
+    "definition" : "Other method used to determine the lung function reference value. Specify details via text input."
+  }]
+}
