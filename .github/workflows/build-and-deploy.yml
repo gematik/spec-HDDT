@@ -47,7 +47,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./output
-          force_orphan: true
+          force_orphan: false
 
       - name: Upload artifact for GitHub Pages
         if: github.ref == 'refs/heads/main'
