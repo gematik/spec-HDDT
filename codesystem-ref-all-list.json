@@ -176,13 +176,13 @@
     "oids" : ["2.16.840.1.113883.6.1"],
     "uses" : {
     },
-    "ValueSet-hddt-lung-function-relative-values.html" : "Lung Function Relative Values from LOINC",
-    "ValueSet-hddt-lung-function-reference-values.html" : "Lung Function Reference Values from LOINC",
-    "http://hl7.org/fhir/R4/valueset-observation-codes.html" : "LOINC Codes",
-    "ValueSet-hddt-lung-function-testing-values.html" : "Lung Function Testing Values from LOINC",
-    "ValueSet-hddt-miv-continuous-glucose-measurement.html" : "Continuous Glucose Measurement from LOINC",
     "ValueSet-hddt-miv-blood-glucose-measurement.html" : "Blood Glucose Measurement from LOINC",
-    "ValueSet-hddt-miv-blood-pressure-value.html" : "Blood Pressure Value from LOINC"
+    "ValueSet-hddt-miv-continuous-glucose-measurement.html" : "Continuous Glucose Measurement from LOINC",
+    "http://hl7.org/fhir/R4/valueset-observation-codes.html" : "LOINC Codes",
+    "ValueSet-hddt-miv-blood-pressure-value.html" : "Blood Pressure Value from LOINC",
+    "ValueSet-hddt-lung-function-relative-values.html" : "Lung Function Relative Values from LOINC",
+    "ValueSet-hddt-lung-function-testing-values.html" : "Lung Function Testing Values from LOINC",
+    "ValueSet-hddt-lung-function-reference-values.html" : "Lung Function Reference Values from LOINC"
   },
   {
     "url" : "http://snomed.info/sct",
@@ -194,10 +194,10 @@
     "oids" : ["2.16.840.1.113883.6.96"],
     "uses" : {
     },
-    "http://hl7.org/fhir/R4/valueset-referencerange-appliesto.html" : "Observation Reference Range Applies To Codes",
-    "http://hl7.org/fhir/R4/valueset-body-site.html" : "SNOMED CT Body Structures",
     "ValueSet-hddt-device-type.html" : "Device Type of personal health devices",
-    "http://hl7.org/fhir/R4/valueset-observation-methods.html" : "Observation Methods"
+    "http://hl7.org/fhir/R4/valueset-referencerange-appliesto.html" : "Observation Reference Range Applies To Codes",
+    "http://hl7.org/fhir/R4/valueset-observation-methods.html" : "Observation Methods",
+    "http://hl7.org/fhir/R4/valueset-body-site.html" : "SNOMED CT Body Structures"
   },
   {
     "url" : "http://terminology.hl7.org/CodeSystem/data-absent-reason",
@@ -269,8 +269,8 @@
     "oids" : ["2.16.840.1.113883.6.8"],
     "uses" : {
     },
-    "http://hl7.org/fhir/R4/valueset-ucum-units.html" : "UCUM Codes",
-    "https://simplifier.net/resolve?scope=de.basisprofil.r4@1.5.4&canonical=http://fhir.de/ValueSet/UcumVitalsCommonDE" : "UCUM Vitals Common DE"
+    "https://simplifier.net/resolve?scope=de.basisprofil.r4@1.5.4&canonical=http://fhir.de/ValueSet/UcumVitalsCommonDE" : "UCUM Vitals Common DE",
+    "http://hl7.org/fhir/R4/valueset-ucum-units.html" : "UCUM Codes"
   },
   {
     "url" : "https://gematik.de/fhir/hddt/CodeSystem/hddt-lung-function-reference-value-method-codes",
@@ -292,9 +292,9 @@
     "description" : "Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.\n\n--\n\nTemporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable.",
     "uses" : {
     },
+    "ValueSet-hddt-lung-function-temporary-codes.html" : "Lung Function Temporary Codes",
     "ConceptMap-HddtLungFunctionTemporaryToLoinc.html" : "Lung Function Temporary Codes to LOINC",
-    "ValueSet-hddt-lung-function-relative-values.html" : "Lung Function Relative Values from LOINC",
-    "ValueSet-hddt-lung-function-temporary-codes.html" : "Lung Function Temporary Codes"
+    "ValueSet-hddt-lung-function-relative-values.html" : "Lung Function Relative Values from LOINC"
   },
   {
     "url" : "urn:ietf:bcp:47",

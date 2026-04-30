@@ -25,12 +25,12 @@
     "sources" : ["2.16.840.1.113883.4.642.3.912"],
     "uses" : {
     },
-    "StructureDefinition-hddt-blood-glucose-measurement.html" : "Observation – Blood Glucose Measurement",
-    "StructureDefinition-hddt-lung-function-testing-complete.html" : "Observation – Complete Lung Function Testing",
     "StructureDefinition-hddt-lung-function-testing.html" : "Observation – Lung Function Testing",
+    "StructureDefinition-hddt-sensor-type-and-calibration-status.html" : "DeviceMetric – Sensor Type and Calibration Status",
     "StructureDefinition-hddt-lung-reference-value.html" : "Observation – Lung Function Reference Value",
-    "StructureDefinition-hddt-continuous-glucose-measurement.html" : "Observation – Continuous Glucose Measurement",
-    "StructureDefinition-hddt-sensor-type-and-calibration-status.html" : "DeviceMetric – Sensor Type and Calibration Status"
+    "StructureDefinition-hddt-lung-function-testing-complete.html" : "Observation – Complete Lung Function Testing",
+    "StructureDefinition-hddt-blood-glucose-measurement.html" : "Observation – Blood Glucose Measurement",
+    "StructureDefinition-hddt-continuous-glucose-measurement.html" : "Observation – Continuous Glucose Measurement"
   },
   {
     "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-device-type",
@@ -66,8 +66,8 @@
     "systems" : ["http://loinc.org"],
     "uses" : {
     },
-    "ValueSet-hddt-miv-lung-function-testing.html" : "MIV Lung Function Testing from LOINC",
-    "StructureDefinition-hddt-lung-reference-value.html" : "Observation – Lung Function Reference Value"
+    "StructureDefinition-hddt-lung-reference-value.html" : "Observation – Lung Function Reference Value",
+    "ValueSet-hddt-miv-lung-function-testing.html" : "MIV Lung Function Testing from LOINC"
   },
   {
     "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-relative-values",
@@ -80,8 +80,8 @@
     "http://loinc.org"],
     "uses" : {
     },
-    "ValueSet-hddt-miv-lung-function-testing.html" : "MIV Lung Function Testing from LOINC",
-    "StructureDefinition-hddt-lung-function-testing-complete.html" : "Observation – Complete Lung Function Testing"
+    "StructureDefinition-hddt-lung-function-testing-complete.html" : "Observation – Complete Lung Function Testing",
+    "ValueSet-hddt-miv-lung-function-testing.html" : "MIV Lung Function Testing from LOINC"
   },
   {
     "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-lung-function-temporary-codes",
@@ -105,8 +105,8 @@
     "systems" : ["http://loinc.org"],
     "uses" : {
     },
-    "ValueSet-hddt-miv-lung-function-testing.html" : "MIV Lung Function Testing from LOINC",
-    "StructureDefinition-hddt-lung-function-testing.html" : "Observation – Lung Function Testing"
+    "StructureDefinition-hddt-lung-function-testing.html" : "Observation – Lung Function Testing",
+    "ValueSet-hddt-miv-lung-function-testing.html" : "MIV Lung Function Testing from LOINC"
   },
   {
     "url" : "https://gematik.de/fhir/hddt/ValueSet/hddt-miv-blood-glucose-measurement",
