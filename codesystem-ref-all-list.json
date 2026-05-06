@@ -176,12 +176,12 @@
     "oids" : ["2.16.840.1.113883.6.1"],
     "uses" : {
     },
-    "ValueSet-hddt-miv-blood-glucose-measurement.html" : "Blood Glucose Measurement from LOINC",
-    "ValueSet-hddt-miv-continuous-glucose-measurement.html" : "Continuous Glucose Measurement from LOINC",
     "http://hl7.org/fhir/R4/valueset-observation-codes.html" : "LOINC Codes",
+    "ValueSet-hddt-lung-function-testing-values.html" : "Lung Function Testing Values from LOINC",
+    "ValueSet-hddt-miv-blood-glucose-measurement.html" : "Blood Glucose Measurement from LOINC",
     "ValueSet-hddt-miv-blood-pressure-value.html" : "Blood Pressure Value from LOINC",
     "ValueSet-hddt-lung-function-relative-values.html" : "Lung Function Relative Values from LOINC",
-    "ValueSet-hddt-lung-function-testing-values.html" : "Lung Function Testing Values from LOINC",
+    "ValueSet-hddt-miv-continuous-glucose-measurement.html" : "Continuous Glucose Measurement from LOINC",
     "ValueSet-hddt-lung-function-reference-values.html" : "Lung Function Reference Values from LOINC"
   },
   {
@@ -194,10 +194,10 @@
     "oids" : ["2.16.840.1.113883.6.96"],
     "uses" : {
     },
-    "ValueSet-hddt-device-type.html" : "Device Type of personal health devices",
-    "http://hl7.org/fhir/R4/valueset-referencerange-appliesto.html" : "Observation Reference Range Applies To Codes",
+    "http://hl7.org/fhir/R4/valueset-body-site.html" : "SNOMED CT Body Structures",
     "http://hl7.org/fhir/R4/valueset-observation-methods.html" : "Observation Methods",
-    "http://hl7.org/fhir/R4/valueset-body-site.html" : "SNOMED CT Body Structures"
+    "http://hl7.org/fhir/R4/valueset-referencerange-appliesto.html" : "Observation Reference Range Applies To Codes",
+    "ValueSet-hddt-device-type.html" : "Device Type of personal health devices"
   },
   {
     "url" : "http://terminology.hl7.org/CodeSystem/data-absent-reason",
@@ -292,8 +292,8 @@
     "description" : "Temporäre Codes für den MIV _Lung Function Testing_, bis LOINC-Codes verfügbar sind.\n\n--\n\nTemporary codes for the MIV _Lung Function Testing_ until LOINC codes are avaiblable.",
     "uses" : {
     },
-    "ValueSet-hddt-lung-function-temporary-codes.html" : "Lung Function Temporary Codes",
     "ConceptMap-HddtLungFunctionTemporaryToLoinc.html" : "Lung Function Temporary Codes to LOINC",
+    "ValueSet-hddt-lung-function-temporary-codes.html" : "Lung Function Temporary Codes",
     "ValueSet-hddt-lung-function-relative-values.html" : "Lung Function Relative Values from LOINC"
   },
   {
